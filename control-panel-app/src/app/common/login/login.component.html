@@ -1,0 +1,17 @@
+<div class="login-container">
+  <form class="login-form" [formGroup]="credential" (ngSubmit)="onSubmit()">
+    <mat-form-field class="login-field">
+      <input matInput placeholder="Login" formControlName="login">
+      <mat-error>
+        Login is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="login-field">
+      <input matInput placeholder="Password" type="password" formControlName="password">
+      <mat-error>
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Login</button>
+  </form>
+</div>

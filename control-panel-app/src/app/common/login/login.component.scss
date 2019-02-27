@@ -1,0 +1,16 @@
+:host {
+  height: 100%;
+  .login-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      .login-field {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}

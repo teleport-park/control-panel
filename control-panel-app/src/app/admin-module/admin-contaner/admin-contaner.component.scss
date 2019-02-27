@@ -1,0 +1,39 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  .mat-toolbar {
+    display: flex;
+    .toolbar-title {
+      flex: 1 1;
+    }
+  }
+  .sidenav-container {
+    flex: 1 1 auto;
+    .sidenav-inner-container {
+      min-width: 250px;
+      .sidenav-inner-action {
+        display: flex;
+        justify-content: flex-end;
+        button {
+          padding: 0;
+        }
+      }
+      .sidenav-title {
+        padding: 0 20px;
+      }
+      .nav-list-container {
+        padding: 0;
+        .mat-list-item {
+          &.active {
+            background-color: rgba(63, 81, 181, .8);
+            color: #fff;
+          }
+        }
+      }
+    }
+    .mat-sidenav-content {
+      padding: 10px;
+    }
+  }
+}
