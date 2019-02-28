@@ -3,10 +3,10 @@ import { MatSidenav } from "@angular/material";
 
 @Component({
   selector: 'app-admin-contaner',
-  templateUrl: './admin-contaner.component.html',
-  styleUrls: ['./admin-contaner.component.scss']
+  templateUrl: './admin-container.component.html',
+  styleUrls: ['./admin-container.component.scss']
 })
-export class AdminContanerComponent implements OnInit {
+export class AdminContainerComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav: MatSidenav;
 

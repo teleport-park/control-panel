@@ -1,13 +1,13 @@
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from "./admin-contaner/components/dashboard/dashboard.component";
-import { UsersComponent } from "./admin-contaner/components/users/users.component";
-import { AdminContanerComponent } from "./admin-contaner/admin-contaner.component";
-import { DevicesComponent } from "./admin-contaner/components/devices/devices.component";
+import { DashboardComponent } from "./admin-container/components/dashboard/dashboard.component";
+import { UsersComponent } from "./admin-container/components/users/users.component";
+import { AdminContainerComponent } from "./admin-container/admin-container.component";
+import { DevicesComponent } from "./admin-container/components/devices/devices.component";
 
 const routes: Routes = [
   {
     path: 'admin',
-    component: AdminContanerComponent,
+    component: AdminContainerComponent,
     children: [
       {
         path: '',
