@@ -9,6 +9,8 @@ import {
   MatSidenavModule,
   MatSlideToggleModule,
   MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -21,7 +23,9 @@ export const MATERIAL_MODULES = [
   MatSnackBarModule,
   MatToolbarModule,
   MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatTableModule,
+  MatSortModule
 ];
 
 @NgModule({

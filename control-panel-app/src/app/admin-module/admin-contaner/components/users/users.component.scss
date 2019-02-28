@@ -1,0 +1,12 @@
+:host {
+  width: 100%;
+  .users-table {
+    width: 100%;
+    .status-icon {
+      color: #FF0000;
+      &.active {
+        color: #00AE12;
+      }
+    }
+  }
+}

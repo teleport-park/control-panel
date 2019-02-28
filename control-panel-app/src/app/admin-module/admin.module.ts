@@ -6,6 +6,7 @@ import { AdminRoutingModule } from "./admin-routing.module";
 import { DashboardComponent } from './admin-contaner/components/dashboard/dashboard.component';
 import { UsersComponent } from './admin-contaner/components/users/users.component';
 import { DevicesComponent } from './admin-contaner/components/devices/devices.component';
+import { UserService } from "./admin-contaner/services/user.service";
 
 @NgModule({
   declarations: [AdminContanerComponent, DashboardComponent, UsersComponent, DevicesComponent],
@@ -13,6 +14,8 @@ import { DevicesComponent } from './admin-contaner/components/devices/devices.co
     CommonModule,
     MaterialModule,
     AdminRoutingModule
-  ]
+  ],
+  providers: [UserService]
 })
-export class AdminModule { }
+export class AdminModule {
+}
