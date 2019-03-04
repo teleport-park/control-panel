@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { MatSnackBar } from '@angular/material';
+import { TranslateService } from "../../admin-module/admin-container/services/translate.service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
 
   credential: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private toaster: MatSnackBar) {
+  constructor(private fb: FormBuilder, private router: Router, private toaster: MatSnackBar, public translateService: TranslateService) {
   }
 
   ngOnInit() {
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/admin']);
       return;
     }
-    this.toaster.open('Login or password incorrect', null, {
+    this.toaster.open(this.translateService.instant('AUTH_FILED_TOAST_MESSAGE'), null, {
       duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top',

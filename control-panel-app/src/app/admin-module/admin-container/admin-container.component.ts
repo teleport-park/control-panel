@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
-import { MatSidenav } from "@angular/material";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatSelectChange, MatSidenav } from "@angular/material";
+import { TranslateService } from "./services/translate.service";
 
 export interface MenuItem {
   icon: string;
@@ -14,6 +15,15 @@ export interface MenuItem {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminContainerComponent implements OnInit {
+  /**
+   * language items
+   */
+  languageItems: {value: string, label: string}[] = this.getLanguageItems();
+
+  /**
+   * trigger for translation pipe
+   */
+  t: number;
 
   /**
    * menu items
@@ -41,11 +51,32 @@ export class AdminContainerComponent implements OnInit {
    * active view
    */
   activeView: string;
+  /**
+   * locale
+   */
+  locale: string;
 
-  constructor() {
+  constructor(public translateService: TranslateService, private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
+    this.translateService.locale.subscribe((locale: string) => {
+      this.languageItems = this.getLanguageItems();
+      this.locale = locale;
+      this.t = Math.random();
+      this.cd.detectChanges();
+      this.cd.markForCheck();
+    });
+  }
+
+  /**
+   * get language items
+   */
+  private getLanguageItems() {
+    return [
+      {value: 'en', label: this.translateService.instant('en')},
+      {value: 'ru', label: this.translateService.instant('ru')}
+    ];
   }
 
   /**
@@ -54,5 +85,13 @@ export class AdminContainerComponent implements OnInit {
    */
   setActiveChildView(event) {
     this.activeView = event && event.TITLE ? event.TITLE : ''
+  }
+
+  /**
+   * change locale
+   * @param event
+   */
+  changeLocale(event: MatSelectChange) {
+    this.translateService.getTranslations(event.value);
   }
 }

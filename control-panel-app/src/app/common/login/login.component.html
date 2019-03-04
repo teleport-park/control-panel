@@ -3,13 +3,14 @@
     <mat-form-field class="login-field">
       <input matInput placeholder="{{'LOGIN_PAGE_LOGIN_LABEL' | translate}}" formControlName="login">
       <mat-error>
-        Login is <strong>required</strong>
+        <!--Login is <strong>required</strong>-->
+        {{'REQUIRED_FIELD' | translate:[translateService.instant('LOGIN_PAGE_LOGIN_LABEL')]}}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="login-field">
       <input matInput placeholder="{{'LOGIN_PAGE_PASSWORD_LABEL' | translate}}" type="password" formControlName="password">
       <mat-error>
-        Password is <strong>required</strong>
+        {{'REQUIRED_FIELD' | translate:[translateService.instant('LOGIN_PAGE_PASSWORD_LABEL')]}}
       </mat-error>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit">{{'LOGIN_PAGE_LOGIN_BUTTON_LABEL' | translate}}</button>

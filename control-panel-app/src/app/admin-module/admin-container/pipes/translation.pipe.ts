@@ -17,6 +17,6 @@ export class TranslationPipe implements  PipeTransform {
    * @param args
    */
   transform(key: string, ...args): any {
-    return this.translateService.instant(key)
+    return this.translateService.instant(key, args)
   }
 }

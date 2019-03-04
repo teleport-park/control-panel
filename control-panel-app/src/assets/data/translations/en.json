@@ -1,5 +1,7 @@
 {
-  "LANGUAGE_LABEL": "English",
+  "en": "English",
+  "ru": "Русский",
+  "SELECT_LANGUAGE_PLACEHOLDER": "Select language",
   "ADMIN_MENU_TITLE": "CONTROL PANEL",
   "ADMIN_MENU_DEVICES": "Devices",
   "ADMIN_MENU_USERS": "Users",
@@ -7,5 +9,15 @@
   "ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL": "Logout",
   "LOGIN_PAGE_LOGIN_LABEL": "Login",
   "LOGIN_PAGE_PASSWORD_LABEL": "Password",
-  "LOGIN_PAGE_LOGIN_BUTTON_LABEL": "Login"
+  "LOGIN_PAGE_LOGIN_BUTTON_LABEL": "Login",
+  "REQUIRED_FIELD": "\"{0}\" is required",
+  "AUTH_FILED_TOAST_MESSAGE": "Login or password incorrect",
+  "USERS_TABLE_TITLE": "Users table",
+  "USER_INDEX": "№",
+  "USER_FIRST_NAME": "First name",
+  "USER_LAST_NAME": "Surname",
+  "USER_PHONE": "Phone",
+  "USER_STATE": "State",
+  "USER_AGE": "Age",
+  "USER_EMAIL": "Email"
 }

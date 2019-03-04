@@ -7,7 +7,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatListModule,
-  MatPaginatorModule,
+  MatPaginatorModule, MatSelectModule,
   MatSidenavModule,
   MatSlideToggleModule,
   MatSnackBarModule,
@@ -29,7 +29,8 @@ export const MATERIAL_MODULES = [
   MatTableModule,
   MatSortModule,
   MatPaginatorModule,
-  MatCardModule
+  MatCardModule,
+  MatSelectModule
 ];
 
 @NgModule({

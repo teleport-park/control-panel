@@ -7,8 +7,7 @@ import { TranslateService } from "./admin-module/admin-container/services/transl
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'control-panel-app';
   constructor(public translateService: TranslateService) {
-    this.translateService.getTranslations('ru');
+    this.translateService.getTranslations('en');
   }
 }

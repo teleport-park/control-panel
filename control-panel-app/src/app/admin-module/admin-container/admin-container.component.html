@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="side" opened disableClose class="sidenav-inner-container">
-    <div class="sidenav-title">{{'ADMIN_MENU_TITLE' | translate}}</div>
+    <div class="sidenav-title">{{'ADMIN_MENU_TITLE' | translate:t}}</div>
     <mat-divider></mat-divider>
     <mat-nav-list class="nav-list-container">
       <a mat-list-item
@@ -9,7 +9,7 @@
          routerLinkActive="active"
          (click)="setActiveChildView()">
         <i class="material-icons">{{menuItem.icon}}</i>
-        {{menuItem.label | translate}}
+        {{menuItem.label | translate:t}}
       </a>
     </mat-nav-list>
   </mat-sidenav>
@@ -22,10 +22,18 @@
       <!--</button>-->
 
       <div class="toolbar-title-container">
-        <a><span>{{activeView | translate}}</span></a>
+        <a><span>{{activeView | translate:t}}</span></a>
       </div>
+      <mat-form-field class="language-select">
+        <mat-select [(value)]="locale"
+        (selectionChange)="changeLocale($event)">
+          <mat-option *ngFor="let language of languageItems" [value]="language.value">
+            {{language.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-button routerLink="/login">{{'ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL' | translate:t}}</button>
 
-      <button mat-button routerLink="/login">{{'ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL' | translate}}</button>
     </mat-toolbar>
     <div class="content-container">
       <router-outlet (activate)="setActiveChildView($event)"></router-outlet>

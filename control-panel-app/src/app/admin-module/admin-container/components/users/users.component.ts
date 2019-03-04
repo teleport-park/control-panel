@@ -3,6 +3,8 @@ import { UserService } from "../../services/user.service";
 import { filter } from "rxjs/operators";
 import { User } from "../../../../models/user.model";
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { TranslateService } from "../../services/translate.service";
+import { UserPropertyMap } from "./user-property-map";
 
 @Component({
   selector: 'app-users',
@@ -11,8 +13,14 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersComponent implements OnInit {
-
+  /**
+   * title of component
+   */
   TITLE: string = 'ADMIN_MENU_USERS';
+  /**
+   * trigger for translations pipe
+   */
+  t: number;
 
   /**
    * mat sort instance
@@ -23,6 +31,11 @@ export class UsersComponent implements OnInit {
    * mat paginator instance
    */
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  /**
+   * property translations map
+   */
+  propertyMap = UserPropertyMap;
 
   /**
    * data source for table
@@ -42,8 +55,9 @@ export class UsersComponent implements OnInit {
    * Constructor
    * @param userService
    * @param cd
+   * @param translateService
    */
-  constructor(public userService: UserService, private cd: ChangeDetectorRef) { }
+  constructor(public userService: UserService, private cd: ChangeDetectorRef, private translateService: TranslateService) { }
 
   /**
    * on init hook
@@ -60,5 +74,9 @@ export class UsersComponent implements OnInit {
         this.cd.markForCheck();
       }
     );
+    this.translateService.locale.subscribe((locale: string) => {
+      this.t = Math.random();
+      this.cd.markForCheck();
+    })
   }
 }
