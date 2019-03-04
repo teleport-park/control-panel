@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UserService } from "../../services/user.service";
-import { filter } from "rxjs/operators";
+import { filter, takeUntil } from "rxjs/operators";
 import { User } from "../../../../models/user.model";
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { TranslateService } from "../../services/translate.service";
 import { UserPropertyMap } from "./user-property-map";
+import { Subject } from "rxjs";
 
 @Component({
   selector: 'app-users',
@@ -12,7 +13,7 @@ import { UserPropertyMap } from "./user-property-map";
   styleUrls: ['./users.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
   /**
    * title of component
    */
@@ -21,6 +22,8 @@ export class UsersComponent implements OnInit {
    * trigger for translations pipe
    */
   t: number;
+
+  destroyed$: Subject<boolean> = new Subject();
 
   /**
    * mat sort instance
@@ -40,7 +43,7 @@ export class UsersComponent implements OnInit {
   /**
    * data source for table
    */
-  private dataSource: MatTableDataSource<User>;
+  public dataSource: MatTableDataSource<User>;
   /**
    * Users
    */
@@ -63,7 +66,7 @@ export class UsersComponent implements OnInit {
    * on init hook
    */
   ngOnInit() {
-    this.userService.getUsers().pipe(filter(data => !!data)).subscribe(
+    this.userService.getUsers().pipe(filter(data => !!data), takeUntil(this.destroyed$)).subscribe(
       (users: User[]) => {
         this.users = users.map((user: User) => {
           return Object.assign(new User(), user)
@@ -74,9 +77,13 @@ export class UsersComponent implements OnInit {
         this.cd.markForCheck();
       }
     );
-    this.translateService.locale.subscribe((locale: string) => {
+    this.translateService.locale.pipe(takeUntil(this.destroyed$)).subscribe((locale: string) => {
       this.t = Math.random();
       this.cd.markForCheck();
     })
+  }
+  ngOnDestroy(): void {
+    this.destroyed$.next(true);
+    this.destroyed$.complete()
   }
 }

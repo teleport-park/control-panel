@@ -1,6 +1,16 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { MatSelectChange, MatSidenav } from "@angular/material";
 import { TranslateService } from "./services/translate.service";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 export interface MenuItem {
   icon: string;
@@ -14,7 +24,7 @@ export interface MenuItem {
   styleUrls: ['./admin-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AdminContainerComponent implements OnInit {
+export class AdminContainerComponent implements OnInit, OnDestroy {
   /**
    * language items
    */
@@ -24,6 +34,8 @@ export class AdminContainerComponent implements OnInit {
    * trigger for translation pipe
    */
   t: number;
+
+  destroyed$: Subject<boolean> = new Subject();
 
   /**
    * menu items
@@ -60,7 +72,7 @@ export class AdminContainerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.translateService.locale.subscribe((locale: string) => {
+    this.translateService.locale.pipe(takeUntil(this.destroyed$)).subscribe((locale: string) => {
       this.languageItems = this.getLanguageItems();
       this.locale = locale;
       this.t = Math.random();
@@ -93,5 +105,10 @@ export class AdminContainerComponent implements OnInit {
    */
   changeLocale(event: MatSelectChange) {
     this.translateService.getTranslations(event.value);
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 }
