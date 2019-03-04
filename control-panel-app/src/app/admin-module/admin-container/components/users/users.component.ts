@@ -27,7 +27,7 @@ export class UsersComponent implements OnInit {
   /**
    * data source for table
    */
-  private dataSource: MatTableDataSource<User>;
+  public dataSource: MatTableDataSource<User>;
   /**
    * Users
    */
