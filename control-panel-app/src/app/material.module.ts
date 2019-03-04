@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 
 import {
   MatButtonModule,
+  MatCardModule,
   MatCheckboxModule,
   MatFormFieldModule,
   MatInputModule,
   MatListModule,
+  MatPaginatorModule,
   MatSidenavModule,
   MatSlideToggleModule,
   MatSnackBarModule,
@@ -25,7 +27,9 @@ export const MATERIAL_MODULES = [
   MatSidenavModule,
   MatListModule,
   MatTableModule,
-  MatSortModule
+  MatSortModule,
+  MatPaginatorModule,
+  MatCardModule
 ];
 
 @NgModule({

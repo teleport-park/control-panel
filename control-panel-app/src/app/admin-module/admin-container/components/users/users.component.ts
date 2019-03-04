@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChil
 import { UserService } from "../../services/user.service";
 import { filter } from "rxjs/operators";
 import { User } from "../../../../models/user.model";
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-users',
@@ -12,10 +12,17 @@ import { MatSort, MatTableDataSource } from '@angular/material';
 })
 export class UsersComponent implements OnInit {
 
+  TITLE: string = 'ADMIN_MENU_USERS';
+
   /**
    * mat sort instance
    */
   @ViewChild(MatSort) sort: MatSort;
+
+  /**
+   * mat paginator instance
+   */
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   /**
    * data source for table
@@ -49,6 +56,7 @@ export class UsersComponent implements OnInit {
         });
         this.dataSource = new MatTableDataSource(this.users);
         this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
         this.cd.markForCheck();
       }
     );

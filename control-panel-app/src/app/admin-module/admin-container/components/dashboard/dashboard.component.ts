@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  TITLE: string = 'ADMIN_MENU_DASHBOARD';
+
   constructor() { }
 
   ngOnInit() {
