@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from './common/login/login.component';
 import { AdminModule } from "./admin-module/admin.module";
 import { HttpClientModule } from "@angular/common/http";
+import { PipesModule } from "./admin-module/admin-container/pipes/pipes.module";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpClientModule } from "@angular/common/http";
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    AdminModule
+    AdminModule,
+    PipesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./devices.component.scss']
 })
 export class DevicesComponent implements OnInit {
+  /**
+   * component title
+   */
+  TITLE: string = 'ADMIN_MENU_DEVICES';
 
   constructor() { }
 

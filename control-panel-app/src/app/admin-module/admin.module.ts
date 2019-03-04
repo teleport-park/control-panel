@@ -7,15 +7,18 @@ import { DashboardComponent } from './admin-container/components/dashboard/dashb
 import { UsersComponent } from './admin-container/components/users/users.component';
 import { DevicesComponent } from './admin-container/components/devices/devices.component';
 import { UserService } from "./admin-container/services/user.service";
+import { TranslateService } from "./admin-container/services/translate.service";
+import { PipesModule } from "./admin-container/pipes/pipes.module";
 
 @NgModule({
   declarations: [AdminContainerComponent, DashboardComponent, UsersComponent, DevicesComponent],
   imports: [
     CommonModule,
     MaterialModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    PipesModule
   ],
-  providers: [UserService]
+  providers: [UserService, TranslateService]
 })
 export class AdminModule {
 }

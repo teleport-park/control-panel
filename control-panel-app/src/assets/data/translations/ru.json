@@ -1,0 +1,11 @@
+{
+  "LANGUAGE_LABEL": "Русский",
+  "ADMIN_MENU_TITLE": "КОНТРОЛЬНАЯ ПАНЕЛЬ",
+  "ADMIN_MENU_DEVICES": "Устройства",
+  "ADMIN_MENU_USERS": "Пользователи",
+  "ADMIN_MENU_DASHBOARD": "Панель",
+  "ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL": "Выйти",
+  "LOGIN_PAGE_LOGIN_LABEL": "Логин",
+  "LOGIN_PAGE_PASSWORD_LABEL": "Пароль",
+  "LOGIN_PAGE_LOGIN_BUTTON_LABEL": "Войти"
+}

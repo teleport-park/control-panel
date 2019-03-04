@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from "./admin-module/admin-container/services/translate.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'control-panel-app';
+  constructor(public translateService: TranslateService) {
+    this.translateService.getTranslations('ru');
+  }
 }

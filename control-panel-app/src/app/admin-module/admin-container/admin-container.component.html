@@ -1,31 +1,35 @@
-<mat-toolbar color="primary" class="">
-    <button mat-button (click)="sidenav.toggle()">
-      <i class="material-icons">{{sidenav.opened ? 'keyboard_arrow_left' : 'keyboard_arrow_right'}}</i>
-    </button>
-
-  <p class="toolbar-title">&nbsp;Control Panel</p>
-  <button mat-button routerLink="/login">Logout</button>
-</mat-toolbar>
-<mat-sidenav-container class="sidenav-container" (backdropClick)="sidenav.close()">
-  <mat-sidenav #sidenav disableClose class="sidenav-inner-container">
-    <p class="sidenav-title">Menu items</p>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened disableClose class="sidenav-inner-container">
+    <div class="sidenav-title">{{'ADMIN_MENU_TITLE' | translate}}</div>
+    <mat-divider></mat-divider>
     <mat-nav-list class="nav-list-container">
       <a mat-list-item
-         routerLink="/admin/dashboard"
+         *ngFor="let menuItem of MENU_ITEMS"
+         [routerLink]="menuItem.path"
          routerLinkActive="active"
-         (click)="sidenav.close()">Dashboard</a>
-      <a mat-list-item
-         routerLink="/admin/devices"
-         routerLinkActive="active"
-         (click)="sidenav.close()">Devices</a>
-      <a mat-list-item
-         routerLink="/admin/users"
-         routerLinkActive="active"
-         (click)="sidenav.close()">Users</a>
+         (click)="setActiveChildView()">
+        <i class="material-icons">{{menuItem.icon}}</i>
+        {{menuItem.label | translate}}
+      </a>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
-    <router-outlet></router-outlet>
+    <mat-toolbar>
+      <!-- TODO should be used after implementation responsible layout -->
+      <!--<button mat-button (click)="sidenav.toggle()">-->
+        <!--<i class="material-icons">menu</i>-->
+      <!--</button>-->
+
+      <div class="toolbar-title-container">
+        <a><span>{{activeView | translate}}</span></a>
+      </div>
+
+      <button mat-button routerLink="/login">{{'ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL' | translate}}</button>
+    </mat-toolbar>
+    <div class="content-container">
+      <router-outlet (activate)="setActiveChildView($event)"></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

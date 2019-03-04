@@ -2,38 +2,78 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  .mat-toolbar {
-    display: flex;
-    .toolbar-title {
-      flex: 1 1;
-    }
-  }
+
   .sidenav-container {
     flex: 1 1 auto;
+
     .sidenav-inner-container {
-      min-width: 250px;
-      .sidenav-inner-action {
-        display: flex;
-        justify-content: flex-end;
-        button {
-          padding: 0;
-        }
+      background-image: url("https://demos.creative-tim.com/material-dashboard-react/static/media/sidebar-4.fc9cb053.jpg");
+      background-size: cover;
+      background-position: center center;
+      min-width: 260px;
+      color: #fff;
+      ::ng-deep .mat-drawer-inner-container {
+        background-color: rgba(0, 0, 0, .7);
       }
       .sidenav-title {
-        padding: 0 20px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        margin: 15px 0;
+        padding: 0 15px;
       }
+
+      .mat-divider {
+        margin: 0 15px;
+        border-top-color: rgba(251, 251, 251, 0.12);
+      }
+
       .nav-list-container {
-        padding: 0;
+        margin: 15px 0;
+        padding: 0 15px;
+
         .mat-list-item {
+          margin: 10px 0 0;
+          border-radius: 3px;
+          line-height: 24px;
+          height: 50px;
+          color: #fff;
+          font-size: 14px;
+          font-weight: 300;
+          i {
+            margin-right: 15px;
+          }
+
           &.active {
-            background-color: rgba(63, 81, 181, .8);
-            color: #fff;
+            background-color: #00ACC1;
+            box-shadow: 0 12px 20px -10px rgba(0, 172, 193,.28), 0 4px 20px 0 rgba(0, 0, 0,.12), 0 7px 8px -5px rgba(0, 172, 193,.2);
           }
         }
       }
     }
+
     .mat-sidenav-content {
-      padding: 10px;
+      .mat-toolbar {
+        display: flex;
+        height: 70px;
+
+        .toolbar-title-container {
+          flex: 1 1;
+
+          a {
+            padding: 12px 30px;
+
+            span {
+              font-size: 18px;
+              font-weight: 300;
+            }
+          }
+        }
+      }
+
+      .content-container {
+        padding: 30px 15px;
+      }
     }
   }
 }
