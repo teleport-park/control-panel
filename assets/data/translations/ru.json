@@ -1,11 +1,24 @@
 {
   "LANGUAGE_LABEL": "Русский",
-  "ADMIN_MENU_TITLE": "КОНТРОЛЬНАЯ ПАНЕЛЬ",
+  "ADMIN_MENU_TITLE": "ПАНЕЛЬ УПРАВЛЕНИЯ",
+  "ru": "Русский",
+  "en": "English",
+  "SELECT_LANGUAGE_PLACEHOLDER": "Выберите язык",
   "ADMIN_MENU_DEVICES": "Устройства",
   "ADMIN_MENU_USERS": "Пользователи",
-  "ADMIN_MENU_DASHBOARD": "Панель",
+  "ADMIN_MENU_DASHBOARD": "Панель управления",
   "ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL": "Выйти",
   "LOGIN_PAGE_LOGIN_LABEL": "Логин",
   "LOGIN_PAGE_PASSWORD_LABEL": "Пароль",
-  "LOGIN_PAGE_LOGIN_BUTTON_LABEL": "Войти"
+  "LOGIN_PAGE_LOGIN_BUTTON_LABEL": "Войти",
+  "REQUIRED_FIELD": "Поле \"{0}\" обязательно",
+  "AUTH_FILED_TOAST_MESSAGE": "Логин или пароль не корректны",
+  "USERS_TABLE_TITLE": "Таблица пользователей",
+  "USER_INDEX": "№",
+  "USER_FIRST_NAME": "Имя",
+  "USER_LAST_NAME": "Фамилия",
+  "USER_PHONE": "Телефон",
+  "USER_STATE": "Состояние",
+  "USER_AGE": "Возраст",
+  "USER_EMAIL": "Электронная почта"
 }
