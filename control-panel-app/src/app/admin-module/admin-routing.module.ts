@@ -1,29 +1,24 @@
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from "./admin-container/components/dashboard/dashboard.component";
-import { UsersComponent } from "./admin-container/components/users/users.component";
-import { AdminContainerComponent } from "./admin-container/admin-container.component";
-import { DevicesComponent } from "./admin-container/components/devices/devices.component";
+import { AdminContainerComponent } from "./admin-container.component/admin-container.component";
 
 const routes: Routes = [
   {
-    path: 'admin',
+    path: '',
     component: AdminContainerComponent,
     children: [
       {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
-      },
-      {
+      }, {
         path: 'dashboard',
-        component: DashboardComponent
-      },
-      {
+        loadChildren: './admin-modules/dashboard/dashboard.module#DashboardModule'
+      }, {
         path: 'users',
-        component: UsersComponent
+        loadChildren: './admin-modules/users/users.module#UsersModule'
       }, {
         path: 'devices',
-        component: DevicesComponent
+        loadChildren: './admin-modules/devices/devices.module#DevicesModule'
       }
     ]
   }

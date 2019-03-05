@@ -6,15 +6,14 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from "./material.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { LoginComponent } from './common/login/login.component';
-import { AdminModule } from "./admin-module/admin.module";
 import { HttpClientModule } from "@angular/common/http";
-import { PipesModule } from "./admin-module/admin-container/pipes/pipes.module";
+import { PipesModule } from "./admin-module/pipes/pipes.module";
+import { LoginModule } from "./common/login-module/login.module";
+import { TranslateService } from "./admin-module/services/translate.service";
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -24,10 +23,10 @@ import { PipesModule } from "./admin-module/admin-container/pipes/pipes.module";
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    AdminModule,
-    PipesModule
+    PipesModule,
+    LoginModule
   ],
-  providers: [],
+  providers: [TranslateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

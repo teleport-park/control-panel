@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TranslateService } from "./admin-module/admin-container/services/translate.service";
+import { TranslateService } from "./admin-module/services/translate.service";
 
 @Component({
   selector: 'app-root',

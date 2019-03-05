@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { UserService } from "../../services/user.service";
+import { UserService } from "./services/user.service";
 import { filter, takeUntil } from "rxjs/operators";
-import { User } from "../../../../models/user.model";
+import { User } from "../../../models/user.model";
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { TranslateService } from "../../services/translate.service";
 import { UserPropertyMap } from "./user-property-map";

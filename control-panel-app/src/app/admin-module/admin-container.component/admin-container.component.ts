@@ -1,14 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSelectChange, MatSidenav } from "@angular/material";
-import { TranslateService } from "./services/translate.service";
+import { TranslateService } from "../services/translate.service";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
@@ -25,10 +17,6 @@ export interface MenuItem {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminContainerComponent implements OnInit, OnDestroy {
-  /**
-   * language items
-   */
-  languageItems: {value: string, label: string}[] = this.getLanguageItems();
 
   /**
    * trigger for translation pipe
@@ -55,25 +43,38 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
       path: '/admin/users'
     }
   ];
+
   /**
    * side nav
    */
   @ViewChild('sidenav') sidenav: MatSidenav;
+
   /**
    * active view
    */
-  activeView: string;
+  activeView: string = '';
+
   /**
    * locale
    */
   locale: string;
 
+  /**
+   * language items
+   */
+  languageItems: { label: string; value: string }[];
+
+  /**
+   * constructor
+   * @param translateService
+   * @param cd
+   */
   constructor(public translateService: TranslateService, private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
+    this.languageItems = this.getLanguageItems();
     this.translateService.locale.pipe(takeUntil(this.destroyed$)).subscribe((locale: string) => {
-      this.languageItems = this.getLanguageItems();
       this.locale = locale;
       this.t = Math.random();
       this.cd.detectChanges();
@@ -104,7 +105,9 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
    * @param event
    */
   changeLocale(event: MatSelectChange) {
-    this.translateService.getTranslations(event.value);
+    if (event.value !== this.translateService.locale) {
+      this.translateService.getTranslations(event.value);
+    }
   }
 
   ngOnDestroy(): void {

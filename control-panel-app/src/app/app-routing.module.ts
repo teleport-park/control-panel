@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from "./common/login/login.component";
+import { LoginComponent } from "./common/login-module/login.component";
 
 const routes: Routes = [
   {
@@ -11,12 +11,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'admin',
+    loadChildren: './admin-module/admin.module#AdminModule'
   }
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {
-}
+
+export const AppRoutingModule: ModuleWithProviders = RouterModule.forRoot(routes);
