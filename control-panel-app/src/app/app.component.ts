@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { TranslateService } from "./admin-module/services/translate.service";
+import { TranslateService } from "./services/translate.service";
+import { LoaderService } from "./services/loader.service";
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { TranslateService } from "./admin-module/services/translate.service";
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(public translateService: TranslateService) {
+  constructor(public translateService: TranslateService, public loaderService: LoaderService) {
     this.translateService.getTranslations('en');
   }
 }

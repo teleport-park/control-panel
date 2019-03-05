@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { PipesModule } from "./admin-module/pipes/pipes.module";
 import { LoginModule } from "./common/login-module/login.module";
-import { TranslateService } from "./admin-module/services/translate.service";
+import { TranslateService } from "./services/translate.service";
 
 @NgModule({
   declarations: [

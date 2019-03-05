@@ -3,8 +3,8 @@ import { UserService } from "./services/user.service";
 import { filter, takeUntil } from "rxjs/operators";
 import { User } from "../../../models/user.model";
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { TranslateService } from "../../services/translate.service";
-import { UserPropertyMap } from "./user-property-map";
+import { TranslateService } from "../../../services/translate.service";
+import { UserPropertyMap } from "./services/user-property-map";
 import { Subject } from "rxjs";
 
 @Component({

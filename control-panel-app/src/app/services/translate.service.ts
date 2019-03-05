@@ -1,8 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject } from "rxjs";
+import { delay } from "rxjs/operators";
+import { LoaderService } from "./loader.service";
 
-export interface StringTMap<T> { [key: string]: T; }
+export interface StringTMap<T> {
+  [key: string]: T;
+}
 
 @Injectable()
 
@@ -28,18 +32,21 @@ export class TranslateService {
   get translations(): StringTMap<string> {
     return this._translations;
   }
-  constructor(private http: HttpClient){}
+
+  constructor(private http: HttpClient, private loaderService: LoaderService) {
+  }
 
   /**
    * get translations
    * @param locale
    */
   getTranslations(locale: string = 'ru') {
-    this.http.get<StringTMap<string>>(`./assets/data/translations/${locale}.json`).subscribe(
+    this.http.get(`./assets/data/translations/${locale}.json`).pipe(delay(2000)).subscribe(
       (result: StringTMap<string>) => {
         this._translations = result;
         this.locale.next(locale);
         this.translationsLoaded = true;
+        this.loaderService.dispatchShowLoader(false);
       }
     )
   }
@@ -55,6 +62,7 @@ export class TranslateService {
     }
     return this._translations[key] || key;
   }
+
   interpolateParams(key: string, params: string[]) {
     return key.replace(/{\d+}/g, (value, _) => {
       let index = +value.replace('{', '').replace('}', '');

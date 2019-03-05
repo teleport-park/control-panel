@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSelectChange, MatSidenav } from "@angular/material";
-import { TranslateService } from "../services/translate.service";
+import { TranslateService } from "../../services/translate.service";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import { LoaderService } from "../../services/loader.service";
 
 export interface MenuItem {
   icon: string;
@@ -68,8 +69,12 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
    * constructor
    * @param translateService
    * @param cd
+   * @param loaderService
    */
-  constructor(public translateService: TranslateService, private cd: ChangeDetectorRef) {
+  constructor(
+    public translateService: TranslateService,
+    private cd: ChangeDetectorRef,
+    private loaderService:LoaderService) {
   }
 
   ngOnInit() {
@@ -106,6 +111,7 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
    */
   changeLocale(event: MatSelectChange) {
     if (event.value !== this.translateService.locale) {
+      this.loaderService.dispatchShowLoader(true);
       this.translateService.getTranslations(event.value);
     }
   }

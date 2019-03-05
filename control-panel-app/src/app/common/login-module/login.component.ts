@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { MatSnackBar } from '@angular/material';
-import { TranslateService } from "../../admin-module/services/translate.service";
+import { TranslateService } from "../../services/translate.service";
 
 @Component({
   selector: 'app-login',
