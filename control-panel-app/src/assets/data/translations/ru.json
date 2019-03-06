@@ -20,5 +20,6 @@
   "USER_PHONE": "Телефон",
   "USER_STATE": "Состояние",
   "USER_AGE": "Возраст",
-  "USER_EMAIL": "Электронная почта"
+  "USER_EMAIL": "Электронная почта",
+  "LANGUAGE_SWITCHER_LABEL": "Язык"
 }

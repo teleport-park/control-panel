@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatSelectChange, MatSidenav } from "@angular/material";
-import { TranslateService } from "../../services/translate.service";
+import { MatSidenav } from "@angular/material";
+import { LanguageItem, TranslateService } from "../../common/translations-module";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { LoaderService } from "../../services/loader.service";
@@ -56,14 +56,12 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
   activeView: string = '';
 
   /**
-   * locale
-   */
-  locale: string;
-
-  /**
    * language items
    */
-  languageItems: { label: string; value: string }[];
+  languageItems: LanguageItem[] = [
+    {value: 'en', label: this.translateService.instant('en')},
+    {value: 'ru', label: this.translateService.instant('ru')}
+  ];
 
   /**
    * constructor
@@ -74,27 +72,15 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
   constructor(
     public translateService: TranslateService,
     private cd: ChangeDetectorRef,
-    private loaderService:LoaderService) {
+    public loaderService: LoaderService) {
   }
 
   ngOnInit() {
-    this.languageItems = this.getLanguageItems();
     this.translateService.locale.pipe(takeUntil(this.destroyed$)).subscribe((locale: string) => {
-      this.locale = locale;
       this.t = Math.random();
       this.cd.detectChanges();
       this.cd.markForCheck();
     });
-  }
-
-  /**
-   * get language items
-   */
-  private getLanguageItems() {
-    return [
-      {value: 'en', label: this.translateService.instant('en')},
-      {value: 'ru', label: this.translateService.instant('ru')}
-    ];
   }
 
   /**
@@ -103,17 +89,6 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
    */
   setActiveChildView(event) {
     this.activeView = event && event.TITLE ? event.TITLE : ''
-  }
-
-  /**
-   * change locale
-   * @param event
-   */
-  changeLocale(event: MatSelectChange) {
-    if (event.value !== this.translateService.locale) {
-      this.loaderService.dispatchShowLoader(true);
-      this.translateService.getTranslations(event.value);
-    }
   }
 
   ngOnDestroy(): void {

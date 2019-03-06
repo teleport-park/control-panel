@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { UsersComponent } from "./users.component";
 import { RouterModule, Routes } from "@angular/router";
 import { MaterialModule } from "../../../material.module";
-import { PipesModule } from "../../pipes/pipes.module";
 import { UserService } from "./services/user.service";
+import { TranslationModule } from "../../../common/translations-module/translation.module";
 
 const routes: Routes = [{
   path: '',
@@ -18,8 +18,8 @@ export const UserRoutingModule = RouterModule.forChild(routes);
   imports: [
     CommonModule,
     MaterialModule,
-    PipesModule,
-    UserRoutingModule
+    UserRoutingModule,
+    TranslationModule
   ],
   providers: [UserService]
 })

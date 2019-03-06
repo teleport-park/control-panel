@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
+import { switchMap } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +8,9 @@ import { BehaviorSubject } from "rxjs";
 export class LoaderService {
 
   /**
-   *
+   * Loader observer
    */
-  showLoader$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  showLoader$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor() { }
 

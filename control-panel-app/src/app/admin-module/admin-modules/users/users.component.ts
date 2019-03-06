@@ -3,7 +3,7 @@ import { UserService } from "./services/user.service";
 import { filter, takeUntil } from "rxjs/operators";
 import { User } from "../../../models/user.model";
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { TranslateService } from "../../../services/translate.service";
+import { TranslateService } from "../../../common/translations-module";
 import { UserPropertyMap } from "./services/user-property-map";
 import { Subject } from "rxjs";
 
@@ -82,6 +82,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       this.cd.markForCheck();
     })
   }
+
   ngOnDestroy(): void {
     this.destroyed$.next(true);
     this.destroyed$.complete()

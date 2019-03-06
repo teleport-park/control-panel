@@ -20,18 +20,12 @@
       <!--<button mat-button (click)="sidenav.toggle()">-->
         <!--<i class="material-icons">menu</i>-->
       <!--</button>-->
-
       <div class="toolbar-title-container">
         <a><span>{{activeView | translate:t}}</span></a>
       </div>
-      <mat-form-field class="language-select">
-        <mat-select [(value)]="locale"
-        (selectionChange)="changeLocale($event)">
-          <mat-option *ngFor="let language of languageItems" [value]="language.value">
-            {{language.label}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <language-switcher
+        [languageItems]="languageItems"
+        (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
       <button mat-button routerLink="/login">{{'ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL' | translate:t}}</button>
 
     </mat-toolbar>

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdminContainerComponent } from "./admin-container.component/admin-container.component";
 import { MaterialModule } from "../material.module";
 import { AdminRoutingModule } from "./admin-routing.module";
-import { PipesModule } from "./pipes/pipes.module";
+import { TranslationModule } from "../common/translations-module/translation.module";
 
 @NgModule({
   declarations: [AdminContainerComponent],
@@ -11,7 +11,7 @@ import { PipesModule } from "./pipes/pipes.module";
     CommonModule,
     MaterialModule,
     AdminRoutingModule,
-    PipesModule
+    TranslationModule
   ],
   providers: []
 })

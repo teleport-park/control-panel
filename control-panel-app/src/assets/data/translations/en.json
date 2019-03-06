@@ -19,5 +19,6 @@
   "USER_PHONE": "Phone",
   "USER_STATE": "State",
   "USER_AGE": "Age",
-  "USER_EMAIL": "Email"
+  "USER_EMAIL": "Email",
+  "LANGUAGE_SWITCHER_LABEL": "Language"
 }
