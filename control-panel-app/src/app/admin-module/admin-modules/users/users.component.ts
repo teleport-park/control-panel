@@ -6,6 +6,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { TranslateService } from "../../../common/translations-module";
 import { UserPropertyMap } from "./services/user-property-map";
 import { Subject } from "rxjs";
+import { LoaderService } from "../../../services/loader.service";
 
 @Component({
   selector: 'app-users',
@@ -18,10 +19,6 @@ export class UsersComponent implements OnInit, OnDestroy {
    * title of component
    */
   TITLE: string = 'ADMIN_MENU_USERS';
-  /**
-   * trigger for translations pipe
-   */
-  t: number;
 
   destroyed$: Subject<boolean> = new Subject();
 
@@ -44,6 +41,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    * data source for table
    */
   public dataSource: MatTableDataSource<User>;
+
   /**
    * Users
    */
@@ -59,13 +57,19 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param userService
    * @param cd
    * @param translateService
+   * @param loaderService
    */
-  constructor(public userService: UserService, private cd: ChangeDetectorRef, private translateService: TranslateService) { }
+  constructor(public userService: UserService,
+              private cd: ChangeDetectorRef,
+              private translateService: TranslateService,
+              private loaderService: LoaderService) {
+  }
 
   /**
    * on init hook
    */
   ngOnInit() {
+    this.loaderService.dispatchShowLoader(true);
     this.userService.getUsers().pipe(filter(data => !!data), takeUntil(this.destroyed$)).subscribe(
       (users: User[]) => {
         this.users = users.map((user: User) => {
@@ -75,12 +79,8 @@ export class UsersComponent implements OnInit, OnDestroy {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.cd.markForCheck();
-      }
-    );
-    this.translateService.locale.pipe(takeUntil(this.destroyed$)).subscribe((locale: string) => {
-      this.t = Math.random();
-      this.cd.markForCheck();
-    })
+        this.loaderService.dispatchShowLoader(false)
+      });
   }
 
   ngOnDestroy(): void {

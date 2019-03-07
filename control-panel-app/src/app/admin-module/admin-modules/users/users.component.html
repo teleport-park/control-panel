@@ -1,13 +1,15 @@
-<mat-card>
+<mat-card *ngIf="(translateService.locale | async)">
   <mat-card-header>
     <div class="card-header-wrapper">
-      <mat-card-title>{{'USERS_TABLE_TITLE' | translate:t}}</mat-card-title>
+      <!--<mat-card-title>{{'USERS_TABLE_TITLE' | translate:t}}</mat-card-title>-->
+      <mat-card-title>{{translateService.instant('USERS_TABLE_TITLE')}}</mat-card-title>
     </div>
   </mat-card-header>
   <table mat-table matSort [dataSource]="dataSource" class="users-table">
 
     <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{propertyMap[column] | translate:t}} </th>
+      <!--<th mat-header-cell *matHeaderCellDef mat-sort-header> {{propertyMap[column] | translate:t}} </th>-->
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{translateService.instant(propertyMap[column])}} </th>
       <td mat-cell *matCellDef="let element">
       <span *ngIf="column === 'isActive'">
         <i class="material-icons status-icon" [ngClass]="{'active': element[column]}">power_settings_new</i>

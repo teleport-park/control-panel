@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="side" opened disableClose class="sidenav-inner-container">
-    <div class="sidenav-title">{{'ADMIN_MENU_TITLE' | translate:t}}</div>
+    <div class="sidenav-title">{{translateService.instant('ADMIN_MENU_TITLE')}}</div>
     <mat-divider></mat-divider>
     <mat-nav-list class="nav-list-container">
       <a mat-list-item
@@ -9,7 +9,7 @@
          routerLinkActive="active"
          (click)="setActiveChildView()">
         <i class="material-icons">{{menuItem.icon}}</i>
-        {{menuItem.label | translate:t}}
+        {{translateService.instant(menuItem.label)}}
       </a>
     </mat-nav-list>
   </mat-sidenav>
@@ -18,15 +18,15 @@
     <mat-toolbar>
       <!-- TODO should be used after implementation responsible layout -->
       <!--<button mat-button (click)="sidenav.toggle()">-->
-        <!--<i class="material-icons">menu</i>-->
+      <!--<i class="material-icons">menu</i>-->
       <!--</button>-->
       <div class="toolbar-title-container">
-        <a><span>{{activeView | translate:t}}</span></a>
+        <a><span>{{translateService.instant(activeView)}}</span></a>
       </div>
       <language-switcher
         [languageItems]="languageItems"
         (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
-      <button mat-button routerLink="/login">{{'ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL' | translate:t}}</button>
+      <button mat-button routerLink="/login">{{translateService.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
 
     </mat-toolbar>
     <div class="content-container">

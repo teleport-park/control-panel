@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { MatSidenav } from "@angular/material";
 import { LanguageItem, TranslateService } from "../../common/translations-module";
 import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
 import { LoaderService } from "../../services/loader.service";
 
 export interface MenuItem {
@@ -18,11 +17,6 @@ export interface MenuItem {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminContainerComponent implements OnInit, OnDestroy {
-
-  /**
-   * trigger for translation pipe
-   */
-  t: number;
 
   destroyed$: Subject<boolean> = new Subject();
 
@@ -76,11 +70,6 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.translateService.locale.pipe(takeUntil(this.destroyed$)).subscribe((locale: string) => {
-      this.t = Math.random();
-      this.cd.detectChanges();
-      this.cd.markForCheck();
-    });
   }
 
   /**

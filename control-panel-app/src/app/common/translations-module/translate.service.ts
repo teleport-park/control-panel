@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject } from "rxjs";
-import { delay } from "rxjs/operators";
 import { LoaderService } from "../../services/loader.service";
 
 export interface StringTMap<T> {
@@ -43,7 +42,7 @@ export class TranslateService {
    * @param locale
    */
   getTranslations(locale: string = 'ru') {
-    this.http.get(`./assets/data/translations/${locale}.json`).pipe(delay(800)).subscribe(
+    this.http.get(`./assets/data/translations/${locale}.json`).subscribe(
       (result: StringTMap<string>) => {
         this._translations = result;
         this.locale.next(locale);
