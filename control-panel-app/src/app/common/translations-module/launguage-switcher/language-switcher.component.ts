@@ -24,7 +24,10 @@ export class LanguageSwitcherComponent implements OnDestroy, OnInit {
   /**
    * Language input config
    */
-  @Input() languageItems: LanguageItem[];
+  @Input() languageItems: LanguageItem[] = [
+    {value: 'en', label: this.translateService.instant('en')},
+    {value: 'ru', label: this.translateService.instant('ru')}
+  ];
 
   /**
    * placeholder

@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { MatSnackBar } from '@angular/material';
-import { TranslateService } from "../translations-module/translate.service";
-import { LanguageItem } from "../translations-module";
+import { TranslateService } from "../translations-module";
 import { LoaderService } from "../../services/loader.service";
 
 @Component({
@@ -14,15 +13,10 @@ import { LoaderService } from "../../services/loader.service";
 })
 export class LoginComponent implements OnInit {
 
-  credential: FormGroup;
-
   /**
-   * language item
+   * credential
    */
-  languageItems: LanguageItem[] = [
-    {value: 'en', label: this.translateService.instant('en')},
-    {value: 'ru', label: this.translateService.instant('ru')}
-  ];
+  credential: FormGroup;
 
   constructor(
     private fb: FormBuilder,

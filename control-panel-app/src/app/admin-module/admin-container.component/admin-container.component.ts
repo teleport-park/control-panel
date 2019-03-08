@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from "@angular/material";
-import { LanguageItem, TranslateService } from "../../common/translations-module";
+import { TranslateService } from "../../common/translations-module";
 import { Subject } from "rxjs";
 import { LoaderService } from "../../services/loader.service";
 
@@ -48,14 +48,6 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
    * active view
    */
   activeView: string = '';
-
-  /**
-   * language items
-   */
-  languageItems: LanguageItem[] = [
-    {value: 'en', label: this.translateService.instant('en')},
-    {value: 'ru', label: this.translateService.instant('ru')}
-  ];
 
   /**
    * constructor

@@ -17,8 +17,7 @@
         {{'REQUIRED_FIELD' | translate:[translateService.instant('LOGIN_PAGE_PASSWORD_LABEL')]:(translateService.locale | async)}}
       </mat-error>
     </mat-form-field>
-    <language-switcher [languageItems]="languageItems"
-                       [placeholder]="translateService.instant('LANGUAGE_SWITCHER_LABEL')"
+    <language-switcher [placeholder]="translateService.instant('LANGUAGE_SWITCHER_LABEL')"
                        (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
     <button mat-raised-button
             color="primary"

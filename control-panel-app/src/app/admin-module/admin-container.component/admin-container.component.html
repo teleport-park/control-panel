@@ -24,7 +24,6 @@
         <a><span>{{translateService.instant(activeView)}}</span></a>
       </div>
       <language-switcher
-        [languageItems]="languageItems"
         (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
       <button mat-button routerLink="/login">{{translateService.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
 
