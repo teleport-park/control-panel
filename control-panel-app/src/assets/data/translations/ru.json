@@ -21,5 +21,8 @@
   "USER_STATE": "Состояние",
   "USER_AGE": "Возраст",
   "USER_EMAIL": "Электронная почта",
-  "LANGUAGE_SWITCHER_LABEL": "Язык"
+  "LANGUAGE_SWITCHER_LABEL": "Язык",
+  "USERS_TABLE_FILTER_INPUT_LABEL": "Фильтр",
+  "USERS_TABLE_ADD_USER": "Добавить пользователя",
+  "USERS_TABLE_EDIT_USER": "Редактировать пользователя"
 }

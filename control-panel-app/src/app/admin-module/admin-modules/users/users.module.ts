@@ -5,6 +5,8 @@ import { RouterModule, Routes } from "@angular/router";
 import { MaterialModule } from "../../../material.module";
 import { UserService } from "./services/user.service";
 import { TranslationModule } from "../../../common/translations-module/translation.module";
+import { UserFormModule } from "../../../common/user-form/user-form.module";
+import { AddUserDialogComponent } from "../../../common/user-form";
 
 const routes: Routes = [{
   path: '',
@@ -19,9 +21,11 @@ export const UserRoutingModule = RouterModule.forChild(routes);
     CommonModule,
     MaterialModule,
     UserRoutingModule,
-    TranslationModule
+    TranslationModule,
+    UserFormModule
   ],
-  providers: [UserService]
+  providers: [UserService],
+  entryComponents: [AddUserDialogComponent]
 })
 export class UsersModule {
 }

@@ -2,11 +2,13 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { UserService } from "./services/user.service";
 import { filter, takeUntil } from "rxjs/operators";
 import { User } from "../../../models/user.model";
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { TranslateService } from "../../../common/translations-module";
 import { UserPropertyMap } from "./services/user-property-map";
 import { Subject } from "rxjs";
 import { LoaderService } from "../../../services/loader.service";
+import { SelectionModel } from '@angular/cdk/collections';
+import { AddUserDialogComponent } from "../../../common/user-form";
 
 @Component({
   selector: 'app-users',
@@ -42,6 +44,8 @@ export class UsersComponent implements OnInit, OnDestroy {
    */
   public dataSource: MatTableDataSource<User>;
 
+  public selection: SelectionModel<User>;
+
   /**
    * Users
    */
@@ -58,11 +62,13 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param cd
    * @param translateService
    * @param loaderService
+   * @param dialog
    */
   constructor(public userService: UserService,
               private cd: ChangeDetectorRef,
               private translateService: TranslateService,
-              private loaderService: LoaderService) {
+              private loaderService: LoaderService,
+              public dialog: MatDialog) {
   }
 
   /**
@@ -76,11 +82,25 @@ export class UsersComponent implements OnInit, OnDestroy {
           return Object.assign(new User(), user)
         });
         this.dataSource = new MatTableDataSource(this.users);
+        this.selection = new SelectionModel(false, []);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.cd.markForCheck();
         this.loaderService.dispatchShowLoader(false)
       });
+  }
+
+  /**
+   * apply table filter
+   */
+  applyFilter(filterValue: string): void {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  openDialog(mode: 'edit' | 'add'): void {
+    this.dialog.open(AddUserDialogComponent, {
+      data: mode === 'edit' ? this.selection.selected[0] : new User()
+    })
   }
 
   ngOnDestroy(): void {

@@ -4,10 +4,13 @@ import {
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
   MatListModule,
-  MatPaginatorModule, MatProgressSpinnerModule, MatSelectModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatSelectModule,
   MatSidenavModule,
   MatSlideToggleModule,
   MatSnackBarModule,
@@ -31,7 +34,8 @@ export const MATERIAL_MODULES = [
   MatPaginatorModule,
   MatCardModule,
   MatSelectModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatDialogModule
 ];
 
 @NgModule({

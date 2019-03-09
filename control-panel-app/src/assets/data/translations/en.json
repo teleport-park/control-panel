@@ -20,5 +20,8 @@
   "USER_STATE": "State",
   "USER_AGE": "Age",
   "USER_EMAIL": "Email",
-  "LANGUAGE_SWITCHER_LABEL": "Language"
+  "LANGUAGE_SWITCHER_LABEL": "Language",
+  "USERS_TABLE_FILTER_INPUT_LABEL": "Filter",
+  "USERS_TABLE_ADD_USER": "Add user",
+  "USERS_TABLE_EDIT_USER": "Edit user"
 }

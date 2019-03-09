@@ -32,5 +32,30 @@
         box-shadow: 0 4px 20px 0 rgba(0, 0, 0,.14), 0 7px 10px -5px rgba(156, 39, 176,.4);
       }
     }
+    .user-table-toolbar {
+      padding: 0 10px;
+      display: flex;
+      .users-table-filter-input {
+        flex: 1 1;
+        font-size: 14px;
+      }
+      .toolbar-action-buttons-group {
+        button {
+          margin-left: 20px;
+        }
+      }
+    }
+
+    .users-table {
+      .mat-row {
+        cursor: pointer;
+        &.selected {
+          background-color: rgba(171,71,188,.1);
+        }
+      }
+    }
+    .mat-column-select {
+      overflow: initial;
+    }
   }
 }
