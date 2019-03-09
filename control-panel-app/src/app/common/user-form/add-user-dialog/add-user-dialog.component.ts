@@ -9,8 +9,10 @@ import { User } from "../../../models/user.model";
 })
 export class AddUserDialogComponent {
 
+
   constructor(
     public dialogRef: MatDialogRef<AddUserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: User) {
+    dialogRef._containerInstance._config.width = '500px';
   }
 }

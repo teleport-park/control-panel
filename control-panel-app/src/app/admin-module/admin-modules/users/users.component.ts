@@ -9,6 +9,7 @@ import { Subject } from "rxjs";
 import { LoaderService } from "../../../services/loader.service";
 import { SelectionModel } from '@angular/cdk/collections';
 import { AddUserDialogComponent } from "../../../common/user-form";
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-users',
@@ -23,6 +24,11 @@ export class UsersComponent implements OnInit, OnDestroy {
   TITLE: string = 'ADMIN_MENU_USERS';
 
   destroyed$: Subject<boolean> = new Subject();
+
+  /**
+   * moment instance for template
+   */
+  momentInstance = moment;
 
   /**
    * mat sort instance
@@ -54,7 +60,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * list of displayed column
    */
-  displayedColumns: string[] = ['index', 'firstName', 'lastName', 'phone', 'isActive', 'age', 'email'];
+  displayedColumns: string[] = ['index', 'firstName', 'lastName', 'phone', 'isActive', 'age', 'email', 'registered'];
 
   /**
    * Constructor
@@ -79,6 +85,8 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.userService.getUsers().pipe(filter(data => !!data), takeUntil(this.destroyed$)).subscribe(
       (users: User[]) => {
         this.users = users.map((user: User) => {
+          moment.locale(this.translateService.locale.getValue());
+          user.registered = moment(user.registered);
           return Object.assign(new User(), user)
         });
         this.dataSource = new MatTableDataSource(this.users);
@@ -99,7 +107,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   openDialog(mode: 'edit' | 'add'): void {
     this.dialog.open(AddUserDialogComponent, {
-      data: mode === 'edit' ? this.selection.selected[0] : new User()
+      data: mode === 'edit' ? this.selection.selected[0] : null
     })
   }
 

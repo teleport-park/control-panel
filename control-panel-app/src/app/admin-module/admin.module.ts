@@ -4,6 +4,8 @@ import { AdminContainerComponent } from "./admin-container.component/admin-conta
 import { MaterialModule } from "../material.module";
 import { AdminRoutingModule } from "./admin-routing.module";
 import { TranslationModule } from "../common/translations-module/translation.module";
+import { DateAdapter, MAT_DATE_LOCALE } from "@angular/material";
+import { MomentDateAdapter } from "@angular/material-moment-adapter";
 
 @NgModule({
   declarations: [AdminContainerComponent],
@@ -13,7 +15,10 @@ import { TranslationModule } from "../common/translations-module/translation.mod
     AdminRoutingModule,
     TranslationModule
   ],
-  providers: []
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]}
+  ]
 })
 export class AdminModule {
 }

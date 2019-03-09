@@ -9,7 +9,7 @@
     <mat-form-field class="users-table-filter-input">
       <input matInput
              (keyup)="applyFilter($event.target.value)"
-             [placeholder]="translateService.instant('USERS_TABLE_FILTER_INPUT_LABEL')">
+             placeholder="{{translateService.instant('USERS_TABLE_FILTER_INPUT_LABEL')}}">
     </mat-form-field>
     <div class="toolbar-action-buttons-group">
       <button mat-raised-button *ngIf="!selection.isEmpty()"
@@ -29,8 +29,9 @@
       <span *ngIf="column === 'isActive'">
         <i class="material-icons status-icon" [ngClass]="{'active': row[column]}">power_settings_new</i>
       </span>
-        <span *ngIf="column !== 'isActive' && column !== 'select'">{{row[column]}}
+        <span *ngIf="column !== 'isActive' && column !== 'select' && column !== 'registered'">{{row[column]}}
         </span>
+        <span *ngIf="column === 'registered'">{{row[column].format('L')}}</span>
         <!-- TODO if need checkbox uncomment this -->
         <!--<mat-checkbox *ngIf="column === 'select'" (click)="$event.stopPropagation()"-->
         <!--(change)="$event ? selection.toggle(row) : null"-->

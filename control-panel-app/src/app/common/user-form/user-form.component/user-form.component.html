@@ -1,3 +1,33 @@
-<p>
-  user-form works!
-</p>
+<form [formGroup]="form" class="user-form">
+  <mat-form-field>
+    <input matInput placeholder="{{'USER_FIRST_NAME' | translate}}" formControlName="firstName">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="{{'USER_LAST_NAME' | translate}}" formControlName="lastName">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
+           formControlName="dateOfBirth">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="{{'USER_AGE' | translate}}" formControlName="age">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="{{'USER_ADDRESS' | translate}}" formControlName="address">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="{{'USER_EMAIL' | translate}}" formControlName="email">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="{{'USER_DESC' | translate}}" formControlName="desc"></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="{{'USER_GENDER_LABEL' | translate}}" formControlName="gender">
+      <mat-option value="male">{{'USER_GENDER_MALE' | translate}}</mat-option>
+      <mat-option value="female">{{'USER_GENDER_FEMALE' | translate}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p>{{'USER_REGISTERED' | translate}}: {{userModel.registered.format('L')}}</p>
+</form>

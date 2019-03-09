@@ -6,4 +6,5 @@ export const UserPropertyMap = {
   "isActive": "USER_STATE",
   "age": "USER_AGE",
   "email": "USER_EMAIL",
+  "registered": "USER_REGISTERED"
 };

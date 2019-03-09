@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 
 import {
+  DateAdapter,
+  MAT_DATE_LOCALE,
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
+  MatDatepickerModule,
   MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
@@ -18,6 +21,7 @@ import {
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
+import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter'
 
 export const MATERIAL_MODULES = [
   MatFormFieldModule,
@@ -35,13 +39,18 @@ export const MATERIAL_MODULES = [
   MatCardModule,
   MatSelectModule,
   MatProgressSpinnerModule,
-  MatDialogModule
+  MatDialogModule,
+  MatDatepickerModule,
+  MatMomentDateModule
 ];
 
 @NgModule({
   imports: [...MATERIAL_MODULES],
   exports: [...MATERIAL_MODULES],
-  providers: []
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]}
+  ]
 })
 export class MaterialModule {
 }
