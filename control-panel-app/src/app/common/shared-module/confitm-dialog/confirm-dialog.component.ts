@@ -23,7 +23,7 @@ export class ConfirmDialogComponent {
   /**
    * on cancel handler
    */
-  resultHandler(result: boolean): void {
+  resultHandler(result?: boolean): void {
     this.dialogRef.close(result);
   }
 }
