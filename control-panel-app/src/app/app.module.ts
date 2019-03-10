@@ -27,4 +27,5 @@ import { TranslateService } from "./common/translations-module";
   providers: [TranslateService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

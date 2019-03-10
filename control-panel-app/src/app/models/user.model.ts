@@ -2,12 +2,14 @@ import * as moment from 'moment';
 import { Moment } from "moment";
 
 export class User {
-  id: number;
+  password: string;
+  username: string;
+  id: string;
   index: number;
   firstName: string;
   lastName: string;
   age: number;
-  dateOfBirth: Moment;
+  dateOfBirth: any;
   registered: any;
   gender: 'male' | 'female';
   desc: string;
@@ -18,10 +20,24 @@ export class User {
 
   constructor() {
     this.registered = moment();
+    // TODO discuss this property for user
+    this.username = Math.random + '';
+    this.password = Math.random + '';
   }
-//TODO resolve issue with date format
-  // getAge(): number {
-  //   return this.dateOfBirth ? Math.floor((new Date().getTime() - Date.parse(this.dateOfBirth)) / 3.15576e+10) : null;
-  // }
 
+  /**
+   * get age
+   * @param DOB
+   */
+  getAge(DOB?: Moment): number {
+    if (DOB) {
+      this.age =  Math.abs(DOB.diff(moment(), 'years'));
+      return this.age;
+    }
+    if (this.dateOfBirth._isAMomentObject) {
+      this.age = Math.abs(this.dateOfBirth.diff(moment(), 'years'));
+      return this.age;
+    }
+    return null;
+  }
 }

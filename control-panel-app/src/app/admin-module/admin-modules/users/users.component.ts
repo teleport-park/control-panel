@@ -8,8 +8,10 @@ import { UserPropertyMap } from "./services/user-property-map";
 import { Subject } from "rxjs";
 import { LoaderService } from "../../../services/loader.service";
 import { SelectionModel } from '@angular/cdk/collections';
-import { AddUserDialogComponent } from "../../../common/user-form";
+import { AddOrEditUserDialogComponent } from "../../../common/user-form";
 import * as moment from 'moment'
+import { Moment } from 'moment'
+import { ConfirmDialogComponent, ConfirmDialogData } from "../../../common/shared-module";
 
 @Component({
   selector: 'app-users',
@@ -24,11 +26,6 @@ export class UsersComponent implements OnInit, OnDestroy {
   TITLE: string = 'ADMIN_MENU_USERS';
 
   destroyed$: Subject<boolean> = new Subject();
-
-  /**
-   * moment instance for template
-   */
-  momentInstance = moment;
 
   /**
    * mat sort instance
@@ -50,7 +47,16 @@ export class UsersComponent implements OnInit, OnDestroy {
    */
   public dataSource: MatTableDataSource<User>;
 
+  /**
+   * selection
+   */
   public selection: SelectionModel<User>;
+
+  /**
+   * user count
+   * TODO discuss this functionality (how append index for users)
+   */
+  userCount: number;
 
   /**
    * Users
@@ -82,11 +88,13 @@ export class UsersComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this.loaderService.dispatchShowLoader(true);
-    this.userService.getUsers().pipe(filter(data => !!data), takeUntil(this.destroyed$)).subscribe(
+    this.userService.getUsers();
+    this.userService.users$.pipe(filter(data => !!data), takeUntil(this.destroyed$)).subscribe(
       (users: User[]) => {
         this.users = users.map((user: User) => {
           moment.locale(this.translateService.locale.getValue());
           user.registered = moment(user.registered);
+          this.userCount = user.index > this.userCount ? user.index : this.userCount;
           return Object.assign(new User(), user)
         });
         this.dataSource = new MatTableDataSource(this.users);
@@ -105,14 +113,60 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openDialog(mode: 'edit' | 'add'): void {
-    this.dialog.open(AddUserDialogComponent, {
+  /**
+   * open dialog
+   * @param mode
+   */
+  openDialog(mode: 'edit' | 'add' | 'delete'): void {
+    if (mode === 'delete') {
+      this.showConfirmDialog();
+      return;
+    }
+    this.showModalAddOrRemoveUser(mode);
+  }
+
+  /**
+   * show add or remove dialog
+   * @param mode
+   */
+  private showModalAddOrRemoveUser(mode: "edit" | "add" | "delete") {
+    this.dialog.open(AddOrEditUserDialogComponent, {
       data: mode === 'edit' ? this.selection.selected[0] : null
-    })
+    }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((user: User) => {
+      this.prepareUser(user);
+      if (mode === 'edit') {
+        this.userService.editUser(user);
+      } else {
+        user.index = ++this.userCount;
+        this.userService.saveUser(user);
+      }
+    });
+  }
+
+  /**
+   * show confirm dialog
+   */
+  private showConfirmDialog() {
+    this.dialog.open(ConfirmDialogComponent, {
+      data: <ConfirmDialogData>{
+        title: 'DIALOG_CONFIRM_TITLE',
+        message: 'DIALOG_CONFIRM_MESSAGE',
+        messageParams: [this.selection.selected[0].firstName, this.selection.selected[0].lastName]
+      }
+    }).afterClosed()
+      .pipe(filter(data => data), takeUntil(this.destroyed$))
+      .subscribe((result: boolean) => {
+        this.userService.removeUser(this.selection.selected[0]);
+      });
   }
 
   ngOnDestroy(): void {
     this.destroyed$.next(true);
     this.destroyed$.complete()
+  }
+
+  private prepareUser(user: User) {
+    user.registered = <Moment>user.registered.format('YYYY-MM-DD');
+    user.dateOfBirth = <Moment>user.dateOfBirth.format('YYYY-MM-DD');
   }
 }

@@ -35,9 +35,15 @@
     .user-table-toolbar {
       padding: 0 10px;
       display: flex;
-      .users-table-filter-input {
+      .users-table-filter {
         flex: 1 1;
-        font-size: 14px;
+        .users-table-filter-input {
+          width: 300px;
+          .clear-filter-icon {
+            cursor: pointer;
+            font-size: 14px;
+          }
+        }
       }
       .toolbar-action-buttons-group {
         button {

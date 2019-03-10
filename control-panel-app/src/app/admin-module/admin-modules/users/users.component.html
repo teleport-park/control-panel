@@ -6,15 +6,24 @@
   </mat-card-header>
   <!-- Filter input-->
   <div class="user-table-toolbar">
-    <mat-form-field class="users-table-filter-input">
-      <input matInput
-             (keyup)="applyFilter($event.target.value)"
-             placeholder="{{translateService.instant('USERS_TABLE_FILTER_INPUT_LABEL')}}">
-    </mat-form-field>
+    <div class="users-table-filter">
+      <mat-form-field class="users-table-filter-input">
+        <input matInput #filter
+               (keyup)="applyFilter($event.target.value)"
+               placeholder="{{translateService.instant('USERS_TABLE_FILTER_INPUT_LABEL')}}">
+        <mat-icon *ngIf="filter.value"
+                  matSuffix
+                  (click)="filter.value = ''; applyFilter('')"
+                  class="clear-filter-icon">clear</mat-icon>
+      </mat-form-field>
+    </div>
     <div class="toolbar-action-buttons-group">
-      <button mat-raised-button *ngIf="!selection.isEmpty()"
+      <button mat-raised-button [disabled]="selection.isEmpty()"
               color="primary"
               (click)="openDialog('edit')">{{translateService.instant('USERS_TABLE_EDIT_USER')}}</button>
+      <button mat-raised-button [disabled]="selection.isEmpty()"
+              color="warn"
+              (click)="openDialog('delete')">{{translateService.instant('USERS_TABLE_DELETE_USER')}}</button>
       <button mat-raised-button
               color="primary"
               (click)="openDialog('add')">{{translateService.instant('USERS_TABLE_ADD_USER')}}</button>

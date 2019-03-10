@@ -31,5 +31,15 @@
   "LANGUAGE_SWITCHER_LABEL": "Язык",
   "USERS_TABLE_FILTER_INPUT_LABEL": "Фильтр",
   "USERS_TABLE_ADD_USER": "Добавить пользователя",
-  "USERS_TABLE_EDIT_USER": "Редактировать пользователя"
+  "USERS_TABLE_EDIT_USER": "Редактировать пользователя",
+  "USERS_TABLE_DELETE_USER": "Удалить пользователя",
+  "USER_FORM_CONFIRM_BUTTON_LABEL": "Добавить",
+  "USERS_TABLE_PAGINATION_ITEMS_PER_PAGE_LABEL": "Кол-во записей на странице",
+  "USERS_TABLE_PAGINATION_NEXT_PAGE_LABEL": "Следующая страница",
+  "USERS_TABLE_PAGINATION_PREVIOUS_PAGE_LABEL": "Предыдущая страница",
+  "USERS_TABLE_PAGINATOR_OF_LABEL": "из",
+  "DIALOG_CANCEL_BUTTON_LABEL": "Отменить",
+  "DIALOG_CONFIRM_BUTTON_LABEL": "Подтвердить",
+  "DIALOG_CONFIRM_TITLE": "Внимание",
+  "DIALOG_CONFIRM_MESSAGE": "Вы хотите удалить пользователя {0} {1} из списка?"
 }

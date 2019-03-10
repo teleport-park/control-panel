@@ -1,13 +1,16 @@
 <form [formGroup]="form" class="user-form">
   <mat-form-field>
     <input matInput placeholder="{{'USER_FIRST_NAME' | translate}}" formControlName="firstName">
+    <mat-error>
+      {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_FIRST_NAME')]:(translateService.locale | async)}}
+    </mat-error>
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="{{'USER_LAST_NAME' | translate}}" formControlName="lastName">
   </mat-form-field>
   <mat-form-field>
     <input matInput [matDatepicker]="picker" placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
-           formControlName="dateOfBirth">
+           formControlName="dateOfBirth" (dateChange)="dayOfBirthChange($event.value)">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
@@ -21,6 +24,9 @@
     <input matInput placeholder="{{'USER_EMAIL' | translate}}" formControlName="email">
   </mat-form-field>
   <mat-form-field>
+    <input matInput placeholder="{{'USER_PHONE' | translate}}" formControlName="phone">
+  </mat-form-field>
+  <mat-form-field>
     <textarea matInput placeholder="{{'USER_DESC' | translate}}" formControlName="desc"></textarea>
   </mat-form-field>
   <mat-form-field>
@@ -30,4 +36,14 @@
     </mat-select>
   </mat-form-field>
   <p>{{'USER_REGISTERED' | translate}}: {{userModel.registered.format('L')}}</p>
+  <div class="action-button-group">
+    <button mat-raised-button
+            color="warn"
+            type="button"
+            (click)="onCancelHandler()">{{'DIALOG_CANCEL_BUTTON_LABEL' | translate }}</button>
+    <button mat-raised-button
+            color="primary"
+            type="submit"
+            (click)="onSubmitHandler()">{{'USER_FORM_CONFIRM_BUTTON_LABEL' | translate }}</button>
+  </div>
 </form>

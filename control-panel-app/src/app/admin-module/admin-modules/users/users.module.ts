@@ -6,7 +6,9 @@ import { MaterialModule } from "../../../material.module";
 import { UserService } from "./services/user.service";
 import { TranslationModule } from "../../../common/translations-module/translation.module";
 import { UserFormModule } from "../../../common/user-form/user-form.module";
-import { AddUserDialogComponent } from "../../../common/user-form";
+import { AddOrEditUserDialogComponent } from "../../../common/user-form";
+import { SharedModule } from "../../../common/shared-module/shared.module";
+import { ConfirmDialogComponent } from "../../../common/shared-module";
 
 const routes: Routes = [{
   path: '',
@@ -22,10 +24,11 @@ export const UserRoutingModule = RouterModule.forChild(routes);
     MaterialModule,
     UserRoutingModule,
     TranslationModule,
-    UserFormModule
+    UserFormModule,
+    SharedModule
   ],
   providers: [UserService],
-  entryComponents: [AddUserDialogComponent]
+  entryComponents: [AddOrEditUserDialogComponent, ConfirmDialogComponent]
 })
 export class UsersModule {
 }

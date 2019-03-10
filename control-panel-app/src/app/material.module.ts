@@ -8,9 +8,9 @@ import {
   MatCheckboxModule,
   MatDatepickerModule,
   MatDialogModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatIconModule,
   MatInputModule,
-  MatListModule,
+  MatListModule, MatPaginatorIntl,
   MatPaginatorModule,
   MatProgressSpinnerModule,
   MatSelectModule,
@@ -22,6 +22,8 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter'
+import { MatPaginatorTranslateUtil } from "./utils/mat-paginator-translate.util";
+import { TranslateService } from "./common/translations-module";
 
 export const MATERIAL_MODULES = [
   MatFormFieldModule,
@@ -41,15 +43,22 @@ export const MATERIAL_MODULES = [
   MatProgressSpinnerModule,
   MatDialogModule,
   MatDatepickerModule,
-  MatMomentDateModule
+  MatMomentDateModule,
+  MatIconModule
 ];
 
 @NgModule({
   imports: [...MATERIAL_MODULES],
   exports: [...MATERIAL_MODULES],
   providers: [
+    // TODO check how globally change locale for date
     {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
-    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]}
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {
+      provide: MatPaginatorIntl, useFactory: (translateService) => {
+        return new MatPaginatorTranslateUtil(translateService);
+      }, deps: [TranslateService]
+    }
   ]
 })
 export class MaterialModule {
