@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { LoginModule } from "./common/login-module/login.module";
 import { TranslateService } from "./common/translations-module";
+import { NgxMaskModule } from "ngx-mask";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TranslateService } from "./common/translations-module";
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    LoginModule
+    LoginModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [TranslateService],
   bootstrap: [AppComponent]

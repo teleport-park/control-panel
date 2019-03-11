@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AddOrEditUserDialogComponent } from './add-user-dialog/add-or-edit-user-dialog.component';
 import { MaterialModule } from "../../material.module";
 import { TranslationModule } from "../translations-module/translation.module";
+import { NgxMaskModule } from "ngx-mask";
+import { SharedModule } from "../shared-module/shared.module";
 
 @NgModule({
   declarations: [UserFormComponent, AddOrEditUserDialogComponent],
@@ -13,7 +15,9 @@ import { TranslationModule } from "../translations-module/translation.module";
     ReactiveFormsModule,
     FormsModule,
     MaterialModule,
-    TranslationModule
+    TranslationModule,
+    SharedModule,
+    NgxMaskModule.forRoot({prefix: '+375'})
   ],
   exports: [UserFormComponent, AddOrEditUserDialogComponent],
   providers: []

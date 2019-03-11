@@ -24,7 +24,7 @@ export class UserService implements OnDestroy {
    * get users
    */
   getUsers(): void {
-    this.http.get<User[]>(`${environment.api}users`)
+    this.http.get<User[]>(`${environment.api}mockusers`)
       .pipe(filter(data => !!data))
       .subscribe((users: User[]) => {
         this.users$.next(users);
@@ -35,7 +35,7 @@ export class UserService implements OnDestroy {
    * save user
    */
   saveUser(user: User): void {
-    this.http.post(`${environment.api}users`, user).subscribe(result => {
+    this.http.post(`${environment.api}mockusers`, user).subscribe(result => {
       this.getUsers();
     })
   }
@@ -44,7 +44,7 @@ export class UserService implements OnDestroy {
    * edit user
    */
   editUser(user: User): void {
-    this.http.put(`${environment.api}users/${user.id}`, user).subscribe(result => {
+    this.http.put(`${environment.api}mockusers/${user.id}`, user).subscribe(result => {
       this.getUsers();
     })
   }
@@ -53,7 +53,7 @@ export class UserService implements OnDestroy {
    * remove user
    */
   removeUser(user: User): void {
-    this.http.delete(`${environment.api}users/${user.id}`).subscribe(result => {
+    this.http.delete(`${environment.api}mockusers/${user.id}`).subscribe(result => {
       this.getUsers();
     })
   }

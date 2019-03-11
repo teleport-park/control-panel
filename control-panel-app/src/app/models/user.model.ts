@@ -40,4 +40,13 @@ export class User {
     }
     return null;
   }
+
+  /**
+   * set DOB
+   * @param age
+   */
+  setDOB(age: number): Moment {
+    this.dateOfBirth = moment().subtract(age, 'years');
+    return this.dateOfBirth
+  }
 }
