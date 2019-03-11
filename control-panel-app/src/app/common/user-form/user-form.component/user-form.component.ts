@@ -26,7 +26,11 @@ export class UserFormComponent {
    * user phone input
    */
   @ViewChild('phoneInput') phoneInput: ElementRef;
-  private mode: 'edit' | 'add';
+
+  /**
+   * mode
+   */
+  mode: 'edit' | 'add';
 
   /**
    * set user
