@@ -12,56 +12,41 @@
       }
     }
   }
-  .mat-card {
-    margin: 40px 15px 10px;
-    .mat-card-header {
-      .mat-card-title {
-        margin: 0;
-      }
-      margin-bottom: 40px;
-      ::ng-deep .mat-card-header-text   {
-        margin: 0 !important;
-      }
-      .card-header-wrapper {
-        width: 100%;
-        color: #fff;
-        padding: 15px;
-        margin-top: -35px;
-        border-radius: 3px;
-        background: linear-gradient(60deg, #ab47bc, #8e24aa);
-        box-shadow: 0 4px 20px 0 rgba(0, 0, 0,.14), 0 7px 10px -5px rgba(156, 39, 176,.4);
-      }
-    }
-    .user-table-toolbar {
-      padding: 0 10px;
-      display: flex;
-      .users-table-filter {
-        flex: 1 1;
-        .users-table-filter-input {
-          width: 300px;
-          .clear-filter-icon {
-            cursor: pointer;
-            font-size: 14px;
-          }
-        }
-      }
-      .toolbar-action-buttons-group {
-        button {
-          margin-left: 20px;
+  .user-table-toolbar {
+    padding: 0 10px;
+    display: flex;
+
+    .users-table-filter {
+      flex: 1 1;
+
+      .users-table-filter-input {
+        width: 300px;
+
+        .clear-filter-icon {
+          cursor: pointer;
+          font-size: 14px;
         }
       }
     }
 
-    .users-table {
-      .mat-row {
-        cursor: pointer;
-        &.selected {
-          background-color: rgba(171,71,188,.1);
-        }
+    .toolbar-action-buttons-group {
+      button {
+        margin-left: 20px;
       }
     }
-    .mat-column-select {
-      overflow: initial;
+  }
+
+  .users-table {
+    .mat-row {
+      cursor: pointer;
+
+      &.selected {
+        background-color: rgba(0, 0, 0, .1);
+      }
     }
+  }
+
+  .mat-column-select {
+    overflow: initial;
   }
 }

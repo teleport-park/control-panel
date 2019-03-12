@@ -1,57 +1,66 @@
-<mat-card *ngIf="(translateService.locale | async) && dataSource">
-  <mat-card-header>
-    <div class="card-header-wrapper">
-      <mat-card-title>{{translateService.instant('USERS_TABLE_TITLE')}}</mat-card-title>
-    </div>
-  </mat-card-header>
-  <!-- Filter input-->
-  <div class="user-table-toolbar">
-    <div class="users-table-filter">
-      <mat-form-field class="users-table-filter-input">
-        <input matInput #filter
-               (keyup)="applyFilter($event.target.value)"
-               placeholder="{{translateService.instant('USERS_TABLE_FILTER_INPUT_LABEL')}}">
-        <mat-icon *ngIf="filter.value"
-                  matSuffix
-                  (click)="filter.value = ''; applyFilter('')"
-                  class="clear-filter-icon">clear</mat-icon>
-      </mat-form-field>
-    </div>
-    <div class="toolbar-action-buttons-group">
-      <button mat-raised-button [disabled]="selection.isEmpty()"
-              color="primary"
-              (click)="openDialog('edit')">{{translateService.instant('USERS_TABLE_EDIT_USER')}}</button>
-      <button mat-raised-button [disabled]="selection.isEmpty()"
-              color="warn"
-              (click)="openDialog('delete')">{{translateService.instant('USERS_TABLE_DELETE_USER')}}</button>
-      <button mat-raised-button
-              color="primary"
-              (click)="openDialog('add')">{{translateService.instant('USERS_TABLE_ADD_USER')}}</button>
+<!--TODO remove after-->
+<p>Switch colors</p>
+<mat-form-field>
+  <mat-select [(value)]="cardColor">
+    <mat-option value="primary">primary</mat-option>
+    <mat-option value="green">green</mat-option>
+    <mat-option value="red">red</mat-option>
+    <mat-option value="blue">blue</mat-option>
+    <mat-option value="orange">orange</mat-option>
+  </mat-select>
+</mat-form-field>
 
-    </div>
-  </div>
-  <table mat-table matSort [dataSource]="dataSource" class="users-table">
+<control-panel-ui-card *ngIf="(translateService.locale | async) && dataSource" [panelUIColor]="cardColor">
+  <div panelUICardHeaderTitle>{{translateService.instant('USERS_TABLE_TITLE')}}</div>
+  <div panelUICardContent>
+    <div class="user-table-toolbar">
+      <div class="users-table-filter">
+        <mat-form-field class="users-table-filter-input">
+          <input matInput #filter
+                 (keyup)="applyFilter($event.target.value)"
+                 placeholder="{{translateService.instant('USERS_TABLE_FILTER_INPUT_LABEL')}}">
+          <mat-icon *ngIf="filter.value"
+                    matSuffix
+                    (click)="filter.value = ''; applyFilter('')"
+                    class="clear-filter-icon">clear</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="toolbar-action-buttons-group">
+        <button mat-raised-button [disabled]="selection.isEmpty()"
+                color="primary"
+                (click)="openDialog('edit')">{{translateService.instant('USERS_TABLE_EDIT_USER')}}</button>
+        <button mat-raised-button [disabled]="selection.isEmpty()"
+                color="warn"
+                (click)="openDialog('delete')">{{translateService.instant('USERS_TABLE_DELETE_USER')}}</button>
+        <button mat-raised-button
+                color="primary"
+                (click)="openDialog('add')">{{translateService.instant('USERS_TABLE_ADD_USER')}}</button>
 
-    <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns;">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{translateService.instant(propertyMap[column])}} </th>
-      <td mat-cell *matCellDef="let row">
+      </div>
+    </div>
+    <table mat-table matSort [dataSource]="dataSource" class="users-table">
+
+      <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns;">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{translateService.instant(propertyMap[column])}} </th>
+        <td mat-cell *matCellDef="let row">
       <span *ngIf="column === 'isActive'">
         <i class="material-icons status-icon" [ngClass]="{'active': row[column]}">power_settings_new</i>
       </span>
-        <span *ngIf="column !== 'isActive' && column !== 'select' && column !== 'registered'">{{row[column]}}
+          <span *ngIf="column !== 'isActive' && column !== 'select' && column !== 'registered'">{{row[column]}}
         </span>
-        <span *ngIf="column === 'registered'">{{row[column].format('L')}}</span>
-        <!-- TODO if need checkbox uncomment this -->
-        <!--<mat-checkbox *ngIf="column === 'select'" (click)="$event.stopPropagation()"-->
-        <!--(change)="$event ? selection.toggle(row) : null"-->
-        <!--[checked]="selection.isSelected(row)">-->
-        <!--</mat-checkbox>-->
-      </td>
-    </ng-container>
+          <span *ngIf="column === 'registered'">{{row[column].format('L')}}</span>
+          <!-- TODO if need checkbox uncomment this -->
+          <!--<mat-checkbox *ngIf="column === 'select'" (click)="$event.stopPropagation()"-->
+          <!--(change)="$event ? selection.toggle(row) : null"-->
+          <!--[checked]="selection.isSelected(row)">-->
+          <!--</mat-checkbox>-->
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'selected': selection.isSelected(row)}"
-        (click)="selection.toggle(row)"></tr>
-  </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 30]" showFirstLastButtons></mat-paginator>
-</mat-card>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'selected': selection.isSelected(row)}"
+          (click)="selection.toggle(row)"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 30]" showFirstLastButtons></mat-paginator>
+  </div>
+</control-panel-ui-card>

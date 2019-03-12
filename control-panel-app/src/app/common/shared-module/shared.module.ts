@@ -4,14 +4,16 @@ import { ConfirmDialogComponent } from './confitm-dialog/confirm-dialog.componen
 import { TranslationModule } from "../translations-module/translation.module";
 import { MaterialModule } from "../../material.module";
 import { NumberDirective } from './directives/number.directive';
+import { ControlPanelUiCardComponent } from './control-panel-ui-card/control-panel-ui-card.component';
 
 @NgModule({
-  declarations: [ConfirmDialogComponent, NumberDirective],
+  declarations: [ConfirmDialogComponent, NumberDirective, ControlPanelUiCardComponent],
   imports: [
     CommonModule,
     TranslationModule,
     MaterialModule
   ],
-  exports: [ConfirmDialogComponent, NumberDirective]
+  exports: [ConfirmDialogComponent, NumberDirective, ControlPanelUiCardComponent]
 })
-export class SharedModule { }
+export class SharedModule {
+}

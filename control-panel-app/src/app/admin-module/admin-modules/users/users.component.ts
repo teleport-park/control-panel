@@ -20,11 +20,18 @@ import { ConfirmDialogComponent, ConfirmDialogData } from "../../../common/share
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersComponent implements OnInit, OnDestroy {
+
+  // TODO for demo
+  cardColor: string = 'primary';
+
   /**
    * title of component
    */
   TITLE: string = 'ADMIN_MENU_USERS';
 
+  /**
+   * subject for destroy component
+   */
   destroyed$: Subject<boolean> = new Subject();
 
   /**
