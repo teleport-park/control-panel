@@ -2,8 +2,6 @@ import * as moment from 'moment';
 import { Moment } from "moment";
 
 export class User {
-  password: string;
-  username: string;
   id: string;
   index: number;
   firstName: string;
@@ -20,9 +18,6 @@ export class User {
 
   constructor() {
     this.registered = moment();
-    // TODO discuss this property for user
-    this.username = Math.random + '';
-    this.password = Math.random + '';
   }
 
   /**

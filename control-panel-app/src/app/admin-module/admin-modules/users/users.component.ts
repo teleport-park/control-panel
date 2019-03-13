@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UserService } from "./services/user.service";
-import { filter, takeUntil } from "rxjs/operators";
+import { filter, finalize, takeUntil } from "rxjs/operators";
 import { User } from "../../../models/user.model";
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { TranslateService } from "../../../common/translations-module";
@@ -22,7 +22,7 @@ import { ConfirmDialogComponent, ConfirmDialogData } from "../../../common/share
 export class UsersComponent implements OnInit, OnDestroy {
 
   // TODO for demo
-  cardColor: string = 'primary';
+  cardColor: string = 'green';
 
   /**
    * title of component
@@ -35,19 +35,31 @@ export class UsersComponent implements OnInit, OnDestroy {
   destroyed$: Subject<boolean> = new Subject();
 
   /**
+   * MatSort instance
+   */
+  sortInst: MatSort;
+
+  /**
    * mat sort instance
    */
   @ViewChild(MatSort) set sort(sort: MatSort) {
     if (this.dataSource) {
+      this.sortInst = sort || null;
       this.dataSource.sort = sort || null;
     }
   };
+
+  /**
+   * MatPaginator instance
+   */
+  paginatorInst: MatPaginator;
 
   /**
    * mat paginator instance
    */
   @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
     if (this.dataSource) {
+      this.paginatorInst = paginator || null;
       this.dataSource.paginator = paginator || null;
     }
   };
@@ -104,7 +116,9 @@ export class UsersComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.loaderService.dispatchShowLoader(true);
     this.userService.getUsers();
-    this.userService.users$.pipe(filter(data => !!data), takeUntil(this.destroyed$)).subscribe(
+    this.userService.users$.pipe(filter(data => !!data), takeUntil(this.destroyed$), finalize(() => {
+      this.loaderService.dispatchShowLoader(false);
+    })).subscribe(
       (users: User[]) => {
         this.users = users.map((user: User) => {
           moment.locale(this.translateService.locale.getValue());
@@ -112,11 +126,19 @@ export class UsersComponent implements OnInit, OnDestroy {
           this.userCount = user.index > this.userCount ? user.index : this.userCount;
           return Object.assign(new User(), user)
         });
-        this.dataSource = new MatTableDataSource(this.users);
-        this.selection = new SelectionModel(false, []);
+        this.initDataSource();
         this.cd.markForCheck();
-        this.loaderService.dispatchShowLoader(false)
       });
+  }
+
+  /**
+   * init data source
+   */
+  private initDataSource() {
+    this.dataSource = new MatTableDataSource(this.users);
+    this.dataSource.sort = this.sortInst;
+    this.dataSource.paginator = this.paginatorInst;
+    this.selection = new SelectionModel(false, []);
   }
 
   /**
