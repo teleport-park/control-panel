@@ -26,10 +26,10 @@
         </mat-form-field>
       </div>
       <div class="toolbar-action-buttons-group">
-        <button mat-raised-button [disabled]="selection.isEmpty()"
+        <button mat-raised-button [disabled]="selection?.isEmpty()"
                 color="primary"
                 (click)="openDialog('edit')">{{translateService.instant('USERS_TABLE_EDIT_USER')}}</button>
-        <button mat-raised-button [disabled]="selection.isEmpty()"
+        <button mat-raised-button [disabled]="selection?.isEmpty()"
                 color="warn"
                 (click)="openDialog('delete')">{{translateService.instant('USERS_TABLE_DELETE_USER')}}</button>
         <button mat-raised-button

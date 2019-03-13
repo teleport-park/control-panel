@@ -37,12 +37,20 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * mat sort instance
    */
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort) set sort(sort: MatSort) {
+    if (this.dataSource) {
+      this.dataSource.sort = sort || null;
+    }
+  };
 
   /**
    * mat paginator instance
    */
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
+    if (this.dataSource) {
+      this.dataSource.paginator = paginator || null;
+    }
+  };
 
   /**
    * property translations map
@@ -106,8 +114,6 @@ export class UsersComponent implements OnInit, OnDestroy {
         });
         this.dataSource = new MatTableDataSource(this.users);
         this.selection = new SelectionModel(false, []);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
         this.cd.markForCheck();
         this.loaderService.dispatchShowLoader(false)
       });
