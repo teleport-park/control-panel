@@ -7,8 +7,6 @@ import { Component, HostBinding, Input } from '@angular/core';
 })
 export class ControlPanelUiCardComponent {
 
-  // @Input() panelUIColor: 'primary' | 'green' | 'blue' | 'red' | 'orange' = 'primary';
-
   @HostBinding('class') @Input() panelUIColor: 'primary' | 'green' | 'blue' | 'red' | 'orange' = 'primary';
 
   constructor() {

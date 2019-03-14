@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'https://cors-anywhere.herokuapp.com/http://webservice.of.by/'
+  api: 'https://webservice.of.by/'
 };
 
 /*
