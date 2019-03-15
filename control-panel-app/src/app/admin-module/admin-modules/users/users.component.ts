@@ -12,6 +12,9 @@ import { AddOrEditUserDialogComponent } from "../../../common/user-form";
 import * as moment from 'moment'
 import { Moment } from 'moment'
 import { ConfirmDialogComponent, ConfirmDialogData } from "../../../common/shared-module";
+import { FormControl } from "@angular/forms";
+
+export enum SpecialsColumn {'isActive', 'registered', 'submenu',  'select'}
 
 @Component({
   selector: 'app-users',
@@ -21,8 +24,9 @@ import { ConfirmDialogComponent, ConfirmDialogData } from "../../../common/share
 })
 export class UsersComponent implements OnInit, OnDestroy {
 
-  // TODO for demo
-  cardColor: string = 'green';
+  listAvailableToSortColumn: string[] = ['firstName', 'lastName', 'age', 'registered'];
+
+  listSortedColumn: FormControl = new FormControl([]);
 
   /**
    * title of component
@@ -80,12 +84,6 @@ export class UsersComponent implements OnInit, OnDestroy {
   public selection: SelectionModel<User>;
 
   /**
-   * user count
-   * TODO discuss this functionality (how append index for users)
-   */
-  userCount: number;
-
-  /**
    * Users
    */
   users: User[];
@@ -93,7 +91,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * list of displayed column
    */
-  displayedColumns: string[] = ['index', 'firstName', 'lastName', 'phone', 'isActive', 'age', 'email', 'registered'];
+  displayedColumns: string[] = ['index', 'firstName', 'lastName', 'phone', 'age', 'email', 'registered', 'submenu'];
 
   /**
    * Constructor
@@ -123,7 +121,6 @@ export class UsersComponent implements OnInit, OnDestroy {
         this.users = users.map((user: User) => {
           moment.locale(this.translateService.locale.getValue());
           user.registered = moment(user.registered);
-          this.userCount = user.index > this.userCount ? user.index : this.userCount;
           return Object.assign(new User(), user)
         });
         this.initDataSource();
@@ -172,7 +169,6 @@ export class UsersComponent implements OnInit, OnDestroy {
       if (mode === 'edit') {
         this.userService.editUser(user);
       } else {
-        user.index = ++this.userCount;
         this.userService.saveUser(user);
       }
     });
@@ -200,8 +196,28 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.destroyed$.complete()
   }
 
+  /**
+   * prepare user
+   * @param user
+   */
   private prepareUser(user: User) {
     user.registered = <Moment>user.registered.format('YYYY-MM-DD');
     user.dateOfBirth = <Moment>user.dateOfBirth.format('YYYY-MM-DD');
+  }
+
+  /**
+   * map special column
+   * @param column
+   */
+  isSpecialColumn(column: string): boolean {
+    return !!SpecialsColumn[column]
+  }
+
+  /**
+   * map sortable column
+   * @param column
+   */
+  isSortedColumn(column: string): boolean {
+    return !this.listSortedColumn.value.includes(column);
   }
 }

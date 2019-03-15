@@ -1,3 +1,5 @@
+@import 'pallete';
+
 :host {
   display: flex;
   flex-direction: column;
@@ -38,7 +40,7 @@
           border-radius: 3px;
           line-height: 24px;
           height: 50px;
-          color: #fff;
+          color: $white;
           font-size: 14px;
           font-weight: 300;
           i {
@@ -46,8 +48,8 @@
           }
 
           &.active {
-            background: linear-gradient(60deg, #ab47bc, #8e24aa);
-            box-shadow: 0 4px 20px 0 rgba(0, 0, 0,.14), 0 7px 10px -5px rgba(156, 39, 176,.4);
+            background: linear-gradient(60deg, $primary, #8e24aa);
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0,.14), 0 7px 10px -5px rgba(156, 39, 176, .4);
           }
         }
       }

@@ -1,3 +1,5 @@
+@import "pallete";
+
 :host {
   .loader-container {
     position: absolute;
@@ -8,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0,0,0,.2);
+    background-color: $backdrop;
     z-index: 1000;
   }
 }

@@ -9,6 +9,7 @@ import { UserFormModule } from "../../../common/user-form/user-form.module";
 import { AddOrEditUserDialogComponent } from "../../../common/user-form";
 import { SharedModule } from "../../../common/shared-module/shared.module";
 import { ConfirmDialogComponent } from "../../../common/shared-module";
+import { ReactiveFormsModule } from "@angular/forms";
 
 const routes: Routes = [{
   path: '',
@@ -21,6 +22,7 @@ export const UserRoutingModule = RouterModule.forChild(routes);
   declarations: [UsersComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MaterialModule,
     UserRoutingModule,
     TranslationModule,

@@ -1,3 +1,5 @@
+@import 'pallete';
+
 :host {
   .mat-card {
     margin: 40px 15px 10px;
@@ -15,7 +17,7 @@
 
       .card-header-wrapper {
         width: 100%;
-        color: #fff;
+        color: $white;
         padding: 15px;
         margin-top: -35px;
         border-radius: 3px;
@@ -27,44 +29,8 @@
 :host(.primary) {
   .mat-card {
     .card-header-wrapper {
-      background: linear-gradient(60deg, #ab47bc, #8e24aa);
+      background: linear-gradient(60deg, $primary, #8e24aa);
       box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(156, 39, 176, .4);
-    }
-  }
-}
-
-:host(.green) {
-  .mat-card {
-    .card-header-wrapper {
-      background: linear-gradient(60deg, #18ad23, #147a1f);
-      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(40, 176, 71, 0.4);
-    }
-  }
-}
-
-:host(.blue) {
-   .mat-card {
-     .card-header-wrapper {
-       background: linear-gradient(60deg, #252fe9, #2530d7);
-       box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(57, 79, 176, 0.4);
-     }
-   }
- }
-
-:host(.red) {
-  .mat-card {
-    .card-header-wrapper {
-      background: linear-gradient(60deg, #f44336, #e1382d);
-      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(176, 40, 40, 0.4);
-    }
-  }
-}
-
-:host(.orange) {
-  .mat-card {
-    .card-header-wrapper {
-      background: linear-gradient(60deg, #ff930e, #e1870e);
-      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(255, 147, 14, 0.4);
     }
   }
 }

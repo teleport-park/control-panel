@@ -10,7 +10,7 @@ import {
   MatDialogModule,
   MatFormFieldModule, MatIconModule,
   MatInputModule,
-  MatListModule, MatPaginatorIntl,
+  MatListModule, MatMenuModule, MatPaginatorIntl,
   MatPaginatorModule,
   MatProgressSpinnerModule,
   MatSelectModule,
@@ -44,7 +44,8 @@ export const MATERIAL_MODULES = [
   MatDialogModule,
   MatDatepickerModule,
   MatMomentDateModule,
-  MatIconModule
+  MatIconModule,
+  MatMenuModule
 ];
 
 @NgModule({
