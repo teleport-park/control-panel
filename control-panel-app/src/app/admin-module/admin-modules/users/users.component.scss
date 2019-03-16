@@ -21,6 +21,30 @@
 
     .users-table {
       width: 100%;
+      ::ng-deep.mat-sort-header-container {
+        padding-left: 10px;
+      }
+      .mat-row {
+        .user-table_cell-inner {
+          padding-left: 10px;
+          white-space: nowrap;
+        }
+        .mat-column-submenu {
+          padding: 0;
+          &.mat-table-sticky {
+            border-left: 1px solid #e0e0e0;
+            background-color: $white;
+          }
+        }
+
+        &.selected {
+          background-color: rgba(0, 0, 0, .05);
+        }
+
+        .mat-column-submenu {
+          text-align: right;
+        }
+      }
 
       .status-icon {
         color: #FF0000;
@@ -34,13 +58,13 @@
     .user-table-toolbar {
       padding: 0 10px;
       display: flex;
-
+      flex-wrap: wrap;
       .users-table-filter {
         flex: 1 1;
 
         .users-table-filter-input {
-          width: 300px;
-
+          width: 200px;
+          margin-right: 20px;
           .clear-filter-icon {
             cursor: pointer;
             font-size: 14px;
@@ -49,6 +73,9 @@
       }
 
       .toolbar-action-buttons-group {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
         button {
           padding: 0 10px;
           .mat-icon {
@@ -58,21 +85,12 @@
       }
     }
 
-    .users-table {
-      .mat-row {
-        &.selected {
-          background-color: rgba(0, 0, 0, .05);
-        }
-
-        .mat-column-submenu {
-          text-align: right;
-        }
-      }
+    .user-table-wrapper {
+      overflow-x: auto;
     }
 
     .mat-column-select {
       overflow: initial;
     }
   }
-
 }

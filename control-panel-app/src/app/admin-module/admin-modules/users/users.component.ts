@@ -13,8 +13,7 @@ import * as moment from 'moment'
 import { Moment } from 'moment'
 import { ConfirmDialogComponent, ConfirmDialogData } from "../../../common/shared-module";
 import { FormControl } from "@angular/forms";
-
-export enum SpecialsColumn {'isActive', 'registered', 'submenu',  'select'}
+import { BreakpointService } from "../../../services/breakpoint.service";
 
 @Component({
   selector: 'app-users',
@@ -23,8 +22,6 @@ export enum SpecialsColumn {'isActive', 'registered', 'submenu',  'select'}
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersComponent implements OnInit, OnDestroy {
-
-  listAvailableToSortColumn: string[] = ['firstName', 'lastName', 'age', 'registered'];
 
   listSortedColumn: FormControl = new FormControl([]);
 
@@ -91,7 +88,17 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * list of displayed column
    */
-  displayedColumns: string[] = ['index', 'firstName', 'lastName', 'phone', 'age', 'email', 'registered', 'submenu'];
+  displayedColumns: string[] = ['index', 'firstName', 'lastName', 'phone', 'age', 'email', 'isActive', 'registered', 'submenu'];
+
+  /**
+   * column with data
+   */
+  columnWithData: string[] = ['firstName', 'lastName', 'phone', 'age', 'email', 'registered'];
+
+  /**
+   * available to sort column
+   */
+  listAvailableToSortColumn: string[] = ['firstName', 'lastName', 'age', 'registered'];
 
   /**
    * Constructor
@@ -100,12 +107,14 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param translateService
    * @param loaderService
    * @param dialog
+   * @param point
    */
   constructor(public userService: UserService,
               private cd: ChangeDetectorRef,
               public translateService: TranslateService,
               private loaderService: LoaderService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              public point: BreakpointService) {
   }
 
   /**
@@ -118,9 +127,10 @@ export class UsersComponent implements OnInit, OnDestroy {
       this.loaderService.dispatchShowLoader(false);
     })).subscribe(
       (users: User[]) => {
-        this.users = users.map((user: User) => {
+        this.users = users.map((user: User, index: number) => {
           moment.locale(this.translateService.locale.getValue());
           user.registered = moment(user.registered);
+          user.index = ++index;
           return Object.assign(new User(), user)
         });
         this.initDataSource();
@@ -203,14 +213,6 @@ export class UsersComponent implements OnInit, OnDestroy {
   private prepareUser(user: User) {
     user.registered = <Moment>user.registered.format('YYYY-MM-DD');
     user.dateOfBirth = <Moment>user.dateOfBirth.format('YYYY-MM-DD');
-  }
-
-  /**
-   * map special column
-   * @param column
-   */
-  isSpecialColumn(column: string): boolean {
-    return !!SpecialsColumn[column]
   }
 
   /**

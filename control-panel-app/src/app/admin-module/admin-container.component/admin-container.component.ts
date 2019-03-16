@@ -3,8 +3,7 @@ import { MatSidenav } from "@angular/material";
 import { TranslateService } from "../../common/translations-module";
 import { Subject } from "rxjs";
 import { LoaderService } from "../../services/loader.service";
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { takeUntil } from "rxjs/operators";
+import { BreakpointService } from "../../services/breakpoint.service";
 
 export interface MenuItem {
   icon: string;
@@ -56,24 +55,16 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
    * @param translateService
    * @param cd
    * @param loaderService
-   * @param breakpointObserver
+   * @param point {BreakpointService}
    */
   constructor(
     public translateService: TranslateService,
     private cd: ChangeDetectorRef,
     public loaderService: LoaderService,
-    private breakpointObserver: BreakpointObserver) {
+    public point: BreakpointService) {
   }
 
-  ngOnInit() {
-    // TODO this observer should be use for handset devices
-    this.breakpointObserver.observe([
-      Breakpoints.HandsetPortrait
-    ]).pipe(takeUntil(this.destroyed$)).subscribe(result => {
-
-    })
-
-  }
+  ngOnInit() {}
 
   /**
    * set active child view
