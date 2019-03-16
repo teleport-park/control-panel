@@ -1,5 +1,4 @@
-FROM mysql/mysql-server AS mysql
-EXPOSE 3306
+
 
 FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
 WORKDIR /app
