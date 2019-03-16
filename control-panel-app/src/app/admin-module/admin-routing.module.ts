@@ -12,13 +12,20 @@ const routes: Routes = [
         pathMatch: 'full',
       }, {
         path: 'dashboard',
-        loadChildren: './admin-modules/dashboard/dashboard.module#DashboardModule'
+        loadChildren: './admin-modules/dashboard/dashboard.module#DashboardModule',
+        data: {title: 'ADMIN_MENU_DASHBOARD'}
       }, {
         path: 'users',
-        loadChildren: './admin-modules/users/users.module#UsersModule'
+        loadChildren: './admin-modules/users/users.module#UsersModule',
+        data: {title: 'ADMIN_MENU_USERS'}
       }, {
         path: 'devices',
-        loadChildren: './admin-modules/devices/devices.module#DevicesModule'
+        loadChildren: './admin-modules/devices/devices.module#DevicesModule',
+        data: {title: 'ADMIN_MENU_DEVICES'}
+      }, {
+        path: 'staff',
+        loadChildren: './admin-modules/staff/staff.module#StaffModule',
+        data: {title: 'ADMIN_MENU_STAFF'}
       }
     ]
   }
