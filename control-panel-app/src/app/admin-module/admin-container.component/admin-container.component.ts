@@ -4,11 +4,15 @@ import { TranslateService } from "../../common/translations-module";
 import { Subject } from "rxjs";
 import { LoaderService } from "../../services/loader.service";
 import { BreakpointService } from "../../services/breakpoint.service";
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter, map, mergeMap, takeUntil } from 'rxjs/operators';
 
 export interface MenuItem {
   icon: string;
   label: string;
   path: string;
+  active: boolean
+  children?: MenuItem[]
 }
 
 @Component({
@@ -28,15 +32,31 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
     {
       icon: 'dashboard',
       label: 'ADMIN_MENU_DASHBOARD',
-      path: '/admin/dashboard'
+      path: '/admin/dashboard',
+      active: false
     }, {
       icon: 'computer',
       label: 'ADMIN_MENU_DEVICES',
-      path: '/admin/devices'
+      path: '/admin/devices',
+      active: false
     }, {
       icon: 'people',
       label: 'ADMIN_MENU_USERS',
-      path: '/admin/users'
+      path: '/admin/users',
+      active: false
+    }, {
+      icon: 'people_outline',
+      label: 'ADMIN_MENU_STAFF',
+      path: '/admin/staff',
+      active: false,
+      children: [
+        {
+          icon: 'settings',
+          label: 'ADMIN_MENU_ROLES',
+          path: '/admin/staff/roles',
+          active: false
+        }
+      ]
     }
   ];
 
@@ -56,22 +76,32 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
    * @param cd
    * @param loaderService
    * @param point {BreakpointService}
+   * @param router
+   * @param activatedRoute
    */
   constructor(
     public translateService: TranslateService,
     private cd: ChangeDetectorRef,
     public loaderService: LoaderService,
-    public point: BreakpointService) {
+    public point: BreakpointService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.activeView = this.activatedRoute.snapshot.firstChild.data.title;
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd),
+      map(() => this.activatedRoute),
+      map((route) => {
+            while (route.firstChild) route = route.firstChild;
+            return route;
+          }),
+      mergeMap((route) => route.data),
+      takeUntil(this.destroyed$)
+      ).subscribe(data => {
+      this.activeView = data.title;
+    })
 
-  /**
-   * set active child view
-   * @param event
-   */
-  setActiveChildView(event) {
-    this.activeView = event && event.TITLE ? event.TITLE : ''
   }
 
   ngOnDestroy(): void {

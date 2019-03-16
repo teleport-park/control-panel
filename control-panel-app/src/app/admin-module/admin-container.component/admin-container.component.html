@@ -7,14 +7,22 @@
     <div class="sidenav-title">{{translateService.instant('ADMIN_MENU_TITLE')}}</div>
     <mat-divider></mat-divider>
     <mat-nav-list class="nav-list-container">
-      <a mat-list-item
-         *ngFor="let menuItem of MENU_ITEMS"
-         [routerLink]="menuItem.path"
-         routerLinkActive="active"
-         (click)="setActiveChildView()">
-        <i class="material-icons">{{menuItem.icon}}</i>
-        {{translateService.instant(menuItem.label)}}
-      </a>
+      <div class="nav-list-container_parent-container" *ngFor="let menuItem of MENU_ITEMS">
+        <a mat-list-item
+           [routerLink]="menuItem.path"
+           routerLinkActive="active">
+          <i class="material-icons">{{menuItem.icon}}</i>
+          {{translateService.instant(menuItem.label)}}
+        </a>
+        <div class="nav-list-container_children-container" *ngIf="menuItem.children">
+          <a mat-list-item *ngFor="let children of menuItem.children"
+             [routerLink]="children.path"
+             routerLinkActive="active">
+            <i class="material-icons">{{children.icon}}</i>
+            {{translateService.instant(children.label)}}
+          </a>
+        </div>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -31,7 +39,7 @@
               *ngIf="(point?.handset | async)"><mat-icon>menu</mat-icon></button>
     </mat-toolbar>
     <div class="content-container">
-      <router-outlet (activate)="setActiveChildView($event)"></router-outlet>
+      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
