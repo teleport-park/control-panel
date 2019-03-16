@@ -1,0 +1,3 @@
+sudo docker build --no-cache -t control_panel .
+docker run -p 8080:80 --name ControlPanel control_panel
+https://localhost:8080/api/Values
