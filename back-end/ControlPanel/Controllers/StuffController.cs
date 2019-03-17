@@ -26,7 +26,8 @@ namespace ControlPanel.Controllers
                 LastName = s.LastName,
                 Group = new StuffGroupResponseModel {
                     Id = s.StuffGroupId,
-                    Name = s.StuffGroup?.Name
+                    Name = s.StuffGroup?.Name,
+                    Permissions = s.StuffGroup?.Permissions.Select(a => new PermissionResponseModel { Id = a.PermissionId, Name = a.Permission?.Name })
                 },
                 IsEnabled = s.IsEnabled
             });
@@ -44,7 +45,8 @@ namespace ControlPanel.Controllers
                     IsEnabled = stuff.IsEnabled,
                     Group = new StuffGroupResponseModel {
                         Id = stuff.StuffGroupId,
-                        Name = stuff.StuffGroup?.Name
+                        Name = stuff.StuffGroup?.Name,
+                        Permissions = stuff.StuffGroup?.Permissions.Select(a => new PermissionResponseModel { Id = a.PermissionId, Name = a.Permission?.Name })
                     }
                 };
             }
