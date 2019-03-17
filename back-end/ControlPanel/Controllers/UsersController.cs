@@ -36,7 +36,16 @@ namespace ControlPanel.Controllers
                 return new UserResponseModel {
                     Id = user.Id,
                     FirstName = user.FirstName,
-                    LastName = user.LastName
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    Phone = user.Phone,
+                    Address = user.Address,
+                    Desc = user.Desc,
+                    DateOfBirth = user.DateOfBirth,
+                    Registered  = user.Registered,
+                    Gender = user.Gender,
+                    Age = user.DateOfBirth.HasValue? DateTime.UtcNow.Year - user.DateOfBirth.Value.Year: (int?)null,
+                    IsActive = user.IsActive
                 };
             }
             return null;

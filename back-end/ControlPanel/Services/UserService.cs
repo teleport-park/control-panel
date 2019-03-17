@@ -75,6 +75,14 @@ namespace ControlPanel.Services {
             }
             user.LastName = request.LastName;
             user.FirstName = request.FirstName;
+            user.Email = request.Email;
+            user.Address = request.Address;
+            user.Gender = request.Gender;
+            user.IsActive = request.IsActive;
+            user.Registered = requestUser == null ? DateTime.UtcNow : requestUser.Registered;
+            user.DateOfBirth = request.DateOfBirth.HasValue ? request.DateOfBirth : request.Age.HasValue ? new DateTime(DateTime.UtcNow.Year - request.Age.Value, 1, 1) : (DateTime?)null;
+            user.Desc = request.Desc;
+            user.Phone = request.Phone;
             return user;
         }
     }
