@@ -52,7 +52,7 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
       children: [
         {
           icon: 'settings',
-          label: 'ADMIN_MENU_ROLES',
+          label: 'ADMIN_MENU_GROUPS',
           path: '/admin/staff/groups',
           active: false
         }

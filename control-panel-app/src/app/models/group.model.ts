@@ -1,4 +1,5 @@
-export class Role {
-   description: string;
-   properties: any[];
+export class Group {
+  identity: number;
+  description: string;
+  properties: any[];
 }

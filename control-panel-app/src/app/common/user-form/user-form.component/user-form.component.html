@@ -1,14 +1,14 @@
 <form [formGroup]="form" class="user-form" #userForm="ngForm">
   <mat-form-field>
-    <input matInput placeholder="{{'USER_FIRST_NAME' | translate}}" formControlName="firstName" required>
+    <input matInput placeholder="{{'FIRST_NAME' | translate}}" formControlName="firstName" required>
     <mat-error>
-      {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_FIRST_NAME')]}}
+      {{'REQUIRED_FIELD' | translate:[translateService.instant('FIRST_NAME')]}}
     </mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="{{'USER_LAST_NAME' | translate}}" formControlName="lastName" required>
+    <input matInput placeholder="{{'LAST_NAME' | translate}}" formControlName="lastName" required>
     <mat-error>
-      {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_LAST_NAME')]}}
+      {{'REQUIRED_FIELD' | translate:[translateService.instant('LAST_NAME')]}}
     </mat-error>
   </mat-form-field>
   <mat-form-field>
@@ -36,18 +36,18 @@
     </mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="{{'USER_EMAIL' | translate}}" formControlName="email">
+    <input matInput placeholder="{{'EMAIL' | translate}}" formControlName="email">
     <mat-error *ngIf="form.get('email')?.hasError('pattern') && !form.get('email')?.hasError('required')">
      {{'USER_FORM_VALIDATION_EMAIL' | translate}}
     </mat-error>
     <mat-error *ngIf="form.get('email')?.hasError('required')">
-      {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_EMAIL')]}}
+      {{'REQUIRED_FIELD' | translate:[translateService.instant('EMAIL')]}}
     </mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput #phoneInput placeholder="{{'USER_PHONE' | translate}}" formControlName="phone" mask=" (00) 000 00 00">
+    <input matInput #phoneInput placeholder="{{'PHONE' | translate}}" formControlName="phone" mask=" (00) 000 00 00">
     <mat-error>
-      {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_PHONE')]}}
+      {{'REQUIRED_FIELD' | translate:[translateService.instant('PHONE')]}}
     </mat-error>
   </mat-form-field>
   <mat-form-field>
@@ -59,7 +59,7 @@
       <mat-option value="female">{{'USER_GENDER_FEMALE' | translate}}</mat-option>
     </mat-select>
   </mat-form-field>
-  <p>{{'USER_REGISTERED' | translate}}: {{userModel.registered.format('L')}}</p>
+  <p>{{'REGISTERED' | translate}}: {{userModel.registered.format('L')}}</p>
   <div class="action-button-group">
     <button mat-raised-button
             color="warn"

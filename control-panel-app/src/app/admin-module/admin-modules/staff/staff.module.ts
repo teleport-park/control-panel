@@ -4,6 +4,11 @@ import { StaffComponent } from './staff.component';
 import { RouterModule, Routes } from "@angular/router";
 import { GroupsComponent } from './groups/groups.component';
 import { StaffService } from "./services/staff.service";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MaterialModule } from "../../../material.module";
+import { TranslationModule } from "../../../common/translations-module/translation.module";
+import { UserFormModule } from "../../../common/user-form/user-form.module";
+import { SharedModule } from "../../../common/shared-module/shared.module";
 
 const routes: Routes = [{
   path: '',
@@ -11,7 +16,7 @@ const routes: Routes = [{
   children: [{
     path: 'groups',
     component: GroupsComponent,
-    data: {title: 'ADMIN_MENU_ROLES'}
+    data: {title: 'ADMIN_MENU_GROUPS'}
   }]
 }];
 
@@ -21,7 +26,12 @@ export const StaffRoutingModule = RouterModule.forChild(routes);
   declarations: [StaffComponent, GroupsComponent],
   imports: [
     CommonModule,
-    StaffRoutingModule
+    StaffRoutingModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    TranslationModule,
+    UserFormModule,
+    SharedModule
   ],
   providers: [StaffService]
 })

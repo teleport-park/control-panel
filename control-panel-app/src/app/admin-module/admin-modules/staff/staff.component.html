@@ -1,4 +1,18 @@
-<p>
-  staff works!
-</p>
-<router-outlet></router-outlet>
+<div class="staff_wrapper" *ngIf="!groupOutlet.isActivated">
+  <control-panel-ui-card *ngIf="_staff">
+    <div panelUICardHeaderTitle>
+      {{translateService.instant('STAFF_TABLE_LABEL')}}
+    </div>
+    <div panelUICardContent>
+      <div class="staff-table-wrapper">
+        <control-panel-ui-table
+          [data]="_staff"
+          [displayedColumns]="displayedColumns"
+          [simpleDataColumn]="simpleDataColumn"
+          [listSortedColumn]="listSortedColumn">
+        </control-panel-ui-table>
+      </div>
+    </div>
+  </control-panel-ui-card>
+</div>
+<router-outlet #groupOutlet="outlet"></router-outlet>

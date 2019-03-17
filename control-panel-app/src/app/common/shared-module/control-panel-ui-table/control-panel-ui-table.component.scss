@@ -1,0 +1,43 @@
+@import "pallete";
+:host {
+  .table {
+    width: 100%;
+    th.mat-header-cell {
+      span {
+        padding-left: 10px;
+      }
+    }
+    .mat-row {
+      .table_cell-inner {
+        padding-left: 10px;
+        white-space: nowrap;
+      }
+      .mat-column-submenu {
+        padding: 0;
+        &.mat-table-sticky {
+          border-left: 1px solid #e0e0e0;
+          background-color: $white;
+        }
+      }
+
+      &.selected {
+        background-color: rgba(0, 0, 0, .05);
+      }
+
+      .mat-column-submenu {
+        text-align: right;
+      }
+    }
+
+    .status-icon {
+      color: #FF0000;
+
+      &.active {
+        color: #00AE12;
+      }
+    }
+  }
+  .table-wrapper {
+    overflow-x: auto;
+  }
+}

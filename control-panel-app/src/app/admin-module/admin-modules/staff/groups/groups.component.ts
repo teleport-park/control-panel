@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'control-panel-roles',
+  selector: 'control-panel-groups',
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.scss']
 })

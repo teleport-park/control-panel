@@ -19,42 +19,6 @@
       top: 15px;
     }
 
-    .users-table {
-      width: 100%;
-      ::ng-deep.mat-sort-header-container {
-        padding-left: 10px;
-      }
-      .mat-row {
-        .user-table_cell-inner {
-          padding-left: 10px;
-          white-space: nowrap;
-        }
-        .mat-column-submenu {
-          padding: 0;
-          &.mat-table-sticky {
-            border-left: 1px solid #e0e0e0;
-            background-color: $white;
-          }
-        }
-
-        &.selected {
-          background-color: rgba(0, 0, 0, .05);
-        }
-
-        .mat-column-submenu {
-          text-align: right;
-        }
-      }
-
-      .status-icon {
-        color: #FF0000;
-
-        &.active {
-          color: #00AE12;
-        }
-      }
-    }
-
     .user-table-toolbar {
       padding: 0 10px;
       display: flex;
@@ -83,10 +47,6 @@
           }
         }
       }
-    }
-
-    .user-table-wrapper {
-      overflow-x: auto;
     }
 
     .mat-column-select {

@@ -1,10 +1,10 @@
-<mat-sidenav-container class="user-component-wrapper" *ngIf="(translateService.locale | async) && dataSource">
+<mat-sidenav-container class="user-component-wrapper" *ngIf="(translateService.locale | async) && _users">
   <mat-sidenav #extendedFilter
                mode="{{(point?.handset | async) ? 'over' : 'side'}}"
                [opened]="!(point?.handset | async)"
                position="end">
     <div class="extended-filter-wrapper">
-      <control-panel-ui-extended-filters [data]="users[0]"></control-panel-ui-extended-filters>
+      <control-panel-ui-extended-filters [data]="_users[0]"></control-panel-ui-extended-filters>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -35,76 +35,23 @@
                     color="primary"
                     (click)="openDialog('add')">
               <mat-icon>add</mat-icon>
-              {{translateService.instant('USERS_TABLE_ADD_USER')}}
+              {{translateService.instant('TABLE_ADD')}}
             </button>
             <button
               *ngIf="(point.handset | async)"
               mat-icon-button
-              (click)="extendedFilter.toggle()"><mat-icon>menu</mat-icon></button>
+              (click)="extendedFilter.toggle()">
+              <mat-icon>menu</mat-icon>
+            </button>
           </div>
         </div>
-        <div class="user-table-wrapper">
-          <table mat-table matSort [dataSource]="dataSource" class="users-table">
-
-            <!--index call-->
-            <ng-container matColumnDef="index" class="user-table_cell-inner">
-              <th mat-header-cell mat-sort-header [disabled]="isSortedColumn(column)" *matHeaderCellDef>
-                {{translateService.instant(propertyMap['index'])}}
-              </th>
-              <td mat-cell *matCellDef="let user">
-                <span class="user-table_cell-inner">
-                  {{user.index}}
-                </span>
-              </td>
-            </ng-container>
-
-            <!--data cells-->
-            <ng-container [matColumnDef]="column" *ngFor="let column of columnWithData;">
-              <th mat-header-cell *matHeaderCellDef
-                  mat-sort-header
-                  [disabled]="isSortedColumn(column)">{{translateService.instant(propertyMap[column])}}</th>
-              <td mat-cell *matCellDef="let row">
-                <span *ngIf="column !== 'registered'" class="user-table_cell-inner">{{row[column]}}</span>
-                <span *ngIf="column === 'registered'" class="user-table_cell-inner">{{row[column].format('L')}}</span>
-              </td>
-            </ng-container>
-
-            <!--is active cell-->
-            <ng-container matColumnDef="isActive" class="user-table_cell-inner">
-              <th mat-header-cell mat-sort-header [disabled]="isSortedColumn(column)" *matHeaderCellDef>
-                {{translateService.instant(propertyMap['isActive'])}}
-              </th>
-              <td mat-cell *matCellDef="let user">
-                <span class="user-table_cell-inner">
-                  <i class="material-icons status-icon" [ngClass]="{'active': user.isActive}">power_settings_new</i>
-                </span>
-              </td>
-            </ng-container>
-
-            <!--submenu cell-->
-            <ng-container matColumnDef="submenu" [stickyEnd]="(point.handset | async)">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let user">
-                <button mat-icon-button [matMenuTriggerFor]="userMenu"><mat-icon>more_vert</mat-icon></button>
-                <mat-menu #userMenu="matMenu">
-                  <button mat-menu-item (click)="openDialog('delete')">
-                    <mat-icon>delete</mat-icon>
-                    {{translateService.instant('USERS_TABLE_DELETE_USER')}}
-                  </button>
-                  <button mat-menu-item (click)="openDialog('edit')">
-                    <mat-icon>edit</mat-icon>
-                    {{translateService.instant('USERS_TABLE_EDIT_USER')}}
-                  </button>
-                </mat-menu>
-              </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-                [ngClass]="{'selected': selection.isSelected(row)}"
-                (click)="selection.select(row)"></tr>
-          </table>
-        </div>
-        <mat-paginator [pageSizeOptions]="[5, 10, 30]" showFirstLastButtons></mat-paginator>
+        <control-panel-ui-table
+          [data]="_users"
+          [displayedColumns]="displayedColumns"
+          [simpleDataColumn]="columnWithData"
+          [listSortedColumn]="listSortedColumn.value"
+          (onEdit)="openDialog('edit', $event)"
+          (onDelete)="openDialog('delete', $event)"></control-panel-ui-table>
       </div>
     </control-panel-ui-card>
   </mat-sidenav-content>
