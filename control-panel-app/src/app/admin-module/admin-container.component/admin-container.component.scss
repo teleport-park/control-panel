@@ -16,9 +16,13 @@
       min-width: 260px;
       color: #fff;
       ::ng-deep .mat-drawer-inner-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
         background-color: rgba(0, 0, 0, .7);
       }
       .sidenav-title {
+        flex: 0 0;
         height: 40px;
         text-align: center;
         line-height: 40px;
@@ -27,6 +31,7 @@
       }
 
       .mat-divider {
+        flex: 0 0;
         margin: 0 15px;
         border-top-color: rgba(251, 251, 251, 0.12);
       }
@@ -34,7 +39,7 @@
       .nav-list-container {
         margin: 15px 0;
         padding: 0 15px;
-
+        flex: 1 1;
         .mat-list-item {
           margin: 10px 0 0;
           border-radius: 3px;
@@ -61,6 +66,11 @@
             }
           }
         }
+      }
+      .side-nav_action-button {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
       }
     }
 

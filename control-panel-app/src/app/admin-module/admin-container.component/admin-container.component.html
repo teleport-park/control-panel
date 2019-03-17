@@ -24,6 +24,12 @@
         </div>
       </div>
     </mat-nav-list>
+    <div class="side-nav_action-button">
+      <language-switcher *ngIf="(point?.handset | async)"
+                         theme="light"
+                         (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
+      <button mat-button *ngIf="(point?.handset | async)" routerLink="/login">{{translateService.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
+    </div>
   </mat-sidenav>
 
   <mat-sidenav-content>

@@ -35,6 +35,11 @@ export class LanguageSwitcherComponent implements OnDestroy, OnInit {
   @Input() placeholder: string;
 
   /**
+   * theme
+   */
+  @Input() theme: string = '';
+
+  /**
    * Emit change locale
    */
   @Output() changeLocaleStart: EventEmitter<ChangeLanguageEvent> = new EventEmitter();
