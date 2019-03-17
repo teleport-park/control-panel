@@ -6,3 +6,8 @@ Customers.studio
 .idea/vcs.xml
 .idea/workspace.xml
 back-end/ControlPanel/obj
+back-end/.vs/
+back-end/ControlPanel/bin/Debug/netcoreapp2.2/ControlPanel.runtimeconfig.dev.json
+back-end/ControlPanel/bin/Debug/netcoreapp2.2/ControlPanel.pdb
+back-end/ControlPanel/bin/Debug/netcoreapp2.2/ControlPanel.dll
+back-end/ControlPanel/bin/Debug/netcoreapp2.2/ControlPanel.deps.json
