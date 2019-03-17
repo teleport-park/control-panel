@@ -26,6 +26,7 @@ namespace ControlPanel {
         public void ConfigureServices(IServiceCollection services) {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IStuffService, StuffService>();
             services.AddDbContext<ControlPanelContext>(options => options.UseSqlServer(connection));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

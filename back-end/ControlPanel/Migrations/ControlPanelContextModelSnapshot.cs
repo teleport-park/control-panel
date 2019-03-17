@@ -19,6 +19,80 @@ namespace ControlPanel.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ControlPanel.DAL.Entities.Permission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Permissions","dbo");
+                });
+
+            modelBuilder.Entity("ControlPanel.DAL.Entities.Stuff", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.Property<bool>("IsEnabled");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.Property<int>("StuffGroupId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StuffGroupId");
+
+                    b.ToTable("Stuff","dbo");
+                });
+
+            modelBuilder.Entity("ControlPanel.DAL.Entities.StuffGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StuffGroups","dbo");
+                });
+
+            modelBuilder.Entity("ControlPanel.DAL.Entities.StuffGroupPermission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PermissionId");
+
+                    b.Property<int>("StuffGroupId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PermissionId");
+
+                    b.HasIndex("StuffGroupId");
+
+                    b.ToTable("StuffGroupPermissions","dbo");
+                });
+
             modelBuilder.Entity("ControlPanel.DAL.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -57,6 +131,27 @@ namespace ControlPanel.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users","dbo");
+                });
+
+            modelBuilder.Entity("ControlPanel.DAL.Entities.Stuff", b =>
+                {
+                    b.HasOne("ControlPanel.DAL.Entities.StuffGroup", "StuffGroup")
+                        .WithMany()
+                        .HasForeignKey("StuffGroupId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ControlPanel.DAL.Entities.StuffGroupPermission", b =>
+                {
+                    b.HasOne("ControlPanel.DAL.Entities.Permission", "Permission")
+                        .WithMany()
+                        .HasForeignKey("PermissionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ControlPanel.DAL.Entities.StuffGroup", "StuffGroup")
+                        .WithMany("Permissions")
+                        .HasForeignKey("StuffGroupId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }

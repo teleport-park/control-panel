@@ -29,7 +29,7 @@ namespace ControlPanel.Controllers
         }
 
         // GET: api/Users/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "Users")]
         public async Task<UserResponseModel> Get(int id){
             var user = await _userService.GetUser(id);
             if (user != null) {

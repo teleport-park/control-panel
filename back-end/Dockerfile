@@ -1,22 +1,15 @@
-
-
-FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 COPY ControlPanel/. ./ControlPanel/
 RUN dotnet restore "ControlPanel/ControlPanel.csproj"
-
 WORKDIR "/src/ControlPanel"
 RUN dotnet build "ControlPanel.csproj" -c Release -o /app
-
-FROM build AS publish
 RUN dotnet publish "ControlPanel.csproj" -c Release -o /app
 
-FROM base AS final
+
+FROM microsoft/dotnet:2.2-aspnetcore-runtime AS final
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "ControlPanel.dll"]
+EXPOSE 80
+
