@@ -7,5 +7,6 @@ namespace ControlPanel.Models {
     public class StuffGroupResponseModel {
         public int Id { get; set; }
         public string Name { get; set; }
+        public IEnumerable<PermissionResponseModel> Permissions { get; set; }
     }
 }

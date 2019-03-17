@@ -30,11 +30,11 @@ namespace ControlPanel.Services {
         }
 
         public async Task<Stuff> GetStuff(int id) {
-            return await _dbCotext.Stuff.FirstOrDefaultAsync(a => a.Id == id);
+            return await _dbCotext.Stuff.Include("StuffGroup").Include("StuffGroup.Permissions").Include("StuffGroup.Permissions.Permission").FirstOrDefaultAsync(a => a.Id == id);
         }
 
         public async Task<IEnumerable<Stuff>> GetStuff() {
-            return await _dbCotext.Stuff.Include(x => x.StuffGroup).ToListAsync();
+            return await _dbCotext.Stuff.Include("StuffGroup").Include("StuffGroup.Permissions").Include("StuffGroup.Permissions.Permission").ToListAsync();
         }
 
         public async Task<bool> RemoveStuff(int id) {
