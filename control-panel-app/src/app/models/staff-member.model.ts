@@ -1,4 +1,4 @@
-import { Role } from "./role.model";
+import { Role } from "./group.model";
 
 export class StaffMemberModel {
   firstName: string;
