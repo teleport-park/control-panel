@@ -1,9 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { User } from "../../../../models/user.model";
+import { User } from "../../../../models/";
 import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../../../environments/environment";
-import { filter } from "rxjs/operators";
+import { filter, finalize } from "rxjs/operators";
 import { LoaderService } from "../../../../services/loader.service";
 
 @Injectable()
@@ -27,10 +27,11 @@ export class UserService implements OnDestroy {
    */
   getUsers(): void {
     this.http.get<User[]>(`${environment.api}mockusers`)
-      .pipe(filter(data => !!data))
+      .pipe(filter(data => !!data), finalize(() => {
+        this.loaderService.dispatchShowLoader(false);
+      }))
       .subscribe((users: User[]) => {
         this.users$.next(users);
-        this.loaderService.dispatchShowLoader(false);
       });
   }
 

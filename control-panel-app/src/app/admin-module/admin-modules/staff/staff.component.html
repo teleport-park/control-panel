@@ -4,12 +4,22 @@
       {{translateService.instant('STAFF_TABLE_LABEL')}}
     </div>
     <div panelUICardContent>
+      <div>
+        <button mat-raised-button
+                color="primary"
+                (click)="openDialog('add')">
+          <mat-icon>add</mat-icon>
+          {{translateService.instant('TABLE_ADD')}}
+        </button>
+      </div>
       <div class="staff-table-wrapper">
         <control-panel-ui-table
           [data]="_staff"
           [displayedColumns]="displayedColumns"
           [simpleDataColumn]="simpleDataColumn"
-          [listSortedColumn]="listSortedColumn">
+          [listSortedColumn]="listSortedColumn"
+          (onEdit)="openDialog('edit', $event)"
+          (onDelete)="openDialog('delete', $event)">
         </control-panel-ui-table>
       </div>
     </div>

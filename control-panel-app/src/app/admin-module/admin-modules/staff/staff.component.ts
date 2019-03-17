@@ -5,6 +5,9 @@ import { filter, takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
 import { TranslateService } from "../../../common/translations-module";
 import { BreakpointService } from "../../../services/breakpoint.service";
+import { ConfirmDialogComponent, ConfirmDialogData } from "../../../common/shared-module";
+import { MatDialog } from "@angular/material";
+import { AddOrEditEntityDialogComponent } from "../../../common/user-form";
 
 @Component({
   selector: 'control-panel-staff',
@@ -17,7 +20,6 @@ export class StaffComponent implements OnInit, OnDestroy {
    * staff members
    */
   _staff: StaffMember[];
-
 
   /**
    * displayed columns
@@ -42,11 +44,13 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param cd
    * @param translateService
    * @param point
+   * @param dialog
    */
   constructor(public service: StaffService,
               private cd: ChangeDetectorRef,
               public translateService: TranslateService,
-              public point: BreakpointService) {
+              public point: BreakpointService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -62,11 +66,58 @@ export class StaffComponent implements OnInit, OnDestroy {
     )
   }
 
+  /**
+   * open dialog
+   * @param mode
+   * @param event
+   */
+  openDialog(mode: 'edit' | 'add' | 'delete', event: StaffMember): void {
+    if (mode === 'delete') {
+      this.showConfirmDialog(event);
+      return;
+    }
+    this.showModalAddOrEditStaffMemberUser(mode, event);
+  }
+
+  /**
+   * show confirm dialog
+   */
+  private showConfirmDialog(staffMember: StaffMember) {
+    this.dialog.open(ConfirmDialogComponent, {
+      data: <ConfirmDialogData>{
+        title: 'DIALOG_CONFIRM_TITLE',
+        message: 'DIALOG_CONFIRM_MESSAGE',
+        messageParams: [staffMember.firstName, staffMember.lastName]
+      }
+    }).afterClosed()
+      .pipe(filter(data => data), takeUntil(this.destroyed$))
+      .subscribe(() => {
+        console.log('delete')
+      });
+  }
+
+  /**
+   * show add or remove dialog
+   * @param mode
+   * @param event
+   */
+  private showModalAddOrEditStaffMemberUser(mode: "edit" | "add" | "delete", event) {
+    this.dialog.open(AddOrEditEntityDialogComponent, {
+      data: mode === 'edit' ? event : 'staffMember'
+    }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((staffMember: StaffMember) => {
+      console.log(staffMember)
+    });
+  }
+
   ngOnDestroy(): void {
     this.destroyed$.next(true);
     this.destroyed$.complete();
   }
 
+  /**
+   * get group description
+   * @param groupId
+   */
   private getGroupDesc(groupId: number) {
     const desc = this.service.groups$.getValue().find((group: Group) => group.identity === groupId);
     return desc ? desc.description : '';

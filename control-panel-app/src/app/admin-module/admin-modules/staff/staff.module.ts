@@ -9,6 +9,8 @@ import { MaterialModule } from "../../../material.module";
 import { TranslationModule } from "../../../common/translations-module/translation.module";
 import { UserFormModule } from "../../../common/user-form/user-form.module";
 import { SharedModule } from "../../../common/shared-module/shared.module";
+import { AddOrEditEntityDialogComponent } from "../../../common/user-form";
+import { ConfirmDialogComponent } from "../../../common/shared-module";
 
 const routes: Routes = [{
   path: '',
@@ -33,7 +35,8 @@ export const StaffRoutingModule = RouterModule.forChild(routes);
     UserFormModule,
     SharedModule
   ],
-  providers: [StaffService]
+  providers: [StaffService],
+  entryComponents: [AddOrEditEntityDialogComponent, ConfirmDialogComponent]
 })
 export class StaffModule {
 }

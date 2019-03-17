@@ -7,7 +7,7 @@ import { TranslateService } from "../../../common/translations-module";
 import { PropertyMap } from "../../utils/property-map";
 import { Subject } from "rxjs";
 import { LoaderService } from "../../../services/loader.service";
-import { AddOrEditUserDialogComponent } from "../../../common/user-form";
+import { AddOrEditEntityDialogComponent } from "../../../common/user-form";
 import * as moment from 'moment'
 import { Moment } from 'moment'
 import { ConfirmDialogComponent, ConfirmDialogData } from "../../../common/shared-module";
@@ -46,7 +46,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * column with data
    */
-  columnWithData: string[] = ['firstName', 'lastName', 'phone', 'age', 'email', 'registered'];
+  columnWithData: string[] = ['firstName', 'lastName', 'phone', 'age', 'email'];
 
   /**
    * available to sort column
@@ -106,7 +106,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       this.showConfirmDialog(event);
       return;
     }
-    this.showModalAddOrRemoveUser(mode, event);
+    this.showModalAddOrEditUser(mode, event);
   }
 
   /**
@@ -114,9 +114,9 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param mode
    * @param event
    */
-  private showModalAddOrRemoveUser(mode: "edit" | "add" | "delete", event) {
-    this.dialog.open(AddOrEditUserDialogComponent, {
-      data: mode === 'edit' ? event : null
+  private showModalAddOrEditUser(mode: "edit" | "add" | "delete", event) {
+    this.dialog.open(AddOrEditEntityDialogComponent, {
+      data: mode === 'edit' ? event : 'user'
     }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((user: User) => {
       this.prepareUser(user);
       if (mode === 'edit') {

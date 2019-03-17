@@ -1,2 +1,2 @@
-export * from './add-user-dialog/add-or-edit-user-dialog.component';
-export * from './user-form.component/user-form.component';
+export * from './add-entity-dialog/add-or-edit-entity-dialog.component';
+export * from './form.component/form.component';

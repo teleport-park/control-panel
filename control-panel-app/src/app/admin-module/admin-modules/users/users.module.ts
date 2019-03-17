@@ -6,7 +6,7 @@ import { MaterialModule } from "../../../material.module";
 import { UserService } from "./services/user.service";
 import { TranslationModule } from "../../../common/translations-module/translation.module";
 import { UserFormModule } from "../../../common/user-form/user-form.module";
-import { AddOrEditUserDialogComponent } from "../../../common/user-form";
+import { AddOrEditEntityDialogComponent } from "../../../common/user-form";
 import { SharedModule } from "../../../common/shared-module/shared.module";
 import { ConfirmDialogComponent } from "../../../common/shared-module";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -30,7 +30,7 @@ export const UserRoutingModule = RouterModule.forChild(routes);
     SharedModule
   ],
   providers: [UserService],
-  entryComponents: [AddOrEditUserDialogComponent, ConfirmDialogComponent]
+  entryComponents: [AddOrEditEntityDialogComponent, ConfirmDialogComponent]
 })
 export class UsersModule {
 }
