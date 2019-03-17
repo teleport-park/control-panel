@@ -60,6 +60,7 @@ namespace ControlPanel.Controllers
         // PUT: api/Stuff/5
         [HttpPut("{id}")]
         public async Task Put(int id, [FromBody] StuffRequestModel request){
+            request.Id = id;
             await _stuffService.UpdateStuff(request);
         }
 
