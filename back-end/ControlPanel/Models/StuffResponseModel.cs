@@ -8,8 +8,7 @@ namespace ControlPanel.Models {
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int StuffGroupId { get; set; }
-        public string StuffGroupName { get; set; }
+        public StuffGroupResponseModel Group { get; set; }
         public bool IsEnabled { get; set; }
     }
 }

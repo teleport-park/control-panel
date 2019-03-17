@@ -10,11 +10,10 @@ namespace ControlPanel.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class StuffController : ControllerBase
-    {
+    public class StuffController : ControllerBase {
 
         private readonly IStuffService _stuffService;
-        public StuffController(IStuffService stuffService) {
+        public StuffController(IStuffService stuffService){
             _stuffService = stuffService;
         }
         // GET: api/Stuff
@@ -25,35 +24,49 @@ namespace ControlPanel.Controllers
                 Id = s.Id,
                 FirstName = s.FirstName,
                 LastName = s.LastName,
-                StuffGroupId = s.StuffGroupId,
-                StuffGroupName = s.StuffGroup?.Name,
+                Group = new StuffGroupResponseModel {
+                    Id = s.StuffGroupId,
+                    Name = s.StuffGroup?.Name
+                },
                 IsEnabled = s.IsEnabled
             });
         }
 
         // GET: api/Stuff/5
         [HttpGet("{id}", Name = "Stuff")]
-        public string Get(int id)
-        {
-            return "value";
+        public async Task<StuffResponseModel> Get(int id){
+            var stuff = await _stuffService.GetStuff(id);
+            if (stuff != null) {
+                return new StuffResponseModel {
+                    Id = stuff.Id,
+                    FirstName = stuff.FirstName,
+                    LastName = stuff.LastName,
+                    IsEnabled = stuff.IsEnabled,
+                    Group = new StuffGroupResponseModel {
+                        Id = stuff.StuffGroupId,
+                        Name = stuff.StuffGroup?.Name
+                    }
+                };
+            }
+            return null;
         }
 
         // POST: api/Stuff
         [HttpPost]
-        public void Post([FromBody] string value)
-        {
+        public async Task Post([FromBody] StuffRequestModel request){
+            await _stuffService.AddStuff(request);
         }
 
         // PUT: api/Stuff/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+        public async Task Put(int id, [FromBody] StuffRequestModel request){
+            await _stuffService.UpdateStuff(request);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+        public async Task Delete(int id){
+            await _stuffService.RemoveStuff(id);
         }
     }
 }
