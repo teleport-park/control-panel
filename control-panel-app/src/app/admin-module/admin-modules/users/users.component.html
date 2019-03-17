@@ -14,12 +14,11 @@
         <div class="user-table-toolbar">
           <div class="users-table-filter">
             <mat-form-field class="users-table-filter-input">
-              <input matInput #filter
-                     (keyup)="applyFilter($event.target.value)"
+              <input matInput #filter [formControl]="quickFilter"
                      placeholder="{{translateService.instant('USERS_TABLE_FILTER_INPUT_LABEL')}}">
               <mat-icon *ngIf="filter.value"
                         matSuffix
-                        (click)="filter.value = ''; applyFilter('')"
+                        (click)="quickFilter.setValue('')"
                         class="clear-filter-icon">clear
               </mat-icon>
             </mat-form-field>

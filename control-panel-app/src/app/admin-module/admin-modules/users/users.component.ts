@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UserService } from "./services/user.service";
-import { filter, finalize, takeUntil } from "rxjs/operators";
-import { User } from "../../../models/user.model";
+import { debounceTime, filter, finalize, takeUntil } from "rxjs/operators";
+import { User } from "../../../models";
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { TranslateService } from "../../../common/translations-module";
 import { UserPropertyMap } from "./services/user-property-map";
@@ -25,10 +25,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   listSortedColumn: FormControl = new FormControl([]);
 
-  /**
-   * title of component
-   */
-  TITLE: string = 'ADMIN_MENU_USERS';
+  quickFilter: FormControl = new FormControl('');
 
   /**
    * subject for destroy component
@@ -136,6 +133,12 @@ export class UsersComponent implements OnInit, OnDestroy {
         this.initDataSource();
         this.cd.markForCheck();
       });
+    this.quickFilter.valueChanges.pipe(debounceTime(300), takeUntil(this.destroyed$)).subscribe(
+      (value: string) => {
+        // TODO insert quick filter logic from API
+        this.dataSource.filter = value.trim().toLowerCase();
+      }
+    )
   }
 
   /**
@@ -146,13 +149,6 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.dataSource.sort = this.sortInst;
     this.dataSource.paginator = this.paginatorInst;
     this.selection = new SelectionModel(false, []);
-  }
-
-  /**
-   * apply table filter
-   */
-  applyFilter(filterValue: string): void {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   /**
