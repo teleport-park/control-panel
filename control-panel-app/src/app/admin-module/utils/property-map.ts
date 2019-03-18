@@ -7,5 +7,7 @@ export const PropertyMap = {
   "age": "USER_AGE",
   "email": "EMAIL",
   "registered": "REGISTERED",
-  "groupDescription": "GROUP"
+  "groupDescription": "GROUP",
+  "name": "NAME",
+  "permissions": "GROUP_PERMISSIONS"
 };

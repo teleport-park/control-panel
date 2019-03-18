@@ -48,5 +48,7 @@
   "DIALOG_CONFIRM_BUTTON_LABEL": "Подтвердить",
   "DIALOG_CONFIRM_TITLE": "Внимание",
   "DIALOG_CONFIRM_MESSAGE": "Вы хотите удалить пользователя {0} {1} из списка?",
-  "STAFF_TABLE_LABEL": "Список сотрудников"
+  "STAFF_TABLE_LABEL": "Список сотрудников",
+  "NAME": "Название",
+  "GROUP_PERMISSIONS": "Разрешения"
 }

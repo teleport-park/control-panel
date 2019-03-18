@@ -5,6 +5,7 @@ import { StaffMember } from "../../../models";
 import { SelectionModel } from "@angular/cdk/collections";
 import { BreakpointService } from "../../../services/breakpoint.service";
 import { PropertyMap } from "../../../admin-module/utils/property-map";
+import { PermissionValuesMap } from "../../../admin-module/utils/permission-values-map";
 
 @Component({
   selector: 'control-panel-ui-table',
@@ -12,6 +13,8 @@ import { PropertyMap } from "../../../admin-module/utils/property-map";
   styleUrls: ['./control-panel-ui-table.component.scss']
 })
 export class ControlPanelUiTableComponent implements OnInit {
+
+  valueMap = PermissionValuesMap;
 
   /**
    * property translations map
@@ -102,6 +105,10 @@ export class ControlPanelUiTableComponent implements OnInit {
    */
   isSortedColumn(column: string): boolean {
     return !this.listSortedColumn.includes(column);
+  }
+
+  selectionChange(event){
+    console.log(event);
   }
 
 }

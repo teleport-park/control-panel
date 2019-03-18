@@ -1,3 +1,9 @@
-<p>
-  roles works!
-</p>
+<control-panel-ui-card>
+  <div panelUICardHeaderTitle>Group list</div>
+  <div panelUICardContent>
+    <control-panel-ui-table
+    [displayedColumns]="columns"
+    [simpleDataColumn]="['name']"
+    [data]="data"></control-panel-ui-table>
+  </div>
+</control-panel-ui-card>

@@ -7,7 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupsComponent implements OnInit {
 
-  constructor() { }
+  /**
+   * columns
+   */
+  columns: string[] = ['name', 'permissions'];
+  /**
+   * mock object
+   */
+  data = [
+    {name: 'Administrator', permissions: ['read', 'write', 'delete']},
+    {name: 'Manager', permissions: ['read', 'write']},
+    {name: 'Worker', permissions: ['read']},
+    {name: 'Office manager', permissions: []}
+  ];
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

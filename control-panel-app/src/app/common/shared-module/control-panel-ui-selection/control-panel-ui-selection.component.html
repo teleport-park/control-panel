@@ -1,0 +1,5 @@
+<div class="control-panel-ui-selection">
+  <mat-checkbox *ngFor="let item of valuesMap"
+  (change)="changeHandler($event, item.value)"
+  [checked]="isSelected(item.value)">{{item.valueView}}</mat-checkbox>
+</div>
