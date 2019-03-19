@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormComponent } from './form.component/form.component';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddOrEditEntityDialogComponent } from './add-entity-dialog/add-or-edit-entity-dialog.component';
-import { MaterialModule } from "../../material.module";
-import { TranslationModule } from "../translations-module/translation.module";
-import { NgxMaskModule } from "ngx-mask";
-import { SharedModule } from "../shared-module/shared.module";
+import { MaterialModule } from '../../material.module';
+import { TranslationModule } from '../translations-module/translation.module';
+import { NgxMaskModule } from 'ngx-mask';
+import { SharedModule } from '../shared-module/shared.module';
 
 @NgModule({
   declarations: [FormComponent, AddOrEditEntityDialogComponent],

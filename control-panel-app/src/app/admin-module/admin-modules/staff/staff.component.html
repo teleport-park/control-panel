@@ -18,8 +18,8 @@
           [displayedColumns]="displayedColumns"
           [simpleDataColumn]="simpleDataColumn"
           [listSortedColumn]="listSortedColumn"
-          (onEdit)="openDialog('edit', $event)"
-          (onDelete)="openDialog('delete', $event)">
+          (edit)="openDialog('edit', $event)"
+          (delete)="openDialog('delete', $event)">
         </control-panel-ui-table>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TranslateService } from "./common/translations-module";
-import { LoaderService } from "./services/loader.service";
+import { TranslateService } from './common/translations-module';
+import { LoaderService } from './services/loader.service';
 
 @Component({
   selector: 'app-root',

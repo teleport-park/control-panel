@@ -21,9 +21,9 @@ import {
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
-import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter'
-import { MatPaginatorTranslateUtil } from "./utils/mat-paginator-translate.util";
-import { TranslateService } from "./common/translations-module";
+import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { MatPaginatorTranslateUtil } from './utils/mat-paginator-translate.util';
+import { TranslateService } from './common/translations-module';
 
 export const MATERIAL_MODULES = [
   MatFormFieldModule,

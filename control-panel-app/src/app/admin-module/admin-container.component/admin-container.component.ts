@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatSidenav } from "@angular/material";
-import { TranslateService } from "../../common/translations-module";
-import { Subject } from "rxjs";
-import { LoaderService } from "../../services/loader.service";
-import { BreakpointService } from "../../services/breakpoint.service";
+import { MatSidenav } from '@angular/material';
+import { TranslateService } from '../../common/translations-module';
+import { Subject } from 'rxjs';
+import { LoaderService } from '../../services/loader.service';
+import { BreakpointService } from '../../services/breakpoint.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, mergeMap, takeUntil } from 'rxjs/operators';
 
@@ -11,8 +11,8 @@ export interface MenuItem {
   icon: string;
   label: string;
   path: string;
-  active: boolean
-  children?: MenuItem[]
+  active: boolean;
+  children?: MenuItem[];
 }
 
 @Component({
@@ -68,7 +68,7 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
   /**
    * active view
    */
-  activeView: string = '';
+  activeView = '';
 
   /**
    * constructor
@@ -93,14 +93,14 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd),
       map(() => this.activatedRoute),
       map((route) => {
-            while (route.firstChild) route = route.firstChild;
+            while (route.firstChild) { route = route.firstChild; }
             return route;
           }),
       mergeMap((route) => route.data),
       takeUntil(this.destroyed$)
       ).subscribe(data => {
       this.activeView = data.title;
-    })
+    });
 
   }
 

@@ -1,13 +1,13 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Group, StaffMember } from "../../../models";
-import { StaffService } from "./services/staff.service";
-import { filter, takeUntil } from "rxjs/operators";
-import { Subject } from "rxjs";
-import { TranslateService } from "../../../common/translations-module";
-import { BreakpointService } from "../../../services/breakpoint.service";
-import { ConfirmDialogComponent, ConfirmDialogData } from "../../../common/shared-module";
-import { MatDialog } from "@angular/material";
-import { AddOrEditEntityDialogComponent } from "../../../common/user-form";
+import { Group, StaffMember } from '../../../models';
+import { StaffService } from './services/staff.service';
+import { filter, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { TranslateService } from '../../../common/translations-module';
+import { BreakpointService } from '../../../services/breakpoint.service';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../../common/shared-module';
+import { MatDialog } from '@angular/material';
+import { AddOrEditEntityDialogComponent } from '../../../common/user-form';
 
 @Component({
   selector: 'control-panel-staff',
@@ -63,7 +63,7 @@ export class StaffComponent implements OnInit, OnDestroy {
         });
         this.cd.markForCheck();
       }
-    )
+    );
   }
 
   /**
@@ -84,15 +84,15 @@ export class StaffComponent implements OnInit, OnDestroy {
    */
   private showConfirmDialog(staffMember: StaffMember) {
     this.dialog.open(ConfirmDialogComponent, {
-      data: <ConfirmDialogData>{
+      data: {
         title: 'DIALOG_CONFIRM_TITLE',
         message: 'DIALOG_CONFIRM_MESSAGE',
         messageParams: [staffMember.firstName, staffMember.lastName]
-      }
+      } as ConfirmDialogData
     }).afterClosed()
       .pipe(filter(data => data), takeUntil(this.destroyed$))
       .subscribe(() => {
-        console.log('delete')
+        console.log('delete');
       });
   }
 
@@ -101,11 +101,11 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param mode
    * @param event
    */
-  private showModalAddOrEditStaffMemberUser(mode: "edit" | "add" | "delete", event) {
+  private showModalAddOrEditStaffMemberUser(mode: 'edit' | 'add' | 'delete', event) {
     this.dialog.open(AddOrEditEntityDialogComponent, {
       data: mode === 'edit' ? event : 'staffMember'
     }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((staffMember: StaffMember) => {
-      console.log(staffMember)
+      console.log(staffMember);
     });
   }
 

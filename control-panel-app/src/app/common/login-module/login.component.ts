@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { TranslateService } from "../translations-module";
-import { LoaderService } from "../../services/loader.service";
+import { TranslateService } from '../translations-module';
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.credential = this.fb.group({
       login: ['', Validators.required],
       password: ['', Validators.required]
-    })
+    });
   }
 
   onSubmit() {
@@ -44,6 +44,6 @@ export class LoginComponent implements OnInit {
       horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: 'toaster-error'
-    })
+    });
   }
 }

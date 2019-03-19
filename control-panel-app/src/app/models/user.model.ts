@@ -1,5 +1,5 @@
 import * as moment from 'moment';
-import { Moment } from "moment";
+import { Moment } from 'moment';
 
 export class User {
   id: string;
@@ -42,6 +42,6 @@ export class User {
    */
   setDOB(age: number): Moment {
     this.dateOfBirth = moment().subtract(age, 'years');
-    return this.dateOfBirth
+    return this.dateOfBirth;
   }
 }

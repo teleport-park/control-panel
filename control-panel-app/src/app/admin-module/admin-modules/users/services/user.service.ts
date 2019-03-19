@@ -1,10 +1,10 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { User } from "../../../../models/";
-import { Subject } from "rxjs";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../../../../environments/environment";
-import { filter, finalize } from "rxjs/operators";
-import { LoaderService } from "../../../../services/loader.service";
+import { User } from '../../../../models/';
+import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment';
+import { filter, finalize } from 'rxjs/operators';
+import { LoaderService } from '../../../../services/loader.service';
 
 @Injectable()
 export class UserService implements OnDestroy {
@@ -42,7 +42,7 @@ export class UserService implements OnDestroy {
     this.loaderService.dispatchShowLoader(true);
     this.http.post(`${environment.api}mockusers`, user).subscribe(result => {
       this.getUsers();
-    })
+    });
   }
 
   /**
@@ -52,7 +52,7 @@ export class UserService implements OnDestroy {
     this.loaderService.dispatchShowLoader(true);
     this.http.put(`${environment.api}mockusers/${user.id}`, user).subscribe(result => {
       this.getUsers();
-    })
+    });
   }
 
   /**
@@ -62,7 +62,7 @@ export class UserService implements OnDestroy {
     this.loaderService.dispatchShowLoader(true);
     this.http.delete(`${environment.api}mockusers/${user.id}`).subscribe(result => {
       this.getUsers();
-    })
+    });
   }
 
   /**

@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { TranslateService } from "../translate.service";
-import { MatSelectChange } from "@angular/material";
-import { takeUntil } from "rxjs/operators";
-import { Subject } from "rxjs";
+import { TranslateService } from '../translate.service';
+import { MatSelectChange } from '@angular/material';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 export interface LanguageItem {
   label: string;
@@ -37,7 +37,7 @@ export class LanguageSwitcherComponent implements OnDestroy, OnInit {
   /**
    * theme
    */
-  @Input() theme: string = '';
+  @Input() theme = '';
 
   /**
    * Emit change locale
@@ -65,7 +65,7 @@ export class LanguageSwitcherComponent implements OnDestroy, OnInit {
       .pipe(takeUntil(this.destroyed$))
       .subscribe((locale: string) => {
         this.locale = locale;
-      })
+      });
   }
 
   /**
@@ -73,7 +73,7 @@ export class LanguageSwitcherComponent implements OnDestroy, OnInit {
    * @param event
    */
   changeLanguage(event: MatSelectChange) {
-    this.changeLocaleStart.emit(<ChangeLanguageEvent>{oldLocale: this.locale, newValue: event.value});
+    this.changeLocaleStart.emit({oldLocale: this.locale, newValue: event.value} as ChangeLanguageEvent);
     if (event.value !== this.translateService.locale) {
       this.translateService.getTranslations(event.value);
     }

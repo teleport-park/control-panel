@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject } from "rxjs";
-import { LoaderService } from "../../services/loader.service";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { LoaderService } from '../../services/loader.service';
 
 export interface StringTMap<T> {
   [key: string]: T;
@@ -20,7 +20,7 @@ export class TranslateService {
   /**
    * translations loaded flag
    */
-  public translationsLoaded: boolean = false;
+  public translationsLoaded = false;
 
   /**
    * translation
@@ -49,7 +49,7 @@ export class TranslateService {
         this.translationsLoaded = true;
         this.loaderService.dispatchShowLoader(false);
       }
-    )
+    );
   }
 
   /**
@@ -66,9 +66,8 @@ export class TranslateService {
 
   interpolateParams(key: string, params: string[]) {
     return key.replace(/{\d+}/g, (value, _) => {
-      let index = +value.replace('{', '').replace('}', '');
+      const index = +value.replace('{', '').replace('}', '');
       return params[index] || value;
-    })
-
+    });
   }
 }

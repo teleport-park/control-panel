@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StaffComponent } from './staff.component';
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes } from '@angular/router';
 import { GroupsComponent } from './groups/groups.component';
-import { StaffService } from "./services/staff.service";
-import { ReactiveFormsModule } from "@angular/forms";
-import { MaterialModule } from "../../../material.module";
-import { TranslationModule } from "../../../common/translations-module/translation.module";
-import { UserFormModule } from "../../../common/user-form/user-form.module";
-import { SharedModule } from "../../../common/shared-module/shared.module";
-import { AddOrEditEntityDialogComponent } from "../../../common/user-form";
-import { ConfirmDialogComponent } from "../../../common/shared-module";
+import { StaffService } from './services/staff.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../../../material.module';
+import { TranslationModule } from '../../../common/translations-module/translation.module';
+import { UserFormModule } from '../../../common/user-form/user-form.module';
+import { SharedModule } from '../../../common/shared-module/shared.module';
+import { AddOrEditEntityDialogComponent } from '../../../common/user-form';
+import { ConfirmDialogComponent } from '../../../common/shared-module';
 
 const routes: Routes = [{
   path: '',

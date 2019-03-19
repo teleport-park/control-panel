@@ -1,9 +1,9 @@
 import { Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
-import { StaffMember, User } from "../../../models";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { StaffMember, User } from '../../../models';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { Moment } from 'moment';
-import { TranslateService } from "../../translations-module";
+import { TranslateService } from '../../translations-module';
 
 @Component({
   selector: 'control-panel-ui-form',
@@ -54,7 +54,7 @@ export class FormComponent {
     }
     if (item instanceof StaffMember) {
       this.entityModel = Object.assign(new StaffMember(), item);
-      this.form = this.getStaffMemberForm();this.form.patchValue(this.entityModel);
+      this.form = this.getStaffMemberForm(); this.form.patchValue(this.entityModel);
       this.mode = 'edit';
       this.outlet = this.staffMemberTemplate;
     }
@@ -72,17 +72,17 @@ export class FormComponent {
       this.mode = 'add';
       this.outlet = this.staffMemberTemplate;
     }
-  };
+  }
 
   /**
    * emit save event
    */
-  @Output() onSave: EventEmitter<User | StaffMember> = new EventEmitter();
+  @Output() save: EventEmitter<User | StaffMember> = new EventEmitter();
 
   /**
    * emit cancel event
    */
-  @Output() onCancel: EventEmitter<void> = new EventEmitter();
+  @Output() cancel: EventEmitter<void> = new EventEmitter();
 
   /**
    * form
@@ -122,7 +122,7 @@ export class FormComponent {
     return this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required]
-    })
+    });
   }
 
   /**
@@ -131,7 +131,7 @@ export class FormComponent {
    */
   dayOfBirthChange(date: Moment): void {
     if (!(this.entityModel instanceof StaffMember)) {
-      this.form.get('age').setValue(this.entityModel.getAge(date))
+      this.form.get('age').setValue(this.entityModel.getAge(date));
     }
   }
 
@@ -160,7 +160,7 @@ export class FormComponent {
       if (!(this.entityModel instanceof StaffMember)) {
         this.entityModel.phone = this.phoneInput.nativeElement.value;
       }
-      this.onSave.emit(this.entityModel);
+      this.save.emit(this.entityModel);
     }
   }
 
@@ -168,6 +168,6 @@ export class FormComponent {
    * cancel handler
    */
   onCancelHandler(): void {
-    this.onCancel.emit();
+    this.cancel.emit();
   }
 }

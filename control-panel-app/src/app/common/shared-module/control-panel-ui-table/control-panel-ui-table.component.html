@@ -36,11 +36,11 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #staffMemberMenu="matMenu">
-          <button mat-menu-item (click)="onDelete.emit(item)">
+          <button mat-menu-item (click)="delete.emit(item)">
             <mat-icon>delete</mat-icon>
             {{translateService.instant('TABLE_DELETE')}}
           </button>
-          <button mat-menu-item (click)="onEdit.emit(item)">
+          <button mat-menu-item (click)="edit.emit(item)">
             <mat-icon>edit</mat-icon>
             {{translateService.instant('TABLE_EDIT')}}
           </button>
@@ -54,7 +54,7 @@
         <control-panel-ui-selection
         [valuesMap]="valueMap"
         [selected]="group.permissions"
-        (onSelectionChange)="selectionChange($event)">
+        (selectionChange)="selectionChange($event)">
 
         </control-panel-ui-selection>
       </td>

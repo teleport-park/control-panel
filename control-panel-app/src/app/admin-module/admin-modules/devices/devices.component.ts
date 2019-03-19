@@ -10,7 +10,7 @@ export class DevicesComponent implements OnInit {
   /**
    * component title
    */
-  TITLE: string = 'ADMIN_MENU_DEVICES';
+  TITLE = 'ADMIN_MENU_DEVICES';
 
   constructor() { }
 

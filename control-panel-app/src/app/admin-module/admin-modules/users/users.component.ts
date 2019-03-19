@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { UserService } from "./services/user.service";
-import { debounceTime, filter, finalize, takeUntil } from "rxjs/operators";
-import { User } from "../../../models";
+import { UserService } from './services/user.service';
+import { debounceTime, filter, finalize, takeUntil } from 'rxjs/operators';
+import { User } from '../../../models';
 import { MatDialog } from '@angular/material';
-import { TranslateService } from "../../../common/translations-module";
-import { PropertyMap } from "../../utils/property-map";
-import { Subject } from "rxjs";
-import { LoaderService } from "../../../services/loader.service";
-import { AddOrEditEntityDialogComponent } from "../../../common/user-form";
-import * as moment from 'moment'
-import { Moment } from 'moment'
-import { ConfirmDialogComponent, ConfirmDialogData } from "../../../common/shared-module";
-import { FormControl } from "@angular/forms";
-import { BreakpointService } from "../../../services/breakpoint.service";
+import { TranslateService } from '../../../common/translations-module';
+import { PropertyMap } from '../../utils/property-map';
+import { Subject } from 'rxjs';
+import { LoaderService } from '../../../services/loader.service';
+import { AddOrEditEntityDialogComponent } from '../../../common/user-form';
+import * as moment from 'moment';
+import { Moment } from 'moment';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../../common/shared-module';
+import { FormControl } from '@angular/forms';
+import { BreakpointService } from '../../../services/breakpoint.service';
 
 @Component({
   selector: 'app-users',
@@ -84,16 +84,16 @@ export class UsersComponent implements OnInit, OnDestroy {
           moment.locale(this.translateService.locale.getValue());
           user.registered = moment(user.registered);
           user.index = ++index;
-          return Object.assign(new User(), user)
+          return Object.assign(new User(), user);
         });
         this.cd.markForCheck();
       });
     this.quickFilter.valueChanges.pipe(debounceTime(300), takeUntil(this.destroyed$)).subscribe(
       (value: string) => {
         // TODO insert quick filter logic from API
-        console.warn('Quick filter value', value)
+        console.warn('Quick filter value', value);
       }
-    )
+    );
   }
 
   /**
@@ -114,7 +114,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param mode
    * @param event
    */
-  private showModalAddOrEditUser(mode: "edit" | "add" | "delete", event) {
+  private showModalAddOrEditUser(mode: 'edit' | 'add' | 'delete', event) {
     this.dialog.open(AddOrEditEntityDialogComponent, {
       data: mode === 'edit' ? event : 'user'
     }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((user: User) => {
@@ -132,11 +132,11 @@ export class UsersComponent implements OnInit, OnDestroy {
    */
   private showConfirmDialog(user: User) {
     this.dialog.open(ConfirmDialogComponent, {
-      data: <ConfirmDialogData>{
+      data: {
         title: 'DIALOG_CONFIRM_TITLE',
         message: 'DIALOG_CONFIRM_MESSAGE',
         messageParams: [user.firstName, user.lastName]
-      }
+      } as ConfirmDialogData
     }).afterClosed()
       .pipe(filter(data => data), takeUntil(this.destroyed$))
       .subscribe(() => {
@@ -146,7 +146,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.destroyed$.next(true);
-    this.destroyed$.complete()
+    this.destroyed$.complete();
   }
 
   /**
@@ -154,7 +154,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param user
    */
   private prepareUser(user: User) {
-    user.registered = <Moment>user.registered.format('YYYY-MM-DD');
-    user.dateOfBirth = <Moment>user.dateOfBirth.format('YYYY-MM-DD');
+    user.registered = user.registered.format('YYYY-MM-DD') as Moment;
+    user.dateOfBirth = user.dateOfBirth.format('YYYY-MM-DD') as Moment;
   }
 }

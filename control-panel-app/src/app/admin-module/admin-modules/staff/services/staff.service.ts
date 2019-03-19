@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from "rxjs";
-import { Group, StaffMember } from "../../../../models";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../../../../environments/environment";
-import { finalize } from "rxjs/operators";
-import { LoaderService } from "../../../../services/loader.service";
+import { BehaviorSubject, Subject } from 'rxjs';
+import { Group, StaffMember } from '../../../../models';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment';
+import { finalize } from 'rxjs/operators';
+import { LoaderService } from '../../../../services/loader.service';
 
 @Injectable()
 export class StaffService {

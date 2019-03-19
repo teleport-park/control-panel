@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { BehaviorSubject, Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +18,12 @@ export class BreakpointService implements OnDestroy {
     this.breakpointObserver.observe([
       Breakpoints.Handset
     ]).pipe(takeUntil(this.destroyed$)).subscribe(result => {
-      this.handset.next(result.matches)
+      this.handset.next(result.matches);
     });
   }
 
   ngOnDestroy(): void {
     this.destroyed$.next(true);
-    this.destroyed$.complete()
+    this.destroyed$.complete();
   }
 }

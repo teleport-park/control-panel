@@ -50,8 +50,8 @@
           [displayedColumns]="displayedColumns"
           [simpleDataColumn]="columnWithData"
           [listSortedColumn]="listSortedColumn.value"
-          (onEdit)="openDialog('edit', $event)"
-          (onDelete)="openDialog('delete', $event)"></control-panel-ui-table>
+          (edit)="openDialog('edit', $event)"
+          (delete)="openDialog('delete', $event)"></control-panel-ui-table>
       </div>
     </control-panel-ui-card>
   </mat-sidenav-content>

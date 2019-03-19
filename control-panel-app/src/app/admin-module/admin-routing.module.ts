@@ -1,5 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
-import { AdminContainerComponent } from "./admin-container.component/admin-container.component";
+import { AdminContainerComponent } from './admin-container.component/admin-container.component';
 
 const routes: Routes = [
   {

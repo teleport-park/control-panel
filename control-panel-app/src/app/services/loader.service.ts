@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from "rxjs";
-import { debounceTime } from "rxjs/operators";
+import { BehaviorSubject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class LoaderService {
   constructor() {
     this.loaderTread$.pipe(debounceTime(500)).subscribe((value: boolean) => {
       this.showLoader$.next(value);
-    })
+    });
   }
 
   /**

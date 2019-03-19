@@ -13,17 +13,13 @@ export class Entity {
  * Device entity
  */
 export class Device extends Entity {
-  /**
-   * Device state
-   */
-  protected _state: any;
 
   /**
    * Set state
    * @param data
    */
   set state(data: any) {
-    this._state = data
+    this._state = data;
   }
   /**
    * Get state
@@ -31,19 +27,23 @@ export class Device extends Entity {
   get state(): any {
     return this._state;
   }
-
-  getName(): string {
-    return `${this.name}_${this.identifier}`
+  constructor({id, identifier= id, name= 'Device'}: InitParams) {
+    super(id);
+    this.name = name;
+    this.identifier = identifier;
   }
+  /**
+   * Device state
+   */
+  private _state: any;
 
   /**
    * Device name
    */
   name: string;
-  constructor({id, identifier=id, name='Device'}: InitParams) {
-    super(id);
-    this.name = name;
-    this.identifier = identifier;
+
+  getName(): string {
+    return `${this.name}_${this.identifier}`;
   }
 }
 

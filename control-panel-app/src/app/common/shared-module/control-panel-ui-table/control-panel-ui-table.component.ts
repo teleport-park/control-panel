@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { TranslateService } from "../../translations-module";
-import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
-import { StaffMember } from "../../../models";
-import { SelectionModel } from "@angular/cdk/collections";
-import { BreakpointService } from "../../../services/breakpoint.service";
-import { PropertyMap } from "../../../admin-module/utils/property-map";
-import { PermissionValuesMap } from "../../../admin-module/utils/permission-values-map";
+import { TranslateService } from '../../translations-module';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { StaffMember } from '../../../models';
+import { SelectionModel } from '@angular/cdk/collections';
+import { BreakpointService } from '../../../services/breakpoint.service';
+import { PropertyMap } from '../../../admin-module/utils/property-map';
+import { PermissionValuesMap } from '../../../admin-module/utils/permission-values-map';
 
 @Component({
   selector: 'control-panel-ui-table',
@@ -37,7 +37,7 @@ export class ControlPanelUiTableComponent implements OnInit {
       this._data = data;
       this.initDataSource();
     }
-  };
+  }
 
   /**
    * data source for table
@@ -56,7 +56,7 @@ export class ControlPanelUiTableComponent implements OnInit {
     if (sort) {
       this.sortInst = sort;
     }
-  };
+  }
 
   /**
    * MatPaginator instance
@@ -70,16 +70,16 @@ export class ControlPanelUiTableComponent implements OnInit {
     if (paginator) {
       this.paginatorInst = paginator;
     }
-  };
+  }
 
   /**
    * selection
    */
   public selection: SelectionModel<StaffMember>;
 
-  @Output() onDelete: EventEmitter<any> = new EventEmitter();
+  @Output() delete: EventEmitter<any> = new EventEmitter();
 
-  @Output() onEdit: EventEmitter<any> = new EventEmitter();
+  @Output() edit: EventEmitter<any> = new EventEmitter();
 
   constructor(public translateService: TranslateService, private cd: ChangeDetectorRef, public point: BreakpointService) {
   }
@@ -107,7 +107,7 @@ export class ControlPanelUiTableComponent implements OnInit {
     return !this.listSortedColumn.includes(column);
   }
 
-  selectionChange(event){
+  selectionChange(event) {
     console.log(event);
   }
 

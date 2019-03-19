@@ -1,6 +1,6 @@
-import { MatPaginatorIntl } from "@angular/material";
-import { TranslateService } from "../common/translations-module";
-import { Injectable } from "@angular/core";
+import { MatPaginatorIntl } from '@angular/material';
+import { TranslateService } from '../common/translations-module';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class MatPaginatorTranslateUtil extends MatPaginatorIntl {
@@ -19,7 +19,7 @@ export class MatPaginatorTranslateUtil extends MatPaginatorIntl {
    * @param pageSize
    * @param length
    */
-  getRangeLabel = (page, pageSize, length) => {
+  getRangeLabel = (page: number, pageSize: number, length: number) => {
     const of = this.translateService ? this.translateService.instant('USERS_TABLE_PAGINATOR_OF_LABEL') : 'of';
     if (length === 0 || pageSize === 0) {
       return `0 ${of} ${length}`;
@@ -30,8 +30,7 @@ export class MatPaginatorTranslateUtil extends MatPaginatorIntl {
       Math.min(startIndex + pageSize, length) :
       startIndex + pageSize;
     return `${startIndex + 1} - ${endIndex} ${of} ${length}`;
-  };
-
+  }
   /**
    * translate label
    */

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatCheckboxChange } from "@angular/material";
+import { MatCheckboxChange } from '@angular/material';
 
 export interface SelectionItem {
   value: string;
@@ -26,7 +26,7 @@ export class ControlPanelUiSelectionComponent implements OnInit {
   /**
    * on selection change event
    */
-  @Output() onSelectionChange: EventEmitter<string[]> = new EventEmitter();
+  @Output() selectionChange: EventEmitter<string[]> = new EventEmitter();
 
   /**
    * selection
@@ -38,7 +38,7 @@ export class ControlPanelUiSelectionComponent implements OnInit {
   ngOnInit() {
     this.selected.map(item => {
       this._selection.add(item);
-    })
+    });
   }
 
   /**
@@ -48,11 +48,11 @@ export class ControlPanelUiSelectionComponent implements OnInit {
    */
   changeHandler(event: MatCheckboxChange, value: string): void {
     if (event.checked) {
-      this._selection.add(value)
+      this._selection.add(value);
     } else {
       this._selection.delete(value);
     }
-    this.onSelectionChange.emit(Array.from(this._selection));
+    this.selectionChange.emit(Array.from(this._selection));
   }
 
   /**
