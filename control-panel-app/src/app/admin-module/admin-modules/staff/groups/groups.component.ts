@@ -1,30 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { StaffService } from '../services/staff.service';
+import { Group } from '../../../../models';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'control-panel-groups',
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.scss']
 })
-export class GroupsComponent implements OnInit {
+export class GroupsComponent implements OnInit, OnDestroy {
 
   /**
    * columns
    */
   columns: string[] = ['name', 'permissions'];
-  /**
-   * mock object
-   */
-  data = [
-    {name: 'Administrator', permissions: ['read', 'write', 'delete']},
-    {name: 'Manager', permissions: ['read', 'write']},
-    {name: 'Worker', permissions: ['read']},
-    {name: 'Office manager', permissions: []}
-  ];
 
-  constructor() {
+  data: Group[];
+
+  private destoyed$: Subject<boolean> = new Subject();
+
+  constructor(public service: StaffService) {
   }
 
   ngOnInit() {
+    if (!this.service.permissions$.getValue().length) {
+      this.service.getPermissions();
+    }
   }
 
+  ngOnDestroy(): void {
+    this.destoyed$.next(true);
+    this.destoyed$.complete();
+  }
 }

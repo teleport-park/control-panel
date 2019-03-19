@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { LoaderService } from '../../services/loader.service';
+import { StorageService } from '../../services/storage.service';
 
 export interface StringTMap<T> {
   [key: string]: T;
@@ -15,7 +16,7 @@ export class TranslateService {
   /**
    * locale
    */
-  locale: BehaviorSubject<string> = new BehaviorSubject('ru');
+  locale: BehaviorSubject<string> = new BehaviorSubject(this.storage.locale);
 
   /**
    * translations loaded flag
@@ -34,19 +35,20 @@ export class TranslateService {
     return this._translations;
   }
 
-  constructor(private http: HttpClient, private loaderService: LoaderService) {
+  constructor(private http: HttpClient, private loaderService: LoaderService, private storage: StorageService) {
   }
 
   /**
    * get translations
    * @param locale
    */
-  getTranslations(locale: string = 'ru') {
+  getTranslations(locale: string = 'en') {
     this.http.get(`./assets/data/translations/${locale}.json`).subscribe(
       (result: StringTMap<string>) => {
         this._translations = result;
         this.locale.next(locale);
         this.translationsLoaded = true;
+        this.storage.setLocale(locale);
         this.loaderService.dispatchShowLoader(false);
       }
     );

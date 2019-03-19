@@ -4,6 +4,7 @@
     <control-panel-ui-table
     [displayedColumns]="columns"
     [simpleDataColumn]="['name']"
-    [data]="data"></control-panel-ui-table>
+    [data]="(service.groups$ | async)"
+    [valueMap]="(service.permissions$ | async)"></control-panel-ui-table>
   </div>
 </control-panel-ui-card>

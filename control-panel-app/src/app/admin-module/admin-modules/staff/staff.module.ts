@@ -7,7 +7,7 @@ import { StaffService } from './services/staff.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../../material.module';
 import { TranslationModule } from '../../../common/translations-module/translation.module';
-import { UserFormModule } from '../../../common/user-form/user-form.module';
+import { FormModule } from '../../../common/user-form/form.module';
 import { SharedModule } from '../../../common/shared-module/shared.module';
 import { AddOrEditEntityDialogComponent } from '../../../common/user-form';
 import { ConfirmDialogComponent } from '../../../common/shared-module';
@@ -32,7 +32,7 @@ export const StaffRoutingModule = RouterModule.forChild(routes);
     ReactiveFormsModule,
     MaterialModule,
     TranslationModule,
-    UserFormModule,
+    FormModule,
     SharedModule
   ],
   providers: [StaffService],

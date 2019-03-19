@@ -6,8 +6,11 @@ import { environment } from '../../../../../environments/environment';
 import { filter, finalize } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 
+
 @Injectable()
 export class UserService implements OnDestroy {
+
+  static readonly USER_API: string = `${environment.origin}${environment.api.USERS}`;
 
   /**
    * users subject
@@ -26,7 +29,7 @@ export class UserService implements OnDestroy {
    * get users
    */
   getUsers(): void {
-    this.http.get<User[]>(`${environment.api}mockusers`)
+    this.http.get<User[]>(`${UserService.USER_API}`)
       .pipe(filter(data => !!data), finalize(() => {
         this.loaderService.dispatchShowLoader(false);
       }))
@@ -40,7 +43,7 @@ export class UserService implements OnDestroy {
    */
   saveUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
-    this.http.post(`${environment.api}mockusers`, user).subscribe(result => {
+    this.http.post(`${UserService.USER_API}`, user).subscribe(() => {
       this.getUsers();
     });
   }
@@ -50,7 +53,7 @@ export class UserService implements OnDestroy {
    */
   editUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
-    this.http.put(`${environment.api}mockusers/${user.id}`, user).subscribe(result => {
+    this.http.put(`${UserService.USER_API}/${user.id}`, user).subscribe(() => {
       this.getUsers();
     });
   }
@@ -60,7 +63,7 @@ export class UserService implements OnDestroy {
    */
   removeUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
-    this.http.delete(`${environment.api}mockusers/${user.id}`).subscribe(result => {
+    this.http.delete(`${UserService.USER_API}/${user.id}`).subscribe(() => {
       this.getUsers();
     });
   }

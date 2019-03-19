@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginModule } from './common/login-module/login.module';
-import { TranslateService } from './common/translations-module';
 import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
@@ -26,7 +25,7 @@ import { NgxMaskModule } from 'ngx-mask';
     LoginModule,
     NgxMaskModule.forRoot()
   ],
-  providers: [TranslateService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

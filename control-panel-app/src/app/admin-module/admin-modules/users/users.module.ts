@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../../../material.module';
 import { UserService } from './services/user.service';
 import { TranslationModule } from '../../../common/translations-module/translation.module';
-import { UserFormModule } from '../../../common/user-form/user-form.module';
+import { FormModule } from '../../../common/user-form/form.module';
 import { AddOrEditEntityDialogComponent } from '../../../common/user-form';
 import { SharedModule } from '../../../common/shared-module/shared.module';
 import { ConfirmDialogComponent } from '../../../common/shared-module';
@@ -26,7 +26,7 @@ export const UserRoutingModule = RouterModule.forChild(routes);
     MaterialModule,
     UserRoutingModule,
     TranslationModule,
-    UserFormModule,
+    FormModule,
     SharedModule
   ],
   providers: [UserService],

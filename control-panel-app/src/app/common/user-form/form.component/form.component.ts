@@ -1,9 +1,10 @@
-import { Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Injector, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { StaffMember, User } from '../../../models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { Moment } from 'moment';
 import { TranslateService } from '../../translations-module';
+import { StaffService } from '../../../admin-module/admin-modules/staff/services/staff.service';
 
 @Component({
   selector: 'control-panel-ui-form',
@@ -22,13 +23,21 @@ export class FormComponent {
    */
   entityModel: User | StaffMember;
 
+  propertyMap: any[];
+
   /**
    * user phone input
    */
   @ViewChild('phoneInput') phoneInput: ElementRef;
 
+  /**
+   * user form template
+   */
   @ViewChild('userFormTemplate') userTemplate: TemplateRef<any>;
 
+  /**
+   * staff form template
+   */
   @ViewChild('staffMemberTemplate') staffMemberTemplate: TemplateRef<any>;
 
   /**
@@ -54,7 +63,9 @@ export class FormComponent {
     }
     if (item instanceof StaffMember) {
       this.entityModel = Object.assign(new StaffMember(), item);
-      this.form = this.getStaffMemberForm(); this.form.patchValue(this.entityModel);
+      this.propertyMap = this.injector.get(StaffService).getGroupMap();
+      this.form = this.getStaffMemberForm();
+      this.form.patchValue(this.entityModel);
       this.mode = 'edit';
       this.outlet = this.staffMemberTemplate;
     }
@@ -67,6 +78,7 @@ export class FormComponent {
     }
     if (item === 'staffMember') {
       this.entityModel = new StaffMember();
+      this.propertyMap = this.injector.get(StaffService).getGroupMap();
       this.form = this.getStaffMemberForm();
       this.form.patchValue(this.entityModel);
       this.mode = 'add';
@@ -93,8 +105,9 @@ export class FormComponent {
    * constructor
    * @param fb
    * @param translateService
+   * @param injector
    */
-  constructor(private fb: FormBuilder, public translateService: TranslateService) {
+  constructor(private fb: FormBuilder, public translateService: TranslateService, private injector: Injector) {
   }
 
   /**
@@ -121,7 +134,8 @@ export class FormComponent {
   private getStaffMemberForm() {
     return this.fb.group({
       firstName: ['', Validators.required],
-      lastName: ['', Validators.required]
+      lastName: ['', Validators.required],
+      groupId: [!(this.entityModel instanceof User) ? this.entityModel.groupId : '', Validators.required]
     });
   }
 
@@ -169,5 +183,15 @@ export class FormComponent {
    */
   onCancelHandler(): void {
     this.cancel.emit();
+  }
+
+  /**
+   * set group
+   * @param value
+   */
+  setGroup(value): void {
+    if (!(this.entityModel instanceof User)) {
+      this.entityModel.groupName = this.propertyMap.find(property => property.value === value).viewValue;
+    }
   }
 }

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Group, StaffMember } from '../../../models';
+import { StaffMember } from '../../../models';
 import { StaffService } from './services/staff.service';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -24,12 +24,12 @@ export class StaffComponent implements OnInit, OnDestroy {
   /**
    * displayed columns
    */
-  displayedColumns: string[] = ['firstName', 'lastName', 'groupDescription', 'submenu'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'groupName', 'submenu'];
 
   /**
    * column with simple data
    */
-  simpleDataColumn: string[] = ['firstName', 'lastName', 'groupDescription'];
+  simpleDataColumn: string[] = ['firstName', 'lastName', 'groupName'];
 
   /**
    * list sorted column
@@ -54,12 +54,11 @@ export class StaffComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.service.getGroups();
-    this.service.getStaffMember();
+    this.service.getPermissions();
     this.service.staffMembers$.pipe(takeUntil(this.destroyed$), filter(data => !!data)).subscribe(
       (staff: StaffMember[]) => {
         this._staff = staff.map((item: StaffMember) => {
-          return Object.assign(new StaffMember(), item, {groupDescription: this.getGroupDesc(item.groupId)});
+          return Object.assign(new StaffMember(), item);
         });
         this.cd.markForCheck();
       }
@@ -92,7 +91,7 @@ export class StaffComponent implements OnInit, OnDestroy {
     }).afterClosed()
       .pipe(filter(data => data), takeUntil(this.destroyed$))
       .subscribe(() => {
-        console.log('delete');
+        this.service.removeStaffMember(staffMember);
       });
   }
 
@@ -105,21 +104,16 @@ export class StaffComponent implements OnInit, OnDestroy {
     this.dialog.open(AddOrEditEntityDialogComponent, {
       data: mode === 'edit' ? event : 'staffMember'
     }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((staffMember: StaffMember) => {
-      console.log(staffMember);
+      if (mode === 'edit') {
+        this.service.editStaffMember(staffMember);
+      } else {
+        this.service.addStaffMember(staffMember);
+      }
     });
   }
 
   ngOnDestroy(): void {
     this.destroyed$.next(true);
     this.destroyed$.complete();
-  }
-
-  /**
-   * get group description
-   * @param groupId
-   */
-  private getGroupDesc(groupId: number) {
-    const desc = this.service.groups$.getValue().find((group: Group) => group.identity === groupId);
-    return desc ? desc.description : '';
   }
 }

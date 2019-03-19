@@ -2,9 +2,12 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { API } from '../app/api';
+
 export const environment = {
   production: false,
-  api: 'https://webservice.of.by/'
+  origin: 'https://webservice.of.by/',
+  api: API
 };
 
 /*

@@ -1,11 +1,10 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '../../translations-module';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { StaffMember } from '../../../models';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { PropertyMap } from '../../../admin-module/utils/property-map';
-import { PermissionValuesMap } from '../../../admin-module/utils/permission-values-map';
 
 @Component({
   selector: 'control-panel-ui-table',
@@ -14,14 +13,14 @@ import { PermissionValuesMap } from '../../../admin-module/utils/permission-valu
 })
 export class ControlPanelUiTableComponent implements OnInit {
 
-  valueMap = PermissionValuesMap;
-
   /**
    * property translations map
    */
   propertyMap = PropertyMap;
 
   _data: any[];
+
+  @Input() valueMap: string[] = [];
 
   @Input() displayedColumns: string[] = [];
 
@@ -32,7 +31,7 @@ export class ControlPanelUiTableComponent implements OnInit {
   /**
    * data source for table
    */
-  @Input() set data(data: any) {
+  @Input() set data(data: any[]) {
     if (data) {
       this._data = data;
       this.initDataSource();
@@ -77,15 +76,23 @@ export class ControlPanelUiTableComponent implements OnInit {
    */
   public selection: SelectionModel<StaffMember>;
 
+  /**
+   * delete emit
+   */
   @Output() delete: EventEmitter<any> = new EventEmitter();
 
+  /**
+   * edit emit
+   */
   @Output() edit: EventEmitter<any> = new EventEmitter();
 
-  constructor(public translateService: TranslateService, private cd: ChangeDetectorRef, public point: BreakpointService) {
+  constructor(public translateService: TranslateService,
+              private cd: ChangeDetectorRef,
+              public point: BreakpointService,
+              public injector: Injector) {
   }
 
   ngOnInit() {
-
   }
 
   /**

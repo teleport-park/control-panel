@@ -1,4 +1,7 @@
+import { API } from '../app/api';
+
 export const environment = {
   production: true,
-  api: 'https://webservice.of.by/'
+  origin: 'https://webservice.of.by/',
+  api: API
 };

@@ -22,5 +22,5 @@ import { SharedModule } from '../shared-module/shared.module';
   exports: [FormComponent, AddOrEditEntityDialogComponent],
   providers: []
 })
-export class UserFormModule {
+export class FormModule {
 }
