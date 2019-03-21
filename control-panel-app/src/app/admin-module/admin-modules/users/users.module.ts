@@ -5,10 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../../../material.module';
 import { UserService } from './services/user.service';
 import { TranslationModule } from '../../../common/translations-module/translation.module';
-import { FormModule } from '../../../common/user-form/form.module';
-import { AddOrEditEntityDialogComponent } from '../../../common/user-form';
+import { FormModule } from '../../../common/form/form.module';
 import { SharedModule } from '../../../common/shared-module/shared.module';
-import { ConfirmDialogComponent } from '../../../common/shared-module';
+import { AddOrEditEntityDialogComponent, ConfirmDialogComponent } from '../../../common/shared-module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [{

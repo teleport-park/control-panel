@@ -1,6 +1,8 @@
 <control-panel-ui-card>
   <div panelUICardHeaderTitle>Group list</div>
   <div panelUICardContent>
+    <button mat-raised-button
+            color="primary" (click)="addGroup()">add</button>
     <control-panel-ui-table
     [displayedColumns]="columns"
     [simpleDataColumn]="['name']"

@@ -5,9 +5,8 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { TranslateService } from '../../../common/translations-module';
 import { BreakpointService } from '../../../services/breakpoint.service';
-import { ConfirmDialogComponent, ConfirmDialogData } from '../../../common/shared-module';
+import { ConfirmDialogComponent, ConfirmDialogData, AddOrEditEntityDialogComponent } from '../../../common/shared-module';
 import { MatDialog } from '@angular/material';
-import { AddOrEditEntityDialogComponent } from '../../../common/user-form';
 
 @Component({
   selector: 'control-panel-staff',
@@ -24,12 +23,12 @@ export class StaffComponent implements OnInit, OnDestroy {
   /**
    * displayed columns
    */
-  displayedColumns: string[] = ['firstName', 'lastName', 'groupName', 'submenu'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'group', 'submenu'];
 
   /**
    * column with simple data
    */
-  simpleDataColumn: string[] = ['firstName', 'lastName', 'groupName'];
+  simpleDataColumn: string[] = ['firstName', 'lastName'];
 
   /**
    * list sorted column
@@ -55,14 +54,6 @@ export class StaffComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.service.getPermissions();
-    this.service.staffMembers$.pipe(takeUntil(this.destroyed$), filter(data => !!data)).subscribe(
-      (staff: StaffMember[]) => {
-        this._staff = staff.map((item: StaffMember) => {
-          return Object.assign(new StaffMember(), item);
-        });
-        this.cd.markForCheck();
-      }
-    );
   }
 
   /**

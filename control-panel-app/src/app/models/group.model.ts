@@ -1,5 +1,7 @@
+import { Permission } from './permission.model';
+
 export class Group {
-  identity: number;
+  id: number;
   name: string;
-  permissions: any[];
+  permissions: Permission[] = [];
 }

@@ -60,7 +60,6 @@
         <mat-option value="female">{{'USER_GENDER_FEMALE' | translate}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <p>{{'REGISTERED' | translate}}: {{entityModel.registered.format('L')}}</p>
     <div class="action-button-group">
       <button mat-raised-button
               color="warn"
@@ -88,7 +87,7 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <mat-select placeholder="{{'GROUP' | translate}}" formControlName="groupId" (selectionChange)="setGroup($event.value)">
+      <mat-select placeholder="{{'GROUP' | translate}}" formControlName="staffGroupId" >
         <mat-option *ngFor="let property of propertyMap" [value]="property.value">{{property.viewValue}}</mat-option>
       </mat-select>
       <mat-error *ngIf="staffMemberForm.submitted">

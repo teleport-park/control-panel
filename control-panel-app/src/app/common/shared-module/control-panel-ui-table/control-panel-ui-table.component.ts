@@ -32,6 +32,7 @@ export class ControlPanelUiTableComponent implements OnInit {
    * data source for table
    */
   @Input() set data(data: any[]) {
+    debugger;
     if (data) {
       this._data = data;
       this.initDataSource();

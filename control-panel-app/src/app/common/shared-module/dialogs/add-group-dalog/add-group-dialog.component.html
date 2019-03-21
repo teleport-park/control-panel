@@ -1,0 +1,12 @@
+<div class="add-entity-wrapper">
+  <mat-form-field>
+    <input matInput placeholder="Name" [formControl]="name">
+  </mat-form-field>
+  <control-panel-ui-selection
+  [valuesMap]="permissions"
+  [selected]="data.permissions"
+  (selectionChange)="addPermissions($event)"></control-panel-ui-selection>
+</div>
+<button mat-raised-button
+        color="primary"
+        (click)="dialogClose()">Add</button>

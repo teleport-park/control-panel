@@ -1,10 +1,10 @@
-<mat-sidenav-container class="user-component-wrapper" *ngIf="(translateService.locale | async) && _users">
+<mat-sidenav-container class="user-component-wrapper">
   <mat-sidenav #extendedFilter
                mode="{{(point?.handset | async) ? 'over' : 'side'}}"
                [opened]="!(point?.handset | async)"
                position="end">
     <div class="extended-filter-wrapper">
-      <control-panel-ui-extended-filters [data]="_users[0]"></control-panel-ui-extended-filters>
+      <control-panel-ui-extended-filters [data]="(userService.users$[0] | async)"></control-panel-ui-extended-filters>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -46,7 +46,7 @@
           </div>
         </div>
         <control-panel-ui-table
-          [data]="_users"
+          [data]="(userService.users$ | async)"
           [displayedColumns]="displayedColumns"
           [simpleDataColumn]="columnWithData"
           [listSortedColumn]="listSortedColumn.value"

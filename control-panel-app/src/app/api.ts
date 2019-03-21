@@ -1,10 +1,10 @@
 export const API: {[key: string]: string} = {
   // users
-  USERS: 'mockusers',
+  USERS: 'api/users/',
   // staff
-  STAFF: 'staff',
+  STAFF: 'api/staff',
   // groups
-  GROUPS: 'groups',
+  GROUPS: 'api/staffgroups',
   // permissions
-  PERMISSIONS: 'permissions'
+  PERMISSIONS: 'api/permissions'
 };

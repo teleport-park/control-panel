@@ -119,7 +119,6 @@ export class FormComponent {
       lastName: ['', Validators.required],
       age: ['', [Validators.required, Validators.max(100)]],
       dateOfBirth: ['', Validators.required],
-      registered: ['', Validators.required],
       gender: 'male',
       email: ['', [Validators.required, Validators.pattern(FormComponent.EMAIL_REGEXP)]],
       desc: '',
@@ -135,7 +134,8 @@ export class FormComponent {
     return this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      groupId: [!(this.entityModel instanceof User) ? this.entityModel.groupId : '', Validators.required]
+      staffGroupId: [
+        (this.entityModel instanceof StaffMember && this.entityModel.group) ? this.entityModel.group.id : 1, Validators.required]
     });
   }
 
@@ -183,15 +183,5 @@ export class FormComponent {
    */
   onCancelHandler(): void {
     this.cancel.emit();
-  }
-
-  /**
-   * set group
-   * @param value
-   */
-  setGroup(value): void {
-    if (!(this.entityModel instanceof User)) {
-      this.entityModel.groupName = this.propertyMap.find(property => property.value === value).viewValue;
-    }
   }
 }

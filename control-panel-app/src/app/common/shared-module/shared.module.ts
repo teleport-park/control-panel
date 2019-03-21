@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
 import { TranslationModule } from '../translations-module/translation.module';
 import { MaterialModule } from '../../material.module';
 import { NumberDirective } from './directives/number.directive';
@@ -8,6 +8,10 @@ import { ControlPanelUiCardComponent } from './control-panel-ui-card/control-pan
 import { ControlPanelUiExtendedFiltersComponent } from './control-panel-ui-extended-filters/control-panel-ui-extended-filters.component';
 import { ControlPanelUiTableComponent } from './control-panel-ui-table/control-panel-ui-table.component';
 import { ControlPanelUiSelectionComponent } from './control-panel-ui-selection/control-panel-ui-selection.component';
+import { AddOrEditEntityDialogComponent } from './dialogs/add-entity-dialog/add-or-edit-entity-dialog.component';
+import { AddGroupDialogComponent } from './dialogs/add-group-dalog/add-group-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormModule } from '../form/form.module';
 
 @NgModule({
   declarations: [
@@ -16,12 +20,17 @@ import { ControlPanelUiSelectionComponent } from './control-panel-ui-selection/c
     ControlPanelUiCardComponent,
     ControlPanelUiExtendedFiltersComponent,
     ControlPanelUiTableComponent,
-    ControlPanelUiSelectionComponent
+    ControlPanelUiSelectionComponent,
+    AddOrEditEntityDialogComponent,
+    AddGroupDialogComponent
   ],
   imports: [
     CommonModule,
     TranslationModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
+    FormModule
   ],
   exports: [
     ConfirmDialogComponent,
@@ -29,7 +38,9 @@ import { ControlPanelUiSelectionComponent } from './control-panel-ui-selection/c
     ControlPanelUiCardComponent,
     ControlPanelUiExtendedFiltersComponent,
     ControlPanelUiTableComponent,
-    ControlPanelUiSelectionComponent
+    ControlPanelUiSelectionComponent,
+    AddOrEditEntityDialogComponent,
+    AddGroupDialogComponent
   ]
 })
 export class SharedModule {

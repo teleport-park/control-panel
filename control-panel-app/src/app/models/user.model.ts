@@ -17,7 +17,6 @@ export class User {
   isActive: boolean;
 
   constructor() {
-    this.registered = moment();
   }
 
   /**

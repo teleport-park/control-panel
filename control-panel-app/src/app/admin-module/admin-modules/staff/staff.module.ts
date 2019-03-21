@@ -7,10 +7,9 @@ import { StaffService } from './services/staff.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../../material.module';
 import { TranslationModule } from '../../../common/translations-module/translation.module';
-import { FormModule } from '../../../common/user-form/form.module';
+import { FormModule } from '../../../common/form/form.module';
 import { SharedModule } from '../../../common/shared-module/shared.module';
-import { AddOrEditEntityDialogComponent } from '../../../common/user-form';
-import { ConfirmDialogComponent } from '../../../common/shared-module';
+import { AddOrEditEntityDialogComponent, ConfirmDialogComponent, AddGroupDialogComponent } from '../../../common/shared-module';
 
 const routes: Routes = [{
   path: '',
@@ -36,7 +35,7 @@ export const StaffRoutingModule = RouterModule.forChild(routes);
     SharedModule
   ],
   providers: [StaffService],
-  entryComponents: [AddOrEditEntityDialogComponent, ConfirmDialogComponent]
+  entryComponents: [AddOrEditEntityDialogComponent, ConfirmDialogComponent, AddGroupDialogComponent]
 })
 export class StaffModule {
 }

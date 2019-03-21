@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { Group, StaffMember } from '../../../../models';
+import { Group, Permission, StaffMember } from '../../../../models';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
-import { finalize } from 'rxjs/operators';
+import { finalize, takeUntil } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 
 @Injectable()
@@ -17,9 +17,9 @@ export class StaffService {
   /**
    * group url
    */
-  static readonly GROUP_API: string = `${environment.origin}${environment.api.GROUPS}`;
+  static readonly STAFF_GROUP_API: string = `${environment.origin}${environment.api.GROUPS}`;
 
-  static readonly PERMISSION_API: string = `${environment.origin}${environment.api.PERMISSIONS}`;
+  static readonly PERMISSIONS_API: string = `${environment.origin}${environment.api.PERMISSIONS}`;
 
   /**
    * staff members
@@ -31,7 +31,7 @@ export class StaffService {
    */
   groups$: BehaviorSubject<Group[]> = new BehaviorSubject([]);
 
-  permissions$: BehaviorSubject<string[]> = new BehaviorSubject([]);
+  permissions$: BehaviorSubject<Permission[]> = new BehaviorSubject([]);
 
   _group: Group[];
 
@@ -54,7 +54,10 @@ export class StaffService {
           this.loader.dispatchShowLoader(false);
         }))
       .subscribe((result: StaffMember[]) => {
-        this.staffMembers$.next(result);
+        const staffMemberList = result.map((staffMember: StaffMember) => {
+          return Object.assign(new StaffMember(), staffMember);
+        });
+        this.staffMembers$.next(staffMemberList);
       });
   }
 
@@ -64,7 +67,7 @@ export class StaffService {
    */
   editStaffMember(staffMember: StaffMember): void {
     this.loader.dispatchShowLoader(true);
-    this.http.put(`${StaffService.STAFF_API}`, staffMember).subscribe(() => {
+    this.http.put(`${StaffService.STAFF_API}/${staffMember.id}`, staffMember).subscribe(() => {
         this.getStaffMember();
       });
   }
@@ -95,7 +98,7 @@ export class StaffService {
    * get groups
    */
   getGroups(): void {
-    this.http.get(`${StaffService.GROUP_API}`)
+    this.http.get(`${StaffService.STAFF_GROUP_API}`)
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
@@ -107,12 +110,18 @@ export class StaffService {
       });
   }
 
+  addGroup(group: Group): void {
+    this.http.post(`${StaffService.STAFF_GROUP_API}`, group).subscribe(() => {
+      this.getGroups();
+    });
+  }
+
   /**
    * get groups map
    */
   getGroupMap() {
     return this._group.map((group: Group) => {
-      return {value: group.identity, viewValue: group.name};
+      return {value: group.id, viewValue: group.name};
     });
   }
 
@@ -120,8 +129,8 @@ export class StaffService {
    * get permissions
    */
   getPermissions() {
-    this.http.get(`${StaffService.PERMISSION_API}`).subscribe(
-      (result: string[]) => {
+    this.http.get(`${StaffService.PERMISSIONS_API}`).subscribe(
+      (result: Permission[]) => {
         this.permissions$.next(result);
         this.getGroups();
       }

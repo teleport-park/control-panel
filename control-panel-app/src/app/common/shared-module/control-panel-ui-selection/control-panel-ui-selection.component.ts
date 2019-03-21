@@ -13,16 +13,10 @@ export interface SelectionItem {
 })
 export class ControlPanelUiSelectionComponent implements OnInit {
 
-  map: string[];
-
   /**
    * value map
    */
-  @Input() set valuesMap(data) {
-    if (data) {
-      this.map = data.map(item => item.identifier);
-    }
-  }
+  @Input() valuesMap;
 
   /**
    * init selected value
@@ -65,7 +59,7 @@ export class ControlPanelUiSelectionComponent implements OnInit {
    * is selected
    * @param value
    */
-  isSelected(value: string): boolean {
+  isSelected(value: any): boolean {
     return this._selection.has(value);
   }
 }

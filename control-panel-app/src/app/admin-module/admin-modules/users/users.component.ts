@@ -1,16 +1,17 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from './services/user.service';
-import { debounceTime, filter, finalize, takeUntil } from 'rxjs/operators';
+import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { User } from '../../../models';
 import { MatDialog } from '@angular/material';
 import { TranslateService } from '../../../common/translations-module';
 import { PropertyMap } from '../../utils/property-map';
 import { Subject } from 'rxjs';
 import { LoaderService } from '../../../services/loader.service';
-import { AddOrEditEntityDialogComponent } from '../../../common/user-form';
-import * as moment from 'moment';
-import { Moment } from 'moment';
-import { ConfirmDialogComponent, ConfirmDialogData } from '../../../common/shared-module';
+import {
+  AddOrEditEntityDialogComponent,
+  ConfirmDialogComponent,
+  ConfirmDialogData
+} from '../../../common/shared-module';
 import { FormControl } from '@angular/forms';
 import { BreakpointService } from '../../../services/breakpoint.service';
 
@@ -76,18 +77,6 @@ export class UsersComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.loaderService.dispatchShowLoader(true);
     this.userService.getUsers();
-    this.userService.users$.pipe(filter(data => !!data), takeUntil(this.destroyed$), finalize(() => {
-      this.loaderService.dispatchShowLoader(false);
-    })).subscribe(
-      (users: User[]) => {
-        this._users = users.map((user: User, index: number) => {
-          moment.locale(this.translateService.locale.getValue());
-          user.registered = moment(user.registered);
-          user.index = ++index;
-          return Object.assign(new User(), user);
-        });
-        this.cd.markForCheck();
-      });
     this.quickFilter.valueChanges.pipe(debounceTime(300), takeUntil(this.destroyed$)).subscribe(
       (value: string) => {
         // TODO insert quick filter logic from API
@@ -118,7 +107,6 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.dialog.open(AddOrEditEntityDialogComponent, {
       data: mode === 'edit' ? event : 'user'
     }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((user: User) => {
-      this.prepareUser(user);
       if (mode === 'edit') {
         this.userService.editUser(user);
       } else {
@@ -154,7 +142,6 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param user
    */
   private prepareUser(user: User) {
-    user.registered = user.registered.format('YYYY-MM-DD') as Moment;
-    user.dateOfBirth = user.dateOfBirth.format('YYYY-MM-DD') as Moment;
+    user.dateOfBirth = JSON.stringify(user.dateOfBirth);
   }
 }

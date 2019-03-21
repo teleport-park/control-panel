@@ -1,7 +1,9 @@
+import { Group } from './group.model';
+
 export class StaffMember {
-  id: string;
+  id: number;
   firstName: string;
   lastName: string;
-  groupId: number;
-  groupName = '';
+  staffGroupId: number;
+  group: Group;
 }

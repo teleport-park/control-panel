@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { filter, finalize } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
+import * as moment from 'moment';
+import { TranslateService } from '../../../../common/translations-module';
 
 
 @Injectable()
@@ -21,20 +23,27 @@ export class UserService implements OnDestroy {
    * constructor
    * @param http
    * @param loaderService
+   * @param translateService
    */
-  constructor(private http: HttpClient, private loaderService: LoaderService) {
+  constructor(private http: HttpClient, private loaderService: LoaderService, private translateService: TranslateService) {
   }
 
   /**
    * get users
    */
   getUsers(): void {
+    this.loaderService.dispatchShowLoader(true);
     this.http.get<User[]>(`${UserService.USER_API}`)
       .pipe(filter(data => !!data), finalize(() => {
         this.loaderService.dispatchShowLoader(false);
       }))
       .subscribe((users: User[]) => {
-        this.users$.next(users);
+        const result = users.map((user: User) => {
+          moment.locale(this.translateService.locale.getValue());
+          user.registered = moment(user.registered);
+          return Object.assign(new User(), user);
+        });
+        this.users$.next(result);
       });
   }
 
@@ -53,7 +62,7 @@ export class UserService implements OnDestroy {
    */
   editUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
-    this.http.put(`${UserService.USER_API}/${user.id}`, user).subscribe(() => {
+    this.http.put(`${UserService.USER_API}${user.id}`, user).subscribe(() => {
       this.getUsers();
     });
   }
@@ -63,7 +72,7 @@ export class UserService implements OnDestroy {
    */
   removeUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
-    this.http.delete(`${UserService.USER_API}/${user.id}`).subscribe(() => {
+    this.http.delete(`${UserService.USER_API}${user.id}`).subscribe(() => {
       this.getUsers();
     });
   }
