@@ -47,6 +47,24 @@ export class UserService implements OnDestroy {
       });
   }
 
+  // getUsers(): void {
+  //   this.loaderService.dispatchShowLoader(true);
+  //   this.users$ = this.http.get<User[]>(`${UserService.USER_API}`)
+  //       .pipe(
+  //           filter(data => !!data),
+  //           finalize(() => {
+  //             this.loaderService.dispatchShowLoader(false);
+  //           }),
+  //           map(x => {
+  //             x.forEach(item => {
+  //               moment.locale(this.translateService.locale.getValue());
+  //               item.registered = moment(item.registered);
+  //               return item;
+  //             });
+  //             return x;
+  //           })
+  //       );
+
   /**
    * save user
    */
