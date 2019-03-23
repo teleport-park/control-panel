@@ -9,7 +9,13 @@ import { MaterialModule } from '../../../material.module';
 import { TranslationModule } from '../../../common/translations-module/translation.module';
 import { FormModule } from '../../../common/form/form.module';
 import { SharedModule } from '../../../common/shared-module/shared.module';
-import { AddOrEditEntityDialogComponent, ConfirmDialogComponent, AddGroupDialogComponent } from '../../../common/shared-module';
+import {
+  AddGroupDialogComponent,
+  AddOrEditEntityDialogComponent,
+  AddSimpleEntityDialogComponent,
+  ConfirmDialogComponent
+} from '../../../common/shared-module';
+import { PermissionsComponent } from './permissions/permissions.component';
 
 const routes: Routes = [{
   path: '',
@@ -18,13 +24,17 @@ const routes: Routes = [{
     path: 'groups',
     component: GroupsComponent,
     data: {title: 'ADMIN_MENU_GROUPS'}
+  }, {
+    path: 'permissions',
+    component: PermissionsComponent,
+    data: {title: 'GROUP_PERMISSIONS'}
   }]
 }];
 
 export const StaffRoutingModule = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [StaffComponent, GroupsComponent],
+  declarations: [StaffComponent, GroupsComponent, PermissionsComponent],
   imports: [
     CommonModule,
     StaffRoutingModule,
@@ -35,7 +45,12 @@ export const StaffRoutingModule = RouterModule.forChild(routes);
     SharedModule
   ],
   providers: [StaffService],
-  entryComponents: [AddOrEditEntityDialogComponent, ConfirmDialogComponent, AddGroupDialogComponent]
+  entryComponents: [
+    AddOrEditEntityDialogComponent,
+    ConfirmDialogComponent,
+    AddGroupDialogComponent,
+    AddSimpleEntityDialogComponent
+  ]
 })
 export class StaffModule {
 }

@@ -23,12 +23,12 @@ export class StaffComponent implements OnInit, OnDestroy {
   /**
    * displayed columns
    */
-  displayedColumns: string[] = ['firstName', 'lastName', 'group', 'submenu'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'staffGroupName', 'submenu'];
 
   /**
    * column with simple data
    */
-  simpleDataColumn: string[] = ['firstName', 'lastName'];
+  simpleDataColumn: string[] = ['firstName', 'lastName', 'staffGroupName'];
 
   /**
    * list sorted column
@@ -53,7 +53,9 @@ export class StaffComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.service.getPermissions();
+    if (!this.service.permissions$.getValue()) {
+      this.service.getPermissions();
+    }
   }
 
   /**
@@ -77,7 +79,7 @@ export class StaffComponent implements OnInit, OnDestroy {
       data: {
         title: 'DIALOG_CONFIRM_TITLE',
         message: 'DIALOG_CONFIRM_MESSAGE',
-        messageParams: [staffMember.firstName, staffMember.lastName]
+        messageParams: [`${staffMember.firstName} ${staffMember.lastName}`]
       } as ConfirmDialogData
     }).afterClosed()
       .pipe(filter(data => data), takeUntil(this.destroyed$))

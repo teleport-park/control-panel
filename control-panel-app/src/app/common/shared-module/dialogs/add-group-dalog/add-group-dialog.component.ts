@@ -16,20 +16,21 @@ export class AddGroupDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AddGroupDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Group) {
+    @Inject(MAT_DIALOG_DATA) public data: {group: Group, mode: 'add' | 'edit'}) {
     dialogRef._containerInstance._config.width = '500px';
-    this.name = new FormControl(data.name);
+    this.name = new FormControl(data.group.name);
   }
 
   /**
    * On cancel handler
    */
   dialogClose(): void {
-    this.dialogRef.close({name: this.name.value});
+    this.data.group.name = this.name.value;
+    this.dialogRef.close(this.data);
   }
 
   addPermissions(permissions) {
-    console.log(permissions);
+    this.data.group.permissions = permissions;
   }
 
 }

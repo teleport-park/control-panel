@@ -34,7 +34,7 @@
             <button mat-raised-button
                     color="primary"
                     (click)="openDialog('add')">
-              <mat-icon>add</mat-icon>
+              <mat-icon>person_add</mat-icon>
               {{translateService.instant('TABLE_ADD')}}
             </button>
             <button
@@ -50,8 +50,10 @@
           [displayedColumns]="displayedColumns"
           [simpleDataColumn]="columnWithData"
           [listSortedColumn]="listSortedColumn.value"
+          [itemAmount] = "(userService.userAmount$ | async)"
           (edit)="openDialog('edit', $event)"
-          (delete)="openDialog('delete', $event)"></control-panel-ui-table>
+          (delete)="openDialog('delete', $event)"
+          (page)="pageChange($event)"></control-panel-ui-table>
       </div>
     </control-panel-ui-card>
   </mat-sidenav-content>

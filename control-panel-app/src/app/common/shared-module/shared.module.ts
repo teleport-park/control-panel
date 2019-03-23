@@ -12,6 +12,7 @@ import { AddOrEditEntityDialogComponent } from './dialogs/add-entity-dialog/add-
 import { AddGroupDialogComponent } from './dialogs/add-group-dalog/add-group-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormModule } from '../form/form.module';
+import { AddSimpleEntityDialogComponent } from './dialogs/add-simple-entity-dialog/add-simple-entity-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormModule } from '../form/form.module';
     ControlPanelUiTableComponent,
     ControlPanelUiSelectionComponent,
     AddOrEditEntityDialogComponent,
-    AddGroupDialogComponent
+    AddGroupDialogComponent,
+    AddSimpleEntityDialogComponent
   ],
   imports: [
     CommonModule,

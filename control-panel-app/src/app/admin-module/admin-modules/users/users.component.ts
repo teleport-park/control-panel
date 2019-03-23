@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { UserService } from './services/user.service';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { User } from '../../../models';
-import { MatDialog } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 import { TranslateService } from '../../../common/translations-module';
 import { PropertyMap } from '../../utils/property-map';
 import { Subject } from 'rxjs';
@@ -75,8 +75,10 @@ export class UsersComponent implements OnInit, OnDestroy {
    * on init hook
    */
   ngOnInit() {
-    this.loaderService.dispatchShowLoader(true);
-    this.userService.getUsers();
+    if (!this.userService.users$.getValue()) {
+      this.userService.getUsersAmount(50);
+      this.userService.getUsers();
+    }
     this.quickFilter.valueChanges.pipe(debounceTime(300), takeUntil(this.destroyed$)).subscribe(
       (value: string) => {
         // TODO insert quick filter logic from API
@@ -123,7 +125,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       data: {
         title: 'DIALOG_CONFIRM_TITLE',
         message: 'DIALOG_CONFIRM_MESSAGE',
-        messageParams: [user.firstName, user.lastName]
+        messageParams: [`${user.firstName} ${user.lastName}`]
       } as ConfirmDialogData
     }).afterClosed()
       .pipe(filter(data => data), takeUntil(this.destroyed$))
@@ -132,16 +134,12 @@ export class UsersComponent implements OnInit, OnDestroy {
       });
   }
 
+  pageChange(event): void {
+    console.log(event);
+  }
+
   ngOnDestroy(): void {
     this.destroyed$.next(true);
     this.destroyed$.complete();
-  }
-
-  /**
-   * prepare user
-   * @param user
-   */
-  private prepareUser(user: User) {
-    user.dateOfBirth = JSON.stringify(user.dateOfBirth);
   }
 }

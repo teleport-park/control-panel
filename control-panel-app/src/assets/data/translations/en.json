@@ -46,7 +46,7 @@
   "DIALOG_CANCEL_BUTTON_LABEL": "Cancel",
   "DIALOG_CONFIRM_BUTTON_LABEL": "Confirm",
   "DIALOG_CONFIRM_TITLE": "Warning",
-  "DIALOG_CONFIRM_MESSAGE": "Are you want delete {0} {1} from list?",
+  "DIALOG_CONFIRM_MESSAGE": "Are you want delete {0} from list?",
   "STAFF_TABLE_LABEL": "Staff list",
   "NAME": "Name",
   "GROUP_PERMISSIONS": "Permissions"

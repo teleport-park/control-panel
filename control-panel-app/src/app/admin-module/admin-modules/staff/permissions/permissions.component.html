@@ -1,0 +1,14 @@
+<control-panel-ui-card>
+  <div panelUICardHeaderTitle>Permission list</div>
+  <div panelUICardContent>
+    <button mat-raised-button
+            color="primary" (click)="openDialog('add')">
+      <mat-icon>add</mat-icon>&nbsp;{{translateService.instant('TABLE_ADD')}}</button>
+    <control-panel-ui-table
+      [displayedColumns]="columns"
+      [simpleDataColumn]="['name']"
+      [data]="(service.permissions$ | async)"
+      (edit)="openDialog('edit', $event)"
+      (delete)="showConfirmDialog($event)"></control-panel-ui-table>
+  </div>
+</control-panel-ui-card>

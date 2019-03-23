@@ -4,7 +4,8 @@ import { Group } from '../../../../models';
 import { Subject } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { filter, takeUntil } from 'rxjs/operators';
-import { AddGroupDialogComponent } from '../../../../common/shared-module/dialogs/add-group-dalog/add-group-dialog.component';
+import { AddGroupDialogComponent, ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
+import { TranslateService } from '../../../../common/translations-module';
 
 @Component({
   selector: 'control-panel-groups',
@@ -16,30 +17,48 @@ export class GroupsComponent implements OnInit, OnDestroy {
   /**
    * columns
    */
-  columns: string[] = ['name', 'permissions'];
+  columns: string[] = ['name', 'permissions', 'submenu'];
 
   data: Group[];
 
   private destoyed$: Subject<boolean> = new Subject();
 
-  constructor(public service: StaffService, public dialog: MatDialog) {
+  constructor(public service: StaffService, public dialog: MatDialog, public translateService: TranslateService) {
   }
 
   ngOnInit() {
-    if (!this.service.permissions$.getValue().length) {
-      this.service.getPermissions();
-    }
   }
 
-  addGroup() {
+  openDialogGroup(mode: 'edit' | 'add', group = new Group()) {
     const dialogInstance = this.dialog.open(AddGroupDialogComponent, {
-      data: new Group()
+      data: {group, mode}
     });
     dialogInstance.componentInstance.permissions = this.service.permissions$.getValue();
     dialogInstance.afterClosed()
       .pipe(filter(data => !!data), takeUntil(this.destoyed$))
-      .subscribe((result: Group) => {
-        this.service.addGroup(result);
+      .subscribe((data) => {
+        if (mode === 'add') {
+          this.service.addGroup(data.group);
+        } else {
+          this.service.editGroup(data.group);
+        }
+      });
+  }
+
+  /**
+   * show confirm dialog
+   */
+  private showConfirmDialog(group: Group) {
+    this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'DIALOG_CONFIRM_TITLE',
+        message: 'DIALOG_CONFIRM_MESSAGE',
+        messageParams: [group.name]
+      } as ConfirmDialogData
+    }).afterClosed()
+      .pipe(filter(data => data))
+      .subscribe(() => {
+        this.service.deleteGroup(group);
       });
   }
 

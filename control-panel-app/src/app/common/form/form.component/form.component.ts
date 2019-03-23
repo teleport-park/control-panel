@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { Moment } from 'moment';
 import { TranslateService } from '../../translations-module';
 import { StaffService } from '../../../admin-module/admin-modules/staff/services/staff.service';
+import { StaffMemberResponse } from '../../../models/staff-member-response.model';
 
 @Component({
   selector: 'control-panel-ui-form',
@@ -61,8 +62,8 @@ export class FormComponent {
       this.mode = 'edit';
       this.outlet = this.userTemplate;
     }
-    if (item instanceof StaffMember) {
-      this.entityModel = Object.assign(new StaffMember(), item);
+    if (item instanceof StaffMemberResponse) {
+      this.entityModel = Object.assign(new StaffMemberResponse(), item);
       this.propertyMap = this.injector.get(StaffService).getGroupMap();
       this.form = this.getStaffMemberForm();
       this.form.patchValue(this.entityModel);
@@ -135,7 +136,7 @@ export class FormComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       staffGroupId: [
-        (this.entityModel instanceof StaffMember && this.entityModel.group) ? this.entityModel.group.id : 1, Validators.required]
+        (this.entityModel instanceof StaffMemberResponse && this.entityModel.group) ? this.entityModel.group.id : 1, Validators.required]
     });
   }
 

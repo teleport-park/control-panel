@@ -2,11 +2,15 @@
   <div panelUICardHeaderTitle>Group list</div>
   <div panelUICardContent>
     <button mat-raised-button
-            color="primary" (click)="addGroup()">add</button>
+            color="primary" (click)="openDialogGroup('add')">
+      <mat-icon>group_add</mat-icon>
+      &nbsp;{{translateService.instant('TABLE_ADD')}}</button>
     <control-panel-ui-table
-    [displayedColumns]="columns"
-    [simpleDataColumn]="['name']"
-    [data]="(service.groups$ | async)"
-    [valueMap]="(service.permissions$ | async)"></control-panel-ui-table>
+      [displayedColumns]="columns"
+      [simpleDataColumn]="['name']"
+      [data]="(service.groups$ | async)"
+      [valueMap]="(service.permissions$ | async)"
+      (edit)="openDialogGroup('edit', $event)"
+      (delete)="showConfirmDialog($event)"></control-panel-ui-table>
   </div>
 </control-panel-ui-card>

@@ -1,9 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { User } from '../../../../models/';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
-import { filter, finalize } from 'rxjs/operators';
+import { filter, finalize, map } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 import * as moment from 'moment';
 import { TranslateService } from '../../../../common/translations-module';
@@ -17,7 +17,9 @@ export class UserService implements OnDestroy {
   /**
    * users subject
    */
-  users$: Subject<User[]> = new Subject();
+  users$: BehaviorSubject<User[]> = new BehaviorSubject(null);
+
+  userAmount$: Observable<number>;
 
   /**
    * constructor
@@ -28,12 +30,18 @@ export class UserService implements OnDestroy {
   constructor(private http: HttpClient, private loaderService: LoaderService, private translateService: TranslateService) {
   }
 
+  getUsersAmount(pageSize: number): void {
+    this.userAmount$ = this.http.get(`${UserService.USER_API}totalpages/1`).pipe(
+      map((result: number) => result)
+    );
+  }
+
   /**
    * get users
    */
   getUsers(): void {
     this.loaderService.dispatchShowLoader(true);
-    this.http.get<User[]>(`${UserService.USER_API}`)
+    this.http.get<User[]>(`${UserService.USER_API}?pageSize=300&pageNumber=1`)
       .pipe(filter(data => !!data), finalize(() => {
         this.loaderService.dispatchShowLoader(false);
       }))

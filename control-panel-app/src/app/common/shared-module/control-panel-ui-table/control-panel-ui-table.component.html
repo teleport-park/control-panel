@@ -17,14 +17,14 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="group">
-      <th mat-header-cell mat-sort-header [disabled]="isSortedColumn(column)" *matHeaderCellDef>
-        <span>{{translateService.instant(propertyMap['group'])}}</span>
-      </th>
-      <td mat-cell *matCellDef="let item">
-        <span class="table_cell-inner">{{item.group.name}}</span>
-      </td>
-    </ng-container>
+    <!--<ng-container matColumnDef="group">-->
+      <!--<th mat-header-cell mat-sort-header [disabled]="isSortedColumn(column)" *matHeaderCellDef>-->
+        <!--<span>{{translateService.instant(propertyMap['group'])}}</span>-->
+      <!--</th>-->
+      <!--<td mat-cell *matCellDef="let item">-->
+        <!--<span class="table_cell-inner">{{item.group.name}}</span>-->
+      <!--</td>-->
+    <!--</ng-container>-->
 
     <!--is active cell-->
     <ng-container matColumnDef="isActive" class="table_cell-inner">
@@ -60,11 +60,11 @@
     <ng-container matColumnDef="permissions">
       <th mat-header-cell *matHeaderCellDef>{{translateService.instant(propertyMap['permissions'])}}</th>
       <td mat-cell *matCellDef="let group">
-        <control-panel-ui-selection
-        [valuesMap]="valueMap"
-        [selected]="group.permissions"
-        (selectionChange)="selectionChange($event)">
-        </control-panel-ui-selection>
+        <ul>
+          <li *ngFor="let permission of group.permissions">
+            {{permission.name}}
+          </li>
+        </ul>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -2,9 +2,9 @@
   <mat-form-field>
     <input matInput placeholder="Name" [formControl]="name">
   </mat-form-field>
-  <control-panel-ui-selection
+  <control-panel-ui-selection *ngIf="data.mode === 'edit'"
   [valuesMap]="permissions"
-  [selected]="data.permissions"
+  [selected]="data.group.permissions"
   (selectionChange)="addPermissions($event)"></control-panel-ui-selection>
 </div>
 <button mat-raised-button

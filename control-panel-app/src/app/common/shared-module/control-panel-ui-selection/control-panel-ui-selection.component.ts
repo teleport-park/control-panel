@@ -21,7 +21,7 @@ export class ControlPanelUiSelectionComponent implements OnInit {
   /**
    * init selected value
    */
-  @Input() selected: string[] = [];
+  @Input() selected: any[] = [];
 
   /**
    * on selection change event
@@ -37,7 +37,7 @@ export class ControlPanelUiSelectionComponent implements OnInit {
 
   ngOnInit() {
     this.selected.map(item => {
-      this._selection.add(item);
+      this._selection.add(item.id);
     });
   }
 
