@@ -8,7 +8,9 @@
       [displayedColumns]="columns"
       [simpleDataColumn]="['name']"
       [data]="(service.permissions$ | async)"
+      [itemAmount]="(service.permissionAmount$ | async)"
       (edit)="openDialog('edit', $event)"
-      (delete)="showConfirmDialog($event)"></control-panel-ui-table>
+      (delete)="showConfirmDialog($event)"
+      (pageChanges)="pageChangeHandler($event)"></control-panel-ui-table>
   </div>
 </control-panel-ui-card>

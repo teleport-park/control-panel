@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UserService } from './services/user.service';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { User } from '../../../models';
-import { MatDialog, PageEvent } from '@angular/material';
+import { MatDialog, MatPaginator, PageEvent } from '@angular/material';
 import { TranslateService } from '../../../common/translations-module';
 import { PropertyMap } from '../../utils/property-map';
 import { Subject } from 'rxjs';
@@ -26,6 +26,8 @@ export class UsersComponent implements OnInit, OnDestroy {
   listSortedColumn: FormControl = new FormControl([]);
 
   quickFilter: FormControl = new FormControl('');
+
+  @ViewChild('paginator') paginator: MatPaginator;
 
   propertyMap = PropertyMap;
 
@@ -76,7 +78,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     if (!this.userService.users$.getValue()) {
-      this.userService.getUsersAmount(50);
+      this.userService.getUsersAmount();
       this.userService.getUsers();
     }
     this.quickFilter.valueChanges.pipe(debounceTime(300), takeUntil(this.destroyed$)).subscribe(
@@ -134,8 +136,12 @@ export class UsersComponent implements OnInit, OnDestroy {
       });
   }
 
-  pageChange(event): void {
-    console.log(event);
+  /**
+   * change page handler
+   * @param event
+   */
+  pageChangeHandler(event: PageEvent): void {
+    this.userService.getUsers(event.pageSize, event.pageIndex + 1);
   }
 
   ngOnDestroy(): void {

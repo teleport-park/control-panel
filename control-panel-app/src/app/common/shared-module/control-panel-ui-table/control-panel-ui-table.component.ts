@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '../../translations-module';
-import { MatPaginator, MatSort, MatTableDataSource, PageEvent } from '@angular/material';
+import { MatSort, MatTableDataSource, PageEvent } from '@angular/material';
 import { StaffMember } from '../../../models';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BreakpointService } from '../../../services/breakpoint.service';
@@ -28,6 +28,9 @@ export class ControlPanelUiTableComponent implements OnInit {
 
   @Input() listSortedColumn: string[] = [];
 
+  /**
+   * items total amount
+   */
   @Input() itemAmount: number;
 
   /**
@@ -60,20 +63,6 @@ export class ControlPanelUiTableComponent implements OnInit {
   }
 
   /**
-   * MatPaginator instance
-   */
-  paginatorInst: MatPaginator;
-
-  /**
-   * mat paginator instance
-   */
-  @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
-    if (paginator) {
-      this.paginatorInst = paginator;
-    }
-  }
-
-  /**
    * selection
    */
   public selection: SelectionModel<StaffMember>;
@@ -88,7 +77,10 @@ export class ControlPanelUiTableComponent implements OnInit {
    */
   @Output() edit: EventEmitter<any> = new EventEmitter();
 
-  @Output() page: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
+  /**
+   * Emit pagination changes
+   */
+  @Output() pageChanges: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
 
   constructor(public translateService: TranslateService,
               private cd: ChangeDetectorRef,
@@ -105,8 +97,6 @@ export class ControlPanelUiTableComponent implements OnInit {
   private initDataSource() {
     this.dataSource = new MatTableDataSource(this._data);
     this.dataSource.sort = this.sortInst;
-    this.dataSource.paginator = this.paginatorInst;
-    this.dataSource.paginator.page.pipe();
     this.selection = new SelectionModel(false, []);
     this.cd.markForCheck();
   }
@@ -120,7 +110,6 @@ export class ControlPanelUiTableComponent implements OnInit {
   }
 
   changePageHandler(event: PageEvent): void {
-    this.page.emit(event);
+    this.pageChanges.emit(event);
   }
-
 }

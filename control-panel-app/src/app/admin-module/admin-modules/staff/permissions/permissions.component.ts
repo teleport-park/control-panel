@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { StaffService } from '../services/staff.service';
 import { TranslateService } from '../../../../common/translations-module';
-import { MatDialog } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 import {
   AddSimpleEntityDialogComponent,
   ConfirmDialogComponent,
   ConfirmDialogData
 } from '../../../../common/shared-module';
-import { Group, Permission } from '../../../../models';
+import { Permission } from '../../../../models';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -54,6 +54,14 @@ export class PermissionsComponent implements OnInit {
       .subscribe(() => {
         this.service.deletePermission(permission);
       });
+  }
+
+  /**
+   * change page handler
+   * @param event
+   */
+  pageChangeHandler(event: PageEvent): void {
+    this.service.getPermissions(event.pageSize, event.pageIndex + 1);
   }
 
 }

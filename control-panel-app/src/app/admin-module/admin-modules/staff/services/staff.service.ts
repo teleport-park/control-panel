@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Group, Permission, StaffMember } from '../../../../models';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 import { StaffMemberResponse } from '../../../../models/staff-member-response.model';
 
@@ -37,6 +37,15 @@ export class StaffService {
    */
   permissions$: BehaviorSubject<Permission[]> = new BehaviorSubject(null);
 
+  staffAmount$: Observable<number>;
+
+  staffGroupAmount$: Observable<number>;
+
+  permissionAmount$: Observable<number>;
+
+  /**
+   * group
+   */
   _group: Group[];
 
   /**
@@ -49,10 +58,37 @@ export class StaffService {
   }
 
   /**
+   * get staff member amount
+   */
+  getStaffMembersAmount(): void {
+    this.staffAmount$ = this.http.get(`${StaffService.STAFF_API}/totalpages/1`).pipe(
+      map((result: number) => result)
+    );
+  }
+
+  /**
+   * get staff group amount
+   */
+  getStaffGroupAmount(): void {
+    this.staffGroupAmount$ = this.http.get(`${StaffService.STAFF_GROUP_API}/totalpages/1`).pipe(
+      map((result: number) => result)
+    );
+  }
+
+  /**
+   * get permission amount
+   */
+  getPermissionAmount(): void {
+    this.permissionAmount$ = this.http.get(`${StaffService.PERMISSIONS_API}/totalpages/1`).pipe(
+      map((result: number) => result)
+    );
+  }
+
+  /**
    * get staff members
    */
-  getStaffMember(): void {
-    this.http.get(`${StaffService.STAFF_API}?pageSize=30&pageNumber=1`)
+  getStaffMember(pageSize: number = 50, pageNumber: number = 1): void {
+    this.http.get(`${StaffService.STAFF_API}?pageSize=${pageSize}&pageNumber=${pageNumber}`)
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
@@ -61,6 +97,7 @@ export class StaffService {
         const staffMemberList = result.map((staffMember: StaffMemberResponse) => {
           return Object.assign(new StaffMemberResponse(staffMember.group.name, staffMember.group.id), staffMember);
         });
+        this.getStaffMembersAmount();
         this.staffMembers$.next(staffMemberList);
       });
   }
@@ -102,8 +139,8 @@ export class StaffService {
   /**
    * get groups
    */
-  getGroups(): void {
-    this.http.get(`${StaffService.STAFF_GROUP_API}?pageSize=300&pageNumber=1`)
+  getGroups(pageSize: number = 50, pageNumber: number = 1): void {
+    this.http.get(`${StaffService.STAFF_GROUP_API}?pageSize=${pageSize}&pageNumber=${pageNumber}`)
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
@@ -113,6 +150,7 @@ export class StaffService {
           return Object.assign(new Group(), group);
         });
         this.groups$.next(this._group);
+        this.getStaffGroupAmount();
       });
   }
 
@@ -170,11 +208,12 @@ export class StaffService {
   /**
    * get permissions
    */
-  getPermissions() {
-    this.http.get(`${StaffService.PERMISSIONS_API}?pageSize=300&pageNumber=1`)
+  getPermissions(pageSize: number = 50, pageNumber: number = 1) {
+    this.http.get(`${StaffService.PERMISSIONS_API}?pageSize=${pageSize}&pageNumber=${pageNumber}`)
       .subscribe((result: Permission[]) => {
         this.getGroups();
         this.getStaffMember();
+        this.getPermissionAmount();
         this.permissions$.next(result);
       });
   }

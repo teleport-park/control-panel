@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 import { TranslateService } from '../../../common/translations-module';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { ConfirmDialogComponent, ConfirmDialogData, AddOrEditEntityDialogComponent } from '../../../common/shared-module';
-import { MatDialog } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 
 @Component({
   selector: 'control-panel-staff',
@@ -54,6 +54,7 @@ export class StaffComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (!this.service.permissions$.getValue()) {
+      this.service.getStaffMembersAmount();
       this.service.getPermissions();
     }
   }
@@ -103,6 +104,14 @@ export class StaffComponent implements OnInit, OnDestroy {
         this.service.addStaffMember(staffMember);
       }
     });
+  }
+
+  /**
+   * change page handler
+   * @param event
+   */
+  pageChangeHandler(event: PageEvent): void {
+    this.service.getStaffMember(event.pageSize, event.pageIndex + 1);
   }
 
   ngOnDestroy(): void {

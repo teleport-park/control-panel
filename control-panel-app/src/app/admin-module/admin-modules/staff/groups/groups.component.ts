@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StaffService } from '../services/staff.service';
 import { Group } from '../../../../models';
 import { Subject } from 'rxjs';
-import { MatDialog } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 import { filter, takeUntil } from 'rxjs/operators';
 import { AddGroupDialogComponent, ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { TranslateService } from '../../../../common/translations-module';
@@ -60,6 +60,14 @@ export class GroupsComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.service.deleteGroup(group);
       });
+  }
+
+  /**
+   * change page handler
+   * @param event
+   */
+  pageChangeHandler(event: PageEvent): void {
+    this.service.getGroups(event.pageSize, event.pageIndex + 1);
   }
 
   ngOnDestroy(): void {

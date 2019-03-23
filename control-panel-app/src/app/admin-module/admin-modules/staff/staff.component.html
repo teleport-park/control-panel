@@ -18,8 +18,10 @@
           [displayedColumns]="displayedColumns"
           [simpleDataColumn]="simpleDataColumn"
           [listSortedColumn]="listSortedColumn"
+          [itemAmount]="(service.staffAmount$ | async)"
           (edit)="openDialog('edit', $event)"
-          (delete)="openDialog('delete', $event)">
+          (delete)="openDialog('delete', $event)"
+          (pageChanges)="pageChangeHandler($event)">
         </control-panel-ui-table>
       </div>
     </div>
