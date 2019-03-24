@@ -1,11 +1,10 @@
 FROM node:latest AS build-image
 
-ARG stage_suffix="prod"
+ARG stage_suffix="stage"
 
 COPY ./control-panel-app /app
 
 WORKDIR /app
-RUN ls -la
 
 RUN npm install
 RUN npm run build-${stage_suffix}
