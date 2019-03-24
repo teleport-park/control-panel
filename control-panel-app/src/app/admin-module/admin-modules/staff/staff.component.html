@@ -4,14 +4,6 @@
       {{translateService.instant('STAFF_TABLE_LABEL')}}
     </div>
     <div panelUICardContent>
-      <div>
-        <button mat-raised-button
-                color="primary"
-                (click)="openDialog('add')">
-          <mat-icon>person_add</mat-icon>
-          {{translateService.instant('TABLE_ADD')}}
-        </button>
-      </div>
       <div class="staff-table-wrapper">
         <control-panel-ui-table
           [data]="(service.staffMembers$ | async)"
@@ -19,8 +11,10 @@
           [simpleDataColumn]="simpleDataColumn"
           [listSortedColumn]="listSortedColumn"
           [itemAmount]="(service.staffAmount$ | async)"
+          iconSet="person_add"
           (edit)="openDialog('edit', $event)"
           (delete)="openDialog('delete', $event)"
+          (add)="openDialog('add')"
           (pageChanges)="pageChangeHandler($event)">
         </control-panel-ui-table>
       </div>

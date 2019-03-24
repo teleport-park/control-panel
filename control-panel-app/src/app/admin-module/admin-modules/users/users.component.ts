@@ -44,7 +44,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * list of displayed column
    */
-  displayedColumns: string[] = ['firstName', 'lastName', 'phone', 'age', 'email', 'isActive', 'registered', 'submenu'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'phone', 'age', 'email', 'statuses', 'registered', 'submenu'];
 
   /**
    * column with data

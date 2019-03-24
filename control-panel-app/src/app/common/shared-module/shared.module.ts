@@ -13,6 +13,7 @@ import { AddGroupDialogComponent } from './dialogs/add-group-dalog/add-group-dia
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormModule } from '../form/form.module';
 import { AddSimpleEntityDialogComponent } from './dialogs/add-simple-entity-dialog/add-simple-entity-dialog.component';
+import { ControlPanelUiActionToolbarComponent } from './control-panel-ui-action-toolbar/control-panel-ui-action-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AddSimpleEntityDialogComponent } from './dialogs/add-simple-entity-dial
     ControlPanelUiSelectionComponent,
     AddOrEditEntityDialogComponent,
     AddGroupDialogComponent,
-    AddSimpleEntityDialogComponent
+    AddSimpleEntityDialogComponent,
+    ControlPanelUiActionToolbarComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { AddSimpleEntityDialogComponent } from './dialogs/add-simple-entity-dial
     ControlPanelUiTableComponent,
     ControlPanelUiSelectionComponent,
     AddOrEditEntityDialogComponent,
-    AddGroupDialogComponent
+    AddGroupDialogComponent,
+    ControlPanelUiActionToolbarComponent
   ]
 })
 export class SharedModule {

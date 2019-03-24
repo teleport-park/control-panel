@@ -3,7 +3,7 @@ export const PropertyMap = {
   firstName: 'FIRST_NAME',
   lastName: 'LAST_NAME',
   phone: 'PHONE',
-  isActive: 'USER_STATE',
+  statuses: 'USER_STATUSES',
   age: 'USER_AGE',
   email: 'EMAIL',
   registered: 'REGISTERED',

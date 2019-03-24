@@ -7,4 +7,5 @@ export * from './directives/number.directive';
 export * from './control-panel-ui-card/control-panel-ui-card.component';
 export * from './control-panel-ui-table/control-panel-ui-table.component';
 export * from './control-panel-ui-selection/control-panel-ui-selection.component';
+export * from './control-panel-ui-action-toolbar/control-panel-ui-action-toolbar.component';
 

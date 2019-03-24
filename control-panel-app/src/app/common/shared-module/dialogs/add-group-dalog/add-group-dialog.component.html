@@ -1,12 +1,15 @@
 <div class="add-entity-wrapper">
-  <mat-form-field>
-    <input matInput placeholder="Name" [formControl]="name">
+  <mat-form-field class="input-name">
+    <input matInput [placeholder]="translateService.instant('NAME')" [formControl]="name">
+    <mat-error>{{'REQUIRED_FIELD' | translate:[translateService.instant('NAME')]}}</mat-error>
   </mat-form-field>
+  <p>{{'GROUP_PERMISSIONS' | translate}}</p>
   <control-panel-ui-selection *ngIf="data.mode === 'edit'"
-  [valuesMap]="permissions"
-  [selected]="data.group.permissions"
-  (selectionChange)="addPermissions($event)"></control-panel-ui-selection>
+                              [valuesMap]="permissions"
+                              [selected]="data.group.permissions"
+                              (selectionChange)="addPermissions($event)"></control-panel-ui-selection>
 </div>
-<button mat-raised-button
-        color="primary"
-        (click)="dialogClose()">Add</button>
+<control-panel-ui-action-toolbar
+  [mode]="data.mode"
+  (confirm)="dialogSubmit()"
+  (cancel)="dialogRef.close()"></control-panel-ui-action-toolbar>

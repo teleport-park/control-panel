@@ -1,8 +1,10 @@
 <div class="simple-dialog-wrapper">
-  <mat-form-field>
-    <input matInput placeholder="Name" [formControl]="name">
+  <mat-form-field class="input-name">
+    <input matInput [placeholder]="translateService.instant('NAME')" [formControl]="name">
+    <mat-error>{{'REQUIRED_FIELD' | translate:[translateService.instant('NAME')]}}</mat-error>
   </mat-form-field>
 </div>
-<button mat-raised-button
-        color="primary"
-        (click)="dialogClose()">Add</button>
+<control-panel-ui-action-toolbar
+  [mode]="data.mode"
+  (confirm)="dialogSubmit()"
+  (cancel)="dialogRef.close()"></control-panel-ui-action-toolbar>

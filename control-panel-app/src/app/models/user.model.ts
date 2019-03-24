@@ -14,7 +14,7 @@ export class User {
   address: string;
   email: '';
   phone: string;
-  isActive: boolean;
+  statuses: string[];
 
   constructor() {
   }

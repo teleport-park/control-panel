@@ -33,6 +33,8 @@ export class ControlPanelUiTableComponent implements OnInit {
    */
   @Input() itemAmount: number;
 
+  @Input() iconSet: string;
+
   /**
    * data source for table
    */
@@ -78,6 +80,11 @@ export class ControlPanelUiTableComponent implements OnInit {
   @Output() edit: EventEmitter<any> = new EventEmitter();
 
   /**
+   * add emit
+   */
+  @Output() add: EventEmitter<void> = new EventEmitter();
+
+  /**
    * Emit pagination changes
    */
   @Output() pageChanges: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
@@ -109,7 +116,18 @@ export class ControlPanelUiTableComponent implements OnInit {
     return !this.listSortedColumn.includes(column);
   }
 
+  /**
+   * change page
+   * @param event
+   */
   changePageHandler(event: PageEvent): void {
     this.pageChanges.emit(event);
+  }
+
+  /**
+   * add event
+   */
+  addEntity(): void {
+    this.add.emit();
   }
 }

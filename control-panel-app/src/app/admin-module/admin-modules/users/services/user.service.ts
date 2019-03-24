@@ -39,7 +39,7 @@ export class UserService implements OnDestroy {
   /**
    * get users
    */
-  getUsers(pageSize: number = 50, pageNumber: number = 0): void {
+  getUsers(pageSize: number = 50, pageNumber: number = 1): void {
     this.loaderService.dispatchShowLoader(true);
     this.http.get<User[]>(`${UserService.USER_API}?pageSize=${pageSize}&pageNumber=${pageNumber}`)
       .pipe(filter(data => !!data), finalize(() => {
