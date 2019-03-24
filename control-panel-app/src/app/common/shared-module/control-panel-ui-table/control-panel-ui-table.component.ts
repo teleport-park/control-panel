@@ -5,6 +5,7 @@ import { StaffMember } from '../../../models';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { PropertyMap } from '../../../admin-module/utils/property-map';
+import { IconService } from '../../../services/icon.service';
 
 @Component({
   selector: 'control-panel-ui-table',
@@ -92,7 +93,8 @@ export class ControlPanelUiTableComponent implements OnInit {
   constructor(public translateService: TranslateService,
               private cd: ChangeDetectorRef,
               public point: BreakpointService,
-              public injector: Injector) {
+              public injector: Injector,
+              public icon: IconService) {
   }
 
   ngOnInit() {
