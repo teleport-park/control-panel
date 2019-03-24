@@ -6,6 +6,12 @@ import { Moment } from 'moment';
 import { TranslateService } from '../../translations-module';
 import { StaffService } from '../../../admin-module/admin-modules/staff/services/staff.service';
 import { StaffMemberResponse } from '../../../models/staff-member-response.model';
+import { DateAdapter } from '@angular/material';
+
+export const LocaleMap = {
+  en: 'en-GB',
+  ru: 'ru-RU'
+};
 
 @Component({
   selector: 'control-panel-ui-form',
@@ -24,7 +30,15 @@ export class FormComponent {
    */
   entityModel: User | StaffMember;
 
+  /**
+   * property map
+   */
   propertyMap: any[];
+
+  /**
+   * max date for DOB field
+   */
+  maxDate = moment();
 
   /**
    * user phone input
@@ -107,8 +121,13 @@ export class FormComponent {
    * @param fb
    * @param translateService
    * @param injector
+   * @param dateAdapter
    */
-  constructor(private fb: FormBuilder, public translateService: TranslateService, private injector: Injector) {
+  constructor(private fb: FormBuilder,
+              public translateService: TranslateService,
+              private injector: Injector,
+              private dateAdapter: DateAdapter<Date>) {
+    dateAdapter.setLocale(LocaleMap[translateService.locale.getValue()]);
   }
 
   /**

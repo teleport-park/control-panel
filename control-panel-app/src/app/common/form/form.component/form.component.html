@@ -14,7 +14,8 @@
     </mat-form-field>
     <mat-form-field>
       <input matInput [matDatepicker]="picker" placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
-             formControlName="dateOfBirth" (dateChange)="dayOfBirthChange($event.value)">
+             formControlName="dateOfBirth" (dateChange)="dayOfBirthChange($event.value)"
+      [max]="maxDate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       <mat-error>

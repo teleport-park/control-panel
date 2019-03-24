@@ -35,7 +35,9 @@ export class TranslateService {
     return this._translations;
   }
 
-  constructor(private http: HttpClient, private loaderService: LoaderService, private storage: StorageService) {
+  constructor(private http: HttpClient,
+              private loaderService: LoaderService,
+              private storage: StorageService) {
   }
 
   /**
