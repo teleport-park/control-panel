@@ -48,7 +48,7 @@ export class GroupsComponent implements OnInit, OnDestroy {
   /**
    * show confirm dialog
    */
-  private showConfirmDialog(group: Group) {
+  showConfirmDialog(group: Group) {
     this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'DIALOG_CONFIRM_TITLE',

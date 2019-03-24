@@ -42,7 +42,7 @@ export class PermissionsComponent implements OnInit {
   /**
    * show confirm dialog
    */
-  private showConfirmDialog(permission: Permission) {
+  showConfirmDialog(permission: Permission) {
     this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'DIALOG_CONFIRM_TITLE',

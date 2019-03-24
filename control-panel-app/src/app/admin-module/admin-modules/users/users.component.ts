@@ -94,7 +94,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param mode
    * @param event
    */
-  openDialog(mode: 'edit' | 'add' | 'delete', event: User): void {
+  openDialog(mode: 'edit' | 'add' | 'delete', event?: User): void {
     if (mode === 'delete') {
       this.showConfirmDialog(event);
       return;
