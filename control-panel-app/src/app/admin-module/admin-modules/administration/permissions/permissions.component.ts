@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { StaffService } from '../services/staff.service';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TranslateService } from '../../../../common/translations-module';
 import { MatDialog, PageEvent } from '@angular/material';
 import {
@@ -9,28 +8,33 @@ import {
 } from '../../../../common/shared-module';
 import { Permission } from '../../../../models';
 import { filter } from 'rxjs/operators';
+import { PermissionsService } from './services/permissions.service';
 
 @Component({
   selector: 'control-panel-permissions',
   templateUrl: './permissions.component.html',
-  styleUrls: ['./permissions.component.scss']
+  styleUrls: ['./permissions.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PermissionsComponent implements OnInit {
 
   columns: string[] = ['name', 'submenu'];
 
-  constructor(public service: StaffService,
+  constructor(public service: PermissionsService,
               public translateService: TranslateService,
               private dialog: MatDialog) {
   }
 
   ngOnInit() {
+    if (!this.service.permissions$.getValue()) {
+      this.service.getPermissions();
+    }
   }
 
   openDialog(mode: 'add' | 'edit', permission = new Permission()): void {
     this.dialog.open(AddSimpleEntityDialogComponent, {
       data: {permission, mode}
-    }).afterClosed().subscribe((result: any) => {
+    }).afterClosed().pipe(filter(data => !!data)).subscribe((result: any) => {
       if (mode === 'edit') {
         this.service.editPermission(result.permission);
       } else {

@@ -51,14 +51,22 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
       active: false,
       children: [
         {
-          icon: 'settings',
+          icon: 'group_add',
           label: 'ADMIN_MENU_GROUPS',
           path: '/admin/staff/groups',
           active: false
-        }, {
+        }
+      ]
+    }, {
+      icon: 'settings',
+      label: 'ADMIN_MENU_ADMINISTRATION',
+      path: '/admin/administration',
+      active: false,
+      children: [
+        {
           icon: 'vpn_key',
           label: 'GROUP_PERMISSIONS',
-          path: '/admin/staff/permissions',
+          path: '/admin/administration/permissions',
           active: false
         }
       ]

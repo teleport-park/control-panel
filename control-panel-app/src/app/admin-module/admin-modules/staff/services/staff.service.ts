@@ -6,6 +6,8 @@ import { environment } from '../../../../../environments/environment';
 import { finalize, map } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 import { StaffMemberResponse } from '../../../../models/staff-member-response.model';
+import { MatSnackBar } from '@angular/material';
+import { TranslateService } from '../../../../common/translations-module';
 
 @Injectable()
 export class StaffService {
@@ -20,6 +22,9 @@ export class StaffService {
    */
   static readonly STAFF_GROUP_API: string = `${environment.origin}${environment.api.GROUPS}`;
 
+  /**
+   * permission api
+   */
   static readonly PERMISSIONS_API: string = `${environment.origin}${environment.api.PERMISSIONS}`;
 
   /**
@@ -52,9 +57,13 @@ export class StaffService {
    * Constructor
    * @param http
    * @param loader
+   * @param toaster
+   * @param translateService
    */
-
-  constructor(private http: HttpClient, private loader: LoaderService) {
+  constructor(private http: HttpClient,
+              private loader: LoaderService,
+              private toaster: MatSnackBar,
+              private translateService: TranslateService) {
   }
 
   /**
@@ -71,15 +80,6 @@ export class StaffService {
    */
   getStaffGroupAmount(): void {
     this.staffGroupAmount$ = this.http.get(`${StaffService.STAFF_GROUP_API}/totalpages/1`).pipe(
-      map((result: number) => result)
-    );
-  }
-
-  /**
-   * get permission amount
-   */
-  getPermissionAmount(): void {
-    this.permissionAmount$ = this.http.get(`${StaffService.PERMISSIONS_API}/totalpages/1`).pipe(
       map((result: number) => result)
     );
   }
@@ -191,8 +191,12 @@ export class StaffService {
    * @param group
    */
   deleteGroup(group: Group): void {
-    this.http.delete(`${StaffService.STAFF_GROUP_API}/${group.id}`).subscribe(() => {
-      this.getGroups();
+    this.http.delete(`${StaffService.STAFF_GROUP_API}/${group.id}`).subscribe((result: boolean) => {
+      if (result) {
+        this.getGroups();
+        return;
+      }
+      this.showErrorMessage(this.translateService.instant('ADMIN_MENU_STAFF'));
     });
   }
 
@@ -213,38 +217,19 @@ export class StaffService {
       .subscribe((result: Permission[]) => {
         this.getGroups();
         this.getStaffMember();
-        this.getPermissionAmount();
         this.permissions$.next(result);
       });
   }
 
-  /**
-   * add permission
-   * @param permission
-   */
-  addPermission(permission: Permission): void {
-    this.http.post(`${StaffService.PERMISSIONS_API}`, permission).subscribe(() => {
-      this.getPermissions();
-    });
-  }
-
-  /**
-   * edit permission
-   * @param permission
-   */
-  editPermission(permission: Permission): void {
-    this.http.put(`${StaffService.PERMISSIONS_API}/${permission.id}`, permission).subscribe(() => {
-      this.getPermissions();
-    });
-  }
-
-  /**
-   * delete permission
-   * @param permission
-   */
-  deletePermission(permission: Permission): void {
-    this.http.delete(`${StaffService.PERMISSIONS_API}/${permission.id}`).subscribe(() => {
-      this.getPermissions();
+  private showErrorMessage(param: string) {
+    this.toaster.open(
+      this.translateService.instant('CANNOT_DELETE_DEPENDED_FIELD_ERROR_MESSAGE', [param]),
+      null,
+      {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: 'toaster-error'
     });
   }
 }

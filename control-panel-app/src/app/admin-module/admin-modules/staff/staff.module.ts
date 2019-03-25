@@ -15,7 +15,6 @@ import {
   AddSimpleEntityDialogComponent,
   ConfirmDialogComponent
 } from '../../../common/shared-module';
-import { PermissionsComponent } from './permissions/permissions.component';
 
 const routes: Routes = [{
   path: '',
@@ -24,17 +23,13 @@ const routes: Routes = [{
     path: 'groups',
     component: GroupsComponent,
     data: {title: 'ADMIN_MENU_GROUPS'}
-  }, {
-    path: 'permissions',
-    component: PermissionsComponent,
-    data: {title: 'GROUP_PERMISSIONS'}
   }]
 }];
 
 export const StaffRoutingModule = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [StaffComponent, GroupsComponent, PermissionsComponent],
+  declarations: [StaffComponent, GroupsComponent],
   imports: [
     CommonModule,
     StaffRoutingModule,

@@ -50,5 +50,7 @@
   "DIALOG_CONFIRM_MESSAGE": "Вы хотите удалить {0} из списка?",
   "STAFF_TABLE_LABEL": "Список сотрудников",
   "NAME": "Название",
-  "GROUP_PERMISSIONS": "Разрешения"
+  "GROUP_PERMISSIONS": "Разрешения",
+  "ADMIN_MENU_ADMINISTRATION": "Администрирование",
+  "CANNOT_DELETE_DEPENDED_FIELD_ERROR_MESSAGE": "Запись не удалена, проверьте раздел \"{0}\""
 }

@@ -53,10 +53,8 @@ export class StaffComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    if (!this.service.permissions$.getValue()) {
       this.service.getStaffMembersAmount();
       this.service.getPermissions();
-    }
   }
 
   /**

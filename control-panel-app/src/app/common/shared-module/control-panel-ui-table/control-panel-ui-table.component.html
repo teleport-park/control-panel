@@ -32,12 +32,11 @@
       </th>
       <td mat-cell *matCellDef="let item">
         <span class="table_cell-inner">
-          <ul class="status-list">
-            <li *ngFor="let status of item.statuses">
-              <mat-icon [svgIcon]="status.name.split(' ').join('').toLowerCase()"></mat-icon>
-              <div class="table-cell_status-description"><span>{{status.name}}</span></div>
-            </li>
-          </ul>
+          <div class="status-list">
+            <mat-icon *ngFor="let status of item.statuses" [ngClass]="status.name.split(' ').join('').toLowerCase()"
+                      [svgIcon]="status.name.split(' ').join('').toLowerCase()"
+                      matTooltip="{{status.name}}"></mat-icon>
+          </div>
         </span>
       </td>
     </ng-container>

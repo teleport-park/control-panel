@@ -26,6 +26,10 @@ const routes: Routes = [
         path: 'staff',
         loadChildren: './admin-modules/staff/staff.module#StaffModule',
         data: {title: 'ADMIN_MENU_STAFF'}
+      }, {
+        path: 'administration',
+        loadChildren: './admin-modules/administration/administration.module#AdministrationModule',
+        data: {title: 'ADMIN_MENU_ADMINISTRATION'}
       }
     ]
   }

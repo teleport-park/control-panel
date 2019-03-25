@@ -11,10 +11,27 @@ import { TranslateService } from '../../../translations-module';
 })
 export class AddGroupDialogComponent {
 
+  /**
+   * name field
+   */
   name: FormControl;
 
+  /**
+   * available permissions
+   */
   permissions: Permission[];
 
+  /**
+   * selected permissions
+   */
+  _permissions: any[];
+
+  /**
+   * constructor
+   * @param translateService
+   * @param dialogRef
+   * @param data
+   */
   constructor(
     public translateService: TranslateService,
     public dialogRef: MatDialogRef<AddGroupDialogComponent>,
@@ -28,6 +45,11 @@ export class AddGroupDialogComponent {
    */
   dialogSubmit(): void {
     this.data.group.name = this.name.value;
+    if (!this._permissions) {
+      const permission =  this.data.group.permissions as Permission[];
+      this._permissions = permission.map((item: Permission) => item.id);
+    }
+    this.data.group.permissions = this._permissions;
     this.dialogRef.close(this.data);
   }
 
@@ -36,6 +58,6 @@ export class AddGroupDialogComponent {
    * @param permissions
    */
   addPermissions(permissions) {
-    this.data.group.permissions = permissions;
+    this._permissions = permissions;
   }
 }
