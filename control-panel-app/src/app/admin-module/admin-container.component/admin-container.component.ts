@@ -41,7 +41,7 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
       active: false,
       children: [
         {
-          icon: 'vpn_key',
+          icon: 'code',
           label: 'GROUP_PERMISSIONS',
           path: '/admin/administration/permissions',
           active: false
@@ -71,6 +71,17 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
           active: false
         }
       ]
+    }, {
+      icon: 'vpn_key',
+      label: 'ADMIN_MENU_KEYCHAIN',
+      path: '/admin/keychain',
+      active: false,
+      children: [{
+        icon: 'credit_card',
+        label: 'ADMIN_MENU_CARDS',
+        path: '/admin/keychain/cards',
+        active: false
+      }]
     }
   ];
 

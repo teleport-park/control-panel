@@ -18,6 +18,9 @@ import { PermissionsService } from './services/permissions.service';
 })
 export class PermissionsComponent implements OnInit {
 
+  /**
+   * columns for table
+   */
   columns: string[] = ['name', 'submenu'];
 
   constructor(public service: PermissionsService,
@@ -31,6 +34,11 @@ export class PermissionsComponent implements OnInit {
     }
   }
 
+  /**
+   * open dialog
+   * @param mode
+   * @param permission
+   */
   openDialog(mode: 'add' | 'edit', permission = new Permission()): void {
     this.dialog.open(AddSimpleEntityDialogComponent, {
       data: {permission, mode}

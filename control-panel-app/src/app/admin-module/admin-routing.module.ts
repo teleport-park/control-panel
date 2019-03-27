@@ -30,6 +30,10 @@ const routes: Routes = [
         path: 'administration',
         loadChildren: './admin-modules/administration/administration.module#AdministrationModule',
         data: {title: 'ADMIN_MENU_ADMINISTRATION'}
+      }, {
+        path: 'keychain',
+        loadChildren: './admin-modules/keychain/keychain.module#KeychainModule',
+        data: {title: 'ADMIN_MENU_KEYCHAIN'}
       }
     ]
   }
