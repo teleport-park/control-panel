@@ -1,10 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material';
 
-export interface SelectionItem {
-  value: string;
-  valueView: string;
-}
 
 @Component({
   selector: 'control-panel-ui-selection',

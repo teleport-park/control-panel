@@ -78,7 +78,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     if (!this.userService.users$.getValue()) {
-      this.userService.getUsersAmount();
+      this.userService.getUsersCount();
       this.userService.getUsers();
     }
     this.quickFilter.valueChanges.pipe(debounceTime(300), takeUntil(this.destroyed$)).subscribe(

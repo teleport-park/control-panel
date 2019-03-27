@@ -78,5 +78,5 @@
         (click)="selection.select(row)"></tr>
   </table>
 </div>
-<mat-paginator [pageSizeOptions]="[50, 100, 200]" [length]="itemAmount" showFirstLastButtons
+<mat-paginator [pageSizeOptions]="[50, 100, 200]" [length]="itemCount" showFirstLastButtons
                (page)="changePageHandler($event)"></mat-paginator>

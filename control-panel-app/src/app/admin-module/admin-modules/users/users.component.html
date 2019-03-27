@@ -44,7 +44,7 @@
           [displayedColumns]="displayedColumns"
           [simpleDataColumn]="columnWithData"
           [listSortedColumn]="listSortedColumn.value"
-          [itemAmount] = "(userService.userAmount$ | async)"
+          [itemCount]="(userService.userCount$ | async)"
           iconSet="person_add"
           (edit)="openDialog('edit', $event)"
           (delete)="openDialog('delete', $event)"

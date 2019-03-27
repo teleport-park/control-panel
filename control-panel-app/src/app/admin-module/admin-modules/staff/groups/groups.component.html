@@ -6,7 +6,7 @@
       [simpleDataColumn]="['name']"
       [data]="(service.groups$ | async)"
       [valueMap]="(service.permissions$ | async)"
-      [itemAmount]="service.staffGroupAmount$ | async"
+      [itemCount]="service.staffGroupAmount$ | async"
       iconSet="group_add"
       (edit)="openDialogGroup('edit', $event)"
       (delete)="showConfirmDialog($event)"

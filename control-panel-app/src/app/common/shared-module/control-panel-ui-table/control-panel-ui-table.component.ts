@@ -30,10 +30,13 @@ export class ControlPanelUiTableComponent implements OnInit {
   @Input() listSortedColumn: string[] = [];
 
   /**
-   * items total amount
+   * items total count
    */
-  @Input() itemAmount: number;
+  @Input() itemCount: number;
 
+  /**
+   * icon set
+   */
   @Input() iconSet: string;
 
   /**
@@ -90,6 +93,14 @@ export class ControlPanelUiTableComponent implements OnInit {
    */
   @Output() pageChanges: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
 
+  /**
+   * constructor
+   * @param translateService
+   * @param cd
+   * @param point
+   * @param injector
+   * @param icon
+   */
   constructor(public translateService: TranslateService,
               private cd: ChangeDetectorRef,
               public point: BreakpointService,

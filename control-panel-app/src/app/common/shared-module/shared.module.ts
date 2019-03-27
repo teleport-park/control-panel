@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormModule } from '../form/form.module';
 import { AddSimpleEntityDialogComponent } from './dialogs/add-simple-entity-dialog/add-simple-entity-dialog.component';
 import { ControlPanelUiActionToolbarComponent } from './control-panel-ui-action-toolbar/control-panel-ui-action-toolbar.component';
+import { ControlPanelUiWidgetComponent } from './control-panel-ui-widget/control-panel-ui-widget.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ControlPanelUiActionToolbarComponent } from './control-panel-ui-action-
     AddOrEditEntityDialogComponent,
     AddGroupDialogComponent,
     AddSimpleEntityDialogComponent,
-    ControlPanelUiActionToolbarComponent
+    ControlPanelUiActionToolbarComponent,
+    ControlPanelUiWidgetComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +47,8 @@ import { ControlPanelUiActionToolbarComponent } from './control-panel-ui-action-
     ControlPanelUiSelectionComponent,
     AddOrEditEntityDialogComponent,
     AddGroupDialogComponent,
-    ControlPanelUiActionToolbarComponent
+    ControlPanelUiActionToolbarComponent,
+    ControlPanelUiWidgetComponent
   ]
 })
 export class SharedModule {

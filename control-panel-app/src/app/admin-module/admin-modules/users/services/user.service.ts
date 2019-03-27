@@ -19,7 +19,7 @@ export class UserService implements OnDestroy {
    */
   users$: BehaviorSubject<User[]> = new BehaviorSubject(null);
 
-  userAmount$: Observable<number>;
+  userCount$: Observable<number>;
 
   /**
    * constructor
@@ -30,8 +30,8 @@ export class UserService implements OnDestroy {
   constructor(private http: HttpClient, private loaderService: LoaderService, private translateService: TranslateService) {
   }
 
-  getUsersAmount(): void {
-    this.userAmount$ = this.http.get(`${UserService.USER_API}totalpages/1`).pipe(
+  getUsersCount(): void {
+    this.userCount$ = this.http.get(`${UserService.USER_API}totalpages/1`).pipe(
       map((result: number) => result)
     );
   }

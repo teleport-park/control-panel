@@ -1,3 +1,17 @@
-<p>
-  dashboard works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+    <control-panel-ui-widget>
+      <div widgetHeader>
+        <h4>Active users</h4>
+      </div>
+      <div widgetContent>
+        <p>Active users count: {{(service.userCount$ | async)}}</p>
+      </div>
+      <div widgetFooter>Footer should be here</div>
+    </control-panel-ui-widget>
+  </div>
+  </div>
+</div>
+
+

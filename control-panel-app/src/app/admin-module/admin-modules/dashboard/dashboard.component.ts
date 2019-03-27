@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { DashboardService } from './services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,11 +9,10 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  TITLE = 'ADMIN_MENU_DASHBOARD';
-
-  constructor() { }
+  constructor(public service: DashboardService) { }
 
   ngOnInit() {
+    this.service.getUserCount();
   }
 
 }
