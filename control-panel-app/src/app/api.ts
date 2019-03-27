@@ -1,4 +1,4 @@
-export const API: {[key: string]: string} = {
+export const API: {[key: string]: any} = {
   // users
   USERS: 'api/users/',
   // staff
@@ -6,5 +6,10 @@ export const API: {[key: string]: string} = {
   // groups
   GROUPS: 'api/staffgroups',
   // permissions
-  PERMISSIONS: 'api/permissions'
+  PERMISSIONS: 'api/permissions',
+  // paging params
+  paging: {
+    page: 'pageNumber=',
+    size: 'pageSize='
+  }
 };

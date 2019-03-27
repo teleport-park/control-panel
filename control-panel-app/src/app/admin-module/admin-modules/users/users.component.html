@@ -45,6 +45,7 @@
           [simpleDataColumn]="columnWithData"
           [listSortedColumn]="listSortedColumn.value"
           [itemCount]="(userService.userCount$ | async)"
+          [paginatorInit]="userService.usersPaginationState"
           iconSet="person_add"
           (edit)="openDialog('edit', $event)"
           (delete)="openDialog('delete', $event)"

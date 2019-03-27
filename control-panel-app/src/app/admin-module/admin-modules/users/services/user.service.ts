@@ -7,18 +7,56 @@ import { filter, finalize, map } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 import * as moment from 'moment';
 import { TranslateService } from '../../../../common/translations-module';
+import { PageEvent } from '@angular/material';
 
 
 @Injectable()
 export class UserService implements OnDestroy {
 
+  /**
+   * user api
+   */
   static readonly USER_API: string = `${environment.origin}${environment.api.USERS}`;
+
+  /**
+   * paging api
+   */
+  static readonly PAGING: any = environment.api.paging;
+
+  /**
+   * user pagination state
+   */
+  private _usersPaginationState: PageEvent = {
+    pageSize: 50,
+    pageIndex: 0
+  } as PageEvent;
+
+  /**
+   * set user pagination state
+   * @param data
+   */
+  set usersPaginationState(data: PageEvent) {
+    if (data) {
+      this._usersPaginationState = data;
+      this.getUsers(this._usersPaginationState.pageSize, this._usersPaginationState.pageIndex + 1);
+    }
+  }
+
+  /**
+   * get user pagination state
+   */
+  get usersPaginationState(): PageEvent {
+    return this._usersPaginationState;
+  }
 
   /**
    * users subject
    */
   users$: BehaviorSubject<User[]> = new BehaviorSubject(null);
 
+  /**
+   * user count
+   */
   userCount$: Observable<number>;
 
   /**
@@ -41,7 +79,8 @@ export class UserService implements OnDestroy {
    */
   getUsers(pageSize: number = 50, pageNumber: number = 1): void {
     this.loaderService.dispatchShowLoader(true);
-    this.http.get<User[]>(`${UserService.USER_API}?pageSize=${pageSize}&pageNumber=${pageNumber}`)
+    this.http.get<User[]>(
+      `${UserService.USER_API}?${UserService.PAGING.size}${pageSize}&${UserService.PAGING.page}${pageNumber}`)
       .pipe(filter(data => !!data), finalize(() => {
         this.loaderService.dispatchShowLoader(false);
       }))
@@ -79,7 +118,7 @@ export class UserService implements OnDestroy {
   saveUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
     this.http.post(`${UserService.USER_API}`, user).subscribe(() => {
-      this.getUsers();
+      this.getUsers(this._usersPaginationState.pageSize, this._usersPaginationState.pageIndex + 1);
     });
   }
 
@@ -89,7 +128,7 @@ export class UserService implements OnDestroy {
   editUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
     this.http.put(`${UserService.USER_API}${user.id}`, user).subscribe(() => {
-      this.getUsers();
+      this.getUsers(this._usersPaginationState.pageSize, this._usersPaginationState.pageIndex + 1);
     });
   }
 
@@ -99,7 +138,7 @@ export class UserService implements OnDestroy {
   removeUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
     this.http.delete(`${UserService.USER_API}${user.id}`).subscribe(() => {
-      this.getUsers();
+      this.getUsers(this._usersPaginationState.pageSize, this._usersPaginationState.pageIndex + 1);
     });
   }
 

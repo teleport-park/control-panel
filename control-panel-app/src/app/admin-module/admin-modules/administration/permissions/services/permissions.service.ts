@@ -17,14 +17,19 @@ export class PermissionsService {
   static readonly PERMISSIONS_API: string = `${environment.origin}${environment.api.PERMISSIONS}`;
 
   /**
+   * paging api
+   */
+  static readonly PAGING: any = environment.api.paging;
+
+  /**
    * permissions
    */
   permissions$: BehaviorSubject<Permission[]> = new BehaviorSubject(null);
 
   /**
-   * Permission amount
+   * Permission count
    */
-  permissionAmount$: Observable<number>;
+  permissionCount$: Observable<number>;
 
   /**
    * constructor
@@ -42,8 +47,8 @@ export class PermissionsService {
   /**
    * get permission amount
    */
-  getPermissionAmount(): void {
-    this.permissionAmount$ = this.http.get(`${PermissionsService.PERMISSIONS_API}/totalpages/1`).pipe(
+  getPermissionCount(): void {
+    this.permissionCount$ = this.http.get(`${PermissionsService.PERMISSIONS_API}/totalpages/1`).pipe(
       map((result: number) => result)
     );
   }
@@ -53,8 +58,9 @@ export class PermissionsService {
    */
   getPermissions(pageSize: number = 50, pageNumber: number = 1) {
     this.loader.dispatchShowLoader(true);
-    this.getPermissionAmount();
-    this.http.get(`${PermissionsService.PERMISSIONS_API}?pageSize=${pageSize}&pageNumber=${pageNumber}`)
+    this.getPermissionCount();
+    this.http.get(
+      `${PermissionsService.PERMISSIONS_API}?${PermissionsService.PAGING.size}${pageSize}&${PermissionsService.PAGING.page}${pageNumber}`)
       .pipe(finalize(() => this.loader.dispatchShowLoader(false)))
       .subscribe((result: Permission[]) => {
         this.permissions$.next(result);

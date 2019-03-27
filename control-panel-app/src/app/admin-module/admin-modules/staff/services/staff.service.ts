@@ -6,7 +6,7 @@ import { environment } from '../../../../../environments/environment';
 import { finalize, map } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 import { StaffMemberResponse } from '../../../../models/staff-member-response.model';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, PageEvent } from '@angular/material';
 import { TranslateService } from '../../../../common/translations-module';
 
 @Injectable()
@@ -28,6 +28,11 @@ export class StaffService {
   static readonly PERMISSIONS_API: string = `${environment.origin}${environment.api.PERMISSIONS}`;
 
   /**
+   * paging api
+   */
+  static readonly PAGING: any = environment.api.paging;
+
+  /**
    * staff members
    */
   staffMembers$: BehaviorSubject<StaffMemberResponse[]> = new BehaviorSubject(null);
@@ -42,16 +47,72 @@ export class StaffService {
    */
   permissions$: BehaviorSubject<Permission[]> = new BehaviorSubject(null);
 
-  staffAmount$: Observable<number>;
+  /**
+   * staff count
+   */
+  staffCount$: Observable<number>;
 
-  staffGroupAmount$: Observable<number>;
-
-  permissionAmount$: Observable<number>;
+  /**
+   * staff count
+   */
+  staffGroupCount$: Observable<number>;
 
   /**
    * group
    */
   _group: Group[];
+
+  /**
+   * group pagination state
+   */
+  _groupPaginationState: PageEvent = {
+    pageIndex: 0,
+    pageSize: 50
+  } as PageEvent;
+
+  /**
+   * set group pagination
+   * @param data
+   */
+  set groupPaginationState(data: PageEvent) {
+    if (data) {
+      this._groupPaginationState = data;
+      this.getGroups(this._groupPaginationState.pageSize, this._groupPaginationState.pageIndex + 1);
+    }
+  }
+
+  /**
+   * get group pagination state
+   */
+  get groupPaginationState(): PageEvent {
+    return this._groupPaginationState;
+  }
+
+  /**
+   * staff pagination state
+   */
+  _staffPaginationState: PageEvent = {
+    pageIndex: 0,
+    pageSize: 50
+  } as PageEvent;
+
+  /**
+   * set staff pagination state
+   * @param data
+   */
+  set staffPaginationState(data: PageEvent) {
+    if (data) {
+      this._staffPaginationState = data;
+      this.getStaffMember(this._staffPaginationState.pageSize, this._staffPaginationState.pageIndex + 1);
+    }
+  }
+
+  /**
+   * get staff pagination state
+   */
+  get staffPaginationState(): PageEvent {
+    return this._staffPaginationState;
+  }
 
   /**
    * Constructor
@@ -70,7 +131,7 @@ export class StaffService {
    * get staff member amount
    */
   getStaffMembersAmount(): void {
-    this.staffAmount$ = this.http.get(`${StaffService.STAFF_API}/totalpages/1`).pipe(
+    this.staffCount$ = this.http.get(`${StaffService.STAFF_API}/totalpages/1`).pipe(
       map((result: number) => result)
     );
   }
@@ -79,7 +140,7 @@ export class StaffService {
    * get staff group amount
    */
   getStaffGroupAmount(): void {
-    this.staffGroupAmount$ = this.http.get(`${StaffService.STAFF_GROUP_API}/totalpages/1`).pipe(
+    this.staffGroupCount$ = this.http.get(`${StaffService.STAFF_GROUP_API}/totalpages/1`).pipe(
       map((result: number) => result)
     );
   }
@@ -88,7 +149,8 @@ export class StaffService {
    * get staff members
    */
   getStaffMember(pageSize: number = 50, pageNumber: number = 1): void {
-    this.http.get(`${StaffService.STAFF_API}?pageSize=${pageSize}&pageNumber=${pageNumber}`)
+    this.http.get(
+      `${StaffService.STAFF_API}?${StaffService.PAGING.size}${pageSize}&${StaffService.PAGING.page}${pageNumber}`)
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
@@ -109,7 +171,7 @@ export class StaffService {
   editStaffMember(staffMember: StaffMember): void {
     this.loader.dispatchShowLoader(true);
     this.http.put(`${StaffService.STAFF_API}/${staffMember.id}`, staffMember).subscribe(() => {
-      this.getStaffMember();
+      this.getStaffMember(this._staffPaginationState.pageSize, this._staffPaginationState.pageIndex + 1);
     });
   }
 
@@ -119,9 +181,8 @@ export class StaffService {
    */
   addStaffMember(staffMember: StaffMember): void {
     this.loader.dispatchShowLoader(true);
-    this.http.post(`${StaffService.STAFF_API}`, staffMember).subscribe((r) => {
-      console.log(r);
-      this.getStaffMember();
+    this.http.post(`${StaffService.STAFF_API}`, staffMember).subscribe(() => {
+      this.getStaffMember(this._staffPaginationState.pageSize, this._staffPaginationState.pageIndex + 1);
     });
   }
 
@@ -132,7 +193,7 @@ export class StaffService {
   removeStaffMember(staffMember: StaffMember): void {
     this.loader.dispatchShowLoader(true);
     this.http.delete(`${StaffService.STAFF_API}/${staffMember.id}`).subscribe(() => {
-      this.getStaffMember();
+      this.getStaffMember(this._staffPaginationState.pageSize, this._staffPaginationState.pageIndex + 1);
     });
   }
 
@@ -140,7 +201,8 @@ export class StaffService {
    * get groups
    */
   getGroups(pageSize: number = 50, pageNumber: number = 1): void {
-    this.http.get(`${StaffService.STAFF_GROUP_API}?pageSize=${pageSize}&pageNumber=${pageNumber}`)
+    this.http.get(
+      `${StaffService.STAFF_GROUP_API}?${StaffService.PAGING.size}${pageSize}&${StaffService.PAGING.page}${pageNumber}`)
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
@@ -160,7 +222,7 @@ export class StaffService {
    */
   addGroup(group: Group): void {
     this.http.post(`${StaffService.STAFF_GROUP_API}`, group).subscribe((result) => {
-      this.getGroups();
+      this.getGroups(this._groupPaginationState.pageSize, this._groupPaginationState.pageIndex + 1);
     });
   }
 
@@ -182,7 +244,7 @@ export class StaffService {
   addPermissionsToGroup(group: Group): void {
     this.http.post(`${StaffService.PERMISSIONS_API}`, {staffGroupId: group.id, permissionIds: group.permissions})
       .subscribe((result) => {
-        this.getGroups();
+        this.getGroups(this._groupPaginationState.pageSize, this._groupPaginationState.pageIndex + 1);
       });
   }
 
@@ -193,7 +255,7 @@ export class StaffService {
   deleteGroup(group: Group): void {
     this.http.delete(`${StaffService.STAFF_GROUP_API}/${group.id}`).subscribe((result: boolean) => {
       if (result) {
-        this.getGroups();
+        this.getGroups(this._groupPaginationState.pageSize, this._groupPaginationState.pageIndex + 1);
         return;
       }
       this.showErrorMessage(this.translateService.instant('ADMIN_MENU_STAFF'));
@@ -215,8 +277,8 @@ export class StaffService {
   getPermissions(pageSize: number = 50, pageNumber: number = 1) {
     this.http.get(`${StaffService.PERMISSIONS_API}?pageSize=${pageSize}&pageNumber=${pageNumber}`)
       .subscribe((result: Permission[]) => {
-        this.getGroups();
-        this.getStaffMember();
+        this.getGroups(this._groupPaginationState.pageSize, this._groupPaginationState.pageIndex + 1);
+        this.getStaffMember(this._staffPaginationState.pageSize, this._staffPaginationState.pageIndex + 1);
         this.permissions$.next(result);
       });
   }

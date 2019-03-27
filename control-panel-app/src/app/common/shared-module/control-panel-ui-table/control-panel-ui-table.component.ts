@@ -50,6 +50,11 @@ export class ControlPanelUiTableComponent implements OnInit {
   }
 
   /**
+   * pagination init state
+   */
+  @Input() paginatorInit: PageEvent;
+
+  /**
    * data source for table
    */
   public dataSource: MatTableDataSource<StaffMember>;

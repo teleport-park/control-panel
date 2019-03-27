@@ -109,7 +109,7 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param event
    */
   pageChangeHandler(event: PageEvent): void {
-    this.service.getStaffMember(event.pageSize, event.pageIndex + 1);
+    this.service.staffPaginationState = event;
   }
 
   ngOnDestroy(): void {

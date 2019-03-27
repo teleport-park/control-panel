@@ -141,7 +141,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param event
    */
   pageChangeHandler(event: PageEvent): void {
-    this.userService.getUsers(event.pageSize, event.pageIndex + 1);
+    this.userService.usersPaginationState = event;
   }
 
   ngOnDestroy(): void {
