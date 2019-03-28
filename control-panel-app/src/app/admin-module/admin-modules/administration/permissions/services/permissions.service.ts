@@ -5,8 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { LoaderService } from '../../../../../services/loader.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, PageEvent } from '@angular/material';
 import { TranslateService } from '../../../../../common/translations-module';
+import { StorageService } from '../../../../../services/storage.service';
 
 @Injectable()
 export class PermissionsService {
@@ -20,6 +21,11 @@ export class PermissionsService {
    * paging api
    */
   static readonly PAGING: any = environment.api.paging;
+
+  /**
+   * storage key
+   */
+  readonly STORAGE_KEY: string = 'PERMISSIONS_PAGINATION';
 
   /**
    * permissions
@@ -37,11 +43,15 @@ export class PermissionsService {
    * @param loader
    * @param toaster
    * @param translateService
+   * @param storage
    */
   constructor(private http: HttpClient,
               private loader: LoaderService,
               private toaster: MatSnackBar,
-              private translateService: TranslateService) {
+              private translateService: TranslateService,
+              public storage: StorageService) {
+    this.getPermissionCount();
+    this.getPermissions();
   }
 
   /**
@@ -56,11 +66,13 @@ export class PermissionsService {
   /**
    * get permissions
    */
-  getPermissions(pageSize: number = 50, pageNumber: number = 1) {
+  getPermissions() {
+    const paginationState = this.storage.getPaginationValue(this.STORAGE_KEY);
     this.loader.dispatchShowLoader(true);
     this.getPermissionCount();
     this.http.get(
-      `${PermissionsService.PERMISSIONS_API}?${PermissionsService.PAGING.size}${pageSize}&${PermissionsService.PAGING.page}${pageNumber}`)
+      `${PermissionsService.PERMISSIONS_API}?` +
+      `${PermissionsService.PAGING.size}${paginationState.pageSize}&${PermissionsService.PAGING.page}${paginationState.pageSize + 1}`)
       .pipe(finalize(() => this.loader.dispatchShowLoader(false)))
       .subscribe((result: Permission[]) => {
         this.permissions$.next(result);
@@ -124,5 +136,14 @@ export class PermissionsService {
         verticalPosition: 'top',
         panelClass: 'toaster-error'
       });
+  }
+
+  /**
+   * change pagination handler
+   * @param event
+   */
+  changePagination(event: PageEvent) {
+    this.storage.setPaginationValue(this.STORAGE_KEY, event);
+    this.getPermissions();
   }
 }

@@ -21,6 +21,7 @@ import { BreakpointService } from '../../../services/breakpoint.service';
   styleUrls: ['./users.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class UsersComponent implements OnInit, OnDestroy {
 
   listSortedColumn: FormControl = new FormControl([]);
@@ -77,10 +78,6 @@ export class UsersComponent implements OnInit, OnDestroy {
    * on init hook
    */
   ngOnInit() {
-    if (!this.userService.users$.getValue()) {
-      this.userService.getUsersCount();
-      this.userService.getUsers();
-    }
     this.quickFilter.valueChanges.pipe(debounceTime(300), takeUntil(this.destroyed$)).subscribe(
       (value: string) => {
         // TODO insert quick filter logic from API
@@ -141,7 +138,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param event
    */
   pageChangeHandler(event: PageEvent): void {
-    this.userService.usersPaginationState = event;
+    this.userService.changePagination(event);
   }
 
   ngOnDestroy(): void {

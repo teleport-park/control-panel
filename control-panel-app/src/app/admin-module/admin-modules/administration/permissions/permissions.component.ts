@@ -29,9 +29,6 @@ export class PermissionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.service.permissions$.getValue()) {
-      this.service.getPermissions();
-    }
   }
 
   /**
@@ -73,7 +70,7 @@ export class PermissionsComponent implements OnInit {
    * @param event
    */
   pageChangeHandler(event: PageEvent): void {
-    this.service.getPermissions(event.pageSize, event.pageIndex + 1);
+    this.service.changePagination(event);
   }
 
 }

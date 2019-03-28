@@ -6,6 +6,7 @@
       [simpleDataColumn]="['name']"
       [data]="(service.permissions$ | async)"
       [itemCount]="(service.permissionCount$ | async)"
+      [paginatorInit]="service.storage.getPaginationValue(service.STORAGE_KEY)"
       iconSet="add"
       (edit)="openDialog('edit', $event)"
       (delete)="showConfirmDialog($event)"

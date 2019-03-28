@@ -67,7 +67,7 @@ export class GroupsComponent implements OnInit, OnDestroy {
    * @param event
    */
   pageChangeHandler(event: PageEvent): void {
-    this.service.groupPaginationState = event;
+    this.service.changeGroupPagination(event);
   }
 
   ngOnDestroy(): void {

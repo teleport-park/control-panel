@@ -8,6 +8,7 @@ import { LoaderService } from '../../../../services/loader.service';
 import { StaffMemberResponse } from '../../../../models/staff-member-response.model';
 import { MatSnackBar, PageEvent } from '@angular/material';
 import { TranslateService } from '../../../../common/translations-module';
+import { StorageService } from '../../../../services/storage.service';
 
 @Injectable()
 export class StaffService {
@@ -31,6 +32,16 @@ export class StaffService {
    * paging api
    */
   static readonly PAGING: any = environment.api.paging;
+
+  /**
+   * staff storage key
+   */
+  public readonly STAFF_STORAGE_KEY: string = 'STAFF_PAGINATION';
+
+  /**
+   * group storage key
+   */
+  public readonly GROUP_STORAGE_KEY: string = 'GROUP_PAGINATION';
 
   /**
    * staff members
@@ -63,68 +74,18 @@ export class StaffService {
   _group: Group[];
 
   /**
-   * group pagination state
-   */
-  _groupPaginationState: PageEvent = {
-    pageIndex: 0,
-    pageSize: 50
-  } as PageEvent;
-
-  /**
-   * set group pagination
-   * @param data
-   */
-  set groupPaginationState(data: PageEvent) {
-    if (data) {
-      this._groupPaginationState = data;
-      this.getGroups(this._groupPaginationState.pageSize, this._groupPaginationState.pageIndex + 1);
-    }
-  }
-
-  /**
-   * get group pagination state
-   */
-  get groupPaginationState(): PageEvent {
-    return this._groupPaginationState;
-  }
-
-  /**
-   * staff pagination state
-   */
-  _staffPaginationState: PageEvent = {
-    pageIndex: 0,
-    pageSize: 50
-  } as PageEvent;
-
-  /**
-   * set staff pagination state
-   * @param data
-   */
-  set staffPaginationState(data: PageEvent) {
-    if (data) {
-      this._staffPaginationState = data;
-      this.getStaffMember(this._staffPaginationState.pageSize, this._staffPaginationState.pageIndex + 1);
-    }
-  }
-
-  /**
-   * get staff pagination state
-   */
-  get staffPaginationState(): PageEvent {
-    return this._staffPaginationState;
-  }
-
-  /**
    * Constructor
    * @param http
    * @param loader
    * @param toaster
    * @param translateService
+   * @param storage
    */
   constructor(private http: HttpClient,
               private loader: LoaderService,
               private toaster: MatSnackBar,
-              private translateService: TranslateService) {
+              private translateService: TranslateService,
+              public storage: StorageService) {
   }
 
   /**
@@ -148,9 +109,11 @@ export class StaffService {
   /**
    * get staff members
    */
-  getStaffMember(pageSize: number = 50, pageNumber: number = 1): void {
+  getStaffMember(): void {
+    const paginationState = this.storage.getPaginationValue(this.STAFF_STORAGE_KEY);
     this.http.get(
-      `${StaffService.STAFF_API}?${StaffService.PAGING.size}${pageSize}&${StaffService.PAGING.page}${pageNumber}`)
+      `${StaffService.STAFF_API}` +
+      `?${StaffService.PAGING.size}${paginationState.pageSize}&${StaffService.PAGING.page}${paginationState.pageIndex + 1}`)
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
@@ -171,7 +134,7 @@ export class StaffService {
   editStaffMember(staffMember: StaffMember): void {
     this.loader.dispatchShowLoader(true);
     this.http.put(`${StaffService.STAFF_API}/${staffMember.id}`, staffMember).subscribe(() => {
-      this.getStaffMember(this._staffPaginationState.pageSize, this._staffPaginationState.pageIndex + 1);
+      this.getStaffMember();
     });
   }
 
@@ -182,7 +145,7 @@ export class StaffService {
   addStaffMember(staffMember: StaffMember): void {
     this.loader.dispatchShowLoader(true);
     this.http.post(`${StaffService.STAFF_API}`, staffMember).subscribe(() => {
-      this.getStaffMember(this._staffPaginationState.pageSize, this._staffPaginationState.pageIndex + 1);
+      this.getStaffMember();
     });
   }
 
@@ -193,16 +156,18 @@ export class StaffService {
   removeStaffMember(staffMember: StaffMember): void {
     this.loader.dispatchShowLoader(true);
     this.http.delete(`${StaffService.STAFF_API}/${staffMember.id}`).subscribe(() => {
-      this.getStaffMember(this._staffPaginationState.pageSize, this._staffPaginationState.pageIndex + 1);
+      this.getStaffMember();
     });
   }
 
   /**
    * get groups
    */
-  getGroups(pageSize: number = 50, pageNumber: number = 1): void {
+  getGroups(): void {
+    const paginationState = this.storage.getPaginationValue(this.GROUP_STORAGE_KEY);
     this.http.get(
-      `${StaffService.STAFF_GROUP_API}?${StaffService.PAGING.size}${pageSize}&${StaffService.PAGING.page}${pageNumber}`)
+      `${StaffService.STAFF_GROUP_API}?` +
+      `${StaffService.PAGING.size}${paginationState.pageSize}&${StaffService.PAGING.page}${paginationState.pageIndex + 1}`)
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
@@ -222,7 +187,7 @@ export class StaffService {
    */
   addGroup(group: Group): void {
     this.http.post(`${StaffService.STAFF_GROUP_API}`, group).subscribe((result) => {
-      this.getGroups(this._groupPaginationState.pageSize, this._groupPaginationState.pageIndex + 1);
+      this.getGroups();
     });
   }
 
@@ -244,7 +209,7 @@ export class StaffService {
   addPermissionsToGroup(group: Group): void {
     this.http.post(`${StaffService.PERMISSIONS_API}`, {staffGroupId: group.id, permissionIds: group.permissions})
       .subscribe((result) => {
-        this.getGroups(this._groupPaginationState.pageSize, this._groupPaginationState.pageIndex + 1);
+        this.getGroups();
       });
   }
 
@@ -255,7 +220,7 @@ export class StaffService {
   deleteGroup(group: Group): void {
     this.http.delete(`${StaffService.STAFF_GROUP_API}/${group.id}`).subscribe((result: boolean) => {
       if (result) {
-        this.getGroups(this._groupPaginationState.pageSize, this._groupPaginationState.pageIndex + 1);
+        this.getGroups();
         return;
       }
       this.showErrorMessage(this.translateService.instant('ADMIN_MENU_STAFF'));
@@ -277,12 +242,16 @@ export class StaffService {
   getPermissions(pageSize: number = 50, pageNumber: number = 1) {
     this.http.get(`${StaffService.PERMISSIONS_API}?pageSize=${pageSize}&pageNumber=${pageNumber}`)
       .subscribe((result: Permission[]) => {
-        this.getGroups(this._groupPaginationState.pageSize, this._groupPaginationState.pageIndex + 1);
-        this.getStaffMember(this._staffPaginationState.pageSize, this._staffPaginationState.pageIndex + 1);
+        this.getGroups();
+        this.getStaffMember();
         this.permissions$.next(result);
       });
   }
 
+  /**
+   * show error message
+   * @param param
+   */
   private showErrorMessage(param: string) {
     this.toaster.open(
       this.translateService.instant('CANNOT_DELETE_DEPENDED_FIELD_ERROR_MESSAGE', [param]),
@@ -293,5 +262,23 @@ export class StaffService {
       verticalPosition: 'top',
       panelClass: 'toaster-error'
     });
+  }
+
+  /**
+   * change staff pagination handler
+   * @param event
+   */
+  changeStaffPagination(event: PageEvent): void {
+    this.storage.setPaginationValue(this.STAFF_STORAGE_KEY, event);
+    this.getStaffMember();
+  }
+
+  /**
+   * change group pagination handler
+   * @param event
+   */
+  changeGroupPagination(event: PageEvent): void {
+    this.storage.setPaginationValue(this.GROUP_STORAGE_KEY, event);
+    this.getGroups();
   }
 }

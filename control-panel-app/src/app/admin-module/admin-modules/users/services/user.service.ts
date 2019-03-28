@@ -30,11 +30,6 @@ export class UserService implements OnDestroy {
   public readonly STORAGE_KEY: string = 'USER_PAGINATION';
 
   /**
-   * initial paginator state
-   */
-  paginationInit: PageEvent;
-
-  /**
    * users subject
    */
   users$: BehaviorSubject<User[]> = new BehaviorSubject(null);
@@ -55,8 +50,6 @@ export class UserService implements OnDestroy {
               private loaderService: LoaderService,
               private translateService: TranslateService,
               public storage: StorageService) {
-    // set initial value for paginator
-    this.paginationInit = this.storage.getPaginationValue(this.STORAGE_KEY);
     this.getUsersCount();
     this.getUsers();
   }
