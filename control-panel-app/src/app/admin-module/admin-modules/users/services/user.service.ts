@@ -8,6 +8,7 @@ import { LoaderService } from '../../../../services/loader.service';
 import * as moment from 'moment';
 import { TranslateService } from '../../../../common/translations-module';
 import { PageEvent } from '@angular/material';
+import { StorageService } from '../../../../services/storage.service';
 
 
 @Injectable()
@@ -24,30 +25,14 @@ export class UserService implements OnDestroy {
   static readonly PAGING: any = environment.api.paging;
 
   /**
-   * user pagination state
+   * storage key
    */
-  private _usersPaginationState: PageEvent = {
-    pageSize: 50,
-    pageIndex: 0
-  } as PageEvent;
+  public readonly STORAGE_KEY: string = 'USER_PAGINATION';
 
   /**
-   * set user pagination state
-   * @param data
+   * initial paginator state
    */
-  set usersPaginationState(data: PageEvent) {
-    if (data) {
-      this._usersPaginationState = data;
-      this.getUsers(this._usersPaginationState.pageSize, this._usersPaginationState.pageIndex + 1);
-    }
-  }
-
-  /**
-   * get user pagination state
-   */
-  get usersPaginationState(): PageEvent {
-    return this._usersPaginationState;
-  }
+  paginationInit: PageEvent;
 
   /**
    * users subject
@@ -64,10 +49,30 @@ export class UserService implements OnDestroy {
    * @param http
    * @param loaderService
    * @param translateService
+   * @param storage
    */
-  constructor(private http: HttpClient, private loaderService: LoaderService, private translateService: TranslateService) {
+  constructor(private http: HttpClient,
+              private loaderService: LoaderService,
+              private translateService: TranslateService,
+              public storage: StorageService) {
+    // set initial value for paginator
+    this.paginationInit = this.storage.getPaginationValue(this.STORAGE_KEY);
+    this.getUsersCount();
+    this.getUsers();
   }
 
+  /**
+   * change pagination handler
+   * @param event
+   */
+  changePagination(event: PageEvent): void {
+    this.storage.setPaginationValue(this.STORAGE_KEY, event);
+    this.getUsers();
+  }
+
+  /**
+   * get user count
+   */
   getUsersCount(): void {
     this.userCount$ = this.http.get(`${UserService.USER_API}totalpages/1`).pipe(
       map((result: number) => result)
@@ -77,10 +82,11 @@ export class UserService implements OnDestroy {
   /**
    * get users
    */
-  getUsers(pageSize: number = 50, pageNumber: number = 1): void {
+  getUsers(): void {
+    const page = this.storage.getPaginationValue(this.STORAGE_KEY);
     this.loaderService.dispatchShowLoader(true);
     this.http.get<User[]>(
-      `${UserService.USER_API}?${UserService.PAGING.size}${pageSize}&${UserService.PAGING.page}${pageNumber}`)
+      `${UserService.USER_API}?${UserService.PAGING.size}${page.pageSize}&${UserService.PAGING.page}${page.pageIndex + 1}`)
       .pipe(filter(data => !!data), finalize(() => {
         this.loaderService.dispatchShowLoader(false);
       }))
@@ -118,7 +124,7 @@ export class UserService implements OnDestroy {
   saveUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
     this.http.post(`${UserService.USER_API}`, user).subscribe(() => {
-      this.getUsers(this._usersPaginationState.pageSize, this._usersPaginationState.pageIndex + 1);
+      this.getUsers();
     });
   }
 
@@ -128,7 +134,7 @@ export class UserService implements OnDestroy {
   editUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
     this.http.put(`${UserService.USER_API}${user.id}`, user).subscribe(() => {
-      this.getUsers(this._usersPaginationState.pageSize, this._usersPaginationState.pageIndex + 1);
+      this.getUsers();
     });
   }
 
@@ -138,7 +144,8 @@ export class UserService implements OnDestroy {
   removeUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
     this.http.delete(`${UserService.USER_API}${user.id}`).subscribe(() => {
-      this.getUsers(this._usersPaginationState.pageSize, this._usersPaginationState.pageIndex + 1);
+      this.getUsersCount();
+      this.getUsers();
     });
   }
 
