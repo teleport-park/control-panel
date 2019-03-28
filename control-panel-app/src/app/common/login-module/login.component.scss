@@ -5,6 +5,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    .logo-container {
+      padding: 10px 30px;
+      background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(255,255,255,1) 100%);
+      margin-bottom: 30px;
+      margin-top: -70px;
+    }
     .login-form {
       display: flex;
       flex-direction: column;
