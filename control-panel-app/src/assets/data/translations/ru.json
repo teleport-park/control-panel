@@ -54,7 +54,7 @@
   "ADMIN_MENU_ADMINISTRATION": "Администрирование",
   "CANNOT_DELETE_DEPENDED_FIELD_ERROR_MESSAGE": "Запись не удалена, проверьте раздел \"{0}\"",
   "GROUP_LIST": "Список групп",
-  "ADMIN_MENU_KEYCHAIN": "Хранилище ключей",
+  "ADMIN_MENU_KEYCHAIN": "Реестр ключей",
   "ADMIN_MENU_CARDS": "Карты",
   "PERMISSIONS_LIST": "Список разрешений"
 }
