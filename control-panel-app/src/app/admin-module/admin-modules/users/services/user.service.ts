@@ -9,6 +9,7 @@ import * as moment from 'moment';
 import { TranslateService } from '../../../../common/translations-module';
 import { PageEvent } from '@angular/material';
 import { StorageService } from '../../../../services/storage.service';
+import { DefaultPagination } from '../../../../models/default-pagination';
 
 
 @Injectable()
@@ -59,7 +60,7 @@ export class UserService implements OnDestroy {
    * @param event
    */
   changePagination(event: PageEvent): void {
-    this.storage.setPaginationValue(this.STORAGE_KEY, event);
+    this.storage.setValue(this.STORAGE_KEY, event);
     this.getUsers();
   }
 
@@ -76,7 +77,7 @@ export class UserService implements OnDestroy {
    * get users
    */
   getUsers(): void {
-    const page = this.storage.getPaginationValue(this.STORAGE_KEY);
+    const page = this.storage.getValue(this.STORAGE_KEY) || new DefaultPagination();
     this.loaderService.dispatchShowLoader(true);
     this.http.get<User[]>(
       `${UserService.USER_API}?${UserService.PAGING.size}${page.pageSize}&${UserService.PAGING.page}${page.pageIndex + 1}`)

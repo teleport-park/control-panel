@@ -12,6 +12,6 @@ export class AppComponent {
   constructor(public translateService: TranslateService,
               public loaderService: LoaderService,
               private storage: StorageService) {
-    this.translateService.getTranslations(storage.locale);
+    this.translateService.getTranslations(storage.getValue('locale'));
   }
 }

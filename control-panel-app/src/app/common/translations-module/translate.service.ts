@@ -16,7 +16,7 @@ export class TranslateService {
   /**
    * locale
    */
-  locale: BehaviorSubject<string> = new BehaviorSubject(this.storage.locale);
+  locale: BehaviorSubject<string> = new BehaviorSubject(this.storage.getValue('locale'));
 
   /**
    * translations loaded flag
@@ -50,7 +50,7 @@ export class TranslateService {
         this._translations = result;
         this.locale.next(locale);
         this.translationsLoaded = true;
-        this.storage.setLocale(locale);
+        this.storage.setValue('locale', locale);
         this.loaderService.dispatchShowLoader(false);
       }
     );

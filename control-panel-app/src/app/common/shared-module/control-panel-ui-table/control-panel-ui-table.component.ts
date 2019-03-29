@@ -6,6 +6,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { PropertyMap } from '../../../admin-module/utils/property-map';
 import { IconService } from '../../../services/icon.service';
+import { StorageService } from '../../../services/storage.service';
+import { DefaultPagination } from '../../../models/default-pagination';
 
 @Component({
   selector: 'control-panel-ui-table',
@@ -49,10 +51,18 @@ export class ControlPanelUiTableComponent implements OnInit {
     }
   }
 
+  _paginatorInit: PageEvent;
+
   /**
    * pagination init state
    */
-  @Input() paginatorInit: PageEvent;
+  @Input() set paginatorInit(data: PageEvent) {
+    if (data) {
+      this._paginatorInit = data;
+    } else {
+      this._paginatorInit = new DefaultPagination();
+    }
+  }
 
   /**
    * data source for table
@@ -105,12 +115,14 @@ export class ControlPanelUiTableComponent implements OnInit {
    * @param point
    * @param injector
    * @param icon
+   * @param storage
    */
   constructor(public translateService: TranslateService,
               private cd: ChangeDetectorRef,
               public point: BreakpointService,
               public injector: Injector,
-              public icon: IconService) {
+              public icon: IconService,
+              private storage: StorageService) {
   }
 
   ngOnInit() {

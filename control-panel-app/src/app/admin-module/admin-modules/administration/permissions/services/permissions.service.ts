@@ -8,6 +8,7 @@ import { LoaderService } from '../../../../../services/loader.service';
 import { MatSnackBar, PageEvent } from '@angular/material';
 import { TranslateService } from '../../../../../common/translations-module';
 import { StorageService } from '../../../../../services/storage.service';
+import { DefaultPagination } from '../../../../../models/default-pagination';
 
 @Injectable()
 export class PermissionsService {
@@ -67,12 +68,12 @@ export class PermissionsService {
    * get permissions
    */
   getPermissions() {
-    const paginationState = this.storage.getPaginationValue(this.STORAGE_KEY);
+    const paginationState = this.storage.getValue(this.STORAGE_KEY) || new DefaultPagination();
     this.loader.dispatchShowLoader(true);
     this.getPermissionCount();
     this.http.get(
       `${PermissionsService.PERMISSIONS_API}?` +
-      `${PermissionsService.PAGING.size}${paginationState.pageSize}&${PermissionsService.PAGING.page}${paginationState.pageSize + 1}`)
+      `${PermissionsService.PAGING.size}${paginationState.pageSize}&${PermissionsService.PAGING.page}${paginationState.pageIndex + 1}`)
       .pipe(finalize(() => this.loader.dispatchShowLoader(false)))
       .subscribe((result: Permission[]) => {
         this.permissions$.next(result);
@@ -143,7 +144,7 @@ export class PermissionsService {
    * @param event
    */
   changePagination(event: PageEvent) {
-    this.storage.setPaginationValue(this.STORAGE_KEY, event);
+    this.storage.setValue(this.STORAGE_KEY, event);
     this.getPermissions();
   }
 }

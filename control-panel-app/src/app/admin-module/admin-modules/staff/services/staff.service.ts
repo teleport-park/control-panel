@@ -9,6 +9,7 @@ import { StaffMemberResponse } from '../../../../models/staff-member-response.mo
 import { MatSnackBar, PageEvent } from '@angular/material';
 import { TranslateService } from '../../../../common/translations-module';
 import { StorageService } from '../../../../services/storage.service';
+import { DefaultPagination } from '../../../../models/default-pagination';
 
 @Injectable()
 export class StaffService {
@@ -110,7 +111,7 @@ export class StaffService {
    * get staff members
    */
   getStaffMember(): void {
-    const paginationState = this.storage.getPaginationValue(this.STAFF_STORAGE_KEY);
+    const paginationState = this.storage.getValue(this.STAFF_STORAGE_KEY) || new DefaultPagination();
     this.http.get(
       `${StaffService.STAFF_API}` +
       `?${StaffService.PAGING.size}${paginationState.pageSize}&${StaffService.PAGING.page}${paginationState.pageIndex + 1}`)
@@ -164,7 +165,7 @@ export class StaffService {
    * get groups
    */
   getGroups(): void {
-    const paginationState = this.storage.getPaginationValue(this.GROUP_STORAGE_KEY);
+    const paginationState = this.storage.getValue(this.GROUP_STORAGE_KEY) || new DefaultPagination();
     this.http.get(
       `${StaffService.STAFF_GROUP_API}?` +
       `${StaffService.PAGING.size}${paginationState.pageSize}&${StaffService.PAGING.page}${paginationState.pageIndex + 1}`)
@@ -257,11 +258,11 @@ export class StaffService {
       this.translateService.instant('CANNOT_DELETE_DEPENDED_FIELD_ERROR_MESSAGE', [param]),
       null,
       {
-      duration: 5000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      panelClass: 'toaster-error'
-    });
+        duration: 5000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        panelClass: 'toaster-error'
+      });
   }
 
   /**
@@ -269,7 +270,7 @@ export class StaffService {
    * @param event
    */
   changeStaffPagination(event: PageEvent): void {
-    this.storage.setPaginationValue(this.STAFF_STORAGE_KEY, event);
+    this.storage.setValue(this.STAFF_STORAGE_KEY, event);
     this.getStaffMember();
   }
 
@@ -278,7 +279,7 @@ export class StaffService {
    * @param event
    */
   changeGroupPagination(event: PageEvent): void {
-    this.storage.setPaginationValue(this.GROUP_STORAGE_KEY, event);
+    this.storage.setValue(this.GROUP_STORAGE_KEY, event);
     this.getGroups();
   }
 }

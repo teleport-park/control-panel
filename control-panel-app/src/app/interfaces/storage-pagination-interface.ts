@@ -1,21 +1,19 @@
-import { PageEvent } from '@angular/material';
-
 export interface StoragePaginationInterface {
   /**
-   * cashed user pagination state value
+   * cashed state value
    */
-  cache: Map<string, PageEvent>;
+  cache: Map<string, any>;
 
   /**
    * set value
    * @param key
    * @param value
    */
-  setPaginationValue(key: string, value: PageEvent): void;
+  setValue(key: string, value: any): void;
 
   /**
-   * get pagination value
+   * get  value
    * @param key
    */
-  getPaginationValue(key: string): PageEvent;
+  getValue(key: string): any;
 }

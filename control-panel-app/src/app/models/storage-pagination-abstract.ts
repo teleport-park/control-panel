@@ -1,4 +1,3 @@
-import { PageEvent } from '@angular/material';
 import { StoragePaginationInterface } from '../interfaces/storage-pagination-interface';
 
 export abstract class StoragePaginationAbstract implements StoragePaginationInterface {
@@ -6,13 +5,13 @@ export abstract class StoragePaginationAbstract implements StoragePaginationInte
   /**
    * cache
    */
-  cache: Map<string, PageEvent> = new Map();
+  cache: Map<string, any> = new Map();
 
   /**
    * get pagination value
    * @param key
    */
-  getPaginationValue(key: string): PageEvent {
+  getValue(key: string): any {
     return this.cache.get(key);
   }
 
@@ -21,7 +20,7 @@ export abstract class StoragePaginationAbstract implements StoragePaginationInte
    * @param key
    * @param value
    */
-  setPaginationValue(key: string, value: PageEvent): void {
+  setValue(key: string, value: any): void {
     this.cache.set(key, value);
   }
 }
