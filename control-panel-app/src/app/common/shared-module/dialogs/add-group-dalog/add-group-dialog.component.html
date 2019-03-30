@@ -4,8 +4,7 @@
     <mat-error>{{'REQUIRED_FIELD' | translate:[translateService.instant('NAME')]}}</mat-error>
   </mat-form-field>
   <p>{{'GROUP_PERMISSIONS' | translate}}</p>
-  <control-panel-ui-selection *ngIf="data.mode === 'edit'"
-                              [valuesMap]="permissions"
+  <control-panel-ui-selection [valuesMap]="permissions"
                               [selected]="data.group.permissions"
                               (selectionChange)="addPermissions($event)"></control-panel-ui-selection>
 </div>

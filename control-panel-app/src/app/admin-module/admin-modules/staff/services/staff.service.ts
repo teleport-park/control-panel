@@ -187,7 +187,12 @@ export class StaffService {
    * @param group
    */
   addGroup(group: Group): void {
-    this.http.post(`${StaffService.STAFF_GROUP_API}`, group).subscribe((result) => {
+    this.http.post(`${StaffService.STAFF_GROUP_API}`, group).subscribe((result: number) => {
+      if (result) {
+        group.id = result;
+        this.addPermissionsToGroup(group);
+        return;
+      }
       this.getGroups();
     });
   }
@@ -270,7 +275,6 @@ export class StaffService {
    * @param event
    */
   changeStaffPagination(event: PageEvent): void {
-    this.storage.setValue(this.STAFF_STORAGE_KEY, event);
     this.getStaffMember();
   }
 
@@ -279,7 +283,6 @@ export class StaffService {
    * @param event
    */
   changeGroupPagination(event: PageEvent): void {
-    this.storage.setValue(this.GROUP_STORAGE_KEY, event);
     this.getGroups();
   }
 }

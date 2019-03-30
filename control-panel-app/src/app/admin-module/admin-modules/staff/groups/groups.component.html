@@ -7,7 +7,7 @@
       [data]="(service.groups$ | async)"
       [valueMap]="(service.permissions$ | async)"
       [itemCount]="service.staffGroupCount$ | async"
-      [paginatorInit]="service.storage.getValue(service.GROUP_STORAGE_KEY)"
+      [storageKey]="service.GROUP_STORAGE_KEY"
       iconSet="group_add"
       (edit)="openDialogGroup('edit', $event)"
       (delete)="showConfirmDialog($event)"

@@ -144,7 +144,6 @@ export class PermissionsService {
    * @param event
    */
   changePagination(event: PageEvent) {
-    this.storage.setValue(this.STORAGE_KEY, event);
     this.getPermissions();
   }
 }

@@ -56,15 +56,6 @@ export class UserService implements OnDestroy {
   }
 
   /**
-   * change pagination handler
-   * @param event
-   */
-  changePagination(event: PageEvent): void {
-    this.storage.setValue(this.STORAGE_KEY, event);
-    this.getUsers();
-  }
-
-  /**
    * get user count
    */
   getUsersCount(): void {
@@ -148,5 +139,13 @@ export class UserService implements OnDestroy {
    */
   ngOnDestroy(): void {
     this.users$.complete();
+  }
+
+  /**
+   * change pagination handler
+   * @param event
+   */
+  changePagination(event: PageEvent): void {
+    this.getUsers();
   }
 }

@@ -11,7 +11,7 @@
           [simpleDataColumn]="simpleDataColumn"
           [listSortedColumn]="listSortedColumn"
           [itemCount]="(service.staffCount$ | async)"
-          [paginatorInit]="service.storage.getValue(service.STAFF_STORAGE_KEY)"
+          [storageKey]="service.STAFF_STORAGE_KEY"
           iconSet="person_add"
           (edit)="openDialog('edit', $event)"
           (delete)="openDialog('delete', $event)"

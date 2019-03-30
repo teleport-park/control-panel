@@ -51,18 +51,9 @@ export class ControlPanelUiTableComponent implements OnInit {
     }
   }
 
-  _paginatorInit: PageEvent;
+  paginatorInit: PageEvent;
 
-  /**
-   * pagination init state
-   */
-  @Input() set paginatorInit(data: PageEvent) {
-    if (data) {
-      this._paginatorInit = data;
-    } else {
-      this._paginatorInit = new DefaultPagination();
-    }
-  }
+  @Input() storageKey: string;
 
   /**
    * data source for table
@@ -126,6 +117,11 @@ export class ControlPanelUiTableComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.storage && this.storage.getValue(this.storageKey)) {
+      this.paginatorInit = this.storage.getValue(this.storageKey);
+    } else {
+      this.paginatorInit = new DefaultPagination();
+    }
   }
 
   /**
@@ -151,6 +147,7 @@ export class ControlPanelUiTableComponent implements OnInit {
    * @param event
    */
   changePageHandler(event: PageEvent): void {
+    this.storage.setValue(this.storageKey, event);
     this.pageChanges.emit(event);
   }
 
