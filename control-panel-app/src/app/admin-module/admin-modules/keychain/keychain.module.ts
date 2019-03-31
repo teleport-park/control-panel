@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { KeychainComponent } from './keychain.component';
-import { Route, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { CardsComponent } from './cards/cards.component';
+import { SharedModule } from '../../../common/shared-module/shared.module';
+import { MaterialModule } from '../../../material.module';
+import { CardsService } from './cards/services/cards.service';
 
 const routes: Routes = [{
   path: '',
@@ -20,7 +23,11 @@ export const KeychainRouteModule = RouterModule.forChild(routes);
   declarations: [KeychainComponent, CardsComponent],
   imports: [
     CommonModule,
-    KeychainRouteModule
-  ]
+    KeychainRouteModule,
+    SharedModule,
+    MaterialModule
+  ],
+  providers: [CardsService]
 })
-export class KeychainModule { }
+export class KeychainModule {
+}

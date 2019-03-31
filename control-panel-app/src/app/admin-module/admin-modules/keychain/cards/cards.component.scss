@@ -1,3 +1,30 @@
+@import 'pallete';
 :host {
   width: 100%;
+
+  .table {
+    width: 100%;
+
+    tr {
+      &.staff-row {
+        td:not(.mat-column-enabled):not(.mat-column-action) {
+          color: $info;
+        }
+      }
+      &.staff-root-row {
+        td:not(.mat-column-enabled):not(.mat-column-action) {
+          color: $warn;
+        }
+      }
+    }
+    .card-activated {
+      color: $success;
+    }
+    .card-deactivated {
+      color: $warn;
+    }
+    .mat-column-action {
+      text-align: right;
+    }
+  }
 }

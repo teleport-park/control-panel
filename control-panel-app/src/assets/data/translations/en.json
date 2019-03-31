@@ -54,5 +54,12 @@
   "GROUP_LIST": "Group list",
   "ADMIN_MENU_KEYCHAIN": "Keychain",
   "ADMIN_MENU_CARDS": "Cards",
-  "PERMISSIONS_LIST": "Permissions list"
+  "PERMISSIONS_LIST": "Permissions list",
+  "CARD_LIST": "Card list",
+  "CARD_OWNER_LABEL": "Card owner",
+  "CARD_INVENTORY_NUMBER": "Card number",
+  "CARD_STATE": "Card state",
+  "CARD_CHANGE_STATE": " ",
+  "CARD_ACTION_ACTIVATE": "Activate",
+  "CARD_ACTION_DEACTIVATE": "Deactivate"
 }

@@ -9,5 +9,9 @@ export const PropertyMap = {
   registered: 'REGISTERED',
   staffGroupName: 'GROUP',
   name: 'NAME',
-  permissions: 'GROUP_PERMISSIONS'
+  permissions: 'GROUP_PERMISSIONS',
+  currentOwner: 'CARD_OWNER_LABEL',
+  inventoryNumber: 'CARD_INVENTORY_NUMBER',
+  enabled: 'CARD_STATE',
+  action: 'CARD_CHANGE_STATE'
 };

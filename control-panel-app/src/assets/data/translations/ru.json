@@ -56,5 +56,12 @@
   "GROUP_LIST": "Список групп",
   "ADMIN_MENU_KEYCHAIN": "Реестр ключей",
   "ADMIN_MENU_CARDS": "Карты",
-  "PERMISSIONS_LIST": "Список разрешений"
+  "PERMISSIONS_LIST": "Список разрешений",
+  "CARD_LIST": "Список карт",
+  "CARD_OWNER_LABEL": "Владелец карты",
+  "CARD_INVENTORY_NUMBER": "Номер карты",
+  "CARD_STATE": "Состояние карты",
+  "CARD_CHANGE_STATE": " ",
+  "CARD_ACTION_ACTIVATE": "Активировать",
+  "CARD_ACTION_DEACTIVATE": "Деактивировать"
 }
