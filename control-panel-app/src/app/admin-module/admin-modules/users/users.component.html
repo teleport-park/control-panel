@@ -1,4 +1,4 @@
-<mat-sidenav-container class="user-component-wrapper">
+<mat-sidenav-container class="user-component-wrapper" *ngIf="(userService.users$ | async)">
   <mat-sidenav #extendedFilter
                mode="{{(point?.handset | async) ? 'over' : 'side'}}"
                [opened]="!(point?.handset | async)"
@@ -7,7 +7,7 @@
       <control-panel-ui-extended-filters [data]="(userService.users$[0] | async)"></control-panel-ui-extended-filters>
     </div>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content #scrollContainer>
     <control-panel-ui-card panelUIColor="primary">
       <div panelUICardHeaderTitle>{{translateService.instant('USERS_TABLE_TITLE')}}</div>
       <div panelUICardContent>

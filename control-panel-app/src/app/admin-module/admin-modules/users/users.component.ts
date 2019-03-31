@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { UserService } from './services/user.service';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { User } from '../../../models';
-import { MatDialog, MatPaginator, PageEvent } from '@angular/material';
+import { MatDialog, MatSidenavContent, PageEvent } from '@angular/material';
 import { TranslateService } from '../../../common/translations-module';
 import { PropertyMap } from '../../utils/property-map';
 import { Subject } from 'rxjs';
@@ -14,6 +14,7 @@ import {
 } from '../../../common/shared-module';
 import { FormControl } from '@angular/forms';
 import { BreakpointService } from '../../../services/breakpoint.service';
+import { StorageService } from '../../../services/storage.service';
 
 @Component({
   selector: 'app-users',
@@ -26,9 +27,26 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   listSortedColumn: FormControl = new FormControl([]);
 
+  /**
+   * quick filter value
+   */
   quickFilter: FormControl = new FormControl('');
 
-  @ViewChild('paginator') paginator: MatPaginator;
+  /**
+   * view scroll container for set and store scroll position
+   * @param element
+   */
+  @ViewChild('scrollContainer') set scrollContainer(element: MatSidenavContent) {
+    if (element) {
+      const storedScroll = this.storage.getValue(`${this.userService.STORAGE_KEY}_SCROLL`);
+      if (storedScroll) {
+        element.getElementRef().nativeElement.scrollTop = storedScroll;
+      }
+      element.elementScrolled().pipe(debounceTime(1000)).subscribe((event: any) => {
+        this.storage.setValue(`${this.userService.STORAGE_KEY}_SCROLL`, event.target.scrollTop);
+      });
+    }
+  }
 
   propertyMap = PropertyMap;
 
@@ -65,13 +83,15 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param loaderService
    * @param dialog
    * @param point
+   * @param storage
    */
   constructor(public userService: UserService,
               private cd: ChangeDetectorRef,
               public translateService: TranslateService,
               private loaderService: LoaderService,
               public dialog: MatDialog,
-              public point: BreakpointService) {
+              public point: BreakpointService,
+              private storage: StorageService) {
   }
 
   /**
