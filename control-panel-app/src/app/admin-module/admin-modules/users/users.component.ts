@@ -73,7 +73,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * available to sort column
    */
-  listAvailableToSortColumn: string[] = ['firstName', 'lastName', 'age', 'registered'];
+  listAvailableToSortColumn: string[] = ['firstName'];
 
   /**
    * Constructor
@@ -100,8 +100,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.quickFilter.valueChanges.pipe(debounceTime(300), takeUntil(this.destroyed$)).subscribe(
       (value: string) => {
-        // TODO insert quick filter logic from API
-        console.warn('Quick filter value', value);
+        this.userService.findUsers(value);
       }
     );
   }

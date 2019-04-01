@@ -24,6 +24,7 @@
   "REGISTERED": "Registered",
   "GROUP": "Group",
   "USER_DATE_OF_BIRTH_DAY": "Date of Birth",
+  "USER_AGE": "Age",
   "USER_GENDER_LABEL": "Gender",
   "USER_GENDER_MALE": "Male",
   "USER_GENDER_FEMALE": "Female",

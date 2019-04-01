@@ -1,9 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { User } from '../../../../models/';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
-import { filter, finalize, map } from 'rxjs/operators';
+import { filter, finalize } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 import * as moment from 'moment';
 import { TranslateService } from '../../../../common/translations-module';
@@ -26,6 +26,11 @@ export class UserService implements OnDestroy {
   static readonly PAGING: any = environment.api.paging;
 
   /**
+   * search api
+   */
+  static readonly SEARCH: string = `${environment.origin}${environment.api.USERS}${environment.api.search.users}`;
+
+  /**
    * storage key
    */
   public readonly STORAGE_KEY: string = 'USER_PAGINATION';
@@ -38,7 +43,12 @@ export class UserService implements OnDestroy {
   /**
    * user count
    */
-  userCount$: Observable<number>;
+  userCount$: BehaviorSubject<number> = new BehaviorSubject(null);
+
+  /**
+   * user query string
+   */
+  _queryString = '';
 
   /**
    * constructor
@@ -59,19 +69,20 @@ export class UserService implements OnDestroy {
    * get user count
    */
   getUsersCount(): void {
-    this.userCount$ = this.http.get(`${UserService.USER_API}totalpages/1`).pipe(
-      map((result: number) => result)
-    );
+    this.http.get(`${UserService.USER_API}totalpages/1`)
+      .subscribe((result: number) => {
+        this.userCount$.next(result);
+      });
   }
 
   /**
    * get users
    */
   getUsers(): void {
-    const page = this.storage.getValue(this.STORAGE_KEY) || new DefaultPagination();
     this.loaderService.dispatchShowLoader(true);
+    const params = this.getParams();
     this.http.get<User[]>(
-      `${UserService.USER_API}?${UserService.PAGING.size}${page.pageSize}&${UserService.PAGING.page}${page.pageIndex + 1}`)
+      `${UserService.USER_API}`, {params})
       .pipe(filter(data => !!data), finalize(() => {
         this.loaderService.dispatchShowLoader(false);
       }))
@@ -82,6 +93,40 @@ export class UserService implements OnDestroy {
           return Object.assign(new User(), user);
         });
         this.users$.next(result);
+      });
+  }
+
+  /**
+   * find users
+   * @param queryString
+   */
+  findUsers(queryString: string): void {
+    this._queryString = queryString;
+    this.loaderService.dispatchShowLoader(true);
+    let params = this.getParams();
+    params = params.set(environment.api.search.query, queryString);
+    this.http.get(UserService.SEARCH, {params})
+      .subscribe((users: User[]) => {
+        const result = users.map((user: User) => {
+          moment.locale(this.translateService.locale.getValue());
+          user.registered = moment(user.registered);
+          return Object.assign(new User(), user);
+        });
+        this.users$.next(result);
+        this.loaderService.dispatchShowLoader(false);
+      });
+    this.searchResultCount(queryString);
+  }
+
+  /**
+   * search result count
+   * @param queryString
+   */
+  searchResultCount(queryString: string): void {
+    const params = new HttpParams().set(environment.api.search.query, queryString);
+    this.http.get(`${UserService.SEARCH}${environment.api.search.total}1`, {params})
+      .subscribe((result: number) => {
+        this.userCount$.next(result);
       });
   }
 
@@ -138,6 +183,7 @@ export class UserService implements OnDestroy {
    * In destroy hook
    */
   ngOnDestroy(): void {
+    this.userCount$.complete();
     this.users$.complete();
   }
 
@@ -146,6 +192,20 @@ export class UserService implements OnDestroy {
    * @param event
    */
   changePagination(event: PageEvent): void {
+    if (this._queryString) {
+      this.findUsers(this._queryString);
+      return;
+    }
     this.getUsers();
+  }
+
+  /**
+   * get params
+   */
+  private getParams() {
+    const page = this.storage.getValue(this.STORAGE_KEY) || new DefaultPagination();
+    return new HttpParams()
+      .set(UserService.PAGING.size, page.pageSize)
+      .set(UserService.PAGING.page, page.pageIndex + 1);
   }
 }
