@@ -2,9 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { UserService } from './services/user.service';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { User } from '../../../models';
-import { MatDialog, MatSidenavContent, PageEvent } from '@angular/material';
+import { MatDialog, MatSidenavContent, PageEvent, Sort } from '@angular/material';
 import { TranslateService } from '../../../common/translations-module';
-import { PropertyMap } from '../../utils/property-map';
 import { Subject } from 'rxjs';
 import { LoaderService } from '../../../services/loader.service';
 import {
@@ -16,6 +15,8 @@ import { FormControl } from '@angular/forms';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { StorageService } from '../../../services/storage.service';
 
+import * as config from '../../../../app-config.json';
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -24,8 +25,6 @@ import { StorageService } from '../../../services/storage.service';
 })
 
 export class UsersComponent implements OnInit, OnDestroy {
-
-  listSortedColumn: FormControl = new FormControl([]);
 
   /**
    * quick filter value
@@ -47,8 +46,6 @@ export class UsersComponent implements OnInit, OnDestroy {
       });
     }
   }
-
-  propertyMap = PropertyMap;
 
   /**
    * subject for destroy component
@@ -73,7 +70,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * available to sort column
    */
-  listAvailableToSortColumn: string[] = ['firstName'];
+  sortedColumn: string[];
 
   /**
    * Constructor
@@ -103,6 +100,8 @@ export class UsersComponent implements OnInit, OnDestroy {
         this.userService.findUsers(value);
       }
     );
+    const data = config as any;
+    this.sortedColumn = data.default.users.sortedColumns;
   }
 
   /**
@@ -157,7 +156,11 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param event
    */
   pageChangeHandler(event: PageEvent): void {
-    this.userService.changePagination(event);
+    this.userService.changePaginationOrSort(event);
+  }
+
+  sortChangeHandler(event: Sort): void {
+    this.userService.changePaginationOrSort(event);
   }
 
   ngOnDestroy(): void {

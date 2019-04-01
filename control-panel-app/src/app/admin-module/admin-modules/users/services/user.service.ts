@@ -5,11 +5,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { filter, finalize } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
-import * as moment from 'moment';
+import moment from 'moment';
 import { TranslateService } from '../../../../common/translations-module';
-import { PageEvent } from '@angular/material';
+import { PageEvent, Sort, SortDirection } from '@angular/material';
 import { StorageService } from '../../../../services/storage.service';
 import { DefaultPagination } from '../../../../models/default-pagination';
+import { DefaultSort } from '../../../../models/default-sort';
 
 
 @Injectable()
@@ -24,6 +25,11 @@ export class UserService implements OnDestroy {
    * paging api
    */
   static readonly PAGING: any = environment.api.paging;
+
+  /**
+   * sort api
+   */
+  static readonly SORT: any = environment.api.sorting;
 
   /**
    * search api
@@ -191,7 +197,7 @@ export class UserService implements OnDestroy {
    * change pagination handler
    * @param event
    */
-  changePagination(event: PageEvent): void {
+  changePaginationOrSort(event: PageEvent | Sort): void {
     if (this._queryString) {
       this.findUsers(this._queryString);
       return;
@@ -204,8 +210,29 @@ export class UserService implements OnDestroy {
    */
   private getParams() {
     const page = this.storage.getValue(this.STORAGE_KEY) || new DefaultPagination();
+    const sort = this.storage.getValue(`${this.STORAGE_KEY}_SORT`) || new DefaultSort();
     return new HttpParams()
       .set(UserService.PAGING.size, page.pageSize)
-      .set(UserService.PAGING.page, page.pageIndex + 1);
+      .set(UserService.PAGING.page, page.pageIndex + 1)
+      .set(UserService.SORT.column, sort.active)
+      .set(UserService.SORT.direction, `${this.getDirection(sort.direction)}`);
+  }
+
+  /**
+   * get direction
+   * @param direction
+   */
+  private getDirection(direction: SortDirection) {
+    switch (direction) {
+      case 'asc': {
+        return 2;
+      }
+      case 'desc': {
+        return 1;
+      }
+      default: {
+        return 0;
+      }
+    }
   }
 }

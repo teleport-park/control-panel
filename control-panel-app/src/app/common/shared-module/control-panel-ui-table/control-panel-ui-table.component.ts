@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '../../translations-module';
-import { MatSort, MatTableDataSource, PageEvent } from '@angular/material';
+import { MatSort, MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import { StaffMember } from '../../../models';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BreakpointService } from '../../../services/breakpoint.service';
@@ -100,6 +100,11 @@ export class ControlPanelUiTableComponent implements OnInit {
   @Output() pageChanges: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
 
   /**
+   * Emit sort changes
+   */
+  @Output() sortChanges: EventEmitter<Sort> = new EventEmitter();
+
+  /**
    * constructor
    * @param translateService
    * @param cd
@@ -129,7 +134,6 @@ export class ControlPanelUiTableComponent implements OnInit {
    */
   private initDataSource() {
     this.dataSource = new MatTableDataSource(this._data);
-    this.dataSource.sort = this.sortInst;
     this.selection = new SelectionModel(false, []);
     this.cd.markForCheck();
   }
@@ -156,5 +160,10 @@ export class ControlPanelUiTableComponent implements OnInit {
    */
   addEntity(): void {
     this.add.emit();
+  }
+
+  sortChange(event: Sort) {
+    this.storage.setValue(`${this.storageKey}_SORT`, event);
+    this.sortChanges.emit(event);
   }
 }

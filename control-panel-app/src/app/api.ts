@@ -20,7 +20,7 @@ export const API: {[key: string]: any} = {
   },
   // sorting
   sorting: {
-    column: 'orderByColumn=',
-    direction: 'orderDirection='
+    column: 'orderByColumn',
+    direction: 'orderDirection'
   }
 };

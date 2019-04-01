@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Injector, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { StaffMember, User } from '../../../models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as moment from 'moment';
+import moment from 'moment';
 import { Moment } from 'moment';
 import { TranslateService } from '../../translations-module';
 import { StaffService } from '../../../admin-module/admin-modules/staff/services/staff.service';

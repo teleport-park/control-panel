@@ -23,13 +23,6 @@
                         class="clear-filter-icon">clear
               </mat-icon>
             </mat-form-field>
-            <!--TODO should removed later-->
-            <mat-form-field>
-              <mat-select placeholder="Select sortable column" [formControl]="listSortedColumn" multiple>
-                <mat-option *ngFor="let column of listAvailableToSortColumn"
-                            [value]="column">{{translateService.instant(propertyMap[column])}}</mat-option>
-              </mat-select>
-            </mat-form-field>
           </div>
           <div class="toolbar-action-buttons-group">
             <button
@@ -44,14 +37,15 @@
           [data]="(userService.users$ | async)"
           [displayedColumns]="displayedColumns"
           [simpleDataColumn]="columnWithData"
-          [listSortedColumn]="listSortedColumn.value"
+          [listSortedColumn]="['firstName']"
           [itemCount]="(userService.userCount$ | async)"
           [storageKey]="userService.STORAGE_KEY"
           iconSet="person_add"
           (edit)="openDialog('edit', $event)"
           (delete)="openDialog('delete', $event)"
           (add)="openDialog('add')"
-          (pageChanges)="pageChangeHandler($event)"></control-panel-ui-table>
+          (pageChanges)="pageChangeHandler($event)"
+          (sortChanges)="sortChangeHandler($event)"></control-panel-ui-table>
       </div>
     </control-panel-ui-card>
   </mat-sidenav-content>

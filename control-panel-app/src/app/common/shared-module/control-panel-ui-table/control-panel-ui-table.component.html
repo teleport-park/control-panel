@@ -7,7 +7,7 @@
       {{translateService.instant('TABLE_ADD')}}
     </button>
   </div>
-  <table mat-table matSort [dataSource]="dataSource" class="table">
+  <table mat-table matSort [dataSource]="dataSource" class="table" (matSortChange)="sortChange($event)">
     <!--data cells-->
     <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">
       <th mat-header-cell mat-sort-header [disabled]="isSortedColumn(column)" *matHeaderCellDef>
