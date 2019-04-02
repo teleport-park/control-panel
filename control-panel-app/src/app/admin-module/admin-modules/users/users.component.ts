@@ -105,7 +105,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param mode
    * @param event
    */
-  openDialog(mode: 'edit' | 'add' | 'delete', event?: User): void {
+  operationWithUser(mode: 'edit' | 'add' | 'delete', event?: User): void {
     if (mode === 'delete') {
       this.showConfirmDialog(event);
       return;
@@ -116,16 +116,26 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * show add or remove dialog
    * @param mode
-   * @param event
+   * @param user
    */
-  private showModalAddOrEditUser(mode: 'edit' | 'add' | 'delete', event) {
+  private showModalAddOrEditUser(mode: 'edit' | 'add', user: User) {
+    if (mode === 'edit') {
+      this.userService.getUser(user.id).subscribe((result: User) => {
+        this.openModalDialog(mode, result);
+      });
+      return;
+    }
+    this.openModalDialog(mode, user);
+  }
+
+  private openModalDialog(mode: 'edit' | 'add', user: User) {
     this.dialog.open(AddOrEditEntityDialogComponent, {
-      data: mode === 'edit' ? event : 'user'
-    }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((user: User) => {
+      data: mode === 'edit' ? Object.assign(new User(), user) : 'user'
+    }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((result: User) => {
       if (mode === 'edit') {
-        this.userService.editUser(user);
+        this.userService.editUser(result);
       } else {
-        this.userService.saveUser(user);
+        this.userService.saveUser(result);
       }
     });
   }

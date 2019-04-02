@@ -41,9 +41,9 @@
           [itemCount]="(userService.userCount$ | async)"
           [storageKey]="userService.STORAGE_KEY"
           iconSet="person_add"
-          (edit)="openDialog('edit', $event)"
-          (delete)="openDialog('delete', $event)"
-          (add)="openDialog('add')"
+          (edit)="operationWithUser('edit', $event)"
+          (delete)="operationWithUser('delete', $event)"
+          (add)="operationWithUser('add')"
           (pageChanges)="pageChangeHandler($event)"
           (sortChanges)="sortChangeHandler($event)"></control-panel-ui-table>
       </div>

@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { User } from '../../../../models/';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { filter, finalize } from 'rxjs/operators';
@@ -82,6 +82,14 @@ export class UserService implements OnDestroy {
   }
 
   /**
+   *
+   * @param userId
+   */
+  getUser(userId: number): Observable<User> {
+    return this.http.get<User>(`${UserService.USER_API}${userId}`);
+  }
+
+  /**
    * get users
    */
   getUsers(): void {
@@ -116,7 +124,7 @@ export class UserService implements OnDestroy {
         const result = users.map((user: User) => {
           moment.locale(this.translateService.locale.getValue());
           user.registered = moment(user.registered);
-          return Object.assign(new User(), user);
+          return user;
         });
         this.users$.next(result);
         this.loaderService.dispatchShowLoader(false);

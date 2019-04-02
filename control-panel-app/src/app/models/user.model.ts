@@ -2,7 +2,7 @@ import moment from 'moment';
 import { Moment } from 'moment';
 
 export class User {
-  id: string;
+  id: number;
   index: number;
   firstName: string;
   lastName: string;
