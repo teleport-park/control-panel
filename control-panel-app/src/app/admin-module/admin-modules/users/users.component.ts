@@ -15,7 +15,8 @@ import { FormControl } from '@angular/forms';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { StorageService } from '../../../services/storage.service';
 
-import * as config from '../../../../app-config.json';
+import {default as config} from '../../../../app-config.json';
+import { Config } from '../../../interfaces';
 
 @Component({
   selector: 'app-users',
@@ -53,11 +54,6 @@ export class UsersComponent implements OnInit, OnDestroy {
   destroyed$: Subject<boolean> = new Subject();
 
   /**
-   * Users
-   */
-  _users: User[];
-
-  /**
    * list of displayed column
    */
   displayedColumns: string[] = ['firstName', 'lastName', 'phone', 'age', 'email', 'statuses', 'registered', 'submenu'];
@@ -70,7 +66,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * available to sort column
    */
-  sortedColumn: string[];
+  sortedColumn: string[] = [];
 
   /**
    * Constructor
@@ -100,8 +96,8 @@ export class UsersComponent implements OnInit, OnDestroy {
         this.userService.findUsers(value);
       }
     );
-    const data = config as any;
-    this.sortedColumn = data.default.users.sortedColumns;
+    const data = config as Config;
+    this.sortedColumn = data.users.sortedColumns || [];
   }
 
   /**

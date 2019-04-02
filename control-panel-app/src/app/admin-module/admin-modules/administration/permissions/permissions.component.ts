@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TranslateService } from '../../../../common/translations-module';
-import { MatDialog, PageEvent } from '@angular/material';
+import { MatDialog, PageEvent, Sort } from '@angular/material';
 import {
   AddSimpleEntityDialogComponent,
   ConfirmDialogComponent,
@@ -9,6 +9,9 @@ import {
 import { Permission } from '../../../../models';
 import { filter } from 'rxjs/operators';
 import { PermissionsService } from './services/permissions.service';
+
+import {default as config} from '../../../../../app-config.json';
+import { Config } from '../../../../interfaces';
 
 @Component({
   selector: 'control-panel-permissions',
@@ -23,12 +26,19 @@ export class PermissionsComponent implements OnInit {
    */
   columns: string[] = ['name', 'submenu'];
 
+  /**
+   * sorted column
+   */
+  sortedColumn: string[] = [];
+
   constructor(public service: PermissionsService,
               public translateService: TranslateService,
               private dialog: MatDialog) {
   }
 
   ngOnInit() {
+    const data = config as Config;
+    this.sortedColumn = data.permissions.sortedColumns || [];
   }
 
   /**
@@ -69,8 +79,7 @@ export class PermissionsComponent implements OnInit {
    * change page handler
    * @param event
    */
-  pageChangeHandler(event: PageEvent): void {
-    this.service.changePagination(event);
+  changesHandler(event: PageEvent | Sort): void {
+    this.service.changeSortOrPagination(event);
   }
-
 }

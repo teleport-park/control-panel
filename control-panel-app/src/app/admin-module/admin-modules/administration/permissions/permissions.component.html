@@ -4,6 +4,7 @@
     <control-panel-ui-table
       [displayedColumns]="columns"
       [simpleDataColumn]="['name']"
+      [listSortedColumn]="sortedColumn"
       [data]="(service.permissions$ | async)"
       [itemCount]="(service.permissionCount$ | async)"
       [storageKey]="service.STORAGE_KEY"
@@ -11,6 +12,7 @@
       (edit)="openDialog('edit', $event)"
       (delete)="showConfirmDialog($event)"
       (add)="openDialog('add')"
-      (pageChanges)="pageChangeHandler($event)"></control-panel-ui-table>
+      (pageChanges)="changesHandler($event)"
+      (sortChanges)="changesHandler($event)"></control-panel-ui-table>
   </div>
 </control-panel-ui-card>

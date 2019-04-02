@@ -2,10 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StaffService } from '../services/staff.service';
 import { Group } from '../../../../models';
 import { Subject } from 'rxjs';
-import { MatDialog, PageEvent } from '@angular/material';
+import { MatDialog, PageEvent, Sort } from '@angular/material';
 import { filter, takeUntil } from 'rxjs/operators';
 import { AddGroupDialogComponent, ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { TranslateService } from '../../../../common/translations-module';
+
+import {default as config} from '../../../../../app-config.json';
+import { Config } from '../../../../interfaces';
 
 @Component({
   selector: 'control-panel-groups',
@@ -23,10 +26,17 @@ export class GroupsComponent implements OnInit, OnDestroy {
 
   private destoyed$: Subject<boolean> = new Subject();
 
+  /**
+   * list sorted column
+   */
+  sortedColumn: string[] = [];
+
   constructor(public service: StaffService, public dialog: MatDialog, public translateService: TranslateService) {
   }
 
   ngOnInit() {
+    const data = config as Config;
+    this.sortedColumn = data.groups.sortedColumns || [];
   }
 
   openDialogGroup(mode: 'edit' | 'add', group = new Group()) {
@@ -66,8 +76,8 @@ export class GroupsComponent implements OnInit, OnDestroy {
    * change page handler
    * @param event
    */
-  pageChangeHandler(event: PageEvent): void {
-    this.service.changeGroupPagination(event);
+  pageChangeHandler(event: PageEvent | Sort): void {
+    this.service.changeGroupSortOrPagination(event);
   }
 
   ngOnDestroy(): void {

@@ -39,7 +39,7 @@ export class UserService implements OnDestroy {
   /**
    * storage key
    */
-  public readonly STORAGE_KEY: string = 'USER_PAGINATION';
+  public readonly STORAGE_KEY: string = 'USERS';
 
   /**
    * users subject
@@ -86,7 +86,7 @@ export class UserService implements OnDestroy {
    */
   getUsers(): void {
     this.loaderService.dispatchShowLoader(true);
-    const params = this.getParams();
+    const params = this.getParams(this.STORAGE_KEY);
     this.http.get<User[]>(
       `${UserService.USER_API}`, {params})
       .pipe(filter(data => !!data), finalize(() => {
@@ -109,7 +109,7 @@ export class UserService implements OnDestroy {
   findUsers(queryString: string): void {
     this._queryString = queryString;
     this.loaderService.dispatchShowLoader(true);
-    let params = this.getParams();
+    let params = this.getParams(this.STORAGE_KEY);
     params = params.set(environment.api.search.query, queryString);
     this.http.get(UserService.SEARCH, {params})
       .subscribe((users: User[]) => {
@@ -208,9 +208,9 @@ export class UserService implements OnDestroy {
   /**
    * get params
    */
-  private getParams() {
-    const page = this.storage.getValue(this.STORAGE_KEY) || new DefaultPagination();
-    const sort = this.storage.getValue(`${this.STORAGE_KEY}_SORT`) || new DefaultSort();
+  private getParams(key: string) {
+    const page = this.storage.getValue(`${key}_PAGINATION`) || new DefaultPagination();
+    const sort = this.storage.getValue(`${key}_SORT`) || new DefaultSort();
     return new HttpParams()
       .set(UserService.PAGING.size, page.pageSize)
       .set(UserService.PAGING.page, page.pageIndex + 1)

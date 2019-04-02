@@ -5,8 +5,15 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { TranslateService } from '../../../common/translations-module';
 import { BreakpointService } from '../../../services/breakpoint.service';
-import { ConfirmDialogComponent, ConfirmDialogData, AddOrEditEntityDialogComponent } from '../../../common/shared-module';
+import {
+  AddOrEditEntityDialogComponent,
+  ConfirmDialogComponent,
+  ConfirmDialogData
+} from '../../../common/shared-module';
 import { MatDialog, PageEvent } from '@angular/material';
+
+import {default as config} from '../../../../app-config.json';
+import { Config } from '../../../interfaces';
 
 @Component({
   selector: 'control-panel-staff',
@@ -33,7 +40,7 @@ export class StaffComponent implements OnInit, OnDestroy {
   /**
    * list sorted column
    */
-  listSortedColumn: string[] = ['firstName', 'lastName'];
+  sortedColumn: string[] = [];
 
   private destroyed$: Subject<boolean> = new Subject();
 
@@ -53,8 +60,10 @@ export class StaffComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-      this.service.getStaffMembersAmount();
-      this.service.getPermissions();
+    this.service.getStaffMembersAmount();
+    this.service.getPermissions();
+    const data = config as Config;
+    this.sortedColumn = data.staff.sortedColumns || [];
   }
 
   /**
@@ -109,7 +118,7 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param event
    */
   pageChangeHandler(event: PageEvent): void {
-    this.service.changeStaffPagination(event);
+    this.service.changeStaffSortOrPagination(event);
   }
 
   ngOnDestroy(): void {

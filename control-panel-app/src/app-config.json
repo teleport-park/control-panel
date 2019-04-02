@@ -3,5 +3,20 @@
     "sortedColumns": [
       "firstName"
     ]
+  },
+  "staff": {
+    "sortedColumns": [
+      "firstName"
+    ]
+  },
+  "permissions": {
+    "sortedColumns": [
+      "name"
+    ]
+  },
+  "groups": {
+    "sortedColumns": [
+      "name"
+    ]
   }
 }

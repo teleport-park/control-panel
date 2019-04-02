@@ -4,6 +4,7 @@
     <control-panel-ui-table
       [displayedColumns]="columns"
       [simpleDataColumn]="['name']"
+      [listSortedColumn]="sortedColumn"
       [data]="(service.groups$ | async)"
       [valueMap]="(service.permissions$ | async)"
       [itemCount]="service.staffGroupCount$ | async"
@@ -12,6 +13,7 @@
       (edit)="openDialogGroup('edit', $event)"
       (delete)="showConfirmDialog($event)"
       (add)="openDialogGroup('add')"
-      (pageChanges)="pageChangeHandler($event)"></control-panel-ui-table>
+      (pageChanges)="pageChangeHandler($event)"
+      (sortChanges)="pageChangeHandler($event)"></control-panel-ui-table>
   </div>
 </control-panel-ui-card>

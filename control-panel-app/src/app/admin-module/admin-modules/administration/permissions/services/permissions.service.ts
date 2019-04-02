@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../../../environments/environment';
 import { Permission } from '../../../../../models';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { LoaderService } from '../../../../../services/loader.service';
-import { MatSnackBar, PageEvent } from '@angular/material';
+import { MatSnackBar, PageEvent, Sort, SortDirection } from '@angular/material';
 import { TranslateService } from '../../../../../common/translations-module';
 import { StorageService } from '../../../../../services/storage.service';
 import { DefaultPagination } from '../../../../../models/default-pagination';
+import { DefaultSort } from '../../../../../models/default-sort';
 
 @Injectable()
 export class PermissionsService {
@@ -24,9 +25,14 @@ export class PermissionsService {
   static readonly PAGING: any = environment.api.paging;
 
   /**
+   * sort api
+   */
+  static readonly SORT: any = environment.api.sorting;
+
+  /**
    * storage key
    */
-  readonly STORAGE_KEY: string = 'PERMISSIONS_PAGINATION';
+  readonly STORAGE_KEY: string = 'PERMISSIONS';
 
   /**
    * permissions
@@ -68,12 +74,11 @@ export class PermissionsService {
    * get permissions
    */
   getPermissions() {
-    const paginationState = this.storage.getValue(this.STORAGE_KEY) || new DefaultPagination();
+    const params = this.getParams(this.STORAGE_KEY);
     this.loader.dispatchShowLoader(true);
     this.getPermissionCount();
     this.http.get(
-      `${PermissionsService.PERMISSIONS_API}?` +
-      `${PermissionsService.PAGING.size}${paginationState.pageSize}&${PermissionsService.PAGING.page}${paginationState.pageIndex + 1}`)
+      `${PermissionsService.PERMISSIONS_API}?`, {params})
       .pipe(finalize(() => this.loader.dispatchShowLoader(false)))
       .subscribe((result: Permission[]) => {
         this.permissions$.next(result);
@@ -143,7 +148,39 @@ export class PermissionsService {
    * change pagination handler
    * @param event
    */
-  changePagination(event: PageEvent) {
+  changeSortOrPagination(event: PageEvent | Sort) {
     this.getPermissions();
+  }
+
+  /**
+   * get params
+   * @param key
+   */
+  private getParams(key: string) {
+    const page = this.storage.getValue(`${key}_PAGINATION`) || new DefaultPagination();
+    const sort = this.storage.getValue(`${this.STORAGE_KEY}_SORT`) || new DefaultSort();
+    return new HttpParams()
+      .set(PermissionsService.PAGING.size, page.pageSize)
+      .set(PermissionsService.PAGING.page, page.pageIndex + 1)
+      .set(PermissionsService.SORT.column, sort.active)
+      .set(PermissionsService.SORT.direction, `${this.getDirection(sort.direction)}`);
+  }
+
+  /**
+   * get direction
+   * @param direction
+   */
+  private getDirection(direction: SortDirection) {
+    switch (direction) {
+      case 'asc': {
+        return 2;
+      }
+      case 'desc': {
+        return 1;
+      }
+      default: {
+        return 0;
+      }
+    }
   }
 }

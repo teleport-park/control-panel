@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Group, Permission, StaffMember } from '../../../../models';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { finalize, map } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 import { StaffMemberResponse } from '../../../../models/staff-member-response.model';
-import { MatSnackBar, PageEvent } from '@angular/material';
+import { MatSnackBar, PageEvent, Sort, SortDirection } from '@angular/material';
 import { TranslateService } from '../../../../common/translations-module';
 import { StorageService } from '../../../../services/storage.service';
 import { DefaultPagination } from '../../../../models/default-pagination';
+import { DefaultSort } from '../../../../models/default-sort';
 
 @Injectable()
 export class StaffService {
@@ -35,14 +36,19 @@ export class StaffService {
   static readonly PAGING: any = environment.api.paging;
 
   /**
+   * sort api
+   */
+  static readonly SORT: any = environment.api.sorting;
+
+  /**
    * staff storage key
    */
-  public readonly STAFF_STORAGE_KEY: string = 'STAFF_PAGINATION';
+  public readonly STAFF_STORAGE_KEY: string = 'STAFF';
 
   /**
    * group storage key
    */
-  public readonly GROUP_STORAGE_KEY: string = 'GROUP_PAGINATION';
+  public readonly GROUP_STORAGE_KEY: string = 'GROUPS';
 
   /**
    * staff members
@@ -111,10 +117,9 @@ export class StaffService {
    * get staff members
    */
   getStaffMember(): void {
-    const paginationState = this.storage.getValue(this.STAFF_STORAGE_KEY) || new DefaultPagination();
+    const params = this.getParams(this.STAFF_STORAGE_KEY);
     this.http.get(
-      `${StaffService.STAFF_API}` +
-      `?${StaffService.PAGING.size}${paginationState.pageSize}&${StaffService.PAGING.page}${paginationState.pageIndex + 1}`)
+      `${StaffService.STAFF_API}`, {params})
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
@@ -165,10 +170,9 @@ export class StaffService {
    * get groups
    */
   getGroups(): void {
-    const paginationState = this.storage.getValue(this.GROUP_STORAGE_KEY) || new DefaultPagination();
+    const params = this.getParams(this.GROUP_STORAGE_KEY);
     this.http.get(
-      `${StaffService.STAFF_GROUP_API}?` +
-      `${StaffService.PAGING.size}${paginationState.pageSize}&${StaffService.PAGING.page}${paginationState.pageIndex + 1}`)
+      `${StaffService.STAFF_GROUP_API}?`, {params})
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
@@ -271,10 +275,10 @@ export class StaffService {
   }
 
   /**
-   * change staff pagination handler
+   * change staff pagination or sort handler
    * @param event
    */
-  changeStaffPagination(event: PageEvent): void {
+  changeStaffSortOrPagination(event: PageEvent | Sort): void {
     this.getStaffMember();
   }
 
@@ -282,7 +286,35 @@ export class StaffService {
    * change group pagination handler
    * @param event
    */
-  changeGroupPagination(event: PageEvent): void {
+  changeGroupSortOrPagination(event: PageEvent | Sort): void {
     this.getGroups();
+  }
+
+  private getParams(key: string) {
+    const page = this.storage.getValue(`${key}_PAGINATION`) || new DefaultPagination();
+    const sort = this.storage.getValue(`${key}_SORT`) || new DefaultSort();
+    return new HttpParams()
+      .set(StaffService.PAGING.size, page.pageSize)
+      .set(StaffService.PAGING.page, page.pageIndex + 1)
+      .set(StaffService.SORT.column, sort.active)
+      .set(StaffService.SORT.direction, `${this.getDirection(sort.direction)}`);
+  }
+
+  /**
+   * get direction
+   * @param direction
+   */
+  private getDirection(direction: SortDirection) {
+    switch (direction) {
+      case 'asc': {
+        return 2;
+      }
+      case 'desc': {
+        return 1;
+      }
+      default: {
+        return 0;
+      }
+    }
   }
 }

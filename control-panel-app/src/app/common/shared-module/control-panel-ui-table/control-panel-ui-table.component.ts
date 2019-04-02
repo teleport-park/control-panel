@@ -122,11 +122,7 @@ export class ControlPanelUiTableComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.storage && this.storage.getValue(this.storageKey)) {
-      this.paginatorInit = this.storage.getValue(this.storageKey);
-    } else {
-      this.paginatorInit = new DefaultPagination();
-    }
+    this.initTableState();
   }
 
   /**
@@ -151,7 +147,7 @@ export class ControlPanelUiTableComponent implements OnInit {
    * @param event
    */
   changePageHandler(event: PageEvent): void {
-    this.storage.setValue(this.storageKey, event);
+    this.storage.setValue(`${this.storageKey}_PAGINATION`, event);
     this.pageChanges.emit(event);
   }
 
@@ -162,8 +158,27 @@ export class ControlPanelUiTableComponent implements OnInit {
     this.add.emit();
   }
 
+  /**
+   * Change sort change
+   * @param event
+   */
   sortChange(event: Sort) {
     this.storage.setValue(`${this.storageKey}_SORT`, event);
     this.sortChanges.emit(event);
+  }
+
+  /**
+   * init table state
+   */
+  private initTableState() {
+    if (this.storage && this.storage.getValue(`${this.storageKey}_PAGINATION`)) {
+      this.paginatorInit = this.storage.getValue(`${this.storageKey}_PAGINATION`);
+    } else {
+      this.paginatorInit = new DefaultPagination();
+    }
+    if (this.storage && this.storage.getValue(`${this.storageKey}_SORT`)) {
+      this.sortInst.active = this.storage.getValue(`${this.storageKey}_SORT`).active;
+      this.sortInst.direction = this.storage.getValue(`${this.storageKey}_SORT`).direction;
+    }
   }
 }
