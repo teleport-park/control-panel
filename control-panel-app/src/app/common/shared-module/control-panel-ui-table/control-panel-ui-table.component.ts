@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '../../translations-module';
-import { MatSort, MatTableDataSource, PageEvent, Sort } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import { StaffMember } from '../../../models';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BreakpointService } from '../../../services/breakpoint.service';
@@ -56,6 +56,17 @@ export class ControlPanelUiTableComponent implements OnInit {
   @Input() storageKey: string;
 
   /**
+   * reset pagination
+   * @param data
+   */
+  @Input() set resetPagination(data: { reset: true }) {
+    if (data) {
+      this.paginator.pageIndex = 0;
+      this.changePageHandler({pageIndex: 0, pageSize: this.paginator.pageSize} as PageEvent);
+    }
+  }
+
+  /**
    * data source for table
    */
   public dataSource: MatTableDataSource<StaffMember>;
@@ -73,6 +84,11 @@ export class ControlPanelUiTableComponent implements OnInit {
       this.sortInst = sort;
     }
   }
+
+  /**
+   * mat paginator instance
+   */
+  @ViewChild('paginator') paginator: MatPaginator;
 
   /**
    * selection

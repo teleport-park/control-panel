@@ -40,6 +40,7 @@
           [listSortedColumn]="['firstName']"
           [itemCount]="(userService.userCount$ | async)"
           [storageKey]="userService.STORAGE_KEY"
+          [resetPagination]="resetPagination"
           iconSet="person_add"
           (edit)="operationWithUser('edit', $event)"
           (delete)="operationWithUser('delete', $event)"

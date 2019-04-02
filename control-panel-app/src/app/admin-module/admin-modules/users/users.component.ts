@@ -33,6 +33,11 @@ export class UsersComponent implements OnInit, OnDestroy {
   quickFilter: FormControl = new FormControl('');
 
   /**
+   * reset pagination
+   */
+  resetPagination: {reset: boolean};
+
+  /**
    * view scroll container for set and store scroll position
    * @param element
    */
@@ -94,6 +99,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.quickFilter.valueChanges.pipe(debounceTime(300), takeUntil(this.destroyed$)).subscribe(
       (value: string) => {
         this.userService.findUsers(value);
+        this.resetPagination = {reset: true};
       }
     );
     const data = config as Config;
@@ -128,6 +134,11 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.openModalDialog(mode, user);
   }
 
+  /**
+   * open modal dialog
+   * @param mode
+   * @param user
+   */
   private openModalDialog(mode: 'edit' | 'add', user: User) {
     this.dialog.open(AddOrEditEntityDialogComponent, {
       data: mode === 'edit' ? Object.assign(new User(), user) : 'user'
