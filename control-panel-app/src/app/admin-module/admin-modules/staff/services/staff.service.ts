@@ -75,6 +75,8 @@ export class StaffService {
    */
   staffGroupCount$: Observable<number>;
 
+  permissionsCount$: Observable<number>;
+
   /**
    * group
    */
@@ -249,13 +251,20 @@ export class StaffService {
   /**
    * get permissions
    */
-  getPermissions(pageSize: number = 50, pageNumber: number = 1) {
-    this.http.get(`${StaffService.PERMISSIONS_API}?pageSize=${pageSize}&pageNumber=${pageNumber}`)
+  getPermissions(pageSize: number = 10, pageNumber: number = 1) {
+    return this.http.get(`${StaffService.PERMISSIONS_API}?pageSize=${pageSize}&pageNumber=${pageNumber}`)
       .subscribe((result: Permission[]) => {
-        this.getGroups();
-        this.getStaffMember();
         this.permissions$.next(result);
       });
+  }
+
+  /**
+   * get permissions count
+   */
+  getPermissionsCount(): void {
+    this.permissionsCount$ = this.http.get<number>(`${StaffService.PERMISSIONS_API}/totalpages/1`).pipe(
+      map((result: number) => result)
+    );
   }
 
   /**

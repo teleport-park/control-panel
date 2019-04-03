@@ -1,0 +1,32 @@
+<form [formGroup]="form" class="user-form" #staffMemberForm="ngForm" >
+  <mat-form-field>
+    <input matInput placeholder="{{'FIRST_NAME' | translate}}" formControlName="firstName" required>
+    <mat-error>
+      {{'REQUIRED_FIELD' | translate:[translateService.instant('FIRST_NAME')]}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="{{'LAST_NAME' | translate}}" formControlName="lastName" required>
+    <mat-error>
+      {{'REQUIRED_FIELD' | translate:[translateService.instant('LAST_NAME')]}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="{{'GROUP' | translate}}" formControlName="staffGroupId" >
+      <mat-option *ngFor="let property of propertyMap" [value]="property.value">{{property.viewValue}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="staffMemberForm.submitted">
+      {{'REQUIRED_FIELD' | translate:[translateService.instant('GROUP')]}}
+    </mat-error>
+  </mat-form-field>
+  <div class="action-button-group">
+    <button mat-raised-button
+            color="warn"
+            type="button"
+            (click)="onCancelHandler()">{{'DIALOG_CANCEL_BUTTON_LABEL' | translate }}</button>
+    <button mat-raised-button
+            color="primary"
+            type="submit"
+            (click)="onSubmitHandler()">{{(mode === 'edit' ? 'USER_FORM_EDIT_BUTTON_LABEL' : 'USER_FORM_ADD_BUTTON_LABEL') | translate }}</button>
+  </div>
+</form>

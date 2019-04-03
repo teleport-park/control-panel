@@ -66,7 +66,7 @@ export class FormComponent {
    * set user
    * @param item { User | StaffMember }
    */
-  @Input() set item(item: User | StaffMember | string) {
+  @Input() set item(item: User | StaffMemberResponse | string) {
     if (item instanceof User) {
       item.dateOfBirth = moment(item.dateOfBirth, 'YYYY-MM-DD');
       item.registered = moment(item.registered, 'YYYY-MM-DD');

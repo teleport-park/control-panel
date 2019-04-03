@@ -12,7 +12,7 @@ import { SharedModule } from '../../../common/shared-module/shared.module';
 import {
   AddGroupDialogComponent,
   AddOrEditEntityDialogComponent,
-  AddSimpleEntityDialogComponent,
+  AddSimpleEntityDialogComponent, AddStaffDialogComponent,
   ConfirmDialogComponent
 } from '../../../common/shared-module';
 
@@ -44,7 +44,8 @@ export const StaffRoutingModule = RouterModule.forChild(routes);
     AddOrEditEntityDialogComponent,
     ConfirmDialogComponent,
     AddGroupDialogComponent,
-    AddSimpleEntityDialogComponent
+    AddSimpleEntityDialogComponent,
+    AddStaffDialogComponent
   ]
 })
 export class StaffModule {

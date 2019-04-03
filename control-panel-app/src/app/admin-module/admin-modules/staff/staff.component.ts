@@ -12,7 +12,7 @@ import {
 } from '../../../common/shared-module';
 import { MatDialog, PageEvent } from '@angular/material';
 
-import {default as config} from '../../../../app-config.json';
+import { default as config } from '../../../../app-config.json';
 import { Config } from '../../../interfaces';
 
 @Component({
@@ -62,6 +62,8 @@ export class StaffComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.service.getStaffMembersAmount();
     this.service.getPermissions();
+    this.service.getGroups();
+    this.service.getStaffMember();
     const data = config as Config;
     this.sortedColumn = data.staff.sortedColumns || [];
   }

@@ -43,7 +43,7 @@ export class GroupsComponent implements OnInit, OnDestroy {
     const dialogInstance = this.dialog.open(AddGroupDialogComponent, {
       data: {group, mode}
     });
-    dialogInstance.componentInstance.permissions = this.service.permissions$.getValue();
+    dialogInstance.componentInstance.service = this.service;
     dialogInstance.afterClosed()
       .pipe(filter(data => !!data), takeUntil(this.destoyed$))
       .subscribe((data) => {

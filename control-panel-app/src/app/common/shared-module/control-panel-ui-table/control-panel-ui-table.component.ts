@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '../../translations-module';
 import { MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort } from '@angular/material';
-import { StaffMember } from '../../../models';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { PropertyMap } from '../../../admin-module/utils/property-map';
@@ -69,7 +68,7 @@ export class ControlPanelUiTableComponent implements OnInit {
   /**
    * data source for table
    */
-  public dataSource: MatTableDataSource<StaffMember>;
+  public dataSource: MatTableDataSource<any>;
 
   /**
    * MatSort instance
@@ -93,7 +92,7 @@ export class ControlPanelUiTableComponent implements OnInit {
   /**
    * selection
    */
-  public selection: SelectionModel<StaffMember>;
+  public selection: SelectionModel<any>;
 
   /**
    * delete emit

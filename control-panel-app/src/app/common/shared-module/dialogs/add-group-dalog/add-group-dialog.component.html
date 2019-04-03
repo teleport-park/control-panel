@@ -4,9 +4,13 @@
     <mat-error>{{'REQUIRED_FIELD' | translate:[translateService.instant('NAME')]}}</mat-error>
   </mat-form-field>
   <p>{{'GROUP_PERMISSIONS' | translate}}</p>
-  <control-panel-ui-selection [valuesMap]="permissions"
-                              [selected]="data.group.permissions"
-                              (selectionChange)="addPermissions($event)"></control-panel-ui-selection>
+  <control-panel-ui-selection-table
+    [items]="(service.permissions$ | async)"
+    [length]="(service.permissionsCount$ | async)"
+    [selected]="data.group.permissions"
+    (pageChange)="pageChangeHandler($event)"
+    (selectionChange)="addPermissions($event)"
+  ></control-panel-ui-selection-table>
 </div>
 <control-panel-ui-action-toolbar
   [mode]="data.mode"

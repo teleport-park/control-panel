@@ -15,6 +15,8 @@ import { FormModule } from '../form/form.module';
 import { AddSimpleEntityDialogComponent } from './dialogs/add-simple-entity-dialog/add-simple-entity-dialog.component';
 import { ControlPanelUiActionToolbarComponent } from './control-panel-ui-action-toolbar/control-panel-ui-action-toolbar.component';
 import { ControlPanelUiWidgetComponent } from './control-panel-ui-widget/control-panel-ui-widget.component';
+import { ControlPanelUiSelectionTableComponent } from './control-panel-ui-selection-table/control-panel-ui-selection-table.component';
+import { AddStaffDialogComponent } from './dialogs/add-staff-dialog/add-staff-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { ControlPanelUiWidgetComponent } from './control-panel-ui-widget/control
     AddGroupDialogComponent,
     AddSimpleEntityDialogComponent,
     ControlPanelUiActionToolbarComponent,
-    ControlPanelUiWidgetComponent
+    ControlPanelUiWidgetComponent,
+    ControlPanelUiSelectionTableComponent,
+    AddStaffDialogComponent
   ],
   imports: [
     CommonModule,
