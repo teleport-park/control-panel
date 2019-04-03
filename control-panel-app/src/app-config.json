@@ -1,7 +1,10 @@
 {
   "users": {
     "sortedColumns": [
-      "firstName"
+      "firstName",
+      "lastName",
+      "email",
+      "phone"
     ]
   },
   "staff": {
