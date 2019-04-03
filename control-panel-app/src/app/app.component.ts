@@ -13,8 +13,6 @@ export class AppComponent {
   constructor(public translateService: TranslateService,
               public loaderService: LoaderService,
               private storage: StorageService) {
-
-    console.log(environment.VERSION);
     if (!storage.getValue('VERSION') || storage.getValue('VERSION') !== environment.VERSION) {
       storage.clear();
       storage.setValue('VERSION', environment.VERSION);
