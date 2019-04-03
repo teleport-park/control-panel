@@ -37,7 +37,7 @@
           [data]="(userService.users$ | async)"
           [displayedColumns]="displayedColumns"
           [simpleDataColumn]="columnWithData"
-          [listSortedColumn]="['firstName']"
+          [listSortedColumn]="sortedColumn"
           [itemCount]="(userService.userCount$ | async)"
           [storageKey]="userService.STORAGE_KEY"
           [resetPagination]="resetPagination"
