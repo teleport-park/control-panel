@@ -24,4 +24,9 @@ export class StorageService extends StoragePaginationAbstract {
       return super.getValue(key);
     }
   }
+
+  clear(): void {
+    this.cache.clear();
+    localStorage.clear();
+  }
 }

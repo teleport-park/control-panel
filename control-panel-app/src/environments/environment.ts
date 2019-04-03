@@ -7,7 +7,8 @@ import { API } from '../app/api';
 export const environment = {
   production: false,
   origin: 'http://35.246.16.24/',
-  api: API
+  api: API,
+  VERSION: require('../../package.json').version
 };
 
 /*
