@@ -12,7 +12,6 @@ export class DashboardComponent implements OnInit {
   constructor(public service: DashboardService) { }
 
   ngOnInit() {
-    this.service.getUserCount();
   }
 
 }

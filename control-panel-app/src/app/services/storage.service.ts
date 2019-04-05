@@ -1,27 +1,28 @@
 import { Injectable } from '@angular/core';
-import { StoragePaginationAbstract } from '../models/storage-pagination-abstract';
+import { StorageInterface } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class StorageService extends StoragePaginationAbstract {
+export class StorageService implements StorageInterface {
+
+  cache: Map<string, any> = new Map();
 
   constructor() {
-    super();
   }
 
   setValue(key: string, value: any): void {
-    super.setValue(key, value);
     localStorage.setItem(key, JSON.stringify(value));
   }
 
   getValue(key: string): any {
     if (this.cache.has(key)) {
-      return super.getValue(key);
-    } else if (localStorage.getItem(key)) {
+      return this.cache.get(key);
+    }
+    if (localStorage.getItem(key)) {
       this.cache.set(key, JSON.parse(localStorage.getItem(key)));
-      return super.getValue(key);
+      return this.cache.get(key);
     }
   }
 

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UserService } from './services/user.service';
-import { debounceTime, filter, takeUntil } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
 import { User } from '../../../models';
 import { MatDialog, MatSidenavContent, PageEvent, Sort } from '@angular/material';
 import { TranslateService } from '../../../common/translations-module';
@@ -15,7 +15,7 @@ import { FormControl } from '@angular/forms';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { StorageService } from '../../../services/storage.service';
 
-import {default as config} from '../../../../app-config.json';
+import { default as config } from '../../../../app-config.json';
 import { Config } from '../../../interfaces';
 
 @Component({
@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * reset pagination
    */
-  resetPagination: {reset: boolean};
+  resetPagination: { reset: boolean };
 
   /**
    * view scroll container for set and store scroll position
@@ -96,12 +96,15 @@ export class UsersComponent implements OnInit, OnDestroy {
    * on init hook
    */
   ngOnInit() {
-    this.quickFilter.valueChanges.pipe(debounceTime(300), takeUntil(this.destroyed$)).subscribe(
-      (value: string) => {
-        this.userService.findUsers(value);
-        this.resetPagination = {reset: true};
-      }
-    );
+    this.quickFilter.valueChanges.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      takeUntil(this.destroyed$)).subscribe((value: string) => {
+      this.userService.queryString = value;
+      this.resetPagination = {reset: true};
+      this.cd.markForCheck();
+      this.cd.detectChanges();
+    });
     const data = config as Config;
     this.sortedColumn = data.users.sortedColumns || [];
   }
@@ -172,11 +175,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    * change page handler
    * @param event
    */
-  pageChangeHandler(event: PageEvent): void {
-    this.userService.changePaginationOrSort(event);
-  }
-
-  sortChangeHandler(event: Sort): void {
+  changesHandler(event: PageEvent | Sort): void {
     this.userService.changePaginationOrSort(event);
   }
 

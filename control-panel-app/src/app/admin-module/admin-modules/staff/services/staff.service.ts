@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Group, Permission, StaffMember } from '../../../../models';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { Group, Permission, StaffMember, StaffMemberResponse } from '../../../../models';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
-import { finalize, map } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
-import { StaffMemberResponse } from '../../../../models/staff-member-response.model';
-import { MatSnackBar, PageEvent, Sort, SortDirection } from '@angular/material';
+import { MatSnackBar, PageEvent, Sort } from '@angular/material';
 import { TranslateService } from '../../../../common/translations-module';
 import { StorageService } from '../../../../services/storage.service';
-import { DefaultPagination } from '../../../../models/default-pagination';
-import { DefaultSort } from '../../../../models/default-sort';
+import { AppData } from '../../../../interfaces';
+import { BuildParamsHelper } from '../../../utils/build-params-helper';
 
 @Injectable()
 export class StaffService {
@@ -31,16 +30,6 @@ export class StaffService {
   static readonly PERMISSIONS_API: string = `${environment.origin}${environment.api.PERMISSIONS}`;
 
   /**
-   * paging api
-   */
-  static readonly PAGING: any = environment.api.paging;
-
-  /**
-   * sort api
-   */
-  static readonly SORT: any = environment.api.sorting;
-
-  /**
    * staff storage key
    */
   public readonly STAFF_STORAGE_KEY: string = 'STAFF';
@@ -53,34 +42,27 @@ export class StaffService {
   /**
    * staff members
    */
-  staffMembers$: BehaviorSubject<StaffMemberResponse[]> = new BehaviorSubject(null);
+  staffMembers$: BehaviorSubject<AppData<StaffMemberResponse>> = new BehaviorSubject(null);
 
   /**
    * groups
    */
-  groups$: BehaviorSubject<Group[]> = new BehaviorSubject(null);
+  groups$: BehaviorSubject<AppData<Group>> = new BehaviorSubject(null);
 
   /**
    * permissions
    */
-  permissions$: BehaviorSubject<Permission[]> = new BehaviorSubject(null);
-
-  /**
-   * staff count
-   */
-  staffCount$: Observable<number>;
-
-  /**
-   * staff count
-   */
-  staffGroupCount$: Observable<number>;
-
-  permissionsCount$: Observable<number>;
+  permissions$: BehaviorSubject<AppData<Permission>> = new BehaviorSubject(null);
 
   /**
    * group
    */
-  _group: Group[];
+  groups: Group[];
+
+  /**
+   * param builder
+   */
+  private _paramsHelper: BuildParamsHelper = new BuildParamsHelper();
 
   /**
    * Constructor
@@ -97,41 +79,40 @@ export class StaffService {
               public storage: StorageService) {
   }
 
-  /**
-   * get staff member amount
-   */
-  getStaffMembersAmount(): void {
-    this.staffCount$ = this.http.get(`${StaffService.STAFF_API}/totalpages/1`).pipe(
-      map((result: number) => result)
-    );
-  }
-
-  /**
-   * get staff group amount
-   */
-  getStaffGroupAmount(): void {
-    this.staffGroupCount$ = this.http.get(`${StaffService.STAFF_GROUP_API}/totalpages/1`).pipe(
-      map((result: number) => result)
-    );
-  }
+  // /**
+  //  * get staff member amount
+  //  */
+  // getStaffMembersAmount(): void {
+  //   this.staffCount$ = this.http.get(`${StaffService.STAFF_API}/totalpages/1`).pipe(
+  //     map((result: number) => result)
+  //   );
+  // }
+  //
+  // /**
+  //  * get staff group amount
+  //  */
+  // getStaffGroupAmount(): void {
+  //   this.staffGroupCount$ = this.http.get(`${StaffService.STAFF_GROUP_API}/totalpages/1`).pipe(
+  //     map((result: number) => result)
+  //   );
+  // }
 
   /**
    * get staff members
    */
   getStaffMember(): void {
-    const params = this.getParams(this.STAFF_STORAGE_KEY);
+    const params = this._paramsHelper.getParams(this.STAFF_STORAGE_KEY, this.storage);
     this.http.get(
       `${StaffService.STAFF_API}`, {params})
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
         }))
-      .subscribe((result: StaffMemberResponse[]) => {
-        const staffMemberList = result.map((staffMember: StaffMemberResponse) => {
+      .subscribe((data: AppData<StaffMemberResponse>) => {
+        data.items = data.items.map((staffMember: StaffMemberResponse) => {
           return Object.assign(new StaffMemberResponse(staffMember.group.name, staffMember.group.id), staffMember);
         });
-        this.getStaffMembersAmount();
-        this.staffMembers$.next(staffMemberList);
+        this.staffMembers$.next(data);
       });
   }
 
@@ -172,19 +153,16 @@ export class StaffService {
    * get groups
    */
   getGroups(): void {
-    const params = this.getParams(this.GROUP_STORAGE_KEY);
+    const params = this._paramsHelper.getParams(this.GROUP_STORAGE_KEY, this.storage);
     this.http.get(
       `${StaffService.STAFF_GROUP_API}?`, {params})
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
         }))
-      .subscribe((result: Group[]) => {
-        this._group = result.map((group: Group) => {
-          return Object.assign(new Group(), group);
-        });
-        this.groups$.next(this._group);
-        this.getStaffGroupAmount();
+      .subscribe((data: AppData<Group>) => {
+        this.groups = data.items;
+        this.groups$.next(data);
       });
   }
 
@@ -220,7 +198,7 @@ export class StaffService {
    */
   addPermissionsToGroup(group: Group): void {
     this.http.post(`${StaffService.PERMISSIONS_API}`, {staffGroupId: group.id, permissionIds: group.permissions})
-      .subscribe((result) => {
+      .subscribe(() => {
         this.getGroups();
       });
   }
@@ -243,7 +221,7 @@ export class StaffService {
    * get groups map
    */
   getGroupMap() {
-    return this._group.map((group: Group) => {
+    return this.groups.map((group: Group) => {
       return {value: group.id, viewValue: group.name};
     });
   }
@@ -253,18 +231,9 @@ export class StaffService {
    */
   getPermissions(pageSize: number = 10, pageNumber: number = 1) {
     return this.http.get(`${StaffService.PERMISSIONS_API}?pageSize=${pageSize}&pageNumber=${pageNumber}`)
-      .subscribe((result: Permission[]) => {
-        this.permissions$.next(result);
+      .subscribe((data: AppData<Permission>) => {
+        this.permissions$.next(data);
       });
-  }
-
-  /**
-   * get permissions count
-   */
-  getPermissionsCount(): void {
-    this.permissionsCount$ = this.http.get<number>(`${StaffService.PERMISSIONS_API}/totalpages/1`).pipe(
-      map((result: number) => result)
-    );
   }
 
   /**
@@ -297,33 +266,5 @@ export class StaffService {
    */
   changeGroupSortOrPagination(event: PageEvent | Sort): void {
     this.getGroups();
-  }
-
-  private getParams(key: string) {
-    const page = this.storage.getValue(`${key}_PAGINATION`) || new DefaultPagination();
-    const sort = this.storage.getValue(`${key}_SORT`) || new DefaultSort();
-    return new HttpParams()
-      .set(StaffService.PAGING.size, page.pageSize)
-      .set(StaffService.PAGING.page, page.pageIndex + 1)
-      .set(StaffService.SORT.column, sort.active)
-      .set(StaffService.SORT.direction, `${this.getDirection(sort.direction)}`);
-  }
-
-  /**
-   * get direction
-   * @param direction
-   */
-  private getDirection(direction: SortDirection) {
-    switch (direction) {
-      case 'asc': {
-        return 2;
-      }
-      case 'desc': {
-        return 1;
-      }
-      default: {
-        return 0;
-      }
-    }
   }
 }

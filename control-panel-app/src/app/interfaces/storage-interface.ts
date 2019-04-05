@@ -1,4 +1,4 @@
-export interface StoragePaginationInterface {
+export interface StorageInterface {
   /**
    * cashed state value
    */

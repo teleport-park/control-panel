@@ -1,4 +1,4 @@
-export const API: {[key: string]: any} = {
+export const API: {[key: string]: string | any} = {
   // users
   USERS: 'api/users/',
   // staff
@@ -7,6 +7,8 @@ export const API: {[key: string]: any} = {
   GROUPS: 'api/staffgroups',
   // permissions
   PERMISSIONS: 'api/permissions',
+  // string search query params
+  SEARCH: 'queryString',
   // paging params
   paging: {
     page: 'pageNumber',
@@ -15,7 +17,6 @@ export const API: {[key: string]: any} = {
   // filter param
   search: {
     users: 'findUsers/',
-    query: 'queryString',
     total: 'totalPages/'
   },
   // sorting

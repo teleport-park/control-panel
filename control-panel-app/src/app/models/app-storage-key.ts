@@ -1,6 +1,6 @@
 export enum AppStorageKey {
-    Pagination = 'PAGINATION',
-    Sort = 'SORT',
+    Pagination = '_PAGINATION',
+    Sort = '_SORT',
     Left = 'LEFT',
     Right = 'RIGHT',
 }

@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../../../environments/environment';
 import { Permission } from '../../../../../models';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { LoaderService } from '../../../../../services/loader.service';
-import { MatSnackBar, PageEvent, Sort, SortDirection } from '@angular/material';
+import { MatSnackBar, PageEvent, Sort } from '@angular/material';
 import { TranslateService } from '../../../../../common/translations-module';
 import { StorageService } from '../../../../../services/storage.service';
-import { DefaultPagination } from '../../../../../models/default-pagination';
-import { DefaultSort } from '../../../../../models/default-sort';
+import { AppData } from '../../../../../interfaces';
+import { BuildParamsHelper } from '../../../../utils/build-params-helper';
 
 @Injectable()
 export class PermissionsService {
@@ -20,24 +20,16 @@ export class PermissionsService {
   static readonly PERMISSIONS_API: string = `${environment.origin}${environment.api.PERMISSIONS}`;
 
   /**
-   * paging api
-   */
-  static readonly PAGING: any = environment.api.paging;
-
-  /**
-   * sort api
-   */
-  static readonly SORT: any = environment.api.sorting;
-
-  /**
    * storage key
    */
   readonly STORAGE_KEY: string = 'PERMISSIONS';
 
+  private _paramsHelper = new BuildParamsHelper();
+
   /**
    * permissions
    */
-  permissions$: BehaviorSubject<Permission[]> = new BehaviorSubject(null);
+  permissions$: BehaviorSubject<AppData<Permission>> = new BehaviorSubject(null);
 
   /**
    * Permission count
@@ -74,14 +66,14 @@ export class PermissionsService {
    * get permissions
    */
   getPermissions() {
-    const params = this.getParams(this.STORAGE_KEY);
+    const params = this._paramsHelper.getParams(this.STORAGE_KEY, this.storage);
     this.loader.dispatchShowLoader(true);
     this.getPermissionCount();
     this.http.get(
       `${PermissionsService.PERMISSIONS_API}?`, {params})
       .pipe(finalize(() => this.loader.dispatchShowLoader(false)))
-      .subscribe((result: Permission[]) => {
-        this.permissions$.next(result);
+      .subscribe((data: AppData<Permission>) => {
+        this.permissions$.next(data);
       });
   }
 
@@ -94,8 +86,8 @@ export class PermissionsService {
     this.http.post(`${PermissionsService.PERMISSIONS_API}`, permission)
       .pipe(finalize(() => this.loader.dispatchShowLoader(false)))
       .subscribe(() => {
-      this.getPermissions();
-    });
+        this.getPermissions();
+      });
   }
 
   /**
@@ -107,8 +99,8 @@ export class PermissionsService {
     this.http.put(`${PermissionsService.PERMISSIONS_API}/${permission.id}`, permission)
       .pipe(finalize(() => this.loader.dispatchShowLoader(false)))
       .subscribe(() => {
-      this.getPermissions();
-    });
+        this.getPermissions();
+      });
   }
 
   /**
@@ -125,7 +117,7 @@ export class PermissionsService {
           return;
         }
         this.showErrorMessage(this.translateService.instant('ADMIN_MENU_GROUPS'));
-    });
+      });
   }
 
   /**
@@ -150,37 +142,5 @@ export class PermissionsService {
    */
   changeSortOrPagination(event: PageEvent | Sort) {
     this.getPermissions();
-  }
-
-  /**
-   * get params
-   * @param key
-   */
-  private getParams(key: string) {
-    const page = this.storage.getValue(`${key}_PAGINATION`) || new DefaultPagination();
-    const sort = this.storage.getValue(`${this.STORAGE_KEY}_SORT`) || new DefaultSort();
-    return new HttpParams()
-      .set(PermissionsService.PAGING.size, page.pageSize)
-      .set(PermissionsService.PAGING.page, page.pageIndex + 1)
-      .set(PermissionsService.SORT.column, sort.active)
-      .set(PermissionsService.SORT.direction, `${this.getDirection(sort.direction)}`);
-  }
-
-  /**
-   * get direction
-   * @param direction
-   */
-  private getDirection(direction: SortDirection) {
-    switch (direction) {
-      case 'asc': {
-        return 2;
-      }
-      case 'desc': {
-        return 1;
-      }
-      default: {
-        return 0;
-      }
-    }
   }
 }

@@ -1,10 +1,10 @@
-<mat-sidenav-container class="user-component-wrapper" *ngIf="(userService.users$ | async)">
+<mat-sidenav-container class="user-component-wrapper" *ngIf="(userService.usersData$ | async)">
   <mat-sidenav #extendedFilter
                mode="{{(point?.handset | async) ? 'over' : 'side'}}"
                [opened]="!(point?.handset | async)"
                position="end">
     <div class="extended-filter-wrapper">
-      <control-panel-ui-extended-filters [data]="(userService.users$[0] | async)"></control-panel-ui-extended-filters>
+      <control-panel-ui-extended-filters [data]="(userService.usersData$[0] | async)"></control-panel-ui-extended-filters>
     </div>
   </mat-sidenav>
   <mat-sidenav-content #scrollContainer>
@@ -34,19 +34,19 @@
           </div>
         </div>
         <control-panel-ui-table
-          [data]="(userService.users$ | async)"
+          [data]="(userService.usersData$ | async)?.items"
           [displayedColumns]="displayedColumns"
           [simpleDataColumn]="columnWithData"
           [listSortedColumn]="sortedColumn"
-          [itemCount]="(userService.userCount$ | async)"
+          [itemCount]="(userService.usersData$ | async)?.count"
           [storageKey]="userService.STORAGE_KEY"
           [resetPagination]="resetPagination"
           iconSet="person_add"
           (edit)="operationWithUser('edit', $event)"
           (delete)="operationWithUser('delete', $event)"
           (add)="operationWithUser('add')"
-          (pageChanges)="pageChangeHandler($event)"
-          (sortChanges)="sortChangeHandler($event)"></control-panel-ui-table>
+          (pageChanges)="changesHandler($event)"
+          (sortChanges)="changesHandler($event)"></control-panel-ui-table>
       </div>
     </control-panel-ui-card>
   </mat-sidenav-content>

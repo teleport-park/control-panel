@@ -1,5 +1,5 @@
 <ng-template #userFormTemplate>
-  <form [formGroup]="form" class="user-form" #userForm="ngForm">
+  <form [formGroup]="form" class="user-form" #userForm="ngForm" (keypress)="$event.key === 13 ? onSubmitHandler() : null">
     <mat-form-field>
       <input matInput placeholder="{{'FIRST_NAME' | translate}}" formControlName="firstName" required>
       <mat-error>
@@ -53,7 +53,7 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <textarea matInput placeholder="{{'USER_DESC' | translate}}" formControlName="desc"></textarea>
+      <textarea matInput placeholder="{{'USER_DESC' | translate}}" formControlName="desc" [rows]="4"></textarea>
     </mat-form-field>
     <mat-form-field>
       <mat-select placeholder="{{'USER_GENDER_LABEL' | translate}}" formControlName="gender">
