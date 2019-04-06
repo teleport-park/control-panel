@@ -42,7 +42,7 @@ export class AddGroupDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getPermissionsCount();
+    //this.service.getPermissionsCount();
     this.service.getPermissions();
   }
 
