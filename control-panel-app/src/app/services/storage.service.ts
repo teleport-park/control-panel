@@ -13,6 +13,7 @@ export class StorageService implements StorageInterface {
   }
 
   setValue(key: string, value: any): void {
+    this.cache.set(key, value);
     localStorage.setItem(key, JSON.stringify(value));
   }
 
