@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Group, Permission, StaffMember, StaffMemberResponse } from '../../../../models';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
@@ -79,29 +79,19 @@ export class StaffService {
               public storage: StorageService) {
   }
 
-  // /**
-  //  * get staff member amount
-  //  */
-  // getStaffMembersAmount(): void {
-  //   this.staffCount$ = this.http.get(`${StaffService.STAFF_API}/totalpages/1`).pipe(
-  //     map((result: number) => result)
-  //   );
-  // }
-  //
-  // /**
-  //  * get staff group amount
-  //  */
-  // getStaffGroupAmount(): void {
-  //   this.staffGroupCount$ = this.http.get(`${StaffService.STAFF_GROUP_API}/totalpages/1`).pipe(
-  //     map((result: number) => result)
-  //   );
-  // }
+  /**
+   * get staff member
+   * @param id
+   */
+  getStaffMember(id): Observable<AppData<StaffMemberResponse>> {
+    return this.http.get<AppData<StaffMemberResponse>>(`${StaffService.STAFF_API}?id=${id}`);
+  }
 
   /**
    * get staff members
    */
-  getStaffMember(): void {
-    const params = this._paramsHelper.getParams(this.STAFF_STORAGE_KEY, this.storage);
+  getStaffMembers(): void {
+    const params = this._paramsHelper.getPaginationParams(this.STAFF_STORAGE_KEY, this.storage);
     this.http.get(
       `${StaffService.STAFF_API}`, {params})
       .pipe(
@@ -110,7 +100,9 @@ export class StaffService {
         }))
       .subscribe((data: AppData<StaffMemberResponse>) => {
         data.items = data.items.map((staffMember: StaffMemberResponse) => {
-          return Object.assign(new StaffMemberResponse(staffMember.group.name, staffMember.group.id), staffMember);
+          staffMember.staffGroupName = staffMember.group.name;
+          staffMember.staffGroupId = staffMember.group.id;
+          return staffMember;
         });
         this.staffMembers$.next(data);
       });
@@ -122,8 +114,8 @@ export class StaffService {
    */
   editStaffMember(staffMember: StaffMember): void {
     this.loader.dispatchShowLoader(true);
-    this.http.put(`${StaffService.STAFF_API}/${staffMember.id}`, staffMember).subscribe(() => {
-      this.getStaffMember();
+    this.http.put(`${StaffService.STAFF_API}${staffMember.id}`, staffMember).subscribe(() => {
+      this.getStaffMembers();
     });
   }
 
@@ -134,7 +126,7 @@ export class StaffService {
   addStaffMember(staffMember: StaffMember): void {
     this.loader.dispatchShowLoader(true);
     this.http.post(`${StaffService.STAFF_API}`, staffMember).subscribe(() => {
-      this.getStaffMember();
+      this.getStaffMembers();
     });
   }
 
@@ -144,8 +136,8 @@ export class StaffService {
    */
   removeStaffMember(staffMember: StaffMember): void {
     this.loader.dispatchShowLoader(true);
-    this.http.delete(`${StaffService.STAFF_API}/${staffMember.id}`).subscribe(() => {
-      this.getStaffMember();
+    this.http.delete(`${StaffService.STAFF_API}${staffMember.id}`).subscribe(() => {
+      this.getStaffMembers();
     });
   }
 
@@ -153,7 +145,7 @@ export class StaffService {
    * get groups
    */
   getGroups(): void {
-    const params = this._paramsHelper.getParams(this.GROUP_STORAGE_KEY, this.storage);
+    const params = this._paramsHelper.getPaginationParams(this.GROUP_STORAGE_KEY, this.storage);
     this.http.get(
       `${StaffService.STAFF_GROUP_API}?`, {params})
       .pipe(
@@ -257,7 +249,7 @@ export class StaffService {
    * @param event
    */
   changeStaffSortOrPagination(event: PageEvent | Sort): void {
-    this.getStaffMember();
+    this.getStaffMembers();
   }
 
   /**

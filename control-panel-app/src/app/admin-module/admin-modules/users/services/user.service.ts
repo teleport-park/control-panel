@@ -59,8 +59,8 @@ export class UserService implements OnDestroy {
    *
    * @param userId
    */
-  getUser(userId: number): Observable<User> {
-    return this.http.get<User>(`${UserService.USER_API}${userId}`);
+  getUser(userId: number): Observable<AppData<User>> {
+    return this.http.get<AppData<User>>(`${UserService.USER_API}?id=${userId}`);
   }
 
   /**
@@ -68,7 +68,7 @@ export class UserService implements OnDestroy {
    */
   getUsers(): void {
     this.loaderService.dispatchShowLoader(true);
-    let params = this._paramsHelper.getParams(this.STORAGE_KEY, this.storage);
+    let params = this._paramsHelper.getFullParams(this.STORAGE_KEY, this.storage);
     if (this.queryString) {
       params = params.set(environment.api.SEARCH, this.queryString);
     }

@@ -1,0 +1,11 @@
+.staff-member_form {
+  display: flex;
+  flex-direction: column;
+  .action-button-group {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      margin-left: 10px;
+    }
+  }
+}

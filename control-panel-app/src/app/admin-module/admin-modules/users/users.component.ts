@@ -16,7 +16,7 @@ import { BreakpointService } from '../../../services/breakpoint.service';
 import { StorageService } from '../../../services/storage.service';
 
 import { default as config } from '../../../../app-config.json';
-import { Config } from '../../../interfaces';
+import { AppData, Config } from '../../../interfaces';
 
 @Component({
   selector: 'app-users',
@@ -129,12 +129,14 @@ export class UsersComponent implements OnInit, OnDestroy {
    */
   private showModalAddOrEditUser(mode: 'edit' | 'add', user: User) {
     if (mode === 'edit') {
-      this.userService.getUser(user.id).subscribe((result: User) => {
-        this.openModalDialog(mode, result);
+      this.userService.getUser(user.id)
+        .pipe(filter((data: AppData<User>) => !!data.items.length))
+        .subscribe((result: AppData<User>) => {
+        this.openModalDialog(mode, result.items[0]);
       });
       return;
     }
-    this.openModalDialog(mode, user);
+    this.openModalDialog(mode, new User());
   }
 
   /**
@@ -144,7 +146,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    */
   private openModalDialog(mode: 'edit' | 'add', user: User) {
     this.dialog.open(AddOrEditEntityDialogComponent, {
-      data: mode === 'edit' ? Object.assign(new User(), user) : 'user'
+      data: mode === 'edit' ? Object.assign(new User(), user) : user
     }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((result: User) => {
       if (mode === 'edit') {
         this.userService.editUser(result);

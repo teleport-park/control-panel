@@ -1,8 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { TranslateService } from '../../../translations-module';
-import { StaffMemberResponse } from '../../../../models/staff-member-response.model';
+import { StaffMemberResponse } from '../../../../models';
 import { StaffService } from '../../../../admin-module/admin-modules/staff/services/staff.service';
-import { StaffMember } from '../../../../models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
@@ -16,7 +15,7 @@ export class AddStaffDialogComponent implements OnInit {
   /**
    * mode
    */
-  mode: string;
+  mode = 'add';
 
   /**
    * service
@@ -40,25 +39,16 @@ export class AddStaffDialogComponent implements OnInit {
 
   constructor(public translateService: TranslateService, private fb: FormBuilder,
               public dialogRef: MatDialogRef<AddStaffDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
+              @Inject(MAT_DIALOG_DATA) public data: { mode: string, item: StaffMemberResponse }) {
     dialogRef._containerInstance._config.width = '500px';
   }
 
   ngOnInit(): void {
-    if (this.data instanceof StaffMemberResponse) {
-      this.entityModel = Object.assign(new StaffMemberResponse(), this.data);
-      this.propertyMap = this.service.getGroupMap();
-      this.form = this.getStaffMemberForm();
-      this.form.patchValue(this.entityModel);
-      this.mode = 'edit';
-    }
-    if (this.data === 'staffMember') {
-      this.entityModel = new StaffMember();
-      this.propertyMap = this.service.getGroupMap();
-      this.form = this.getStaffMemberForm();
-      this.form.patchValue(this.entityModel);
-      this.mode = 'add';
-    }
+    this.entityModel = this.data.item;
+    this.propertyMap = this.service.getGroupMap();
+    this.form = this.getStaffMemberForm();
+    this.form.patchValue(this.entityModel);
+    this.mode = this.data.mode;
   }
 
   /**

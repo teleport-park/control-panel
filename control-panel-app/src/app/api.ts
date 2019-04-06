@@ -2,7 +2,7 @@ export const API: {[key: string]: string | any} = {
   // users
   USERS: 'api/users/',
   // staff
-  STAFF: 'api/staff',
+  STAFF: 'api/staff/',
   // groups
   GROUPS: 'api/staffgroups',
   // permissions

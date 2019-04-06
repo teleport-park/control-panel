@@ -1,19 +1,15 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { StaffMember } from '../../../models';
+import { StaffMember, StaffMemberResponse } from '../../../models';
 import { StaffService } from './services/staff.service';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { TranslateService } from '../../../common/translations-module';
 import { BreakpointService } from '../../../services/breakpoint.service';
-import {
-  AddOrEditEntityDialogComponent,
-  ConfirmDialogComponent,
-  ConfirmDialogData
-} from '../../../common/shared-module';
+import { AddStaffDialogComponent, ConfirmDialogComponent, ConfirmDialogData } from '../../../common/shared-module';
 import { MatDialog, PageEvent } from '@angular/material';
 
 import { default as config } from '../../../../app-config.json';
-import { Config } from '../../../interfaces';
+import { AppData, Config } from '../../../interfaces';
 
 @Component({
   selector: 'control-panel-staff',
@@ -62,7 +58,7 @@ export class StaffComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.service.getPermissions();
     this.service.getGroups();
-    this.service.getStaffMember();
+    this.service.getStaffMembers();
     const data = config as Config;
     this.sortedColumn = data.staff.sortedColumns || [];
   }
@@ -100,16 +96,35 @@ export class StaffComponent implements OnInit, OnDestroy {
   /**
    * show add or remove dialog
    * @param mode
-   * @param event
+   * @param staffMember
    */
-  private showModalAddOrEditStaffMemberUser(mode: 'edit' | 'add' | 'delete', event) {
-    this.dialog.open(AddOrEditEntityDialogComponent, {
-      data: mode === 'edit' ? event : 'staffMember'
-    }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((staffMember: StaffMember) => {
+  private showModalAddOrEditStaffMemberUser(mode: 'edit' | 'add', staffMember?: StaffMemberResponse) {
+    if (mode === 'edit') {
+      this.service.getStaffMember(staffMember.id)
+        .pipe(filter(data => !!data.items.length))
+        .subscribe((data: AppData<StaffMemberResponse>) => {
+        this.showDialog(mode, data.items[0]);
+      });
+    } else {
+      this.showDialog(mode, new StaffMemberResponse());
+    }
+  }
+
+  /**
+   * show dialog
+   * @param mode
+   * @param staffMember
+   */
+  private showDialog(mode: 'edit' | 'add', staffMember: StaffMemberResponse) {
+    const dialog = this.dialog.open(AddStaffDialogComponent, {
+      data: {mode, item: staffMember}
+    });
+    dialog.componentInstance.service = this.service;
+    dialog.afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((staff: StaffMember) => {
       if (mode === 'edit') {
-        this.service.editStaffMember(staffMember);
+        this.service.editStaffMember(staff);
       } else {
-        this.service.addStaffMember(staffMember);
+        this.service.addStaffMember(staff);
       }
     });
   }

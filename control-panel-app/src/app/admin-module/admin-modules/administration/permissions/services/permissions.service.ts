@@ -66,7 +66,7 @@ export class PermissionsService {
    * get permissions
    */
   getPermissions() {
-    const params = this._paramsHelper.getParams(this.STORAGE_KEY, this.storage);
+    const params = this._paramsHelper.getPaginationParams(this.STORAGE_KEY, this.storage);
     this.loader.dispatchShowLoader(true);
     this.getPermissionCount();
     this.http.get(

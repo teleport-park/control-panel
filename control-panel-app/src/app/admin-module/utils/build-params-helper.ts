@@ -25,12 +25,36 @@ export class BuildParamsHelper {
    * @param key
    * @param storage
    */
-  public getParams(key: string, storage: StorageService) {
+  public getFullParams(key: string, storage: StorageService): HttpParams {
     const page = storage.getValue(`${key}${AppStorageKey.Pagination}`) || new DefaultPagination();
     const sort = storage.getValue(`${key}${AppStorageKey.Sort}`) || new DefaultSort();
     return new HttpParams()
       .set(BuildParamsHelper.PAGING.size, page.pageSize)
       .set(BuildParamsHelper.PAGING.page, page.pageIndex + 1)
+      .set(BuildParamsHelper.SORT.column, sort.active)
+      .set(BuildParamsHelper.SORT.direction, `${this.getDirection(sort.direction)}`);
+  }
+
+  /**
+   * get page params
+   * @param key
+   * @param storage
+   */
+  getPaginationParams(key: string, storage: StorageService): HttpParams {
+    const page = storage.getValue(`${key}${AppStorageKey.Pagination}`) || new DefaultPagination();
+    return new HttpParams()
+      .set(BuildParamsHelper.PAGING.size, page.pageSize)
+      .set(BuildParamsHelper.PAGING.page, page.pageIndex + 1);
+  }
+
+  /**
+   * get sort params
+   * @param key
+   * @param storage
+   */
+  getSortParams(key: string, storage: StorageService): HttpParams {
+    const sort = storage.getValue(`${key}${AppStorageKey.Sort}`) || new DefaultSort();
+    return new HttpParams()
       .set(BuildParamsHelper.SORT.column, sort.active)
       .set(BuildParamsHelper.SORT.direction, `${this.getDirection(sort.direction)}`);
   }
