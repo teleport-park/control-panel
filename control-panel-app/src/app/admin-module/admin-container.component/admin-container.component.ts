@@ -54,6 +54,11 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
       path: '/admin/hardware',
       active: false
     }, {
+      icon: 'compare_arrows',
+      label: 'ADMIN_MENU_TRANSACTIONS',
+      path: '/admin/transactions',
+      active: false
+    }, {
       icon: 'people',
       label: 'ADMIN_MENU_USERS',
       path: '/admin/users',

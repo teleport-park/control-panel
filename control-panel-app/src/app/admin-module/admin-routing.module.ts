@@ -34,6 +34,10 @@ const routes: Routes = [
         path: 'keychain',
         loadChildren: './admin-modules/keychain/keychain.module#KeychainModule',
         data: {title: 'ADMIN_MENU_KEYCHAIN'}
+      }, {
+        path: 'transactions',
+        loadChildren: './admin-modules/transactions/transactions.module#TransactionsModule',
+        data: {title: 'ADMIN_MENU_TRANSACTIONS'}
       }
     ]
   }
