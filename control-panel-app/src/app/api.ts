@@ -14,11 +14,6 @@ export const API: {[key: string]: string | any} = {
     page: 'pageNumber',
     size: 'pageSize'
   },
-  // filter param
-  search: {
-    users: 'findUsers/',
-    total: 'totalPages/'
-  },
   // sorting
   sorting: {
     column: 'orderByColumn',

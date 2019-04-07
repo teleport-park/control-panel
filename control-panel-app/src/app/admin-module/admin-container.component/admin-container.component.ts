@@ -50,8 +50,8 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
     },
     {
       icon: 'computer',
-      label: 'ADMIN_MENU_DEVICES',
-      path: '/admin/devices',
+      label: 'ADMIN_MENU_HARDWARE',
+      path: '/admin/hardware',
       active: false
     }, {
       icon: 'people',

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../../../environments/environment';
 import { Permission } from '../../../../../models';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { finalize, map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { LoaderService } from '../../../../../services/loader.service';
 import { MatSnackBar, PageEvent, Sort } from '@angular/material';
 import { TranslateService } from '../../../../../common/translations-module';
@@ -32,11 +32,6 @@ export class PermissionsService {
   permissions$: BehaviorSubject<AppData<Permission>> = new BehaviorSubject(null);
 
   /**
-   * Permission count
-   */
-  permissionCount$: Observable<number>;
-
-  /**
    * constructor
    * @param http
    * @param loader
@@ -49,17 +44,7 @@ export class PermissionsService {
               private toaster: MatSnackBar,
               private translateService: TranslateService,
               public storage: StorageService) {
-    this.getPermissionCount();
     this.getPermissions();
-  }
-
-  /**
-   * get permission amount
-   */
-  getPermissionCount(): void {
-    this.permissionCount$ = this.http.get(`${PermissionsService.PERMISSIONS_API}/totalpages/1`).pipe(
-      map((result: number) => result)
-    );
   }
 
   /**
@@ -68,7 +53,6 @@ export class PermissionsService {
   getPermissions() {
     const params = this._paramsHelper.getPaginationParams(this.STORAGE_KEY, this.storage);
     this.loader.dispatchShowLoader(true);
-    this.getPermissionCount();
     this.http.get(
       `${PermissionsService.PERMISSIONS_API}?`, {params})
       .pipe(finalize(() => this.loader.dispatchShowLoader(false)))
