@@ -1,0 +1,20 @@
+<div class="hardware-item_wrapper mat-elevation-z2">
+  <div class="hardware-item_title">
+    <h4>{{item.title}}</h4>
+  </div>
+  <p>Description: {{item.data.desc}}</p>
+  <p>CPU: {{item.data.cpuDesc}}</p>
+  <p>LAN: {{item.data.lanDesc}}</p>
+  <div class="cpu_status">
+    <p>CPU: {{cpuBusy}}%</p><span class="indicator"
+                                  [style.width]="cpuBusy + '%'"
+                                  [ngClass]="{'overload': cpuBusy > 90}"></span>
+  </div>
+  <div class="lan_status">
+    <p>LAN: {{lanBusy}}%</p><span class="indicator"
+                                  [style.width]="lanBusy + '%'"
+                                  [ngClass]="{'overload': lanBusy > 90}"></span>
+  </div>
+  <p>Status: </p>
+  <p>{{item.status}}</p>
+</div>

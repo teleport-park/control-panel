@@ -10,7 +10,7 @@ import { Permission } from '../../../../models';
 import { filter } from 'rxjs/operators';
 import { PermissionsService } from './services/permissions.service';
 
-import {default as config} from '../../../../../app-config.json';
+import { default as config } from '../../../../../app-config.json';
 import { Config } from '../../../../interfaces';
 
 @Component({

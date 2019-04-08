@@ -1,10 +1,10 @@
-import { environment } from '../../../environments/environment';
-import { DefaultPagination } from '../../models/default-pagination';
-import { DefaultSort } from '../../models/default-sort';
+import { environment } from '../../environments/environment';
+import { DefaultPagination } from '../models/default-pagination';
+import { DefaultSort } from '../models/default-sort';
 import { HttpParams } from '@angular/common/http';
 import { SortDirection } from '@angular/material';
-import { StorageService } from '../../services/storage.service';
-import { AppStorageKey } from '../../models/app-storage-key';
+import { StorageService } from '../services/storage.service';
+import { AppStorageKey } from '../models/app-storage-key';
 
 export class BuildParamsHelper {
   /**

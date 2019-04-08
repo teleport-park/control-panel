@@ -1,12 +1,11 @@
 import { BehaviorSubject } from 'rxjs';
-import { AppData } from './app-data-interface';
 
 export interface ApiServiceInterface<T> {
   readonly STORAGE_KEY: string;
   api: string;
   items$: BehaviorSubject<T>;
 
-  getItems(): AppData<T>;
+  getItems(): void;
 
   addItem(item: T): void;
 
