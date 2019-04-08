@@ -7,6 +7,7 @@ import { PropertyMap } from '../../../admin-module/utils/property-map';
 import { IconService } from '../../../services/icon.service';
 import { StorageService } from '../../../services/storage.service';
 import { DefaultPagination } from '../../../models/default-pagination';
+import { AppStorageKey } from '../../../models/app-storage-key';
 
 @Component({
   selector: 'control-panel-ui-table',
@@ -162,7 +163,7 @@ export class ControlPanelUiTableComponent implements OnInit {
    * @param event
    */
   changePageHandler(event: PageEvent): void {
-    this.storage.setValue(`${this.storageKey}_PAGINATION`, event);
+    this.storage.setValue(`${this.storageKey}${AppStorageKey.Pagination}`, event);
     this.pageChanges.emit(event);
   }
 
@@ -178,7 +179,7 @@ export class ControlPanelUiTableComponent implements OnInit {
    * @param event
    */
   sortChange(event: Sort) {
-    this.storage.setValue(`${this.storageKey}_SORT`, event);
+    this.storage.setValue(`${this.storageKey}${AppStorageKey.Sort}`, event);
     this.sortChanges.emit(event);
   }
 
@@ -186,14 +187,14 @@ export class ControlPanelUiTableComponent implements OnInit {
    * init table state
    */
   private initTableState() {
-    if (this.storage && this.storage.getValue(`${this.storageKey}_PAGINATION`)) {
-      this.paginatorInit = this.storage.getValue(`${this.storageKey}_PAGINATION`);
+    if (this.storage && this.storage.getValue(`${this.storageKey}${AppStorageKey.Pagination}`)) {
+      this.paginatorInit = this.storage.getValue(`${this.storageKey}${AppStorageKey.Pagination}`);
     } else {
       this.paginatorInit = new DefaultPagination();
     }
-    if (this.storage && this.storage.getValue(`${this.storageKey}_SORT`)) {
-      this.sortInst.active = this.storage.getValue(`${this.storageKey}_SORT`).active;
-      this.sortInst.direction = this.storage.getValue(`${this.storageKey}_SORT`).direction;
+    if (this.storage && this.storage.getValue(`${this.storageKey}${AppStorageKey.Sort}`)) {
+      this.sortInst.active = this.storage.getValue(`${this.storageKey}${AppStorageKey.Sort}`).active;
+      this.sortInst.direction = this.storage.getValue(`${this.storageKey}${AppStorageKey.Sort}`).direction;
     }
   }
 }
