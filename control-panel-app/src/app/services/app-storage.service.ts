@@ -1,24 +1,25 @@
-import { Injectable } from '@angular/core';
 import {IAppStorageInterface} from '../interfaces/app-storage-interface';
 import {AppStorageKey} from '../models/app-storage-key';
 
-@Injectable({
-  providedIn: 'root'
-})
 export class AppStorageService implements IAppStorageInterface {
 
   constructor() { }
 
-  getValue<T>(key: AppStorageKey): T {
+  getValue<T>(key: AppStorageKey, defaultValue?: T): T {
     const v = localStorage.getItem(key);
     try {
-      return JSON.parse(v) as T;
+      if (v) {
+        return JSON.parse(v) as T;
+      }
+      if (defaultValue) {
+        return defaultValue;
+      }
     } catch {
-      return null;
+        return null;
     }
   }
 
-  removeValue(key: AppStorageKey) {
+  removeValue(key: AppStorageKey): void {
     localStorage.removeItem(key);
   }
 

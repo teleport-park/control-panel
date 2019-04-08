@@ -50,7 +50,7 @@ export class TranslateService {
         this._translations = result;
         this.locale.next(locale);
         this.translationsLoaded = true;
-        this.storage.setValue('locale', locale);
+        this.storage.setValue('locale', locale); // wtf?
         this.loaderService.dispatchShowLoader(false);
       }
     );

@@ -4,5 +4,6 @@ export enum AppStorageKey {
     Left = 'LEFT',
     Right = 'RIGHT',
     Test = 'TEST',
-    Version = 'VERSION'
+    Version = 'VERSION',
+    Locale = 'LOCALE'
 }

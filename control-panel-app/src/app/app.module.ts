@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginModule } from './common/login-module/login.module';
 import { NgxMaskModule } from 'ngx-mask';
+import {IAppStorageInterface} from './interfaces/app-storage-interface';
+import {AppStorageService} from './services/app-storage.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,10 @@ import { NgxMaskModule } from 'ngx-mask';
     LoginModule,
     NgxMaskModule.forRoot()
   ],
-  providers: [],
+  providers: [{
+    provide: 'IAppStorageInterface',
+    useClass: AppStorageService
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
