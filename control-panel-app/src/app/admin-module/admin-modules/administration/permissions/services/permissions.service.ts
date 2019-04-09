@@ -9,7 +9,7 @@ import { MatSnackBar, PageEvent, Sort } from '@angular/material';
 import { TranslateService } from '../../../../../common/translations-module';
 import { StorageService } from '../../../../../services/storage.service';
 import { AppData } from '../../../../../interfaces';
-import { BuildParamsHelper } from '../../../../utils/build-params-helper';
+import { BuildParamsHelper } from '../../../../../utils/build-params-helper';
 
 @Injectable()
 export class PermissionsService {

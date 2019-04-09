@@ -12,7 +12,7 @@ export class CardsService {
   /**
    * storage key
    */
-  public readonly STORAGE_KEY: string = 'CARD_PAGINATION';
+  public readonly STORAGE_KEY: string = 'CARDS';
 
   /**
    * cards

@@ -17,6 +17,7 @@ import { ControlPanelUiActionToolbarComponent } from './control-panel-ui-action-
 import { ControlPanelUiWidgetComponent } from './control-panel-ui-widget/control-panel-ui-widget.component';
 import { ControlPanelUiSelectionTableComponent } from './control-panel-ui-selection-table/control-panel-ui-selection-table.component';
 import { AddStaffDialogComponent } from './dialogs/add-staff-dialog/add-staff-dialog.component';
+import { ControlPanelUiHardwareItemComponent } from './control-panel-ui-hardware-item/control-panel-ui-hardware-item.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AddStaffDialogComponent } from './dialogs/add-staff-dialog/add-staff-di
     ControlPanelUiActionToolbarComponent,
     ControlPanelUiWidgetComponent,
     ControlPanelUiSelectionTableComponent,
-    AddStaffDialogComponent
+    AddStaffDialogComponent,
+    ControlPanelUiHardwareItemComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +54,8 @@ import { AddStaffDialogComponent } from './dialogs/add-staff-dialog/add-staff-di
     AddOrEditEntityDialogComponent,
     AddGroupDialogComponent,
     ControlPanelUiActionToolbarComponent,
-    ControlPanelUiWidgetComponent
+    ControlPanelUiWidgetComponent,
+    ControlPanelUiHardwareItemComponent
   ]
 })
 export class SharedModule {

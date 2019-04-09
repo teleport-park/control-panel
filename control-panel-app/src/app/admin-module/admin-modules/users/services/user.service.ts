@@ -10,7 +10,7 @@ import { TranslateService } from '../../../../common/translations-module';
 import { PageEvent, Sort } from '@angular/material';
 import { StorageService } from '../../../../services/storage.service';
 import { AppData } from '../../../../interfaces';
-import { BuildParamsHelper } from '../../../utils/build-params-helper';
+import { BuildParamsHelper } from '../../../../utils/build-params-helper';
 
 
 @Injectable()

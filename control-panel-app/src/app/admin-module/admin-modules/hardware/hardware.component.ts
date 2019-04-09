@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { HardwareService } from './services/hardware.service';
 
 @Component({
   selector: 'app-hardware',
@@ -8,7 +9,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class HardwareComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service: HardwareService) { }
 
   ngOnInit() {
   }

@@ -1,3 +1,5 @@
-<p>
-  hardware works!
-</p>
+<div class="hardware-items_wrapper row">
+  <div *ngFor="let item of service.items$ | async" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+    <control-panel-ui-hardware-item [item]="item"></control-panel-ui-hardware-item>
+  </div>
+</div>
