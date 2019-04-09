@@ -13,5 +13,14 @@ export const PropertyMap = {
   currentOwner: 'CARD_OWNER_LABEL',
   inventoryNumber: 'CARD_INVENTORY_NUMBER',
   enabled: 'CARD_STATE',
-  action: 'CARD_CHANGE_STATE'
+  action: 'CARD_CHANGE_STATE',
+  number: 'TRANSACTION_NUMBER',
+  date: 'TRANSACTION_DATE',
+  document: 'TRANSACTION_DOCUMENT',
+  operation: 'TRANSACTION_OPERATION',
+  invoiceNumber: 'TRANSACTION_INVOICE_NUMBER',
+  currency: 'TRANSACTION_CURRENCY',
+  amount: 'TRANSACTION_AMOUNT',
+  correspondent: 'TRANSACTION_CORRESPONDENT',
+  signature: 'TRANSACTION_SIGNATURE'
 };

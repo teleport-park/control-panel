@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TransactionsService } from './services/transactions.service';
 
 @Component({
   selector: 'control-panel-transactions',
@@ -7,7 +8,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionsComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = [
+    'number',
+    'date',
+    'document',
+    'operation',
+    'invoiceNumber',
+    'currency',
+    'amount',
+    'correspondent',
+    'signature'
+  ];
+
+  columnWithData: string[] = [
+    'number',
+    'date',
+    'document',
+    'operation',
+    'invoiceNumber',
+    'currency',
+    'amount',
+    'correspondent',
+    'signature'
+  ];
+
+  constructor(public service: TransactionsService) {
+  }
 
   ngOnInit() {
   }

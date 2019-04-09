@@ -11,6 +11,8 @@ import { PageEvent, Sort } from '@angular/material';
 import { StorageService } from '../../../../services/storage.service';
 import { AppData } from '../../../../interfaces';
 import { BuildParamsHelper } from '../../../../utils/build-params-helper';
+import { ApiUrlBuilder } from '../../../../models/api-url-builder';
+import { ApiUrlsService } from '../../../../services/api-urls.service';
 
 
 @Injectable()
@@ -44,11 +46,13 @@ export class UserService implements OnDestroy {
   /**
    * constructor
    * @param http
+   * @param apiBuilder
    * @param loaderService
    * @param translateService
    * @param storage
    */
   constructor(private http: HttpClient,
+              private apiBuilder: ApiUrlsService,
               private loaderService: LoaderService,
               private translateService: TranslateService,
               public storage: StorageService) {
@@ -60,7 +64,7 @@ export class UserService implements OnDestroy {
    * @param userId
    */
   getUser(userId: number): Observable<AppData<User>> {
-    return this.http.get<AppData<User>>(`${UserService.USER_API}?id=${userId}`);
+    return this.http.request<AppData<User>>('GET', this.apiBuilder.getUsersUrl('GET', userId));
   }
 
   /**
@@ -68,11 +72,18 @@ export class UserService implements OnDestroy {
    */
   getUsers(): void {
     this.loaderService.dispatchShowLoader(true);
-    let params = this._paramsHelper.getFullParams(this.STORAGE_KEY, this.storage);
+    let params: any = this._paramsHelper.getParams(this.STORAGE_KEY, this.storage);
     if (this.queryString) {
       params = params.set(environment.api.SEARCH, this.queryString);
     }
-    this.http.get<AppData<User>>(`${UserService.USER_API}`, {params})
+    this.http.request<AppData<User>>('GET',
+        this.apiBuilder.getUsersUrl(
+          'GET',
+          null,
+          params.pageSize,
+          params.pageIndex + 1,
+          params.active,
+          params.direction))
       .pipe(
         finalize(() => {
           this.loaderService.dispatchShowLoader(false);
@@ -92,7 +103,7 @@ export class UserService implements OnDestroy {
    */
   saveUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
-    this.http.post(`${UserService.USER_API}`, user).subscribe(() => {
+    this.http.request('POST', this.apiBuilder.getUsersUrl('POST'), {body: user}).subscribe(() => {
       this.getUsers();
     });
   }

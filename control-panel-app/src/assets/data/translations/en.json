@@ -63,5 +63,14 @@
   "CARD_STATE": "Card state",
   "CARD_CHANGE_STATE": " ",
   "CARD_ACTION_ACTIVATE": "Activate",
-  "CARD_ACTION_DEACTIVATE": "Deactivate"
+  "CARD_ACTION_DEACTIVATE": "Deactivate",
+  "TRANSACTION_NUMBER": "№",
+  "TRANSACTION_DATE": "Date",
+  "TRANSACTION_DOCUMENT": "Document number",
+  "TRANSACTION_OPERATION": "Operation number",
+  "TRANSACTION_INVOICE_NUMBER": "Invoice number",
+  "TRANSACTION_CURRENCY": "Currency",
+  "TRANSACTION_AMOUNT": "Amount",
+  "TRANSACTION_CORRESPONDENT": "Correspondent",
+  "TRANSACTION_SIGNATURE": "Signature"
 }

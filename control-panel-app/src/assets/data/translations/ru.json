@@ -64,5 +64,14 @@
   "CARD_STATE": "Состояние карты",
   "CARD_CHANGE_STATE": " ",
   "CARD_ACTION_ACTIVATE": "Активировать",
-  "CARD_ACTION_DEACTIVATE": "Деактивировать"
+  "CARD_ACTION_DEACTIVATE": "Деактивировать",
+  "TRANSACTION_NUMBER": "№",
+  "TRANSACTION_DATE": "Дата",
+  "TRANSACTION_DOCUMENT": "Номер документа",
+  "TRANSACTION_OPERATION": "Номер операции",
+  "TRANSACTION_INVOICE_NUMBER": "Номер документа",
+  "TRANSACTION_CURRENCY": "Валюта",
+  "TRANSACTION_AMOUNT": "Сумма",
+  "TRANSACTION_CORRESPONDENT": "Корреспондент",
+  "TRANSACTION_SIGNATURE": "Подпись"
 }
