@@ -4,7 +4,7 @@ import {LoaderService} from './services/loader.service';
 import {environment} from '../environments/environment';
 import {AppStorageKey} from './models/app-storage-key';
 import {IAppStorageInterface} from './interfaces/app-storage-interface';
-import {ApiUrlBuilder} from './models/api-url-builder';
+import {IApiUrlsInterface} from './interfaces/api-urls-interface';
 
 
 @Component({
@@ -15,7 +15,8 @@ import {ApiUrlBuilder} from './models/api-url-builder';
 export class AppComponent {
   constructor(public translateService: TranslateService,
               public loaderService: LoaderService,
-              @Inject('IAppStorageInterface') private appStorage: IAppStorageInterface
+              @Inject('IAppStorageInterface') private appStorage: IAppStorageInterface,
+              @Inject('IApiUrlsInterface') private apiUrls: IApiUrlsInterface
               ) {
 
     const storageVersion = appStorage.getValue(AppStorageKey.Version) as string;
@@ -28,6 +29,8 @@ export class AppComponent {
     const locale = appStorage.getValue(AppStorageKey.Locale, 'en');
     // todo: refactor 'locale' variable to be invariant to uppercase
     this.translateService.getTranslations(locale);
+    // const testUrl = apiUrls.getPermissionsUrl('GET', null, 10, 5);
+    // appStorage.setValue(AppStorageKey.Test, testUrl);
     // test example of URL builder
     /*
     const url = new ApiUrlBuilder('api/Users')
