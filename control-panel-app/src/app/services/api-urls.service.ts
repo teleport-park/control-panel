@@ -85,7 +85,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
       if (orderByColumn) {
         aub.appendQueryParameter('orderByColumn', orderByColumn);
       }
-      if (orderDirection) {
+      if (orderDirection || orderDirection === 0) {
         aub.appendQueryParameter('orderDirection', orderDirection.toString());
       }
       if (queryString) {
