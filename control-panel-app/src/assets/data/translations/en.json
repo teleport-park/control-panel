@@ -72,5 +72,6 @@
   "TRANSACTION_CURRENCY": "Currency",
   "TRANSACTION_AMOUNT": "Amount",
   "TRANSACTION_CORRESPONDENT": "Correspondent",
-  "TRANSACTION_SIGNATURE": "Signature"
+  "TRANSACTION_SIGNATURE": "Signature",
+  "CPU_BUSY": "CPU load"
 }

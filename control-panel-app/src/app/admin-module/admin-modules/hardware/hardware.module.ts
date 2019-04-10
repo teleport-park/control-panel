@@ -4,6 +4,7 @@ import { HardwareComponent } from './hardware.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HardwareService } from './services/hardware.service';
 import { SharedModule } from '../../../common/shared-module/shared.module';
+import { MaterialModule } from '../../../material.module';
 
 
 const routes: Routes = [{
@@ -18,7 +19,8 @@ export const HardwareRoutingModule = RouterModule.forChild(routes);
   imports: [
     CommonModule,
     HardwareRoutingModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
   ],
   providers: [HardwareService]
 })

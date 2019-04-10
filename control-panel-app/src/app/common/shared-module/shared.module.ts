@@ -18,6 +18,7 @@ import { ControlPanelUiWidgetComponent } from './control-panel-ui-widget/control
 import { ControlPanelUiSelectionTableComponent } from './control-panel-ui-selection-table/control-panel-ui-selection-table.component';
 import { AddStaffDialogComponent } from './dialogs/add-staff-dialog/add-staff-dialog.component';
 import { ControlPanelUiHardwareItemComponent } from './control-panel-ui-hardware-item/control-panel-ui-hardware-item.component';
+import { ChartistModule } from 'ng-chartist';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ControlPanelUiHardwareItemComponent } from './control-panel-ui-hardware
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    FormModule
+    FormModule,
+    ChartistModule
   ],
   exports: [
     ConfirmDialogComponent,

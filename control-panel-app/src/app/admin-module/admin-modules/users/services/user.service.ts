@@ -11,7 +11,6 @@ import { PageEvent, Sort } from '@angular/material';
 import { StorageService } from '../../../../services/storage.service';
 import { AppData } from '../../../../interfaces';
 import { BuildParamsHelper } from '../../../../utils/build-params-helper';
-import { ApiUrlBuilder } from '../../../../models/api-url-builder';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
 
 
@@ -74,13 +73,13 @@ export class UserService implements OnDestroy {
     this.loaderService.dispatchShowLoader(true);
     const params: any = this._paramsHelper.getParams(this.STORAGE_KEY, this.storage);
     this.http.request<AppData<User>>('GET',
-        this.apiBuilder.getUsersUrl(
-          'GET',
-          null,
-          params.pageSize,
-          params.pageIndex + 1,
-          params.active,
-          params.direction))
+      this.apiBuilder.getUsersUrl(
+        'GET',
+        null,
+        params.pageSize,
+        params.pageIndex + 1,
+        params.active,
+        params.direction))
       .pipe(
         finalize(() => {
           this.loaderService.dispatchShowLoader(false);
@@ -110,7 +109,7 @@ export class UserService implements OnDestroy {
    */
   editUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
-    this.http.put(`${UserService.USER_API}${user.id}`, user).subscribe(() => {
+    this.http.request('PUT', this.apiBuilder.getUsersUrl('PUT', user.id), {body: user}).subscribe(() => {
       this.getUsers();
     });
   }
@@ -120,7 +119,7 @@ export class UserService implements OnDestroy {
    */
   removeUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
-    this.http.delete(`${UserService.USER_API}${user.id}`).subscribe(() => {
+    this.http.request('DELETE', this.apiBuilder.getUsersUrl('DELETE', user.id)).subscribe(() => {
       this.getUsers();
     });
   }

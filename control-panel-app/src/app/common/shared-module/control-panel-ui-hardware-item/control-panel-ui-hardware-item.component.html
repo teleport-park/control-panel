@@ -5,15 +5,13 @@
   <p>Description: {{item.data.desc}}</p>
   <p>CPU: {{item.data.cpuDesc}}</p>
   <p>LAN: {{item.data.lanDesc}}</p>
-  <div class="cpu_status">
-    <p>CPU: {{cpuBusy}}%</p><span class="indicator"
-                                  [style.width]="cpuBusy + '%'"
-                                  [ngClass]="{'overload': cpuBusy > 90}"></span>
+  <div class="cpu_status" id="cpu_status">
+    <p>CPU: {{cpuBusy}}%</p>
+    <x-chartist [data]="cpuData" [type]="'Line'" [options]="chartOptions"></x-chartist>
   </div>
-  <div class="lan_status">
-    <p>LAN: {{lanBusy}}%</p><span class="indicator"
-                                  [style.width]="lanBusy + '%'"
-                                  [ngClass]="{'overload': lanBusy > 90}"></span>
+  <div class="lan_status" id="lan_status">
+    <p>LAN: {{lanBusy}}%</p>
+    <x-chartist [data]="lanData" [type]="'Line'" [options]="chartOptions"></x-chartist>
   </div>
   <p>Status: </p>
   <p>{{item.status}}</p>

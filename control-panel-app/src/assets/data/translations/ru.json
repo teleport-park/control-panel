@@ -73,5 +73,6 @@
   "TRANSACTION_CURRENCY": "Валюта",
   "TRANSACTION_AMOUNT": "Сумма",
   "TRANSACTION_CORRESPONDENT": "Корреспондент",
-  "TRANSACTION_SIGNATURE": "Подпись"
+  "TRANSACTION_SIGNATURE": "Подпись",
+  "CPU_BUSY": "Загрузка CPU"
 }
