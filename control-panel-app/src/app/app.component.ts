@@ -29,7 +29,7 @@ export class AppComponent {
     const locale = appStorage.getValue(AppStorageKey.Locale, 'en');
     // todo: refactor 'locale' variable to be invariant to uppercase
     this.translateService.getTranslations(locale);
-    // const testUrl = apiUrls.getPermissionsUrl('GET', null, 10, 5);
+    // const testUrl = apiUrls.getPermissionsUrl('PUT', 1);
     // appStorage.setValue(AppStorageKey.Test, testUrl);
     // test example of URL builder
     /*

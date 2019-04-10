@@ -1,4 +1,4 @@
-export interface IApiUrlBuilderInterface{
+export interface IApiUrlBuilderInterface {
     appendQueryParameter(parameterName: string, parameterValue: string): IApiUrlBuilderInterface;
     appendUrl(parameterValue: string): IApiUrlBuilderInterface;
     build(): string;

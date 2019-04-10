@@ -44,10 +44,8 @@ export class ApiUrlBuilder implements IApiUrlBuilderInterface {
 
   public appendUrl(parameterValue: string): ApiUrlBuilder {
     if (parameterValue) {
-      if (!this._url.endsWith('/')) {
-        const urlSeparator = '/';
-        this._url += `${urlSeparator}${parameterValue}`;
-      }
+      const urlSeparator = this._url !== '' && !this._url.endsWith('/') ? '/' : '';
+      this._url += `${urlSeparator}${parameterValue}`;
     }
     return this;
   }
