@@ -72,10 +72,7 @@ export class UserService implements OnDestroy {
    */
   getUsers(): void {
     this.loaderService.dispatchShowLoader(true);
-    let params: any = this._paramsHelper.getParams(this.STORAGE_KEY, this.storage);
-    if (this.queryString) {
-      params = params.set(environment.api.SEARCH, this.queryString);
-    }
+    const params: any = this._paramsHelper.getParams(this.STORAGE_KEY, this.storage);
     this.http.request<AppData<User>>('GET',
         this.apiBuilder.getUsersUrl(
           'GET',

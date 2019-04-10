@@ -35,7 +35,7 @@ export class BuildParamsHelper {
     //   .set(BuildParamsHelper.SORT.direction, `${this.getDirection(sort.direction)}`);
     return {
       ...page,
-      sort: sort.active,
+      active: sort.active,
       direction: this.getDirection(sort.direction)
     };
   }
