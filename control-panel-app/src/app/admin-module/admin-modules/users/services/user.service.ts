@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Inject, Injectable, OnDestroy } from '@angular/core';
 import { User } from '../../../../models/';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -8,10 +8,10 @@ import { LoaderService } from '../../../../services/loader.service';
 import moment from 'moment';
 import { TranslateService } from '../../../../common/translations-module';
 import { PageEvent, Sort } from '@angular/material';
-import { StorageService } from '../../../../services/storage.service';
 import { AppData } from '../../../../interfaces';
 import { BuildParamsHelper } from '../../../../utils/build-params-helper';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
+import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
 
 
 @Injectable()
@@ -54,7 +54,7 @@ export class UserService implements OnDestroy {
               private apiBuilder: ApiUrlsService,
               private loaderService: LoaderService,
               private translateService: TranslateService,
-              public storage: StorageService) {
+              @Inject('IAppStorageInterface') private storage: IAppStorageInterface) {
     this.getUsers();
   }
 

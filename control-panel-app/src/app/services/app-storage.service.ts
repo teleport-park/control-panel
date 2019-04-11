@@ -5,7 +5,7 @@ export class AppStorageService implements IAppStorageInterface {
 
   constructor() { }
 
-  getValue<T>(key: AppStorageKey, defaultValue?: T): T {
+  getValue<T>(key: AppStorageKey | string, defaultValue?: T): T {
     const v = localStorage.getItem(key);
     try {
       if (v) {

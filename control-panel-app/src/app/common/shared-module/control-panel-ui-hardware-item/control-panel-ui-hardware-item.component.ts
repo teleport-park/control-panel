@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { HardwareItem } from './control-panel-ui-hardware-item';
 import { TranslateService } from '../../translations-module';
 import { IChartistData, IChartistSeriesData, ILineChartOptions } from 'chartist';
@@ -8,7 +8,7 @@ import { IChartistData, IChartistSeriesData, ILineChartOptions } from 'chartist'
   templateUrl: './control-panel-ui-hardware-item.component.html',
   styleUrls: ['./control-panel-ui-hardware-item.component.scss']
 })
-export class ControlPanelUiHardwareItemComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ControlPanelUiHardwareItemComponent implements OnInit, OnDestroy {
 
   /**
    * cpu data
@@ -45,10 +45,17 @@ export class ControlPanelUiHardwareItemComponent implements OnInit, AfterViewIni
    */
   @Input() item: HardwareItem;
 
+  /**
+   * CPU busy
+   */
   cpuBusy: number;
 
+  /**
+   * LAN busy
+   */
   lanBusy: number;
 
+  // TODO mock interval
   private intervalCPU;
   private intervalLAN;
 
@@ -81,9 +88,6 @@ export class ControlPanelUiHardwareItemComponent implements OnInit, AfterViewIni
       this.lanData = {...this.lanData};
       this.cd.markForCheck();
     }, 1000);
-  }
-
-  ngAfterViewInit(): void {
   }
 
   ngOnDestroy(): void {

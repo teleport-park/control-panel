@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { StaffMember, StaffMemberResponse } from '../../../models';
 import { StaffService } from './services/staff.service';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { MatDialog, PageEvent } from '@angular/material';
 
 import { default as config } from '../../../../app-config.json';
 import { AppData, Config } from '../../../interfaces';
+import { IAppStorageInterface } from '../../../interfaces/app-storage-interface';
 
 @Component({
   selector: 'control-panel-staff',
@@ -17,11 +18,6 @@ import { AppData, Config } from '../../../interfaces';
   styleUrls: ['./staff.component.scss']
 })
 export class StaffComponent implements OnInit, OnDestroy {
-
-  /**
-   * staff members
-   */
-  _staff: StaffMember[];
 
   /**
    * displayed columns
@@ -47,12 +43,14 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param translateService
    * @param point
    * @param dialog
+   * @param storage
    */
   constructor(public service: StaffService,
               private cd: ChangeDetectorRef,
               public translateService: TranslateService,
               public point: BreakpointService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              @Inject('IAppStorageInterface') private storage: IAppStorageInterface) {
   }
 
   ngOnInit() {

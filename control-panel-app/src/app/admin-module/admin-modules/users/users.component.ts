@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { UserService } from './services/user.service';
 import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
 import { User } from '../../../models';
@@ -13,10 +21,10 @@ import {
 } from '../../../common/shared-module';
 import { FormControl } from '@angular/forms';
 import { BreakpointService } from '../../../services/breakpoint.service';
-import { StorageService } from '../../../services/storage.service';
 
 import { default as config } from '../../../../app-config.json';
 import { AppData, Config } from '../../../interfaces';
+import { IAppStorageInterface } from '../../../interfaces/app-storage-interface';
 
 @Component({
   selector: 'app-users',
@@ -45,7 +53,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     if (element) {
       const storedScroll = this.storage.getValue(`${this.userService.STORAGE_KEY}_SCROLL`);
       if (storedScroll) {
-        element.getElementRef().nativeElement.scrollTop = storedScroll;
+        element.getElementRef().nativeElement.scrollTop = +storedScroll;
       }
       element.elementScrolled().pipe(debounceTime(1000)).subscribe((event: any) => {
         this.storage.setValue(`${this.userService.STORAGE_KEY}_SCROLL`, event.target.scrollTop);
@@ -89,7 +97,7 @@ export class UsersComponent implements OnInit, OnDestroy {
               private loaderService: LoaderService,
               public dialog: MatDialog,
               public point: BreakpointService,
-              private storage: StorageService) {
+              @Inject('IAppStorageInterface') private storage: IAppStorageInterface) {
   }
 
   /**
@@ -132,8 +140,8 @@ export class UsersComponent implements OnInit, OnDestroy {
       this.userService.getUser(user.id)
         .pipe(filter((data: AppData<User>) => !!data.items.length))
         .subscribe((result: AppData<User>) => {
-        this.openModalDialog(mode, result.items[0]);
-      });
+          this.openModalDialog(mode, result.items[0]);
+        });
       return;
     }
     this.openModalDialog(mode, new User());

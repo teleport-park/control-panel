@@ -5,6 +5,7 @@ import { HttpParams } from '@angular/common/http';
 import { SortDirection } from '@angular/material';
 import { StorageService } from '../services/storage.service';
 import { AppStorageKey } from '../models/app-storage-key';
+import { AppStorageService } from '../services/app-storage.service';
 
 export class BuildParamsHelper {
   /**
@@ -25,14 +26,9 @@ export class BuildParamsHelper {
    * @param key
    * @param storage
    */
-  public getParams(key: string, storage: StorageService): HttpParams {
-    const page = storage.getValue(`${key}${AppStorageKey.Pagination}`) || new DefaultPagination();
-    const sort = storage.getValue(`${key}${AppStorageKey.Sort}`) || new DefaultSort();
-    // return new HttpParams()
-    //   .set(BuildParamsHelper.PAGING.size, page.pageSize)
-    //   .set(BuildParamsHelper.PAGING.page, page.pageIndex + 1)
-    //   .set(BuildParamsHelper.SORT.column, sort.active)
-    //   .set(BuildParamsHelper.SORT.direction, `${this.getDirection(sort.direction)}`);
+  public getParams(key: string, storage: AppStorageService): {pageSize: number, pageIndex: number, active: string, direction: number} {
+    const page = storage.getValue<DefaultPagination>(`${key}${AppStorageKey.Pagination}`) || new DefaultPagination();
+    const sort = storage.getValue<DefaultSort>(`${key}${AppStorageKey.Sort}`) || new DefaultSort();
     return {
       ...page,
       active: sort.active,
@@ -45,11 +41,9 @@ export class BuildParamsHelper {
    * @param key
    * @param storage
    */
-  getPaginationParams(key: string, storage: StorageService): HttpParams {
-    const page = storage.getValue(`${key}${AppStorageKey.Pagination}`) || new DefaultPagination();
-    return new HttpParams()
-      .set(BuildParamsHelper.PAGING.size, page.pageSize)
-      .set(BuildParamsHelper.PAGING.page, page.pageIndex + 1);
+  getPaginationParams(key: string, storage: AppStorageService): {pageSize: number, pageIndex: number} {
+    const page = storage.getValue<DefaultPagination>(`${key}${AppStorageKey.Pagination}`) || new DefaultPagination();
+    return {...page};
   }
 
   /**

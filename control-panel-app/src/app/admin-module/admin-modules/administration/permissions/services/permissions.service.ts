@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { environment } from '../../../../../../environments/environment';
 import { Permission } from '../../../../../models';
 import { HttpClient } from '@angular/common/http';
@@ -7,9 +7,10 @@ import { finalize } from 'rxjs/operators';
 import { LoaderService } from '../../../../../services/loader.service';
 import { MatSnackBar, PageEvent, Sort } from '@angular/material';
 import { TranslateService } from '../../../../../common/translations-module';
-import { StorageService } from '../../../../../services/storage.service';
 import { AppData } from '../../../../../interfaces';
 import { BuildParamsHelper } from '../../../../../utils/build-params-helper';
+import { IAppStorageInterface } from '../../../../../interfaces/app-storage-interface';
+import { ApiUrlsService } from '../../../../../services/api-urls.service';
 
 @Injectable()
 export class PermissionsService {
@@ -38,12 +39,14 @@ export class PermissionsService {
    * @param toaster
    * @param translateService
    * @param storage
+   * @param apiBuilder
    */
   constructor(private http: HttpClient,
               private loader: LoaderService,
               private toaster: MatSnackBar,
               private translateService: TranslateService,
-              public storage: StorageService) {
+              @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
+              private apiBuilder: ApiUrlsService) {
     this.getPermissions();
   }
 
@@ -51,10 +54,10 @@ export class PermissionsService {
    * get permissions
    */
   getPermissions() {
-    const params = this._paramsHelper.getPaginationParams(this.STORAGE_KEY, this.storage);
+    const page = this._paramsHelper.getPaginationParams(this.STORAGE_KEY, this.storage);
     this.loader.dispatchShowLoader(true);
-    this.http.get(
-      `${PermissionsService.PERMISSIONS_API}?`, {params})
+    this.http.request('GET',
+      this.apiBuilder.getPermissionsUrl('GET', null, page.pageSize, page.pageIndex + 1))
       .pipe(finalize(() => this.loader.dispatchShowLoader(false)))
       .subscribe((data: AppData<Permission>) => {
         this.permissions$.next(data);
@@ -67,7 +70,7 @@ export class PermissionsService {
    */
   addPermission(permission: Permission): void {
     this.loader.dispatchShowLoader(true);
-    this.http.post(`${PermissionsService.PERMISSIONS_API}`, permission)
+    this.http.request('POST', this.apiBuilder.getPermissionsUrl('POST'), {body: permission})
       .pipe(finalize(() => this.loader.dispatchShowLoader(false)))
       .subscribe(() => {
         this.getPermissions();
@@ -80,7 +83,7 @@ export class PermissionsService {
    */
   editPermission(permission: Permission): void {
     this.loader.dispatchShowLoader(true);
-    this.http.put(`${PermissionsService.PERMISSIONS_API}/${permission.id}`, permission)
+    this.http.request('PUT', this.apiBuilder.getPermissionsUrl('PUT', permission.id), {body: permission})
       .pipe(finalize(() => this.loader.dispatchShowLoader(false)))
       .subscribe(() => {
         this.getPermissions();
@@ -93,7 +96,7 @@ export class PermissionsService {
    */
   deletePermission(permission: Permission): void {
     this.loader.dispatchShowLoader(true);
-    this.http.delete(`${PermissionsService.PERMISSIONS_API}/${permission.id}`)
+    this.http.request('DELETE', this.apiBuilder.getPermissionsUrl('DELETE', permission.id))
       .pipe(finalize(() => this.loader.dispatchShowLoader(false)))
       .subscribe((result: boolean) => {
         if (result) {

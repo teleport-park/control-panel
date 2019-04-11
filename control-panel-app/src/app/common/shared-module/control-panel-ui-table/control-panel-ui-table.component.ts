@@ -1,13 +1,23 @@
-import { ChangeDetectorRef, Component, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Inject,
+  Injector,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { TranslateService } from '../../translations-module';
 import { MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { PropertyMap } from '../../../admin-module/utils/property-map';
 import { IconService } from '../../../services/icon.service';
-import { StorageService } from '../../../services/storage.service';
-import { DefaultPagination } from '../../../models/default-pagination';
 import { AppStorageKey } from '../../../models/app-storage-key';
+import { IAppStorageInterface } from '../../../interfaces/app-storage-interface';
+import { DefaultSort } from '../../../models/default-sort';
 
 @Component({
   selector: 'control-panel-ui-table',
@@ -134,7 +144,7 @@ export class ControlPanelUiTableComponent implements OnInit {
               public point: BreakpointService,
               public injector: Injector,
               public icon: IconService,
-              private storage: StorageService) {
+              @Inject('IAppStorageInterface') private storage: IAppStorageInterface) {
   }
 
   ngOnInit() {
@@ -189,12 +199,10 @@ export class ControlPanelUiTableComponent implements OnInit {
   private initTableState() {
     if (this.storage && this.storage.getValue(`${this.storageKey}${AppStorageKey.Pagination}`)) {
       this.paginatorInit = this.storage.getValue(`${this.storageKey}${AppStorageKey.Pagination}`);
-    } else {
-      this.paginatorInit = new DefaultPagination();
     }
     if (this.storage && this.storage.getValue(`${this.storageKey}${AppStorageKey.Sort}`)) {
-      this.sortInst.active = this.storage.getValue(`${this.storageKey}${AppStorageKey.Sort}`).active;
-      this.sortInst.direction = this.storage.getValue(`${this.storageKey}${AppStorageKey.Sort}`).direction;
+      this.sortInst.active = this.storage.getValue<DefaultSort>(`${this.storageKey}${AppStorageKey.Sort}`).active;
+      this.sortInst.direction = this.storage.getValue<DefaultSort>(`${this.storageKey}${AppStorageKey.Sort}`).direction;
     }
   }
 }

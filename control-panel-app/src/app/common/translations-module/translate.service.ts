@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { LoaderService } from '../../services/loader.service';
 import { StorageService } from '../../services/storage.service';
+import { AppStorageKey } from '../../models/app-storage-key';
 
 export interface StringTMap<T> {
   [key: string]: T;
@@ -16,7 +17,7 @@ export class TranslateService {
   /**
    * locale
    */
-  locale: BehaviorSubject<string> = new BehaviorSubject(this.storage.getValue('locale'));
+  locale: BehaviorSubject<string> = new BehaviorSubject(this.storage.getValue(AppStorageKey.Locale));
 
   /**
    * translations loaded flag
@@ -50,7 +51,7 @@ export class TranslateService {
         this._translations = result;
         this.locale.next(locale);
         this.translationsLoaded = true;
-        this.storage.setValue('locale', locale); // wtf?
+        this.storage.setValue(AppStorageKey.Locale, locale);
         this.loaderService.dispatchShowLoader(false);
       }
     );

@@ -1,33 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Group, Permission, StaffMember, StaffMemberResponse } from '../../../../models';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../../environments/environment';
 import { finalize } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 import { MatSnackBar, PageEvent, Sort } from '@angular/material';
 import { TranslateService } from '../../../../common/translations-module';
-import { StorageService } from '../../../../services/storage.service';
 import { AppData } from '../../../../interfaces';
 import { BuildParamsHelper } from '../../../../utils/build-params-helper';
+import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
+import { ApiUrlsService } from '../../../../services/api-urls.service';
 
 @Injectable()
 export class StaffService {
-
-  /**
-   * staff url
-   */
-  static readonly STAFF_API: string = `${environment.origin}${environment.api.STAFF}`;
-
-  /**
-   * group url
-   */
-  static readonly STAFF_GROUP_API: string = `${environment.origin}${environment.api.GROUPS}`;
-
-  /**
-   * permission api
-   */
-  static readonly PERMISSIONS_API: string = `${environment.origin}${environment.api.PERMISSIONS}`;
 
   /**
    * staff storage key
@@ -71,12 +56,14 @@ export class StaffService {
    * @param toaster
    * @param translateService
    * @param storage
+   * @param apiBuilder
    */
   constructor(private http: HttpClient,
               private loader: LoaderService,
               private toaster: MatSnackBar,
               private translateService: TranslateService,
-              public storage: StorageService) {
+              @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
+              private apiBuilder: ApiUrlsService) {
   }
 
   /**
@@ -84,16 +71,16 @@ export class StaffService {
    * @param id
    */
   getStaffMember(id): Observable<AppData<StaffMemberResponse>> {
-    return this.http.get<AppData<StaffMemberResponse>>(`${StaffService.STAFF_API}?id=${id}`);
+    return this.http.request<AppData<StaffMemberResponse>>('GET', this.apiBuilder.getStaffUrl('GET', id));
   }
 
   /**
    * get staff members
    */
   getStaffMembers(): void {
-    const params = this._paramsHelper.getPaginationParams(this.STAFF_STORAGE_KEY, this.storage);
-    this.http.get(
-      `${StaffService.STAFF_API}`, {params})
+    const page = this._paramsHelper.getPaginationParams(this.STAFF_STORAGE_KEY, this.storage);
+    this.http.request<AppData<StaffMemberResponse>>('GET',
+      this.apiBuilder.getStaffUrl('GET', null, page.pageSize, page.pageIndex + 1))
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
@@ -114,7 +101,7 @@ export class StaffService {
    */
   editStaffMember(staffMember: StaffMember): void {
     this.loader.dispatchShowLoader(true);
-    this.http.put(`${StaffService.STAFF_API}${staffMember.id}`, staffMember).subscribe(() => {
+    this.http.request('PUT', this.apiBuilder.getStaffUrl('PUT', staffMember.id), {body: staffMember}).subscribe(() => {
       this.getStaffMembers();
     });
   }
@@ -125,7 +112,7 @@ export class StaffService {
    */
   addStaffMember(staffMember: StaffMember): void {
     this.loader.dispatchShowLoader(true);
-    this.http.post(`${StaffService.STAFF_API}`, staffMember).subscribe(() => {
+    this.http.request('POST', this.apiBuilder.getStaffUrl('POST'), {body: staffMember}).subscribe(() => {
       this.getStaffMembers();
     });
   }
@@ -136,7 +123,7 @@ export class StaffService {
    */
   removeStaffMember(staffMember: StaffMember): void {
     this.loader.dispatchShowLoader(true);
-    this.http.delete(`${StaffService.STAFF_API}${staffMember.id}`).subscribe(() => {
+    this.http.request('DELETE', this.apiBuilder.getStaffUrl('DELETE', staffMember.id)).subscribe(() => {
       this.getStaffMembers();
     });
   }
@@ -145,9 +132,8 @@ export class StaffService {
    * get groups
    */
   getGroups(): void {
-    const params = this._paramsHelper.getPaginationParams(this.GROUP_STORAGE_KEY, this.storage);
-    this.http.get(
-      `${StaffService.STAFF_GROUP_API}?`, {params})
+    const page = this._paramsHelper.getPaginationParams(this.GROUP_STORAGE_KEY, this.storage);
+    this.http.request('GET', this.apiBuilder.getStaffGroupsUrl('GET', null, page.pageSize, page.pageIndex + 1))
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
@@ -163,7 +149,7 @@ export class StaffService {
    * @param group
    */
   addGroup(group: Group): void {
-    this.http.post(`${StaffService.STAFF_GROUP_API}`, group).subscribe((result: number) => {
+    this.http.request('POST', this.apiBuilder.getStaffGroupsUrl('POST'), {body: group}).subscribe((result: number) => {
       if (result) {
         group.id = result;
         this.addPermissionsToGroup(group);
@@ -179,7 +165,8 @@ export class StaffService {
    */
   editGroup(group: Group): void {
     this.loader.dispatchShowLoader(true);
-    this.http.put(`${StaffService.STAFF_GROUP_API}/${group.id}`, group).subscribe(() => {
+    this.http.request('PUT', this.apiBuilder.getStaffGroupsUrl('PUT', group.id), {body: group})
+      .subscribe(() => {
       this.addPermissionsToGroup(group);
     });
   }
@@ -189,7 +176,7 @@ export class StaffService {
    * @param group
    */
   addPermissionsToGroup(group: Group): void {
-    this.http.post(`${StaffService.PERMISSIONS_API}`, {staffGroupId: group.id, permissionIds: group.permissions})
+    this.http.request('POST', this.apiBuilder.getPermissionsUrl('POST'), {body: {staffGroupId: group.id, permissionIds: group.permissions}})
       .subscribe(() => {
         this.getGroups();
       });
@@ -200,7 +187,8 @@ export class StaffService {
    * @param group
    */
   deleteGroup(group: Group): void {
-    this.http.delete(`${StaffService.STAFF_GROUP_API}/${group.id}`).subscribe((result: boolean) => {
+    this.http.request('DELETE', this.apiBuilder.getStaffGroupsUrl('DELETE', group.id))
+      .subscribe((result: boolean) => {
       if (result) {
         this.getGroups();
         return;
@@ -222,7 +210,7 @@ export class StaffService {
    * get permissions
    */
   getPermissions(pageSize: number = 10, pageNumber: number = 1) {
-    return this.http.get(`${StaffService.PERMISSIONS_API}?pageSize=${pageSize}&pageNumber=${pageNumber}`)
+    return this.http.request('GET', this.apiBuilder.getPermissionsUrl('GET', null, pageSize, pageNumber))
       .subscribe((data: AppData<Permission>) => {
         this.permissions$.next(data);
       });
