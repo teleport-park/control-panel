@@ -1,4 +1,4 @@
-<form [formGroup]="form" class="user-form" #userForm="ngForm" (keypress)="$event.key === 13 ? onSubmitHandler() : null">
+<form [formGroup]="form" class="user-form" #userForm="ngForm">
   <mat-form-field>
     <input matInput placeholder="{{'FIRST_NAME' | translate}}" formControlName="firstName" required>
     <mat-error>

@@ -64,7 +64,8 @@ export class GroupsComponent implements OnInit, OnDestroy {
         title: 'DIALOG_CONFIRM_TITLE',
         message: 'DIALOG_CONFIRM_MESSAGE',
         messageParams: [group.name]
-      } as ConfirmDialogData
+      } as ConfirmDialogData,
+      autoFocus: false
     }).afterClosed()
       .pipe(filter(data => data))
       .subscribe(() => {

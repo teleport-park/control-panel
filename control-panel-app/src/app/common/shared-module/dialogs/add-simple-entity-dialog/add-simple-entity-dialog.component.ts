@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, HostListener, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Permission } from '../../../../models';
 import { FormControl, Validators } from '@angular/forms';
@@ -10,8 +10,18 @@ import { TranslateService } from '../../../translations-module';
   styleUrls: ['./add-simple-entity-dialog.component.scss']
 })
 export class AddSimpleEntityDialogComponent {
-
+  /**
+   * name field
+   */
   name: FormControl;
+
+  /**
+   * listen key enter press to submit dialog
+   * @param event
+   */
+  @HostListener('document:keydown.enter', ['$event']) enterKeyEvent(event: KeyboardEvent) {
+    this.dialogSubmit();
+  }
 
   constructor(public translateService: TranslateService,
               public dialogRef: MatDialogRef<AddSimpleEntityDialogComponent>,

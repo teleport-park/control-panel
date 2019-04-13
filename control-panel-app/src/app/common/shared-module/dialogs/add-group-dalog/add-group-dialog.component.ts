@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, PageEvent } from '@angular/material';
 import { Group, Permission } from '../../../../models';
@@ -26,6 +26,14 @@ export class AddGroupDialogComponent implements OnInit {
    * selected permissions
    */
   _permissions: any[];
+
+  /**
+   * listen enter key press to submit dialog
+   * @param event
+   */
+  @HostListener('document:keydown.enter', ['$event']) enterKeyEvent(event: KeyboardEvent) {
+    this.dialogSubmit();
+  }
 
   /**
    * constructor

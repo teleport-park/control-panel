@@ -173,7 +173,8 @@ export class UsersComponent implements OnInit, OnDestroy {
         title: 'DIALOG_CONFIRM_TITLE',
         message: 'DIALOG_CONFIRM_MESSAGE',
         messageParams: [`${user.firstName} ${user.lastName}`]
-      } as ConfirmDialogData
+      } as ConfirmDialogData,
+      autoFocus: false
     }).afterClosed()
       .pipe(filter(data => data), takeUntil(this.destroyed$))
       .subscribe(() => {

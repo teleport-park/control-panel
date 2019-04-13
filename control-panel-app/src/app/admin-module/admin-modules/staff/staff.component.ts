@@ -83,7 +83,8 @@ export class StaffComponent implements OnInit, OnDestroy {
         title: 'DIALOG_CONFIRM_TITLE',
         message: 'DIALOG_CONFIRM_MESSAGE',
         messageParams: [`${staffMember.firstName} ${staffMember.lastName}`]
-      } as ConfirmDialogData
+      } as ConfirmDialogData,
+      autoFocus: false
     }).afterClosed()
       .pipe(filter(data => data), takeUntil(this.destroyed$))
       .subscribe(() => {

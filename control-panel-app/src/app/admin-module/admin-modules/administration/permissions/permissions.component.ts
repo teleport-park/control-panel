@@ -67,7 +67,8 @@ export class PermissionsComponent implements OnInit {
         title: 'DIALOG_CONFIRM_TITLE',
         message: 'DIALOG_CONFIRM_MESSAGE',
         messageParams: [permission.name]
-      } as ConfirmDialogData
+      } as ConfirmDialogData,
+      autoFocus: false
     }).afterClosed()
       .pipe(filter(data => data))
       .subscribe(() => {

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { TranslateService } from '../../../translations-module';
 import { StaffMemberResponse } from '../../../../models';
 import { StaffService } from '../../../../admin-module/admin-modules/staff/services/staff.service';
@@ -36,6 +36,14 @@ export class AddStaffDialogComponent implements OnInit {
    * property map
    */
   propertyMap: { viewValue: string; value: number }[];
+
+  /**
+   * listen enter key press to submit
+   * @param event
+   */
+  @HostListener('document:keydown.enter', ['$event']) enterKeyEvent(event: KeyboardEvent) {
+    this.onSubmitHandler();
+  }
 
   constructor(public translateService: TranslateService, private fb: FormBuilder,
               public dialogRef: MatDialogRef<AddStaffDialogComponent>,

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, HostListener, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ConfirmDialogData } from './confirm-dialog-data';
 
@@ -8,6 +8,14 @@ import { ConfirmDialogData } from './confirm-dialog-data';
   styleUrls: ['./confirm-dialog.component.scss']
 })
 export class ConfirmDialogComponent {
+
+  /**
+   * listen enter key press to submit
+   * @param event
+   */
+  @HostListener('document:keydown.enter', ['$event']) enterKeyEvent(event: KeyboardEvent) {
+    this.resultHandler(true);
+  }
 
   /**
    * Constructor

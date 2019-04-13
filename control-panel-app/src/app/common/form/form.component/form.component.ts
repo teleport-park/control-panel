@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Injector, Input, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Injector, Input, Output, TemplateRef, ViewChild, HostListener } from '@angular/core';
 import { StaffMember, User } from '../../../models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import moment, { Moment } from 'moment';
@@ -26,11 +26,6 @@ export class FormComponent {
    * user model
    */
   entityModel: User;
-
-  /**
-   * property map
-   */
-  propertyMap: any[];
 
   /**
    * max date for DOB field
@@ -87,6 +82,14 @@ export class FormComponent {
    * form
    */
   form: FormGroup;
+
+  /**
+   * listen enter key press to submit dialog
+   * @param event
+   */
+  @HostListener('document:keydown.enter', ['$event']) enterKeyEvent(event: KeyboardEvent) {
+    this.onSubmitHandler();
+  }
 
   /**
    * constructor
