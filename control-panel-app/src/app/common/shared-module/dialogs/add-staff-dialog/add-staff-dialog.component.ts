@@ -3,7 +3,7 @@ import { TranslateService } from '../../../translations-module';
 import { StaffMemberResponse } from '../../../../models';
 import { StaffService } from '../../../../admin-module/admin-modules/staff/services/staff.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, PageEvent } from '@angular/material';
 
 @Component({
   selector: 'control-panel-add-staff-dialog',
@@ -52,8 +52,8 @@ export class AddStaffDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.service.getGroupMap();
     this.entityModel = this.data.item;
-    this.propertyMap = this.service.getGroupMap();
     this.form = this.getStaffMemberForm();
     this.form.patchValue(this.entityModel);
     this.mode = this.data.mode;
@@ -65,9 +65,7 @@ export class AddStaffDialogComponent implements OnInit {
   private getStaffMemberForm() {
     return this.fb.group({
       firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      staffGroupId: [
-        (this.entityModel.group) ? this.entityModel.group.id : 1, Validators.required]
+      lastName: ['', Validators.required]
     });
   }
 
@@ -91,4 +89,19 @@ export class AddStaffDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  /**
+   * change page handler
+   * @param event
+   */
+  pageChangeHandler(event: PageEvent) {
+    this.service.getGroupMap(event.pageSize, event.pageIndex + 1);
+  }
+
+  /**
+   * change group event
+   * @param event
+   */
+  changeGroup(event) {
+    this.entityModel.staffGroupId = event[0];
+  }
 }

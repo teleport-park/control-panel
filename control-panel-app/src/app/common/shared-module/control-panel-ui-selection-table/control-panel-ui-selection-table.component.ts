@@ -22,7 +22,9 @@ export class ControlPanelUiSelectionTableComponent {
   @Input() set items(data: SelectionTableModelItem[]) {
     if (data) {
       this.dataSource = new MatTableDataSource<SelectionTableModelItem>(data);
-      this.setSelection(this._selected);
+      if (this._selected) {
+        this.setSelection();
+      }
     }
   }
 
@@ -32,13 +34,18 @@ export class ControlPanelUiSelectionTableComponent {
   @Input() length: number;
 
   /**
+   * multiple selection flag
+   */
+  @Input() multipleSelection = true;
+
+  /**
    * selected items
    * @param data
    */
   @Input() set selected(data: any[]) {
     if (data) {
-      this.setSelection(data);
-      this._selected = data;
+      this._selected = [...data];
+      this.setSelection();
     }
   }
 
@@ -80,13 +87,14 @@ export class ControlPanelUiSelectionTableComponent {
 
   /**
    * set selection
-   * @param data
    */
-  private setSelection(data: any[]) {
-    const selected = this.dataSource.data.filter(item => {
-      return data.findIndex(i => item.id === i.id) > -1;
-    });
-    this.selection = new SelectionModel<SelectionTableModelItem>(true, selected);
+  private setSelection() {
+    if (this.dataSource && this.dataSource.data) {
+      const selected = this.dataSource.data.filter(item => {
+        return this._selected.findIndex(i => item.id === i.id) > -1;
+      });
+      this.selection = new SelectionModel<SelectionTableModelItem>(this.multipleSelection, selected);
+    }
   }
 
   /**
@@ -95,10 +103,14 @@ export class ControlPanelUiSelectionTableComponent {
    * @param row
    */
   selectionChangeHandler(event: MatCheckboxChange, row) {
-    if (event.checked) {
-      this._selected.push(row);
+    if (this.multipleSelection) {
+      if (event.checked) {
+        this._selected.push(row);
+      } else {
+        this._selected = this._selected.filter(item => item.id !== row.id);
+      }
     } else {
-      this._selected = this._selected.filter(item => item.id !== row.id);
+      this._selected = [row];
     }
     this.selectionChange.emit(this._selected.map(item => item.id));
   }

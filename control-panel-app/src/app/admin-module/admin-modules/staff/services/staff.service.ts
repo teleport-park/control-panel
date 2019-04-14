@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Group, Permission, StaffMember, StaffMemberResponse } from '../../../../models';
 import { HttpClient } from '@angular/common/http';
-import { finalize } from 'rxjs/operators';
+import { filter, finalize } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 import { MatSnackBar, PageEvent, Sort } from '@angular/material';
 import { TranslateService } from '../../../../common/translations-module';
@@ -42,7 +42,7 @@ export class StaffService {
   /**
    * group
    */
-  groups: Group[];
+  groupsMap$: BehaviorSubject<AppData<Group>> = new BehaviorSubject(null);
 
   /**
    * param builder
@@ -139,10 +139,10 @@ export class StaffService {
           this.loader.dispatchShowLoader(false);
         }))
       .subscribe((data: AppData<Group>) => {
-        this.groups = data.items;
         this.groups$.next(data);
       });
   }
+
 
   /**
    * add group
@@ -167,8 +167,8 @@ export class StaffService {
     this.loader.dispatchShowLoader(true);
     this.http.request('PUT', this.apiBuilder.getStaffGroupsUrl('PUT', group.id), {body: group})
       .subscribe(() => {
-      this.addPermissionsToGroup(group);
-    });
+        this.addPermissionsToGroup(group);
+      });
   }
 
   /**
@@ -176,7 +176,12 @@ export class StaffService {
    * @param group
    */
   addPermissionsToGroup(group: Group): void {
-    this.http.request('POST', this.apiBuilder.getPermissionsUrl('POST'), {body: {staffGroupId: group.id, permissionIds: group.permissions}})
+    this.http.request('POST', this.apiBuilder.getPermissionsUrl('POST'), {
+      body: {
+        staffGroupId: group.id,
+        permissionIds: group.permissions
+      }
+    })
       .subscribe(() => {
         this.getGroups();
       });
@@ -189,21 +194,23 @@ export class StaffService {
   deleteGroup(group: Group): void {
     this.http.request('DELETE', this.apiBuilder.getStaffGroupsUrl('DELETE', group.id))
       .subscribe((result: boolean) => {
-      if (result) {
-        this.getGroups();
-        return;
-      }
-      this.showErrorMessage(this.translateService.instant('ADMIN_MENU_STAFF'));
-    });
+        if (result) {
+          this.getGroups();
+          return;
+        }
+        this.showErrorMessage(this.translateService.instant('ADMIN_MENU_STAFF'));
+      });
   }
 
   /**
    * get groups map
    */
-  getGroupMap() {
-    return this.groups.map((group: Group) => {
-      return {value: group.id, viewValue: group.name};
-    });
+  getGroupMap(pageSize = 10, pageIndex = 1) {
+    this.http.request('GET', this.apiBuilder.getStaffGroupsUrl('GET', null, pageSize, pageIndex))
+      .pipe(filter(data => !!data))
+      .subscribe((result: AppData<Group>) => {
+        this.groupsMap$.next(result);
+      });
   }
 
   /**
