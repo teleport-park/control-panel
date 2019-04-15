@@ -71,7 +71,9 @@ export class StaffService {
    * @param id
    */
   getStaffMember(id): Observable<AppData<StaffMemberResponse>> {
-    return this.http.request<AppData<StaffMemberResponse>>('GET', this.apiBuilder.getStaffUrl('GET', id));
+    const requestMethod = 'GET';
+    const url = this.apiBuilder.getStaffUrl(requestMethod, id);
+    return this.http.request<AppData<StaffMemberResponse>>(requestMethod, url);
   }
 
   /**
@@ -79,8 +81,9 @@ export class StaffService {
    */
   getStaffMembers(): void {
     const page = this._paramsHelper.getPaginationParams(this.STAFF_STORAGE_KEY, this.storage);
-    this.http.request<AppData<StaffMemberResponse>>('GET',
-      this.apiBuilder.getStaffUrl('GET', null, page.pageSize, page.pageIndex + 1))
+    const requestMethod = 'GET';
+    const url = this.apiBuilder.getStaffUrl(requestMethod, null, page.pageSize, page.pageIndex + 1);
+    this.http.request<AppData<StaffMemberResponse>>(requestMethod, url)
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
@@ -100,8 +103,10 @@ export class StaffService {
    * @param staffMember
    */
   editStaffMember(staffMember: StaffMember): void {
+    const requestMethod = 'PUT';
+    const url = this.apiBuilder.getStaffUrl(requestMethod, staffMember.id);
     this.loader.dispatchShowLoader(true);
-    this.http.request('PUT', this.apiBuilder.getStaffUrl('PUT', staffMember.id), {body: staffMember}).subscribe(() => {
+    this.http.request(requestMethod, url, {body: staffMember}).subscribe(() => {
       this.getStaffMembers();
     });
   }
@@ -111,8 +116,10 @@ export class StaffService {
    * @param staffMember
    */
   addStaffMember(staffMember: StaffMember): void {
+    const requestMethod = 'POST';
+    const url = this.apiBuilder.getStaffUrl(requestMethod);
     this.loader.dispatchShowLoader(true);
-    this.http.request('POST', this.apiBuilder.getStaffUrl('POST'), {body: staffMember}).subscribe(() => {
+    this.http.request(requestMethod, url, {body: staffMember}).subscribe(() => {
       this.getStaffMembers();
     });
   }
@@ -122,8 +129,10 @@ export class StaffService {
    * @param staffMember
    */
   removeStaffMember(staffMember: StaffMember): void {
+    const requestMethod = 'DELETE';
+    const url = this.apiBuilder.getStaffUrl(requestMethod, staffMember.id);
     this.loader.dispatchShowLoader(true);
-    this.http.request('DELETE', this.apiBuilder.getStaffUrl('DELETE', staffMember.id)).subscribe(() => {
+    this.http.request(requestMethod, url).subscribe(() => {
       this.getStaffMembers();
     });
   }
@@ -132,8 +141,10 @@ export class StaffService {
    * get groups
    */
   getGroups(): void {
+    const requestMethod = 'GET';
     const page = this._paramsHelper.getPaginationParams(this.GROUP_STORAGE_KEY, this.storage);
-    this.http.request('GET', this.apiBuilder.getStaffGroupsUrl('GET', null, page.pageSize, page.pageIndex + 1))
+    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, null, page.pageSize, page.pageIndex + 1);
+    this.http.request(requestMethod, url)
       .pipe(
         finalize(() => {
           this.loader.dispatchShowLoader(false);
@@ -149,7 +160,9 @@ export class StaffService {
    * @param group
    */
   addGroup(group: Group): void {
-    this.http.request('POST', this.apiBuilder.getStaffGroupsUrl('POST'), {body: group}).subscribe((result: number) => {
+    const requestMethod = 'POST';
+    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod);
+    this.http.request(requestMethod, url, {body: group}).subscribe((result: number) => {
       if (result) {
         group.id = result;
         this.addPermissionsToGroup(group);
@@ -164,8 +177,10 @@ export class StaffService {
    * @param group
    */
   editGroup(group: Group): void {
+    const requestMethod = 'PUT';
+    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, group.id);
     this.loader.dispatchShowLoader(true);
-    this.http.request('PUT', this.apiBuilder.getStaffGroupsUrl('PUT', group.id), {body: group})
+    this.http.request(requestMethod, url, {body: group})
       .subscribe(() => {
         this.addPermissionsToGroup(group);
       });
@@ -176,7 +191,9 @@ export class StaffService {
    * @param group
    */
   addPermissionsToGroup(group: Group): void {
-    this.http.request('POST', this.apiBuilder.getPermissionsUrl('POST'), {
+    const requestMethod = 'POST';
+    const url  = this.apiBuilder.getPermissionsUrl(requestMethod);
+    this.http.request(requestMethod, url, {
       body: {
         staffGroupId: group.id,
         permissionIds: group.permissions
@@ -192,7 +209,9 @@ export class StaffService {
    * @param group
    */
   deleteGroup(group: Group): void {
-    this.http.request('DELETE', this.apiBuilder.getStaffGroupsUrl('DELETE', group.id))
+    const requestMethod = 'DELETE';
+    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, group.id);
+    this.http.request(requestMethod, url)
       .subscribe((result: boolean) => {
         if (result) {
           this.getGroups();
@@ -206,7 +225,9 @@ export class StaffService {
    * get groups map
    */
   getGroupMap(pageSize = 10, pageIndex = 1) {
-    this.http.request('GET', this.apiBuilder.getStaffGroupsUrl('GET', null, pageSize, pageIndex))
+    const requestMethod = 'GET';
+    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, null, pageSize, pageIndex);
+    this.http.request(requestMethod, url)
       .pipe(filter(data => !!data))
       .subscribe((result: AppData<Group>) => {
         this.groupsMap$.next(result);
@@ -217,7 +238,9 @@ export class StaffService {
    * get permissions
    */
   getPermissions(pageSize: number = 10, pageNumber: number = 1) {
-    return this.http.request('GET', this.apiBuilder.getPermissionsUrl('GET', null, pageSize, pageNumber))
+    const requestMethod = 'GET';
+    const url = this.apiBuilder.getPermissionsUrl(requestMethod, null, pageSize, pageNumber);
+    return this.http.request(requestMethod, url)
       .subscribe((data: AppData<Permission>) => {
         this.permissions$.next(data);
       });
