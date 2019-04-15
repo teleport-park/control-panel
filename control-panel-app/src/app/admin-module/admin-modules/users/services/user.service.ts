@@ -79,7 +79,8 @@ export class UserService implements OnDestroy {
         params.pageSize,
         params.pageIndex + 1,
         params.active,
-        params.direction))
+        params.direction,
+        this.queryString))
       .pipe(
         finalize(() => {
           this.loaderService.dispatchShowLoader(false);
