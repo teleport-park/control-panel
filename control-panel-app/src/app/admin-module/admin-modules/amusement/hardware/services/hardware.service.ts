@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { HardwareItem } from '../../../../common/shared-module/control-panel-ui-hardware-item/control-panel-ui-hardware-item';
+import { HardwareItem } from '../../../../../common/shared-module/control-panel-ui-hardware-item/control-panel-ui-hardware-item';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()

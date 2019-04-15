@@ -49,10 +49,16 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
       ]
     },
     {
-      icon: 'computer',
-      label: 'ADMIN_MENU_HARDWARE',
-      path: '/admin/hardware',
-      active: false
+      icon: 'videogame_asset',
+      label: 'ADMIN_MENU_AMUSEMENT',
+      path: '/admin/amusement',
+      active: false,
+      children: [{
+        icon: 'computer',
+        label: 'ADMIN_MENU_HARDWARE',
+        path: '/admin/amusement/hardware',
+        active: false
+      }]
     }, {
       icon: 'compare_arrows',
       label: 'ADMIN_MENU_TRANSACTIONS',

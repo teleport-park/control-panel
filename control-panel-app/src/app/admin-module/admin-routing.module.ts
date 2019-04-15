@@ -19,9 +19,9 @@ const routes: Routes = [
         loadChildren: './admin-modules/users/users.module#UsersModule',
         data: {title: 'ADMIN_MENU_USERS'}
       }, {
-        path: 'hardware',
-        loadChildren: './admin-modules/hardware/hardware.module#HardwareModule',
-        data: {title: 'ADMIN_MENU_HARDWARE'}
+        path: 'amusement',
+        loadChildren: './admin-modules/amusement/amusement.module#AmusementModule',
+        data: {title: 'ADMIN_MENU_AMUSEMENT'}
       }, {
         path: 'staff',
         loadChildren: './admin-modules/staff/staff.module#StaffModule',
