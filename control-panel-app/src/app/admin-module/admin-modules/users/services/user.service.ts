@@ -63,7 +63,9 @@ export class UserService implements OnDestroy {
    * @param userId
    */
   getUser(userId: number): Observable<AppData<User>> {
-    return this.http.request<AppData<User>>('GET', this.apiBuilder.getUsersUrl('GET', userId));
+    const requestMethod = 'GET';
+    const url = this.apiBuilder.getUsersUrl(requestMethod, userId);
+    return this.http.request<AppData<User>>(requestMethod, url);
   }
 
   /**
@@ -71,16 +73,11 @@ export class UserService implements OnDestroy {
    */
   getUsers(): void {
     this.loaderService.dispatchShowLoader(true);
+    const requestMethod = 'GET';
     const params: any = this._paramsHelper.getParams(this.STORAGE_KEY, this.storage);
-    this.http.request<AppData<User>>('GET',
-      this.apiBuilder.getUsersUrl(
-        'GET',
-        null,
-        params.pageSize,
-        params.pageIndex + 1,
-        params.active,
-        params.direction,
-        this.queryString))
+    const url = this.apiBuilder.getUsersUrl(requestMethod, null, params.pageSize, params.pageIndex + 1, params.active,  params.direction);
+
+    this.http.request<AppData<User>>(requestMethod, url)
       .pipe(
         finalize(() => {
           this.loaderService.dispatchShowLoader(false);
@@ -99,8 +96,10 @@ export class UserService implements OnDestroy {
    * save user
    */
   saveUser(user: User): void {
+    const requestMethod = 'POST';
     this.loaderService.dispatchShowLoader(true);
-    this.http.request('POST', this.apiBuilder.getUsersUrl('POST'), {body: user}).subscribe(() => {
+    const url = this.apiBuilder.getUsersUrl(requestMethod);
+    this.http.request(requestMethod, url, {body: user}).subscribe(() => {
       this.getUsers();
     });
   }
@@ -110,7 +109,9 @@ export class UserService implements OnDestroy {
    */
   editUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
-    this.http.request('PUT', this.apiBuilder.getUsersUrl('PUT', user.id), {body: user}).subscribe(() => {
+    const requestMethod = 'PUT';
+    const url = this.apiBuilder.getUsersUrl(requestMethod, user.id);
+    this.http.request(requestMethod, url, {body: user}).subscribe(() => {
       this.getUsers();
     });
   }
@@ -120,7 +121,9 @@ export class UserService implements OnDestroy {
    */
   removeUser(user: User): void {
     this.loaderService.dispatchShowLoader(true);
-    this.http.request('DELETE', this.apiBuilder.getUsersUrl('DELETE', user.id)).subscribe(() => {
+    const requestMethod = 'DELETE';
+    const url = this.apiBuilder.getUsersUrl(requestMethod, user.id);
+    this.http.request(requestMethod, url).subscribe(() => {
       this.getUsers();
     });
   }

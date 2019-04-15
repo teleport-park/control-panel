@@ -14,7 +14,7 @@ export class BreakpointService implements OnDestroy {
 
 
   constructor(private breakpointObserver: BreakpointObserver) {
-    // NOTE: this observer should be use for handset devices
+    // NOTE: this observer should be used for handset devices
     this.breakpointObserver.observe([
       Breakpoints.Handset
     ]).pipe(takeUntil(this.destroyed$)).subscribe(result => {

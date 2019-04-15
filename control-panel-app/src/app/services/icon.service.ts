@@ -8,17 +8,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class IconService {
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon(
-      'vip',
-      sanitizer.bypassSecurityTrustResourceUrl('./assets/data/icons/vip.svg'));
-    iconRegistry.addSvgIcon(
-      'playing',
-      sanitizer.bypassSecurityTrustResourceUrl('./assets/data/icons/playing.svg'));
-    iconRegistry.addSvgIcon(
-      'blacklist',
-      sanitizer.bypassSecurityTrustResourceUrl('./assets/data/icons/blacklist.svg'));
-    iconRegistry.addSvgIcon(
-      'inpark',
-      sanitizer.bypassSecurityTrustResourceUrl('./assets/data/icons/inpark.svg'));
+    const iconPath = './assets/data/icons';
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'vip', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'playing', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'blacklist', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'inpark', iconPath);
+  }
+
+  private static pushSvgIconToRegistry(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, iconName: string, iconPath: string): void {
+    iconRegistry.addSvgIcon(iconName, sanitizer.bypassSecurityTrustResourceUrl(`'.${iconPath}/${iconName}.svg'`));
   }
 }
