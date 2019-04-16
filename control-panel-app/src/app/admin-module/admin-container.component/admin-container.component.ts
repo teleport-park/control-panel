@@ -47,8 +47,12 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
           active: false
         }
       ]
-    },
-    {
+    }, {
+      icon: 'attach_money',
+      label: 'ADMIN_MENU_TARIFFS',
+      path: '/admin/tariffs',
+      active: false
+    }, {
       icon: 'videogame_asset',
       label: 'ADMIN_MENU_AMUSEMENT',
       path: '/admin/amusements',

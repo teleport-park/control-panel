@@ -38,6 +38,10 @@ const routes: Routes = [
         path: 'transactions',
         loadChildren: './admin-modules/transactions/transactions.module#TransactionsModule',
         data: {title: 'ADMIN_MENU_TRANSACTIONS'}
+      }, {
+        path: 'tariffs',
+        loadChildren: './admin-modules/tariffs/tariffs.module#TariffsModule',
+        data: {title: 'ADMIN_MENU_TARIFFS'}
       }
     ]
   }
