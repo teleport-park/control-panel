@@ -16,6 +16,6 @@ export class IconService {
   }
 
   private static pushSvgIconToRegistry(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, iconName: string, iconPath: string): void {
-    iconRegistry.addSvgIcon(iconName, sanitizer.bypassSecurityTrustResourceUrl(`'.${iconPath}/${iconName}.svg'`));
+    iconRegistry.addSvgIcon(iconName, sanitizer.bypassSecurityTrustResourceUrl(`.${iconPath}/${iconName}.svg`));
   }
 }
