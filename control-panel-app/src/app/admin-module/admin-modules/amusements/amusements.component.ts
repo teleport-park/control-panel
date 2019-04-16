@@ -19,12 +19,19 @@ export class AmusementsComponent implements OnInit {
 
   amusements: AmusementsItem[] = [];
 
-  displayedColumns: string[] = ['logo', 'name', 'desc'];
+  displayedColumns: string[] = ['logo', 'name', 'desc', 'action'];
 
   constructor(public service: AmusementsService, public translateService: TranslateService) {
   }
 
   ngOnInit() {
+  }
+
+  /**
+   * add to tariffs handler
+   */
+  addToTariffs(amusement: AmusementsItem) {
+    console.info('[amusement to tariff] -> ', amusement);
   }
 
 }

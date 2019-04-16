@@ -79,5 +79,6 @@
   "AMUSEMENTS_LIST_LABEL": "Список аттракционов",
   "AMUSEMENTS_LOGO_LABEL": "Логотип",
   "AMUSEMENTS_NAME_LABEL": "Название",
-  "AMUSEMENTS_DESC_LABEL": "Описание"
+  "AMUSEMENTS_DESC_LABEL": "Описание",
+  "AMUSEMENTS_ADD_TO_TARIFFS": "Добавить в тарифы"
 }
