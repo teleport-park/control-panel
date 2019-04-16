@@ -19,24 +19,29 @@ import { ControlPanelUiSelectionTableComponent } from './control-panel-ui-select
 import { AddStaffDialogComponent } from './dialogs/add-staff-dialog/add-staff-dialog.component';
 import { ControlPanelUiHardwareItemComponent } from './control-panel-ui-hardware-item/control-panel-ui-hardware-item.component';
 import { ChartistModule } from 'ng-chartist';
+import { ControlPanelUiImagePreviewComponent } from './control-panel-ui-image-preview/control-panel-ui-image-preview.component';
+
+const MODULES = [
+  ConfirmDialogComponent,
+  NumberDirective,
+  ControlPanelUiCardComponent,
+  ControlPanelUiExtendedFiltersComponent,
+  ControlPanelUiTableComponent,
+  ControlPanelUiSelectionComponent,
+  AddOrEditEntityDialogComponent,
+  AddGroupDialogComponent,
+  AddSimpleEntityDialogComponent,
+  ControlPanelUiActionToolbarComponent,
+  ControlPanelUiWidgetComponent,
+  ControlPanelUiSelectionTableComponent,
+  AddStaffDialogComponent,
+  ControlPanelUiHardwareItemComponent,
+  ControlPanelUiImagePreviewComponent
+];
 
 @NgModule({
-  declarations: [
-    ConfirmDialogComponent,
-    NumberDirective,
-    ControlPanelUiCardComponent,
-    ControlPanelUiExtendedFiltersComponent,
-    ControlPanelUiTableComponent,
-    ControlPanelUiSelectionComponent,
-    AddOrEditEntityDialogComponent,
-    AddGroupDialogComponent,
-    AddSimpleEntityDialogComponent,
-    ControlPanelUiActionToolbarComponent,
-    ControlPanelUiWidgetComponent,
-    ControlPanelUiSelectionTableComponent,
-    AddStaffDialogComponent,
-    ControlPanelUiHardwareItemComponent
-  ],
+  declarations: [...MODULES],
+  exports: [...MODULES],
   imports: [
     CommonModule,
     TranslationModule,
@@ -45,19 +50,6 @@ import { ChartistModule } from 'ng-chartist';
     FormsModule,
     FormModule,
     ChartistModule
-  ],
-  exports: [
-    ConfirmDialogComponent,
-    NumberDirective,
-    ControlPanelUiCardComponent,
-    ControlPanelUiExtendedFiltersComponent,
-    ControlPanelUiTableComponent,
-    ControlPanelUiSelectionComponent,
-    AddOrEditEntityDialogComponent,
-    AddGroupDialogComponent,
-    ControlPanelUiActionToolbarComponent,
-    ControlPanelUiWidgetComponent,
-    ControlPanelUiHardwareItemComponent
   ]
 })
 export class SharedModule {

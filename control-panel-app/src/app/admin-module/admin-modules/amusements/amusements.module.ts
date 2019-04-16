@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AmusementComponent } from './amusement.component';
+import { AmusementsComponent } from './amusements.component';
 import { SharedModule } from '../../../common/shared-module/shared.module';
 import { MaterialModule } from '../../../material.module';
 import { RouterModule, Routes } from '@angular/router';
 import { HardwareComponent } from './hardware/hardware.component';
 import { HardwareService } from './hardware/services/hardware.service';
+import { AmusementsService } from './services/amusements.service';
 
 const routes: Routes = [{
   path: '',
-  component: AmusementComponent,
+  component: AmusementsComponent,
   children: [{
     path: 'hardware',
     component: HardwareComponent,
@@ -21,12 +22,12 @@ export const AmusementRoutingModule = RouterModule.forChild(routes);
 
 
 @NgModule({
-  declarations: [AmusementComponent, HardwareComponent],
+  declarations: [AmusementsComponent, HardwareComponent],
   imports: [
     CommonModule,
     SharedModule,
     MaterialModule,
     AmusementRoutingModule
-  ], providers: [HardwareService]
+  ], providers: [HardwareService, AmusementsService]
 })
-export class AmusementModule { }
+export class AmusementsModule { }

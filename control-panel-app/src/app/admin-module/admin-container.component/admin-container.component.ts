@@ -51,12 +51,12 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
     {
       icon: 'videogame_asset',
       label: 'ADMIN_MENU_AMUSEMENT',
-      path: '/admin/amusement',
+      path: '/admin/amusements',
       active: false,
       children: [{
         icon: 'computer',
         label: 'ADMIN_MENU_HARDWARE',
-        path: '/admin/amusement/hardware',
+        path: '/admin/amusements/hardware',
         active: false
       }]
     }, {

@@ -75,5 +75,9 @@
   "TRANSACTION_AMOUNT": "Сумма",
   "TRANSACTION_CORRESPONDENT": "Корреспондент",
   "TRANSACTION_SIGNATURE": "Подпись",
-  "CPU_BUSY": "Загрузка CPU"
+  "CPU_BUSY": "Загрузка CPU",
+  "AMUSEMENTS_LIST_LABEL": "Список аттракционов",
+  "AMUSEMENTS_LOGO_LABEL": "Логотип",
+  "AMUSEMENTS_NAME_LABEL": "Название",
+  "AMUSEMENTS_DESC_LABEL": "Описание"
 }

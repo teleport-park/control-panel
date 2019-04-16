@@ -74,5 +74,9 @@
   "TRANSACTION_AMOUNT": "Amount",
   "TRANSACTION_CORRESPONDENT": "Correspondent",
   "TRANSACTION_SIGNATURE": "Signature",
-  "CPU_BUSY": "CPU load"
+  "CPU_BUSY": "CPU load",
+  "AMUSEMENTS_LIST_LABEL": "Amusements list",
+  "AMUSEMENTS_LOGO_LABEL": "Logo",
+  "AMUSEMENTS_NAME_LABEL": "Name",
+  "AMUSEMENTS_DESC_LABEL": "Description"
 }
