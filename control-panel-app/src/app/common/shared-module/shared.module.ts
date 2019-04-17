@@ -20,6 +20,7 @@ import { AddStaffDialogComponent } from './dialogs/add-staff-dialog/add-staff-di
 import { ControlPanelUiHardwareItemComponent } from './control-panel-ui-hardware-item/control-panel-ui-hardware-item.component';
 import { ChartistModule } from 'ng-chartist';
 import { ControlPanelUiImagePreviewComponent } from './control-panel-ui-image-preview/control-panel-ui-image-preview.component';
+import { ControlPanelUiTariffTreeComponent } from './control-panel-ui-tariff-tree/control-panel-ui-tariff-tree.component';
 
 const MODULES = [
   ConfirmDialogComponent,
@@ -36,7 +37,8 @@ const MODULES = [
   ControlPanelUiSelectionTableComponent,
   AddStaffDialogComponent,
   ControlPanelUiHardwareItemComponent,
-  ControlPanelUiImagePreviewComponent
+  ControlPanelUiImagePreviewComponent,
+  ControlPanelUiTariffTreeComponent
 ];
 
 @NgModule({
