@@ -15,6 +15,7 @@ import {
   AddSimpleEntityDialogComponent, AddStaffDialogComponent,
   ConfirmDialogComponent
 } from '../../../common/shared-module';
+import { GroupsService } from './groups/services/groups.service';
 
 const routes: Routes = [{
   path: '',
@@ -39,7 +40,7 @@ export const StaffRoutingModule = RouterModule.forChild(routes);
     FormModule,
     SharedModule
   ],
-  providers: [StaffService],
+  providers: [StaffService, GroupsService],
   entryComponents: [
     AddOrEditEntityDialogComponent,
     ConfirmDialogComponent,

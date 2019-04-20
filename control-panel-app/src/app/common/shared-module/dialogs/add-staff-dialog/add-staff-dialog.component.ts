@@ -1,9 +1,9 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { TranslateService } from '../../../translations-module';
 import { StaffMemberResponse } from '../../../../models';
-import { StaffService } from '../../../../admin-module/admin-modules/staff/services/staff.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, PageEvent } from '@angular/material';
+import { DataService } from '../../../../services/data.service';
 
 @Component({
   selector: 'control-panel-add-staff-dialog',
@@ -18,11 +18,6 @@ export class AddStaffDialogComponent implements OnInit {
   mode = 'add';
 
   /**
-   * service
-   */
-  service: StaffService;
-
-  /**
    * model
    */
   entityModel: StaffMemberResponse;
@@ -33,11 +28,6 @@ export class AddStaffDialogComponent implements OnInit {
   form: FormGroup;
 
   /**
-   * property map
-   */
-  propertyMap: { viewValue: string; value: number }[];
-
-  /**
    * listen enter key press to submit
    * @param event
    */
@@ -45,14 +35,23 @@ export class AddStaffDialogComponent implements OnInit {
     this.onSubmitHandler();
   }
 
+  /**
+   * constructor
+   * @param translateService
+   * @param fb
+   * @param service
+   * @param dialogRef
+   * @param data
+   */
   constructor(public translateService: TranslateService, private fb: FormBuilder,
+              public service: DataService,
               public dialogRef: MatDialogRef<AddStaffDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { mode: string, item: StaffMemberResponse }) {
     dialogRef._containerInstance._config.width = '500px';
   }
 
   ngOnInit(): void {
-    this.service.getGroupMap();
+    this.service.getGroups();
     this.entityModel = this.data.item;
     this.form = this.getStaffMemberForm();
     this.form.patchValue(this.entityModel);
@@ -94,7 +93,7 @@ export class AddStaffDialogComponent implements OnInit {
    * @param event
    */
   pageChangeHandler(event: PageEvent) {
-    this.service.getGroupMap(event.pageSize, event.pageIndex + 1);
+    this.service.getGroups(event.pageSize, event.pageIndex + 1);
   }
 
   /**

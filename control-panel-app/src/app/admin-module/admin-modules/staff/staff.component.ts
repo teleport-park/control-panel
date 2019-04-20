@@ -54,8 +54,6 @@ export class StaffComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.service.getPermissions();
-    this.service.getGroups();
     this.service.getStaffMembers();
     const data = config as Config;
     this.sortedColumn = data.staff.sortedColumns || [];
@@ -118,7 +116,6 @@ export class StaffComponent implements OnInit, OnDestroy {
     const dialog = this.dialog.open(AddStaffDialogComponent, {
       data: {mode, item: staffMember}
     });
-    dialog.componentInstance.service = this.service;
     dialog.afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((staff: StaffMember) => {
       if (mode === 'edit') {
         this.service.editStaffMember(staff);

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Tariff, TariffNode, TariffsTree } from './control-panel-ui-tariff-tree.model';
 import { MatTreeNestedDataSource } from '@angular/material';
 import { NestedTreeControl } from '@angular/cdk/tree';
+import { TranslateService } from '../../translations-module';
 
 @Component({
   selector: 'control-panel-ui-tariff-tree',
@@ -11,11 +12,22 @@ import { NestedTreeControl } from '@angular/cdk/tree';
 export class ControlPanelUiTariffTreeComponent implements OnInit {
 
   /**
+   * last visible tariffs count
+   */
+  readonly LAST_VISIBLE_COUNT: number = 4;
+
+  /**
+   * data
+   */
+  private _data: TariffsTree;
+
+  /**
    * tree data
    * @param data
    */
   @Input() set treeData(data: TariffsTree) {
     if (data) {
+      this._data = data;
       this.treeControl = new NestedTreeControl<TariffNode>(node => node.children);
       this.dataSource = new MatTreeNestedDataSource<TariffNode>();
       this.dataSource.data = [{
@@ -47,9 +59,16 @@ export class ControlPanelUiTariffTreeComponent implements OnInit {
    */
   hasChild = (_: number, node: TariffNode) => !!node.children && node.children.length > 0;
 
-  constructor() { }
+  constructor(public translateService: TranslateService) { }
 
   ngOnInit() {
+  }
+
+  /**
+   * get last tariffs
+   */
+  getLastTariffs(): number[] {
+    return this._data.children.map((child: Tariff) => child.amount).splice(-this.LAST_VISIBLE_COUNT);
   }
 
 }

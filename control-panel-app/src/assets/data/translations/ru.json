@@ -81,5 +81,6 @@
   "AMUSEMENTS_LOGO_LABEL": "Логотип",
   "AMUSEMENTS_NAME_LABEL": "Название",
   "AMUSEMENTS_DESC_LABEL": "Описание",
-  "AMUSEMENTS_ADD_TO_TARIFFS": "Добавить в тарифы"
+  "AMUSEMENTS_ADD_TO_TARIFFS": "Добавить в тарифы",
+  "TARIFF_LAST_TARIFFS": "Последние тарифы"
 }

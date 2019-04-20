@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Group, Permission, StaffMember, StaffMemberResponse } from '../../../../models';
+import { StaffMember, StaffMemberResponse } from '../../../../models';
 import { HttpClient } from '@angular/common/http';
-import { filter, finalize } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 import { MatSnackBar, PageEvent, Sort } from '@angular/material';
 import { TranslateService } from '../../../../common/translations-module';
@@ -20,29 +20,9 @@ export class StaffService {
   public readonly STAFF_STORAGE_KEY: string = 'STAFF';
 
   /**
-   * group storage key
-   */
-  public readonly GROUP_STORAGE_KEY: string = 'GROUPS';
-
-  /**
    * staff members
    */
   staffMembers$: BehaviorSubject<AppData<StaffMemberResponse>> = new BehaviorSubject(null);
-
-  /**
-   * groups
-   */
-  groups$: BehaviorSubject<AppData<Group>> = new BehaviorSubject(null);
-
-  /**
-   * permissions
-   */
-  permissions$: BehaviorSubject<AppData<Permission>> = new BehaviorSubject(null);
-
-  /**
-   * group
-   */
-  groupsMap$: BehaviorSubject<AppData<Group>> = new BehaviorSubject(null);
 
   /**
    * param builder
@@ -138,143 +118,10 @@ export class StaffService {
   }
 
   /**
-   * get groups
-   */
-  getGroups(): void {
-    const requestMethod = 'GET';
-    const page = this._paramsHelper.getPaginationParams(this.GROUP_STORAGE_KEY, this.storage);
-    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, null, page.pageSize, page.pageIndex + 1);
-    this.http.request(requestMethod, url)
-      .pipe(
-        finalize(() => {
-          this.loader.dispatchShowLoader(false);
-        }))
-      .subscribe((data: AppData<Group>) => {
-        this.groups$.next(data);
-      });
-  }
-
-
-  /**
-   * add group
-   * @param group
-   */
-  addGroup(group: Group): void {
-    const requestMethod = 'POST';
-    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod);
-    this.http.request(requestMethod, url, {body: group}).subscribe((result: number) => {
-      if (result) {
-        group.id = result;
-        this.addPermissionsToGroup(group);
-        return;
-      }
-      this.getGroups();
-    });
-  }
-
-  /**
-   * edit group
-   * @param group
-   */
-  editGroup(group: Group): void {
-    const requestMethod = 'PUT';
-    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, group.id);
-    this.loader.dispatchShowLoader(true);
-    this.http.request(requestMethod, url, {body: group})
-      .subscribe(() => {
-        this.addPermissionsToGroup(group);
-      });
-  }
-
-  /**
-   * add permission to group
-   * @param group
-   */
-  addPermissionsToGroup(group: Group): void {
-    const requestMethod = 'POST';
-    const url  = this.apiBuilder.getPermissionsUrl(requestMethod);
-    this.http.request(requestMethod, url, {
-      body: {
-        staffGroupId: group.id,
-        permissionIds: group.permissions
-      }
-    })
-      .subscribe(() => {
-        this.getGroups();
-      });
-  }
-
-  /**
-   * delete group
-   * @param group
-   */
-  deleteGroup(group: Group): void {
-    const requestMethod = 'DELETE';
-    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, group.id);
-    this.http.request(requestMethod, url)
-      .subscribe((result: boolean) => {
-        if (result) {
-          this.getGroups();
-          return;
-        }
-        this.showErrorMessage(this.translateService.instant('ADMIN_MENU_STAFF'));
-      });
-  }
-
-  /**
-   * get groups map
-   */
-  getGroupMap(pageSize = 10, pageIndex = 1) {
-    const requestMethod = 'GET';
-    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, null, pageSize, pageIndex);
-    this.http.request(requestMethod, url)
-      .pipe(filter(data => !!data))
-      .subscribe((result: AppData<Group>) => {
-        this.groupsMap$.next(result);
-      });
-  }
-
-  /**
-   * get permissions
-   */
-  getPermissions(pageSize: number = 10, pageNumber: number = 1) {
-    const requestMethod = 'GET';
-    const url = this.apiBuilder.getPermissionsUrl(requestMethod, null, pageSize, pageNumber);
-    return this.http.request(requestMethod, url)
-      .subscribe((data: AppData<Permission>) => {
-        this.permissions$.next(data);
-      });
-  }
-
-  /**
-   * show error message
-   * @param param
-   */
-  private showErrorMessage(param: string) {
-    this.toaster.open(
-      this.translateService.instant('CANNOT_DELETE_DEPENDED_FIELD_ERROR_MESSAGE', [param]),
-      null,
-      {
-        duration: 5000,
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-        panelClass: 'toaster-error'
-      });
-  }
-
-  /**
    * change staff pagination or sort handler
    * @param event
    */
   changeStaffSortOrPagination(event: PageEvent | Sort): void {
     this.getStaffMembers();
-  }
-
-  /**
-   * change group pagination handler
-   * @param event
-   */
-  changeGroupSortOrPagination(event: PageEvent | Sort): void {
-    this.getGroups();
   }
 }

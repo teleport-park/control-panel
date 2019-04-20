@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, PageEvent } from '@angular/material';
 import { Group, Permission } from '../../../../models';
 import { TranslateService } from '../../../translations-module';
-import { StaffService } from '../../../../admin-module/admin-modules/staff/services/staff.service';
+import { DataService } from '../../../../services/data.service';
 
 @Component({
   selector: 'control-panel-add-group-dalog',
@@ -16,11 +16,6 @@ export class AddGroupDialogComponent implements OnInit {
    * name field
    */
   name: FormControl;
-
-  /**
-   * service
-   */
-  service: StaffService;
 
   /**
    * selected permissions
@@ -40,10 +35,12 @@ export class AddGroupDialogComponent implements OnInit {
    * @param translateService
    * @param dialogRef
    * @param data
+   * @param service
    */
   constructor(
     public translateService: TranslateService,
     public dialogRef: MatDialogRef<AddGroupDialogComponent>,
+    public service: DataService,
     @Inject(MAT_DIALOG_DATA) public data: { group: Group, mode: 'add' | 'edit' }) {
     dialogRef._containerInstance._config.width = '500px';
     this.name = new FormControl(data.group.name, [Validators.required]);

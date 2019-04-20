@@ -16,8 +16,7 @@
   </ng-container>
 
 
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-      (click)="selection.toggle(row)">
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;">
   </tr>
 </table>
 <mat-paginator [length]="length"
