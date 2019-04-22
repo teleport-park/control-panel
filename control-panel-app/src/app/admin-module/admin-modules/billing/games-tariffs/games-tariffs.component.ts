@@ -3,10 +3,10 @@ import { TariffsService } from './services/tariffs.service';
 
 @Component({
   selector: 'tariffs',
-  templateUrl: './tariffs.component.html',
-  styleUrls: ['./tariffs.component.scss']
+  templateUrl: './games-tariffs.component.html',
+  styleUrls: ['./games-tariffs.component.scss']
 })
-export class TariffsComponent implements OnInit {
+export class GamesTariffsComponent implements OnInit {
 
   constructor(public service: TariffsService) {
   }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { TranslateService } from '../translate.service';
 import { MatSelectChange } from '@angular/material';
 import { takeUntil } from 'rxjs/operators';
@@ -57,8 +57,9 @@ export class LanguageSwitcherComponent implements OnDestroy, OnInit {
   /**
    * Constructor
    * @param translateService
+   * @param cd
    */
-  constructor(private translateService: TranslateService) { }
+  constructor(private translateService: TranslateService, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.translateService.locale
@@ -77,6 +78,7 @@ export class LanguageSwitcherComponent implements OnDestroy, OnInit {
     if (event.value !== this.translateService.locale) {
       this.translateService.getTranslations(event.value);
     }
+    this.cd.markForCheck();
   }
 
   ngOnDestroy(): void {

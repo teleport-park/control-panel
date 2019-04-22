@@ -9,7 +9,7 @@ export class TransactionsService {
 
   transactions$: BehaviorSubject<any> = new BehaviorSubject(null);
 
-  constructor(private http: HttpClient) { this.getTransactions() }
+  constructor(private http: HttpClient) { this.getTransactions(); }
 
   getTransactions(): void {
     this.http.get('./assets/data/transactions.json').subscribe((data: any) => {

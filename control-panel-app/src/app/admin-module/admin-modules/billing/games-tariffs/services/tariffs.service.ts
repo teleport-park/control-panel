@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { TariffsTree } from '../../../../common/shared-module';
+import { TariffsTree } from '../../../../../common/shared-module';
 
 @Injectable()
 export class TariffsService {

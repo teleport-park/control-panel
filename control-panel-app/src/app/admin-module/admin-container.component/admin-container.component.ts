@@ -48,10 +48,26 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
         }
       ]
     }, {
-      icon: 'attach_money',
-      label: 'ADMIN_MENU_TARIFFS',
-      path: '/admin/tariffs',
-      active: false
+      icon: 'monetization_on',
+      label: 'ADMIN_MENU_BILLING',
+      path: '/admin/billing',
+      active: false,
+      children: [{
+        icon: 'games',
+        label: 'ADMIN_MENU_GAMES_TARIFFS',
+        path: '/admin/billing/games-tariffs',
+        active: false
+      }, {
+        icon: 'money',
+        label: 'ADMIN_MENU_INCOME_TARIFFS',
+        path: '/admin/billing/income-tariffs',
+        active: false
+      }, {
+        icon: 'compare_arrows',
+        label: 'ADMIN_MENU_TRANSACTIONS',
+        path: '/admin/billing/transactions',
+        active: false
+      }]
     }, {
       icon: 'videogame_asset',
       label: 'ADMIN_MENU_AMUSEMENT',
@@ -62,12 +78,7 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
         label: 'ADMIN_MENU_HARDWARE',
         path: '/admin/amusements/hardware',
         active: false
-      }]
-    }, {
-      icon: 'compare_arrows',
-      label: 'ADMIN_MENU_TRANSACTIONS',
-      path: '/admin/transactions',
-      active: false
+      } ]
     }, {
       icon: 'people',
       label: 'ADMIN_MENU_USERS',
