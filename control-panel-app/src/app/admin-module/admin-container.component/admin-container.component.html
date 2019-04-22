@@ -14,7 +14,7 @@
            (click)="menuItem.active = !menuItem.active">
           <i class="material-icons">{{menuItem.icon}}</i>
           {{translateService.instant(menuItem.label)}}
-          <mat-icon class="mat-icon-rtl-mirror expand-icon">
+          <mat-icon class="mat-icon-rtl-mirror expand-icon" *ngIf="menuItem.children">
             {{menuItem.active ? 'expand_more' : 'chevron_right'}}
           </mat-icon>
         </a>
