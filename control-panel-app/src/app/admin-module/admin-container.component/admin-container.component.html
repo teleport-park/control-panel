@@ -10,11 +10,15 @@
       <div class="nav-list-container_parent-container" *ngFor="let menuItem of MENU_ITEMS">
         <a mat-list-item
            [routerLink]="menuItem.path"
-           routerLinkActive="active">
+           routerLinkActive="active"
+           (click)="menuItem.active = !menuItem.active">
           <i class="material-icons">{{menuItem.icon}}</i>
           {{translateService.instant(menuItem.label)}}
+          <mat-icon class="mat-icon-rtl-mirror expand-icon">
+            {{menuItem.active ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
         </a>
-        <div class="nav-list-container_children-container" *ngIf="menuItem.children">
+        <div class="nav-list-container_children-container" *ngIf="menuItem.children && menuItem.active">
           <a mat-list-item *ngFor="let children of menuItem.children"
              [routerLink]="children.path"
              routerLinkActive="active">
@@ -28,7 +32,8 @@
       <language-switcher *ngIf="(point?.handset | async)"
                          theme="light"
                          (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
-      <button mat-button *ngIf="(point?.handset | async)" routerLink="/login">{{translateService.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
+      <button mat-button *ngIf="(point?.handset | async)"
+              routerLink="/login">{{translateService.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
     </div>
   </mat-sidenav>
 
@@ -38,11 +43,14 @@
         <a><span>{{translateService.instant(activeView)}}</span></a>
       </div>
       <language-switcher *ngIf="!(point?.handset | async)"
-        (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
-      <button mat-button *ngIf="!(point?.handset | async)" routerLink="/login">{{translateService.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
+                         (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
+      <button mat-button *ngIf="!(point?.handset | async)"
+              routerLink="/login">{{translateService.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
       <button mat-icon-button
               (click)="sidenav.toggle()"
-              *ngIf="(point?.handset | async)"><mat-icon>menu</mat-icon></button>
+              *ngIf="(point?.handset | async)">
+        <mat-icon>menu</mat-icon>
+      </button>
     </mat-toolbar>
     <div class="content-container">
       <router-outlet></router-outlet>

@@ -4,23 +4,28 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+
   .mat-drawer-side {
     border: 0;
   }
+
   .sidenav-container {
     flex: 1 1 100%;
+
     .sidenav-inner-container {
       background-image: url("https://demos.creative-tim.com/material-dashboard-react/static/media/sidebar-4.fc9cb053.jpg");
       background-size: cover;
       background-position: center center;
       min-width: 320px;
       color: #fff;
+
       ::ng-deep .mat-drawer-inner-container {
         display: flex;
         flex-direction: column;
         height: 100%;
         background-color: rgba(0, 0, 0, .7);
       }
+
       .sidenav-title {
         flex: 0 0;
         height: 40px;
@@ -40,6 +45,7 @@
         margin: 15px 0;
         padding: 0 15px;
         flex: 1 1;
+
         .mat-list-item {
           margin: 10px 0 0;
           border-radius: 3px;
@@ -48,25 +54,33 @@
           color: $white;
           font-size: 14px;
           font-weight: 300;
+          .expand-icon {
+            position: absolute;
+            right: 10px;
+          }
+
           i {
             margin-right: 15px;
           }
 
           &.active {
             background: linear-gradient(60deg, $primary, #8e24aa);
-            box-shadow: 0 4px 20px 0 rgba(0, 0, 0,.14), 0 7px 10px -5px rgba(156, 39, 176, .4);
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(156, 39, 176, .4);
           }
         }
+
         .nav-list-container_children-container {
           padding-left: 20px;
+
           .mat-list-item {
             &.active {
               background: linear-gradient(60deg, rgba($primary, .3), #8e24aa);
-              box-shadow: 0 4px 20px 0 rgba(0, 0, 0,.14), 0 7px 10px -5px rgba(156, 39, 176, .4);
+              box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(156, 39, 176, .4);
             }
           }
         }
       }
+
       .side-nav_action-button {
         display: flex;
         flex-direction: column;
@@ -77,6 +91,7 @@
     .mat-sidenav-content {
       display: flex;
       flex-direction: column;
+
       .mat-toolbar {
         display: flex;
         flex: 0 0 auto;
