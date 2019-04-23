@@ -1,19 +1,28 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 
-import { NestedTreeControl } from '@angular/cdk/tree';
-import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 
 /**
  * tree node interface
  */
 interface TreeNode {
   children?: TreeNode[];
-  data?: {
-    name: string;
-    amount: number;
-    currency: 'BYN' | 'COIN' | '';
-    isRoot?: boolean;
-  };
+  data?: NodeData;
+}
+
+interface NodeData {
+  name: string;
+  amount: number;
+  currency: 'BYN' | 'COIN' | '';
+  isRoot?: boolean;
+}
+
+interface FlatNode {
+  expandable: boolean;
+  name: string;
+  level: number;
+  data: NodeData;
 }
 
 /**
@@ -88,14 +97,19 @@ export class IncomeTariffsComponent implements OnInit, AfterViewInit {
   /**
    * tree control
    */
-  treeControl = new NestedTreeControl<TreeNode>(node => node.children);
+  treeControl: FlatTreeControl<FlatNode>;
+
+  /**
+   * tree flattener
+   */
+  treeFlattener: MatTreeFlattener<TreeNode, FlatNode>;
+
   /**
    * data source
    */
-  dataSource = new MatTreeNestedDataSource<TreeNode>();
+  dataSource: MatTreeFlatDataSource<TreeNode, FlatNode>;
 
   constructor() {
-    this.dataSource.data = TREE_DATA;
   }
 
   /**
@@ -103,13 +117,20 @@ export class IncomeTariffsComponent implements OnInit, AfterViewInit {
    * @param _
    * @param node
    */
-  hasChild = (_: number, node: TreeNode) => !!node.children && node.children.length > 0;
+  hasChild = (_: number, node: FlatNode) => node.expandable;
 
   ngOnInit() {
+    this.treeControl = new FlatTreeControl<FlatNode>(
+      node => node.level, node => node.expandable);
+    this.treeFlattener = new MatTreeFlattener(
+      this.transformer, node => node.level, node => node.expandable, node => node.children);
+    this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+    this.dataSource.data = TREE_DATA;
   }
 
   ngAfterViewInit(): void {
-    this.treeControl.expand(this.dataSource.data[0]);
+    const rootNodes = this.dataSource._flattenedData.getValue();
+    this.treeControl.expand(rootNodes[0]);
   }
 
   /**
@@ -120,4 +141,17 @@ export class IncomeTariffsComponent implements OnInit, AfterViewInit {
     return `${node.data.name} ${node.data.amount ? node.data.amount : ''} ${node.data.currency ? node.data.currency : ''}`;
   }
 
+  /**
+   * transformer
+   * @param node
+   * @param level
+   */
+  private transformer = (node: TreeNode, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.data.name,
+      level,
+      data: node.data
+    };
+  }
 }
