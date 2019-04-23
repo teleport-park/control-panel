@@ -31,6 +31,7 @@ import {
 import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatPaginatorTranslateUtil } from './utils/mat-paginator-translate.util';
 import { TranslateService } from './common/translations-module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 export const APP_MOMENT_DATE_FORMATS: MatDateFormats = {
   parse: {
@@ -67,7 +68,8 @@ export const MATERIAL_MODULES = [
   MatIconModule,
   MatMenuModule,
   MatTooltipModule,
-  MatTreeModule
+  MatTreeModule,
+  DragDropModule
 ];
 
 @NgModule({

@@ -5,6 +5,7 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { IncomeTariffsService } from './services/income-tariffs.service';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 /**
  * tree node interface
@@ -27,68 +28,6 @@ interface FlatNode {
   level: number;
   data: NodeData;
 }
-
-/**
- * Mock data
- * TODO should remove
- */
-const TREE_DATA: TreeNode[] = [
-  {
-    children: [
-      {
-        children: [
-          {
-            data: {
-              name: 'Amount1',
-              amount: 10,
-              currency: 'COIN'
-            }
-          },
-          {
-            data: {
-              name: 'Amount2',
-              amount: 20,
-              currency: 'COIN'
-            }
-          },
-        ],
-        data: {
-          name: 'Tariff1',
-          amount: 50,
-          currency: 'BYN'
-        }
-      }, {
-        children: [
-          {
-            data: {
-              name: 'Promo2',
-              amount: 20,
-              currency: 'COIN'
-            }
-          },
-          {
-            data: {
-              name: 'Amount3',
-              amount: 30,
-              currency: 'COIN'
-            }
-          },
-        ],
-        data: {
-          name: 'Tariff2',
-          amount: 100,
-          currency: 'BYN'
-        }
-      }
-    ],
-    data: {
-      name: 'Tariffs',
-      amount: null,
-      currency: '',
-      isRoot: true
-    }
-  },
-];
 
 @Component({
   selector: 'income-tariffs',
@@ -166,5 +105,9 @@ export class IncomeTariffsComponent implements OnInit, AfterViewInit {
       level,
       data: node.data
     };
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.dataSource.data, event.previousIndex, event.currentIndex);
   }
 }

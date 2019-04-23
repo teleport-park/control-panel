@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~@angular/material/theming';
 @import 'pallete';
 
 html, body {
@@ -47,5 +48,24 @@ html, body {
   .mat-menu-item .mat-icon {
     margin-right: 6px;
     color: $dark;
+  }
+
+  .mat-tree-node {
+    opacity: 1;
+    user-select: none;
+    &.cdk-drag-preview {
+      @include mat-elevation(12);
+      background-color: #FFF;
+      cursor: move;
+    }
+    &.cdk-drag-placeholder {
+      opacity: 0;
+    }
+  }
+  .cdk-drop-list-dragging .mat-tree-node:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  .cdk-drag-animating {
+    transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
   }
 }

@@ -1,5 +1,14 @@
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree" *ngIf="treeControl">
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+<mat-tree [dataSource]="dataSource"
+          [treeControl]="treeControl"
+          class="example-tree"
+          *ngIf="treeControl"
+          cdkDropList>
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding
+                 cdkDrag [cdkDragData]="node">
+                 <!--(mouseenter)="dragHover(node)"-->
+                 <!--(mouseleave)="dragHoverEnd()"-->
+                 <!--(cdkDragStarted)="dragStart()"-->
+                 <!--(cdkDragReleased)="dragEnd()">-->
       <div class="mat-tree-node_leaf-node">
         {{getNodeName(node)}}
       </div>
@@ -7,7 +16,12 @@
         <button mat-icon-button color="primary" matTooltip="Remove tariff">T-</button>
       </div>
   </mat-tree-node>
-  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
+                 cdkDrag [cdkDragData]="node">
+                 <!--(mouseenter)="dragHover(node)"-->
+                 <!--(mouseleave)="dragHoverEnd()"-->
+                 <!--(cdkDragStarted)="dragStart()"-->
+                 <!--(cdkDragReleased)="dragEnd()">-->
     <div>
       <button mat-icon-button matTreeNodeToggle
               [attr.aria-label]="'toggle ' + node.name">

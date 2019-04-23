@@ -1,8 +1,12 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/theming';
+
 :host {
   .mat-tree-node {
     padding: 0 20px 0 10px;
     display: flex;
     justify-content: space-between;
+
     .mat-tree-node_leaf-node {
       margin-left: 30px;
     }
