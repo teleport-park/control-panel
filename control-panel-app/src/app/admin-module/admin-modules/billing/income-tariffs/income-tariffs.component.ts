@@ -2,11 +2,14 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { IncomeTariffsService } from './services/income-tariffs.service';
+import { Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 
 /**
  * tree node interface
  */
-interface TreeNode {
+export interface TreeNode {
   children?: TreeNode[];
   data?: NodeData;
 }
@@ -94,6 +97,8 @@ const TREE_DATA: TreeNode[] = [
 })
 export class IncomeTariffsComponent implements OnInit, AfterViewInit {
 
+  destroyed$: Subject<boolean> = new Subject();
+
   /**
    * tree control
    */
@@ -109,7 +114,7 @@ export class IncomeTariffsComponent implements OnInit, AfterViewInit {
    */
   dataSource: MatTreeFlatDataSource<TreeNode, FlatNode>;
 
-  constructor() {
+  constructor(public service: IncomeTariffsService) {
   }
 
   /**
@@ -120,17 +125,25 @@ export class IncomeTariffsComponent implements OnInit, AfterViewInit {
   hasChild = (_: number, node: FlatNode) => node.expandable;
 
   ngOnInit() {
+    this.service.tariffs$.pipe(takeUntil(this.destroyed$), filter(data => !!data))
+      .subscribe((result: TreeNode[]) => {
+        this.initDataSource(result);
+        const rootNodes = this.dataSource._flattenedData.getValue();
+        this.treeControl.expand(rootNodes[0]);
+      });
+  }
+
+  private initDataSource(data: TreeNode[]) {
     this.treeControl = new FlatTreeControl<FlatNode>(
       node => node.level, node => node.expandable);
     this.treeFlattener = new MatTreeFlattener(
       this.transformer, node => node.level, node => node.expandable, node => node.children);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-    this.dataSource.data = TREE_DATA;
+    this.dataSource.data = data;
   }
 
   ngAfterViewInit(): void {
-    const rootNodes = this.dataSource._flattenedData.getValue();
-    this.treeControl.expand(rootNodes[0]);
+
   }
 
   /**

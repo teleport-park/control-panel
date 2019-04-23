@@ -9,6 +9,7 @@ import { TariffsService } from './games-tariffs/services/tariffs.service';
 import { IncomeTariffsComponent } from './income-tariffs/income-tariffs.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { TransactionsService } from './transactions/services/transactions.service';
+import { IncomeTariffsService } from './income-tariffs/services/income-tariffs.service';
 
 const routes: Routes = [{
   path: '',
@@ -38,6 +39,6 @@ export const BillingRoutingModule = RouterModule.forChild(routes);
     SharedModule,
     BillingRoutingModule
   ],
-  providers: [TariffsService, TransactionsService]
+  providers: [TariffsService, TransactionsService, IncomeTariffsService]
 })
 export class BillingModule { }
