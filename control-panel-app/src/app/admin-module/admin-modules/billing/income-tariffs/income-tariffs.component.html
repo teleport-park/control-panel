@@ -3,26 +3,21 @@
           class="example-tree"
           *ngIf="treeControl"
           cdkDropList>
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding
-                 cdkDrag [cdkDragData]="node">
-                 <!--(mouseenter)="dragHover(node)"-->
-                 <!--(mouseleave)="dragHoverEnd()"-->
-                 <!--(cdkDragStarted)="dragStart()"-->
-                 <!--(cdkDragReleased)="dragEnd()">-->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle [matTreeNodePadding]="2" [matTreeNodePaddingIndent]="25"
+                 cdkDrag [cdkDragData]="node" [ngClass]="{'last-node': node.data.isLast, 'last-parent': node.data.isParentLast}">
       <div class="mat-tree-node_leaf-node">
+        <span class="tree-vis">&nbsp;</span>
         {{getNodeName(node)}}
       </div>
       <div>
         <button mat-icon-button color="primary" matTooltip="Remove tariff">T-</button>
       </div>
   </mat-tree-node>
-  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
-                 cdkDrag [cdkDragData]="node">
-                 <!--(mouseenter)="dragHover(node)"-->
-                 <!--(mouseleave)="dragHoverEnd()"-->
-                 <!--(cdkDragStarted)="dragStart()"-->
-                 <!--(cdkDragReleased)="dragEnd()">-->
+  <mat-tree-node *matTreeNodeDef="let node; when: hasChild"
+                 cdkDrag [cdkDragData]="node"
+                 [ngClass]="{'root-node': node.data.isRoot, 'last-node': node.data.isLast, 'last-parent': node.data.isParentLast}">
     <div>
+      <span class="tree-vis">&nbsp;</span>
       <button mat-icon-button matTreeNodeToggle
               [attr.aria-label]="'toggle ' + node.name">
         <mat-icon class="mat-icon-rtl-mirror">

@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { IncomeTariffsService } from './services/income-tariffs.service';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 /**
  * tree node interface
@@ -20,6 +20,8 @@ interface NodeData {
   amount: number;
   currency: 'BYN' | 'COIN' | '';
   isRoot?: boolean;
+  isLast?: boolean;
+  isParentLast?: boolean;
 }
 
 interface FlatNode {
@@ -34,7 +36,7 @@ interface FlatNode {
   templateUrl: './income-tariffs.component.html',
   styleUrls: ['./income-tariffs.component.scss']
 })
-export class IncomeTariffsComponent implements OnInit, AfterViewInit {
+export class IncomeTariffsComponent implements OnInit {
 
   destroyed$: Subject<boolean> = new Subject();
 
@@ -53,7 +55,7 @@ export class IncomeTariffsComponent implements OnInit, AfterViewInit {
    */
   dataSource: MatTreeFlatDataSource<TreeNode, FlatNode>;
 
-  constructor(public service: IncomeTariffsService) {
+  constructor(public service: IncomeTariffsService, private cd: ChangeDetectorRef) {
   }
 
   /**
@@ -69,10 +71,17 @@ export class IncomeTariffsComponent implements OnInit, AfterViewInit {
         this.initDataSource(result);
         const rootNodes = this.dataSource._flattenedData.getValue();
         this.treeControl.expand(rootNodes[0]);
+        this.cd.markForCheck();
+        this.cd.detectChanges();
       });
   }
 
+  /**
+   * init data
+   * @param data
+   */
   private initDataSource(data: TreeNode[]) {
+    this.setLastNode(data[0]);
     this.treeControl = new FlatTreeControl<FlatNode>(
       node => node.level, node => node.expandable);
     this.treeFlattener = new MatTreeFlattener(
@@ -81,8 +90,24 @@ export class IncomeTariffsComponent implements OnInit, AfterViewInit {
     this.dataSource.data = data;
   }
 
-  ngAfterViewInit(): void {
-
+  /**
+   * set last nodes
+   * @param data
+   */
+  private setLastNode(data: TreeNode) {
+    if (data.children && data.children.length) {
+      const lastNode = data.children[data.children.length - 1];
+      lastNode.data.isLast = true;
+      lastNode.data.isParentLast = true;
+      lastNode.children.forEach(child => {
+        child.data.isParentLast = true;
+      });
+      data.children.forEach(item => {
+        if (item.children && item.children.length) {
+          item.children[item.children.length - 1].data.isLast = true;
+        }
+      });
+    }
   }
 
   /**
