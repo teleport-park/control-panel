@@ -1,3943 +1,499 @@
 [
   {
-    "data": {
-      "name": "Tariffs",
-      "amount": null,
-      "currency": "",
-      "isRoot": true
+    "packageInfo": {
+      "id": "72858254-29ab-4ddf-831d-f8a4987e3acd",
+      "name": 0,
+      "amount": 104,
+      "currency": "BYN"
     },
-    "children": [
+    "payments": [
       {
-        "data": {
-          "name": "Tariff 0",
-          "amount": 36,
-          "currency": "COIN"
-        },
+        "id": "f4eb54a2-51da-4071-9e25-6ae0801daea4",
+        "index": 0,
+        "amount": 26,
+        "currency": "BYN",
         "children": [
           {
-            "data": {
-              "name": "Promo 0",
-              "amount": 21,
-              "currency": "BYN"
-            }
+            "name": "test 0",
+            "amount": 7,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 1",
-              "amount": 80,
-              "currency": "COIN"
-            }
+            "name": "test 1",
+            "amount": 8,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 2",
-              "amount": 48,
-              "currency": "COIN"
-            }
+            "name": "test 2",
+            "amount": 9,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 3",
-              "amount": 27,
-              "currency": "COIN"
-            }
+            "name": "test 3",
+            "amount": 6,
+            "currency": "COIN"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageInfo": {
+      "id": "95256ecc-a1bd-4710-9e34-fb94fbb4e536",
+      "name": 1,
+      "amount": 115,
+      "currency": "BYN"
+    },
+    "payments": [
+      {
+        "id": "a5d94cae-513c-49dc-b619-65e0b48125c3",
+        "index": 0,
+        "amount": 14,
+        "currency": "BYN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 7,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 4",
-              "amount": 93,
-              "currency": "BYN"
-            }
+            "name": "test 1",
+            "amount": 9,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 5",
-              "amount": 41,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 6",
-              "amount": 76,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 7",
-              "amount": 19,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 8",
-              "amount": 51,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 9",
-              "amount": 11,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 10",
-              "amount": 43,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 11",
-              "amount": 18,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 12",
-              "amount": 38,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 13",
-              "amount": 98,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 14",
-              "amount": 58,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 15",
-              "amount": 57,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 16",
-              "amount": 90,
-              "currency": "COIN"
-            }
+            "name": "test 2",
+            "amount": 1,
+            "currency": "COIN"
           }
         ]
       },
       {
-        "data": {
-          "name": "Promo 1",
-          "amount": 88,
-          "currency": "BYN"
-        },
+        "id": "40c1a6f5-6b94-4cb3-803d-bdcb63786c87",
+        "index": 1,
+        "amount": 25,
+        "currency": "COIN",
         "children": [
           {
-            "data": {
-              "name": "Promo 0",
-              "amount": 93,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 99,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 58,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 3",
-              "amount": 41,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 62,
-              "currency": "BYN"
-            }
+            "name": "test 0",
+            "amount": 10,
+            "currency": "COIN"
           }
         ]
       },
       {
-        "data": {
-          "name": "Promo 2",
-          "amount": 82,
-          "currency": "BYN"
-        },
+        "id": "3f0f943c-3b2c-44bb-a55f-075cbb1a9ec6",
+        "index": 2,
+        "amount": 34,
+        "currency": "BYN",
         "children": [
           {
-            "data": {
-              "name": "Promo 0",
-              "amount": 30,
-              "currency": "BYN"
-            }
+            "name": "test 0",
+            "amount": 6,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 1",
-              "amount": 28,
-              "currency": "COIN"
-            }
+            "name": "test 1",
+            "amount": 7,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 2",
-              "amount": 88,
-              "currency": "COIN"
-            }
+            "name": "test 2",
+            "amount": 1,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 3",
-              "amount": 97,
-              "currency": "BYN"
-            }
+            "name": "test 3",
+            "amount": 7,
+            "currency": "COIN"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageInfo": {
+      "id": "c1ce2291-dd9b-4530-b74d-cae5fd673ddc",
+      "name": 2,
+      "amount": 344,
+      "currency": "BYN"
+    },
+    "payments": [
+      {
+        "id": "e4fb4ed4-357b-4d3a-9880-3943edc73a5f",
+        "index": 0,
+        "amount": 21,
+        "currency": "COIN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 5,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 4",
-              "amount": 34,
-              "currency": "BYN"
-            }
+            "name": "test 1",
+            "amount": 4,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 5",
-              "amount": 78,
-              "currency": "COIN"
-            }
+            "name": "test 2",
+            "amount": 9,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 6",
-              "amount": 51,
-              "currency": "COIN"
-            }
+            "name": "test 3",
+            "amount": 1,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 7",
-              "amount": 36,
-              "currency": "COIN"
-            }
+            "name": "test 4",
+            "amount": 10,
+            "currency": "COIN"
           }
         ]
       },
       {
-        "data": {
-          "name": "Tariff 3",
-          "amount": 38,
-          "currency": "COIN"
-        },
+        "id": "e891c622-f8a6-4561-b828-41515276070a",
+        "index": 1,
+        "amount": 28,
+        "currency": "BYN",
         "children": [
           {
-            "data": {
-              "name": "Promo 0",
-              "amount": 79,
-              "currency": "COIN"
-            }
+            "name": "test 0",
+            "amount": 8,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 1",
-              "amount": 24,
-              "currency": "COIN"
-            }
+            "name": "test 1",
+            "amount": 8,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 2",
-              "amount": 79,
-              "currency": "BYN"
-            }
-          },
+            "name": "test 2",
+            "amount": 9,
+            "currency": "COIN"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageInfo": {
+      "id": "ce51c6c2-5a9b-40ce-9f71-9d9d0de7af1b",
+      "name": 3,
+      "amount": 477,
+      "currency": "BYN"
+    },
+    "payments": [
+      {
+        "id": "461d499b-0f70-4d7f-a482-4c55e0dab021",
+        "index": 0,
+        "amount": 22,
+        "currency": "COIN",
+        "children": [
           {
-            "data": {
-              "name": "Promo 3",
-              "amount": 79,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 99,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 84,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 6",
-              "amount": 93,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 7",
-              "amount": 99,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 8",
-              "amount": 45,
-              "currency": "COIN"
-            }
+            "name": "test 0",
+            "amount": 5,
+            "currency": "COIN"
           }
         ]
       },
       {
-        "data": {
-          "name": "Tariff 4",
-          "amount": 75,
-          "currency": "BYN"
-        },
+        "id": "6c0af2aa-b6f9-450a-ae88-6130f99f9a3f",
+        "index": 1,
+        "amount": 35,
+        "currency": "BYN",
         "children": [
           {
-            "data": {
-              "name": "Promo 0",
-              "amount": 71,
-              "currency": "BYN"
-            }
+            "name": "test 0",
+            "amount": 6,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 1",
-              "amount": 20,
-              "currency": "COIN"
-            }
+            "name": "test 1",
+            "amount": 9,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 2",
-              "amount": 77,
-              "currency": "COIN"
-            }
+            "name": "test 2",
+            "amount": 3,
+            "currency": "COIN"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageInfo": {
+      "id": "770ff935-d40b-4efb-aa8d-42a889f0a8bc",
+      "name": 4,
+      "amount": 310,
+      "currency": "BYN"
+    },
+    "payments": [
+      {
+        "id": "e0152008-3cea-412b-bfb2-cac88e98dde7",
+        "index": 0,
+        "amount": 15,
+        "currency": "BYN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 6,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 3",
-              "amount": 49,
-              "currency": "COIN"
-            }
+            "name": "test 1",
+            "amount": 5,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 4",
-              "amount": 60,
-              "currency": "COIN"
-            }
+            "name": "test 2",
+            "amount": 2,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 5",
-              "amount": 49,
-              "currency": "COIN"
-            }
+            "name": "test 3",
+            "amount": 2,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 6",
-              "amount": 45,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 7",
-              "amount": 80,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 8",
-              "amount": 74,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 9",
-              "amount": 43,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 10",
-              "amount": 49,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 11",
-              "amount": 18,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 12",
-              "amount": 18,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 13",
-              "amount": 18,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 14",
-              "amount": 32,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 15",
-              "amount": 47,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 16",
-              "amount": 90,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 17",
-              "amount": 98,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 18",
-              "amount": 68,
-              "currency": "BYN"
-            }
+            "name": "test 4",
+            "amount": 7,
+            "currency": "COIN"
           }
         ]
       },
       {
-        "data": {
-          "name": "Tariff 5",
-          "amount": 95,
-          "currency": "COIN"
-        },
+        "id": "acf25914-5e09-46ad-86f3-31d88c6ab572",
+        "index": 1,
+        "amount": 28,
+        "currency": "COIN",
         "children": [
           {
-            "data": {
-              "name": "Promo 0",
-              "amount": 35,
-              "currency": "COIN"
-            }
+            "name": "test 0",
+            "amount": 10,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 1",
-              "amount": 20,
-              "currency": "COIN"
-            }
+            "name": "test 1",
+            "amount": 2,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 2",
-              "amount": 83,
-              "currency": "BYN"
-            }
+            "name": "test 2",
+            "amount": 6,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 3",
-              "amount": 34,
-              "currency": "COIN"
-            }
-          },
+            "name": "test 3",
+            "amount": 6,
+            "currency": "COIN"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageInfo": {
+      "id": "95252f8a-ded7-4ebe-b115-f5419431429b",
+      "name": 5,
+      "amount": 263,
+      "currency": "BYN"
+    },
+    "payments": [
+      {
+        "id": "89251fb3-7788-4344-8e29-f2c5edcd784e",
+        "index": 0,
+        "amount": 41,
+        "currency": "COIN",
+        "children": [
           {
-            "data": {
-              "name": "Amount 4",
-              "amount": 76,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 96,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 15,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 7",
-              "amount": 74,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 8",
-              "amount": 69,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 9",
-              "amount": 30,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 10",
-              "amount": 25,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 11",
-              "amount": 23,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 12",
-              "amount": 63,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 13",
-              "amount": 67,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 14",
-              "amount": 87,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 15",
-              "amount": 36,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 16",
-              "amount": 12,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 17",
-              "amount": 12,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 18",
-              "amount": 26,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 19",
-              "amount": 60,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 20",
-              "amount": 70,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 21",
-              "amount": 29,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 22",
-              "amount": 32,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 23",
-              "amount": 96,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 24",
-              "amount": 22,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 25",
-              "amount": 72,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 26",
-              "amount": 67,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 27",
-              "amount": 96,
-              "currency": "COIN"
-            }
+            "name": "test 0",
+            "amount": 6,
+            "currency": "COIN"
           }
         ]
       },
       {
-        "data": {
-          "name": "Promo 6",
-          "amount": 57,
-          "currency": "BYN"
-        },
+        "id": "1a5717f1-6619-4559-9bc7-376599ab88f6",
+        "index": 1,
+        "amount": 33,
+        "currency": "COIN",
         "children": [
           {
-            "data": {
-              "name": "Amount 0",
-              "amount": 64,
-              "currency": "COIN"
-            }
+            "name": "test 0",
+            "amount": 2,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 1",
-              "amount": 39,
-              "currency": "COIN"
-            }
+            "name": "test 1",
+            "amount": 2,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 2",
-              "amount": 43,
-              "currency": "COIN"
-            }
+            "name": "test 2",
+            "amount": 8,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 3",
-              "amount": 47,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 4",
-              "amount": 21,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 5",
-              "amount": 13,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 6",
-              "amount": 80,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 7",
-              "amount": 35,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 8",
-              "amount": 50,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 9",
-              "amount": 75,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 10",
-              "amount": 90,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 11",
-              "amount": 71,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 12",
-              "amount": 47,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 13",
-              "amount": 33,
-              "currency": "COIN"
-            }
+            "name": "test 3",
+            "amount": 4,
+            "currency": "COIN"
           }
         ]
       },
       {
-        "data": {
-          "name": "Promo 7",
-          "amount": 96,
-          "currency": "COIN"
-        },
+        "id": "5e44aa4c-e6c7-4787-bde5-64fcc6f6f97c",
+        "index": 2,
+        "amount": 46,
+        "currency": "BYN",
         "children": [
           {
-            "data": {
-              "name": "Amount 0",
-              "amount": 28,
-              "currency": "BYN"
-            }
+            "name": "test 0",
+            "amount": 3,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 1",
-              "amount": 38,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 2",
-              "amount": 94,
-              "currency": "COIN"
-            }
+            "name": "test 1",
+            "amount": 10,
+            "currency": "COIN"
           }
         ]
       },
       {
-        "data": {
-          "name": "Tariff 8",
-          "amount": 62,
-          "currency": "BYN"
-        },
+        "id": "8e972038-9df2-4864-b8b7-ccffd55bb142",
+        "index": 3,
+        "amount": 15,
+        "currency": "BYN",
         "children": [
           {
-            "data": {
-              "name": "Amount 0",
-              "amount": 58,
-              "currency": "BYN"
-            }
+            "name": "test 0",
+            "amount": 5,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 1",
-              "amount": 76,
-              "currency": "COIN"
-            }
+            "name": "test 1",
+            "amount": 4,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 2",
-              "amount": 43,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 3",
-              "amount": 43,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 33,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 5",
-              "amount": 22,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 65,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 7",
-              "amount": 10,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 8",
-              "amount": 69,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 9",
-              "amount": 30,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 10",
-              "amount": 25,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 11",
-              "amount": 42,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 12",
-              "amount": 72,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 13",
-              "amount": 11,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 14",
-              "amount": 22,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 15",
-              "amount": 45,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 16",
-              "amount": 10,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 17",
-              "amount": 69,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 18",
-              "amount": 40,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 19",
-              "amount": 80,
-              "currency": "BYN"
-            }
+            "name": "test 2",
+            "amount": 10,
+            "currency": "COIN"
           }
         ]
       },
       {
-        "data": {
-          "name": "Tariff 9",
-          "amount": 83,
-          "currency": "BYN"
-        },
+        "id": "dd4dbe6b-56ca-4913-9632-b701afca7e74",
+        "index": 4,
+        "amount": 46,
+        "currency": "BYN",
         "children": [
           {
-            "data": {
-              "name": "Amount 0",
-              "amount": 80,
-              "currency": "BYN"
-            }
+            "name": "test 0",
+            "amount": 7,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 1",
-              "amount": 45,
-              "currency": "COIN"
-            }
+            "name": "test 1",
+            "amount": 8,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 2",
-              "amount": 21,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 3",
-              "amount": 43,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 52,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 5",
-              "amount": 46,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 6",
-              "amount": 88,
-              "currency": "BYN"
-            }
+            "name": "test 2",
+            "amount": 2,
+            "currency": "COIN"
           }
         ]
       },
       {
-        "data": {
-          "name": "Promo 10",
-          "amount": 78,
-          "currency": "COIN"
-        },
+        "id": "5b96d4cd-4a3e-4941-97b4-dc28685ac459",
+        "index": 5,
+        "amount": 38,
+        "currency": "COIN",
         "children": [
           {
-            "data": {
-              "name": "Amount 0",
-              "amount": 95,
-              "currency": "COIN"
-            }
+            "name": "test 0",
+            "amount": 10,
+            "currency": "COIN"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageInfo": {
+      "id": "190da18b-a852-4f9d-a5f5-df84e3ee2c12",
+      "name": 6,
+      "amount": 358,
+      "currency": "BYN"
+    },
+    "payments": [
+      {
+        "id": "b99da8cd-c313-48e0-841e-54812090ef6c",
+        "index": 0,
+        "amount": 43,
+        "currency": "COIN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 3,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Amount 1",
-              "amount": 98,
-              "currency": "COIN"
-            }
+            "name": "test 1",
+            "amount": 9,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 2",
-              "amount": 40,
-              "currency": "COIN"
-            }
+            "name": "test 2",
+            "amount": 10,
+            "currency": "COIN"
           },
           {
-            "data": {
-              "name": "Promo 3",
-              "amount": 99,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 76,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 5",
-              "amount": 54,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 10,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 7",
-              "amount": 85,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 8",
-              "amount": 32,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 9",
-              "amount": 100,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 10",
-              "amount": 88,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 11",
-              "amount": 36,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 12",
-              "amount": 86,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 13",
-              "amount": 46,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 14",
-              "amount": 85,
-              "currency": "COIN"
-            }
+            "name": "test 3",
+            "amount": 2,
+            "currency": "COIN"
           }
         ]
       },
       {
-        "data": {
-          "name": "Promo 11",
-          "amount": 37,
-          "currency": "BYN"
-        },
+        "id": "0f34f286-4abd-4fb0-aa9d-ff6a9aec8afb",
+        "index": 1,
+        "amount": 15,
+        "currency": "BYN",
         "children": [
           {
-            "data": {
-              "name": "Promo 0",
-              "amount": 63,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 43,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 2",
-              "amount": 86,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 3",
-              "amount": 72,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 49,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 86,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 82,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 7",
-              "amount": 23,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 8",
-              "amount": 47,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 9",
-              "amount": 42,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 10",
-              "amount": 25,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 11",
-              "amount": 85,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 12",
-              "amount": 29,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 13",
-              "amount": 60,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 14",
-              "amount": 100,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 15",
-              "amount": 79,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 16",
-              "amount": 12,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 17",
-              "amount": 19,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 18",
-              "amount": 39,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 19",
-              "amount": 73,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 20",
-              "amount": 16,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 21",
-              "amount": 34,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 22",
-              "amount": 26,
-              "currency": "BYN"
-            }
+            "name": "test 0",
+            "amount": 5,
+            "currency": "COIN"
           }
         ]
       },
       {
-        "data": {
-          "name": "Promo 12",
-          "amount": 74,
-          "currency": "BYN"
-        },
+        "id": "e6156b79-82f4-464e-b727-0f5e2860c941",
+        "index": 2,
+        "amount": 40,
+        "currency": "BYN",
         "children": [
           {
-            "data": {
-              "name": "Promo 0",
-              "amount": 59,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 76,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 2",
-              "amount": 63,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 3",
-              "amount": 57,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 43,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 5",
-              "amount": 48,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 6",
-              "amount": 37,
-              "currency": "COIN"
-            }
+            "name": "test 0",
+            "amount": 10,
+            "currency": "COIN"
           }
         ]
       },
       {
-        "data": {
-          "name": "Promo 13",
-          "amount": 91,
-          "currency": "COIN"
-        },
+        "id": "ce082711-2a08-42f6-942b-75ee1c264a94",
+        "index": 3,
+        "amount": 49,
+        "currency": "BYN",
         "children": [
           {
-            "data": {
-              "name": "Amount 0",
-              "amount": 36,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 91,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 2",
-              "amount": 15,
-              "currency": "COIN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Promo 14",
-          "amount": 50,
-          "currency": "COIN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Amount 0",
-              "amount": 79,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 1",
-              "amount": 73,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 33,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 3",
-              "amount": 78,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 4",
-              "amount": 70,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 5",
-              "amount": 84,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 6",
-              "amount": 80,
-              "currency": "BYN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Tariff 15",
-          "amount": 80,
-          "currency": "COIN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Promo 0",
-              "amount": 90,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 60,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 10,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 3",
-              "amount": 82,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 4",
-              "amount": 11,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 5",
-              "amount": 91,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 43,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 7",
-              "amount": 29,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 8",
-              "amount": 65,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 9",
-              "amount": 92,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 10",
-              "amount": 17,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 11",
-              "amount": 83,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 12",
-              "amount": 45,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 13",
-              "amount": 30,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 14",
-              "amount": 90,
-              "currency": "COIN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Tariff 16",
-          "amount": 60,
-          "currency": "BYN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Amount 0",
-              "amount": 47,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 1",
-              "amount": 96,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 45,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 3",
-              "amount": 61,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 4",
-              "amount": 76,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 81,
-              "currency": "BYN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Promo 17",
-          "amount": 87,
-          "currency": "BYN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Promo 0",
-              "amount": 12,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 1",
-              "amount": 14,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 24,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 3",
-              "amount": 61,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 4",
-              "amount": 12,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 63,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 6",
-              "amount": 99,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 7",
-              "amount": 44,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 8",
-              "amount": 80,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 9",
-              "amount": 28,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 10",
-              "amount": 44,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 11",
-              "amount": 28,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 12",
-              "amount": 38,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 13",
-              "amount": 56,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 14",
-              "amount": 70,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 15",
-              "amount": 83,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 16",
-              "amount": 37,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 17",
-              "amount": 46,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 18",
-              "amount": 49,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 19",
-              "amount": 84,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 20",
-              "amount": 26,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 21",
-              "amount": 66,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 22",
-              "amount": 92,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 23",
-              "amount": 36,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 24",
-              "amount": 83,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 25",
-              "amount": 28,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 26",
-              "amount": 99,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 27",
-              "amount": 83,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 28",
-              "amount": 56,
-              "currency": "BYN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Tariff 18",
-          "amount": 96,
-          "currency": "BYN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Promo 0",
-              "amount": 99,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 1",
-              "amount": 91,
-              "currency": "COIN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Promo 19",
-          "amount": 20,
-          "currency": "COIN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Amount 0",
-              "amount": 85,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 1",
-              "amount": 79,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 45,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 3",
-              "amount": 19,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 63,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 54,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 70,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 7",
-              "amount": 30,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 8",
-              "amount": 96,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 9",
-              "amount": 44,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 10",
-              "amount": 14,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 11",
-              "amount": 29,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 12",
-              "amount": 72,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 13",
-              "amount": 93,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 14",
-              "amount": 84,
-              "currency": "BYN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Promo 20",
-          "amount": 50,
-          "currency": "BYN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Promo 0",
-              "amount": 32,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 46,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 29,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 3",
-              "amount": 32,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 4",
-              "amount": 60,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 40,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 6",
-              "amount": 29,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 7",
-              "amount": 93,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 8",
-              "amount": 38,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 9",
-              "amount": 19,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 10",
-              "amount": 95,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 11",
-              "amount": 49,
-              "currency": "BYN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Tariff 21",
-          "amount": 72,
-          "currency": "BYN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Amount 0",
-              "amount": 56,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 1",
-              "amount": 74,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 52,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 3",
-              "amount": 71,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 20,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 100,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 17,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 7",
-              "amount": 33,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 8",
-              "amount": 97,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 9",
-              "amount": 70,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 10",
-              "amount": 13,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 11",
-              "amount": 50,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 12",
-              "amount": 64,
-              "currency": "BYN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Tariff 22",
-          "amount": 82,
-          "currency": "BYN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Promo 0",
-              "amount": 50,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 1",
-              "amount": 15,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 58,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 3",
-              "amount": 37,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 66,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 5",
-              "amount": 89,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 28,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 7",
-              "amount": 51,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 8",
-              "amount": 39,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 9",
-              "amount": 85,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 10",
-              "amount": 45,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 11",
-              "amount": 48,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 12",
-              "amount": 16,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 13",
-              "amount": 38,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 14",
-              "amount": 16,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 15",
-              "amount": 23,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 16",
-              "amount": 13,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 17",
-              "amount": 57,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 18",
-              "amount": 53,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 19",
-              "amount": 94,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 20",
-              "amount": 79,
-              "currency": "BYN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Tariff 23",
-          "amount": 65,
-          "currency": "BYN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Amount 0",
-              "amount": 14,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 1",
-              "amount": 63,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 97,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 3",
-              "amount": 48,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 91,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 71,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 45,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 7",
-              "amount": 32,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 8",
-              "amount": 90,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 9",
-              "amount": 51,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 10",
-              "amount": 33,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 11",
-              "amount": 85,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 12",
-              "amount": 34,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 13",
-              "amount": 39,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 14",
-              "amount": 60,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 15",
-              "amount": 97,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 16",
-              "amount": 97,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 17",
-              "amount": 73,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 18",
-              "amount": 20,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 19",
-              "amount": 56,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 20",
-              "amount": 20,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 21",
-              "amount": 23,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 22",
-              "amount": 98,
-              "currency": "COIN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Promo 24",
-          "amount": 23,
-          "currency": "COIN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Promo 0",
-              "amount": 50,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 20,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 10,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 3",
-              "amount": 54,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 4",
-              "amount": 74,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 5",
-              "amount": 57,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 40,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 7",
-              "amount": 39,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 8",
-              "amount": 59,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 9",
-              "amount": 80,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 10",
-              "amount": 37,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 11",
-              "amount": 28,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 12",
-              "amount": 12,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 13",
-              "amount": 54,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 14",
-              "amount": 21,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 15",
-              "amount": 39,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 16",
-              "amount": 25,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 17",
-              "amount": 63,
-              "currency": "BYN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Promo 25",
-          "amount": 33,
-          "currency": "BYN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Promo 0",
-              "amount": 89,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 82,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 96,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 3",
-              "amount": 46,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 4",
-              "amount": 88,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 61,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 6",
-              "amount": 92,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 7",
-              "amount": 81,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 8",
-              "amount": 76,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 9",
-              "amount": 86,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 10",
-              "amount": 60,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 11",
-              "amount": 95,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 12",
-              "amount": 61,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 13",
-              "amount": 36,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 14",
-              "amount": 30,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 15",
-              "amount": 88,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 16",
-              "amount": 60,
-              "currency": "BYN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Tariff 26",
-          "amount": 79,
-          "currency": "COIN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Promo 0",
-              "amount": 80,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 1",
-              "amount": 73,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 2",
-              "amount": 36,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 3",
-              "amount": 90,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 4",
-              "amount": 81,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 5",
-              "amount": 28,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 28,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 7",
-              "amount": 79,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 8",
-              "amount": 50,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 9",
-              "amount": 58,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 10",
-              "amount": 93,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 11",
-              "amount": 10,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 12",
-              "amount": 62,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 13",
-              "amount": 39,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 14",
-              "amount": 90,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 15",
-              "amount": 28,
-              "currency": "COIN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Promo 27",
-          "amount": 44,
-          "currency": "COIN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Amount 0",
-              "amount": 90,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 14,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 18,
-              "currency": "BYN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Promo 28",
-          "amount": 38,
-          "currency": "COIN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Promo 0",
-              "amount": 97,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 1",
-              "amount": 25,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 50,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 3",
-              "amount": 40,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 39,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 5",
-              "amount": 65,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 38,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 7",
-              "amount": 95,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 8",
-              "amount": 89,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 9",
-              "amount": 39,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 10",
-              "amount": 84,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 11",
-              "amount": 94,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 12",
-              "amount": 57,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 13",
-              "amount": 60,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 14",
-              "amount": 15,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 15",
-              "amount": 94,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 16",
-              "amount": 28,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 17",
-              "amount": 98,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 18",
-              "amount": 46,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 19",
-              "amount": 18,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 20",
-              "amount": 52,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 21",
-              "amount": 90,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 22",
-              "amount": 35,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 23",
-              "amount": 79,
-              "currency": "BYN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Promo 29",
-          "amount": 34,
-          "currency": "BYN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Amount 0",
-              "amount": 65,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 18,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 85,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 3",
-              "amount": 71,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 40,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 52,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 6",
-              "amount": 78,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 7",
-              "amount": 73,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 8",
-              "amount": 25,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 9",
-              "amount": 31,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 10",
-              "amount": 79,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 11",
-              "amount": 21,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 12",
-              "amount": 54,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 13",
-              "amount": 64,
-              "currency": "COIN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Tariff 30",
-          "amount": 72,
-          "currency": "BYN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Promo 0",
-              "amount": 40,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 36,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 2",
-              "amount": 35,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 3",
-              "amount": 76,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 27,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 59,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 96,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 7",
-              "amount": 70,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 8",
-              "amount": 74,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 9",
-              "amount": 69,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 10",
-              "amount": 79,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 11",
-              "amount": 60,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 12",
-              "amount": 92,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 13",
-              "amount": 30,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 14",
-              "amount": 69,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 15",
-              "amount": 12,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 16",
-              "amount": 12,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 17",
-              "amount": 58,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 18",
-              "amount": 58,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 19",
-              "amount": 19,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 20",
-              "amount": 16,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 21",
-              "amount": 62,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 22",
-              "amount": 51,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 23",
-              "amount": 83,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 24",
-              "amount": 25,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 25",
-              "amount": 78,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 26",
-              "amount": 36,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 27",
-              "amount": 40,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 28",
-              "amount": 49,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 29",
-              "amount": 66,
-              "currency": "BYN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Promo 31",
-          "amount": 28,
-          "currency": "COIN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Promo 0",
-              "amount": 29,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 24,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 2",
-              "amount": 75,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 3",
-              "amount": 66,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 4",
-              "amount": 12,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 5",
-              "amount": 46,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 6",
-              "amount": 65,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 7",
-              "amount": 73,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 8",
-              "amount": 16,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 9",
-              "amount": 75,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 10",
-              "amount": 39,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 11",
-              "amount": 13,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 12",
-              "amount": 47,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 13",
-              "amount": 29,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 14",
-              "amount": 26,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 15",
-              "amount": 17,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 16",
-              "amount": 85,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 17",
-              "amount": 59,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 18",
-              "amount": 35,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 19",
-              "amount": 39,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 20",
-              "amount": 71,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 21",
-              "amount": 60,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 22",
-              "amount": 54,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 23",
-              "amount": 90,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 24",
-              "amount": 31,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 25",
-              "amount": 37,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 26",
-              "amount": 41,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 27",
-              "amount": 49,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 28",
-              "amount": 10,
-              "currency": "BYN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Tariff 32",
-          "amount": 92,
-          "currency": "BYN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Amount 0",
-              "amount": 76,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 17,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 98,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 3",
-              "amount": 81,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 78,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 27,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 6",
-              "amount": 10,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 7",
-              "amount": 17,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 8",
-              "amount": 76,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 9",
-              "amount": 44,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 10",
-              "amount": 65,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 11",
-              "amount": 79,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 12",
-              "amount": 92,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 13",
-              "amount": 22,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 14",
-              "amount": 24,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 15",
-              "amount": 80,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 16",
-              "amount": 31,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 17",
-              "amount": 69,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 18",
-              "amount": 42,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 19",
-              "amount": 37,
-              "currency": "BYN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Tariff 33",
-          "amount": 59,
-          "currency": "COIN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Amount 0",
-              "amount": 96,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 100,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 82,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 3",
-              "amount": 92,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 49,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 14,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 79,
-              "currency": "COIN"
-            }
-          }
-        ]
-      },
-      {
-        "data": {
-          "name": "Promo 34",
-          "amount": 96,
-          "currency": "BYN"
-        },
-        "children": [
-          {
-            "data": {
-              "name": "Promo 0",
-              "amount": 64,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 1",
-              "amount": 26,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 2",
-              "amount": 15,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 3",
-              "amount": 65,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 4",
-              "amount": 57,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 5",
-              "amount": 40,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 6",
-              "amount": 58,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 7",
-              "amount": 82,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 8",
-              "amount": 64,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 9",
-              "amount": 58,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 10",
-              "amount": 45,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Promo 11",
-              "amount": 14,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 12",
-              "amount": 51,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 13",
-              "amount": 80,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 14",
-              "amount": 76,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 15",
-              "amount": 58,
-              "currency": "COIN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 16",
-              "amount": 56,
-              "currency": "BYN"
-            }
-          },
-          {
-            "data": {
-              "name": "Amount 17",
-              "amount": 87,
-              "currency": "COIN"
-            }
+            "name": "test 0",
+            "amount": 5,
+            "currency": "COIN"
           }
         ]
       }

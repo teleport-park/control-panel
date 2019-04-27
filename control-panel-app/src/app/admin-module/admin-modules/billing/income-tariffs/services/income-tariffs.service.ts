@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { TreeNode } from '../income-tariffs.component';
+import { Package } from '../../../../../common/shared-module/control-panel-ui-package/control-panel-ui-package.model';
 
 @Injectable()
 export class IncomeTariffsService {
 
-  tariffs$: BehaviorSubject<TreeNode[]> = new BehaviorSubject(null);
+  tariffs$: BehaviorSubject<Package[]> = new BehaviorSubject(null);
 
-  constructor(private http: HttpClient) { this.getTariffs(); }
+  constructor(private http: HttpClient) {
+    this.getTariffs();
+  }
 
   getTariffs(): void {
     const url = './assets/data/tariffs-data.json';
-    this.http.request('GET', url).subscribe((tariffs: TreeNode[]) => {
+    this.http.request('GET', url).subscribe((tariffs: Package[]) => {
       this.tariffs$.next(tariffs);
-    })
+    });
   }
 }

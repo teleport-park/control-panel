@@ -1,0 +1,37 @@
+@import "pallete";
+@import '~@angular/material/theming';
+:host {
+  width: 100%;
+  display: block;
+  @include mat-elevation(1);
+  margin: 10px 0;
+  .ui-payment_wrapper {
+    .payment {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      p {
+        margin: 0;
+      }
+      div {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .payment_list {
+      padding: 10px 10px 10px 25%;
+      .payment-list_item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @include mat-elevation(1);
+        margin: 10px 0;
+        padding: 5px;
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

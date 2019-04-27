@@ -1,35 +1,41 @@
-<mat-tree [dataSource]="dataSource"
-          [treeControl]="treeControl"
-          class="example-tree"
-          *ngIf="treeControl"
-          cdkDropList>
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle [matTreeNodePadding]="2" [matTreeNodePaddingIndent]="25"
-                 cdkDrag [cdkDragData]="node" [ngClass]="{'last-node': node.data.isLast, 'last-parent': node.data.isParentLast}">
-      <div class="mat-tree-node_leaf-node">
-        <span class="tree-vis">&nbsp;</span>
-        {{getNodeName(node)}}
-      </div>
-      <div>
-        <button mat-icon-button color="primary" matTooltip="Remove tariff">T-</button>
-      </div>
-  </mat-tree-node>
-  <mat-tree-node *matTreeNodeDef="let node; when: hasChild"
-                 cdkDrag [cdkDragData]="node"
-                 [ngClass]="{'root-node': node.data.isRoot, 'last-node': node.data.isLast, 'last-parent': node.data.isParentLast}">
-    <div>
-      <span class="tree-vis">&nbsp;</span>
-      <button mat-icon-button matTreeNodeToggle
-              [attr.aria-label]="'toggle ' + node.name">
-        <mat-icon class="mat-icon-rtl-mirror">
-          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-        </mat-icon>
-      </button>
-      {{getNodeName(node)}}
-    </div>
-    <div>
-      <button mat-icon-button color="primary" matTooltip="Add amount">A+</button>
-      <button mat-icon-button color="primary" *ngIf="node.data.isRoot" matTooltip="Add tariff">T+</button>
-      <button mat-icon-button color="primary" matTooltip="Add promo">P+</button>
-    </div>
-  </mat-tree-node>
-</mat-tree>
+<div class="income-tariffs_wrapper">
+  <div class="package_list" cdkDropList (cdkDropListDropped)="drop($event)">
+    <control-panel-ui-package *ngFor="let pack of data" [package]="pack" cdkDrag [cdkDragData]="pack"></control-panel-ui-package>
+  </div>
+</div>
+
+<!--<mat-tree [dataSource]="dataSource"-->
+          <!--[treeControl]="treeControl"-->
+          <!--class="example-tree"-->
+          <!--*ngIf="treeControl"-->
+          <!--cdkDropList>-->
+  <!--<mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle [matTreeNodePadding]="2" [matTreeNodePaddingIndent]="25"-->
+                 <!--cdkDrag [cdkDragData]="node" [ngClass]="{'last-node': node.data.isLast, 'last-parent': node.data.isParentLast}">-->
+      <!--<div class="mat-tree-node_leaf-node">-->
+        <!--<span class="tree-vis">&nbsp;</span>-->
+        <!--{{getNodeName(node)}}-->
+      <!--</div>-->
+      <!--<div>-->
+        <!--<button mat-icon-button color="primary" matTooltip="Remove tariff">T-</button>-->
+      <!--</div>-->
+  <!--</mat-tree-node>-->
+  <!--<mat-tree-node *matTreeNodeDef="let node; when: hasChild"-->
+                 <!--cdkDrag [cdkDragData]="node"-->
+                 <!--[ngClass]="{'root-node': node.data.isRoot, 'last-node': node.data.isLast, 'last-parent': node.data.isParentLast}">-->
+    <!--<div>-->
+      <!--<span class="tree-vis">&nbsp;</span>-->
+      <!--<button mat-icon-button matTreeNodeToggle-->
+              <!--[attr.aria-label]="'toggle ' + node.name">-->
+        <!--<mat-icon class="mat-icon-rtl-mirror">-->
+          <!--{{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}-->
+        <!--</mat-icon>-->
+      <!--</button>-->
+      <!--{{getNodeName(node)}}-->
+    <!--</div>-->
+    <!--<div>-->
+      <!--<button mat-icon-button color="primary" matTooltip="Add amount">A+</button>-->
+      <!--<button mat-icon-button color="primary" *ngIf="node.data.isRoot" matTooltip="Add tariff">T+</button>-->
+      <!--<button mat-icon-button color="primary" matTooltip="Add promo">P+</button>-->
+    <!--</div>-->
+  <!--</mat-tree-node>-->
+<!--</mat-tree>-->

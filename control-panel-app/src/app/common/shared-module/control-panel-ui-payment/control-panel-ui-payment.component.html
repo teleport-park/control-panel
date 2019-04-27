@@ -1,0 +1,19 @@
+<div class="ui-payment_wrapper">
+  <div class="payment">
+    <div>
+      <button mat-icon-button (click)="expanded = !expanded" class="expand-button" *ngIf="payment.children">
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{expanded ? 'expand_more' : 'chevron_right'}}
+        </mat-icon>
+      </button>
+      <p>Payment: #{{payment.index}}</p>
+    </div>
+    <p>amount: {{payment.amount}} {{payment.currency}}</p>
+  </div>
+  <div class="payment_list" *ngIf="expanded && payment.children" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div class="payment-list_item" *ngFor="let item of payment.children" cdkDrag [cdkDragData]="item">
+      <p>{{item.name}}</p>
+      <p>amount: {{item.amount}} {{item.currency}}</p>
+    </div>
+  </div>
+</div>
