@@ -17,6 +17,7 @@
               <input matInput #filter [formControl]="quickFilter"
                      autocomplete="off"
                      placeholder="{{translateService.instant('USERS_TABLE_FILTER_INPUT_LABEL')}}">
+              <mat-icon matPrefix class="search-filter-icon">search</mat-icon>
               <mat-icon *ngIf="filter.value"
                         matSuffix
                         (click)="quickFilter.setValue('')"

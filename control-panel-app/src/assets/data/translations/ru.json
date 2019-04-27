@@ -37,7 +37,7 @@
   "USER_DESC": "Примечание",
   "USER_ADDRESS": "Адрес",
   "LANGUAGE_SWITCHER_LABEL": "Язык",
-  "USERS_TABLE_FILTER_INPUT_LABEL": "Фильтр",
+  "USERS_TABLE_FILTER_INPUT_LABEL": "Поиск",
   "TABLE_ADD": "Добавить",
   "TABLE_EDIT": "Редактировать",
   "TABLE_DELETE": "Удалить",

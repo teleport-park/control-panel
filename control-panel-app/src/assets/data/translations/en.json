@@ -36,7 +36,7 @@
   "USER_DESC": "Description",
   "USER_ADDRESS": "Address",
   "LANGUAGE_SWITCHER_LABEL": "Language",
-  "USERS_TABLE_FILTER_INPUT_LABEL": "Filter",
+  "USERS_TABLE_FILTER_INPUT_LABEL": "Search",
   "TABLE_ADD": "Add",
   "TABLE_EDIT": "Edit",
   "TABLE_DELETE": "Delete",
