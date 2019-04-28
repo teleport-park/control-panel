@@ -22,5 +22,7 @@ export const PropertyMap = {
   currency: 'TRANSACTION_CURRENCY',
   amount: 'TRANSACTION_AMOUNT',
   correspondent: 'TRANSACTION_CORRESPONDENT',
-  signature: 'TRANSACTION_SIGNATURE'
+  signature: 'TRANSACTION_SIGNATURE',
+  dateOfBirth: 'USER_DATE_OF_BIRTH_DAY',
+  gender: 'USER_GENDER_LABEL'
 };

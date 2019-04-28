@@ -64,19 +64,40 @@
   <div class="col-md-6">
     <h4>{{translateService.instant('USER_AVATARS')}}</h4>
     <div class="avatars_toolbar">
-      <button mat-button (click)="addAvatar()"><mat-icon>add</mat-icon> {{translateService.instant('TABLE_ADD')}}</button>
+      <button mat-button
+              (click)="addAvatar()"
+              *ngIf="userAvatars.length < 5"
+      ><mat-icon>add</mat-icon> {{translateService.instant('TABLE_ADD')}}</button>
     </div>
-    <div *ngIf="editing">
-      <form [formGroup]="avatarForm" class="avatar-form">
+    <div class="avatars-body">
+      <table mat-table [dataSource]="userAvatars" class="avatars-table" *ngIf="userAvatars.length">
+        <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">
+          <th mat-header-cell *matHeaderCellDef>
+            <span>{{translateService.instant(propertyMap[column])}}</span></th>
+          <td mat-cell *matCellDef="let row">
+            <span class="table_cell-inner">{{row[column]}}</span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="dateOfBirth">
+          <th mat-header-cell *matHeaderCellDef>
+            <span>{{translateService.instant(propertyMap['dateOfBirth'])}}</span></th>
+          <td mat-cell *matCellDef="let item">
+            <span class="table_cell-inner">{{item.dateOfBirth.format('L')}}</span>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <form [formGroup]="avatarForm" class="avatar-form" *ngIf="editing">
         <mat-form-field>
-          <input matInput placeholder="{{'USER_NAME' | translate}}" formControlName="name" required>
+          <input matInput placeholder="{{'USER_NAME' | translate}}" formControlName="userName" required>
           <mat-error>
             {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_NAME')]}}
           </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matInput [matDatepicker]="picker" placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
-                 formControlName="dateOfBirth"
+                 formControlName="dateOfBirth" (dateChange)="dayOfBirthChange($event.value, true)"
                  [max]="maxDate">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
@@ -85,7 +106,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput number placeholder="{{'USER_AGE' | translate}}" formControlName="age">
+          <input matInput number placeholder="{{'USER_AGE' | translate}}" formControlName="age" (input)="ageChange(+$event.target.value, true)">
           <mat-error *ngIf="avatarForm.get('age')?.hasError('max') && !avatarForm.get('age')?.hasError('required')">
             {{'USER_FORM_VALIDATION_AGE_MAX' | translate}}
           </mat-error>
@@ -98,6 +119,16 @@
           <mat-radio-button value="male">{{'USER_GENDER_MALE' | translate}}</mat-radio-button>
           <mat-radio-button value="female">{{'USER_GENDER_FEMALE' | translate}}</mat-radio-button>
         </mat-radio-group>
+        <div class="avatar-form-action">
+          <button mat-raised-button
+                  color="warn"
+                  type="button"
+                  (click)="editing = !editing">{{'DIALOG_CANCEL_BUTTON_LABEL' | translate }}</button>
+          <button mat-raised-button
+                  color="primary"
+                  type="button"
+                  (click)="avatarSubmitHandler()">Ok</button>
+        </div>
       </form>
     </div>
   </div>

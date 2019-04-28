@@ -1,8 +1,14 @@
-import moment from 'moment';
-import { Moment } from 'moment';
+import { Avatar } from './avatar.model';
+import { UserAbstract } from './user.abstract.model';
 
-export class User {
+export class User extends UserAbstract {
+  /**
+   * user id
+   */
   id: number;
+  /**
+   * user index
+   */
   index: number;
   /**
    * @deprecated
@@ -12,42 +18,36 @@ export class User {
    * @deprecated
    */
   lastName: string;
-  userName: string;
+  /**
+   * nickname
+   */
   nickName?: string;
-  age: number;
-  dateOfBirth: any;
+  /**
+   * registered
+   */
   registered: any;
-  gender: 'male' | 'female';
+  /**
+   * description
+   */
   desc: string;
+  /**
+   * emaol
+   */
   email: '';
+  /**
+   * phone
+   */
   phone: string;
+  /**
+   * statuses
+   */
   statuses: string[];
+  /**
+   * user avatars
+   */
+  avatars?: Avatar[];
 
   constructor() {
-  }
-
-  /**
-   * get age
-   * @param DOB
-   */
-  getAge(DOB?: Moment): number {
-    if (DOB) {
-      this.age =  Math.abs(DOB.diff(moment(), 'years'));
-      return this.age;
-    }
-    if (this.dateOfBirth._isAMomentObject) {
-      this.age = Math.abs(this.dateOfBirth.diff(moment(), 'years'));
-      return this.age;
-    }
-    return null;
-  }
-
-  /**
-   * set DOB
-   * @param age
-   */
-  setDOB(age: number): Moment {
-    this.dateOfBirth = moment().subtract(age, 'years');
-    return this.dateOfBirth;
+    super();
   }
 }

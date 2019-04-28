@@ -25,6 +25,18 @@
     justify-content: flex-end;
   }
 
+  .avatars-body {
+    max-height: 450px;
+    overflow-y: auto;
+  }
+
+  .avatars-table {
+    width: 100%;
+    th.mat-header-cell:first-of-type, td.mat-cell:first-of-type {
+      padding-left: 10px;
+    }
+  }
+
   .avatar-form {
     display: flex;
     flex-direction: column;
@@ -32,6 +44,13 @@
       margin-bottom: 10px;
       .mat-radio-button {
         margin-right: 10px;
+      }
+    }
+    .avatar-form-action {
+      display: flex;
+      justify-content: flex-end;
+      button {
+        margin-left: 10px;
       }
     }
   }

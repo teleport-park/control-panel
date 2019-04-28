@@ -14,6 +14,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import moment, { Moment } from 'moment';
 import { TranslateService } from '../../translations-module';
 import { DateAdapter } from '@angular/material';
+import { Avatar } from '../../../models/avatar.model';
+import { PropertyMap } from '../../../admin-module/utils/property-map';
 
 export const LocaleMap = {
   en: 'en-GB',
@@ -33,9 +35,20 @@ export class FormComponent {
   static readonly EMAIL_REGEXP: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/i;
 
   /**
+   * property translations map
+   */
+  propertyMap = PropertyMap;
+
+  /**
    * user model
    */
   entityModel: User;
+
+  userAvatars: Avatar[] = [];
+
+  displayedColumns: string[] = [...Object.keys(new Avatar()).filter(item => item !== 'userId')];
+
+  simpleDataColumn: string[] = this.displayedColumns.filter(item => item !== 'dateOfBirth');
 
   /**
    * max date for DOB field
@@ -58,8 +71,6 @@ export class FormComponent {
    * mode
    */
   mode: 'edit' | 'add';
-
-  outlet: TemplateRef<any>;
 
   /**
    * set user
@@ -89,7 +100,15 @@ export class FormComponent {
    */
   userForm: FormGroup;
 
+  /**
+   * avatar form
+   */
   avatarForm: FormGroup;
+
+  /**
+   * avatar instance
+   */
+  avatar: Avatar;
 
   /**
    * listen enter key press to submit dialog
@@ -134,7 +153,7 @@ export class FormComponent {
    */
   private getAvatarForm(): FormGroup {
     return this.fb.group({
-      name: ['', Validators.required],
+      userName: ['', Validators.required],
       age: ['', [Validators.required, Validators.max(100)]],
       dateOfBirth: ['', Validators.required],
       gender: 'male',
@@ -144,18 +163,26 @@ export class FormComponent {
   /**
    * day of birth change handler
    * @param date
+   * @param isAvatar
    */
-  dayOfBirthChange(date: Moment): void {
-    if (!(this.entityModel instanceof StaffMember)) {
-      this.userForm.get('age').setValue(this.entityModel.getAge(date));
+  dayOfBirthChange(date: Moment, isAvatar = false): void {
+    if (isAvatar) {
+      this.avatarForm.get('age').setValue(this.avatar.getAge(date));
+      return;
     }
+    this.userForm.get('age').setValue(this.entityModel.getAge(date));
   }
 
   /**
    * age change handler
    * @param age
+   * @param isAvatar
    */
-  ageChange(age: number): void {
+  ageChange(age: number, isAvatar = false): void {
+    if (isAvatar && (age > 0 && age < 100)) {
+      this.avatarForm.get('dateOfBirth').setValue(this.avatar.setDOB(age));
+      return;
+    }
     if (age > 0 && age < 100) {
       this.userForm.get('dateOfBirth').setValue(this.entityModel.setDOB(age));
     }
@@ -166,7 +193,7 @@ export class FormComponent {
    */
   onSubmitHandler(): void {
     Object.keys(this.userForm.controls).forEach(key => {
-      this.userForm.get(key).markAsDirty();
+      this.userForm.get(key).markAsTouched();
     });
     if (this.userForm.valid) {
       Object.assign(this.entityModel, this.userForm.getRawValue());
@@ -177,10 +204,26 @@ export class FormComponent {
   }
 
   /**
+   * avatar submit handler
+   */
+  avatarSubmitHandler(): void {
+    Object.keys(this.avatarForm.controls).forEach(key => {
+      this.avatarForm.get(key).markAsTouched();
+    });
+    if (this.avatarForm.valid) {
+      this.userAvatars.push(Object.assign(this.avatar, this.avatarForm.getRawValue()));
+      this.userAvatars = [...this.userAvatars];
+      this.entityModel.avatars = this.userAvatars;
+      this.editing = false;
+    }
+  }
+
+  /**
    * add avatar
    */
   addAvatar(): void {
     this.avatarForm = this.getAvatarForm();
+    this.avatar = Object.assign(new Avatar(), {userId: this.entityModel.id});
     this.editing = true;
   }
 
