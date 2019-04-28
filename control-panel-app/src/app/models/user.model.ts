@@ -4,14 +4,21 @@ import { Moment } from 'moment';
 export class User {
   id: number;
   index: number;
+  /**
+   * @deprecated
+   */
   firstName: string;
+  /**
+   * @deprecated
+   */
   lastName: string;
+  userName: string;
+  nickName?: string;
   age: number;
   dateOfBirth: any;
   registered: any;
   gender: 'male' | 'female';
   desc: string;
-  address: string;
   email: '';
   phone: string;
   statuses: string[];

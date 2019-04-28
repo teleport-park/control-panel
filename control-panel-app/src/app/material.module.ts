@@ -17,7 +17,7 @@ import {
   MatMenuModule,
   MatPaginatorIntl,
   MatPaginatorModule,
-  MatProgressSpinnerModule,
+  MatProgressSpinnerModule, MatRadioModule,
   MatSelectModule,
   MatSidenavModule,
   MatSlideToggleModule,
@@ -69,7 +69,8 @@ export const MATERIAL_MODULES = [
   MatMenuModule,
   MatTooltipModule,
   MatTreeModule,
-  DragDropModule
+  DragDropModule,
+  MatRadioModule
 ];
 
 @NgModule({

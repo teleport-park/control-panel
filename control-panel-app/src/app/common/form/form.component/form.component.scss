@@ -2,11 +2,36 @@
   .user-form {
     display: flex;
     flex-direction: column;
-    .action-button-group {
-      display: flex;
-      justify-content: flex-end;
-      button {
-        margin-left: 10px;
+
+    .gender-select {
+      margin-bottom: 10px;
+      .mat-radio-button {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .action-button-group {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin-left: 10px;
+    }
+  }
+
+  .avatars_toolbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .avatar-form {
+    display: flex;
+    flex-direction: column;
+    .gender-select {
+      margin-bottom: 10px;
+      .mat-radio-button {
+        margin-right: 10px;
       }
     }
   }

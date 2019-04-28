@@ -85,6 +85,8 @@ export class UserService implements OnDestroy {
         data.items = data.items.map((user: User) => {
           moment.locale(this.translateService.locale.getValue());
           user.registered = moment(user.registered);
+          user.userName = user.firstName;
+          user.nickName = user.lastName;
           return user;
         });
         this.usersData$.next(data);
@@ -94,13 +96,24 @@ export class UserService implements OnDestroy {
   /**
    * save user
    */
-  saveUser(user: User): void {
+  saveUser(user: User | any): void {
     const requestMethod = 'POST';
     this.loaderService.dispatchShowLoader(true);
     const url = this.apiBuilder.getUsersUrl(requestMethod);
+    this.prepareUserToSave(user);
     this.http.request(requestMethod, url, {body: user}).subscribe(() => {
       this.getUsers();
     });
+  }
+
+  /**
+   * prepare user
+   * TODO should be removed after Integrate new api
+   * @param user
+   */
+  private prepareUserToSave(user: User) {
+    user.firstName = user.userName;
+    user.lastName = user.nickName;
   }
 
   /**
@@ -110,6 +123,7 @@ export class UserService implements OnDestroy {
     this.loaderService.dispatchShowLoader(true);
     const requestMethod = 'PUT';
     const url = this.apiBuilder.getUsersUrl(requestMethod, user.id);
+    this.prepareUserToSave(user);
     this.http.request(requestMethod, url, {body: user}).subscribe(() => {
       this.getUsers();
     });

@@ -69,12 +69,12 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * list of displayed column
    */
-  displayedColumns: string[] = ['firstName', 'lastName', 'phone', 'age', 'email', 'statuses', 'registered', 'submenu'];
+  displayedColumns: string[] = ['userName', 'nickName', 'phone', 'age', 'email', 'statuses', 'registered', 'submenu'];
 
   /**
    * column with data
    */
-  columnWithData: string[] = ['firstName', 'lastName', 'phone', 'age', 'email'];
+  columnWithData: string[] = ['userName', 'nickName', 'phone', 'age', 'email'];
 
   /**
    * available to sort column
@@ -140,7 +140,11 @@ export class UsersComponent implements OnInit, OnDestroy {
       this.userService.getUser(user.id)
         .pipe(filter((data: AppData<User>) => !!data.items.length))
         .subscribe((result: AppData<User>) => {
-          this.openModalDialog(mode, result.items[0]);
+          // TODO remove after API (convert name and nickName)
+          const item: User = result.items[0];
+          item.userName = item.firstName;
+          item.nickName = item.lastName;
+          this.openModalDialog(mode, item);
         });
       return;
     }
@@ -154,7 +158,8 @@ export class UsersComponent implements OnInit, OnDestroy {
    */
   private openModalDialog(mode: 'edit' | 'add', user: User) {
     this.dialog.open(AddOrEditEntityDialogComponent, {
-      data: mode === 'edit' ? Object.assign(new User(), user) : user
+      data: mode === 'edit' ? Object.assign(new User(), user) : user,
+      disableClose: true
     }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((result: User) => {
       if (mode === 'edit') {
         this.userService.editUser(result);
@@ -172,7 +177,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       data: {
         title: 'DIALOG_CONFIRM_TITLE',
         message: 'DIALOG_CONFIRM_MESSAGE',
-        messageParams: [`${user.firstName} ${user.lastName}`]
+        messageParams: [`${user.userName}`]
       } as ConfirmDialogData,
       autoFocus: false
     }).afterClosed()

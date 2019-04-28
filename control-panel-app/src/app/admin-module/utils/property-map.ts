@@ -1,7 +1,7 @@
 export const PropertyMap = {
   index: 'INDEX',
-  firstName: 'FIRST_NAME',
-  lastName: 'LAST_NAME',
+  userName: 'USER_NAME',
+  nickName: 'NICK_NAME',
   phone: 'PHONE',
   statuses: 'USER_STATUSES',
   age: 'USER_AGE',

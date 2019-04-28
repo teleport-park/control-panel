@@ -1,74 +1,118 @@
-<form [formGroup]="form" class="user-form" #userForm="ngForm">
-  <mat-form-field>
-    <input matInput placeholder="{{'FIRST_NAME' | translate}}" formControlName="firstName" required>
-    <mat-error>
-      {{'REQUIRED_FIELD' | translate:[translateService.instant('FIRST_NAME')]}}
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="{{'LAST_NAME' | translate}}" formControlName="lastName" required>
-    <mat-error>
-      {{'REQUIRED_FIELD' | translate:[translateService.instant('LAST_NAME')]}}
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
-           formControlName="dateOfBirth" (dateChange)="dayOfBirthChange($event.value)"
-           [max]="maxDate">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-    <mat-error>
-      {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_DATE_OF_BIRTH_DAY')]}}
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput number placeholder="{{'USER_AGE' | translate}}" formControlName="age"
-           (input)="ageChange(+$event.target.value)">
-    <mat-error *ngIf="form.get('age')?.hasError('max') && !form.get('age')?.hasError('required')">
-      {{'USER_FORM_VALIDATION_AGE_MAX' | translate}}
-    </mat-error>
-    <mat-error *ngIf="form.get('age')?.hasError('required')">
-      {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_AGE')]}}
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="{{'USER_ADDRESS' | translate}}" formControlName="address">
-    <mat-error *ngIf="userForm.submitted">
-      {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_ADDRESS')]}}
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="{{'EMAIL' | translate}}" formControlName="email">
-    <mat-error *ngIf="form.get('email')?.hasError('pattern') && !form.get('email')?.hasError('required')">
-      {{'USER_FORM_VALIDATION_EMAIL' | translate}}
-    </mat-error>
-    <mat-error *ngIf="form.get('email')?.hasError('required')">
-      {{'REQUIRED_FIELD' | translate:[translateService.instant('EMAIL')]}}
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput #phoneInput placeholder="{{'PHONE' | translate}}" formControlName="phone" mask=" (00) 000 00 00">
-    <mat-error>
-      {{'REQUIRED_FIELD' | translate:[translateService.instant('PHONE')]}}
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <textarea matInput placeholder="{{'USER_DESC' | translate}}" formControlName="desc" [rows]="4"></textarea>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="{{'USER_GENDER_LABEL' | translate}}" formControlName="gender">
-      <mat-option value="male">{{'USER_GENDER_MALE' | translate}}</mat-option>
-      <mat-option value="female">{{'USER_GENDER_FEMALE' | translate}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <div class="action-button-group">
-    <button mat-raised-button
-            color="warn"
-            type="button"
-            (click)="onCancelHandler()">{{'DIALOG_CANCEL_BUTTON_LABEL' | translate }}</button>
-    <button mat-raised-button
-            color="primary"
-            type="submit"
-            (click)="onSubmitHandler()">{{(mode === 'edit' ? 'USER_FORM_EDIT_BUTTON_LABEL' : 'USER_FORM_ADD_BUTTON_LABEL') | translate }}</button>
+<div class="row">
+  <div class="col-md-6">
+    <h4>{{translateService.instant('USER')}}</h4>
+    <form [formGroup]="userForm" class="user-form">
+      <mat-form-field>
+        <input matInput placeholder="{{'USER_NAME' | translate}}" formControlName="userName" required>
+        <mat-error>
+          {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_NAME')]}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="{{'NICK_NAME' | translate}}" formControlName="nickName" required>
+        <mat-error>
+          {{'REQUIRED_FIELD' | translate:[translateService.instant('NICK_NAME')]}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
+             formControlName="dateOfBirth" (dateChange)="dayOfBirthChange($event.value)"
+             [max]="maxDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error>
+        {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_DATE_OF_BIRTH_DAY')]}}
+      </mat-error>
+    </mat-form-field>
+      <mat-form-field>
+        <input matInput number placeholder="{{'USER_AGE' | translate}}" formControlName="age"
+               (input)="ageChange(+$event.target.value)">
+        <mat-error *ngIf="userForm.get('age')?.hasError('max') && !userForm.get('age')?.hasError('required')">
+          {{'USER_FORM_VALIDATION_AGE_MAX' | translate}}
+        </mat-error>
+        <mat-error *ngIf="userForm.get('age')?.hasError('required')">
+          {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_AGE')]}}
+        </mat-error>
+      </mat-form-field>
+      <p>{{'USER_GENDER_LABEL' | translate}}</p>
+      <mat-radio-group aria-label="Select gender" formControlName="gender" class="gender-select">
+        <mat-radio-button value="male">{{'USER_GENDER_MALE' | translate}}</mat-radio-button>
+        <mat-radio-button value="female">{{'USER_GENDER_FEMALE' | translate}}</mat-radio-button>
+      </mat-radio-group>
+      <mat-form-field>
+        <input matInput placeholder="{{'EMAIL' | translate}}" formControlName="email">
+        <mat-error *ngIf="userForm.get('email')?.hasError('pattern') && !userForm.get('email')?.hasError('required')">
+          {{'USER_FORM_VALIDATION_EMAIL' | translate}}
+        </mat-error>
+        <mat-error *ngIf="userForm.get('email')?.hasError('required')">
+          {{'REQUIRED_FIELD' | translate:[translateService.instant('EMAIL')]}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput #phoneInput placeholder="{{'PHONE' | translate}}" formControlName="phone" mask=" (00) 000 00 00">
+        <mat-error>
+          {{'REQUIRED_FIELD' | translate:[translateService.instant('PHONE')]}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="{{'USER_DESC' | translate}}" formControlName="desc" [rows]="4"></textarea>
+      </mat-form-field>
+    </form>
   </div>
-</form>
+
+  <!-- avatars section-->
+  <div class="col-md-6">
+    <h4>{{translateService.instant('USER_AVATARS')}}</h4>
+    <div class="avatars_toolbar">
+      <button mat-button (click)="addAvatar()"><mat-icon>add</mat-icon> {{translateService.instant('TABLE_ADD')}}</button>
+    </div>
+    <div *ngIf="editing">
+      <form [formGroup]="avatarForm" class="avatar-form">
+        <mat-form-field>
+          <input matInput placeholder="{{'USER_NAME' | translate}}" formControlName="name" required>
+          <mat-error>
+            {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_NAME')]}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
+                 formControlName="dateOfBirth"
+                 [max]="maxDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error>
+            {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_DATE_OF_BIRTH_DAY')]}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput number placeholder="{{'USER_AGE' | translate}}" formControlName="age">
+          <mat-error *ngIf="avatarForm.get('age')?.hasError('max') && !avatarForm.get('age')?.hasError('required')">
+            {{'USER_FORM_VALIDATION_AGE_MAX' | translate}}
+          </mat-error>
+          <mat-error *ngIf="avatarForm.get('age')?.hasError('required')">
+            {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_AGE')]}}
+          </mat-error>
+        </mat-form-field>
+        <p>{{'USER_GENDER_LABEL' | translate}}</p>
+        <mat-radio-group aria-label="Select gender" formControlName="gender" class="gender-select">
+          <mat-radio-button value="male">{{'USER_GENDER_MALE' | translate}}</mat-radio-button>
+          <mat-radio-button value="female">{{'USER_GENDER_FEMALE' | translate}}</mat-radio-button>
+        </mat-radio-group>
+      </form>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="action-button-group">
+      <button mat-raised-button
+              color="warn"
+              type="button"
+              [disabled]="editing"
+              (click)="onCancelHandler()">{{'DIALOG_CANCEL_BUTTON_LABEL' | translate }}</button>
+      <button mat-raised-button
+              color="primary"
+              [disabled]="editing"
+              type="submit"
+              (click)="onSubmitHandler()">{{(mode === 'edit' ? 'USER_FORM_EDIT_BUTTON_LABEL' : 'USER_FORM_ADD_BUTTON_LABEL') | translate }}</button>
+    </div>
+  </div>
+</div>
