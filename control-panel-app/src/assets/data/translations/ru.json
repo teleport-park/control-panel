@@ -86,5 +86,7 @@
   "AMUSEMENTS_NAME_LABEL": "Название",
   "AMUSEMENTS_DESC_LABEL": "Описание",
   "AMUSEMENTS_ADD_TO_TARIFFS": "Добавить в тарифы",
-  "TARIFF_LAST_TARIFFS": "Последние тарифы"
+  "TARIFF_LAST_TARIFFS": "Последние тарифы",
+  "EXTENDED_FILTER_TITLE": "Расширенный фильтр",
+  "FILTER_ALL_LABEL": "Все"
 }

@@ -1,2 +1,14 @@
-<h3>Extended filters should be there</h3>
-<P>{{data | json}}</P>
+<h3>{{translateService.instant('EXTENDED_FILTER_TITLE')}}</h3>
+<form [formGroup]="filters">
+  <mat-form-field>
+    <input matInput placeholder="Search by age" formControlName="age">
+  </mat-form-field>
+  <p>{{translateService.instant('USER_GENDER_LABEL')}}</p>
+  <mat-checkbox (change)="selectAll($event)" [formControl]="genderAll">{{translateService.instant('FILTER_ALL_LABEL')}}</mat-checkbox>
+  <mat-radio-group aria-label="Select gender" formControlName="gender" class="gender-select" [disabled]="genderAll.value">
+    <mat-radio-button value="male">{{translateService.instant('USER_GENDER_MALE')}}</mat-radio-button>
+    <mat-radio-button value="female">{{translateService.instant('USER_GENDER_FEMALE')}}</mat-radio-button>
+  </mat-radio-group>
+</form>
+
+

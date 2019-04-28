@@ -199,4 +199,17 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.destroyed$.next(true);
     this.destroyed$.complete();
   }
+
+  setFilters(data: User[]) {
+    if (data) {
+      this.userService.usersData$.next({
+        count: 0,
+        pageSize: 0,
+        totalPages: 0,
+        items: data
+      });
+    } else {
+      this.userService.getUsers();
+    }
+  }
 }

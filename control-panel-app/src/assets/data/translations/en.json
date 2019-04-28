@@ -85,5 +85,7 @@
   "AMUSEMENTS_NAME_LABEL": "Name",
   "AMUSEMENTS_DESC_LABEL": "Description",
   "AMUSEMENTS_ADD_TO_TARIFFS": "Add to tariffs",
-  "TARIFF_LAST_TARIFFS": "Last tariffs"
+  "TARIFF_LAST_TARIFFS": "Last tariffs",
+  "EXTENDED_FILTER_TITLE": "Extended filters",
+  "FILTER_ALL_LABEL": "All"
 }
