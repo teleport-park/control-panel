@@ -15,15 +15,15 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
-             formControlName="dateOfBirth" (dateChange)="dayOfBirthChange($event.value)"
-             [max]="maxDate">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <mat-error>
-        {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_DATE_OF_BIRTH_DAY')]}}
-      </mat-error>
-    </mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
+               formControlName="dateOfBirth" (dateChange)="dayOfBirthChange($event.value)"
+               [max]="maxDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>
+          {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_DATE_OF_BIRTH_DAY')]}}
+        </mat-error>
+      </mat-form-field>
       <mat-form-field>
         <input matInput number placeholder="{{'USER_AGE' | translate}}" formControlName="age"
                (input)="ageChange(+$event.target.value)">
@@ -49,7 +49,8 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput #phoneInput placeholder="{{'PHONE' | translate}}" formControlName="phone" mask=" (00) 000 00 00">
+        <input matInput #phoneInput placeholder="{{'PHONE' | translate}}" formControlName="phone"
+               mask=" (00) 000 00 00">
         <mat-error>
           {{'REQUIRED_FIELD' | translate:[translateService.instant('PHONE')]}}
         </mat-error>
@@ -66,11 +67,14 @@
     <div class="avatars_toolbar">
       <button mat-button
               (click)="addAvatar()"
-              *ngIf="userAvatars.length < 5"
-      ><mat-icon>add</mat-icon> {{translateService.instant('TABLE_ADD')}}</button>
+              *ngIf="userAvatars.length < 5">
+        <mat-icon>add</mat-icon>
+        {{translateService.instant('TABLE_ADD')}}</button>
     </div>
     <div class="avatars-body">
-      <table mat-table [dataSource]="userAvatars" class="avatars-table" *ngIf="userAvatars.length">
+
+      <!-- Avatars table -->
+      <table mat-table [dataSource]="userAvatars" class="avatars-table">
         <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">
           <th mat-header-cell *matHeaderCellDef>
             <span>{{translateService.instant(propertyMap[column])}}</span></th>
@@ -78,56 +82,74 @@
             <span class="table_cell-inner">{{row[column]}}</span>
           </td>
         </ng-container>
-        <ng-container matColumnDef="dateOfBirth">
+        <ng-container matColumnDef="gender">
           <th mat-header-cell *matHeaderCellDef>
-            <span>{{translateService.instant(propertyMap['dateOfBirth'])}}</span></th>
+            <span>{{translateService.instant(propertyMap['gender'])}}</span></th>
           <td mat-cell *matCellDef="let item">
-            <span class="table_cell-inner">{{item.dateOfBirth.format('L')}}</span>
+            <span class="table_cell-inner">{{translateService.instant(propertyMap[item.gender])}}</span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="submenu">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let item; let i = index;" class="table-submenu">
+            <button mat-icon-button [matMenuTriggerFor]="avatarMenu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #avatarMenu="matMenu">
+              <button mat-menu-item (click)="deleteAvatar(item)">
+                <mat-icon>delete</mat-icon>
+                {{translateService.instant('TABLE_DELETE')}}
+              </button>
+              <button mat-menu-item (click)="editAvatar(item, i)">
+                <mat-icon>edit</mat-icon>
+                {{translateService.instant('TABLE_EDIT')}}
+              </button>
+            </mat-menu>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <form [formGroup]="avatarForm" class="avatar-form" *ngIf="editing">
+
+      <!-- Avatars form -->
+      <form [formGroup]="avatarForm" class="avatar-form" *ngIf="adding">
         <mat-form-field>
           <input matInput placeholder="{{'USER_NAME' | translate}}" formControlName="userName" required>
           <mat-error>
             {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_NAME')]}}
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
-                 formControlName="dateOfBirth" (dateChange)="dayOfBirthChange($event.value, true)"
-                 [max]="maxDate">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <mat-error>
-            {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_DATE_OF_BIRTH_DAY')]}}
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput number placeholder="{{'USER_AGE' | translate}}" formControlName="age" (input)="ageChange(+$event.target.value, true)">
-          <mat-error *ngIf="avatarForm.get('age')?.hasError('max') && !avatarForm.get('age')?.hasError('required')">
-            {{'USER_FORM_VALIDATION_AGE_MAX' | translate}}
-          </mat-error>
-          <mat-error *ngIf="avatarForm.get('age')?.hasError('required')">
-            {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_AGE')]}}
-          </mat-error>
-        </mat-form-field>
-        <p>{{'USER_GENDER_LABEL' | translate}}</p>
-        <mat-radio-group aria-label="Select gender" formControlName="gender" class="gender-select">
-          <mat-radio-button value="male">{{'USER_GENDER_MALE' | translate}}</mat-radio-button>
-          <mat-radio-button value="female">{{'USER_GENDER_FEMALE' | translate}}</mat-radio-button>
-        </mat-radio-group>
+        <div class="age-gender_wrapper">
+          <mat-form-field class="age-field">
+            <mat-label>{{'USER_AGE' | translate}}</mat-label>
+            <mat-select formControlName="age">
+              <mat-option *ngFor="let age of [].constructor(100); let i = index;" value="{{i + 1}}">
+                {{i + 1}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="avatarForm.get('age')?.hasError('required')">
+              {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_AGE')]}}
+            </mat-error>
+          </mat-form-field>
+          <div class="gender-field">
+            <p>{{'USER_GENDER_LABEL' | translate}}</p>
+            <mat-radio-group aria-label="Select gender" formControlName="gender" class="gender-select">
+              <mat-radio-button value="male">{{'USER_GENDER_MALE' | translate}}</mat-radio-button>
+              <mat-radio-button value="female">{{'USER_GENDER_FEMALE' | translate}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
         <div class="avatar-form-action">
           <button mat-raised-button
                   color="warn"
                   type="button"
-                  (click)="editing = !editing">{{'DIALOG_CANCEL_BUTTON_LABEL' | translate }}</button>
+                  (click)="adding = !adding">{{'DIALOG_CANCEL_BUTTON_LABEL' | translate }}</button>
           <button mat-raised-button
                   color="primary"
                   type="button"
-                  (click)="avatarSubmitHandler()">Ok</button>
+                  (click)="avatarSubmitHandler()">
+            {{avatarIndex ? translateService.instant('USER_FORM_EDIT_BUTTON_LABEL') : translateService.instant('USER_FORM_ADD_BUTTON_LABEL')}}
+          </button>
         </div>
       </form>
     </div>
@@ -137,13 +159,15 @@
       <button mat-raised-button
               color="warn"
               type="button"
-              [disabled]="editing"
+              [disabled]="adding"
               (click)="onCancelHandler()">{{'DIALOG_CANCEL_BUTTON_LABEL' | translate }}</button>
       <button mat-raised-button
               color="primary"
-              [disabled]="editing"
+              [disabled]="adding"
               type="submit"
-              (click)="onSubmitHandler()">{{(mode === 'edit' ? 'USER_FORM_EDIT_BUTTON_LABEL' : 'USER_FORM_ADD_BUTTON_LABEL') | translate }}</button>
+              (click)="onSubmitHandler()">
+        {{mode === 'edit' ? translateService.instant('USER_FORM_EDIT_BUTTON_LABEL') : translateService.instant('USER_FORM_ADD_BUTTON_LABEL')}}
+      </button>
     </div>
   </div>
 </div>

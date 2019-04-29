@@ -144,6 +144,7 @@ export class UsersComponent implements OnInit, OnDestroy {
           const item: User = result.items[0];
           item.userName = item.firstName;
           item.nickName = item.lastName;
+          item.avatars = this.userService.getUserAvatars(item.id);
           this.openModalDialog(mode, item);
         });
       return;

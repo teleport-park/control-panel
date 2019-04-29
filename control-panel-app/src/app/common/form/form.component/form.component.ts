@@ -1,14 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  Injector,
-  Input,
-  Output,
-  TemplateRef,
-  ViewChild
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Injector, Input, Output, ViewChild } from '@angular/core';
 import { StaffMember, User } from '../../../models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import moment, { Moment } from 'moment';
@@ -42,30 +32,43 @@ export class FormComponent {
   /**
    * user model
    */
-  entityModel: User;
+  user: User;
 
+  /**
+   * user avatars
+   */
   userAvatars: Avatar[] = [];
 
-  displayedColumns: string[] = [...Object.keys(new Avatar()).filter(item => item !== 'userId')];
+  /**
+   * displayed column
+   */
+  displayedColumns: string[] = [...Object.keys(new Avatar()).filter(item => item !== 'userId' && item !== 'id'), 'submenu'];
 
-  simpleDataColumn: string[] = this.displayedColumns.filter(item => item !== 'dateOfBirth');
+  /**
+   * simple data column
+   */
+  simpleDataColumn: string[] = this.displayedColumns
+    .filter(item => item !== 'dateOfBirth' && item !== 'gender' && item !== 'submenu');
 
   /**
    * max date for DOB field
    */
   maxDate = moment();
 
-  editing = false;
+  /**
+   * adding flag
+   */
+  adding = false;
+
+  /**
+   * avatar index for edit
+   */
+  avatarIndex: number;
 
   /**
    * user phone input
    */
   @ViewChild('phoneInput') phoneInput: ElementRef;
-
-  /**
-   * user form template
-   */
-  @ViewChild('userFormTemplate') userTemplate: TemplateRef<any>;
 
   /**
    * mode
@@ -79,9 +82,10 @@ export class FormComponent {
   @Input() set item(item: User) {
     item.dateOfBirth = moment(item.dateOfBirth, 'YYYY-MM-DD');
     item.registered = moment(item.registered, 'YYYY-MM-DD');
-    this.entityModel = Object.assign(new User(), item);
+    this.user = Object.assign(new User(), item);
+    this.userAvatars = this.user.avatars ? [...this.user.avatars] : [];
     this.userForm = this.getUserForm();
-    this.userForm.patchValue(this.entityModel);
+    this.userForm.patchValue(this.user);
     this.mode = 'edit';
   }
 
@@ -155,7 +159,6 @@ export class FormComponent {
     return this.fb.group({
       userName: ['', Validators.required],
       age: ['', [Validators.required, Validators.max(100)]],
-      dateOfBirth: ['', Validators.required],
       gender: 'male',
     });
   }
@@ -163,28 +166,18 @@ export class FormComponent {
   /**
    * day of birth change handler
    * @param date
-   * @param isAvatar
    */
-  dayOfBirthChange(date: Moment, isAvatar = false): void {
-    if (isAvatar) {
-      this.avatarForm.get('age').setValue(this.avatar.getAge(date));
-      return;
-    }
-    this.userForm.get('age').setValue(this.entityModel.getAge(date));
+  dayOfBirthChange(date: Moment): void {
+    this.userForm.get('age').setValue(this.user.getAge(date));
   }
 
   /**
    * age change handler
    * @param age
-   * @param isAvatar
    */
-  ageChange(age: number, isAvatar = false): void {
-    if (isAvatar && (age > 0 && age < 100)) {
-      this.avatarForm.get('dateOfBirth').setValue(this.avatar.setDOB(age));
-      return;
-    }
+  ageChange(age: number): void {
     if (age > 0 && age < 100) {
-      this.userForm.get('dateOfBirth').setValue(this.entityModel.setDOB(age));
+      this.userForm.get('dateOfBirth').setValue(this.user.setDOB(age));
     }
   }
 
@@ -196,10 +189,11 @@ export class FormComponent {
       this.userForm.get(key).markAsTouched();
     });
     if (this.userForm.valid) {
-      Object.assign(this.entityModel, this.userForm.getRawValue());
+      Object.assign(this.user, this.userForm.getRawValue());
       // need to add masked value to user phone
-      this.entityModel.phone = this.phoneInput.nativeElement.value;
-      this.save.emit(this.entityModel);
+      this.user.phone = this.phoneInput.nativeElement.value;
+      this.user.avatars = this.userAvatars;
+      this.save.emit(this.user);
     }
   }
 
@@ -211,10 +205,19 @@ export class FormComponent {
       this.avatarForm.get(key).markAsTouched();
     });
     if (this.avatarForm.valid) {
-      this.userAvatars.push(Object.assign(this.avatar, this.avatarForm.getRawValue()));
+      if (this.avatarIndex) {
+        this.userAvatars[this.avatarIndex] = Object.assign(this.userAvatars[this.avatarIndex], this.avatarForm.getRawValue());
+        this.avatarIndex = null;
+        this.adding = false;
+        this.user.avatars = this.userAvatars;
+        return;
+      }
+      Object.assign(this.avatar, this.avatarForm.getRawValue());
+      this.avatar.id = Math.floor((Math.random()) * 1e8).toString(16);
+      this.userAvatars.push(this.avatar);
       this.userAvatars = [...this.userAvatars];
-      this.entityModel.avatars = this.userAvatars;
-      this.editing = false;
+      this.user.avatars = this.userAvatars;
+      this.adding = false;
     }
   }
 
@@ -223,8 +226,28 @@ export class FormComponent {
    */
   addAvatar(): void {
     this.avatarForm = this.getAvatarForm();
-    this.avatar = Object.assign(new Avatar(), {userId: this.entityModel.id});
-    this.editing = true;
+    this.avatar = Object.assign(new Avatar(), {userId: this.user.id});
+    this.adding = true;
+  }
+
+  /**
+   * delete avatar
+   * @param avatar
+   */
+  deleteAvatar(avatar: Avatar) {
+    this.userAvatars = [...this.userAvatars.filter(item => item.id !== avatar.id)];
+  }
+
+  /**
+   * edit avatar
+   * @param avatar
+   * @param index
+   */
+  editAvatar(avatar: Avatar, index: number) {
+    this.avatarIndex = index;
+    this.avatarForm = this.getAvatarForm();
+    this.avatarForm.patchValue(avatar);
+    this.adding = true;
   }
 
   /**

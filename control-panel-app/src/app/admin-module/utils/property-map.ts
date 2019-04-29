@@ -24,5 +24,7 @@ export const PropertyMap = {
   correspondent: 'TRANSACTION_CORRESPONDENT',
   signature: 'TRANSACTION_SIGNATURE',
   dateOfBirth: 'USER_DATE_OF_BIRTH_DAY',
-  gender: 'USER_GENDER_LABEL'
+  gender: 'USER_GENDER_LABEL',
+  male: 'USER_GENDER_MALE',
+  female: 'USER_GENDER_FEMALE'
 };

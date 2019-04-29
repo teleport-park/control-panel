@@ -12,6 +12,7 @@ import { AppData } from '../../../../interfaces';
 import { BuildParamsHelper } from '../../../../utils/build-params-helper';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
+import { Avatar } from '../../../../models/avatar.model';
 
 
 @Injectable()
@@ -75,7 +76,15 @@ export class UserService implements OnDestroy {
     this.loaderService.dispatchShowLoader(true);
     const requestMethod = 'GET';
     const params: any = this._paramsHelper.getParams(this.STORAGE_KEY, this.storage);
-    const url = this.apiBuilder.getUsersUrl(requestMethod, null, params.pageSize, params.pageIndex + 1, params.active,  params.direction, this.queryString);
+    const url = this.apiBuilder.getUsersUrl(
+      requestMethod,
+      null,
+      params.pageSize,
+      params.pageIndex + 1,
+      params.active,
+      params.direction,
+      this.queryString
+    );
     this.http.request<AppData<User>>(requestMethod, url)
       .pipe(
         finalize(() => {
@@ -87,6 +96,7 @@ export class UserService implements OnDestroy {
           user.registered = moment(user.registered);
           user.userName = user.firstName;
           user.nickName = user.lastName;
+          user.avatars = this.getUserAvatars(user.id);
           return user;
         });
         this.usersData$.next(data);
@@ -96,24 +106,15 @@ export class UserService implements OnDestroy {
   /**
    * save user
    */
-  saveUser(user: User | any): void {
+  saveUser(user: User): void {
     const requestMethod = 'POST';
     this.loaderService.dispatchShowLoader(true);
     const url = this.apiBuilder.getUsersUrl(requestMethod);
     this.prepareUserToSave(user);
+    this.saveAvatarsToStorage(user);
     this.http.request(requestMethod, url, {body: user}).subscribe(() => {
       this.getUsers();
     });
-  }
-
-  /**
-   * prepare user
-   * TODO should be removed after Integrate new api
-   * @param user
-   */
-  private prepareUserToSave(user: User) {
-    user.firstName = user.userName;
-    user.lastName = user.nickName;
   }
 
   /**
@@ -124,6 +125,7 @@ export class UserService implements OnDestroy {
     const requestMethod = 'PUT';
     const url = this.apiBuilder.getUsersUrl(requestMethod, user.id);
     this.prepareUserToSave(user);
+    this.saveAvatarsToStorage(user);
     this.http.request(requestMethod, url, {body: user}).subscribe(() => {
       this.getUsers();
     });
@@ -154,5 +156,34 @@ export class UserService implements OnDestroy {
    */
   changePaginationOrSort(event: PageEvent | Sort): void {
     this.getUsers();
+  }
+
+  /**
+   * TODO should removed after integrate new api
+   * @param user
+   */
+  saveAvatarsToStorage(user: User): void {
+    const avatars = JSON.parse(localStorage.getItem('AVATARS')) || {};
+    avatars[user.id] = user.avatars || [];
+    localStorage.setItem('AVATARS', JSON.stringify(avatars));
+  }
+
+  /**
+   * prepare user
+   * TODO should be removed after integrate new api
+   * @param user
+   */
+  private prepareUserToSave(user: User) {
+    user.firstName = user.userName;
+    user.lastName = user.nickName;
+  }
+
+  /**
+   * TODO should removed after integrate new api
+   * @param userId
+   */
+  getUserAvatars(userId: number): Avatar[] {
+    const avatar = JSON.parse(localStorage.getItem('AVATARS'));
+    return avatar && avatar[userId] ? avatar[userId] : [];
   }
 }

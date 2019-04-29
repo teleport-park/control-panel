@@ -32,8 +32,13 @@
 
   .avatars-table {
     width: 100%;
+    margin-bottom: 10px;
     th.mat-header-cell:first-of-type, td.mat-cell:first-of-type {
       padding-left: 10px;
+    }
+    .table-submenu {
+      padding-right: 5px;
+      text-align: right;
     }
   }
 
@@ -44,6 +49,22 @@
       margin-bottom: 10px;
       .mat-radio-button {
         margin-right: 10px;
+      }
+    }
+    .age-gender_wrapper {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      align-items: baseline;
+      .age-field {
+        max-width: 80px;
+      }
+      .gender-field {
+        p {
+          margin-right: 15px;
+        }
+        display: flex;
+        align-items: baseline;
       }
     }
     .avatar-form-action {

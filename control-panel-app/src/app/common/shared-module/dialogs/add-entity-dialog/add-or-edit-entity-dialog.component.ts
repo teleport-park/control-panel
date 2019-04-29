@@ -12,7 +12,7 @@ export class AddOrEditEntityDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<AddOrEditEntityDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-    dialogRef._containerInstance._config.width = '800px';
+    dialogRef._containerInstance._config.width = '850px';
   }
 
   /**
