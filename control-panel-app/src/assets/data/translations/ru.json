@@ -88,5 +88,6 @@
   "AMUSEMENTS_ADD_TO_TARIFFS": "Добавить в тарифы",
   "TARIFF_LAST_TARIFFS": "Последние тарифы",
   "EXTENDED_FILTER_TITLE": "Расширенный фильтр",
-  "FILTER_ALL_LABEL": "Все"
+  "FILTER_ALL_LABEL": "Все",
+  "EXTENDED_FILTER_ANY": "Любой"
 }

@@ -1,14 +1,19 @@
 <h3>{{translateService.instant('EXTENDED_FILTER_TITLE')}}</h3>
 <form [formGroup]="filters">
-  <mat-form-field>
-    <input matInput placeholder="Search by age" formControlName="age">
+  <mat-form-field class="age-field">
+    <mat-label>{{'USER_AGE' | translate}}</mat-label>
+    <mat-select formControlName="age">
+      <mat-option value="">{{translateService.instant('EXTENDED_FILTER_ANY')}}</mat-option>
+      <mat-option *ngFor="let age of [].constructor(100); let i = index;" value="{{i + 1}}">
+        {{i + 1}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
-  <p>{{translateService.instant('USER_GENDER_LABEL')}}</p>
-  <mat-checkbox (change)="selectAll($event)" [formControl]="genderAll">{{translateService.instant('FILTER_ALL_LABEL')}}</mat-checkbox>
-  <mat-radio-group aria-label="Select gender" formControlName="gender" class="gender-select" [disabled]="genderAll.value">
-    <mat-radio-button value="male">{{translateService.instant('USER_GENDER_MALE')}}</mat-radio-button>
-    <mat-radio-button value="female">{{translateService.instant('USER_GENDER_FEMALE')}}</mat-radio-button>
-  </mat-radio-group>
+  <div class="gender-filter">
+    <p>{{translateService.instant('USER_GENDER_LABEL')}}</p>
+    <mat-checkbox formControlName="male">{{translateService.instant('USER_GENDER_MALE')}}</mat-checkbox>
+    <mat-checkbox formControlName="female">{{translateService.instant('USER_GENDER_FEMALE')}}</mat-checkbox>
+  </div>
 </form>
 
 

@@ -21,14 +21,10 @@ export class ControlPanelUiExtendedFiltersComponent implements OnInit, OnDestroy
 
   filters: FormGroup = this.fb.group({
     age: '',
-    gender: '',
+    male: true,
+    female: true,
     registration: null
   });
-
-  /**
-   * all gender control
-   */
-  genderAll: FormControl = new FormControl(true);
 
   /**
    * emit filtered result
@@ -49,9 +45,15 @@ export class ControlPanelUiExtendedFiltersComponent implements OnInit, OnDestroy
         if (result.age) {
           filtered = this._data.filter((item: User) => item.age === +result.age);
         }
-        if (result.gender) {
-          filtered = filtered ? filtered.filter((item: User) => item.gender === result.gender)
-            : this._data.filter((item: User) => item.gender === result.gender);
+        if (!result.male || !result.female) {
+          if (result.male) {
+            filtered = filtered ? filtered.filter((item: User) => item.gender === 'male')
+              : this._data.filter((item: User) => item.gender === 'male');
+          }
+          if (result.female) {
+            filtered = filtered ? filtered.filter((item: User) => item.gender === 'female')
+              : this._data.filter((item: User) => item.gender === 'female');
+          }
         }
         this.filter.emit(filtered);
       });

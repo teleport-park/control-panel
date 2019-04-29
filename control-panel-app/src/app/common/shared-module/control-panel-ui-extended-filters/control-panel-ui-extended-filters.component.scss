@@ -1,4 +1,13 @@
 :host {
   display: block;
   min-width: 250px;
+  padding: 15px;
+  .age-field {
+    max-width: 80px;
+  }
+  .gender-filter {
+    &>* {
+      display: block;
+    }
+  }
 }

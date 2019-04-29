@@ -87,5 +87,6 @@
   "AMUSEMENTS_ADD_TO_TARIFFS": "Add to tariffs",
   "TARIFF_LAST_TARIFFS": "Last tariffs",
   "EXTENDED_FILTER_TITLE": "Extended filters",
-  "FILTER_ALL_LABEL": "All"
+  "FILTER_ALL_LABEL": "All",
+  "EXTENDED_FILTER_ANY": "Any"
 }
