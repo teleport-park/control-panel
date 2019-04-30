@@ -29,12 +29,16 @@
         }
       }
 
-      &.selected {
-        background-color: rgba(0, 0, 0, .05);
-      }
+      //&.selected {
+      //  background-color: rgba(0, 0, 0, .05);
+      //}
 
       .mat-column-submenu {
         text-align: right;
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, .05);
+        cursor: pointer;
       }
     }
 

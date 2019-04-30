@@ -89,5 +89,8 @@
   "TARIFF_LAST_TARIFFS": "Последние тарифы",
   "EXTENDED_FILTER_TITLE": "Расширенный фильтр",
   "FILTER_ALL_LABEL": "Все",
-  "EXTENDED_FILTER_ANY": "Любой"
+  "EXTENDED_FILTER_ANY": "Любой",
+  "USER_PAGE_TITLE": "Пользователь",
+  "BACK_TO_USERS": "Вернуться к пользователям",
+  "USER_LAST_VISIT": "Последний визит"
 }

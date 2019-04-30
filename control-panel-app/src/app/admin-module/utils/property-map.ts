@@ -26,5 +26,7 @@ export const PropertyMap = {
   dateOfBirth: 'USER_DATE_OF_BIRTH_DAY',
   gender: 'USER_GENDER_LABEL',
   male: 'USER_GENDER_MALE',
-  female: 'USER_GENDER_FEMALE'
+  female: 'USER_GENDER_FEMALE',
+  desc: 'USER_DESC',
+  lastVisit: 'USER_LAST_VISIT'
 };

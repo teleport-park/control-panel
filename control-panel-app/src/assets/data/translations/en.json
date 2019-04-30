@@ -88,5 +88,8 @@
   "TARIFF_LAST_TARIFFS": "Last tariffs",
   "EXTENDED_FILTER_TITLE": "Extended filters",
   "FILTER_ALL_LABEL": "All",
-  "EXTENDED_FILTER_ANY": "Any"
+  "EXTENDED_FILTER_ANY": "Any",
+  "USER_PAGE_TITLE": "User",
+  "BACK_TO_USERS": "Back to users",
+  "USER_LAST_VISIT": "Last visit"
 }

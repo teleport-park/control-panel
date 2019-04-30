@@ -23,8 +23,9 @@ import { FormControl } from '@angular/forms';
 import { BreakpointService } from '../../../services/breakpoint.service';
 
 import { default as config } from '../../../../app-config.json';
-import { AppData, Config } from '../../../interfaces';
+import { Config } from '../../../interfaces';
 import { IAppStorageInterface } from '../../../interfaces/app-storage-interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -89,14 +90,16 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param loaderService
    * @param dialog
    * @param point
+   * @param router
    * @param storage
    */
   constructor(public userService: UserService,
-              private cd: ChangeDetectorRef,
+              public cd: ChangeDetectorRef,
               public translateService: TranslateService,
               private loaderService: LoaderService,
               public dialog: MatDialog,
               public point: BreakpointService,
+              private router: Router,
               @Inject('IAppStorageInterface') private storage: IAppStorageInterface) {
   }
 
@@ -138,14 +141,9 @@ export class UsersComponent implements OnInit, OnDestroy {
   private showModalAddOrEditUser(mode: 'edit' | 'add', user: User) {
     if (mode === 'edit') {
       this.userService.getUser(user.id)
-        .pipe(filter((data: AppData<User>) => !!data.items.length))
-        .subscribe((result: AppData<User>) => {
-          // TODO remove after API (convert name and nickName)
-          const item: User = result.items[0];
-          item.userName = item.firstName;
-          item.nickName = item.lastName;
-          item.avatars = this.userService.getUserAvatars(item.id);
-          this.openModalDialog(mode, item);
+        .pipe(filter((data: User) => !!data))
+        .subscribe((result: User) => {
+          this.openModalDialog(mode, result);
         });
       return;
     }
@@ -201,6 +199,10 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.destroyed$.complete();
   }
 
+  /**
+   * TODO should removed after integrate new API
+   * @param data
+   */
   setFilters(data: User[]) {
     if (data) {
       this.userService.usersData$.next({
@@ -212,5 +214,13 @@ export class UsersComponent implements OnInit, OnDestroy {
     } else {
       this.userService.getUsers();
     }
+  }
+
+  /**
+   * select user
+   * @param user
+   */
+  selectUser(user: User) {
+    this.router.navigate(['admin', 'users', user.id]);
   }
 }

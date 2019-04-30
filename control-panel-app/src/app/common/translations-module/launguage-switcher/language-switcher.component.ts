@@ -79,6 +79,7 @@ export class LanguageSwitcherComponent implements OnDestroy, OnInit {
       this.translateService.getTranslations(event.value);
     }
     this.cd.markForCheck();
+    this.cd.detectChanges();
   }
 
   ngOnDestroy(): void {

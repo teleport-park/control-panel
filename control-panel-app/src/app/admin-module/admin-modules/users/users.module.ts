@@ -9,16 +9,24 @@ import { FormModule } from '../../../common/form/form.module';
 import { SharedModule } from '../../../common/shared-module/shared.module';
 import { AddOrEditEntityDialogComponent, ConfirmDialogComponent } from '../../../common/shared-module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [{
   path: '',
-  component: UsersComponent
+  component: UsersComponent,
+  children: [{
+    path: ':id',
+    component: UserComponent,
+    data: {
+      title: 'ADMIN_MENU_USERS'
+    }
+  }]
 }];
 
 export const UserRoutingModule = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [UsersComponent],
+  declarations: [UsersComponent, UserComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

@@ -2,8 +2,7 @@ import { Inject, Injectable, OnDestroy } from '@angular/core';
 import { User } from '../../../../models/';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../../environments/environment';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 import moment from 'moment';
 import { TranslateService } from '../../../../common/translations-module';
@@ -17,11 +16,6 @@ import { Avatar } from '../../../../models/avatar.model';
 
 @Injectable()
 export class UserService implements OnDestroy {
-
-  /**
-   * user api
-   */
-  static readonly USER_API: string = `${environment.origin}${environment.api.USERS}`;
 
   /**
    * storage key
@@ -63,10 +57,19 @@ export class UserService implements OnDestroy {
    *
    * @param userId
    */
-  getUser(userId: number): Observable<AppData<User>> {
+  getUser(userId: number): Observable<User> {
     const requestMethod = 'GET';
     const url = this.apiBuilder.getUsersUrl(requestMethod, userId);
-    return this.http.request<AppData<User>>(requestMethod, url);
+    return this.http.request<AppData<User>>(requestMethod, url).pipe(map((result: AppData<User>) => {
+      const user = result.items[0];
+      user.registered = moment(user.registered);
+      user.dateOfBirth = moment(user.dateOfBirth);
+      user.userName = user.firstName;
+      user.nickName = user.lastName;
+      user.avatars = this.getUserAvatars(user.id);
+      user.lastVisit = moment(this.randomDate(new Date(2019, 0, 1), new Date()));
+      return user;
+    }));
   }
 
   /**
@@ -185,5 +188,14 @@ export class UserService implements OnDestroy {
   getUserAvatars(userId: number): Avatar[] {
     const avatar = JSON.parse(localStorage.getItem('AVATARS'));
     return avatar && avatar[userId] ? avatar[userId] : [];
+  }
+
+  /**
+   * TODO should removed after integrate new api
+   * @param start
+   * @param end
+   */
+  randomDate(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
   }
 }

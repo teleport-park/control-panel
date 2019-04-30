@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { User } from '../../../models';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { MatCheckboxChange } from '@angular/material/typings/esm5/checkbox';
 import { TranslateService } from '../../translations-module';
 
 @Component({
@@ -57,14 +56,6 @@ export class ControlPanelUiExtendedFiltersComponent implements OnInit, OnDestroy
         }
         this.filter.emit(filtered);
       });
-  }
-
-  /**
-   * select all gender
-   * @param event
-   */
-  selectAll(event: MatCheckboxChange) {
-    this.filters.get('gender').setValue(event.checked ? '' : 'male');
   }
 
   ngOnDestroy(): void {

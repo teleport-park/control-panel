@@ -24,7 +24,7 @@ import { DefaultSort } from '../../../models/default-sort';
   templateUrl: './control-panel-ui-table.component.html',
   styleUrls: ['./control-panel-ui-table.component.scss']
 })
-export class ControlPanelUiTableComponent implements OnInit {
+export class ControlPanelUiTableComponent<T> implements OnInit {
 
   /**
    * property translations map
@@ -54,7 +54,7 @@ export class ControlPanelUiTableComponent implements OnInit {
   /**
    * data source for table
    */
-  @Input() set data(data: any[]) {
+  @Input() set data(data: T[]) {
     if (data) {
       this._data = data;
       this.initDataSource();
@@ -131,6 +131,11 @@ export class ControlPanelUiTableComponent implements OnInit {
   @Output() sortChanges: EventEmitter<Sort> = new EventEmitter();
 
   /**
+   * selected item
+   */
+  @Output() selected: EventEmitter<T> = new EventEmitter();
+
+  /**
    * constructor
    * @param translateService
    * @param cd
@@ -182,6 +187,11 @@ export class ControlPanelUiTableComponent implements OnInit {
    */
   addEntity(): void {
     this.add.emit();
+  }
+
+  selectRow(row): void {
+    this.selection.select(row);
+    this.selected.emit(row);
   }
 
   /**
