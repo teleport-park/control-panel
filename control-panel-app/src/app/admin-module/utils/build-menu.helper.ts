@@ -1,6 +1,9 @@
 import { AuthService } from '../../common/auth-module/auth.service';
 import { MenuPermissionMap } from '../../common/auth-module/guards/permission-map';
 
+/**
+ * menu item interface
+ */
 export interface MenuItem {
   icon: string;
   label: string;
@@ -9,10 +12,12 @@ export interface MenuItem {
   children?: MenuItem[];
 }
 
-
 export class BuildMenuHelper {
 
-  fullMenu: MenuItem[] = [
+  /**
+   * full menu
+   */
+  menu: MenuItem[] = [
     {
       icon: 'dashboard',
       label: 'ADMIN_MENU_DASHBOARD',
@@ -62,7 +67,7 @@ export class BuildMenuHelper {
         label: 'ADMIN_MENU_HARDWARE',
         path: '/admin/amusements/hardware',
         active: false
-      } ]
+      }]
     }, {
       icon: 'people',
       label: 'ADMIN_MENU_USERS',
@@ -95,6 +100,9 @@ export class BuildMenuHelper {
     }
   ];
 
+  /**
+   * current user permission
+   */
   userPermission: string;
 
 
@@ -102,21 +110,27 @@ export class BuildMenuHelper {
     this.userPermission = authService.currentUserValue.permission;
   }
 
+  /**
+   * get menu
+   */
   getMenu(): MenuItem[] {
-    return this.fullMenu.filter((item: MenuItem) => {
+    return this.prepareMenu(this.menu, this.userPermission);
+  }
+
+  /**
+   * prepare menu recursively
+   * @param menu
+   * @param userPermission
+   */
+  private prepareMenu(menu: MenuItem[], userPermission: string) {
+    return menu.filter((item: MenuItem) => {
       if (item.children) {
-        item.children = item.children.filter((childItem: MenuItem) => {
-          const childPath = childItem.path.split('/');
-          const childIdentifier = childPath[childPath.length - 1];
-          const childPermission = MenuPermissionMap[childIdentifier] as string[];
-          return !childPermission.length || childPermission.indexOf(this.userPermission) > -1;
-        });
+        this.prepareMenu(item.children, userPermission);
       }
       const path = item.path.split('/');
       const itemIdentifier = path[path.length - 1];
       const permission = MenuPermissionMap[itemIdentifier] as string[];
-      return !permission.length || permission.indexOf(this.userPermission) > -1;
+      return !permission.length || permission.indexOf(userPermission) > -1;
     });
   }
-
 }

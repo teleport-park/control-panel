@@ -51,28 +51,29 @@
         margin-right: 10px;
       }
     }
-    .age-gender_wrapper {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      align-items: baseline;
-      .age-field {
-        max-width: 80px;
-      }
-      .gender-field {
-        p {
-          margin-right: 15px;
-        }
-        display: flex;
-        align-items: baseline;
-      }
-    }
+
     .avatar-form-action {
       display: flex;
       justify-content: flex-end;
       button {
         margin-left: 10px;
       }
+    }
+  }
+  .age-gender_wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: baseline;
+    .age-field {
+      max-width: 80px;
+    }
+    .gender-field {
+      p {
+        margin-right: 15px;
+      }
+      display: flex;
+      align-items: baseline;
     }
   }
 }

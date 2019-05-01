@@ -9,6 +9,7 @@ export const MenuPermissionMap = {
   amusements: [],
   hardware: [],
   users: [],
+  ':id': [],
   staff: ['admin'],
   groups: ['admin'],
   keychain: [],
