@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { AdminContainerComponent } from './admin-container.component/admin-container.component';
+import { AdminGuard } from '../common/auth-module/guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
       }, {
         path: 'administration',
         loadChildren: './admin-modules/administration/administration.module#AdministrationModule',
-        data: {title: 'ADMIN_MENU_ADMINISTRATION'}
+        data: {title: 'ADMIN_MENU_ADMINISTRATION'},
+        canActivate: [AdminGuard]
       }, {
         path: 'keychain',
         loadChildren: './admin-modules/keychain/keychain.module#KeychainModule',

@@ -48,6 +48,7 @@ export class ControlPanelUiExtendedFiltersComponent implements OnInit, OnDestroy
       distinctUntilChanged(),
       takeUntil(this.destroyed$))
       .subscribe((result) => {
+        // TODO should removed after integrate API
         let filtered = null;
         if (result.age) {
           filtered = this._data.filter((item: User) => item.age === +result.age);
