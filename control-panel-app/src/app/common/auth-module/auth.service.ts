@@ -23,11 +23,11 @@ export class AuthService {
     return this.currentUser.value;
   }
 
-  login({login, password}): boolean {
+  login({login, password, permission}): boolean {
     if (login === 'admin' && password === 'password') {
       const user = {
         token: 'fake-control-teleport-token',
-        permission: 'admin'
+        permission
       };
       localStorage.setItem('USER', JSON.stringify(user));
       this.currentUser.next(user);

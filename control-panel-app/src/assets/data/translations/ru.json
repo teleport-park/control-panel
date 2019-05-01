@@ -95,5 +95,6 @@
   "EXTENDED_FILTER_ANY": "Любой",
   "USER_PAGE_TITLE": "Пользователь",
   "BACK_TO_USERS": "Вернуться к пользователям",
-  "USER_LAST_VISIT": "Последний визит"
+  "USER_LAST_VISIT": "Последний визит",
+  "NOT_AUTH_MESSAGE": "У вас нет прав для просмотра этого раздела"
 }

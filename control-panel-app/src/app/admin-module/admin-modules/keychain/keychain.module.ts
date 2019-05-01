@@ -6,6 +6,7 @@ import { CardsComponent } from './cards/cards.component';
 import { SharedModule } from '../../../common/shared-module/shared.module';
 import { MaterialModule } from '../../../material.module';
 import { CardsService } from './cards/services/cards.service';
+import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
 
 const routes: Routes = [{
   path: '',
@@ -13,7 +14,8 @@ const routes: Routes = [{
   children: [{
     path: 'cards',
     component: CardsComponent,
-    data: {title: 'ADMIN_MENU_CARDS'}
+    data: {title: 'ADMIN_MENU_CARDS'},
+    canActivate: [PermissionGuard]
   }]
 }];
 

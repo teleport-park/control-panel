@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HardwareComponent } from './hardware/hardware.component';
 import { HardwareService } from './hardware/services/hardware.service';
 import { AmusementsService } from './services/amusements.service';
+import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
 
 const routes: Routes = [{
   path: '',
@@ -14,7 +15,8 @@ const routes: Routes = [{
   children: [{
     path: 'hardware',
     component: HardwareComponent,
-    data: {title: 'ADMIN_MENU_HARDWARE'}
+    data: {title: 'ADMIN_MENU_HARDWARE'},
+    canActivate: [PermissionGuard]
   }]
 }];
 

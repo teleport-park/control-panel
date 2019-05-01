@@ -8,6 +8,7 @@ import { SharedModule } from '../../../common/shared-module/shared.module';
 import { MaterialModule } from '../../../material.module';
 import { TranslationModule } from '../../../common/translations-module/translation.module';
 import { PermissionsService } from './permissions/services/permissions.service';
+import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
 
 const routes: Routes = [{
   path: '',
@@ -16,7 +17,8 @@ const routes: Routes = [{
     {
       path: 'permissions',
       component: PermissionsComponent,
-      data: {title: 'GROUP_PERMISSIONS'}
+      data: {title: 'GROUP_PERMISSIONS'},
+      canActivate: [PermissionGuard]
     }
   ]
 }];

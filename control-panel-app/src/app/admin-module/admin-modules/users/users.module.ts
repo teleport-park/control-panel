@@ -10,6 +10,7 @@ import { SharedModule } from '../../../common/shared-module/shared.module';
 import { AddOrEditEntityDialogComponent, ConfirmDialogComponent } from '../../../common/shared-module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
+import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
 
 const routes: Routes = [{
   path: '',
@@ -19,7 +20,8 @@ const routes: Routes = [{
     component: UserComponent,
     data: {
       title: 'ADMIN_MENU_USERS'
-    }
+    },
+    canActivate: [PermissionGuard]
   }]
 }];
 

@@ -6,14 +6,8 @@ import { LoaderService } from '../../services/loader.service';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, mergeMap, takeUntil } from 'rxjs/operators';
-
-export interface MenuItem {
-  icon: string;
-  label: string;
-  path: string;
-  active: boolean;
-  children?: MenuItem[];
-}
+import { BuildMenuHelper, MenuItem } from '../utils/build-menu.helper';
+import { AuthService } from '../../common/auth-module/auth.service';
 
 @Component({
   selector: 'app-admin-contaner',
@@ -28,89 +22,9 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
   /**
    * menu items
    */
-  MENU_ITEMS: MenuItem[] = [
-    {
-      icon: 'dashboard',
-      label: 'ADMIN_MENU_DASHBOARD',
-      path: '/admin/dashboard',
-      active: false
-    }, {
-      icon: 'settings',
-      label: 'ADMIN_MENU_ADMINISTRATION',
-      path: '/admin/administration',
-      active: false,
-      children: [
-        {
-          icon: 'code',
-          label: 'GROUP_PERMISSIONS',
-          path: '/admin/administration/permissions',
-          active: false
-        }
-      ]
-    }, {
-      icon: 'monetization_on',
-      label: 'ADMIN_MENU_BILLING',
-      path: '/admin/billing',
-      active: false,
-      children: [{
-        icon: 'games',
-        label: 'ADMIN_MENU_GAMES_TARIFFS',
-        path: '/admin/billing/games-tariffs',
-        active: false
-      }, {
-        icon: 'money',
-        label: 'ADMIN_MENU_INCOME_TARIFFS',
-        path: '/admin/billing/income-tariffs',
-        active: false
-      }, {
-        icon: 'compare_arrows',
-        label: 'ADMIN_MENU_TRANSACTIONS',
-        path: '/admin/billing/transactions',
-        active: false
-      }]
-    }, {
-      icon: 'videogame_asset',
-      label: 'ADMIN_MENU_AMUSEMENT',
-      path: '/admin/amusements',
-      active: false,
-      children: [{
-        icon: 'computer',
-        label: 'ADMIN_MENU_HARDWARE',
-        path: '/admin/amusements/hardware',
-        active: false
-      } ]
-    }, {
-      icon: 'people',
-      label: 'ADMIN_MENU_USERS',
-      path: '/admin/users',
-      active: false
-    }, {
-      icon: 'people_outline',
-      label: 'ADMIN_MENU_STAFF',
-      path: '/admin/staff',
-      active: false,
-      children: [
-        {
-          icon: 'group_add',
-          label: 'ADMIN_MENU_GROUPS',
-          path: '/admin/staff/groups',
-          active: false
-        }
-      ]
-    }, {
-      icon: 'vpn_key',
-      label: 'ADMIN_MENU_KEYCHAIN',
-      path: '/admin/keychain',
-      active: false,
-      children: [{
-        icon: 'credit_card',
-        label: 'ADMIN_MENU_CARDS',
-        path: '/admin/keychain/cards',
-        active: false
-      }]
-    }
-  ];
+  MENU_ITEMS: MenuItem[];
 
+  menuBuilder: BuildMenuHelper = new BuildMenuHelper(this.authService);
   /**
    * side nav
    */
@@ -129,6 +43,7 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
    * @param point {BreakpointService}
    * @param router
    * @param activatedRoute
+   * @param authService
    */
   constructor(
     public translateService: TranslateService,
@@ -136,12 +51,14 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
     public loaderService: LoaderService,
     public point: BreakpointService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute,
+    public authService: AuthService) {
   }
 
   ngOnInit() {
     this.activeView = this.activatedRoute.snapshot.firstChild.data.title;
     const currentPath = this.activatedRoute.snapshot.firstChild.url[0].path;
+    this.MENU_ITEMS = this.menuBuilder.getMenu();
     this.MENU_ITEMS.forEach((item: MenuItem) => {
       item.active = item.path.indexOf(currentPath) > -1;
     });

@@ -14,11 +14,11 @@
            (click)="menuItem.active = !menuItem.active">
           <i class="material-icons">{{menuItem.icon}}</i>
           {{translateService.instant(menuItem.label)}}
-          <mat-icon class="mat-icon-rtl-mirror expand-icon" *ngIf="menuItem.children">
+          <mat-icon class="mat-icon-rtl-mirror expand-icon" *ngIf="menuItem.children && menuItem.children.length">
             {{menuItem.active ? 'expand_more' : 'chevron_right'}}
           </mat-icon>
         </a>
-        <div class="nav-list-container_children-container" *ngIf="menuItem.children && menuItem.active">
+        <div class="nav-list-container_children-container" *ngIf="menuItem.children && menuItem.children.length && menuItem.active">
           <a mat-list-item *ngFor="let children of menuItem.children"
              [routerLink]="children.path"
              routerLinkActive="active">

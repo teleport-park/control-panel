@@ -16,6 +16,7 @@ import {
   ConfirmDialogComponent
 } from '../../../common/shared-module';
 import { GroupsService } from './groups/services/groups.service';
+import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
 
 const routes: Routes = [{
   path: '',
@@ -23,7 +24,8 @@ const routes: Routes = [{
   children: [{
     path: 'groups',
     component: GroupsComponent,
-    data: {title: 'ADMIN_MENU_GROUPS'}
+    data: {title: 'ADMIN_MENU_GROUPS'},
+    canActivate: [PermissionGuard]
   }]
 }];
 

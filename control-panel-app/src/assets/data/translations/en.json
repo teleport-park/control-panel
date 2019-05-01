@@ -94,5 +94,6 @@
   "EXTENDED_FILTER_TO": "To",
   "USER_PAGE_TITLE": "User",
   "BACK_TO_USERS": "Back to users",
-  "USER_LAST_VISIT": "Last visit"
+  "USER_LAST_VISIT": "Last visit",
+  "NOT_AUTH_MESSAGE": "You are not authorized to view this section."
 }

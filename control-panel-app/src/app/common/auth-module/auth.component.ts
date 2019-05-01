@@ -30,7 +30,8 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
     this.credential = this.fb.group({
       login: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      permission: 'admin'
     });
     this.service.logout();
     const literal = 'returnUrl';

@@ -1,6 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { AdminContainerComponent } from './admin-container.component/admin-container.component';
-import { AdminGuard } from '../common/auth-module/guards/admin.guard';
+import { PermissionGuard } from '../common/auth-module/guards/permission-guard';
 
 const routes: Routes = [
   {
@@ -11,35 +11,42 @@ const routes: Routes = [
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
+        canActivate: [PermissionGuard]
       }, {
         path: 'dashboard',
         loadChildren: './admin-modules/dashboard/dashboard.module#DashboardModule',
-        data: {title: 'ADMIN_MENU_DASHBOARD'}
+        data: {title: 'ADMIN_MENU_DASHBOARD'},
+        canActivate: [PermissionGuard]
       }, {
         path: 'users',
         loadChildren: './admin-modules/users/users.module#UsersModule',
-        data: {title: 'ADMIN_MENU_USERS'}
+        data: {title: 'ADMIN_MENU_USERS'},
+        canActivate: [PermissionGuard]
       }, {
         path: 'amusements',
         loadChildren: './admin-modules/amusements/amusements.module#AmusementsModule',
-        data: {title: 'ADMIN_MENU_AMUSEMENT'}
+        data: {title: 'ADMIN_MENU_AMUSEMENT'},
+        canActivate: [PermissionGuard]
       }, {
         path: 'staff',
         loadChildren: './admin-modules/staff/staff.module#StaffModule',
-        data: {title: 'ADMIN_MENU_STAFF'}
+        data: {title: 'ADMIN_MENU_STAFF'},
+        canActivate: [PermissionGuard]
       }, {
         path: 'administration',
         loadChildren: './admin-modules/administration/administration.module#AdministrationModule',
         data: {title: 'ADMIN_MENU_ADMINISTRATION'},
-        canActivate: [AdminGuard]
+        canActivate: [PermissionGuard]
       }, {
         path: 'keychain',
         loadChildren: './admin-modules/keychain/keychain.module#KeychainModule',
-        data: {title: 'ADMIN_MENU_KEYCHAIN'}
+        data: {title: 'ADMIN_MENU_KEYCHAIN'},
+        canActivate: [PermissionGuard]
       }, {
         path: 'billing',
         loadChildren: './admin-modules/billing/billing.module#BillingModule',
-        data: {title: 'ADMIN_MENU_BILLING'}
+        data: {title: 'ADMIN_MENU_BILLING'},
+        canActivate: [PermissionGuard]
       }
     ]
   }

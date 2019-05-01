@@ -20,6 +20,12 @@
         {{'REQUIRED_FIELD' | translate:[translateService.instant('LOGIN_PAGE_PASSWORD_LABEL')]:(translateService.locale | async)}}
       </mat-error>
     </mat-form-field>
+    <mat-form-field>
+      <mat-select formControlName="permission">
+        <mat-option value="admin">admin</mat-option>
+        <mat-option value="staff">staff</mat-option>
+      </mat-select>
+    </mat-form-field>
     <language-switcher [placeholder]="translateService.instant('LANGUAGE_SWITCHER_LABEL')"
                        (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
     <button mat-raised-button

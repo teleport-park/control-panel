@@ -10,6 +10,7 @@ import { IncomeTariffsComponent } from './income-tariffs/income-tariffs.componen
 import { TransactionsComponent } from './transactions/transactions.component';
 import { TransactionsService } from './transactions/services/transactions.service';
 import { IncomeTariffsService } from './income-tariffs/services/income-tariffs.service';
+import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
 
 const routes: Routes = [{
   path: '',
@@ -17,15 +18,18 @@ const routes: Routes = [{
   children: [{
     path: 'games-tariffs',
     component: GamesTariffsComponent,
-    data: {title: 'ADMIN_MENU_GAMES_TARIFFS'}
+    data: {title: 'ADMIN_MENU_GAMES_TARIFFS'},
+    canActivate: [PermissionGuard]
   }, {
     path: 'income-tariffs',
     component: IncomeTariffsComponent,
-    data: {title: 'ADMIN_MENU_INCOME_TARIFFS'}
+    data: {title: 'ADMIN_MENU_INCOME_TARIFFS'},
+    canActivate: [PermissionGuard]
   }, {
     path: 'transactions',
     component: TransactionsComponent,
-    data: {title: 'ADMIN_MENU_TRANSACTIONS'}
+    data: {title: 'ADMIN_MENU_TRANSACTIONS'},
+    canActivate: [PermissionGuard]
   }]
 }];
 
