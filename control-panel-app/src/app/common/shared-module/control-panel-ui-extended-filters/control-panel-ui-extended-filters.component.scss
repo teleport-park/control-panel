@@ -2,9 +2,14 @@
   display: block;
   width: 250px;
   padding: 15px;
-  .age-field {
-    max-width: 80px;
+  .age-filter {
+    display: flex;
+    justify-content: space-between;
+    .age-field {
+      max-width: 100px;
+    }
   }
+
   .gender-filter {
     &>* {
       display: block;

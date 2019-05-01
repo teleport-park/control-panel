@@ -26,7 +26,8 @@ export class ControlPanelUiExtendedFiltersComponent implements OnInit, OnDestroy
   }
 
   filters: FormGroup = this.fb.group({
-    age: '',
+    ageMax: '99',
+    ageMin: '1',
     male: true,
     female: true,
     registration: null,
