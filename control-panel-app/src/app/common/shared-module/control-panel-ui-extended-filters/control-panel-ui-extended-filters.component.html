@@ -17,7 +17,7 @@
       <mat-select formControlName="ageMax">
         <mat-option *ngFor="let age of [].constructor(99); let i = index;"
                     value="{{i + 1}}"
-        [disabled]="i + 1 < filters.get('ageMin').value">
+                    [disabled]="i + 1 < filters.get('ageMin').value">
           {{i + 1}}
         </mat-option>
       </mat-select>
@@ -32,12 +32,14 @@
     <p>{{translateService.instant('EXTENDED_FILTER_REGISTERED')}}:</p>
     <div class="dates">
       <mat-form-field class="data">
-        <input matInput [matDatepicker]="from" placeholder="{{translateService.instant('EXTENDED_FILTER_FROM')}}" [max]="maxDate" formControlName="registeredFrom">
+        <input matInput [matDatepicker]="from" placeholder="{{translateService.instant('EXTENDED_FILTER_FROM')}}"
+               [max]="maxDate" formControlName="registeredFrom">
         <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
         <mat-datepicker #from></mat-datepicker>
       </mat-form-field>
       <mat-form-field class="data">
-        <input matInput [matDatepicker]="to" placeholder="{{translateService.instant('EXTENDED_FILTER_TO')}}" [max]="maxDate" [min]="filters.get('registeredFrom').value" formControlName="registeredTo">
+        <input matInput [matDatepicker]="to" placeholder="{{translateService.instant('EXTENDED_FILTER_TO')}}"
+               [max]="maxDate" [min]="filters.get('registeredFrom').value" formControlName="registeredTo">
         <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
         <mat-datepicker #to></mat-datepicker>
       </mat-form-field>

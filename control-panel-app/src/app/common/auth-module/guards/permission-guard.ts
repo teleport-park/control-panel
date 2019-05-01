@@ -22,7 +22,10 @@ export class PermissionGuard implements CanActivate {
     const user: { token: string, permission: string } = this.loginService.currentUserValue;
     if (user && user.permission) {
       const path = state.url.split('/');
-      const routeIdentifier = path[path.length - 1];
+      let routeIdentifier = path[path.length - 1];
+      if (path[path.length - 2] === 'users') {
+        routeIdentifier = path[path.length - 2];
+      }
       const permission = MenuPermissionMap[routeIdentifier] as string[];
       if (!permission.length || permission.indexOf(user.permission) > -1) {
         return true;
