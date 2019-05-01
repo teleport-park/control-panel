@@ -10,4 +10,13 @@
       display: block;
     }
   }
+  .registered-filter {
+    .dates {
+      display: flex;
+      justify-content: space-between;
+      .data {
+        max-width: 120px;
+      }
+    }
+  }
 }

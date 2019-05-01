@@ -89,6 +89,9 @@
   "EXTENDED_FILTER_TITLE": "Extended filters",
   "FILTER_ALL_LABEL": "All",
   "EXTENDED_FILTER_ANY": "Any",
+  "EXTENDED_FILTER_REGISTERED": "Registered",
+  "EXTENDED_FILTER_FROM": "From",
+  "EXTENDED_FILTER_TO": "To",
   "USER_PAGE_TITLE": "User",
   "BACK_TO_USERS": "Back to users",
   "USER_LAST_VISIT": "Last visit"
