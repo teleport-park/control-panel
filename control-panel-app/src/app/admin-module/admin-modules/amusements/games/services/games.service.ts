@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AmusementsItem } from '../amusements.component';
+import { AmusementsItem } from '../../amusements.component';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class AmusementsService {
+export class GamesService {
   /**
    * amusements
    */

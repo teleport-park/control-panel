@@ -60,12 +60,17 @@ export class BuildMenuHelper {
     }, {
       icon: 'videogame_asset',
       label: 'ADMIN_MENU_AMUSEMENT',
-      path: '/admin/amusements',
+      path: '',
       active: false,
       children: [{
         icon: 'computer',
         label: 'ADMIN_MENU_HARDWARE',
         path: '/admin/amusements/hardware',
+        active: false
+      }, {
+        icon: 'videogame_asset',
+        label: 'ADMIN_MENU_GAMES',
+        path: '/admin/amusements/games',
         active: false
       }]
     }, {
@@ -121,7 +126,7 @@ export class BuildMenuHelper {
   private prepareMenu(menu: MenuItem[], userPermission: string) {
     return menu.filter((item: MenuItem) => {
       if (item.children) {
-        this.prepareMenu(item.children, userPermission);
+        item.children = this.prepareMenu(item.children, userPermission);
       }
       const path = item.path.split('/');
       const itemIdentifier = path[path.length - 1];

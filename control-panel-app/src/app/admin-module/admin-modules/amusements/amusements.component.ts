@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AmusementsService } from './services/amusements.service';
-import { TranslateService } from '../../../common/translations-module';
 
 export interface AmusementsItem {
   name: string;
@@ -15,23 +13,9 @@ export interface AmusementsItem {
 })
 export class AmusementsComponent implements OnInit {
 
-  readonly URL_PREFIX = './assets/data/images/';
-
-  amusements: AmusementsItem[] = [];
-
-  displayedColumns: string[] = ['logo', 'name', 'desc', 'action'];
-
-  constructor(public service: AmusementsService, public translateService: TranslateService) {
+  constructor() {
   }
 
   ngOnInit() {
   }
-
-  /**
-   * add to tariffs handler
-   */
-  addToTariffs(amusement: AmusementsItem) {
-    console.info('[amusement to tariff] -> ', amusement);
-  }
-
 }

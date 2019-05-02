@@ -6,16 +6,27 @@ import { MaterialModule } from '../../../material.module';
 import { RouterModule, Routes } from '@angular/router';
 import { HardwareComponent } from './hardware/hardware.component';
 import { HardwareService } from './hardware/services/hardware.service';
-import { AmusementsService } from './services/amusements.service';
+import { GamesService } from './games/services/games.service';
 import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
+import { GamesComponent } from './games/games.component';
 
 const routes: Routes = [{
   path: '',
   component: AmusementsComponent,
-  children: [{
+  children: [
+    {
+      path: '',
+      redirectTo: 'hardware',
+      pathMatch: 'full'
+    }, {
     path: 'hardware',
     component: HardwareComponent,
     data: {title: 'ADMIN_MENU_HARDWARE'},
+    canActivate: [PermissionGuard]
+  }, {
+    path: 'games',
+    component: GamesComponent,
+    data: {title: 'ADMIN_MENU_GAMES'},
     canActivate: [PermissionGuard]
   }]
 }];
@@ -24,12 +35,12 @@ export const AmusementRoutingModule = RouterModule.forChild(routes);
 
 
 @NgModule({
-  declarations: [AmusementsComponent, HardwareComponent],
+  declarations: [AmusementsComponent, HardwareComponent, GamesComponent],
   imports: [
     CommonModule,
     SharedModule,
     MaterialModule,
     AmusementRoutingModule
-  ], providers: [HardwareService, AmusementsService]
+  ], providers: [HardwareService, GamesService]
 })
 export class AmusementsModule { }

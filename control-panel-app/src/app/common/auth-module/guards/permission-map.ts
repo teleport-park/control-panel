@@ -14,5 +14,7 @@ export const MenuPermissionMap = {
   groups: ['admin'],
   keychain: [],
   cards: [],
-  'user-management': []
+  'user-management': [],
+  games: [],
+  '': []
 };
