@@ -5,18 +5,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { GroupsComponent } from './groups/groups.component';
 import { StaffService } from './services/staff.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '../../../material.module';
-import { TranslationModule } from '../../../common/translations-module/translation.module';
-import { FormModule } from '../../../common/form/form.module';
-import { SharedModule } from '../../../common/shared-module/shared.module';
+import { MaterialModule } from '../../../../material.module';
+import { TranslationModule } from '../../../../common/translations-module/translation.module';
+import { FormModule } from '../../../../common/form/form.module';
+import { SharedModule } from '../../../../common/shared-module/shared.module';
 import {
   AddGroupDialogComponent,
   AddOrEditEntityDialogComponent,
   AddSimpleEntityDialogComponent, AddStaffDialogComponent,
   ConfirmDialogComponent
-} from '../../../common/shared-module';
+} from '../../../../common/shared-module';
 import { GroupsService } from './groups/services/groups.service';
-import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
+import { PermissionGuard } from '../../../../common/auth-module/guards/permission-guard';
 
 const routes: Routes = [{
   path: '',

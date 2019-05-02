@@ -1,17 +1,17 @@
 import { Inject, Injectable, OnDestroy } from '@angular/core';
-import { User } from '../../../../models/';
+import { User } from '../../../../../models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { finalize, map } from 'rxjs/operators';
-import { LoaderService } from '../../../../services/loader.service';
+import { LoaderService } from '../../../../../services/loader.service';
 import moment from 'moment';
-import { TranslateService } from '../../../../common/translations-module';
+import { TranslateService } from '../../../../../common/translations-module';
 import { PageEvent, Sort } from '@angular/material';
-import { AppData } from '../../../../interfaces';
-import { BuildParamsHelper } from '../../../../utils/build-params-helper';
-import { ApiUrlsService } from '../../../../services/api-urls.service';
-import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
-import { Avatar } from '../../../../models/avatar.model';
+import { AppData } from '../../../../../interfaces';
+import { BuildParamsHelper } from '../../../../../utils/build-params-helper';
+import { ApiUrlsService } from '../../../../../services/api-urls.service';
+import { IAppStorageInterface } from '../../../../../interfaces/app-storage-interface';
+import { Avatar } from '../../../../../models/avatar.model';
 
 
 @Injectable()

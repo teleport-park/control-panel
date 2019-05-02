@@ -70,35 +70,31 @@ export class BuildMenuHelper {
       }]
     }, {
       icon: 'people',
-      label: 'ADMIN_MENU_USERS',
-      path: '/admin/users',
-      active: false
-    }, {
-      icon: 'people_outline',
-      label: 'ADMIN_MENU_STAFF',
-      path: '/admin/staff',
-      active: false,
-      children: [
-        {
-          icon: 'group_add',
-          label: 'ADMIN_MENU_GROUPS',
-          path: '/admin/staff/groups',
-          active: false
-        }
-      ]
-    }, {
-      icon: 'vpn_key',
-      label: 'ADMIN_MENU_KEYCHAIN',
-      path: '/admin/keychain',
+      label: 'ADMIN_MENU_USER_MANAGEMENT',
+      path: '/admin/user-management',
       active: false,
       children: [{
+        icon: 'people',
+        label: 'ADMIN_MENU_USERS',
+        path: '/admin/user-management/users',
+        active: false
+      }, {
+        icon: 'people_outline',
+        label: 'ADMIN_MENU_STAFF',
+        path: '/admin/user-management/staff',
+        active: false,
+      }, {
+        icon: 'group_add',
+        label: 'ADMIN_MENU_GROUPS',
+        path: '/admin/user-management/staff/groups',
+        active: false
+      }, {
         icon: 'credit_card',
         label: 'ADMIN_MENU_CARDS',
-        path: '/admin/keychain/cards',
+        path: '/admin/user-management/cards',
         active: false
       }]
-    }
-  ];
+    }];
 
   /**
    * current user permission

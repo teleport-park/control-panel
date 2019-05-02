@@ -1,14 +1,14 @@
 import { Inject, Injectable } from '@angular/core';
 import { finalize } from 'rxjs/operators';
-import { AppData } from '../../../../../interfaces';
-import { Group, Permission } from '../../../../../models';
+import { AppData } from '../../../../../../interfaces';
+import { Group, Permission } from '../../../../../../models';
 import { HttpClient } from '@angular/common/http';
-import { LoaderService } from '../../../../../services/loader.service';
+import { LoaderService } from '../../../../../../services/loader.service';
 import { MatSnackBar, PageEvent, Sort } from '@angular/material';
-import { TranslateService } from '../../../../../common/translations-module';
-import { IAppStorageInterface } from '../../../../../interfaces/app-storage-interface';
-import { ApiUrlsService } from '../../../../../services/api-urls.service';
-import { BuildParamsHelper } from '../../../../../utils/build-params-helper';
+import { TranslateService } from '../../../../../../common/translations-module';
+import { IAppStorageInterface } from '../../../../../../interfaces/app-storage-interface';
+import { ApiUrlsService } from '../../../../../../services/api-urls.service';
+import { BuildParamsHelper } from '../../../../../../utils/build-params-helper';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable()

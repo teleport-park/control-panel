@@ -65,7 +65,7 @@
       <td mat-cell *matCellDef="let group">
         <span class="table_cell-inner">
           <ul>
-          <li *ngFor="let permission of group.permissions; let i=index;" [hidden]="i > 4"s>
+          <li *ngFor="let permission of group.permissions; let i=index;" [hidden]="i > 4">
             <span *ngIf="i < 4">{{permission.name}}</span>
             <span *ngIf="i === 4">{{translateService.instant('OTHERS')}}</span>
           </li>

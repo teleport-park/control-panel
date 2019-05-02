@@ -18,19 +18,9 @@ const routes: Routes = [
         data: {title: 'ADMIN_MENU_DASHBOARD'},
         canActivate: [PermissionGuard]
       }, {
-        path: 'users',
-        loadChildren: './admin-modules/users/users.module#UsersModule',
-        data: {title: 'ADMIN_MENU_USERS'},
-        canActivate: [PermissionGuard]
-      }, {
         path: 'amusements',
         loadChildren: './admin-modules/amusements/amusements.module#AmusementsModule',
         data: {title: 'ADMIN_MENU_AMUSEMENT'},
-        canActivate: [PermissionGuard]
-      }, {
-        path: 'staff',
-        loadChildren: './admin-modules/staff/staff.module#StaffModule',
-        data: {title: 'ADMIN_MENU_STAFF'},
         canActivate: [PermissionGuard]
       }, {
         path: 'administration',
@@ -38,14 +28,14 @@ const routes: Routes = [
         data: {title: 'ADMIN_MENU_ADMINISTRATION'},
         canActivate: [PermissionGuard]
       }, {
-        path: 'keychain',
-        loadChildren: './admin-modules/keychain/keychain.module#KeychainModule',
-        data: {title: 'ADMIN_MENU_KEYCHAIN'},
-        canActivate: [PermissionGuard]
-      }, {
         path: 'billing',
         loadChildren: './admin-modules/billing/billing.module#BillingModule',
         data: {title: 'ADMIN_MENU_BILLING'},
+        canActivate: [PermissionGuard]
+      }, {
+        path: 'user-management',
+        loadChildren: './admin-modules/user-management/user-management.module#UserManagementModule',
+        data: {title: 'ADMIN_MENU_USER_MANAGEMENT'},
         canActivate: [PermissionGuard]
       }
     ]

@@ -9,22 +9,22 @@ import {
 } from '@angular/core';
 import { UserService } from './services/user.service';
 import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
-import { User } from '../../../models';
+import { User } from '../../../../models';
 import { MatDialog, MatSidenavContent, PageEvent, Sort } from '@angular/material';
-import { TranslateService } from '../../../common/translations-module';
+import { TranslateService } from '../../../../common/translations-module';
 import { Subject } from 'rxjs';
-import { LoaderService } from '../../../services/loader.service';
+import { LoaderService } from '../../../../services/loader.service';
 import {
   AddOrEditEntityDialogComponent,
   ConfirmDialogComponent,
   ConfirmDialogData
-} from '../../../common/shared-module';
+} from '../../../../common/shared-module';
 import { FormControl } from '@angular/forms';
-import { BreakpointService } from '../../../services/breakpoint.service';
+import { BreakpointService } from '../../../../services/breakpoint.service';
 
-import { default as config } from '../../../../app-config.json';
-import { Config } from '../../../interfaces';
-import { IAppStorageInterface } from '../../../interfaces/app-storage-interface';
+import { default as config } from '../../../../../app-config.json';
+import { Config } from '../../../../interfaces';
+import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
 import { Router } from '@angular/router';
 
 @Component({
@@ -221,6 +221,6 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param user
    */
   selectUser(user: User) {
-    this.router.navigate(['admin', 'users', user.id]);
+    this.router.navigate(['admin', 'user-management', 'users', user.id]);
   }
 }

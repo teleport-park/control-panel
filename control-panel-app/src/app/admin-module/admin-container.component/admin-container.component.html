@@ -11,6 +11,7 @@
         <a mat-list-item
            [routerLink]="menuItem.path"
            routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}"
            (click)="menuItem.active = !menuItem.active">
           <i class="material-icons">{{menuItem.icon}}</i>
           {{translateService.instant(menuItem.label)}}
@@ -21,7 +22,8 @@
         <div class="nav-list-container_children-container" *ngIf="menuItem.children && menuItem.children.length && menuItem.active">
           <a mat-list-item *ngFor="let children of menuItem.children"
              [routerLink]="children.path"
-             routerLinkActive="active">
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}">
             <i class="material-icons">{{children.icon}}</i>
             {{translateService.instant(children.label)}}
           </a>

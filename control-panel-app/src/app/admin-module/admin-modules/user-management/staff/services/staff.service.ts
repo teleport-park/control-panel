@@ -1,15 +1,15 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { StaffMember, StaffMemberResponse } from '../../../../models';
+import { StaffMember, StaffMemberResponse } from '../../../../../models';
 import { HttpClient } from '@angular/common/http';
 import { finalize, map } from 'rxjs/operators';
-import { LoaderService } from '../../../../services/loader.service';
+import { LoaderService } from '../../../../../services/loader.service';
 import { MatSnackBar, PageEvent, Sort } from '@angular/material';
-import { TranslateService } from '../../../../common/translations-module';
-import { AppData } from '../../../../interfaces';
-import { BuildParamsHelper } from '../../../../utils/build-params-helper';
-import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
-import { ApiUrlsService } from '../../../../services/api-urls.service';
+import { TranslateService } from '../../../../../common/translations-module';
+import { AppData } from '../../../../../interfaces';
+import { BuildParamsHelper } from '../../../../../utils/build-params-helper';
+import { IAppStorageInterface } from '../../../../../interfaces/app-storage-interface';
+import { ApiUrlsService } from '../../../../../services/api-urls.service';
 
 @Injectable()
 export class StaffService {

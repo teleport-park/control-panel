@@ -21,7 +21,11 @@ export class PermissionGuard implements CanActivate {
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const user: { token: string, permission: string } = this.loginService.currentUserValue;
     if (user && user.permission) {
-      const path = route.routeConfig.path;
+      let path = route.routeConfig.path;
+      if (path === ':id') {
+        const pathArr = state.url.split('/');
+        path = `${pathArr[pathArr.length - 2]}/${path}`;
+      }
       const permission = MenuPermissionMap[path] as string[];
       if (!permission.length || permission.indexOf(user.permission) > -1) {
         return true;

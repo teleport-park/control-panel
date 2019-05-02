@@ -1,16 +1,16 @@
 import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { StaffMember, StaffMemberResponse } from '../../../models';
+import { StaffMember, StaffMemberResponse } from '../../../../models';
 import { StaffService } from './services/staff.service';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { TranslateService } from '../../../common/translations-module';
-import { BreakpointService } from '../../../services/breakpoint.service';
-import { AddStaffDialogComponent, ConfirmDialogComponent, ConfirmDialogData } from '../../../common/shared-module';
+import { TranslateService } from '../../../../common/translations-module';
+import { BreakpointService } from '../../../../services/breakpoint.service';
+import { AddStaffDialogComponent, ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { MatDialog, PageEvent } from '@angular/material';
 
-import { default as config } from '../../../../app-config.json';
-import { Config } from '../../../interfaces';
-import { IAppStorageInterface } from '../../../interfaces/app-storage-interface';
+import { default as config } from '../../../../../app-config.json';
+import { Config } from '../../../../interfaces';
+import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
 
 @Component({
   selector: 'control-panel-staff',

@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from './users.component';
 import { RouterModule, Routes } from '@angular/router';
-import { MaterialModule } from '../../../material.module';
+import { MaterialModule } from '../../../../material.module';
 import { UserService } from './services/user.service';
-import { TranslationModule } from '../../../common/translations-module/translation.module';
-import { FormModule } from '../../../common/form/form.module';
-import { SharedModule } from '../../../common/shared-module/shared.module';
-import { AddOrEditEntityDialogComponent, ConfirmDialogComponent } from '../../../common/shared-module';
+import { TranslationModule } from '../../../../common/translations-module/translation.module';
+import { FormModule } from '../../../../common/form/form.module';
+import { SharedModule } from '../../../../common/shared-module/shared.module';
+import { AddOrEditEntityDialogComponent, ConfirmDialogComponent } from '../../../../common/shared-module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
-import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
+import { PermissionGuard } from '../../../../common/auth-module/guards/permission-guard';
 
 const routes: Routes = [{
   path: '',
