@@ -9,7 +9,7 @@ import { AddStaffDialogComponent, ConfirmDialogComponent, ConfirmDialogData } fr
 import { MatDialog, PageEvent } from '@angular/material';
 
 import { default as config } from '../../../../app-config.json';
-import { AppData, Config } from '../../../interfaces';
+import { Config } from '../../../interfaces';
 import { IAppStorageInterface } from '../../../interfaces/app-storage-interface';
 
 @Component({
@@ -98,12 +98,12 @@ export class StaffComponent implements OnInit, OnDestroy {
   private showModalAddOrEditStaffMemberUser(mode: 'edit' | 'add', staffMember?: StaffMemberResponse) {
     if (mode === 'edit') {
       this.service.getStaffMember(staffMember.id)
-        .pipe(filter(data => !!data.items.length))
-        .subscribe((data: AppData<StaffMemberResponse>) => {
-        this.showDialog(mode, data.items[0]);
+        .pipe(filter(data => !!data))
+        .subscribe((member: StaffMemberResponse) => {
+        this.showDialog(mode, member);
       });
     } else {
-      this.showDialog(mode, new StaffMemberResponse());
+      this.showDialog('add', new StaffMemberResponse());
     }
   }
 

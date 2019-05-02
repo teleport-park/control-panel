@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { StaffMember, StaffMemberResponse } from '../../../../models';
 import { HttpClient } from '@angular/common/http';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 import { MatSnackBar, PageEvent, Sort } from '@angular/material';
 import { TranslateService } from '../../../../common/translations-module';
@@ -50,10 +50,16 @@ export class StaffService {
    * get staff member
    * @param id
    */
-  getStaffMember(id): Observable<AppData<StaffMemberResponse>> {
+  getStaffMember(id): Observable<StaffMemberResponse> {
     const requestMethod = 'GET';
     const url = this.apiBuilder.getStaffUrl(requestMethod, id);
-    return this.http.request<AppData<StaffMemberResponse>>(requestMethod, url);
+    return this.http.request<AppData<StaffMemberResponse>>(requestMethod, url)
+      .pipe(map((data: AppData<StaffMemberResponse>) => {
+        const staffMember = Object.assign(new StaffMemberResponse(), data.items[0]);
+        staffMember.staffGroupName = staffMember.group.name;
+        staffMember.staffGroupId = staffMember.group.id;
+        return staffMember;
+    }));
   }
 
   /**

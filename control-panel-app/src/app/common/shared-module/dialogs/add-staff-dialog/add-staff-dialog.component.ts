@@ -1,9 +1,11 @@
-import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, Inject, OnInit } from '@angular/core';
 import { TranslateService } from '../../../translations-module';
 import { StaffMemberResponse } from '../../../../models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef, PageEvent } from '@angular/material';
+import { MAT_DIALOG_DATA, MatCheckboxChange, MatDialogRef, PageEvent } from '@angular/material';
 import { DataService } from '../../../../services/data.service';
+import moment from 'moment';
+import { SelectionTableModelItem } from '../../control-panel-ui-selection-table/control-panel-ui-selection-table.model';
 
 @Component({
   selector: 'control-panel-add-staff-dialog',
@@ -11,11 +13,17 @@ import { DataService } from '../../../../services/data.service';
   styleUrls: ['./add-staff-dialog.component.scss']
 })
 export class AddStaffDialogComponent implements OnInit {
+  /**
+   * max date today
+   */
+  maxDate = moment();
 
   /**
    * mode
    */
   mode = 'add';
+
+  groupEditState = false;
 
   /**
    * model
@@ -42,12 +50,15 @@ export class AddStaffDialogComponent implements OnInit {
    * @param service
    * @param dialogRef
    * @param data
+   * @param cd
    */
-  constructor(public translateService: TranslateService, private fb: FormBuilder,
+  constructor(public translateService: TranslateService,
+              private cd: ChangeDetectorRef,
+              private fb: FormBuilder,
               public service: DataService,
               public dialogRef: MatDialogRef<AddStaffDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { mode: string, item: StaffMemberResponse }) {
-    dialogRef._containerInstance._config.width = '500px';
+    dialogRef._containerInstance._config.width = '400px';
   }
 
   ngOnInit(): void {
@@ -56,6 +67,7 @@ export class AddStaffDialogComponent implements OnInit {
     this.form = this.getStaffMemberForm();
     this.form.patchValue(this.entityModel);
     this.mode = this.data.mode;
+    moment.locale(this.translateService.locale.getValue());
   }
 
   /**
@@ -64,7 +76,13 @@ export class AddStaffDialogComponent implements OnInit {
   private getStaffMemberForm() {
     return this.fb.group({
       firstName: ['', Validators.required],
-      lastName: ['', Validators.required]
+      lastName: ['', Validators.required],
+      passport: ['', Validators.required],
+      employmentDate: ['', Validators.required],
+      firingDate: '',
+      higherEducation: '',
+      fired: '',
+      isEnabled: ''
     });
   }
 
@@ -100,7 +118,24 @@ export class AddStaffDialogComponent implements OnInit {
    * change group event
    * @param event
    */
-  changeGroup(event) {
-    this.entityModel.staffGroupId = event[0];
+  changeGroup(event: SelectionTableModelItem) {
+    this.entityModel.staffGroupId = event[0].id;
+    this.entityModel.staffGroupName = event[0].name;
+    this.entityModel.group = event[0];
+    this.data.item.group = event[0];
+    this.cd.markForCheck();
+  }
+
+  /**
+   * fire
+   * @param event
+   */
+  fire(event: MatCheckboxChange) {
+    this.entityModel.dismiss(event.checked);
+  }
+
+  editGroup(edit: boolean): void {
+    this.groupEditState = edit;
+    this.dialogRef.updateSize(edit ? '750px' : '500px');
   }
 }

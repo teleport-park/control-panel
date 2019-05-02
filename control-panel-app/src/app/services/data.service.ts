@@ -38,7 +38,7 @@ export class DataService {
   /**
    * get groups map
    */
-  getGroups(pageSize = 10, pageIndex = 1) {
+  getGroups(pageSize = 5, pageIndex = 1) {
     const requestMethod = 'GET';
     const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, null, pageSize, pageIndex);
     this.http.request(requestMethod, url)

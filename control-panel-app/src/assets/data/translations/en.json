@@ -25,6 +25,8 @@
   "USER_AVATARS": "User avatars",
   "USER_NAME": "Name",
   "NICK_NAME": "Nickname",
+  "FIRST_NAME": "First name",
+  "LAST_NAME": "Last name",
   "PHONE": "Phone",
   "USER_STATUSES": "Status",
   "EMAIL": "Email",
@@ -95,5 +97,12 @@
   "USER_PAGE_TITLE": "User",
   "BACK_TO_USERS": "Back to users",
   "USER_LAST_VISIT": "Last visit",
-  "NOT_AUTH_MESSAGE": "You are not authorized to view this section."
+  "NOT_AUTH_MESSAGE": "You are not authorized to view this section.",
+  "STAFF_MEMBER": "Staff member",
+  "STAFF_MEMBER_GROUP": "Staff member group",
+  "STAFF_PASSPORT": "Passport",
+  "STAFF_EMPLOYMENT_DATE": "Employment date",
+  "STAFF_HIGHER_EDUCATION": "Higher education",
+  "STAFF_FIRED_DATE": "Fired date",
+  "STAFF_FIRED_STATE": "Fired"
 }

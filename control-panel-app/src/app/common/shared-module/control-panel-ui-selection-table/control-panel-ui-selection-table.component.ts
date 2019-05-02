@@ -42,7 +42,7 @@ export class ControlPanelUiSelectionTableComponent {
    * selected items
    * @param data
    */
-  @Input() set selected(data: any[]) {
+  @Input() set selected(data: SelectionTableModelItem[]) {
     if (data) {
       this._selected = [...data];
       this.setSelection();
@@ -72,7 +72,7 @@ export class ControlPanelUiSelectionTableComponent {
   /**
    * Emit selection change
    */
-  @Output() selectionChange: EventEmitter<any[]> = new EventEmitter();
+  @Output() selectionChange: EventEmitter<SelectionTableModelItem[]> = new EventEmitter();
 
   constructor() {
   }
@@ -112,6 +112,6 @@ export class ControlPanelUiSelectionTableComponent {
     } else {
       this._selected = [row];
     }
-    this.selectionChange.emit(this._selected.map(item => item.id));
+    this.selectionChange.emit(this._selected);
   }
 }

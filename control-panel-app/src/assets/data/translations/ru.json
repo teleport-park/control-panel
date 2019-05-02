@@ -26,6 +26,8 @@
   "USER_AVATARS": "Аватары пользователя",
   "USER_NAME": "Имя",
   "NICK_NAME": "Никнейм",
+  "FIRST_NAME": "Имя",
+  "LAST_NAME": "Фамилия",
   "PHONE": "Телефон",
   "GROUP": "Группа",
   "USER_STATUSES": "Статус",
@@ -96,5 +98,12 @@
   "USER_PAGE_TITLE": "Пользователь",
   "BACK_TO_USERS": "Вернуться к пользователям",
   "USER_LAST_VISIT": "Последний визит",
-  "NOT_AUTH_MESSAGE": "У вас нет прав для просмотра этого раздела"
+  "NOT_AUTH_MESSAGE": "У вас нет прав для просмотра этого раздела",
+  "STAFF_MEMBER": "Сотрудник",
+  "STAFF_MEMBER_GROUP": "Группа сотрудника",
+  "STAFF_PASSPORT": "Пасспорт №",
+  "STAFF_EMPLOYMENT_DATE": "Дата приема на работу",
+  "STAFF_HIGHER_EDUCATION": "Высшее образование",
+  "STAFF_FIRED_DATE": "Дата увольнения",
+  "STAFF_FIRED_STATE": "Уволен"
 }

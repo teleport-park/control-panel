@@ -1,11 +1,38 @@
-.staff-member_form {
-  display: flex;
-  flex-direction: column;
-  .action-button-group {
+:host {
+  .staff-member_form {
     display: flex;
-    justify-content: flex-end;
-    button {
-      margin-left: 10px;
+    flex-direction: column;
+    .mat-form-field {
+      width: 100%;
     }
+    .table-selection_wrapper {
+      overflow-y: auto;
+      margin-bottom: 15px;
+    }
+    .action-button-group {
+      display: flex;
+      justify-content: flex-end;
+      button {
+        margin-left: 10px;
+      }
+    }
+    .check-control {
+      margin-bottom: 15px;
+      &.fired-date {
+        display: flex;
+        justify-content: space-between;
+        div {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+    .group-section {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .bold {
+    font-weight: 700;
   }
 }
