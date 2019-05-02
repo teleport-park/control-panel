@@ -105,5 +105,6 @@
   "STAFF_EMPLOYMENT_DATE": "Дата приема на работу",
   "STAFF_HIGHER_EDUCATION": "Высшее образование",
   "STAFF_FIRED_DATE": "Дата увольнения",
-  "STAFF_FIRED_STATE": "Уволен"
+  "STAFF_FIRED_STATE": "Уволен",
+  "OTHERS": "Остальные..."
 }

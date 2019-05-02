@@ -104,5 +104,6 @@
   "STAFF_EMPLOYMENT_DATE": "Employment date",
   "STAFF_HIGHER_EDUCATION": "Higher education",
   "STAFF_FIRED_DATE": "Fired date",
-  "STAFF_FIRED_STATE": "Fired"
+  "STAFF_FIRED_STATE": "Fired",
+  "OTHERS": "Others..."
 }
