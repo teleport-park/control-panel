@@ -8,14 +8,17 @@
       <form [formGroup]="filters">
         <div class="is-active-filter">
           <p>{{translateService.instant('EXTENDED_FILTER_STAFF_STATE')}}</p>
-          <mat-checkbox formControlName="activated">{{translateService.instant('EXTENDED_FILTER_STAFF_ACTIVE')}}</mat-checkbox>
-          <mat-checkbox formControlName="deactivated">{{translateService.instant('EXTENDED_FILTER_STAFF_NOT_ACTIVE')}}</mat-checkbox>
+          <mat-checkbox
+            formControlName="activated">{{translateService.instant('EXTENDED_FILTER_STAFF_ACTIVE')}}</mat-checkbox>
+          <mat-checkbox
+            formControlName="deactivated">{{translateService.instant('EXTENDED_FILTER_STAFF_NOT_ACTIVE')}}</mat-checkbox>
         </div>
         <div class="hired-filter">
           <p>{{translateService.instant('STAFF_EMPLOYMENT_DATE')}}:</p>
           <div class="dates">
             <mat-form-field class="data">
-              <input matInput [matDatepicker]="hiredFrom" placeholder="{{translateService.instant('EXTENDED_FILTER_FROM')}}"
+              <input matInput [matDatepicker]="hiredFrom"
+                     placeholder="{{translateService.instant('EXTENDED_FILTER_FROM')}}"
                      [max]="maxDate" formControlName="hiredFrom">
               <mat-datepicker-toggle matSuffix [for]="hiredFrom"></mat-datepicker-toggle>
               <mat-datepicker #hiredFrom></mat-datepicker>
@@ -32,7 +35,8 @@
           <p>{{translateService.instant('STAFF_FIRED_DATE')}}:</p>
           <div class="dates">
             <mat-form-field class="data">
-              <input matInput [matDatepicker]="firedFrom" placeholder="{{translateService.instant('EXTENDED_FILTER_FROM')}}"
+              <input matInput [matDatepicker]="firedFrom"
+                     placeholder="{{translateService.instant('EXTENDED_FILTER_FROM')}}"
                      [max]="maxDate" formControlName="firedFrom">
               <mat-datepicker-toggle matSuffix [for]="firedFrom"></mat-datepicker-toggle>
               <mat-datepicker #firedFrom></mat-datepicker>
@@ -59,29 +63,30 @@
     </div>
   </mat-sidenav>
   <mat-sidenav-content #scrollContainer>
-      <control-panel-ui-card>
-        <div panelUICardHeaderTitle>
-          {{translateService.instant('STAFF_TABLE_LABEL')}}
+    <control-panel-ui-card>
+      <div panelUICardHeaderTitle>
+        {{translateService.instant('STAFF_TABLE_LABEL')}}
+      </div>
+      <div panelUICardContent>
+        <div class="staff-table-wrapper">
+          <control-panel-ui-table
+            [data]="(service.staffMembers$ | async)?.items"
+            [displayedColumns]="displayedColumns"
+            [simpleDataColumn]="simpleDataColumn"
+            [listSortedColumn]="sortedColumn"
+            [itemCount]="(service.staffMembers$ | async)?.count"
+            [storageKey]="service.STAFF_STORAGE_KEY"
+            iconSet="person_add"
+            (edit)="openDialog('edit', $event)"
+            (delete)="openDialog('delete', $event)"
+            (add)="openDialog('add')"
+            (pageChanges)="pageChangeHandler($event)"
+            (sortChanges)="pageChangeHandler($event)"
+            (selected)="selectStaffMember($event)">
+          </control-panel-ui-table>
         </div>
-        <div panelUICardContent>
-          <div class="staff-table-wrapper">
-            <control-panel-ui-table
-              [data]="(service.staffMembers$ | async)?.items"
-              [displayedColumns]="displayedColumns"
-              [simpleDataColumn]="simpleDataColumn"
-              [listSortedColumn]="sortedColumn"
-              [itemCount]="(service.staffMembers$ | async)?.count"
-              [storageKey]="service.STAFF_STORAGE_KEY"
-              iconSet="person_add"
-              (edit)="openDialog('edit', $event)"
-              (delete)="openDialog('delete', $event)"
-              (add)="openDialog('add')"
-              (pageChanges)="pageChangeHandler($event)"
-              (sortChanges)="pageChangeHandler($event)">
-            </control-panel-ui-table>
-          </div>
-        </div>
-      </control-panel-ui-card>
+      </div>
+    </control-panel-ui-card>
   </mat-sidenav-content>
 </mat-sidenav-container>
-<router-outlet #groupOutlet="outlet"></router-outlet>
+<router-outlet #groupOutlet="outlet" (deactivate)="cd.markForCheck()"></router-outlet>

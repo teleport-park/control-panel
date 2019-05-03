@@ -1,0 +1,11 @@
+<div class="staff-member_wrapper mat-elevation-z3" *ngIf="_staffMember">
+  <h5>{{translateService.instant('STAFF_MEMBER')}}</h5>
+  <p *ngFor="let prop of _staffMemberProperties">
+    <span class="staff-property">{{translateService.instant(propertyMap[prop])}}</span>:
+    <span>{{_staffMember[prop]}}</span>
+  </p>
+  <button mat-raised-button color="primary" (click)="showDialog()"><mat-icon>edit</mat-icon>{{translateService.instant('TABLE_EDIT')}}</button>
+</div>
+<div class="staff-member-toolbar">
+  <button mat-raised-button (click)="back()"><mat-icon>arrow_back</mat-icon>{{translateService.instant('BACK_TO_USERS')}}</button>
+</div>

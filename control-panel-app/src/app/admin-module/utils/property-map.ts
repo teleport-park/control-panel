@@ -30,5 +30,11 @@ export const PropertyMap = {
   male: 'USER_GENDER_MALE',
   female: 'USER_GENDER_FEMALE',
   desc: 'USER_DESC',
-  lastVisit: 'USER_LAST_VISIT'
+  lastVisit: 'USER_LAST_VISIT',
+  passport: 'STAFF_PASSPORT',
+  employmentDate: 'STAFF_EMPLOYMENT_DATE',
+  firingDate: 'STAFF_FIRED_DATE',
+  fired: 'STAFF_FIRED_STATE',
+  higherEducation: 'STAFF_HIGHER_EDUCATION',
+  isEnabled: 'STAFF_ENABLED'
 };

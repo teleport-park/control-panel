@@ -111,5 +111,6 @@
   "STAFF_HIGHER_EDUCATION": "Высшее образование",
   "STAFF_FIRED_DATE": "Дата увольнения",
   "STAFF_FIRED_STATE": "Уволен",
+  "STAFF_ENABLED": "Активный",
   "OTHERS": "Остальные..."
 }

@@ -3,9 +3,10 @@ import { Moment } from 'moment';
 import moment from 'moment';
 
 export class StaffMember {
-  id: number;
-  firstName: string;
+
   lastName: string;
+  firstName: string;
+  id: number;
   isEnabled: boolean = undefined;
   staffGroupId: number;
   staffGroupName: string = undefined;

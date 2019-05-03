@@ -14,6 +14,7 @@ import { IAppStorageInterface } from '../../../../interfaces/app-storage-interfa
 import { FormBuilder, FormGroup } from '@angular/forms';
 import moment from 'moment';
 import { GroupsService } from './groups/services/groups.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'control-panel-staff',
@@ -66,7 +67,8 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param dialog
    * @param storage
    * @param fb
-   * @param groupsService
+   * @param groupsService,
+   * @param router
    */
   constructor(public service: StaffService,
               private cd: ChangeDetectorRef,
@@ -75,6 +77,7 @@ export class StaffComponent implements OnInit, OnDestroy {
               public dialog: MatDialog,
               private fb: FormBuilder,
               public groupsService: GroupsService,
+              private router: Router,
               @Inject('IAppStorageInterface') private storage: IAppStorageInterface) {
   }
 
@@ -89,7 +92,7 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param mode
    * @param event
    */
-  openDialog(mode: 'edit' | 'add' | 'delete', event: StaffMember): void {
+  openDialog(mode: 'edit' | 'add' | 'delete', event: StaffMemberResponse): void {
     if (mode === 'delete') {
       this.showConfirmDialog(event);
       return;
@@ -156,6 +159,10 @@ export class StaffComponent implements OnInit, OnDestroy {
    */
   pageChangeHandler(event: PageEvent): void {
     this.service.changeStaffSortOrPagination(event);
+  }
+
+  selectStaffMember(staffMember: StaffMemberResponse): void {
+    this.router.navigate(['admin', 'user-management', 'staff', staffMember.id]);
   }
 
   ngOnDestroy(): void {

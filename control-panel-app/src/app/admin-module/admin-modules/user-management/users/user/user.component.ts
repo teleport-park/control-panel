@@ -73,8 +73,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('id');
-    this.getUser();
-    this.service.usersData$.subscribe(_ => {
+    this.service.usersData$.pipe(filter(data => !!data), takeUntil(this.destroyed$)).subscribe(() => {
       this.getUser();
     });
   }
@@ -87,6 +86,7 @@ export class UserComponent implements OnInit, OnDestroy {
       .pipe(filter(data => !!data), takeUntil(this.destroyed$))
       .subscribe((user: User) => {
         this._user = Object.assign(new User(), user);
+        // TODO should refactor this - it is crap
         this._userPropertiesValue = Object.assign({}, this._user.getUserProperty());
         this._userPropertiesValue.dateOfBirth = moment(this._user.dateOfBirth).format('L');
         this._userPropertiesValue.registered = moment(this._user.registered).format('L');

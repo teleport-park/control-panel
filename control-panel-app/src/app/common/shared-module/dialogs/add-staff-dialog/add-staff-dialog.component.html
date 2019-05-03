@@ -37,7 +37,7 @@
         <mat-checkbox formControlName="fired" (change)="fire($event)">{{'STAFF_FIRED_STATE' | translate}}</mat-checkbox>
         <div *ngIf="entityModel.firingDate"><span>{{'STAFF_FIRED_DATE' | translate}}</span>:&nbsp;<span>{{entityModel.firingDate.format('L')}}</span></div>
       </div>
-      <mat-slide-toggle formControlName="isEnabled" class="check-control">Enabled</mat-slide-toggle>
+      <mat-slide-toggle formControlName="isEnabled" class="check-control">{{translateService.instant('STAFF_ENABLED')}}</mat-slide-toggle>
       <div class="group-section">
         <p><span class="bold">{{'GROUP' | translate}}</span>: <span>{{entityModel.group.name}}</span></p>
         <div>

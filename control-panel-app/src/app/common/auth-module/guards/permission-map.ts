@@ -10,6 +10,7 @@ export const MenuPermissionMap = {
   hardware: [],
   users: [],
   'users/:id': [],
+  'staff/:id': [],
   staff: ['admin'],
   groups: ['admin'],
   keychain: [],

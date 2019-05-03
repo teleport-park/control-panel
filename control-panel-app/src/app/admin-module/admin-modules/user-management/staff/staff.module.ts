@@ -17,6 +17,7 @@ import {
 } from '../../../../common/shared-module';
 import { GroupsService } from './groups/services/groups.service';
 import { PermissionGuard } from '../../../../common/auth-module/guards/permission-guard';
+import { StaffMemberComponent } from './staff-member/staff-member.component';
 
 const routes: Routes = [{
   path: '',
@@ -26,13 +27,18 @@ const routes: Routes = [{
     component: GroupsComponent,
     data: {title: 'ADMIN_MENU_GROUPS'},
     canActivate: [PermissionGuard]
+  }, {
+    path: ':id',
+    component: StaffMemberComponent,
+    data: {title: 'ADMIN_MENU_STAFF'},
+    canActivate: [PermissionGuard]
   }]
 }];
 
 export const StaffRoutingModule = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [StaffComponent, GroupsComponent],
+  declarations: [StaffComponent, GroupsComponent, StaffMemberComponent],
   imports: [
     CommonModule,
     StaffRoutingModule,
