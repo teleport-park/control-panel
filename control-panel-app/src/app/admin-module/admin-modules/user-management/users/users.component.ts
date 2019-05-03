@@ -19,13 +19,14 @@ import {
   ConfirmDialogComponent,
   ConfirmDialogData
 } from '../../../../common/shared-module';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BreakpointService } from '../../../../services/breakpoint.service';
 
 import { default as config } from '../../../../../app-config.json';
 import { Config } from '../../../../interfaces';
 import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
 import { Router } from '@angular/router';
+import moment from 'moment';
 
 @Component({
   selector: 'app-users',
@@ -35,6 +36,11 @@ import { Router } from '@angular/router';
 })
 
 export class UsersComponent implements OnInit, OnDestroy {
+
+  /**
+   * max date
+   */
+  maxDate = moment();
 
   /**
    * quick filter value
@@ -83,6 +89,19 @@ export class UsersComponent implements OnInit, OnDestroy {
   sortedColumn: string[] = [];
 
   /**
+   * filters
+   */
+  filters: FormGroup = this.fb.group({
+    ageMax: '99',
+    ageMin: '1',
+    male: true,
+    female: true,
+    registration: null,
+    registeredFrom: null,
+    registeredTo: moment()
+  });
+
+  /**
    * Constructor
    * @param userService
    * @param cd
@@ -92,6 +111,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param point
    * @param router
    * @param storage
+   * @param fb
    */
   constructor(public userService: UserService,
               public cd: ChangeDetectorRef,
@@ -100,6 +120,7 @@ export class UsersComponent implements OnInit, OnDestroy {
               public dialog: MatDialog,
               public point: BreakpointService,
               private router: Router,
+              private fb: FormBuilder,
               @Inject('IAppStorageInterface') private storage: IAppStorageInterface) {
   }
 

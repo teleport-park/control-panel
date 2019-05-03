@@ -11,6 +11,9 @@ import { MatDialog, PageEvent } from '@angular/material';
 import { default as config } from '../../../../../app-config.json';
 import { Config } from '../../../../interfaces';
 import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import moment from 'moment';
+import { GroupsService } from './groups/services/groups.service';
 
 @Component({
   selector: 'control-panel-staff',
@@ -18,6 +21,11 @@ import { IAppStorageInterface } from '../../../../interfaces/app-storage-interfa
   styleUrls: ['./staff.component.scss']
 })
 export class StaffComponent implements OnInit, OnDestroy {
+
+  /**
+   * max date
+   */
+  maxDate = moment();
 
   /**
    * displayed columns
@@ -34,6 +42,19 @@ export class StaffComponent implements OnInit, OnDestroy {
    */
   sortedColumn: string[] = [];
 
+  /**
+   * filters
+   */
+  filters: FormGroup = this.fb.group({
+    hiredFrom: '',
+    hiredTo: '',
+    firedFrom: '',
+    firedTo: '',
+    activated: '',
+    deactivated: '',
+    group: ''
+  });
+
   private destroyed$: Subject<boolean> = new Subject();
 
   /**
@@ -44,12 +65,16 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param point
    * @param dialog
    * @param storage
+   * @param fb
+   * @param groupsService
    */
   constructor(public service: StaffService,
               private cd: ChangeDetectorRef,
               public translateService: TranslateService,
               public point: BreakpointService,
               public dialog: MatDialog,
+              private fb: FormBuilder,
+              public groupsService: GroupsService,
               @Inject('IAppStorageInterface') private storage: IAppStorageInterface) {
   }
 

@@ -1,50 +1,56 @@
 <h3>{{translateService.instant('EXTENDED_FILTER_TITLE')}}</h3>
-<form [formGroup]="filters" *ngIf="_data">
-  <p>{{translateService.instant('USER_AGE')}}:</p>
-  <div class="age-filter">
-    <mat-form-field class="age-field">
-      <mat-label>{{translateService.instant('EXTENDED_FILTER_FROM')}}</mat-label>
-      <mat-select formControlName="ageMin">
-        <mat-option *ngFor="let age of [].constructor(99); let i = index;"
-                    value="{{i + 1}}"
-                    [disabled]="i + 1 > filters.get('ageMax').value">
-          {{i + 1}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field class="age-field">
-      <mat-label>{{translateService.instant('EXTENDED_FILTER_TO')}}</mat-label>
-      <mat-select formControlName="ageMax">
-        <mat-option *ngFor="let age of [].constructor(99); let i = index;"
-                    value="{{i + 1}}"
-                    [disabled]="i + 1 < filters.get('ageMin').value">
-          {{i + 1}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="gender-filter">
-    <p>{{translateService.instant('USER_GENDER_LABEL')}}:</p>
-    <mat-checkbox formControlName="male">{{translateService.instant('USER_GENDER_MALE')}}</mat-checkbox>
-    <mat-checkbox formControlName="female">{{translateService.instant('USER_GENDER_FEMALE')}}</mat-checkbox>
-  </div>
-  <div class="registered-filter">
-    <p>{{translateService.instant('EXTENDED_FILTER_REGISTERED')}}:</p>
-    <div class="dates">
-      <mat-form-field class="data">
-        <input matInput [matDatepicker]="from" placeholder="{{translateService.instant('EXTENDED_FILTER_FROM')}}"
-               [max]="maxDate" formControlName="registeredFrom">
-        <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
-        <mat-datepicker #from></mat-datepicker>
-      </mat-form-field>
-      <mat-form-field class="data">
-        <input matInput [matDatepicker]="to" placeholder="{{translateService.instant('EXTENDED_FILTER_TO')}}"
-               [max]="maxDate" [min]="filters.get('registeredFrom').value" formControlName="registeredTo">
-        <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
-        <mat-datepicker #to></mat-datepicker>
-      </mat-form-field>
-    </div>
-  </div>
-</form>
+<!--<form [formGroup]="_filters" *ngIf="_data && _filters">-->
+  <!--<p>{{translateService.instant('USER_AGE')}}:</p>-->
+  <!--<div class="age-filter">-->
+    <!--<mat-form-field class="age-field">-->
+      <!--<mat-label>{{translateService.instant('EXTENDED_FILTER_FROM')}}</mat-label>-->
+      <!--<mat-select formControlName="ageMin">-->
+        <!--<mat-option *ngFor="let age of [].constructor(99); let i = index;"-->
+                    <!--value="{{i + 1}}"-->
+                    <!--[disabled]="i + 1 > _filters.get('ageMax').value">-->
+          <!--{{i + 1}}-->
+        <!--</mat-option>-->
+      <!--</mat-select>-->
+    <!--</mat-form-field>-->
+    <!--<mat-form-field class="age-field">-->
+      <!--<mat-label>{{translateService.instant('EXTENDED_FILTER_TO')}}</mat-label>-->
+      <!--<mat-select formControlName="ageMax">-->
+        <!--<mat-option *ngFor="let age of [].constructor(99); let i = index;"-->
+                    <!--value="{{i + 1}}"-->
+                    <!--[disabled]="i + 1 < _filters.get('ageMin').value">-->
+          <!--{{i + 1}}-->
+        <!--</mat-option>-->
+      <!--</mat-select>-->
+    <!--</mat-form-field>-->
+  <!--</div>-->
+  <!--<div class="gender-filter">-->
+    <!--<p>{{translateService.instant('USER_GENDER_LABEL')}}:</p>-->
+    <!--<mat-checkbox formControlName="male">{{translateService.instant('USER_GENDER_MALE')}}</mat-checkbox>-->
+    <!--<mat-checkbox formControlName="female">{{translateService.instant('USER_GENDER_FEMALE')}}</mat-checkbox>-->
+  <!--</div>-->
+  <!--<div class="registered-filter">-->
+    <!--<p>{{translateService.instant('EXTENDED_FILTER_REGISTERED')}}:</p>-->
+    <!--<div class="dates">-->
+      <!--<mat-form-field class="data">-->
+        <!--<input matInput [matDatepicker]="from" placeholder="{{translateService.instant('EXTENDED_FILTER_FROM')}}"-->
+               <!--[max]="maxDate" formControlName="registeredFrom">-->
+        <!--<mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>-->
+        <!--<mat-datepicker #from></mat-datepicker>-->
+      <!--</mat-form-field>-->
+      <!--<mat-form-field class="data">-->
+        <!--<input matInput [matDatepicker]="to" placeholder="{{translateService.instant('EXTENDED_FILTER_TO')}}"-->
+               <!--[max]="maxDate" [min]="_filters.get('registeredFrom').value" formControlName="registeredTo">-->
+        <!--<mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>-->
+        <!--<mat-datepicker #to></mat-datepicker>-->
+      <!--</mat-form-field>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</form>-->
+<!--<ng-template #loading>-->
+  <!--<p>loading...</p>-->
+<!--</ng-template>-->
+<!--<ng-container *ngTemplateOutlet="template ? template: loading;context:ctx">-->
+
+<!--</ng-container>-->
 
 

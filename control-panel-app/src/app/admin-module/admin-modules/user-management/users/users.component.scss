@@ -7,9 +7,31 @@
   .user-component-wrapper {
     height: 100%;
 
-    .extended-filter-wrapper {
-      padding: 5px;
+    .extended-filter_wrapper {
+      padding: 15px;
       max-width: 300px;
+      .age-filter {
+        display: flex;
+        justify-content: space-between;
+        .age-field {
+          max-width: 100px;
+        }
+      }
+
+      .gender-filter {
+        & > * {
+          display: block;
+        }
+      }
+      .registered-filter {
+        .dates {
+          display: flex;
+          justify-content: space-between;
+          .data {
+            max-width: 100px;
+          }
+        }
+      }
     }
 
     button.extended-filters {

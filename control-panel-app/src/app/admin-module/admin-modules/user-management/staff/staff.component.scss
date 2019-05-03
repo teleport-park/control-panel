@@ -1,6 +1,25 @@
 @import "pallete";
 :host {
   width: 100%;
+  .extended-filter_wrapper {
+    padding: 15px;
+    max-width: 300px;
+    .is-active-filter {
+      & > * {
+        display: block;
+      }
+    }
+    .dates {
+      display: flex;
+      justify-content: space-between;
+      .data {
+        max-width: 100px;
+      }
+    }
+    .group-field {
+      width: 100%;
+    }
+  }
   .staff-table-wrapper {
     overflow-x: auto;
   }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef } from '@angular/core';
 import { User } from '../../../models';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
@@ -12,12 +12,14 @@ import moment, { Moment } from 'moment';
   styleUrls: ['./control-panel-ui-extended-filters.component.scss']
 })
 export class ControlPanelUiExtendedFiltersComponent implements OnInit, OnDestroy {
-
+  // TODO this component should rewrite
   destroyed$: Subject<boolean> = new Subject();
 
   _data: User[];
 
   maxDate: Moment = moment();
+
+  _filters: FormGroup;
 
   @Input() set data(data: User[]) {
     if (!this._data && data) {
@@ -25,15 +27,20 @@ export class ControlPanelUiExtendedFiltersComponent implements OnInit, OnDestroy
     }
   }
 
-  filters: FormGroup = this.fb.group({
-    ageMax: '99',
-    ageMin: '1',
-    male: true,
-    female: true,
-    registration: null,
-    registeredFrom: null,
-    registeredTo: moment()
-  });
+  @Input() set filters(filters: FormGroup) {
+    if (filters) {
+      this._filters = filters;
+    }
+  }
+
+  @Input() filteredDataEntity: 'users' | 'staff';
+
+  @Input() template: TemplateRef<any>;
+
+  ctx = {
+    _filters: this._filters,
+    _data: this._data
+  };
 
   /**
    * emit filtered result
@@ -44,7 +51,7 @@ export class ControlPanelUiExtendedFiltersComponent implements OnInit, OnDestroy
   }
 
   ngOnInit() {
-    this.filters.valueChanges.pipe(
+    this._filters.valueChanges.pipe(
       debounceTime(500),
       distinctUntilChanged(),
       takeUntil(this.destroyed$))
