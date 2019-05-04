@@ -142,7 +142,8 @@ export class StaffComponent implements OnInit, OnDestroy {
    */
   private showDialog(mode: 'edit' | 'add', staffMember: StaffMemberResponse) {
     const dialog = this.dialog.open(AddStaffDialogComponent, {
-      data: {mode, item: staffMember}
+      data: {mode, item: staffMember},
+      disableClose: true
     });
     dialog.afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((staff: StaffMember) => {
       if (mode === 'edit') {

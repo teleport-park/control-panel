@@ -114,13 +114,13 @@ export class FormComponent {
    */
   avatar: Avatar;
 
-  /**
-   * listen enter key press to submit dialog
-   * @param event
-   */
-  @HostListener('document:keydown.enter', ['$event']) enterKeyEvent(event: KeyboardEvent) {
-    this.onSubmitHandler();
-  }
+  // /**
+  //  * listen enter key press to submit dialog
+  //  * @param event
+  //  */
+  // @HostListener('document:keydown.enter', ['$event']) enterKeyEvent(event: KeyboardEvent) {
+  //   this.onSubmitHandler();
+  // }
 
   /**
    * constructor

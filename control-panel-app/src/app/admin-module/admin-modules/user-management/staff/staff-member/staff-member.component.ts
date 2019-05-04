@@ -81,7 +81,8 @@ export class StaffMemberComponent implements OnInit, OnDestroy {
    */
   private showDialog() {
     const dialog = this.dialog.open(AddStaffDialogComponent, {
-      data: {mode: 'edit', item: this._staffMemberResponse}
+      data: {mode: 'edit', item: this._staffMemberResponse},
+      disableClose: true
     });
     dialog.afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((staff: StaffMemberResponse) => {
       this.service.editStaffMember(staff);
