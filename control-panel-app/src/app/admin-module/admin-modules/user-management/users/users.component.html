@@ -8,7 +8,7 @@
       <form [formGroup]="filters">
         <p>{{translateService.instant('USER_AGE')}}:</p>
         <div class="age-filter">
-          <mat-form-field class="age-field">s
+          <mat-form-field class="age-field">
             <mat-label>{{translateService.instant('EXTENDED_FILTER_FROM')}}</mat-label>
             <mat-select formControlName="ageMin">
               <mat-option *ngFor="let age of [].constructor(99); let i = index;"
