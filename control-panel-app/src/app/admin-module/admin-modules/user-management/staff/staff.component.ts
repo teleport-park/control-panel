@@ -71,7 +71,7 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param router
    */
   constructor(public service: StaffService,
-              private cd: ChangeDetectorRef,
+              public cd: ChangeDetectorRef,
               public translateService: TranslateService,
               public point: BreakpointService,
               public dialog: MatDialog,
