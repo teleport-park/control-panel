@@ -1,7 +1,10 @@
 @import 'pallete';
 :host {
   width: 100%;
-
+  .card_wrapper {
+    height: 100%;
+    overflow: auto;
+  }
   .table {
     width: 100%;
 

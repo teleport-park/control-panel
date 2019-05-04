@@ -1,19 +1,21 @@
-<control-panel-ui-card>
-  <div panelUICardHeaderTitle>{{translateService.instant('GROUP_LIST')}}</div>
-  <div panelUICardContent>
-    <control-panel-ui-table
-      [displayedColumns]="columns"
-      [simpleDataColumn]="['name']"
-      [listSortedColumn]="sortedColumn"
-      [data]="(service.groups$ | async)?.items"
-      [valueMap]="(service.permissions$ | async)"
-      [itemCount]="(service.groups$ | async)?.count"
-      [storageKey]="service.GROUP_STORAGE_KEY"
-      iconSet="group_add"
-      (edit)="openDialogGroup('edit', $event)"
-      (delete)="showConfirmDialog($event)"
-      (add)="openDialogGroup('add')"
-      (pageChanges)="pageChangeHandler($event)"
-      (sortChanges)="pageChangeHandler($event)"></control-panel-ui-table>
-  </div>
-</control-panel-ui-card>
+<div class="group_wrapper">
+  <control-panel-ui-card>
+    <div panelUICardHeaderTitle>{{translateService.instant('GROUP_LIST')}}</div>
+    <div panelUICardContent>
+      <control-panel-ui-table
+        [displayedColumns]="columns"
+        [simpleDataColumn]="['name']"
+        [listSortedColumn]="sortedColumn"
+        [data]="(service.groups$ | async)?.items"
+        [valueMap]="(service.permissions$ | async)"
+        [itemCount]="(service.groups$ | async)?.count"
+        [storageKey]="service.GROUP_STORAGE_KEY"
+        iconSet="group_add"
+        (edit)="openDialogGroup('edit', $event)"
+        (delete)="showConfirmDialog($event)"
+        (add)="openDialogGroup('add')"
+        (pageChanges)="pageChangeHandler($event)"
+        (sortChanges)="pageChangeHandler($event)"></control-panel-ui-table>
+    </div>
+  </control-panel-ui-card>
+</div>

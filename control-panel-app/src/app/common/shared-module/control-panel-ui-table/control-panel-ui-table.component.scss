@@ -3,8 +3,46 @@
   .table {
     width: 100%;
     th.mat-header-cell {
+      min-width: 60px;
+      position: relative;
       span {
+        position: absolute;
+        left: 0;
+        right: 0;
         padding-left: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: left;
+      }
+      &:before {
+        content: '&nbsp;';
+        visibility: hidden;
+      }
+      &.submenu_header {
+        max-width: 20px;
+      }
+    }
+    th.mat-header-cell:first-of-type {
+      padding-left: 0;
+    }
+    td.mat-cell.simple-data {
+      position: relative;
+      min-width: 50px;
+      &:before {
+        content: '&nbsp;';
+        visibility: hidden;
+      }
+      span {
+        position: absolute;
+        left: 0;
+        right: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      &.submenu_cell {
+        margin: 20px;
       }
     }
     .mat-row {
@@ -54,11 +92,11 @@
     }
   }
   .table-wrapper {
-    .table-toolbar-wrapper {
-      display: flex;
-      justify-content: flex-end;
-    }
     overflow-x: auto;
     overflow-y: hidden;
+  }
+  .table-toolbar-wrapper {
+    display: flex;
+    justify-content: flex-end;
   }
 }

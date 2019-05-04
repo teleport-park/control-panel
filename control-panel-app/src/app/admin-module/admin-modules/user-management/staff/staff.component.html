@@ -63,30 +63,32 @@
     </div>
   </mat-sidenav>
   <mat-sidenav-content #scrollContainer>
-    <control-panel-ui-card>
-      <div panelUICardHeaderTitle>
-        {{translateService.instant('STAFF_TABLE_LABEL')}}
-      </div>
-      <div panelUICardContent>
-        <div class="staff-table-wrapper">
-          <control-panel-ui-table
-            [data]="(service.staffMembers$ | async)?.items"
-            [displayedColumns]="displayedColumns"
-            [simpleDataColumn]="simpleDataColumn"
-            [listSortedColumn]="sortedColumn"
-            [itemCount]="(service.staffMembers$ | async)?.count"
-            [storageKey]="service.STAFF_STORAGE_KEY"
-            iconSet="person_add"
-            (edit)="openDialog('edit', $event)"
-            (delete)="openDialog('delete', $event)"
-            (add)="openDialog('add')"
-            (pageChanges)="pageChangeHandler($event)"
-            (sortChanges)="pageChangeHandler($event)"
-            (selected)="selectStaffMember($event)">
-          </control-panel-ui-table>
+    <div>
+      <control-panel-ui-card>
+        <div panelUICardHeaderTitle>
+          {{translateService.instant('STAFF_TABLE_LABEL')}}
         </div>
-      </div>
-    </control-panel-ui-card>
+        <div panelUICardContent>
+          <div class="staff-table-wrapper">
+            <control-panel-ui-table
+              [data]="(service.staffMembers$ | async)?.items"
+              [displayedColumns]="displayedColumns"
+              [simpleDataColumn]="simpleDataColumn"
+              [listSortedColumn]="sortedColumn"
+              [itemCount]="(service.staffMembers$ | async)?.count"
+              [storageKey]="service.STAFF_STORAGE_KEY"
+              iconSet="person_add"
+              (edit)="openDialog('edit', $event)"
+              (delete)="openDialog('delete', $event)"
+              (add)="openDialog('add')"
+              (pageChanges)="pageChangeHandler($event)"
+              (sortChanges)="pageChangeHandler($event)"
+              (selected)="selectStaffMember($event)">
+            </control-panel-ui-table>
+          </div>
+        </div>
+      </control-panel-ui-card>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 <router-outlet #groupOutlet="outlet" (deactivate)="cd.markForCheck()"></router-outlet>
