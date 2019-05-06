@@ -7,11 +7,6 @@ import { DateAdapter } from '@angular/material';
 import { Avatar } from '../../../models/avatar.model';
 import { PropertyMap } from '../../../admin-module/utils/property-map';
 
-export const LocaleMap = {
-  en: 'en-GB',
-  ru: 'ru-RU'
-};
-
 @Component({
   selector: 'control-panel-ui-form',
   templateUrl: './form.component.html',
@@ -133,7 +128,7 @@ export class FormComponent {
               public translateService: TranslateService,
               private injector: Injector,
               private dateAdapter: DateAdapter<Date>) {
-    dateAdapter.setLocale(LocaleMap[translateService.locale.getValue()]);
+    dateAdapter.setLocale(translateService.locale.getValue());
   }
 
   /**
