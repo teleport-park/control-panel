@@ -1,6 +1,6 @@
 {
-  "en": "English",
-  "ru": "Русский",
+  "en-GB": "English",
+  "ru-RU": "Русский",
   "SELECT_LANGUAGE_PLACEHOLDER": "Select language",
   "ADMIN_MENU_TITLE": "CONTROL PANEL",
   "ADMIN_MENU_HARDWARE": "Hardware",

@@ -3,6 +3,7 @@ import { TranslateService } from '../translate.service';
 import { MatSelectChange } from '@angular/material';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Locales } from '../locales.enum';
 
 export interface LanguageItem {
   label: string;
@@ -22,12 +23,30 @@ export interface ChangeLanguageEvent {
 export class LanguageSwitcherComponent implements OnDestroy, OnInit {
 
   /**
+   * language items
+   */
+  private _languageItems: LanguageItem[] = Object.values(Locales)
+    .filter(value => !isNaN(Number(Locales[value])))
+    .map(value => {
+      return {value, label: this.translateService.instant(value)};
+    });
+
+  /**
    * Language input config
    */
-  @Input() languageItems: LanguageItem[] = [
-    {value: 'en', label: this.translateService.instant('en')},
-    {value: 'ru', label: this.translateService.instant('ru')}
-  ];
+  @Input() set languageItems(languageItems: LanguageItem[]) {
+    if (languageItems) {
+      this._languageItems = languageItems;
+      return;
+    }
+  }
+
+  /**
+   * get language items
+   */
+  get languageItems(): LanguageItem[] {
+    return this._languageItems;
+  }
 
   /**
    * placeholder

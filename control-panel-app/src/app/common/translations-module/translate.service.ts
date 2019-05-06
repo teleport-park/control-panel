@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { LoaderService } from '../../services/loader.service';
 import { StorageService } from '../../services/storage.service';
 import { AppStorageKey } from '../../models/app-storage-key';
+import { Locales } from './locales.enum';
 
 export interface StringTMap<T> {
   [key: string]: T;
@@ -45,7 +46,7 @@ export class TranslateService {
    * get translations
    * @param locale
    */
-  getTranslations(locale: string = 'en') {
+  getTranslations(locale: string = Locales[0]) {
     this.http.get(`./assets/data/translations/${locale}.json`).subscribe(
       (result: StringTMap<string>) => {
         this._translations = result;
@@ -69,6 +70,11 @@ export class TranslateService {
     return this._translations[key] || key;
   }
 
+  /**
+   * interpolate params
+   * @param key
+   * @param params
+   */
   interpolateParams(key: string, params: string[]) {
     return key.replace(/{\d+}/g, (value, _) => {
       const index = +value.replace('{', '').replace('}', '');

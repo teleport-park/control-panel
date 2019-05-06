@@ -1,8 +1,8 @@
 {
   "LANGUAGE_LABEL": "Русский",
   "ADMIN_MENU_TITLE": "ПАНЕЛЬ УПРАВЛЕНИЯ",
-  "ru": "Русский",
-  "en": "English",
+  "ru-RU": "Русский",
+  "en-GB": "English",
   "SELECT_LANGUAGE_PLACEHOLDER": "Выберите язык",
   "ADMIN_MENU_HARDWARE": "Устройства",
   "ADMIN_MENU_TRANSACTIONS": "Транзакции",

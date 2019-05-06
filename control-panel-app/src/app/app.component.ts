@@ -5,6 +5,7 @@ import {environment} from '../environments/environment';
 import {AppStorageKey} from './models/app-storage-key';
 import {IAppStorageInterface} from './interfaces/app-storage-interface';
 import {IApiUrlsInterface} from './interfaces/api-urls-interface';
+import { Locales } from './common/translations-module/locales.enum';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class AppComponent {
       appStorage.setValue(AppStorageKey.Version, environment.VERSION);
     }
 
-    const locale = appStorage.getValue(AppStorageKey.Locale, 'en');
+    const locale = appStorage.getValue(AppStorageKey.Locale, Locales[0]);
     // todo: refactor 'locale' variable to be invariant to uppercase
     this.translateService.getTranslations(locale);
     // const testUrl = apiUrls.getPermissionsUrl('PUT', 1);

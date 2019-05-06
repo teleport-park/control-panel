@@ -18,6 +18,7 @@ import { IconService } from '../../../services/icon.service';
 import { AppStorageKey } from '../../../models/app-storage-key';
 import { IAppStorageInterface } from '../../../interfaces/app-storage-interface';
 import { DefaultSort } from '../../../models/default-sort';
+import { Moment } from 'moment';
 
 @Component({
   selector: 'control-panel-ui-table',
@@ -214,5 +215,14 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
       this.sortInst.active = this.storage.getValue<DefaultSort>(`${this.storageKey}${AppStorageKey.Sort}`).active;
       this.sortInst.direction = this.storage.getValue<DefaultSort>(`${this.storageKey}${AppStorageKey.Sort}`).direction;
     }
+  }
+
+  /**
+   * get formatted data
+   * @param data
+   */
+  getFormattedData(data: Moment): string {
+    data.locale(this.translateService.locale.value);
+    return data.format('L');
   }
 }
