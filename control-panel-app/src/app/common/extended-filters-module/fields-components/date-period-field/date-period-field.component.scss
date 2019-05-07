@@ -1,0 +1,10 @@
+:host {
+  .dates {
+    display: flex;
+    justify-content: space-between;
+    max-width: 300px;
+    .data {
+      max-width: 100px;
+    }
+  }
+}

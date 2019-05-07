@@ -11,6 +11,7 @@ import { AddOrEditEntityDialogComponent, ConfirmDialogComponent } from '../../..
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { PermissionGuard } from '../../../../common/auth-module/guards/permission-guard';
+import { ExtendedFiltersModule } from '../../../../common/extended-filters-module/extended-filters.module';
 
 const routes: Routes = [{
   path: '',
@@ -36,7 +37,8 @@ export const UserRoutingModule = RouterModule.forChild(routes);
     UserRoutingModule,
     TranslationModule,
     FormModule,
-    SharedModule
+    SharedModule,
+    ExtendedFiltersModule
   ],
   providers: [UserService],
   entryComponents: [AddOrEditEntityDialogComponent, ConfirmDialogComponent]

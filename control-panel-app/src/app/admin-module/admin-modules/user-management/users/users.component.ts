@@ -19,14 +19,15 @@ import {
   ConfirmDialogComponent,
   ConfirmDialogData
 } from '../../../../common/shared-module';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { BreakpointService } from '../../../../services/breakpoint.service';
 
 import { default as config } from '../../../../../app-config.json';
 import { Config } from '../../../../interfaces';
 import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
 import { Router } from '@angular/router';
-import moment from 'moment';
+import { ExtendedFilterFieldGroup } from '../../../../common/extended-filters-module/extended-filters.component';
+import { UserExtendedFilterConfig } from './users-extended-filters.config';
 
 @Component({
   selector: 'app-users',
@@ -38,9 +39,9 @@ import moment from 'moment';
 export class UsersComponent implements OnInit, OnDestroy {
 
   /**
-   * max date
+   * extended filters config
    */
-  maxDate = moment();
+  extendedFiltersConfig: ExtendedFilterFieldGroup[] = UserExtendedFilterConfig;
 
   /**
    * quick filter value
@@ -87,19 +88,6 @@ export class UsersComponent implements OnInit, OnDestroy {
    * available to sort column
    */
   sortedColumn: string[] = [];
-
-  /**
-   * filters
-   */
-  filters: FormGroup = this.fb.group({
-    ageMax: '99',
-    ageMin: '1',
-    male: true,
-    female: true,
-    registration: null,
-    registeredFrom: null,
-    registeredTo: moment()
-  });
 
   /**
    * Constructor
@@ -218,23 +206,6 @@ export class UsersComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroyed$.next(true);
     this.destroyed$.complete();
-  }
-
-  /**
-   * TODO should removed after integrate new API
-   * @param data
-   */
-  setFilters(data: User[]) {
-    if (data) {
-      this.userService.usersData$.next({
-        count: 0,
-        pageSize: 0,
-        totalPages: 0,
-        items: data
-      });
-    } else {
-      this.userService.getUsers();
-    }
   }
 
   /**

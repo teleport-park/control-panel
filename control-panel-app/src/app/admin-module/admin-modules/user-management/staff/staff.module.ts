@@ -18,6 +18,7 @@ import {
 import { GroupsService } from './groups/services/groups.service';
 import { PermissionGuard } from '../../../../common/auth-module/guards/permission-guard';
 import { StaffMemberComponent } from './staff-member/staff-member.component';
+import { ExtendedFiltersModule } from '../../../../common/extended-filters-module/extended-filters.module';
 
 const routes: Routes = [{
   path: '',
@@ -46,7 +47,8 @@ export const StaffRoutingModule = RouterModule.forChild(routes);
     MaterialModule,
     TranslationModule,
     FormModule,
-    SharedModule
+    SharedModule,
+    ExtendedFiltersModule
   ],
   providers: [StaffService, GroupsService],
   entryComponents: [

@@ -11,10 +11,12 @@ import { MatDialog, PageEvent } from '@angular/material';
 import { default as config } from '../../../../../app-config.json';
 import { Config } from '../../../../interfaces';
 import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import moment from 'moment';
 import { GroupsService } from './groups/services/groups.service';
 import { Router } from '@angular/router';
+import { ExtendedFilterFieldGroup } from '../../../../common/extended-filters-module/extended-filters.component';
+import { StaffExtendedFiltersConfig } from './staff-extended-filters.config';
 
 @Component({
   selector: 'control-panel-staff',
@@ -22,6 +24,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./staff.component.scss']
 })
 export class StaffComponent implements OnInit, OnDestroy {
+
+  /**
+   * extended filters config
+   */
+  extendedFiltersConfig: ExtendedFilterFieldGroup[] = StaffExtendedFiltersConfig;
 
   /**
    * max date
@@ -42,19 +49,6 @@ export class StaffComponent implements OnInit, OnDestroy {
    * list sorted column
    */
   sortedColumn: string[] = [];
-
-  /**
-   * filters
-   */
-  filters: FormGroup = this.fb.group({
-    hiredFrom: '',
-    hiredTo: '',
-    firedFrom: '',
-    firedTo: '',
-    activated: '',
-    deactivated: '',
-    group: ''
-  });
 
   private destroyed$: Subject<boolean> = new Subject();
 
@@ -85,6 +79,10 @@ export class StaffComponent implements OnInit, OnDestroy {
     this.service.getStaffMembers();
     const data = config as Config;
     this.sortedColumn = data.staff.sortedColumns || [];
+    // const groups = this.extendedFiltersConfig.find((field) => field.property === 'group');
+    // if (groups) {
+    //   groups.options = this.groupsService.groups$.getValue().items.map(item => ({id: item.id, label: item.name}));
+    // }
   }
 
   /**
@@ -128,8 +126,8 @@ export class StaffComponent implements OnInit, OnDestroy {
       this.service.getStaffMember(staffMember.id)
         .pipe(filter(data => !!data))
         .subscribe((member: StaffMemberResponse) => {
-        this.showDialog(mode, member);
-      });
+          this.showDialog(mode, member);
+        });
     } else {
       this.showDialog('add', new StaffMemberResponse());
     }

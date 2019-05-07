@@ -3,64 +3,7 @@
                mode="{{(point?.handset | async) ? 'over' : 'side'}}"
                [opened]="!(point?.handset | async)"
                position="end">
-    <div class="extended-filter_wrapper">
-      <h3>{{translateService.instant('EXTENDED_FILTER_TITLE')}}</h3>
-      <form [formGroup]="filters">
-        <div class="is-active-filter">
-          <p>{{translateService.instant('EXTENDED_FILTER_STAFF_STATE')}}</p>
-          <mat-checkbox
-            formControlName="activated">{{translateService.instant('EXTENDED_FILTER_STAFF_ACTIVE')}}</mat-checkbox>
-          <mat-checkbox
-            formControlName="deactivated">{{translateService.instant('EXTENDED_FILTER_STAFF_NOT_ACTIVE')}}</mat-checkbox>
-        </div>
-        <div class="hired-filter">
-          <p>{{translateService.instant('STAFF_EMPLOYMENT_DATE')}}:</p>
-          <div class="dates">
-            <mat-form-field class="data">
-              <input matInput [matDatepicker]="hiredFrom"
-                     placeholder="{{translateService.instant('EXTENDED_FILTER_FROM')}}"
-                     [max]="maxDate" formControlName="hiredFrom">
-              <mat-datepicker-toggle matSuffix [for]="hiredFrom"></mat-datepicker-toggle>
-              <mat-datepicker #hiredFrom></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field class="data">
-              <input matInput [matDatepicker]="hiredTo" placeholder="{{translateService.instant('EXTENDED_FILTER_TO')}}"
-                     [max]="maxDate" [min]="filters.get('hiredFrom').value" formControlName="hiredTo">
-              <mat-datepicker-toggle matSuffix [for]="hiredTo"></mat-datepicker-toggle>
-              <mat-datepicker #hiredTo></mat-datepicker>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="fired-filter">
-          <p>{{translateService.instant('STAFF_FIRED_DATE')}}:</p>
-          <div class="dates">
-            <mat-form-field class="data">
-              <input matInput [matDatepicker]="firedFrom"
-                     placeholder="{{translateService.instant('EXTENDED_FILTER_FROM')}}"
-                     [max]="maxDate" formControlName="firedFrom">
-              <mat-datepicker-toggle matSuffix [for]="firedFrom"></mat-datepicker-toggle>
-              <mat-datepicker #firedFrom></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field class="data">
-              <input matInput [matDatepicker]="firedTo" placeholder="{{translateService.instant('EXTENDED_FILTER_TO')}}"
-                     [max]="maxDate" [min]="filters.get('firedFrom').value" formControlName="firedTo">
-              <mat-datepicker-toggle matSuffix [for]="firedTo"></mat-datepicker-toggle>
-              <mat-datepicker #firedTo></mat-datepicker>
-            </mat-form-field>
-          </div>
-        </div>
-        <mat-form-field class="group-field">
-          <mat-label>{{translateService.instant('GROUP')}}</mat-label>
-          <mat-select formControlName="group">
-            <mat-option value="">{{translateService.instant('FILTER_ALL_LABEL')}}</mat-option>
-            <mat-option *ngFor="let group of (groupsService.groups$ | async)?.items"
-                        value="group.name">
-              {{group.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </form>
-    </div>
+    <extended-filters [config]="extendedFiltersConfig"></extended-filters>
   </mat-sidenav>
   <mat-sidenav-content #scrollContainer>
     <div>

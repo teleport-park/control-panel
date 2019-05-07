@@ -1,0 +1,7 @@
+:host {
+  .check-box-group-filter {
+    & > * {
+      display: block;
+    }
+  }
+}

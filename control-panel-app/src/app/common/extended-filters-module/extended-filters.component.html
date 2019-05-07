@@ -1,0 +1,7 @@
+<div class="extended-filter_wrapper">
+  <h3>{{translateService.instant('EXTENDED_FILTER_TITLE')}}</h3>
+  <form
+    class="extended-filters-form" [formGroup]="form">
+    <ng-container *ngFor="let field of config;" extendedFilters [config]="field" [group]="form"></ng-container>
+  </form>
+</div>

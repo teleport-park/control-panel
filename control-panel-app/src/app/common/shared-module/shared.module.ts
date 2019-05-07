@@ -5,7 +5,6 @@ import { TranslationModule } from '../translations-module/translation.module';
 import { MaterialModule } from '../../material.module';
 import { NumberDirective } from './directives/number.directive';
 import { ControlPanelUiCardComponent } from './control-panel-ui-card/control-panel-ui-card.component';
-import { ControlPanelUiExtendedFiltersComponent } from './control-panel-ui-extended-filters/control-panel-ui-extended-filters.component';
 import { ControlPanelUiTableComponent } from './control-panel-ui-table/control-panel-ui-table.component';
 import { ControlPanelUiSelectionComponent } from './control-panel-ui-selection/control-panel-ui-selection.component';
 import { AddOrEditEntityDialogComponent } from './dialogs/add-entity-dialog/add-or-edit-entity-dialog.component';
@@ -28,7 +27,6 @@ const MODULES = [
   ConfirmDialogComponent,
   NumberDirective,
   ControlPanelUiCardComponent,
-  ControlPanelUiExtendedFiltersComponent,
   ControlPanelUiTableComponent,
   ControlPanelUiSelectionComponent,
   AddOrEditEntityDialogComponent,

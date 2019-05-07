@@ -1,0 +1,17 @@
+<p>{{translateService.instant(config.label)}}</p>
+<div class="dates" [formGroup]="group">
+  <mat-form-field class="data">
+    <input matInput [matDatepicker]="from" placeholder="{{translateService.instant('EXTENDED_FILTER_FROM')}}"
+           [max]="maxDate"
+           [formControlName]="config.group[0].property">
+    <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+    <mat-datepicker #from></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="data">
+    <input matInput [matDatepicker]="to" placeholder="{{translateService.instant('EXTENDED_FILTER_TO')}}"
+           [max]="maxDate" [min]="group.get(config.group[0].property).value"
+           [formControlName]="config.group[1].property">
+    <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+    <mat-datepicker #to></mat-datepicker>
+  </mat-form-field>
+</div>
