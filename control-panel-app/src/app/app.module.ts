@@ -14,6 +14,8 @@ import { AppStorageService } from './services/app-storage.service';
 import { ApiUrlsService } from './services/api-urls.service';
 import { AuthInterceptor } from './common/auth-module/interceptors/auth.interceptor';
 import { ErrorInterceptor } from './common/auth-module/interceptors/error.interceptor';
+import { ExtendedFilterUrlParamsInterface } from './interfaces/extended-filter-url-params.interface';
+import { BuildExtendedFilterParamsHelper } from './utils/build-extended-filter-params-helper';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { ErrorInterceptor } from './common/auth-module/interceptors/error.interc
     },
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: 'ExtendedFilterUrlParamsInterface', useClass: BuildExtendedFilterParamsHelper}
   ],
   bootstrap: [AppComponent]
 })

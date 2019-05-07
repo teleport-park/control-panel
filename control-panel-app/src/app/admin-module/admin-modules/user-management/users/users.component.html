@@ -4,7 +4,7 @@
                [opened]="!(point?.handset | async)"
                position="end">
     <div class="extended-filters_wrapper">
-      <extended-filters [config]="extendedFiltersConfig"></extended-filters>
+      <extended-filters [config]="extendedFiltersConfig" (applyFilter)="applyFilter($event)"></extended-filters>
     </div>
   </mat-sidenav>
   <mat-sidenav-content #scrollContainer>

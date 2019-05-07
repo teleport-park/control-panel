@@ -28,6 +28,7 @@ import { IAppStorageInterface } from '../../../../interfaces/app-storage-interfa
 import { Router } from '@angular/router';
 import { ExtendedFilterFieldGroup } from '../../../../common/extended-filters-module/extended-filters.component';
 import { UserExtendedFilterConfig } from './users-extended-filters.config';
+import { ExtendedFilterUrlParamsInterface } from '../../../../interfaces/extended-filter-url-params.interface';
 
 @Component({
   selector: 'app-users',
@@ -100,6 +101,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    * @param router
    * @param storage
    * @param fb
+   * @param extendedFilterUrlBuilder
    */
   constructor(public userService: UserService,
               public cd: ChangeDetectorRef,
@@ -109,7 +111,8 @@ export class UsersComponent implements OnInit, OnDestroy {
               public point: BreakpointService,
               private router: Router,
               private fb: FormBuilder,
-              @Inject('IAppStorageInterface') private storage: IAppStorageInterface) {
+              @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
+              @Inject('ExtendedFilterUrlParamsInterface') private extendedFilterUrlBuilder: ExtendedFilterUrlParamsInterface) {
   }
 
   /**
@@ -201,6 +204,14 @@ export class UsersComponent implements OnInit, OnDestroy {
    */
   changesHandler(event: PageEvent | Sort): void {
     this.userService.changePaginationOrSort(event);
+  }
+
+  /**
+   * apply extended filters
+   * @param filterData
+   */
+  applyFilter(filterData): void {
+    console.log('[extended filter url] -> ', this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
   }
 
   ngOnDestroy(): void {

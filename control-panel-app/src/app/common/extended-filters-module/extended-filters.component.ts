@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '../translations-module';
-import { takeUntil } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 /**
@@ -46,7 +46,10 @@ export class ExtendedFiltersComponent<T> implements OnInit {
 
   ngOnInit() {
     this.form = this.createForm();
-    this.form.valueChanges.pipe(takeUntil(this.destroyed$)).subscribe((result) => {
+    this.form.valueChanges.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      takeUntil(this.destroyed$)).subscribe((result) => {
       this.applyFilter.emit(result);
     });
   }

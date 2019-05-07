@@ -9,13 +9,14 @@ import { AddStaffDialogComponent, ConfirmDialogComponent, ConfirmDialogData } fr
 import { MatDialog, PageEvent } from '@angular/material';
 
 import { default as config } from '../../../../../app-config.json';
-import { AppData, Config } from '../../../../interfaces';
+import { AppData } from '../../../../interfaces';
 import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
 import { FormBuilder } from '@angular/forms';
 import { GroupsService } from './groups/services/groups.service';
 import { Router } from '@angular/router';
 import { ExtendedFilterFieldGroup } from '../../../../common/extended-filters-module/extended-filters.component';
 import { StaffExtendedFiltersConfig } from './staff-extended-filters.config';
+import { ExtendedFilterUrlParamsInterface } from '../../../../interfaces/extended-filter-url-params.interface';
 
 @Component({
   selector: 'control-panel-staff',
@@ -62,6 +63,7 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param fb
    * @param groupsService,
    * @param router
+   * @param extendedFilterUrlBuilder
    */
   constructor(public service: StaffService,
               public cd: ChangeDetectorRef,
@@ -71,7 +73,8 @@ export class StaffComponent implements OnInit, OnDestroy {
               private fb: FormBuilder,
               public groupsService: GroupsService,
               private router: Router,
-              @Inject('IAppStorageInterface') private storage: IAppStorageInterface) {
+              @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
+              @Inject('ExtendedFilterUrlParamsInterface') private extendedFilterUrlBuilder: ExtendedFilterUrlParamsInterface) {
   }
 
   ngOnInit() {
@@ -160,8 +163,20 @@ export class StaffComponent implements OnInit, OnDestroy {
     this.service.changeStaffSortOrPagination(event);
   }
 
+  /**
+   * select staff member
+   * @param staffMember
+   */
   selectStaffMember(staffMember: StaffMemberResponse): void {
     this.router.navigate(['admin', 'user-management', 'staff', staffMember.id]);
+  }
+
+  /**
+   * apply extended filters
+   * @param filterData
+   */
+  applyFilter(filterData): void {
+    console.log('[extended filter url] -> ', this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
   }
 
   ngOnDestroy(): void {
