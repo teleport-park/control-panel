@@ -20,6 +20,6 @@ export class StaffMemberResponse extends StaffMember {
       fired: this.fired,
       staffGroupName: this.staffGroupName,
       isEnabled: this.isEnabled
-    }
+    };
   }
 }

@@ -1,7 +1,7 @@
 import moment, { Moment } from 'moment';
 import { ExtendedFilterUrlParamsInterface } from '../interfaces/extended-filter-url-params.interface';
 
-export class BuildExtendedFilterParamsHelper implements ExtendedFilterUrlParamsInterface{
+export class BuildExtendedFilterParamsHelper implements ExtendedFilterUrlParamsInterface {
   /**
    * @inheritDoc
    */
