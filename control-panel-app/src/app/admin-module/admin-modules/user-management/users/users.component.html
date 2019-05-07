@@ -3,7 +3,9 @@
                mode="{{(point?.handset | async) ? 'over' : 'side'}}"
                [opened]="!(point?.handset | async)"
                position="end">
-    <extended-filters [config]="extendedFiltersConfig"></extended-filters>
+    <div class="extended-filters_wrapper">
+      <extended-filters [config]="extendedFiltersConfig"></extended-filters>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content #scrollContainer>
     <div>
@@ -24,14 +26,12 @@
                 </mat-icon>
               </mat-form-field>
             </div>
-            <div class="toolbar-action-buttons-group">
-              <button
-                *ngIf="(point.handset | async)"
-                mat-icon-button
-                (click)="extendedFilter.toggle()">
-                <mat-icon>menu</mat-icon>
-              </button>
-            </div>
+            <button
+              *ngIf="(point.handset | async)"
+              mat-icon-button
+              (click)="extendedFilter.toggle()">
+              <mat-icon>menu</mat-icon>
+            </button>
           </div>
           <control-panel-ui-table
             [data]="(userService.usersData$ | async)?.items"

@@ -6,32 +6,8 @@
 
   .user-component-wrapper {
     height: 100%;
-
     .extended-filter_wrapper {
-      padding: 15px;
       width: 300px;
-      .age-filter {
-        display: flex;
-        justify-content: space-between;
-        .age-field {
-          max-width: 100px;
-        }
-      }
-
-      .gender-filter {
-        & > * {
-          display: block;
-        }
-      }
-      .registered-filter {
-        .dates {
-          display: flex;
-          justify-content: space-between;
-          .data {
-            max-width: 100px;
-          }
-        }
-      }
     }
 
     button.extended-filters {
@@ -43,10 +19,8 @@
     .user-table-toolbar {
       padding: 0 10px;
       display: flex;
-      flex-wrap: wrap;
+      justify-content: space-between;
       .users-table-filter {
-        flex: 1 1;
-
         .users-table-filter-input {
           width: 200px;
           margin-right: 20px;

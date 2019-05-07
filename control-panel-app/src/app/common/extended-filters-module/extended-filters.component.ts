@@ -1,16 +1,29 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '../translations-module';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
+/**
+ * extended filters group
+ */
 export interface ExtendedFilterFieldGroup {
   property: string;
   value?: any;
   type?: 'check-box-group' | 'range' | 'select' | 'date-period';
   group?: ExtendedFilterFieldGroup[];
-  options?: {id: number, label: string}[];
+  options?: Options[];
   label?: string;
   from?: number;
   to?: number;
+}
+
+/**
+ * options
+ */
+export interface Options {
+  id: number;
+  label: string;
 }
 
 
@@ -26,13 +39,14 @@ export class ExtendedFiltersComponent<T> implements OnInit {
   form: FormGroup;
 
   @Output() applyFilter: EventEmitter<T> = new EventEmitter();
+  private destroyed$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private fb: FormBuilder, public translateService: TranslateService) {
   }
 
   ngOnInit() {
     this.form = this.createForm();
-    this.form.valueChanges.subscribe((result) => {
+    this.form.valueChanges.pipe(takeUntil(this.destroyed$)).subscribe((result) => {
       this.applyFilter.emit(result);
     });
   }

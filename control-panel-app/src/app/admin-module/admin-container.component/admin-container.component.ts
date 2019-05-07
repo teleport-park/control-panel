@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { LoaderService } from '../../services/loader.service';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map, mergeMap, takeUntil } from 'rxjs/operators';
+import { filter, map, mergeMap, takeUntil, withLatestFrom } from 'rxjs/operators';
 import { BuildMenuHelper, MenuItem } from '../utils/build-menu.helper';
 import { AuthService } from '../../common/auth-module/auth.service';
 
@@ -73,7 +73,11 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
       ).subscribe(data => {
       this.activeView = data.title;
     });
-
+    this.router.events.pipe(
+      withLatestFrom(this.point.handset),
+      filter(([a, b]) => b && a instanceof NavigationEnd),
+      takeUntil(this.destroyed$))
+      .subscribe(() => this.sidenav.close());
   }
 
   ngOnDestroy(): void {

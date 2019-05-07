@@ -5,24 +5,13 @@
   .staff_wrapper {
     height: 100%;
   }
-  .extended-filter_wrapper {
-    padding: 15px;
+  .toolbar-action-buttons-group {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 15px;
+  }
+  .extended-filters_wrapper {
     width: 300px;
-    .is-active-filter {
-      & > * {
-        display: block;
-      }
-    }
-    .dates {
-      display: flex;
-      justify-content: space-between;
-      .data {
-        max-width: 100px;
-      }
-    }
-    .group-field {
-      width: 100%;
-    }
   }
   .staff-table-wrapper {
     overflow-x: auto;

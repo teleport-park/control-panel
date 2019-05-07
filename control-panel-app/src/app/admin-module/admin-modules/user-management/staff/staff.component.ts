@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { StaffMember, StaffMemberResponse } from '../../../../models';
+import { Group, StaffMember, StaffMemberResponse } from '../../../../models';
 import { StaffService } from './services/staff.service';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -9,10 +9,9 @@ import { AddStaffDialogComponent, ConfirmDialogComponent, ConfirmDialogData } fr
 import { MatDialog, PageEvent } from '@angular/material';
 
 import { default as config } from '../../../../../app-config.json';
-import { Config } from '../../../../interfaces';
+import { AppData, Config } from '../../../../interfaces';
 import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
 import { FormBuilder } from '@angular/forms';
-import moment from 'moment';
 import { GroupsService } from './groups/services/groups.service';
 import { Router } from '@angular/router';
 import { ExtendedFilterFieldGroup } from '../../../../common/extended-filters-module/extended-filters.component';
@@ -31,11 +30,6 @@ export class StaffComponent implements OnInit, OnDestroy {
   extendedFiltersConfig: ExtendedFilterFieldGroup[] = StaffExtendedFiltersConfig;
 
   /**
-   * max date
-   */
-  maxDate = moment();
-
-  /**
    * displayed columns
    */
   displayedColumns: string[] = ['firstName', 'lastName', 'staffGroupName', 'submenu'];
@@ -49,6 +43,11 @@ export class StaffComponent implements OnInit, OnDestroy {
    * list sorted column
    */
   sortedColumn: string[] = [];
+
+  /**
+   * available groups
+   */
+  groups: Group[];
 
   private destroyed$: Subject<boolean> = new Subject();
 
@@ -77,12 +76,13 @@ export class StaffComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.service.getStaffMembers();
-    const data = config as Config;
-    this.sortedColumn = data.staff.sortedColumns || [];
-    // const groups = this.extendedFiltersConfig.find((field) => field.property === 'group');
-    // if (groups) {
-    //   groups.options = this.groupsService.groups$.getValue().items.map(item => ({id: item.id, label: item.name}));
-    // }
+    this.sortedColumn = config.staff.sortedColumns || [];
+    const groups = this.extendedFiltersConfig.find((field) => field.property === 'group');
+    this.groupsService.groups$.pipe(filter(data => !!data && !!groups), takeUntil(this.destroyed$))
+      .subscribe((data: AppData<Group>) => {
+        this.groups = data.items;
+        groups.options = this.groups.map(item => ({id: item.id, label: item.name}));
+      });
   }
 
   /**
