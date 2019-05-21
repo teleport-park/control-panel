@@ -131,9 +131,9 @@ export class StaffComponent implements OnInit, OnDestroy {
         .subscribe((member: StaffMemberResponse) => {
           this.showDialog(mode, member);
         });
-    } else {
-      this.showDialog('add', new StaffMemberResponse());
+      return;
     }
+    this.showDialog('add', new StaffMemberResponse());
   }
 
   /**

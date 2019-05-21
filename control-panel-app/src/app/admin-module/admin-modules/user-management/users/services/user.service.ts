@@ -1,8 +1,8 @@
 import { Inject, Injectable, OnDestroy } from '@angular/core';
 import { User } from '../../../../../models';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { finalize, map } from 'rxjs/operators';
+import { catchError, finalize, map } from 'rxjs/operators';
 import { LoaderService } from '../../../../../services/loader.service';
 import moment from 'moment';
 import { TranslateService } from '../../../../../common/translations-module';
@@ -63,12 +63,14 @@ export class UserService implements OnDestroy {
     return this.http.request<AppData<User>>(requestMethod, url).pipe(map((result: AppData<User>) => {
       const user = result.items[0];
       user.registered = moment(user.registered);
-      user.dateOfBirth = moment(user.dateOfBirth);
-      user.userName = user.firstName;
-      user.nickName = user.lastName;
+      user.birthday = moment(user.birthday);
       user.avatars = this.getUserAvatars(user.id);
       user.lastVisit = moment(this.randomDate(new Date(2019, 0, 1), new Date()));
       return user;
+    }), catchError((err) => {
+      console.warn(err);
+      this.loaderService.dispatchShowLoader(false);
+      return EMPTY;
     }));
   }
 
@@ -76,7 +78,7 @@ export class UserService implements OnDestroy {
    * get users
    */
   getUsers(): void {
-    this.loaderService.dispatchShowLoader(true);
+    // this.loaderService.dispatchShowLoader(true);
     const requestMethod = 'GET';
     const params: any = this._paramsHelper.getParams(this.STORAGE_KEY, this.storage);
     const url = this.apiBuilder.getUsersUrl(
@@ -97,8 +99,6 @@ export class UserService implements OnDestroy {
         data.items = data.items.map((user: User) => {
           moment.locale(this.translateService.locale.getValue());
           user.registered = moment(user.registered);
-          user.userName = user.firstName;
-          user.nickName = user.lastName;
           user.avatars = this.getUserAvatars(user.id);
           return user;
         });
@@ -113,9 +113,12 @@ export class UserService implements OnDestroy {
     const requestMethod = 'POST';
     this.loaderService.dispatchShowLoader(true);
     const url = this.apiBuilder.getUsersUrl(requestMethod);
-    this.prepareUserToSave(user);
     this.saveAvatarsToStorage(user);
-    this.http.request(requestMethod, url, {body: user}).subscribe(() => {
+    this.http.request(requestMethod, url, {body: user}).pipe(catchError((err) => {
+      console.warn(err);
+      this.loaderService.dispatchShowLoader(false);
+      return EMPTY;
+    })).subscribe(() => {
       this.getUsers();
     });
   }
@@ -127,9 +130,12 @@ export class UserService implements OnDestroy {
     this.loaderService.dispatchShowLoader(true);
     const requestMethod = 'PUT';
     const url = this.apiBuilder.getUsersUrl(requestMethod, user.id);
-    this.prepareUserToSave(user);
     this.saveAvatarsToStorage(user);
-    this.http.request(requestMethod, url, {body: user}).subscribe(() => {
+    this.http.request(requestMethod, url, {body: user}).pipe(catchError((err) => {
+      console.warn(err);
+      this.loaderService.dispatchShowLoader(false);
+      return EMPTY;
+    })).subscribe(() => {
       this.getUsers();
     });
   }
@@ -141,7 +147,11 @@ export class UserService implements OnDestroy {
     this.loaderService.dispatchShowLoader(true);
     const requestMethod = 'DELETE';
     const url = this.apiBuilder.getUsersUrl(requestMethod, user.id);
-    this.http.request(requestMethod, url).subscribe(() => {
+    this.http.request(requestMethod, url).pipe(catchError((err) => {
+      console.warn(err);
+      this.loaderService.dispatchShowLoader(false);
+      return EMPTY;
+    })).subscribe(() => {
       this.getUsers();
     });
   }
@@ -169,16 +179,6 @@ export class UserService implements OnDestroy {
     const avatars = JSON.parse(localStorage.getItem('AVATARS')) || {};
     avatars[user.id] = user.avatars || [];
     localStorage.setItem('AVATARS', JSON.stringify(avatars));
-  }
-
-  /**
-   * prepare user
-   * TODO should be removed after integrate new api
-   * @param user
-   */
-  private prepareUserToSave(user: User) {
-    user.firstName = user.userName;
-    user.lastName = user.nickName;
   }
 
   /**

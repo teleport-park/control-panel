@@ -1,4 +1,8 @@
 <div class="check-box-group-filter" [formGroup]="group">
   <p>{{translateService.instant(config.label)}}:</p>
-  <mat-checkbox *ngFor="let prop of config.group" [formControlName]="prop.property">{{translateService.instant(prop.label)}}</mat-checkbox>
+  <mat-selection-list [formControlName]="config.property" [disableRipple]="true">
+    <mat-list-option *ngFor="let value of config.options" [checkboxPosition]="'before'" [value]="value.value">
+      {{translateService.instant(value.label)}}
+    </mat-list-option>
+  </mat-selection-list>
 </div>

@@ -33,6 +33,11 @@
         line-height: 40px;
         margin: 15px 0;
         padding: 0 15px;
+        position: relative;
+        span {
+          position: absolute;
+          left: 15px;
+        }
       }
 
       .mat-divider {

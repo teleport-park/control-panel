@@ -11,10 +11,19 @@ import { ExtendedFilterFieldGroup } from '../../extended-filters.component';
 })
 export class DatePeriodFieldComponent implements OnInit {
 
+  /**
+   * config
+   */
   config: ExtendedFilterFieldGroup;
 
+  /**
+   * form group
+   */
   group: FormGroup;
 
+  /**
+   * max date
+   */
   maxDate: Moment = moment();
 
   constructor(public translateService: TranslateService) {

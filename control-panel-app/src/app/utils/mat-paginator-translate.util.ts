@@ -38,6 +38,8 @@ export class MatPaginatorTranslateUtil extends MatPaginatorIntl {
     this.itemsPerPageLabel = this.translateService.instant('USERS_TABLE_PAGINATION_ITEMS_PER_PAGE_LABEL');
     this.nextPageLabel = this.translateService.instant('USERS_TABLE_PAGINATION_NEXT_PAGE_LABEL');
     this.previousPageLabel = this.translateService.instant('USERS_TABLE_PAGINATION_PREVIOUS_PAGE_LABEL');
+    this.lastPageLabel = this.translateService.instant('USERS_TABLE_PAGINATION_LAST_PAGE_LABEL');
+    this.firstPageLabel = this.translateService.instant('USERS_TABLE_PAGINATION_FIRST_PAGE_LABEL');
     this.changes.next();
   }
 }

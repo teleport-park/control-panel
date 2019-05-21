@@ -3,7 +3,11 @@ import { Group } from '../../../../../models';
 import { Subject } from 'rxjs';
 import { MatDialog, PageEvent, Sort } from '@angular/material';
 import { filter, takeUntil } from 'rxjs/operators';
-import { AddGroupDialogComponent, ConfirmDialogComponent, ConfirmDialogData } from '../../../../../common/shared-module';
+import {
+  AddGroupDialogComponent,
+  ConfirmDialogComponent,
+  ConfirmDialogData
+} from '../../../../../common/shared-module';
 import { TranslateService } from '../../../../../common/translations-module';
 
 import { default as config } from '../../../../../../app-config.json';
@@ -31,7 +35,14 @@ export class GroupsComponent implements OnInit, OnDestroy {
    */
   sortedColumn: string[] = [];
 
-  constructor(public service: GroupsService, public dialog: MatDialog, public translateService: TranslateService) {
+  /**
+   * @param service
+   * @param dialog
+   * @param translateService
+   */
+  constructor(public service: GroupsService,
+              public dialog: MatDialog,
+              public translateService: TranslateService) {
   }
 
   ngOnInit() {
@@ -39,6 +50,11 @@ export class GroupsComponent implements OnInit, OnDestroy {
     this.sortedColumn = data.groups.sortedColumns || [];
   }
 
+  /**
+   * open group dialog
+   * @param mode
+   * @param group
+   */
   openDialogGroup(mode: 'edit' | 'add', group = new Group()) {
     const dialogInstance = this.dialog.open(AddGroupDialogComponent, {
       data: {group, mode}

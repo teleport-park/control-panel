@@ -78,12 +78,12 @@ export class UsersComponent implements OnInit, OnDestroy {
   /**
    * list of displayed column
    */
-  displayedColumns: string[] = ['userName', 'nickName', 'phone', 'age', 'email', 'statuses', 'registered', 'submenu'];
+  displayedColumns: string[] = ['name', 'nickname', 'phone', 'age', 'email', 'statuses', 'registered', 'submenu'];
 
   /**
    * column with data
    */
-  columnWithData: string[] = ['userName', 'nickName', 'phone', 'age', 'email'];
+  columnWithData: string[] = ['name', 'nickname', 'phone', 'age', 'email'];
 
   /**
    * available to sort column
@@ -188,7 +188,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       data: {
         title: 'DIALOG_CONFIRM_TITLE',
         message: 'DIALOG_CONFIRM_MESSAGE',
-        messageParams: [`${user.userName}`]
+        messageParams: [`${user.name}`]
       } as ConfirmDialogData,
       autoFocus: false
     }).afterClosed()

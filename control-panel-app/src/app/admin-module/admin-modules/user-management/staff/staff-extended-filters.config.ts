@@ -5,9 +5,9 @@ export const StaffExtendedFiltersConfig: ExtendedFilterFieldGroup[] = [
     property: 'state',
     label: 'EXTENDED_FILTER_STAFF_STATE',
     type: 'check-box-group',
-    group: [
-      {property: 'activated', label: 'EXTENDED_FILTER_STAFF_ACTIVE'},
-      {property: 'deactivated', label: 'EXTENDED_FILTER_STAFF_NOT_ACTIVE'}
+    options: [
+      {value: 'activated', label: 'EXTENDED_FILTER_STAFF_ACTIVE'},
+      {value: 'deactivated', label: 'EXTENDED_FILTER_STAFF_NOT_ACTIVE'}
     ]
   }, {
     property: 'hiredDate',

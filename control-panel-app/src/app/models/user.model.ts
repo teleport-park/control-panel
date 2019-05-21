@@ -16,9 +16,13 @@ export class User extends UserAbstract {
    */
   lastName: string;
   /**
+   * name
+   */
+  name: string;
+  /**
    * nickname
    */
-  nickName?: string;
+  nickname?: string;
   /**
    * registered
    */
@@ -26,9 +30,9 @@ export class User extends UserAbstract {
   /**
    * description
    */
-  desc: string;
+  description: string;
   /**
-   * emaol
+   * email
    */
   email: '';
   /**
@@ -45,7 +49,7 @@ export class User extends UserAbstract {
   avatars?: Avatar[];
 
   /**
-   * last visiy
+   * last visit
    */
   lastVisit: Moment;
 
@@ -53,17 +57,20 @@ export class User extends UserAbstract {
     super();
   }
 
+  /**
+   *
+   */
   getUserProperty() {
     return {
-      userName: this.userName,
-      nickName: this.nickName,
+      name: this.name,
+      nickName: this.nickname,
       age: this.age,
-      dateOfBirth: this.dateOfBirth,
+      dateOfBirth: this.birthday,
       gender: this.gender,
       email: this.email,
       phone: this.phone,
       registered: this.registered,
-      desc: this.desc,
+      description: this.description,
       lastVisit: this.lastVisit
     };
   }

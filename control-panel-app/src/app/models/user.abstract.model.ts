@@ -4,14 +4,9 @@ import moment from 'moment';
 export abstract class UserAbstract {
 
   /**
-   * user name
-   */
-  userName = '';
-
-  /**
    * DOB
    */
-  dateOfBirth: any = null;
+  birthday: any = null;
 
   /**
    * age
@@ -33,8 +28,8 @@ export abstract class UserAbstract {
       this.age =  Math.abs(DOB.diff(moment(), 'years'));
       return this.age;
     }
-    if (this.dateOfBirth._isAMomentObject) {
-      this.age = Math.abs(this.dateOfBirth.diff(moment(), 'years'));
+    if (moment.isMoment(this.birthday)) {
+      this.age = Math.abs(this.birthday.diff(moment(), 'years'));
       return this.age;
     }
     return null;
@@ -45,7 +40,7 @@ export abstract class UserAbstract {
    * @param age
    */
   setDOB(age: number): Moment {
-    this.dateOfBirth = moment().subtract(age, 'years');
-    return this.dateOfBirth;
+    this.birthday = moment().subtract(age, 'years');
+    return this.birthday;
   }
 }

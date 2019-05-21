@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {ApiUrlBuilder} from '../models/api-url-builder';
-import {IApiUrlsInterface} from '../interfaces/api-urls-interface';
-import {environment} from '../../environments/environment';
+import { ApiUrlBuilder } from '../models/api-url-builder';
+import { IApiUrlsInterface } from '../interfaces/api-urls-interface';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

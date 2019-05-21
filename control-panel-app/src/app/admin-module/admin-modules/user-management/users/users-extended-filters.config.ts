@@ -15,16 +15,16 @@ export const UserExtendedFilterConfig: ExtendedFilterFieldGroup[] = [
     property: 'gender',
     label: 'USER_GENDER_LABEL',
     type: 'check-box-group',
-    group: [
-      {property: 'male', label: 'USER_GENDER_MALE'},
-      {property: 'female', label: 'USER_GENDER_FEMALE'}
+    options: [
+      {value: 'male', label: 'USER_GENDER_MALE'},
+      {value: 'female', label: 'USER_GENDER_FEMALE'}
     ]
   }, {
     property: 'registered',
     label: 'EXTENDED_FILTER_REGISTERED',
     type: 'date-period',
     group: [
-      {property: 'registeredFrom'}, {property: 'registeredTo'}
+      {property: 'registered[min]'}, {property: 'registered[max]'}
     ]
   }
 ];

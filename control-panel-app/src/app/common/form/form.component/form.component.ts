@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostListener, Injector, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Injector, Input, Output, ViewChild } from '@angular/core';
 import { StaffMember, User } from '../../../models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import moment, { Moment } from 'moment';
@@ -43,7 +43,7 @@ export class FormComponent {
    * simple data column
    */
   simpleDataColumn: string[] = this.displayedColumns
-    .filter(item => item !== 'dateOfBirth' && item !== 'gender' && item !== 'submenu');
+    .filter(item => item !== 'birthday' && item !== 'gender' && item !== 'submenu');
 
   /**
    * max date for DOB field
@@ -75,7 +75,7 @@ export class FormComponent {
    * @param item { User | StaffMember }
    */
   @Input() set item(item: User) {
-    item.dateOfBirth = moment(item.dateOfBirth, 'YYYY-MM-DD');
+    item.birthday = moment(item.birthday, 'YYYY-MM-DD');
     item.registered = moment(item.registered, 'YYYY-MM-DD');
     this.user = Object.assign(new User(), item);
     this.userAvatars = this.user.avatars ? [...this.user.avatars] : [];
@@ -136,13 +136,13 @@ export class FormComponent {
    */
   private getUserForm() {
     return this.fb.group({
-      userName: ['', Validators.required],
-      nickName: '',
+      name: ['', Validators.required],
+      nickname: '',
       age: ['', [Validators.required, Validators.max(100)]],
-      dateOfBirth: ['', Validators.required],
+      birthday: ['', Validators.required],
       gender: 'male',
       email: ['', [Validators.required, Validators.pattern(FormComponent.EMAIL_REGEXP)]],
-      desc: '',
+      description: '',
       phone: ['', Validators.required]
     });
   }
@@ -172,7 +172,7 @@ export class FormComponent {
    */
   ageChange(age: number): void {
     if (age > 0 && age < 100) {
-      this.userForm.get('dateOfBirth').setValue(this.user.setDOB(age));
+      this.userForm.get('birthday').setValue(this.user.setDOB(age));
     }
   }
 

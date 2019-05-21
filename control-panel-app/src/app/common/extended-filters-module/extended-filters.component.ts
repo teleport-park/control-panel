@@ -22,8 +22,9 @@ export interface ExtendedFilterFieldGroup {
  * options
  */
 export interface Options {
-  id: number;
+  id?: number;
   label: string;
+  value?: string;
 }
 
 

@@ -1,6 +1,5 @@
 export const PropertyMap = {
   index: 'INDEX',
-  userName: 'USER_NAME',
   nickName: 'NICK_NAME',
   firstName: 'FIRST_NAME',
   lastName: 'LAST_NAME',
@@ -29,7 +28,7 @@ export const PropertyMap = {
   gender: 'USER_GENDER_LABEL',
   male: 'USER_GENDER_MALE',
   female: 'USER_GENDER_FEMALE',
-  desc: 'USER_DESC',
+  description: 'USER_DESC',
   lastVisit: 'USER_LAST_VISIT',
   passport: 'STAFF_PASSPORT',
   employmentDate: 'STAFF_EMPLOYMENT_DATE',

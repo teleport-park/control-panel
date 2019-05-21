@@ -1,7 +1,26 @@
 :host {
   .check-box-group-filter {
-    & > * {
-      display: block;
+    p {
+      margin: 0;
+    }
+
+    .mat-selection-list {
+      .mat-list-item {
+        ::ng-deep.mat-list-item-content {
+          padding: 0;
+          font-size: 1rem;
+        }
+
+        &:hover, &:focus {
+          background: rgba(0, 0, 0, 0);
+        }
+
+        height: 30px;
+      }
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 }

@@ -21,6 +21,9 @@ export class StaffMemberComponent implements OnInit, OnDestroy {
    */
   propertyMap = PropertyMap;
 
+  /***
+   * staff member id
+   */
   private staffMemberId: string;
   /**
    * staff member for view
