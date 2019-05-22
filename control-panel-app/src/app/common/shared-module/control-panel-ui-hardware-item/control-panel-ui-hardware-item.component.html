@@ -1,10 +1,10 @@
 <div class="hardware-item_wrapper mat-elevation-z2">
   <div class="hardware-item_title">
-    <h4>{{item.title}}</h4>
+    <h4>{{item.TYPE}}</h4>
   </div>
-  <p>Description: {{item.data.desc}}</p>
-  <p>CPU: {{item.data.cpuDesc}}</p>
-  <p>LAN: {{item.data.lanDesc}}</p>
+  <p>Description: {{item.description}}</p>
+  <p>CPU: {{item.data.cpu.description}}</p>
+  <p>LAN: {{item.data.lan.description}}</p>
   <div class="cpu_status" id="cpu_status">
     <p>CPU: {{cpuBusy}}%</p>
     <x-chartist [data]="cpuData" [type]="'Line'" [options]="chartOptions"></x-chartist>
@@ -13,6 +13,10 @@
     <p>LAN: {{lanBusy}}%</p>
     <x-chartist [data]="lanData" [type]="'Line'" [options]="chartOptions"></x-chartist>
   </div>
-  <p>Status: </p>
-  <p>{{item.status}}</p>
+  <p class="status">
+    <span>Status:</span>
+    <mat-icon [ngClass]="item.status" [matTooltip]="item.status">power_settings_new</mat-icon>
+    &nbsp;
+    <span>({{item.status}})</span>
+  </p>
 </div>

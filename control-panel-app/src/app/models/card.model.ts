@@ -1,5 +1,5 @@
-import { User } from './user.model';
-import { StaffMember } from './staff.member.model';
+import { User } from './user-management/user.model';
+import { StaffMember } from './user-management/staff.member.model';
 
 export class Card {
   id: string;

@@ -13,7 +13,7 @@ export class IconService {
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'playing', iconPath);
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'blacklist', iconPath);
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'inpark', iconPath);
-    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'btc-brands', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'power', iconPath);
   }
 
   private static pushSvgIconToRegistry(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, iconName: string, iconPath: string): void {

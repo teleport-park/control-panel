@@ -47,4 +47,18 @@
       }
     }
   }
+  .status {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    .mat-icon {
+      margin-left: 10px;
+      &.online {
+        color: $success;
+      }
+      &.offline {
+        color: $backdrop;
+      }
+    }
+  }
 }

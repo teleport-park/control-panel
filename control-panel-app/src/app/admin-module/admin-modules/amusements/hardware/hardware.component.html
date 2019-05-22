@@ -1,5 +1,20 @@
-<div class="hardware-items_wrapper row">
-  <div *ngFor="let item of service.items$ | async" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-    <control-panel-ui-hardware-item [item]="item"></control-panel-ui-hardware-item>
+<div class="hardware-items_wrapper">
+  <div class="row">
+    <div *ngFor="let item of service.TVRControllers$ | async; let i = index;"
+         class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+      <control-panel-ui-hardware-item *ngIf="service.TVRPayload$ | async"
+                                      [item]="item"
+                                      [cpuPayload]="(service.TVRPayload$ | async)[i]?.cpu"
+                                      [lanPayload]="(service.TVRPayload$ | async)[i]?.lan"></control-panel-ui-hardware-item>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let item of service.TNGControllers$ | async; let i = index;"
+         class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+      <control-panel-ui-hardware-item *ngIf="service.TNGPayload$ | async"
+                                      [item]="item"
+                                      [cpuPayload]="(service.TNGPayload$ | async)[i]?.cpu"
+                                      [lanPayload]="(service.TNGPayload$ | async)[i]?.lan"></control-panel-ui-hardware-item>
+    </div>
   </div>
 </div>

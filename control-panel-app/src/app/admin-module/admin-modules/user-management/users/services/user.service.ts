@@ -11,7 +11,7 @@ import { AppData } from '../../../../../interfaces';
 import { BuildParamsHelper } from '../../../../../utils/build-params-helper';
 import { ApiUrlsService } from '../../../../../services/api-urls.service';
 import { IAppStorageInterface } from '../../../../../interfaces/app-storage-interface';
-import { Avatar } from '../../../../../models/avatar.model';
+import { Avatar } from '../../../../../models/user-management/avatar.model';
 
 
 @Injectable()

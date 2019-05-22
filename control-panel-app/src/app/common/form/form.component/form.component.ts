@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import moment, { Moment } from 'moment';
 import { TranslateService } from '../../translations-module';
 import { DateAdapter } from '@angular/material';
-import { Avatar } from '../../../models/avatar.model';
+import { Avatar } from '../../../models/user-management/avatar.model';
 import { PropertyMap } from '../../../admin-module/utils/property-map';
 
 @Component({
