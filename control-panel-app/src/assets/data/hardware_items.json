@@ -1,11 +1,88 @@
 [
   {
+    "id": "5ce5c9a8b4b83b4ac5e5eec7",
+    "type": "TNG",
+    "status": "online",
+    "description": "fugiat",
+    "ip": "738.601.943.674",
+    "data": {
+      "cpu": {
+        "description": "Intel"
+      },
+      "lan": {
+        "description": "Realtek"
+      }
+    }
+  },
+  {
+    "id": "5ce5c9a8ea34a48b0395b4bf",
+    "type": "TVR",
+    "status": "online",
+    "description": "nisi",
+    "ip": "648.367.594.50",
+    "data": {
+      "cpu": {
+        "description": "AMD"
+      },
+      "lan": {
+        "description": "Intel"
+      }
+    }
+  },
+  {
+    "id": "5ce5c9a85c8b867efbd54d96",
+    "type": "TVR",
+    "status": "online",
+    "description": "aliqua",
+    "ip": "385.701.290.710",
+    "data": {
+      "cpu": {
+        "description": "Intel"
+      },
+      "lan": {
+        "description": "Realtek"
+      }
+    }
+  },
+  {
+    "id": "5ce5c9a806daf0c7e85c3212",
     "type": "TNG",
     "status": "offline",
+    "description": "proident",
+    "ip": "767.650.779.135",
+    "data": {
+      "cpu": {
+        "description": "AMD"
+      },
+      "lan": {
+        "description": "Intel"
+      }
+    }
+  },
+  {
+    "id": "5ce5c9a8c6fb3d2d509a1300",
+    "type": "TVR",
+    "status": "online",
+    "description": "exercitation",
+    "ip": "92.781.245.690",
+    "data": {
+      "cpu": {
+        "description": "Intel"
+      },
+      "lan": {
+        "description": "Intel"
+      }
+    }
+  },
+  {
+    "id": "5ce5c9a8f95c8d3dd12f5a67",
+    "type": "TVR",
+    "status": "online",
     "description": "anim",
+    "ip": "847.913.657.155",
     "data": {
       "cpu": {
-        "description": "Intel"
+        "description": "AMD"
       },
       "lan": {
         "description": "Intel"
@@ -13,9 +90,11 @@
     }
   },
   {
+    "id": "5ce5c9a85ebe25c9f26b943c",
     "type": "TNG",
     "status": "online",
-    "description": "sunt",
+    "description": "cupidatat",
+    "ip": "402.934.500.10",
     "data": {
       "cpu": {
         "description": "AMD"
@@ -26,48 +105,26 @@
     }
   },
   {
-    "type": "TVR",
-    "status": "online",
-    "description": "duis",
-    "data": {
-      "cpu": {
-        "description": "Intel"
-      },
-      "lan": {
-        "description": "Intel"
-      }
-    }
-  },
-  {
-    "type": "TVR",
-    "status": "online",
-    "description": "sit",
-    "data": {
-      "cpu": {
-        "description": "AMD"
-      },
-      "lan": {
-        "description": "Intel"
-      }
-    }
-  },
-  {
-    "type": "TNG",
-    "status": "online",
-    "description": "laboris",
-    "data": {
-      "cpu": {
-        "description": "AMD"
-      },
-      "lan": {
-        "description": "Intel"
-      }
-    }
-  },
-  {
+    "id": "5ce5c9a8080f2d59d7b8b1a1",
     "type": "TNG",
     "status": "offline",
-    "description": "aute",
+    "description": "incididunt",
+    "ip": "720.402.835.722",
+    "data": {
+      "cpu": {
+        "description": "AMD"
+      },
+      "lan": {
+        "description": "Intel"
+      }
+    }
+  },
+  {
+    "id": "5ce5c9a863d455e9e65c0e71",
+    "type": "TVR",
+    "status": "offline",
+    "description": "adipisicing",
+    "ip": "73.48.381.988",
     "data": {
       "cpu": {
         "description": "Intel"
@@ -78,48 +135,11 @@
     }
   },
   {
-    "type": "TNG",
-    "status": "offline",
-    "description": "ut",
-    "data": {
-      "cpu": {
-        "description": "Intel"
-      },
-      "lan": {
-        "description": "Intel"
-      }
-    }
-  },
-  {
-    "type": "TVR",
-    "status": "offline",
-    "description": "ipsum",
-    "data": {
-      "cpu": {
-        "description": "Intel"
-      },
-      "lan": {
-        "description": "Realtek"
-      }
-    }
-  },
-  {
+    "id": "5ce5c9a8be2513c0fb81731d",
     "type": "TVR",
     "status": "online",
-    "description": "amet",
-    "data": {
-      "cpu": {
-        "description": "Intel"
-      },
-      "lan": {
-        "description": "Intel"
-      }
-    }
-  },
-  {
-    "type": "TVR",
-    "status": "offline",
-    "description": "aliquip",
+    "description": "nisi",
+    "ip": "81.206.332.248",
     "data": {
       "cpu": {
         "description": "AMD"
@@ -130,28 +150,17 @@
     }
   },
   {
-    "type": "TNG",
+    "id": "5ce5c9a8519126a06def3726",
+    "type": "TVR",
     "status": "online",
-    "description": "officia",
+    "description": "cupidatat",
+    "ip": "181.457.395.27",
     "data": {
       "cpu": {
-        "description": "Intel"
+        "description": "AMD"
       },
       "lan": {
         "description": "Realtek"
-      }
-    }
-  },
-  {
-    "type": "TNG",
-    "status": "online",
-    "description": "eiusmod",
-    "data": {
-      "cpu": {
-        "description": "Intel"
-      },
-      "lan": {
-        "description": "Intel"
       }
     }
   }

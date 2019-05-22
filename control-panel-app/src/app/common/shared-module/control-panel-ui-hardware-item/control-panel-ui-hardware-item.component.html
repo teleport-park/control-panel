@@ -1,6 +1,6 @@
-<div class="hardware-item_wrapper mat-elevation-z2">
+<div class="hardware-item_wrapper mat-elevation-z2" (click)="goToDevice()">
   <div class="hardware-item_title">
-    <h4>{{item.TYPE}}</h4>
+    <h4>{{item.TYPE}} (ip: {{item.ip}})</h4>
   </div>
   <p>Description: {{item.description}}</p>
   <p>CPU: {{item.data.cpu.description}}</p>

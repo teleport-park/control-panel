@@ -5,7 +5,8 @@
       <control-panel-ui-hardware-item *ngIf="service.TVRPayload$ | async"
                                       [item]="item"
                                       [cpuPayload]="(service.TVRPayload$ | async)[i]?.cpu"
-                                      [lanPayload]="(service.TVRPayload$ | async)[i]?.lan"></control-panel-ui-hardware-item>
+                                      [lanPayload]="(service.TVRPayload$ | async)[i]?.lan"
+                                      (selectDevice)="selectDevice($event)"></control-panel-ui-hardware-item>
     </div>
   </div>
   <div class="row">
@@ -14,7 +15,8 @@
       <control-panel-ui-hardware-item *ngIf="service.TNGPayload$ | async"
                                       [item]="item"
                                       [cpuPayload]="(service.TNGPayload$ | async)[i]?.cpu"
-                                      [lanPayload]="(service.TNGPayload$ | async)[i]?.lan"></control-panel-ui-hardware-item>
+                                      [lanPayload]="(service.TNGPayload$ | async)[i]?.lan"
+                                      (selectDevice)="selectDevice($event)"></control-panel-ui-hardware-item>
     </div>
   </div>
 </div>

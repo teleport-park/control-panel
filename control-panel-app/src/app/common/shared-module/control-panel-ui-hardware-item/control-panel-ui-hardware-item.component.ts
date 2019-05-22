@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { TranslateService } from '../../translations-module';
 import { IChartistData, IChartistSeriesData, ILineChartOptions } from 'chartist';
 import { TNGController, TVRController } from '../../../models';
@@ -75,6 +75,11 @@ export class ControlPanelUiHardwareItemComponent implements OnInit, OnDestroy {
    */
   lanBusy: number;
 
+  /**
+   * emit selected device id
+   */
+  @Output() selectDevice: EventEmitter<string> = new EventEmitter();
+
   constructor(private cd: ChangeDetectorRef, public translateService: TranslateService) {
   }
 
@@ -111,6 +116,10 @@ export class ControlPanelUiHardwareItemComponent implements OnInit, OnDestroy {
     this.cpuData.series[0] = data.slice(-30);
     this.cpuData = {...this.cpuData};
     this.cd.markForCheck();
+  }
+
+  goToDevice() {
+    this.selectDevice.emit(this.item.id);
   }
 
   ngOnDestroy(): void {

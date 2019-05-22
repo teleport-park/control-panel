@@ -9,6 +9,7 @@ import { HardwareService } from './hardware/services/hardware.service';
 import { GamesService } from './games/services/games.service';
 import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
 import { GamesComponent } from './games/games.component';
+import { DeviceComponent } from './device/device.component';
 
 const routes: Routes = [{
   path: '',
@@ -19,23 +20,28 @@ const routes: Routes = [{
       redirectTo: 'hardware',
       pathMatch: 'full'
     }, {
-    path: 'hardware',
-    component: HardwareComponent,
-    data: {title: 'ADMIN_MENU_HARDWARE'},
-    canActivate: [PermissionGuard]
-  }, {
-    path: 'games',
-    component: GamesComponent,
-    data: {title: 'ADMIN_MENU_GAMES'},
-    canActivate: [PermissionGuard]
-  }]
+      path: 'hardware',
+      component: HardwareComponent,
+      data: {title: 'ADMIN_MENU_HARDWARE'},
+      canActivate: [PermissionGuard]
+    }, {
+      path: 'games',
+      component: GamesComponent,
+      data: {title: 'ADMIN_MENU_GAMES'},
+      canActivate: [PermissionGuard]
+    }, {
+      path: 'hardware/:id',
+      component: DeviceComponent,
+      data: {title: 'ADMIN_MENU_HARDWARE'},
+      canActivate: [PermissionGuard]
+    }]
 }];
 
 export const AmusementRoutingModule = RouterModule.forChild(routes);
 
 
 @NgModule({
-  declarations: [AmusementsComponent, HardwareComponent, GamesComponent],
+  declarations: [AmusementsComponent, HardwareComponent, GamesComponent, DeviceComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -43,4 +49,5 @@ export const AmusementRoutingModule = RouterModule.forChild(routes);
     AmusementRoutingModule
   ], providers: [HardwareService, GamesService]
 })
-export class AmusementsModule { }
+export class AmusementsModule {
+}
