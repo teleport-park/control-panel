@@ -6,7 +6,7 @@
       <ng-container matColumnDef="logo">
         <th mat-header-cell *matHeaderCellDef><span class="amusements_logo-header-cell">{{translateService.instant('AMUSEMENTS_LOGO_LABEL')}}</span></th>
         <td mat-cell *matCellDef="let amusement">
-          <control-panel-ui-image-preview
+          <control-panel-ui-image-preview class="small"
             [prefix]="URL_PREFIX"
             [url]="amusement.logo"></control-panel-ui-image-preview>
         </td>

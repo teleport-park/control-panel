@@ -19,4 +19,10 @@
     &nbsp;
     <span>({{item.status}})</span>
   </p>
+  <div *ngIf="item.amusements.length && item.isOnline()" class="active-game">
+    <span>Active game: </span>
+    <span><control-panel-ui-image-preview class="small" [matTooltip]="item.amusements[0].name"
+                                          prefix="./assets/data/images/"
+                                          [url]="item.amusements[0].logo"></control-panel-ui-image-preview></span>
+  </div>
 </div>

@@ -1,10 +1,75 @@
 [
   {
-    "id": "5ce5c9a8b4b83b4ac5e5eec7",
+    "id": "5ce66a97b8eab864b793dee3",
     "type": "TNG",
     "status": "online",
-    "description": "fugiat",
-    "ip": "738.601.943.674",
+    "description": "laboris",
+    "ip": "605.889.468.834",
+    "amusements": [ {
+      "name": "World of Tanks VR",
+      "logo": "wot",
+      "desc": [
+        "afeada9e-b7b4-43c5-b9e2-5a3a93ac6daa",
+        "quis dolor enim duis nisi",
+        "anim sint occaecat"
+      ]
+    }, {
+      "name": "Karts Sprint",
+      "logo": "karts-sprint",
+      "desc": [
+        "ca4bab5e-f7d7-4edc-81bf-3a08692ca597",
+        "aliqua anim do consectetur proident",
+        "incididunt aute anim"
+      ]
+    }],
+    "data": {
+      "cpu": {
+        "description": "AMD"
+      },
+      "lan": {
+        "description": "Intel"
+      }
+    }
+  },
+  {
+    "id": "5ce66a978a5b7822f150a55c",
+    "type": "TVR",
+    "status": "online",
+    "description": "excepteur",
+    "ip": "263.230.33.464",
+    "amusements": [],
+    "data": {
+      "cpu": {
+        "description": "AMD"
+      },
+      "lan": {
+        "description": "Realtek"
+      }
+    }
+  },
+  {
+    "id": "5ce66a975bf975cd48156c09",
+    "type": "TVR",
+    "status": "online",
+    "description": "nostrud",
+    "ip": "37.24.438.766",
+    "amusements": [],
+    "data": {
+      "cpu": {
+        "description": "AMD"
+      },
+      "lan": {
+        "description": "Realtek"
+      }
+    }
+  },
+  {
+    "id": "5ce66a9733cdb19fe5bdf856",
+    "type": "TVR",
+    "status": "online",
+    "description": "sint",
+    "ip": "150.992.454.743",
+    "amusements": [],
     "data": {
       "cpu": {
         "description": "Intel"
@@ -15,14 +80,15 @@
     }
   },
   {
-    "id": "5ce5c9a8ea34a48b0395b4bf",
+    "id": "5ce66a97959a1dba422dc1db",
     "type": "TVR",
-    "status": "online",
-    "description": "nisi",
-    "ip": "648.367.594.50",
+    "status": "offline",
+    "description": "ad",
+    "ip": "948.35.784.998",
+    "amusements": [],
     "data": {
       "cpu": {
-        "description": "AMD"
+        "description": "Intel"
       },
       "lan": {
         "description": "Intel"
@@ -30,14 +96,15 @@
     }
   },
   {
-    "id": "5ce5c9a85c8b867efbd54d96",
+    "id": "5ce66a97cface6959c286785",
     "type": "TVR",
-    "status": "online",
-    "description": "aliqua",
-    "ip": "385.701.290.710",
+    "status": "offline",
+    "description": "tempor",
+    "ip": "93.160.774.290",
+    "amusements": [],
     "data": {
       "cpu": {
-        "description": "Intel"
+        "description": "AMD"
       },
       "lan": {
         "description": "Realtek"
@@ -45,89 +112,41 @@
     }
   },
   {
-    "id": "5ce5c9a806daf0c7e85c3212",
-    "type": "TNG",
-    "status": "offline",
-    "description": "proident",
-    "ip": "767.650.779.135",
-    "data": {
-      "cpu": {
-        "description": "AMD"
-      },
-      "lan": {
-        "description": "Intel"
-      }
-    }
-  },
-  {
-    "id": "5ce5c9a8c6fb3d2d509a1300",
-    "type": "TVR",
-    "status": "online",
-    "description": "exercitation",
-    "ip": "92.781.245.690",
-    "data": {
-      "cpu": {
-        "description": "Intel"
-      },
-      "lan": {
-        "description": "Intel"
-      }
-    }
-  },
-  {
-    "id": "5ce5c9a8f95c8d3dd12f5a67",
-    "type": "TVR",
-    "status": "online",
-    "description": "anim",
-    "ip": "847.913.657.155",
-    "data": {
-      "cpu": {
-        "description": "AMD"
-      },
-      "lan": {
-        "description": "Intel"
-      }
-    }
-  },
-  {
-    "id": "5ce5c9a85ebe25c9f26b943c",
+    "id": "5ce66a970222384b46560a58",
     "type": "TNG",
     "status": "online",
-    "description": "cupidatat",
-    "ip": "402.934.500.10",
+    "description": "eiusmod",
+    "ip": "754.129.470.801",
+    "amusements": [{
+      "name": "Beat Saber",
+      "logo": "beat_saber",
+      "desc": [
+        "ca4bab5e-f7d7-4edc-81bf-3a08692ca597",
+        "quis ex ullamco officia deserunt",
+        "incididunt aute anim"
+      ]
+    },
+      {
+        "name": "Fruit Ninja",
+        "logo": "fruit-ninja",
+        "desc": [
+          "b01f4855-7506-417b-9f24-f3e5287dc0ab",
+          "nostrud non deserunt reprehenderit veniam",
+          "quis consectetur veniam"
+        ]
+      },
+      {
+        "name": "Super HOT",
+        "logo": "super_hot",
+        "desc": [
+          "39744d3e-5f5e-433d-895e-4aec360fcb29",
+          "labore culpa nulla cillum reprehenderit",
+          "irure reprehenderit minim"
+        ]
+      }],
     "data": {
       "cpu": {
         "description": "AMD"
-      },
-      "lan": {
-        "description": "Intel"
-      }
-    }
-  },
-  {
-    "id": "5ce5c9a8080f2d59d7b8b1a1",
-    "type": "TNG",
-    "status": "offline",
-    "description": "incididunt",
-    "ip": "720.402.835.722",
-    "data": {
-      "cpu": {
-        "description": "AMD"
-      },
-      "lan": {
-        "description": "Intel"
-      }
-    }
-  },
-  {
-    "id": "5ce5c9a863d455e9e65c0e71",
-    "type": "TVR",
-    "status": "offline",
-    "description": "adipisicing",
-    "ip": "73.48.381.988",
-    "data": {
-      "cpu": {
-        "description": "Intel"
       },
       "lan": {
         "description": "Realtek"
@@ -135,11 +154,44 @@
     }
   },
   {
-    "id": "5ce5c9a8be2513c0fb81731d",
+    "id": "5ce66a974c25c807f99b5224",
+    "type": "TNG",
+    "status": "offline",
+    "description": "cillum",
+    "ip": "931.244.157.966",
+    "amusements": [{
+      "name": "Beat Saber",
+      "logo": "beat_saber",
+      "desc": [
+        "ca4bab5e-f7d7-4edc-81bf-3a08692ca597",
+        "quis ex ullamco officia deserunt",
+        "incididunt aute anim"
+      ]
+    }, {
+      "name": "Serious Sam",
+      "logo": "serious_sam",
+      "desc": [
+        "4e32a09f-0f06-410d-a066-487f0c008c06",
+        "aliqua anim do consectetur proident",
+        "tempor adipisicing aliquip"
+      ]
+    }],
+    "data": {
+      "cpu": {
+        "description": "AMD"
+      },
+      "lan": {
+        "description": "Realtek"
+      }
+    }
+  },
+  {
+    "id": "5ce66a9719df192aa3e24ab6",
     "type": "TVR",
     "status": "online",
-    "description": "nisi",
-    "ip": "81.206.332.248",
+    "description": "amet",
+    "ip": "924.617.242.967",
+    "amusements": [],
     "data": {
       "cpu": {
         "description": "AMD"
@@ -150,11 +202,80 @@
     }
   },
   {
-    "id": "5ce5c9a8519126a06def3726",
+    "id": "5ce66a97c4bbe5f570787e8a",
     "type": "TVR",
     "status": "online",
-    "description": "cupidatat",
-    "ip": "181.457.395.27",
+    "description": "aute",
+    "ip": "917.603.139.284",
+    "amusements": [],
+    "data": {
+      "cpu": {
+        "description": "AMD"
+      },
+      "lan": {
+        "description": "Intel"
+      }
+    }
+  },
+  {
+    "id": "5ce66a97dad95d711d836c42",
+    "type": "TNG",
+    "status": "offline",
+    "description": "sunt",
+    "ip": "381.605.48.97",
+    "amusements": [{
+      "name": "Beat Saber",
+      "logo": "beat_saber",
+      "desc": [
+        "ca4bab5e-f7d7-4edc-81bf-3a08692ca597",
+        "quis ex ullamco officia deserunt",
+        "incididunt aute anim"
+      ]
+    },
+      {
+        "name": "Fruit Ninja",
+        "logo": "fruit-ninja",
+        "desc": [
+          "b01f4855-7506-417b-9f24-f3e5287dc0ab",
+          "nostrud non deserunt reprehenderit veniam",
+          "quis consectetur veniam"
+        ]
+      },
+      {
+        "name": "Super HOT",
+        "logo": "super_hot",
+        "desc": [
+          "39744d3e-5f5e-433d-895e-4aec360fcb29",
+          "labore culpa nulla cillum reprehenderit",
+          "irure reprehenderit minim"
+        ]
+      },
+      {
+        "name": "Serious Sam",
+        "logo": "serious_sam",
+        "desc": [
+          "4e32a09f-0f06-410d-a066-487f0c008c06",
+          "aliqua anim do consectetur proident",
+          "tempor adipisicing aliquip"
+        ]
+      },
+      {
+        "name": "World of Tanks VR",
+        "logo": "wot",
+        "desc": [
+          "afeada9e-b7b4-43c5-b9e2-5a3a93ac6daa",
+          "quis dolor enim duis nisi",
+          "anim sint occaecat"
+        ]
+      }, {
+        "name": "Karts Sprint",
+        "logo": "karts-sprint",
+        "desc": [
+          "ca4bab5e-f7d7-4edc-81bf-3a08692ca597",
+          "aliqua anim do consectetur proident",
+          "incididunt aute anim"
+        ]
+      }],
     "data": {
       "cpu": {
         "description": "AMD"

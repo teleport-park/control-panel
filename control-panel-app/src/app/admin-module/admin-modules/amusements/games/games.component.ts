@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AmusementsItem } from '../amusements.component';
 import { GamesService } from './services/games.service';
 import { TranslateService } from '../../../../common/translations-module';
+import { Amusement } from '../../../../models';
 
 @Component({
   selector: 'games',
@@ -12,11 +12,12 @@ export class GamesComponent implements OnInit {
 
   readonly URL_PREFIX = './assets/data/images/';
 
-  amusements: AmusementsItem[] = [];
+  amusements: Amusement[] = [];
 
   displayedColumns: string[] = ['logo', 'name', 'desc', 'action'];
 
-  constructor(public service: GamesService, public translateService: TranslateService) { }
+  constructor(public service: GamesService, public translateService: TranslateService) {
+  }
 
   ngOnInit() {
   }
@@ -24,7 +25,7 @@ export class GamesComponent implements OnInit {
   /**
    * add to tariffs handler
    */
-  addToTariffs(amusement: AmusementsItem) {
+  addToTariffs(amusement: Amusement) {
     console.info('[amusement to tariff] -> ', amusement);
   }
 

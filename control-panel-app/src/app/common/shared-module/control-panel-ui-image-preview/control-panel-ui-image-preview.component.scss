@@ -8,3 +8,9 @@
     margin: 10px 0;
   }
 }
+:host(.small) {
+  .image-preview_container {
+    width: 100px;
+    height: 50px;
+  }
+}

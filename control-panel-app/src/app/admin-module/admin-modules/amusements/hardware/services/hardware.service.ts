@@ -7,6 +7,8 @@ import { TNGController, TVRController } from '../../../../../models';
 
 export class HardwareService implements OnDestroy {
 
+  private _controllers: Array<TVRController | TNGController> = [];
+
   TVRControllers$: BehaviorSubject<Array<TVRController>> = new BehaviorSubject(null);
 
   TNGControllers$: BehaviorSubject<Array<TNGController>> = new BehaviorSubject(null);
@@ -29,15 +31,16 @@ export class HardwareService implements OnDestroy {
   interval;
 
   constructor(private http: HttpClient) {
-    this.getItems();
+    this.getControllers();
   }
 
   /**
    * get items
    */
-  getItems(): void {
+  getControllers(): void {
     this.http.get<Array<TNGController | TVRController>>('./assets/data/hardware_items.json')
       .subscribe((data: Array<TNGController | TVRController>) => {
+        this._controllers = data;
         // SORT CONTROLLERS
         const TVRControllers = data.filter((item: any) => item.type === 'TVR')
           .map((controller) => Object.assign(new TVRController(), controller));
@@ -50,6 +53,15 @@ export class HardwareService implements OnDestroy {
   }
 
   /**
+   * get controller
+   * @param id
+   */
+  getController(id: string): TVRController | TNGController {
+    return this._controllers.find(controller => controller.id === id);
+  }
+
+  // TODO mock events
+  /**
    * set controller payload
    */
   private setControllersPayload() {
@@ -61,12 +73,16 @@ export class HardwareService implements OnDestroy {
     }, 1000);
   }
 
+  /**
+   * get payload
+   * @param data
+   */
   private getPayload(data: Array<TVRController | TNGController>) {
     return data.map((item: TVRController | TNGController) => {
-      return {
-        cpu: item.status === 'online' ? {payload: Math.floor(Math.random() * 100) + 1} : 0,
-        lan: item.status === 'online' ? {payload: Math.floor(Math.random() * 100) + 1} : 0
-      };
+        return {
+          cpu: item.status === 'online' ? {payload: Math.floor(Math.random() * 100) + 1} : 0,
+          lan: item.status === 'online' ? {payload: Math.floor(Math.random() * 100) + 1} : 0
+        };
       }
     );
   }

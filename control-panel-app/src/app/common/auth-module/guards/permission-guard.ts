@@ -22,7 +22,6 @@ export class PermissionGuard implements CanActivate {
     const user: { token: string, permission: string } = this.loginService.currentUserValue;
     if (user && user.permission) {
       let path = route.routeConfig.path;
-      debugger;
       if (path === ':id') {
         const pathArr = state.url.split('/');
         path = `${pathArr[pathArr.length - 2]}/${path}`;
