@@ -10,6 +10,7 @@ import { GamesService } from './games/services/games.service';
 import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
 import { GamesComponent } from './games/games.component';
 import { DeviceComponent } from './device/device.component';
+import { ChartistModule } from 'ng-chartist';
 
 const routes: Routes = [{
   path: '',
@@ -46,7 +47,8 @@ export const AmusementRoutingModule = RouterModule.forChild(routes);
     CommonModule,
     SharedModule,
     MaterialModule,
-    AmusementRoutingModule
+    AmusementRoutingModule,
+    ChartistModule
   ], providers: [HardwareService, GamesService]
 })
 export class AmusementsModule {

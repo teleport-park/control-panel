@@ -1,21 +1,21 @@
 <div class="hardware-items_wrapper">
   <div class="row">
-    <div *ngFor="let item of service.TVRControllers$ | async; let i = index;"
+    <div *ngFor="let item of service.TVRControllers$ | async"
          class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-      <control-panel-ui-hardware-item *ngIf="service.TVRPayload$ | async"
+      <control-panel-ui-hardware-item *ngIf="service.payload$ | async"
                                       [item]="item"
-                                      [cpuPayload]="(service.TVRPayload$ | async)[i]?.cpu"
-                                      [lanPayload]="(service.TVRPayload$ | async)[i]?.lan"
+                                      [cpuPayload]="(service.payload$ | async)"
+                                      [lanPayload]="(service.payload$ | async)"
                                       (selectDevice)="selectDevice($event)"></control-panel-ui-hardware-item>
     </div>
   </div>
   <div class="row">
-    <div *ngFor="let item of service.TNGControllers$ | async; let i = index;"
+    <div *ngFor="let item of service.TNGControllers$ | async"
          class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-      <control-panel-ui-hardware-item *ngIf="service.TNGPayload$ | async"
+      <control-panel-ui-hardware-item *ngIf="service.payload$ | async"
                                       [item]="item"
-                                      [cpuPayload]="(service.TNGPayload$ | async)[i]?.cpu"
-                                      [lanPayload]="(service.TNGPayload$ | async)[i]?.lan"
+                                      [cpuPayload]="(service.payload$ | async)"
+                                      [lanPayload]="(service.payload$ | async)"
                                       (selectDevice)="selectDevice($event)"></control-panel-ui-hardware-item>
     </div>
   </div>

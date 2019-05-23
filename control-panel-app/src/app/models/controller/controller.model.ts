@@ -1,3 +1,4 @@
+import { Amusement } from '../amusement.model';
 /**
  * controller main model
  */
@@ -6,6 +7,10 @@ export class Controller {
   ip: string;
   status: string | 'online' | 'offline';
   description: string;
+  /**
+   * amusements
+   */
+  amusements: Amusement[];
   data: ControllerData;
   constructor() {}
   isOnline(): boolean { return this.status === 'online'; }

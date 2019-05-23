@@ -7,7 +7,7 @@ import { TNGController, TVRController } from '../../../../../models';
 
 export class HardwareService implements OnDestroy {
 
-  private _controllers: Array<TVRController | TNGController> = [];
+  controllers$: BehaviorSubject<Array<TVRController | TNGController>> = new BehaviorSubject(null);
 
   TVRControllers$: BehaviorSubject<Array<TVRController>> = new BehaviorSubject(null);
 
@@ -17,13 +17,7 @@ export class HardwareService implements OnDestroy {
    * payload for update
    * TODO refactor type later
    */
-  TVRPayload$: BehaviorSubject<any[]> = new BehaviorSubject(null);
-
-  /**
-   * payload for update
-   * TODO refactor type later
-   */
-  TNGPayload$: BehaviorSubject<any[]> = new BehaviorSubject(null);
+  payload$: BehaviorSubject<any[]> = new BehaviorSubject(null);
 
   /**
    * interval
@@ -40,7 +34,7 @@ export class HardwareService implements OnDestroy {
   getControllers(): void {
     this.http.get<Array<TNGController | TVRController>>('./assets/data/hardware_items.json')
       .subscribe((data: Array<TNGController | TVRController>) => {
-        this._controllers = data;
+        this.controllers$.next(data);
         // SORT CONTROLLERS
         const TVRControllers = data.filter((item: any) => item.type === 'TVR')
           .map((controller) => Object.assign(new TVRController(), controller));
@@ -52,24 +46,14 @@ export class HardwareService implements OnDestroy {
       });
   }
 
-  /**
-   * get controller
-   * @param id
-   */
-  getController(id: string): TVRController | TNGController {
-    return this._controllers.find(controller => controller.id === id);
-  }
-
   // TODO mock events
   /**
    * set controller payload
    */
   private setControllersPayload() {
     this.interval = setInterval(() => {
-      const TVRPayload = this.getPayload(this.TVRControllers$.value);
-      const TNGPayload = this.getPayload(this.TNGControllers$.value);
-      this.TVRPayload$.next(TVRPayload);
-      this.TNGPayload$.next(TNGPayload);
+      const payload = this.getPayload(this.controllers$.value);
+      this.payload$.next(payload);
     }, 1000);
   }
 
@@ -80,6 +64,7 @@ export class HardwareService implements OnDestroy {
   private getPayload(data: Array<TVRController | TNGController>) {
     return data.map((item: TVRController | TNGController) => {
         return {
+          id: item.id,
           cpu: item.status === 'online' ? {payload: Math.floor(Math.random() * 100) + 1} : 0,
           lan: item.status === 'online' ? {payload: Math.floor(Math.random() * 100) + 1} : 0
         };

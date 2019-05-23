@@ -41,17 +41,22 @@ export class ControlPanelUiHardwareItemComponent implements OnInit, OnDestroy {
   };
 
   /**
+   * TODO remove this later
+   */
+  activeGame;
+
+  /**
    * items
    */
-  @Input() item: TVRController | TNGController;
+  @Input() item: TNGController | TVRController;
 
   /**
    * cpu payload
    * @param value
    */
-  @Input() set cpuPayload(value: { payload: number }) {
+  @Input() set cpuPayload(value: any[]) {
     if (value) {
-      this.setCpuPayload(value.payload);
+      this.setCpuPayload(value.find(payload => payload.id === this.item.id).cpu.payload);
     }
   }
 
@@ -59,9 +64,9 @@ export class ControlPanelUiHardwareItemComponent implements OnInit, OnDestroy {
    * lan payload
    * @param value
    */
-  @Input() set lanPayload(value: { payload: number }) {
+  @Input() set lanPayload(value: any[]) {
     if (value) {
-      this.setLanPayload(value.payload);
+      this.setLanPayload(value.find(payload => payload.id === this.item.id).lan.payload);
     }
   }
 
@@ -84,6 +89,7 @@ export class ControlPanelUiHardwareItemComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.activeGame = Math.floor(Math.random() * this.item.amusements.length);
   }
 
   /**
@@ -118,6 +124,9 @@ export class ControlPanelUiHardwareItemComponent implements OnInit, OnDestroy {
     this.cd.markForCheck();
   }
 
+  /**
+   * go to device
+   */
   goToDevice() {
     this.selectDevice.emit(this.item.id);
   }
