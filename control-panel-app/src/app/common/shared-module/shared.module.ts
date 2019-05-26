@@ -22,6 +22,7 @@ import { ControlPanelUiImagePreviewComponent } from './control-panel-ui-image-pr
 import { ControlPanelUiTariffTreeComponent } from './control-panel-ui-tariff-tree/control-panel-ui-tariff-tree.component';
 import { ControlPanelUiPackageComponent } from './control-panel-ui-package/control-panel-ui-package.component';
 import { ControlPanelUiPaymentComponent } from './control-panel-ui-payment/control-panel-ui-payment.component';
+import { AddControllerDialogComponent } from './dialogs/add-controller-dialog/add-controller-dialog.component';
 
 const MODULES = [
   ConfirmDialogComponent,
@@ -40,7 +41,8 @@ const MODULES = [
   ControlPanelUiImagePreviewComponent,
   ControlPanelUiTariffTreeComponent,
   ControlPanelUiPackageComponent,
-  ControlPanelUiPaymentComponent
+  ControlPanelUiPaymentComponent,
+  AddControllerDialogComponent
 ];
 
 @NgModule({

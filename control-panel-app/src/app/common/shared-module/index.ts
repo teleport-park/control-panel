@@ -11,3 +11,4 @@ export * from './control-panel-ui-action-toolbar/control-panel-ui-action-toolbar
 export * from './control-panel-ui-widget/control-panel-ui-widget.component';
 export * from './dialogs/add-staff-dialog/add-staff-dialog.component';
 export * from './control-panel-ui-tariff-tree/control-panel-ui-tariff-tree.model';
+export * from './dialogs/add-controller-dialog/add-controller-dialog.component';

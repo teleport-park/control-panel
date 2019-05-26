@@ -1,15 +1,5 @@
 <div class="hardware-items_wrapper">
   <div class="row">
-    <div *ngFor="let item of service.TVRControllers$ | async"
-         class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-      <control-panel-ui-hardware-item *ngIf="service.payload$ | async"
-                                      [item]="item"
-                                      [cpuPayload]="(service.payload$ | async)"
-                                      [lanPayload]="(service.payload$ | async)"
-                                      (selectDevice)="selectDevice($event)"></control-panel-ui-hardware-item>
-    </div>
-  </div>
-  <div class="row">
     <div *ngFor="let item of service.TNGControllers$ | async"
          class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
       <control-panel-ui-hardware-item *ngIf="service.payload$ | async"
@@ -19,4 +9,17 @@
                                       (selectDevice)="selectDevice($event)"></control-panel-ui-hardware-item>
     </div>
   </div>
+  <div class="row">
+    <div *ngFor="let item of service.TVRControllers$ | async"
+         class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+      <control-panel-ui-hardware-item *ngIf="service.payload$ | async"
+                                      [item]="item"
+                                      [cpuPayload]="(service.payload$ | async)"
+                                      [lanPayload]="(service.payload$ | async)"
+                                      (selectDevice)="selectDevice($event)"></control-panel-ui-hardware-item>
+    </div>
+  </div>
 </div>
+<button mat-fab (click)="openAddDialog()" class="add-tng-button" [matTooltip]="translateService.instant('CONTROLLER_ADD_TNG_TITLE')">
+  <mat-icon class="mat-icon-rtl-mirror">add</mat-icon>
+</button>

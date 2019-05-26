@@ -119,5 +119,9 @@
   "STAFF_ENABLED": "Активный",
   "OTHERS": "Остальные...",
   "ADMIN_MENU_CASHBOX": "Кассы",
-  "ADMIN_MENU_GATES": "Ворота"
+  "ADMIN_MENU_GATES": "Ворота",
+  "CONTROLLER_ADD_TNG_TITLE": "Добавить TNG контроллер",
+  "CONTROLLER_IP": "IP",
+  "CONTROLLER_SECRET_KEY": "Secret key",
+  "CONTROLLER_IP_VALIDATION": "Не правильный формат IP адреса."
 }

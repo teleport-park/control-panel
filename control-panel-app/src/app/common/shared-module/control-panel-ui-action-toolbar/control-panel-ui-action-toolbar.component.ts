@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ControlPanelUiActionToolbarComponent {
 
-  @Input() mode: 'add' | 'edit';
+  @Input() mode: 'add' | 'edit' = 'add';
 
 
   @Output() confirm: EventEmitter<void> = new EventEmitter();

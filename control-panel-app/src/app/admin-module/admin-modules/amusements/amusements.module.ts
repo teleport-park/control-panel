@@ -13,6 +13,7 @@ import { DeviceComponent } from './device/device.component';
 import { ChartistModule } from 'ng-chartist';
 import { CashboxComponent } from './cashbox/cashbox.component';
 import { GatesComponent } from './gates/gates.component';
+import { AddControllerDialogComponent } from '../../../common/shared-module';
 
 const routes: Routes = [{
   path: '',
@@ -40,7 +41,9 @@ export const AmusementRoutingModule = RouterModule.forChild(routes);
     MaterialModule,
     AmusementRoutingModule,
     ChartistModule
-  ], providers: [HardwareService, GamesService]
+  ],
+  providers: [HardwareService, GamesService],
+  entryComponents: [AddControllerDialogComponent]
 })
 export class AmusementsModule {
 }

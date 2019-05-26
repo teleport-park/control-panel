@@ -1,0 +1,22 @@
+<h5>{{translateService.instant('CONTROLLER_ADD_TNG_TITLE')}}</h5>
+<form [formGroup]="form">
+  <mat-form-field>
+    <input matInput formControlName="ip" [placeholder]="translateService.instant('CONTROLLER_IP')">
+    <mat-error *ngIf="form.get('ip')?.hasError('pattern') && !form.get('ip')?.hasError('required')">
+      {{translateService.instant('CONTROLLER_IP_VALIDATION')}}
+    </mat-error>
+    <mat-error *ngIf="form.get('ip')?.hasError('required')">
+      {{'REQUIRED_FIELD' | translate:[translateService.instant('CONTROLLER_IP')]}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="secretKey" [placeholder]="translateService.instant('CONTROLLER_SECRET_KEY')">
+    <mat-error>
+      {{'REQUIRED_FIELD' | translate:[translateService.instant('CONTROLLER_SECRET_KEY')]}}
+    </mat-error>
+  </mat-form-field>
+</form>
+
+<control-panel-ui-action-toolbar
+  (confirm)="dialogSubmit()"
+  (cancel)="dialogRef.close()"></control-panel-ui-action-toolbar>

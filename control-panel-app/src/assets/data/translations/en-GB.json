@@ -118,5 +118,9 @@
   "STAFF_ENABLED": "Enabled",
   "OTHERS": "Others...",
   "ADMIN_MENU_CASHBOX": "Cashbox",
-  "ADMIN_MENU_GATES": "Gates"
+  "ADMIN_MENU_GATES": "Gates",
+  "CONTROLLER_ADD_TNG_TITLE": "Add TNG controller",
+  "CONTROLLER_IP": "IP",
+  "CONTROLLER_SECRET_KEY": "Secret key",
+  "CONTROLLER_IP_VALIDATION": "Wrong IP format."
 }
