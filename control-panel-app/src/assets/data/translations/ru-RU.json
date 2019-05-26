@@ -117,5 +117,7 @@
   "STAFF_FIRED_DATE": "Дата увольнения",
   "STAFF_FIRED_STATE": "Уволен",
   "STAFF_ENABLED": "Активный",
-  "OTHERS": "Остальные..."
+  "OTHERS": "Остальные...",
+  "ADMIN_MENU_CASHBOX": "Кассы",
+  "ADMIN_MENU_GATES": "Ворота"
 }

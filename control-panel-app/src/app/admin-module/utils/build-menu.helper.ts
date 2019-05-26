@@ -72,6 +72,16 @@ export class BuildMenuHelper {
         label: 'ADMIN_MENU_GAMES',
         path: '/admin/amusements/games',
         active: false
+      }, {
+        icon: 'euro_symbol',
+        label: 'ADMIN_MENU_CASHBOX',
+        path: '/admin/amusements/cashbox',
+        active: false
+      }, {
+        icon: 'accessibility',
+        label: 'ADMIN_MENU_GATES',
+        path: '/admin/amusements/gates',
+        active: false
       }]
     }, {
       icon: 'people',
