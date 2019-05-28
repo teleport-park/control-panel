@@ -1,3 +1,5 @@
-<p>
-  gates works!
-</p>
+<div class="row m-0">
+  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let gate of service.gateControllers$ | async">
+    <control-panel-ui-gate-item [item]="gate"></control-panel-ui-gate-item>
+  </div>
+</div>

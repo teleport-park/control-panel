@@ -5,4 +5,6 @@ export * from './user-management/permission.model';
 export * from './user-management/staff-member-response.model';
 export * from './controller/TNG-controller.model';
 export * from './controller/TVR-controller.model';
+export * from './controller/gate-controller.model';
+export * from './controller/controller-type.enum';
 export * from './amusement.model';

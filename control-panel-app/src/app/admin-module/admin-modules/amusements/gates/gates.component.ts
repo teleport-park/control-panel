@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HardwareService } from '../hardware/services/hardware.service';
 
 @Component({
   selector: 'gates',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GatesComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service: HardwareService) { }
 
   ngOnInit() {
   }

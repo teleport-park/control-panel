@@ -31,7 +31,6 @@ const routes: Routes = [{
 
 export const AmusementRoutingModule = RouterModule.forChild(routes);
 
-
 @NgModule({
   declarations: [AmusementsComponent, HardwareComponent, GamesComponent, DeviceComponent, CashboxComponent, GatesComponent],
   imports: [

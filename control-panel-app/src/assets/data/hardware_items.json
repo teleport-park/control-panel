@@ -445,5 +445,37 @@
         "description": "Realtek"
       }
     }
+  },
+  {
+    "id": "5ceda5a8d9d0e7fa7de7470f",
+    "type": "GATE",
+    "status": "closed",
+    "description": "commodo",
+    "ip": "570.188.352.502",
+    "data": {}
+  },
+  {
+    "id": "5ceda5a8237e3223bb4b35f7",
+    "type": "GATE",
+    "status": "open",
+    "description": "veniam",
+    "ip": "678.122.812.362",
+    "data": {}
+  },
+  {
+    "id": "5ceda5a8af78656fa8c994a0",
+    "type": "GATE",
+    "status": "open",
+    "description": "do",
+    "ip": "29.699.325.475",
+    "data": {}
+  },
+  {
+    "id": "5ceda5a833c137be79589441",
+    "type": "GATE",
+    "status": "blocked",
+    "description": "cillum",
+    "ip": "587.508.121.216",
+    "data": {}
   }
 ]

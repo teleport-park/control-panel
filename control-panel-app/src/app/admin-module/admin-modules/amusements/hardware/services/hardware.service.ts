@@ -1,17 +1,19 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { TNGController, TVRController } from '../../../../../models';
+import { TNGController, TVRController, GateController, ControllerType } from '../../../../../models';
 
 @Injectable()
 
 export class HardwareService implements OnDestroy {
 
-  controllers$: BehaviorSubject<Array<TVRController | TNGController>> = new BehaviorSubject(null);
+  controllers$: BehaviorSubject<Array<TVRController | TNGController | GateController>> = new BehaviorSubject(null);
 
   TVRControllers$: BehaviorSubject<Array<TVRController>> = new BehaviorSubject(null);
 
   TNGControllers$: BehaviorSubject<Array<TNGController>> = new BehaviorSubject(null);
+
+  gateControllers$: BehaviorSubject<Array<GateController>> = new BehaviorSubject(null);
 
   /**
    * payload for update
@@ -33,15 +35,18 @@ export class HardwareService implements OnDestroy {
    */
   getControllers(): void {
     this.http.get<Array<TNGController | TVRController>>('./assets/data/hardware_items.json')
-      .subscribe((data: Array<TNGController | TVRController>) => {
+      .subscribe((data: Array<TNGController | TVRController | GateController>) => {
         this.controllers$.next(data);
         // SORT CONTROLLERS
-        const TVRControllers = data.filter((item: any) => item.type === 'TVR')
-          .map((controller) => Object.assign(new TVRController(), controller));
-        const TNGControllers = data.filter((item: any) => item.type === 'TNG')
+        const TNGControllers = data.filter((item: any) => item.type === ControllerType[0])
           .map((controller) => Object.assign(new TNGController(), controller));
+        const TVRControllers = data.filter((item: any) => item.type === ControllerType[1])
+          .map((controller) => Object.assign(new TVRController(), controller));
+        const gateControllers = data.filter((item: any) => item.type === ControllerType[2])
+          .map((controller) => Object.assign(new GateController(), controller));
         this.TVRControllers$.next(TVRControllers);
         this.TNGControllers$.next(TNGControllers);
+        this.gateControllers$.next(gateControllers);
         this.setControllersPayload();
       });
   }
@@ -61,8 +66,8 @@ export class HardwareService implements OnDestroy {
    * get payload
    * @param data
    */
-  private getPayload(data: Array<TVRController | TNGController>) {
-    return data.map((item: TVRController | TNGController) => {
+  private getPayload(data: Array<TVRController | TNGController | GateController>) {
+    return data.map((item: TVRController | TNGController | GateController) => {
         return {
           id: item.id,
           cpu: item.status === 'online' ? {payload: Math.floor(Math.random() * 100) + 1} : {payload: 0},
