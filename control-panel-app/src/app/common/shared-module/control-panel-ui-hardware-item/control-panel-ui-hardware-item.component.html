@@ -5,13 +5,15 @@
   <p>Description: {{item.description}}</p>
   <p>CPU: {{item.data.cpu.description}}</p>
   <p>LAN: {{item.data.lan.description}}</p>
-  <div class="cpu_status" id="cpu_status">
-    <p>CPU: {{cpuBusy}}%</p>
-    <x-chartist [data]="cpuData" [type]="'Line'" [options]="chartOptions"></x-chartist>
+  <div class="metrics">
+    <control-panel-ui-linear-graph *ngIf="payload" class="green"
+                                   [value]="payload.cpu" [stepsNumber]="30"
+                                   [property]="{desc: 'CPU', units: '%'}"></control-panel-ui-linear-graph>
   </div>
-  <div class="lan_status" id="lan_status">
-    <p>LAN: {{lanBusy}}%</p>
-    <x-chartist [data]="lanData" [type]="'Line'" [options]="chartOptions"></x-chartist>
+  <div class="metrics">
+    <control-panel-ui-linear-graph *ngIf="payload"
+                                   [value]="payload.lan" [stepsNumber]="30"
+                                   [property]="{desc: 'LAN', units: '%'}"></control-panel-ui-linear-graph>
   </div>
   <p class="status">
     <span>Status:</span>

@@ -10,7 +10,6 @@ import { GamesService } from './games/services/games.service';
 import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
 import { GamesComponent } from './games/games.component';
 import { DeviceComponent } from './device/device.component';
-import { ChartistModule } from 'ng-chartist';
 import { CashboxComponent } from './cashbox/cashbox.component';
 import { GatesComponent } from './gates/gates.component';
 import { AddControllerDialogComponent } from '../../../common/shared-module';
@@ -39,8 +38,7 @@ export const AmusementRoutingModule = RouterModule.forChild(routes);
     CommonModule,
     SharedModule,
     MaterialModule,
-    AmusementRoutingModule,
-    ChartistModule
+    AmusementRoutingModule
   ],
   providers: [HardwareService, GamesService],
   entryComponents: [AddControllerDialogComponent]

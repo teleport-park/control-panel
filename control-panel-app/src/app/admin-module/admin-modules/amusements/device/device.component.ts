@@ -1,62 +1,33 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HardwareService } from '../hardware/services/hardware.service';
 import { TNGController, TVRController } from '../../../../models';
-import { filter } from 'rxjs/operators';
-import { IChartistData, IChartistSeriesData, ILineChartOptions } from 'chartist';
+import { filter, map, takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'device',
   templateUrl: './device.component.html',
   styleUrls: ['./device.component.scss']
 })
-export class DeviceComponent implements OnInit {
+export class DeviceComponent implements OnInit, OnDestroy {
 
+  /**
+   * device
+   */
   _device: TNGController | TVRController;
 
-  deviceProperty: string[];
+  /**
+   * device properties
+   */
+  deviceProperties: string[];
 
   /**
-   * cpu data
+   * payload
    */
-  cpuData: IChartistData = {
-    labels: [],
-    series: [[]]
-  };
+  payload$: Observable<any>;
 
-  /**
-   * lan data
-   */
-  lanData: IChartistData = {
-    labels: [],
-    series: [[]]
-  };
-
-  /**
-   * chart options
-   */
-  chartOptions: ILineChartOptions = {
-    axisX: {
-      showLabel: false
-    },
-    showPoint: false,
-    height: 150,
-    lineSmooth: false,
-    chartPadding: {top: 10, right: 5, bottom: 5, left: 5},
-    showArea: true
-  };
-
-  /**
-   * CPU busy
-   */
-  cpuBusy: number;
-
-  /**
-   * LAN busy
-   */
-  lanBusy: number;
-
-  payload;
+  private destroyed$: Subject<boolean> = new Subject();
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -69,49 +40,17 @@ export class DeviceComponent implements OnInit {
     this.service.controllers$.pipe(filter((data: any) => !!data))
       .subscribe((controllers: TNGController[] | TVRController[]) => {
         this._device = controllers.find(controller => controller.id === deviceId);
-        this.deviceProperty = Object.keys(this._device).filter(key => {
+        this.deviceProperties = Object.keys(this._device).filter(key => {
           return typeof this._device[key] !== 'object';
         });
         this.cd.markForCheck();
       });
-    this.service.payload$.pipe(filter(data => !!data))
-      .subscribe((payload: any[]) => {
-        this.payload = payload.find(item => item.id === deviceId);
-        this.setCpuPayload(this.payload.cpu.payload || null);
-        this.setLanPayload(this.payload.lan.payload || null);
-      });
-  }
-
-  /**
-   * set payload
-   * @param payload
-   */
-  private setLanPayload(payload: number) {
-    this.lanBusy = payload;
-    const labels = this.lanData.labels as Array<string>;
-    const data = this.lanData.series[0] as Array<IChartistSeriesData>;
-    data.push({value: payload, className: 'lan-line'});
-    labels.push('');
-    this.lanData.labels = labels.slice(-100);
-    this.lanData.series[0] = data.slice(-100);
-    this.lanData = {...this.lanData};
-    this.cd.markForCheck();
-  }
-
-  /**
-   * set payload
-   * @param payload
-   */
-  private setCpuPayload(payload: number) {
-    this.cpuBusy = payload;
-    const labels = this.cpuData.labels as Array<string>;
-    const data = this.cpuData.series[0] as Array<IChartistSeriesData>;
-    data.push({value: payload, className: 'cpu-line'});
-    labels.push('');
-    this.cpuData.labels = labels.slice(-100);
-    this.cpuData.series[0] = data.slice(-100);
-    this.cpuData = {...this.cpuData};
-    this.cd.markForCheck();
+    this.payload$ = this.service.payload$.pipe(
+      takeUntil(this.destroyed$),
+      filter(data => !!data),
+      map(payload => {
+        return payload.find(item => item.id === deviceId) || null;
+      }));
   }
 
   /**
@@ -119,5 +58,10 @@ export class DeviceComponent implements OnInit {
    */
   back() {
     this.router.navigate(['admin', 'amusements', 'hardware']);
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 }

@@ -1,26 +1,30 @@
 <div class="device_wrapper mat-elevation-z3" *ngIf="_device">
   <h4>Device</h4>
-  <p *ngFor="let key of deviceProperty">
+  <p *ngFor="let key of deviceProperties">
     <span class="property">{{key}}:</span><span>{{_device[key]}}</span>
   </p>
   <p class="property">Available amusements:</p>
   <div class="amusements">
     <div *ngFor="let amusement of _device.amusements">
-      <p><control-panel-ui-image-preview class="small"
-                                         prefix="./assets/data/images/"
-                                         [url]="amusement.logo"></control-panel-ui-image-preview></p>
+      <p>
+        <control-panel-ui-image-preview class="small"
+                                        prefix="./assets/data/images/"
+                                        [url]="amusement.logo"></control-panel-ui-image-preview>
+      </p>
       <p>{{amusement.name}}</p>
     </div>
   </div>
-  <div class="cpu_status" id="cpu_status">
-    <p>CPU: {{cpuBusy}}%</p>
-    <x-chartist [data]="cpuData" [type]="'Line'" [options]="chartOptions"></x-chartist>
-  </div>
-  <div class="lan_status" id="lan_status">
-    <p>LAN: {{lanBusy}}%</p>
-    <x-chartist [data]="lanData" [type]="'Line'" [options]="chartOptions"></x-chartist>
-  </div>
+  <control-panel-ui-linear-graph
+    class="green"
+    [value]="(payload$ | async)?.cpu"
+    [property]="{desc: 'CPU', units: '%'}"></control-panel-ui-linear-graph>
+  <control-panel-ui-linear-graph
+    [value]="(payload$ | async)?.lan"
+    [property]="{desc: 'LAN', units: '%'}"></control-panel-ui-linear-graph>
   <div class="toolbar">
-    <button mat-raised-button (click)="back()"><mat-icon>arrow_back</mat-icon> Back</button>
+    <button mat-raised-button (click)="back()">
+      <mat-icon>arrow_back</mat-icon>
+      Back
+    </button>
   </div>
 </div>

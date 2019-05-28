@@ -4,8 +4,7 @@
          class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
       <control-panel-ui-hardware-item *ngIf="service.payload$ | async"
                                       [item]="item"
-                                      [cpuPayload]="(service.payload$ | async)"
-                                      [lanPayload]="(service.payload$ | async)"
+                                      [metrics]="(service.payload$ | async)"
                                       (selectDevice)="selectDevice($event)"></control-panel-ui-hardware-item>
     </div>
   </div>
@@ -14,8 +13,7 @@
          class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
       <control-panel-ui-hardware-item *ngIf="service.payload$ | async"
                                       [item]="item"
-                                      [cpuPayload]="(service.payload$ | async)"
-                                      [lanPayload]="(service.payload$ | async)"
+                                      [metrics]="(service.payload$ | async)"
                                       (selectDevice)="selectDevice($event)"></control-panel-ui-hardware-item>
     </div>
   </div>

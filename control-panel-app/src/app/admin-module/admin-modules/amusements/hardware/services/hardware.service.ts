@@ -65,8 +65,8 @@ export class HardwareService implements OnDestroy {
     return data.map((item: TVRController | TNGController) => {
         return {
           id: item.id,
-          cpu: item.status === 'online' ? {payload: Math.floor(Math.random() * 100) + 1} : 0,
-          lan: item.status === 'online' ? {payload: Math.floor(Math.random() * 100) + 1} : 0
+          cpu: item.status === 'online' ? {payload: Math.floor(Math.random() * 100) + 1} : {payload: 0},
+          lan: item.status === 'online' ? {payload: Math.floor(Math.random() * 100) + 1} : {payload: 0}
         };
       }
     );

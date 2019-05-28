@@ -26,32 +26,4 @@
       }
     }
   }
-  #cpu_status {
-    x-chartist {
-      ::ng-deep.ct-chart-line {
-        .ct-series.ct-series-a {
-          .ct-area {
-            fill: #008000;
-          }
-          .ct-line {
-            stroke: #008000;
-            stroke-width: 2px;
-          }
-        }
-      }
-    }
-  }
-  #lan_status {
-    x-chartist {
-      ::ng-deep.ct-chart-line {
-        .ct-series.ct-series-a {
-          .ct-area {
-          }
-          .ct-line {
-            stroke-width: 2px;
-          }
-        }
-      }
-    }
-  }
 }
