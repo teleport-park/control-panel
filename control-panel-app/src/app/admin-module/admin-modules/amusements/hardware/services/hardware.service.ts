@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { TNGController, TVRController, GateController, ControllerType } from '../../../../../models';
+import { ControllerType, GateController, TNGController, TVRController } from '../../../../../models';
 
 @Injectable()
 
@@ -21,10 +21,14 @@ export class HardwareService implements OnDestroy {
    */
   payload$: BehaviorSubject<any[]> = new BehaviorSubject(null);
 
+  status$: BehaviorSubject<any[]> = new BehaviorSubject(null);
+
   /**
    * interval
    */
   interval;
+
+  statusInterval;
 
   constructor(private http: HttpClient) {
     this.getControllers();
@@ -60,6 +64,18 @@ export class HardwareService implements OnDestroy {
       const payload = this.getPayload(this.controllers$.value);
       this.payload$.next(payload);
     }, 1000);
+
+    this.statusInterval = setInterval(() => {
+      const statusArray = ['open', 'closed', 'blocked'];
+      const statuses = this.controllers$.value.filter((controller: any) => controller.type === 'GATE')
+        .map((item: GateController) => {
+          return {
+            id: item.id,
+            status: statusArray[Math.floor(Math.random() * statusArray.length)]
+          };
+        });
+      this.status$.next(statuses);
+    }, 5000);
   }
 
   /**
@@ -79,5 +95,6 @@ export class HardwareService implements OnDestroy {
 
   ngOnDestroy(): void {
     clearInterval(this.interval);
+    clearInterval(this.statusInterval);
   }
 }

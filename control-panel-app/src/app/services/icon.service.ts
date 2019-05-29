@@ -14,9 +14,12 @@ export class IconService {
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'blacklist', iconPath);
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'inpark', iconPath);
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'power', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'gate-open', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'gate-closed', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'gate-blocked', iconPath);
   }
 
   private static pushSvgIconToRegistry(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, iconName: string, iconPath: string): void {
-    iconRegistry.addSvgIcon(iconName, sanitizer.bypassSecurityTrustResourceUrl(`.${iconPath}/${iconName}.svg`));
+    iconRegistry.addSvgIcon(iconName, sanitizer.bypassSecurityTrustResourceUrl(`${iconPath}/${iconName}.svg`));
   }
 }

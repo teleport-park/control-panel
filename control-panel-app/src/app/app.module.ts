@@ -16,6 +16,7 @@ import { AuthInterceptor } from './common/auth-module/interceptors/auth.intercep
 import { ErrorInterceptor } from './common/auth-module/interceptors/error.interceptor';
 import { ExtendedFilterUrlParamsInterface } from './interfaces/extended-filter-url-params.interface';
 import { BuildExtendedFilterParamsHelper } from './utils/build-extended-filter-params-helper';
+import { IconService } from './services/icon.service';
 
 @NgModule({
   declarations: [
@@ -47,4 +48,6 @@ import { BuildExtendedFilterParamsHelper } from './utils/build-extended-filter-p
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  // need init icon service
+  constructor(private iconService: IconService) {  }
 }
