@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-// import { default as config } from '../../app-init-config.json';
-declare var require: any;
 
+/**
+ * config interface
+ */
 export interface InitConfig {
   api_url: string;
 }
-
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,7 @@ export class InitService {
    */
   config: InitConfig;
 
-  constructor() {
-  }
+  constructor() {  }
 
   /**
    * init app
@@ -29,7 +28,7 @@ export class InitService {
       try {
         this.config = require('../../config/app-init-config.json');
         if (this.config && this.config.api_url) {
-          console.log(this.config.api_url);
+          console.log('[API_URL]:', this.config.api_url);
           resolve();
           return;
         } else {
