@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
 import { ApiUrlBuilder } from '../models/api-url-builder';
 import { IApiUrlsInterface } from '../interfaces/api-urls-interface';
-import { environment } from '../../environments/environment';
+import { InitService } from './init.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiUrlsService implements IApiUrlsInterface {
 
-  constructor() {
+  private static ORIGIN: string;
+
+  constructor(private initService: InitService) {
+    ApiUrlsService.ORIGIN = initService.config.api_url;
   }
 
   private static getPagedUrl(endPoint: string, requestMethod: string, id?: number, pageSize?: number, pageNumber?: number): string | null {
-    const originEndPoint = `${environment.origin}${endPoint}`;
+    const originEndPoint = `${ApiUrlsService.ORIGIN}${endPoint}`;
     const aub = new ApiUrlBuilder(originEndPoint, requestMethod);
 
     if (aub.isRequestMethodDelete() || aub.isRequestMethodPut()) {
@@ -59,7 +62,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
                      orderDirection?: number,
                      queryString?: string): string | null {
     const endPoint = 'api/users';
-    const originEndPoint = `${environment.origin}${endPoint}`;
+    const originEndPoint = `${ApiUrlsService.ORIGIN}${endPoint}`;
     const aub = new ApiUrlBuilder(originEndPoint, requestMethod);
 
     if (aub.isRequestMethodDelete() || aub.isRequestMethodPut()) {

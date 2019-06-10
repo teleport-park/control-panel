@@ -10,7 +10,7 @@ import {
 } from '../../../../../common/shared-module';
 import { TranslateService } from '../../../../../common/translations-module';
 
-import { default as config } from '../../../../../../app-config.json';
+import { default as config } from '../../../../../../config/app-config.json';
 import { Config } from '../../../../../interfaces';
 import { GroupsService } from './services/groups.service';
 

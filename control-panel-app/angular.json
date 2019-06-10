@@ -30,7 +30,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/app-config.json"
+              "src/config/app-config.json",
+              "src/config/app-init-config.json"
             ],
             "styles": [
               "src/styles.scss",

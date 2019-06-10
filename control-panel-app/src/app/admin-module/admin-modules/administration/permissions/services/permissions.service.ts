@@ -1,5 +1,4 @@
 import { Inject, Injectable } from '@angular/core';
-import { environment } from '../../../../../../environments/environment';
 import { Permission } from '../../../../../models';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
@@ -14,11 +13,6 @@ import { ApiUrlsService } from '../../../../../services/api-urls.service';
 
 @Injectable()
 export class PermissionsService {
-
-  /**
-   * permission api
-   */
-  static readonly PERMISSIONS_API: string = `${environment.origin}${environment.api.PERMISSIONS}`;
 
   /**
    * storage key

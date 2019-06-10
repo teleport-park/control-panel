@@ -8,7 +8,7 @@ import { BreakpointService } from '../../../../services/breakpoint.service';
 import { AddStaffDialogComponent, ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { MatDialog, PageEvent } from '@angular/material';
 
-import { default as config } from '../../../../../app-config.json';
+import { default as config } from '../../../../../config/app-config.json';
 import { AppData } from '../../../../interfaces';
 import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
 import { FormBuilder } from '@angular/forms';

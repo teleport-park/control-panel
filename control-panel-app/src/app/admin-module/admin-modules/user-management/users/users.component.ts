@@ -22,7 +22,7 @@ import {
 import { FormBuilder, FormControl } from '@angular/forms';
 import { BreakpointService } from '../../../../services/breakpoint.service';
 
-import { default as config } from '../../../../../app-config.json';
+import { default as config } from '../../../../../config/app-config.json';
 import { Config } from '../../../../interfaces';
 import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
 import { Router } from '@angular/router';

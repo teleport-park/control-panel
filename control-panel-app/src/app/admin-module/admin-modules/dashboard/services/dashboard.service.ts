@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../../environments/environment';
 import { map } from 'rxjs/operators';
 import { AppData } from '../../../../interfaces';
 import { User } from '../../../../models';
+import { ApiUrlsService } from '../../../../services/api-urls.service';
 
 @Injectable()
 export class DashboardService {
 
   userCount$: Observable<number>;
 
-  constructor(private http: HttpClient) { this.getUserCount(); }
+  constructor(private http: HttpClient,
+              private apiBuilder: ApiUrlsService) {
+    this.getUserCount();
+  }
 
   getUserCount() {
-    this.userCount$ = this.http.get(`${environment.origin}${environment.api.USERS}`).pipe(
+    const requestMethod = 'GET';
+    const url = this.apiBuilder.getUsersUrl(requestMethod);
+    this.userCount$ = this.http.request(requestMethod, url).pipe(
       map((data: AppData<User>) => data.count)
     );
   }

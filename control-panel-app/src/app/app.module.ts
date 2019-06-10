@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,13 @@ import { ErrorInterceptor } from './common/auth-module/interceptors/error.interc
 import { ExtendedFilterUrlParamsInterface } from './interfaces/extended-filter-url-params.interface';
 import { BuildExtendedFilterParamsHelper } from './utils/build-extended-filter-params-helper';
 import { IconService } from './services/icon.service';
+import { InitService } from './services/init.service';
+
+export function initializeApp(initService: InitService) {
+  return (): Promise<any> => {
+    return initService.init();
+  };
+}
 
 @NgModule({
   declarations: [
@@ -43,7 +50,8 @@ import { IconService } from './services/icon.service';
     },
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    {provide: 'ExtendedFilterUrlParamsInterface', useClass: BuildExtendedFilterParamsHelper}
+    {provide: 'ExtendedFilterUrlParamsInterface', useClass: BuildExtendedFilterParamsHelper},
+    {provide: APP_INITIALIZER, useFactory: initializeApp, deps: [InitService], multi: true}
   ],
   bootstrap: [AppComponent]
 })
