@@ -60,7 +60,7 @@ export class BuildMenuHelper {
     }, {
       icon: 'videogame_asset',
       label: 'ADMIN_MENU_AMUSEMENT',
-      path: '',
+      path: 'amusements',
       active: false,
       children: [{
         icon: 'computer',
@@ -141,7 +141,7 @@ export class BuildMenuHelper {
       const path = item.path.split('/');
       const itemIdentifier = path[path.length - 1];
       const permission = MenuPermissionMap[itemIdentifier] as string[];
-      return !permission.length || permission.indexOf(userPermission) > -1;
+      return permission && (permission.length && permission.indexOf(userPermission) > -1);
     });
   }
 }

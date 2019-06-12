@@ -1,26 +1,31 @@
+// TODO refactor and move in config file
 export const MenuPermissionMap = {
-  dashboard: [],
-  administration: ['admin'],
-  permissions: ['admin'],
-  billing: [],
-  'games-tariffs': [],
-  'income-tariffs': [],
-  transactions: [],
-  amusements: [],
+  // dashboard section
+  dashboard: null,
+  // administration section
+  administration: null,
+  permissions: null,
+  // billing section
+  billing: null,
+  'games-tariffs': null,
+  'income-tariffs': null,
+  transactions: null,
+  // amusements
+  amusements: ['admin'],
   hardware: ['admin'],
   'hardware/:id': ['admin'],
-  cashbox: [],
-  'cashbox/:id': [],
-  gates: [],
-  'gates/:id': [],
-  users: [],
-  'users/:id': [],
-  'staff/:id': [],
-  staff: ['admin'],
-  groups: ['admin'],
-  keychain: [],
-  cards: [],
-  'user-management': [],
-  games: [],
-  '': []
+  cashbox: ['admin'],
+  'cashbox/:id': ['admin'],
+  gates: ['admin'],
+  'gates/:id': ['admin'],
+  games: ['admin'],
+  // users-managements
+  users: null,
+  'users/:id': null,
+  'staff/:id': null,
+  staff: null,
+  groups: null,
+  keychain: null,
+  cards: null,
+  'user-management': null
 };

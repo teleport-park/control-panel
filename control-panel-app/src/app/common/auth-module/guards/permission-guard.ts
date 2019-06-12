@@ -27,6 +27,10 @@ export class PermissionGuard implements CanActivate {
         path = `${pathArr[pathArr.length - 2]}/${path}`;
       }
       const permission = MenuPermissionMap[path] as string[];
+      // if no permission list - block
+      if (!permission) {
+        return false;
+      }
       if (!permission.length || permission.indexOf(user.permission) > -1) {
         return true;
       }

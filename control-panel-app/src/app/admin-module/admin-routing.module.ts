@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'amusements', // TODO think about redirect to first active route
         pathMatch: 'full',
         canActivate: [PermissionGuard]
       }, {
