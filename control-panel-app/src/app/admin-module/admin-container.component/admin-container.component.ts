@@ -34,7 +34,7 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
   /**
    * side nav
    */
-  @ViewChild('sidenav') sidenav: MatSidenav;
+  @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
 
   /**
    * active view

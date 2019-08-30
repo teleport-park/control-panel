@@ -58,7 +58,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    * view scroll container for set and store scroll position
    * @param element
    */
-  @ViewChild('scrollContainer') set scrollContainer(element: MatSidenavContent) {
+  @ViewChild('scrollContainer', { static: false }) set scrollContainer(element: MatSidenavContent) {
     if (element) {
       const storedScroll = this.storage.getValue(`${this.userService.STORAGE_KEY}_SCROLL`);
       if (storedScroll) {

@@ -63,7 +63,7 @@ export class FormComponent {
   /**
    * user phone input
    */
-  @ViewChild('phoneInput') phoneInput: ElementRef;
+  @ViewChild('phoneInput', { static: true }) phoneInput: ElementRef;
 
   /**
    * mode

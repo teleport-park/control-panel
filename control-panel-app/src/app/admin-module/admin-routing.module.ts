@@ -14,28 +14,33 @@ const routes: Routes = [
         canActivate: [PermissionGuard]
       }, {
         path: 'dashboard',
-        loadChildren: './admin-modules/dashboard/dashboard.module#DashboardModule',
+        loadChildren: () => import('./admin-modules/dashboard/dashboard.module').then(m => m.DashboardModule),
         data: {title: 'ADMIN_MENU_DASHBOARD'},
         canActivate: [PermissionGuard]
       }, {
         path: 'amusements',
-        loadChildren: './admin-modules/amusements/amusements.module#AmusementsModule',
+        loadChildren: () => import('./admin-modules/amusements/amusements.module').then(m => m.AmusementsModule),
         data: {title: 'ADMIN_MENU_AMUSEMENT'},
         canActivate: [PermissionGuard]
       }, {
         path: 'administration',
-        loadChildren: './admin-modules/administration/administration.module#AdministrationModule',
+        loadChildren: () => import('./admin-modules/administration/administration.module').then(m => m.AdministrationModule),
         data: {title: 'ADMIN_MENU_ADMINISTRATION'},
         canActivate: [PermissionGuard]
       }, {
         path: 'billing',
-        loadChildren: './admin-modules/billing/billing.module#BillingModule',
+        loadChildren: () => import('./admin-modules/billing/billing.module').then(m => m.BillingModule),
         data: {title: 'ADMIN_MENU_BILLING'},
         canActivate: [PermissionGuard]
       }, {
         path: 'user-management',
-        loadChildren: './admin-modules/user-management/user-management.module#UserManagementModule',
+        loadChildren: () => import('./admin-modules/user-management/user-management.module').then(m => m.UserManagementModule),
         data: {title: 'ADMIN_MENU_USER_MANAGEMENT'},
+        canActivate: [PermissionGuard]
+      }, {
+      path: 'teleport-vr',
+        loadChildren: () => import('./admin-modules/teleport-vr/teleport-vr.module').then(m => m.TeleportVrModule),
+        data: {title: 'ADMIN_MENU_TELEPORT_VR'},
         canActivate: [PermissionGuard]
       }
     ]

@@ -90,7 +90,7 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
   /**
    * mat sort instance
    */
-  @ViewChild(MatSort) set sort(sort: MatSort) {
+  @ViewChild(MatSort, { static: true }) set sort(sort: MatSort) {
     if (sort) {
       this.sortInst = sort;
     }
@@ -99,7 +99,7 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
   /**
    * mat paginator instance
    */
-  @ViewChild('paginator') paginator: MatPaginator;
+  @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
   /**
    * selection

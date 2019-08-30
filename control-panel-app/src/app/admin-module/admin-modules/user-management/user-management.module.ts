@@ -11,17 +11,17 @@ const routes: Routes = [{
   component: UserManagementComponent,
   children: [{
     path: 'users',
-    loadChildren: './users/users.module#UsersModule',
+    loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
     data: {title: 'ADMIN_MENU_USERS'},
     canActivate: [PermissionGuard]
   }, {
     path: 'staff',
-    loadChildren: './staff/staff.module#StaffModule',
+    loadChildren: () => import('./staff/staff.module').then(m => m.StaffModule),
     data: {title: 'ADMIN_MENU_STAFF'},
     canActivate: [PermissionGuard]
   }, {
     path: 'cards',
-    loadChildren: './cards/cards.module#CardsModule',
+    loadChildren: () => import('./cards/cards.module').then(m => m.CardsModule),
     data: {title: 'ADMIN_MENU_CARDS'},
     canActivate: [PermissionGuard]
   }]
