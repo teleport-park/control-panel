@@ -6,8 +6,6 @@ import { API } from '../app/api';
 
 export const environment = {
   production: false,
-  domain: 'http://api.gcloud.teleport-park.com/',
-  origin: 'http://35.246.16.24/',
   api: API,
   VERSION: require('../../package.json').version
 };
