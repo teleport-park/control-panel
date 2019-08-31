@@ -19,7 +19,7 @@
                 <p>{{item.authorized}}</p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-raised-button color="primary" (click)="grant(item.token)">GRANT</button>
+                <button mat-raised-button color="primary" (click)="grant(item)">GRANT</button>
                 <button mat-raised-button color="warn" (click)="revoke(item.token)">REVOKE</button>
             </mat-card-actions>
         </mat-card>

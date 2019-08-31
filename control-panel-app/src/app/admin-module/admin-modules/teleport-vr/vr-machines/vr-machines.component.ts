@@ -13,8 +13,8 @@ export class VrMachinesComponent implements OnInit {
   ngOnInit() {
   }
 
-  grant(token: string) {
-    this.service.grantTVRInstance(token).subscribe(result => {
+  grant(item) {
+    this.service.grantTVRInstance(item).subscribe(result => {
       console.log(result);
       this.service.getTVRInstances();
     });

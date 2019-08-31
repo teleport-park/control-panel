@@ -23,8 +23,8 @@ export class TeleportVrService implements OnDestroy {
         });
   }
 
-  grantTVRInstance(token: string): Observable<any> {
-    return this.http.put<any>(this.apiService.getTVRUrl('PUT', token), {})
+  grantTVRInstance(item: TVRModel): Observable<any> {
+    return this.http.put<any>(this.apiService.getTVRUrl('PUT', item.token), item)
         .pipe(catchError(err => {
           this.showError(err);
           return EMPTY;
