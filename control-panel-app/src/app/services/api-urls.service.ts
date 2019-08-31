@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiUrlBuilder } from '../models/api-url-builder';
 import { IApiUrlsInterface } from '../interfaces/api-urls-interface';
 import { InitService } from './init.service';
+import { API } from '../api';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +54,10 @@ export class ApiUrlsService implements IApiUrlsInterface {
 
   public getPermissionsUrl(requestMethod: string, id?: number, pageSize?: number, pageNumber?: number): string | null {
     return ApiUrlsService.getPagedUrl('api/permissions', requestMethod, id, pageSize, pageNumber);
+  }
+
+  public getTVRUrl(requestMethod: string, id?: number): string | null {
+    return ApiUrlsService.getPagedUrl(API.TVR_INSTANCES, requestMethod);
   }
 
   public getUsersUrl(requestMethod: string, id?: number,

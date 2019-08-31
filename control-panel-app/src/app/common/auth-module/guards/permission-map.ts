@@ -1,5 +1,8 @@
 // TODO refactor and move in config file
 export const MenuPermissionMap = {
+  games: ['admin'],
+  machines: ['admin'],
+  'teleport-vr': ['admin'],
   // dashboard section
   dashboard: null,
   // administration section
@@ -11,14 +14,14 @@ export const MenuPermissionMap = {
   'income-tariffs': null,
   transactions: null,
   // amusements
-  amusements: ['admin'],
-  hardware: ['admin'],
-  'hardware/:id': ['admin'],
-  cashbox: ['admin'],
-  'cashbox/:id': ['admin'],
-  gates: ['admin'],
-  'gates/:id': ['admin'],
-  games: ['admin'],
+  amusements: null,
+  hardware: null,
+  'hardware/:id': null,
+  cashbox: null,
+  'cashbox/:id': null,
+  gates: null,
+  'gates/:id': null,
+  // games: null,
   // users-managements
   users: null,
   'users/:id': null,

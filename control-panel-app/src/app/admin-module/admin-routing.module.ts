@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'amusements', // TODO think about redirect to first active route
+        redirectTo: 'teleport-vr', // TODO think about redirect to first active route
         pathMatch: 'full',
         canActivate: [PermissionGuard]
       }, {
@@ -38,7 +38,7 @@ const routes: Routes = [
         data: {title: 'ADMIN_MENU_USER_MANAGEMENT'},
         canActivate: [PermissionGuard]
       }, {
-      path: 'teleport-vr',
+        path: 'teleport-vr',
         loadChildren: () => import('./admin-modules/teleport-vr/teleport-vr.module').then(m => m.TeleportVrModule),
         data: {title: 'ADMIN_MENU_TELEPORT_VR'},
         canActivate: [PermissionGuard]

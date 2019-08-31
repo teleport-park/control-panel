@@ -16,6 +16,8 @@
   "ADMIN_MENU_BILLING": "Биллинг",
   "ADMIN_MENU_USER_MANAGEMENT": "Управление пользовалями",
   "ADMIN_MENU_GAMES": "Игры",
+  "ADMIN_MENU_TELEPORT_VR": "Телепорт VR",
+  "ADMIN_MENU_MACHINES": "Машины",
   "ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL": "Выйти",
   "LOGIN_PAGE_LOGIN_LABEL": "Логин",
   "LOGIN_PAGE_PASSWORD_LABEL": "Пароль",

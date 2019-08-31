@@ -1,4 +1,5 @@
 export const API: {[key: string]: string | any} = {
+  TVR_INSTANCES: 'tvr/mgmt/instances',
   // users
   USERS: 'api/users/',
   // staff

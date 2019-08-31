@@ -14,6 +14,8 @@
   "ADMIN_MENU_INCOME_TARIFFS": "Income tariffs",
   "ADMIN_MENU_BILLING": "Billing",
   "ADMIN_MENU_USER_MANAGEMENT": "User management",
+  "ADMIN_MENU_TELEPORT_VR": "Teleport VR",
+  "ADMIN_MENU_MACHINES": "Machines",
   "ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL": "Logout",
   "LOGIN_PAGE_LOGIN_LABEL": "Login",
   "LOGIN_PAGE_PASSWORD_LABEL": "Password",

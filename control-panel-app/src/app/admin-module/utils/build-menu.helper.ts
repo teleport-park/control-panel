@@ -18,6 +18,24 @@ export class BuildMenuHelper {
    * full menu
    */
   menu: MenuItem[] = [
+    //  new sections
+    {
+      icon: 'developer_board',
+      label: 'ADMIN_MENU_TELEPORT_VR',
+      path: '/admin/teleport-vr',
+      active: false,
+      children: [{
+        icon: 'computer',
+        path: '/admin/teleport-vr/machines',
+        label: 'ADMIN_MENU_MACHINES',
+        active: false
+      }, {
+        icon: 'videogame_asset',
+        path: '/admin/teleport-vr/games',
+        label: 'ADMIN_MENU_GAMES',
+        active: false
+      }]
+    },
     {
       icon: 'dashboard',
       label: 'ADMIN_MENU_DASHBOARD',
