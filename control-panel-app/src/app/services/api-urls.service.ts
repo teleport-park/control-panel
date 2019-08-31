@@ -15,7 +15,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
     ApiUrlsService.ORIGIN = initService.config.api_url;
   }
 
-  private static getPagedUrl(endPoint: string, requestMethod: string, id?: number, pageSize?: number, pageNumber?: number): string | null {
+  private static getPagedUrl(endPoint: string, requestMethod: string, id?: number | string, pageSize?: number, pageNumber?: number): string | null {
     const originEndPoint = `${ApiUrlsService.ORIGIN}${endPoint}`;
     const aub = new ApiUrlBuilder(originEndPoint, requestMethod);
 
@@ -56,8 +56,11 @@ export class ApiUrlsService implements IApiUrlsInterface {
     return ApiUrlsService.getPagedUrl('api/permissions', requestMethod, id, pageSize, pageNumber);
   }
 
-  public getTVRUrl(requestMethod: string, id?: number): string | null {
-    return ApiUrlsService.getPagedUrl(API.TVR_INSTANCES, requestMethod);
+  public getTVRUrl(requestMethod: 'GET' | 'PUT' | 'DELETE', id?: string): string | null {
+    if (requestMethod === 'GET') {
+      return ApiUrlsService.getPagedUrl(API.TVR_INSTANCES, requestMethod, id);
+    }
+    return ApiUrlsService.getPagedUrl(API.TVR_INSTANCES, requestMethod, id) + '/auth';
   }
 
   public getUsersUrl(requestMethod: string, id?: number,

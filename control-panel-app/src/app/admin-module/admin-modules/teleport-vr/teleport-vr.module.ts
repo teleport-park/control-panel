@@ -6,13 +6,19 @@ import { VrGamesComponent } from './vr-games/vr-games.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
 import { TeleportVrService } from './teleport-vr.service';
+import { MaterialModule } from '../../../material.module';
 
 const routes: Routes = [{
   path: '',
   component: TeleportVrComponent,
   children: [
     {path: '', redirectTo: 'machines', pathMatch: 'full'},
-    {path: 'machines', component: VrMachinesComponent, data: { title: 'ADMIN_MENU_MACHINES' }, canActivate: [PermissionGuard]},
+    {
+      path: 'machines',
+      component: VrMachinesComponent,
+      data: {title: 'ADMIN_MENU_MACHINES'},
+      canActivate: [PermissionGuard]
+    },
     {path: 'games', component: VrGamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]}
   ]
 }];
@@ -23,7 +29,8 @@ export const TeleportVrRouteModule = RouterModule.forChild(routes);
   declarations: [TeleportVrComponent, VrMachinesComponent, VrGamesComponent],
   imports: [
     CommonModule,
-    TeleportVrRouteModule
+    TeleportVrRouteModule,
+    MaterialModule
   ],
   providers: [TeleportVrService]
 })

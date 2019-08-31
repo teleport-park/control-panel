@@ -20,7 +20,7 @@ export class BuildMenuHelper {
   menu: MenuItem[] = [
     //  new sections
     {
-      icon: 'developer_board',
+      icon: 'memory',
       label: 'ADMIN_MENU_TELEPORT_VR',
       path: '/admin/teleport-vr',
       active: false,

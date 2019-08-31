@@ -8,3 +8,4 @@ export * from './controller/TVR-controller.model';
 export * from './controller/gate-controller.model';
 export * from './controller/controller-type.enum';
 export * from './amusement.model';
+export * from './tvr.model';

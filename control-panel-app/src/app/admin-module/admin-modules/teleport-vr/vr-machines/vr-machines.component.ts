@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TeleportVrService } from '../teleport-vr.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'mashines',
@@ -9,12 +8,22 @@ import { Observable } from 'rxjs';
 })
 export class VrMachinesComponent implements OnInit {
 
-  _instances: Observable<any[]>;
-
   constructor(public service: TeleportVrService) { }
 
   ngOnInit() {
-    this._instances = this.service.getTVRInstances();
   }
 
+  grant(token: string) {
+    this.service.grantTVRInstance(token).subscribe(result => {
+      console.log(result);
+      this.service.getTVRInstances();
+    });
+  }
+
+  revoke(token: string) {
+    this.service.revokeTVRInstance(token).subscribe(result => {
+      console.log(result);
+      this.service.getTVRInstances();
+    });
+  }
 }
