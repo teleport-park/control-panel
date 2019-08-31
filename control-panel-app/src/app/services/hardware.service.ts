@@ -1,9 +1,11 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ControllerType, GateController, TNGController, TVRController } from '../../../../../models';
+import { ControllerType, GateController, TNGController, TVRController } from '../models';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 
 export class HardwareService implements OnDestroy {
 

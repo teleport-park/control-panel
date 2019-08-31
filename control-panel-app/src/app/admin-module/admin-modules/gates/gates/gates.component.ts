@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HardwareService } from '../hardware/services/hardware.service';
+import { HardwareService } from '../../../../services';
 
 @Component({
   selector: 'gates',

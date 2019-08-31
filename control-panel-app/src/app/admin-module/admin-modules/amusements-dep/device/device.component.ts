@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HardwareService } from '../hardware/services/hardware.service';
+import { HardwareService } from '../../../../services/hardware.service';
 import { TNGController, TVRController } from '../../../../models';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';

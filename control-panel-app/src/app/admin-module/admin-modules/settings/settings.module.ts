@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdministrationComponent } from './administration.component';
+import { SettingsComponent } from './settings.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { AddSimpleEntityDialogComponent, ConfirmDialogComponent } from '../../../common/shared-module';
@@ -12,7 +12,7 @@ import { PermissionGuard } from '../../../common/auth-module/guards/permission-g
 
 const routes: Routes = [{
   path: '',
-  component: AdministrationComponent,
+  component: SettingsComponent,
   children: [
     {
       path: 'permissions',
@@ -26,7 +26,7 @@ const routes: Routes = [{
 export const AdministrationModuleRoute = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [AdministrationComponent, PermissionsComponent],
+  declarations: [SettingsComponent, PermissionsComponent],
   imports: [
     CommonModule,
     AdministrationModuleRoute,
@@ -37,5 +37,5 @@ export const AdministrationModuleRoute = RouterModule.forChild(routes);
   providers: [PermissionsService],
   entryComponents: [AddSimpleEntityDialogComponent, ConfirmDialogComponent]
 })
-export class AdministrationModule {
+export class SettingsModule {
 }

@@ -5,161 +5,187 @@ import { MenuPermissionMap } from '../../common/auth-module/guards/permission-ma
  * menu item interface
  */
 export interface MenuItem {
-  icon: string;
-  label: string;
-  path: string;
-  active: boolean;
-  children?: MenuItem[];
+    icon: string;
+    label: string;
+    path: string;
+    active: boolean;
+    children?: MenuItem[];
 }
 
 export class BuildMenuHelper {
 
-  /**
-   * full menu
-   */
-  menu: MenuItem[] = [
-    //  new sections
-    {
-      icon: 'memory',
-      label: 'ADMIN_MENU_TELEPORT_VR',
-      path: '/admin/teleport-vr',
-      active: false,
-      children: [{
-        icon: 'computer',
-        path: '/admin/teleport-vr/machines',
-        label: 'ADMIN_MENU_MACHINES',
-        active: false
-      }, {
-        icon: 'videogame_asset',
-        path: '/admin/teleport-vr/games',
-        label: 'ADMIN_MENU_GAMES',
-        active: false
-      }]
-    },
-    {
-      icon: 'dashboard',
-      label: 'ADMIN_MENU_DASHBOARD',
-      path: '/admin/dashboard',
-      active: false
-    }, {
-      icon: 'settings',
-      label: 'ADMIN_MENU_ADMINISTRATION',
-      path: '/admin/administration',
-      active: false,
-      children: [
+    /**
+     * full menu
+     */
+    menu: MenuItem[] = [
+        //  new sections
         {
-          icon: 'code',
-          label: 'GROUP_PERMISSIONS',
-          path: '/admin/administration/permissions',
-          active: false
+            icon: 'memory',
+            label: 'ADMIN_MENU_TELEPORT_VR',
+            path: '/admin/teleport-vr',
+            active: false,
+            children: [{
+                icon: 'computer',
+                path: '/admin/teleport-vr/machines',
+                label: 'ADMIN_MENU_MACHINES',
+                active: false
+            }, {
+                icon: 'videogame_asset',
+                path: '/admin/teleport-vr/games',
+                label: 'ADMIN_MENU_GAMES',
+                active: false
+            }]
+        }, {
+            icon: 'markunread_mailbox',
+            label: 'ADMIN_MENU_CASHBOX',
+            path: '/admin/cashbox',
+            active: false,
+            children: [{
+                icon: 'monetization_on',
+                label: 'ADMIN_MENU_CASHBOX',
+                path: '/admin/cashbox/cashbox-machines',
+                active: false,
+            }]
+        }, {
+            icon: 'accessibility',
+            label: 'ADMIN_MENU_GATES',
+            path: '/admin/gate',
+            active: false,
+            children: [{
+                icon: 'transit_enterexit',
+                path: '/admin/gate/gates',
+                label: 'ADMIN_MENU_GATES',
+                active: false
+            }, {
+                icon: 'zoom_out_map',
+                path: '/admin/gate/zones',
+                label: 'ADMIN_MENU_ZONES',
+                active: false
+            }]
+        }, {
+            icon: 'settings',
+            label: 'ADMIN_MENU_SETTINGS',
+            path: '/admin/settings',
+            active: false,
+            children: [
+                {
+                    icon: 'code',
+                    label: 'GROUP_PERMISSIONS',
+                    path: '/admin/settings/permissions',
+                    active: false
+                }
+            ]
         }
-      ]
-    }, {
-      icon: 'monetization_on',
-      label: 'ADMIN_MENU_BILLING',
-      path: '/admin/billing',
-      active: false,
-      children: [{
-        icon: 'games',
-        label: 'ADMIN_MENU_GAMES_TARIFFS',
-        path: '/admin/billing/games-tariffs',
-        active: false
-      }, {
-        icon: 'money',
-        label: 'ADMIN_MENU_INCOME_TARIFFS',
-        path: '/admin/billing/income-tariffs',
-        active: false
-      }, {
-        icon: 'compare_arrows',
-        label: 'ADMIN_MENU_TRANSACTIONS',
-        path: '/admin/billing/transactions',
-        active: false
-      }]
-    }, {
-      icon: 'videogame_asset',
-      label: 'ADMIN_MENU_AMUSEMENT',
-      path: 'amusements',
-      active: false,
-      children: [{
-        icon: 'computer',
-        label: 'ADMIN_MENU_HARDWARE',
-        path: '/admin/amusements/hardware',
-        active: false
-      }, {
-        icon: 'videogame_asset',
-        label: 'ADMIN_MENU_GAMES',
-        path: '/admin/amusements/games',
-        active: false
-      }, {
-        icon: 'euro_symbol',
-        label: 'ADMIN_MENU_CASHBOX',
-        path: '/admin/amusements/cashbox',
-        active: false
-      }, {
-        icon: 'accessibility',
-        label: 'ADMIN_MENU_GATES',
-        path: '/admin/amusements/gates',
-        active: false
-      }]
-    }, {
-      icon: 'people',
-      label: 'ADMIN_MENU_USER_MANAGEMENT',
-      path: '/admin/user-management',
-      active: false,
-      children: [{
-        icon: 'people',
-        label: 'ADMIN_MENU_USERS',
-        path: '/admin/user-management/users',
-        active: false
-      }, {
-        icon: 'people_outline',
-        label: 'ADMIN_MENU_STAFF',
-        path: '/admin/user-management/staff',
-        active: false,
-      }, {
-        icon: 'group_add',
-        label: 'ADMIN_MENU_GROUPS',
-        path: '/admin/user-management/staff/groups',
-        active: false
-      }, {
-        icon: 'credit_card',
-        label: 'ADMIN_MENU_CARDS',
-        path: '/admin/user-management/cards',
-        active: false
-      }]
-    }];
+        // old sections
+        // {
+        //     icon: 'dashboard',
+        //     label: 'ADMIN_MENU_DASHBOARD',
+        //     path: '/admin/dashboard',
+        //     active: false
+        // },
+        // {
+        //     icon: 'monetization_on',
+        //     label: 'ADMIN_MENU_BILLING',
+        //     path: '/admin/billing',
+        //     active: false,
+        //     children: [{
+        //         icon: 'games',
+        //         label: 'ADMIN_MENU_GAMES_TARIFFS',
+        //         path: '/admin/billing/games-tariffs',
+        //         active: false
+        //     }, {
+        //         icon: 'money',
+        //         label: 'ADMIN_MENU_INCOME_TARIFFS',
+        //         path: '/admin/billing/income-tariffs',
+        //         active: false
+        //     }, {
+        //         icon: 'compare_arrows',
+        //         label: 'ADMIN_MENU_TRANSACTIONS',
+        //         path: '/admin/billing/transactions',
+        //         active: false
+        //     }]
+        // },
+        // {
+        //     icon: 'videogame_asset',
+        //     label: 'ADMIN_MENU_AMUSEMENT',
+        //     path: 'amusements',
+        //     active: false,
+        //     children: [{
+        //         icon: 'computer',
+        //         label: 'ADMIN_MENU_HARDWARE',
+        //         path: '/admin/amusements/hardware',
+        //         active: false
+        //     }, {
+        //         icon: 'videogame_asset',
+        //         label: 'ADMIN_MENU_GAMES',
+        //         path: '/admin/amusements/games',
+        //         active: false
+        //     },  {
+        //         icon: 'accessibility',
+        //         label: 'ADMIN_MENU_GATES',
+        //         path: '/admin/amusements/gates',
+        //         active: false
+        //     }]
+        // }, {
+        //     icon: 'people',
+        //     label: 'ADMIN_MENU_USER_MANAGEMENT',
+        //     path: '/admin/user-management',
+        //     active: false,
+        //     children: [{
+        //         icon: 'people',
+        //         label: 'ADMIN_MENU_USERS',
+        //         path: '/admin/user-management/users',
+        //         active: false
+        //     }, {
+        //         icon: 'people_outline',
+        //         label: 'ADMIN_MENU_STAFF',
+        //         path: '/admin/user-management/staff',
+        //         active: false,
+        //     }, {
+        //         icon: 'group_add',
+        //         label: 'ADMIN_MENU_GROUPS',
+        //         path: '/admin/user-management/staff/groups',
+        //         active: false
+        //     }, {
+        //         icon: 'credit_card',
+        //         label: 'ADMIN_MENU_CARDS',
+        //         path: '/admin/user-management/cards',
+        //         active: false
+        //     }]
+        // },
+        ];
 
-  /**
-   * current user permission
-   */
-  userPermission: string;
+    /**
+     * current user permission
+     */
+    userPermission: string;
 
 
-  constructor(private authService: AuthService) {
-    this.userPermission = authService.currentUserValue.permission;
-  }
+    constructor(private authService: AuthService) {
+        this.userPermission = authService.currentUserValue.permission;
+    }
 
-  /**
-   * get menu
-   */
-  getMenu(): MenuItem[] {
-    return this.prepareMenu(this.menu, this.userPermission);
-  }
+    /**
+     * get menu
+     */
+    getMenu(): MenuItem[] {
+        return this.prepareMenu(this.menu, this.userPermission);
+    }
 
-  /**
-   * prepare menu recursively
-   * @param menu
-   * @param userPermission
-   */
-  private prepareMenu(menu: MenuItem[], userPermission: string) {
-    return menu.filter((item: MenuItem) => {
-      if (item.children) {
-        item.children = this.prepareMenu(item.children, userPermission);
-      }
-      const path = item.path.split('/');
-      const itemIdentifier = path[path.length - 1];
-      const permission = MenuPermissionMap[itemIdentifier] as string[];
-      return permission && (permission.length && permission.indexOf(userPermission) > -1);
-    });
-  }
+    /**
+     * prepare menu recursively
+     * @param menu
+     * @param userPermission
+     */
+    private prepareMenu(menu: MenuItem[], userPermission: string) {
+        return menu.filter((item: MenuItem) => {
+            if (item.children) {
+                item.children = this.prepareMenu(item.children, userPermission);
+            }
+            const path = item.path.split('/');
+            const itemIdentifier = path[path.length - 1];
+            const permission = MenuPermissionMap[itemIdentifier] as string[];
+            return permission && (permission.length && permission.indexOf(userPermission) > -1);
+        });
+    }
 }
