@@ -20,19 +20,88 @@ export class BuildMenuHelper {
     menu: MenuItem[] = [
         //  new sections
         {
+            icon: 'local_parking',
+            path: '/admin/park',
+            label: 'ADMIN_MENU_PARK',
+            active: false,
+            children: [{
+                icon: 'people',
+                label: 'ADMIN_MENU_USERS',
+                path: '/admin/park/visitors',
+                active: false
+            }, {
+                icon: 'credit_card',
+                label: 'ADMIN_MENU_CARDS',
+                path: '/admin/park/cards',
+                active: false
+            }, {
+                icon: 'dynamic_feed',
+                label: 'ADMIN_MENU_PACKAGES',
+                path: '/admin/park/packages',
+                active: false
+            }, {
+                icon: 'videogame_asset',
+                label: 'ADMIN_MENU_GAMES',
+                path: '/admin/park/games',
+                active: false
+            }, {
+                icon: 'local_atm',
+                label: 'ADMIN_MENU_PRICING',
+                path: '/admin/park/pricing',
+                active: false
+            }]
+        },
+        {
             icon: 'memory',
             label: 'ADMIN_MENU_TELEPORT_VR',
             path: '/admin/teleport-vr',
             active: false,
             children: [{
                 icon: 'computer',
-                path: '/admin/teleport-vr/machines',
+                path: '/admin/teleport-vr/vr-machines',
                 label: 'ADMIN_MENU_MACHINES',
                 active: false
             }, {
                 icon: 'videogame_asset',
-                path: '/admin/teleport-vr/games',
+                path: '/admin/teleport-vr/vr-games',
                 label: 'ADMIN_MENU_GAMES',
+                active: false
+            }]
+        }, {
+            icon: 'memory',
+            path: '/admin/teleport-ng',
+            label: 'ADMIN_MENU_TELEPORT_NG',
+            active: false,
+            children: [{
+                icon: 'developer_board',
+                path: '/admin/teleport-ng/ng-controllers',
+                label: 'ADMIN_MENU_CONTROLLERS',
+                active: false
+            }, {
+                icon: 'router',
+                path: '/admin/teleport-ng/ng-servers',
+                label: 'ADMIN_MENU_SERVERS',
+                active: false
+            }, {
+                icon: 'videogame_asset',
+                path: '/admin/teleport-ng/ng-games',
+                label: 'ADMIN_MENU_GAMES',
+                active: false
+            }]
+        }, {
+            icon: 'memory',
+            path: '/admin/teleport-poly',
+            label: 'ADMIN_MENU_TELEPORT_POLY',
+            active: false,
+            children: [{
+                icon: 'router',
+                path: '/admin/teleport-poly/poly-servers',
+                label: 'ADMIN_MENU_SERVERS',
+                active: false
+            }, {
+                icon: 'developer_board',
+                path: '/admin/teleport-poly/poly-controllers',
+                label: 'ADMIN_MENU_CONTROLLERS',
                 active: false
             }]
         }, {
@@ -52,7 +121,7 @@ export class BuildMenuHelper {
             path: '/admin/gate',
             active: false,
             children: [{
-                icon: 'transit_enterexit',
+                icon: 'meeting_room',
                 path: '/admin/gate/gates',
                 label: 'ADMIN_MENU_GATES',
                 active: false
@@ -153,7 +222,7 @@ export class BuildMenuHelper {
         //         active: false
         //     }]
         // },
-        ];
+    ];
 
     /**
      * current user permission

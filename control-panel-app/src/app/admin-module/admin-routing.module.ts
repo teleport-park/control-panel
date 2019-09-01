@@ -9,14 +9,28 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'teleport-vr', // TODO think about redirect to first active route
+                redirectTo: 'park', // TODO think about redirect to first active route
                 pathMatch: 'full',
                 canActivate: [PermissionGuard]
-            },
-            {
+            }, {
+                path: 'park',
+                loadChildren: () => import('./admin-modules/park/park.module').then(m => m.ParkModule),
+                data: {title: 'ADMIN_MENU_PARK'},
+                canActivate: [PermissionGuard]
+            }, {
                 path: 'teleport-vr',
                 loadChildren: () => import('./admin-modules/teleport-vr/teleport-vr.module').then(m => m.TeleportVrModule),
                 data: {title: 'ADMIN_MENU_TELEPORT_VR'},
+                canActivate: [PermissionGuard]
+            }, {
+                path: 'teleport-ng',
+                loadChildren: () => import('./admin-modules/teleport-ng/teleport-ng.module').then(m => m.TeleportNgModule),
+                data: {title: 'ADMIN_MENU_TELEPORT_NG'},
+                canActivate: [PermissionGuard]
+            }, {
+                path: 'teleport-poly',
+                loadChildren: () => import('./admin-modules/teleport-poly/teleport-poly.module').then(m => m.TeleportPolyModule),
+                data: {title: 'ADMIN_MENU_TELEPORT_POLY'},
                 canActivate: [PermissionGuard]
             }, {
                 path: 'gate',

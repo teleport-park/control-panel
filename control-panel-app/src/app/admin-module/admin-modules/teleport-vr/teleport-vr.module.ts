@@ -12,14 +12,14 @@ const routes: Routes = [{
   path: '',
   component: TeleportVrComponent,
   children: [
-    {path: '', redirectTo: 'machines', pathMatch: 'full'},
+    {path: '', redirectTo: 'vr-machines', pathMatch: 'full'},
     {
-      path: 'machines',
+      path: 'vr-machines',
       component: VrMachinesComponent,
       data: {title: 'ADMIN_MENU_MACHINES'},
       canActivate: [PermissionGuard]
     },
-    {path: 'games', component: VrGamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]}
+    {path: 'vr-games', component: VrGamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]}
   ]
 }];
 

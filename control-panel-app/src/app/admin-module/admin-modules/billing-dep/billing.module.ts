@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BillingComponent } from './billing.component';
 import { RouterModule, Routes } from '@angular/router';
-import { GamesTariffsComponent } from './games-tariffs/games-tariffs.component';
 import { MaterialModule } from '../../../material.module';
 import { SharedModule } from '../../../common/shared-module/shared.module';
-import { TariffsService } from './games-tariffs/services/tariffs.service';
 import { IncomeTariffsComponent } from './income-tariffs/income-tariffs.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { TransactionsService } from './transactions/services/transactions.service';
@@ -15,12 +13,7 @@ import { PermissionGuard } from '../../../common/auth-module/guards/permission-g
 const routes: Routes = [{
   path: '',
   component: BillingComponent,
-  children: [{
-    path: 'games-tariffs',
-    component: GamesTariffsComponent,
-    data: {title: 'ADMIN_MENU_GAMES_TARIFFS'},
-    canActivate: [PermissionGuard]
-  }, {
+  children: [ {
     path: 'income-tariffs',
     component: IncomeTariffsComponent,
     data: {title: 'ADMIN_MENU_INCOME_TARIFFS'},
@@ -36,13 +29,13 @@ const routes: Routes = [{
 export const BillingRoutingModule = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [BillingComponent, GamesTariffsComponent, IncomeTariffsComponent, TransactionsComponent],
+  declarations: [BillingComponent, IncomeTariffsComponent, TransactionsComponent],
   imports: [
     CommonModule,
     MaterialModule,
     SharedModule,
     BillingRoutingModule
   ],
-  providers: [TariffsService, TransactionsService, IncomeTariffsService]
+  providers: [ TransactionsService, IncomeTariffsService]
 })
 export class BillingModule { }
