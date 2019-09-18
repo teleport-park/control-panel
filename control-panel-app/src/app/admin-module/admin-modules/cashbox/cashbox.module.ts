@@ -4,6 +4,14 @@ import { CashboxComponent } from './cashbox.component';
 import { CashboxMachinesComponent } from './cashbox-machines/cashbox-machines.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
+import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
+import { LoaderService } from '../../../services/loader.service';
+import { ApiUrlsService } from '../../../services/api-urls.service';
+import { CommonInstanceService } from '../../../services';
+import { CashBoxController } from '../../../models/controller';
+import { INSTANCE_SERVICE } from '../../../models';
+import { SharedModule } from '../../../common/shared-module/shared.module';
 
 const routes: Routes = [{
     path: '',
@@ -20,11 +28,19 @@ const routes: Routes = [{
 
 export const CashboxRouterModule = RouterModule.forChild(routes);
 
+export function CashBoxFactory(http: HttpClient, snackBar: MatSnackBar, loader: LoaderService, apiUrlService: ApiUrlsService) {
+    return new CommonInstanceService(http, snackBar, loader, apiUrlService.getCashBox, (item) => new CashBoxController(item));
+}
+
 @NgModule({
     declarations: [CashboxComponent, CashboxMachinesComponent],
     imports: [
         CommonModule,
-        CashboxRouterModule
+        CashboxRouterModule,
+        SharedModule
+    ],
+    providers: [
+        {provide: INSTANCE_SERVICE, useFactory: CashBoxFactory, deps: [HttpClient, MatSnackBar, LoaderService, ApiUrlsService]}
     ]
 })
 export class CashboxModule {

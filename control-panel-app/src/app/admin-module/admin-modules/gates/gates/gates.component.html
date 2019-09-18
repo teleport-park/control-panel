@@ -1,5 +1,6 @@
 <div class="row m-0">
-  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let gate of service.gateControllers$ | async">
-    <control-panel-ui-gate-item [item]="gate" [metrics]="service.status$ | async"></control-panel-ui-gate-item>
+  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let gate of service.instances$ | async">
+    <control-panel-ui-hardware-item [item]="gate" (grant)="grant($event)"
+                                    (revoke)="revoke($event)"></control-panel-ui-hardware-item>
   </div>
 </div>

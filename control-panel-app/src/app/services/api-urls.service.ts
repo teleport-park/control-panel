@@ -63,6 +63,20 @@ export class ApiUrlsService implements IApiUrlsInterface {
     return ApiUrlsService.getPagedUrl(API.TVR_INSTANCES, requestMethod, id) + '/auth';
   }
 
+  public getGateUrl(requestMethod: 'GET' | 'PUT' | 'DELETE', id?: string): string | null {
+    if (requestMethod === 'GET') {
+      return ApiUrlsService.getPagedUrl(API.GATE_INSTANCES, requestMethod, id);
+    }
+    return ApiUrlsService.getPagedUrl(API.GATE_INSTANCES, requestMethod, id) + '/auth';
+  }
+
+  public getCashBox(requestMethod: 'GET' | 'PUT' | 'DELETE', id?: string): string | null {
+    if (requestMethod === 'GET') {
+      return ApiUrlsService.getPagedUrl(API.CASH_BOX_INSTANCES, requestMethod, id);
+    }
+    return ApiUrlsService.getPagedUrl(API.CASH_BOX_INSTANCES, requestMethod, id) + '/auth';
+  }
+
   public getUsersUrl(requestMethod: string, id?: number,
                      pageSize?: number,
                      pageNumber?: number,

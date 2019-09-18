@@ -1,16 +1,12 @@
-import { GameController } from './game-controller.model';
+import { BaseController } from './base-controller.model';
 
-export class TNGController extends GameController {
-  /**
-   * secret key
-   */
-  secretKey: string;
-  /**
-   * type
-   */
-  readonly TYPE: string = 'TNG';
+export class TNGController extends BaseController {
+    /**
+     * type
+     */
+    readonly TYPE: string = 'TNG';
 
-  constructor() {
-    super();
-  }
+    constructor(model) {
+        super();
+    }
 }

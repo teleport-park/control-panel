@@ -1,5 +1,6 @@
 @import "pallete";
 :host {
+  min-width: 250px;
   .hardware-item_wrapper {
     padding: 20px;
     margin: 10px;
@@ -23,17 +24,24 @@
     align-items: center;
     margin-bottom: 0;
     .mat-icon {
-      margin-left: 10px;
-      &.online {
+      margin-left: 1rem;
+      &.authorized {
         color: $success;
       }
-      &.offline {
+      &.unauthorized {
         color: $backdrop;
       }
     }
   }
-  .active-game {
+  .actions {
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+  .bold {
+    font-weight: 700;
+  }
+  .word-break {
+    word-break: break-word;
   }
 }

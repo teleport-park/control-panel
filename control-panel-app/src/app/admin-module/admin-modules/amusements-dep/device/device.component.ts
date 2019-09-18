@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HardwareService } from '../../../../services/hardware.service';
-import { TNGController, TVRController } from '../../../../models';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
+import { ControllerType } from '../../../../models/types';
 
 @Component({
   selector: 'device',
@@ -15,7 +15,7 @@ export class DeviceComponent implements OnInit, OnDestroy {
   /**
    * device
    */
-  _device: TNGController | TVRController;
+  _device: ControllerType;
 
   /**
    * device properties
@@ -38,7 +38,7 @@ export class DeviceComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const deviceId = this.route.snapshot.paramMap.get('id');
     this.service.controllers$.pipe(filter((data: any) => !!data))
-      .subscribe((controllers: TNGController[] | TVRController[]) => {
+      .subscribe((controllers: ControllerType[]) => {
         this._device = controllers.find(controller => controller.id === deviceId);
         this.deviceProperties = Object.keys(this._device).filter(key => {
           return typeof this._device[key] !== 'object';

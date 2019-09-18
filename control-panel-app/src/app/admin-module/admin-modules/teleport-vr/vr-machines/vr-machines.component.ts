@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { TeleportVrService } from '../teleport-vr.service';
+import { Component, Inject, OnInit } from '@angular/core';
+import { INSTANCE_SERVICE, InstanceService} from '../../../../models';
+import { TVRController } from '../../../../models/controller';
 
 @Component({
   selector: 'mashines',
@@ -8,22 +9,16 @@ import { TeleportVrService } from '../teleport-vr.service';
 })
 export class VrMachinesComponent implements OnInit {
 
-  constructor(public service: TeleportVrService) { }
+  constructor(@Inject(INSTANCE_SERVICE) public service: InstanceService<TVRController>) {}
 
   ngOnInit() {
   }
 
-  grant(item) {
-    this.service.grantTVRInstance(item).subscribe(result => {
-      console.log(result);
-      this.service.getTVRInstances();
-    });
+  grant(item: TVRController) {
+    this.service.grant(item);
   }
 
-  revoke(token: string) {
-    this.service.revokeTVRInstance(token).subscribe(result => {
-      console.log(result);
-      this.service.getTVRInstances();
-    });
+  revoke(item: TVRController) {
+    this.service.revoke(item);
   }
 }

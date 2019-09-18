@@ -1,1 +1,6 @@
-<p>cashbox-machines works!</p>
+<div class="row instances_wrapper">
+    <div *ngFor="let item of service.instances$ | async" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 instance">
+        <control-panel-ui-hardware-item [item]="item" (grant)="grant($event)"
+                                        (revoke)="revoke($event)"></control-panel-ui-hardware-item>
+    </div>
+</div>

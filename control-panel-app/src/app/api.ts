@@ -1,5 +1,7 @@
 export const API: {[key: string]: string | any} = {
   TVR_INSTANCES: 'tvr/mgmt/instances',
+  GATE_INSTANCES: 'gates/mgmt/instances',
+  CASH_BOX_INSTANCES: 'cashbox/mgmt/instances',
   // users
   USERS: 'api/users/',
   // staff

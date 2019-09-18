@@ -1,54 +1,46 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges
-} from '@angular/core';
-import { GateController } from '../../../models';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ControllerType } from '../../../models/types';
 
 @Component({
-  selector: 'control-panel-ui-gate-item',
-  templateUrl: './control-panel-ui-gate-item.component.html',
-  styleUrls: ['./control-panel-ui-gate-item.component.scss']
+    selector: 'control-panel-ui-gate-item',
+    templateUrl: './control-panel-ui-gate-item.component.html',
+    styleUrls: ['./control-panel-ui-gate-item.component.scss']
 })
 export class ControlPanelUiGateItemComponent implements OnInit, OnChanges {
 
-  status: string;
+    status: string;
 
-  @Input() item: GateController;
+    @Input() item: ControllerType;
 
-  @Input() set metrics(data: any[]) {
-    if (data && this.item) {
-      this.item.status = data.find(item => item.id === this.item.id).status;
+    // @Input() set metrics(data: any[]) {
+    //   if (data && this.item) {
+    //     this.item.status = data.find(item => item.id === this.item.id).status;
+    //   }
+    // }
+
+    constructor() {
     }
-  }
 
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['item']) {
-      this.status = this.item.status;
+    ngOnInit() {
     }
-  }
 
-  getIcon() {
-    switch (true) {
-      case this.item.isOpen():
-        return 'gate-open';
-      case this.item.isClosed():
-        return 'gate-closed';
-      case this.item.isBlocked():
-        return 'gate-blocked';
-      default:
-        return '';
+    ngOnChanges(changes: SimpleChanges): void {
+        // if (changes['item']) {
+        //   this.status = this.item.status;
+        // }
     }
-  }
+
+    // getIcon() {
+    //   switch (true) {
+    //     case this.item.isOpen():
+    //       return 'gate-open';
+    //     case this.item.isClosed():
+    //       return 'gate-closed';
+    //     case this.item.isBlocked():
+    //       return 'gate-blocked';
+    //     default:
+    //       return '';
+    //   }
+    // }
 
 }

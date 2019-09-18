@@ -1,16 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { HardwareService } from '../../../../services';
+import { Component, Inject } from '@angular/core';
+import { INSTANCE_SERVICE, InstanceService } from '../../../../models';
+import { GateController } from '../../../../models/controller';
 
 @Component({
-  selector: 'gates',
-  templateUrl: './gates.component.html',
-  styleUrls: ['./gates.component.scss']
+    selector: 'gates',
+    templateUrl: './gates.component.html',
+    styleUrls: ['./gates.component.scss']
 })
-export class GatesComponent implements OnInit {
+export class GatesComponent {
 
-  constructor(public service: HardwareService) { }
+    constructor(@Inject(INSTANCE_SERVICE) public service: InstanceService<GateController>) {
+    }
 
-  ngOnInit() {
-  }
+    grant(item: GateController) {
+        this.service.grant(item);
+    }
+
+    revoke(item: GateController) {
+        this.service.revoke(item);
+    }
 
 }

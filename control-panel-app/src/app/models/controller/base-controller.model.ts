@@ -2,18 +2,22 @@
  * controller base model
  */
 export class BaseController {
+
+  static readonly MOCK_REF: string = 'mock_ref';
   /**
    * id
    */
   id: string;
   /**
-   * ip
+   * reference id
    */
-  ip: string;
-  /**
-   * description
-   */
-  description: string;
+  ref: string;
+
+  online: Date;
+
+  token: string;
+
+  authorized: boolean;
 
   constructor() {
   }

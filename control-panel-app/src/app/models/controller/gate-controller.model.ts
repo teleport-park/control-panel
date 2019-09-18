@@ -1,31 +1,20 @@
 import { BaseController } from './base-controller.model';
-
-export enum GateStatus {
-  'OPEN' = 'open',
-  'CLOSED' = 'closed',
-  'BLOCKED' = 'blocked'
-}
+import { TVRModel } from '../tvr.model';
 
 export class GateController extends BaseController {
-  /**
-   * gate status
-   */
-  status: GateStatus;
-  /**
-   * data
-   */
-  data: any;
 
   /**
    * type
    */
-  readonly type: string = 'GATE';
+  readonly TYPE: string = 'GATE';
 
-  constructor() {
+  constructor(model: TVRModel) {
     super();
+    this.authorized = model.authorized;
+    this.id = model.id;
+    this.online = model.online;
+    this.token = model.token;
+    // TODO if doesn't have ref mock him
+    this.ref = model.ref ? model.ref : BaseController.MOCK_REF;
   }
-
-  isOpen() { return this.status === GateStatus.OPEN; }
-  isClosed() { return this.status === GateStatus.CLOSED; }
-  isBlocked() { return this.status === GateStatus.BLOCKED; }
 }

@@ -7,6 +7,13 @@ import { PermissionGuard } from '../../../common/auth-module/guards/permission-g
 import { SharedModule } from '../../../common/shared-module/shared.module';
 import { MaterialModule } from '../../../material.module';
 import { ZonesComponent } from './zones/zones.component';
+import { INSTANCE_SERVICE } from '../../../models';
+import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
+import { LoaderService } from '../../../services/loader.service';
+import { ApiUrlsService } from '../../../services/api-urls.service';
+import { CommonInstanceService } from '../../../services';
+import { GateController } from '../../../models/controller';
 
 const routes: Routes = [{
     path: '',
@@ -20,6 +27,10 @@ const routes: Routes = [{
     }]
 }];
 
+export function GateFactory(http: HttpClient, snackBar: MatSnackBar, loader: LoaderService, apiUrlService: ApiUrlsService) {
+    return new CommonInstanceService(http, snackBar, loader, apiUrlService.getGateUrl, (item) => new GateController(item));
+}
+
 export const GatesRouteModule = RouterModule.forChild(routes);
 
 @NgModule({
@@ -29,6 +40,9 @@ export const GatesRouteModule = RouterModule.forChild(routes);
         GatesRouteModule,
         SharedModule,
         MaterialModule
+    ],
+    providers: [
+        {provide: INSTANCE_SERVICE, useFactory: GateFactory, deps: [HttpClient, MatSnackBar, LoaderService, ApiUrlsService]}
     ]
 })
 export class GatesModule {

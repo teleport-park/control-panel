@@ -1,27 +1,7 @@
 <!--<pre>{{(_instances | async) | json}}</pre>-->
 <div class="row instances_wrapper">
-    <div *ngFor="let item of service.trvInstances$ | async" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 instance">
-        <mat-card>
-            <mat-card-header>
-                <div mat-card-avatar>
-                    <mat-icon>laptop_mac</mat-icon>
-                </div>
-                <mat-card-title>TVR</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p class="bold">id:</p>
-                <p style="word-break: break-word">{{item.id}}</p>
-                <p class="bold">token:</p>
-                <p>{{item.token}}</p>
-                <p class="bold">online date: </p>
-                <p>{{item.online | date:'dd.MM.yyyy'}}</p>
-                <p class="bold">authorized state: </p>
-                <p>{{item.authorized}}</p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-raised-button color="primary" (click)="grant(item)">GRANT</button>
-                <button mat-raised-button color="warn" (click)="revoke(item.token)">REVOKE</button>
-            </mat-card-actions>
-        </mat-card>
+    <div *ngFor="let item of service.instances$ | async" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 instance">
+        <control-panel-ui-hardware-item [item]="item" (grant)="grant($event)"
+                                        (revoke)="revoke($event)"></control-panel-ui-hardware-item>
     </div>
 </div>

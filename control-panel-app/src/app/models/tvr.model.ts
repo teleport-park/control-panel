@@ -3,4 +3,5 @@ export class TVRModel {
   public online: Date;
   public token: string;
   public authorized: boolean;
+  public ref: string;
 }
