@@ -8,7 +8,7 @@ import { LoaderService } from './loader.service';
 import { BaseController } from '../models/controller';
 import { ControllerType } from '../models/types';
 
-@Injectable()
+
 
 export class CommonInstanceService implements InstanceService<ControllerType>, OnDestroy {
 
