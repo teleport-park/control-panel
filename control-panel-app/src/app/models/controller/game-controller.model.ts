@@ -6,7 +6,7 @@ export enum GameControllerStatus {
   'OFFLINE' = 'offline'
 }
 
-export class GameController extends BaseController {
+export class GameController {
   /**
    * status
    */
@@ -21,7 +21,6 @@ export class GameController extends BaseController {
   data: GameControllerData;
 
   constructor() {
-    super();
   }
 
   /**
