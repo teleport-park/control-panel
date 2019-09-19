@@ -15,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (user && user.token) {
       req = req.clone({
         setHeaders: {
-          // Authorization: `Bearer ${user.token}`,
+          Authorization: `Bearer ${user.token}`,
           'Accept-Language': this.translateService.locale.getValue()
         }
       });

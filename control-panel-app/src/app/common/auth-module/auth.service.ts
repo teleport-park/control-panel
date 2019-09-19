@@ -26,7 +26,7 @@ export class AuthService {
   login({login, password, permission}): boolean {
     if (login === 'admin' && password === 'password') {
       const user = {
-        token: 'fake-control-teleport-token',
+        token: 'ed82c701-11c3-4288-aeb8-80019ded4a38',
         permission
       };
       localStorage.setItem('USER', JSON.stringify(user));
