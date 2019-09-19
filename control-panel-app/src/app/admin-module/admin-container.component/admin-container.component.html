@@ -13,10 +13,9 @@
     <mat-divider></mat-divider>
     <mat-nav-list class="nav-list-container">
       <div class="nav-list-container_parent-container" *ngFor="let menuItem of MENU_ITEMS">
-        <a mat-list-item *ngIf="menuItem.path"
+        <a mat-list-item *ngIf="!menuItem.root"
            [routerLink]="menuItem.path"
            routerLinkActive="active"
-           [routerLinkActiveOptions]="{exact: true}"
            (click)="menuItem.active = !menuItem.active">
           <i class="material-icons">{{menuItem.icon}}</i>
           {{translateService.instant(menuItem.label)}}
@@ -24,7 +23,7 @@
             {{menuItem.active ? 'expand_more' : 'chevron_right'}}
           </mat-icon>
         </a>
-        <a mat-list-item *ngIf="!menuItem.path"
+        <a mat-list-item class="" *ngIf="menuItem.root"
            (click)="menuItem.active = !menuItem.active">
           <i class="material-icons">{{menuItem.icon}}</i>
           {{translateService.instant(menuItem.label)}}

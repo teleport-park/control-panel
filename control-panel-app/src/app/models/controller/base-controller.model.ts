@@ -19,6 +19,9 @@ export class BaseController {
 
   authorized: boolean;
 
-  constructor() {
+  constructor(model) {
+    Object.keys(model).forEach(key => {
+      this[key] = model[key];
+    });
   }
 }

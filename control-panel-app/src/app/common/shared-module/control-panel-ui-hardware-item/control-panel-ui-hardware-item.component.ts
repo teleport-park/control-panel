@@ -9,6 +9,12 @@ import { ControllerType } from '../../../models/types';
 })
 export class ControlPanelUiHardwareItemComponent implements OnInit, OnDestroy {
 
+  readonly MINUTE: number = 60 * 1000;
+
+  objectKeys = Object.keys;
+
+  date: number = Date.now();
+
   /**
    * items
    */
@@ -37,5 +43,9 @@ export class ControlPanelUiHardwareItemComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+  }
+
+  getDate(value) {
+    return new Date(value).getTime();
   }
 }

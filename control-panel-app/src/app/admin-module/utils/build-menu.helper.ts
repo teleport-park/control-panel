@@ -9,6 +9,7 @@ export interface MenuItem {
     label: string;
     path: string;
     active: boolean;
+    root?: boolean;
     children?: MenuItem[];
 }
 
@@ -24,6 +25,7 @@ export class BuildMenuHelper {
             path: '/admin/park',
             label: 'ADMIN_MENU_PARK',
             active: false,
+            root: true,
             children: [{
                 icon: 'people',
                 label: 'ADMIN_MENU_USERS',
@@ -56,6 +58,7 @@ export class BuildMenuHelper {
             label: 'ADMIN_MENU_TELEPORT_VR',
             path: '/admin/teleport-vr',
             active: false,
+            root: true,
             children: [{
                 icon: 'computer',
                 path: '/admin/teleport-vr/vr-machines',
@@ -72,6 +75,7 @@ export class BuildMenuHelper {
             path: '/admin/teleport-ng',
             label: 'ADMIN_MENU_TELEPORT_NG',
             active: false,
+            root: true,
             children: [{
                 icon: 'developer_board',
                 path: '/admin/teleport-ng/ng-controllers',
@@ -93,6 +97,7 @@ export class BuildMenuHelper {
             path: '/admin/teleport-poly',
             label: 'ADMIN_MENU_TELEPORT_POLY',
             active: false,
+            root: true,
             children: [{
                 icon: 'router',
                 path: '/admin/teleport-poly/poly-servers',
@@ -109,6 +114,7 @@ export class BuildMenuHelper {
             label: 'ADMIN_MENU_CASHBOX',
             path: '/admin/cashbox',
             active: false,
+            root: true,
             children: [{
                 icon: 'monetization_on',
                 label: 'ADMIN_MENU_CASHBOX',
@@ -120,6 +126,7 @@ export class BuildMenuHelper {
             label: 'ADMIN_MENU_GATES',
             path: '/admin/gate',
             active: false,
+            root: true,
             children: [{
                 icon: 'meeting_room',
                 path: '/admin/gate/gates',
@@ -136,6 +143,7 @@ export class BuildMenuHelper {
             label: 'ADMIN_MENU_SETTINGS',
             path: '/admin/settings',
             active: false,
+            root: true,
             children: [
                 {
                     icon: 'code',

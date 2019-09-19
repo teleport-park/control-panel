@@ -2,12 +2,18 @@
   <div class="hardware-item_title">
     <h4>{{item.TYPE}}</h4>
   </div>
-  <p class="word-break">
-    <span class="bold">Id:</span> {{item.id}}
-  </p>
-  <p><span class="bold">Online:</span> {{item.online | date:'dd.MM.yyyy'}}</p>
-  <p><span class="bold">Token: </span>{{item.token}}</p>
-  <p><span class="bold">Ref: </span>{{item.ref}}</p>
+  <ng-container *ngFor="let key of objectKeys(item)">
+    <ng-container [ngSwitch]="key">
+      <p *ngSwitchDefault class="word-break"><span class="bold">{{key.charAt(0).toUpperCase() + key.slice(1)}}: </span>{{item[key]}}</p>
+      <p *ngSwitchCase="'online'" class="status"><span class="bold">{{key.charAt(0).toUpperCase() + key.slice(1)}}: </span>
+        <mat-icon [ngClass]="{'offline': (date - getDate(item[key])) > MINUTE, 'online': (date - getDate(item[key])) < MINUTE}">radio_button_checked</mat-icon>
+        ({{item[key] | date:'dd.MM.yyyy hh:mm'}})
+      </p>
+      <ng-container *ngSwitchCase="'authorized'"></ng-container>
+      <ng-container *ngSwitchCase="'TYPE'"></ng-container>
+    </ng-container>
+
+  </ng-container>
   <p class="status">
     <span class="bold">Status:</span>
     <mat-icon [ngClass]="{'authorized': item.authorized, 'unauthorized': !item.authorized}">power_settings_new</mat-icon>

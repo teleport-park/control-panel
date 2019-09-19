@@ -24,7 +24,7 @@
     align-items: center;
     margin-bottom: 0;
     .mat-icon {
-      margin-left: 1rem;
+      margin: 0 .5rem;
       &.authorized {
         color: $success;
       }
@@ -43,5 +43,13 @@
   }
   .word-break {
     word-break: break-word;
+  }
+  .mat-icon {
+    &.offline {
+      color: $warn;
+    }
+    &.online {
+      color: $success;
+    }
   }
 }

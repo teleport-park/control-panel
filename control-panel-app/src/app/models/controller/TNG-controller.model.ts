@@ -7,6 +7,6 @@ export class TNGController extends BaseController {
     readonly TYPE: string = 'TNG';
 
     constructor(model) {
-        super();
+        super(model);
     }
 }

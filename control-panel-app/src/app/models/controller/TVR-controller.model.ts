@@ -8,11 +8,7 @@ export class TVRController extends BaseController {
   readonly TYPE: string = 'TVR';
 
   constructor(model: TVRModel) {
-    super();
-    this.authorized = model.authorized;
-    this.id = model.id;
-    this.online = model.online;
-    this.token = model.token;
+    super(model);
     // TODO if doesn't have ref mock him
     this.ref = model.ref ? model.ref : BaseController.MOCK_REF;
   }

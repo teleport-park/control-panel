@@ -23,7 +23,7 @@
         display: flex;
         flex-direction: column;
         height: 100%;
-        background-color: rgba(0, 0, 0, .7);
+        background-color: rgba(0, 0, 0, .8);
       }
 
       .sidenav-title {
@@ -47,9 +47,9 @@
       }
 
       .nav-list-container {
-        margin: 15px 0;
-        padding: 0 15px;
+        padding: 10px 15px 15px;
         flex: 1 1;
+        overflow: auto;
 
         .mat-list-item {
           margin: 10px 0 0;
@@ -59,6 +59,7 @@
           color: $white;
           font-size: 14px;
           font-weight: 300;
+          user-select: none;
           .expand-icon {
             position: absolute;
             right: 10px;
@@ -75,7 +76,7 @@
         }
 
         .nav-list-container_children-container {
-          padding-left: 20px;
+          padding-left: 35px;
 
           .mat-list-item {
             &.active {
