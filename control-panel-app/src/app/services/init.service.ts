@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
  */
 export interface InitConfig {
     api_url: string;
+    refresh_interval: 10;
 }
 
 @Injectable({
@@ -16,7 +17,7 @@ export class InitService {
     /**
      * init config
      */
-    config: InitConfig = {api_url: '/'};
+    config: InitConfig = {api_url: '/', refresh_interval: 10};
 
     constructor() {
     }
@@ -33,7 +34,7 @@ export class InitService {
                     this.config = config;
                     resolve();
                 } else {
-                    console.warn('Property "api_url" is not defined in "app-init-config.json", default value "/" has been used')
+                    console.warn('Property "api_url" is not defined in "app-init-config.json", default value "/" has been used');
                     resolve();
                 }
             } catch (e) {

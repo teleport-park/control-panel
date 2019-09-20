@@ -25,6 +25,7 @@ import { ControlPanelUiPaymentComponent } from './control-panel-ui-payment/contr
 import { AddControllerDialogComponent } from './dialogs/add-controller-dialog/add-controller-dialog.component';
 import { ControlPanelUiLinearGraphComponent } from './control-panel-ui-linear-graph/control-panel-ui-linear-graph.component';
 import { ControlPanelUiGateItemComponent } from './control-panel-ui-gate-item/control-panel-ui-gate-item.component';
+import { ControlPanelTriggerComponent } from './control-panel-trigger/control-panel-trigger.component';
 
 const MODULES = [
   ConfirmDialogComponent,
@@ -46,7 +47,8 @@ const MODULES = [
   ControlPanelUiPaymentComponent,
   AddControllerDialogComponent,
   ControlPanelUiLinearGraphComponent,
-  ControlPanelUiGateItemComponent
+  ControlPanelUiGateItemComponent,
+  ControlPanelTriggerComponent
 ];
 
 @NgModule({

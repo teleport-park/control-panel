@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { InjectionToken } from '@angular/core';
 import { ControllerType } from '../types';
 
@@ -24,6 +24,11 @@ export interface InstanceService<T> {
      * @param item
      */
     revoke(item: T): void;
+
+    /**
+     * refresh instances
+     */
+    refresh(): Observable<boolean>;
 }
 
 export const INSTANCE_SERVICE = new InjectionToken<InstanceService<ControllerType>>('InstanceService');

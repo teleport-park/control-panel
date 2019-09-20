@@ -1,6 +1,6 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, EMPTY } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { InstanceService } from '../models';
@@ -9,10 +9,11 @@ import { BaseController } from '../models/controller';
 import { ControllerType } from '../models/types';
 
 
-
 export class CommonInstanceService implements InstanceService<ControllerType>, OnDestroy {
 
     instances$: BehaviorSubject<ControllerType[]> = new BehaviorSubject([]);
+
+    refreshInstances$: Subject<boolean> = new Subject();
 
     constructor(private http: HttpClient,
                 private toaster: MatSnackBar,
@@ -29,6 +30,7 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
                 catchError(err => {
                     this.showError(err);
                     this.loaderService.dispatchShowLoader(false);
+                    this.refreshInstances$.next(false);
                     return EMPTY;
                 })
             )
@@ -36,6 +38,7 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
                 const instances = result.map((item: ControllerType) => this.getControllerInstance(item));
                 this.instances$.next(instances);
                 this.loaderService.dispatchShowLoader(false);
+                this.refreshInstances$.next(true);
             });
     }
 
@@ -77,6 +80,11 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
             });
     }
 
+    refresh(): Observable<boolean> {
+        this.getInstances();
+        return this.refreshInstances$;
+    }
+
     private showError(message) {
         this.toaster.open(message, null, {
             duration: 5000,
@@ -88,5 +96,6 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
 
     ngOnDestroy(): void {
         this.instances$.complete();
+        this.refreshInstances$.complete();
     }
 }

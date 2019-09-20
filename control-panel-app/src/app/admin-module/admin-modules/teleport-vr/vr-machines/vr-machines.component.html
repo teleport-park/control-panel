@@ -5,3 +5,5 @@
                                         (revoke)="revoke($event)"></control-panel-ui-hardware-item>
     </div>
 </div>
+
+<control-panel-trigger [callBack]="service.refresh.bind(service)"></control-panel-trigger>
