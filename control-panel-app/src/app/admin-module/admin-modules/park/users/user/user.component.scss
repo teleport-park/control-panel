@@ -1,6 +1,8 @@
+@import "control-panel-theme";
+
 :host {
   padding: 15px;
-  display: block;
+  @include d-block();
   h5 {
     margin-bottom: 15px;
   }

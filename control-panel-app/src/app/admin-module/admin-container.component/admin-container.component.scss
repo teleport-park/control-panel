@@ -1,4 +1,4 @@
-@import 'pallete';
+@import "control-panel-theme";
 
 :host {
   display: flex;
@@ -23,7 +23,7 @@
         display: flex;
         flex-direction: column;
         height: 100%;
-        background-color: rgba(0, 0, 0, .8);
+        background-color: rgba($main_bg_color, .95);
       }
 
       .sidenav-title {
@@ -70,8 +70,7 @@
           }
 
           &.active {
-            background: linear-gradient(60deg, $primary, #8e24aa);
-            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(156, 39, 176, .4);
+            background-color: $primary;
           }
         }
 
@@ -80,8 +79,7 @@
 
           .mat-list-item {
             &.active {
-              background: linear-gradient(60deg, rgba($primary, .3), #8e24aa);
-              box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(156, 39, 176, .4);
+              background-color: $primary;
             }
           }
         }
@@ -102,6 +100,8 @@
         display: flex;
         flex: 0 0 auto;
         height: 70px;
+        background-color: $main-bg-color;
+        border-bottom: 1px solid rgba($white, .3);
 
         .toolbar-title-container {
           flex: 1 1;

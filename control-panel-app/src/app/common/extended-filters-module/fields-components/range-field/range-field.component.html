@@ -1,7 +1,7 @@
 <div class="range-filter_wrapper" [formGroup]="group">
   <p>{{translateService.instant(config.label)}}:</p>
   <div class="range-filter">
-    <mat-form-field class="range-field">
+    <mat-form-field class="range-field" color="primary">
       <mat-label>{{translateService.instant('EXTENDED_FILTER_FROM')}}</mat-label>
       <mat-select [formControlName]="config.group[0].property" #from>
         <mat-option *ngFor="let i of range" [value]="i"
@@ -10,7 +10,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field class="range-field">
+    <mat-form-field class="range-field" color="primary">
       <mat-label>{{translateService.instant('EXTENDED_FILTER_TO')}}</mat-label>
       <mat-select [formControlName]="config.group[1].property" #to>
         <mat-option *ngFor="let i of range" [value]="i" [disabled]="i < from.value">

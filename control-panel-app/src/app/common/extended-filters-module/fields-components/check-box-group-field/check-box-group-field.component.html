@@ -1,6 +1,6 @@
 <div class="check-box-group-filter" [formGroup]="group">
   <p>{{translateService.instant(config.label)}}:</p>
-  <mat-selection-list [formControlName]="config.property" [disableRipple]="true">
+  <mat-selection-list [formControlName]="config.property" [disableRipple]="true" color="primary">
     <mat-list-option *ngFor="let value of config.options" [checkboxPosition]="'before'" [value]="value.value">
       {{translateService.instant(value.label)}}
     </mat-list-option>

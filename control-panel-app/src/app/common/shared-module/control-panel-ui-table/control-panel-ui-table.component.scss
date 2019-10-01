@@ -1,7 +1,8 @@
-@import "pallete";
+@import "control-panel-theme";
 :host {
   .table {
     width: 100%;
+    background-color: $main_bg_color;
     th.mat-header-cell {
       min-width: 60px;
       position: relative;
@@ -90,6 +91,9 @@
         color: #00AE12;
       }
     }
+  }
+  .mat-paginator {
+    background-color: $main_bg_color;
   }
   .table-wrapper {
     overflow-x: auto;

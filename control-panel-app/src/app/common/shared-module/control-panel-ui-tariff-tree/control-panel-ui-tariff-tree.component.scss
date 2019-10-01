@@ -1,11 +1,13 @@
-@import "pallete";
+@import "control-panel-theme";
 :host {
   width: 100%;
+  background-color: $main_bg_color;
+
   .tariff-tree_wrapper {
     width: 100%;
     padding: 15px;
-    background: #fff;
     margin: 15px 0;
+    border: 1px solid;
     .tariff-title {
       font-size: 20px;
       font-weight: 100;
@@ -16,7 +18,7 @@
         margin-top: 0;
       }
       .tariff-item {
-        background-color: rgba($backdrop, .05);
+        background-color: rgba($white, .3);
         border-radius: 2px;
         padding: 2px 5px;
         margin-right: 10px;
@@ -32,5 +34,8 @@
     margin-top: 0;
     margin-bottom: 0;
     list-style-type: none;
+  }
+  .mat-tree {
+    background-color: $main_bg_color;
   }
 }

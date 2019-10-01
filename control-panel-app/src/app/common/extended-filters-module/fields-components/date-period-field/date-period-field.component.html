@@ -1,6 +1,6 @@
 <p>{{translateService.instant(config.label)}}:</p>
 <div class="dates" [formGroup]="group">
-  <mat-form-field class="data">
+  <mat-form-field class="data" color="primary">
     <input matInput [matDatepicker]="from" placeholder="{{translateService.instant('EXTENDED_FILTER_FROM')}}"
            [max]="group.get(config.group[1].property).value || maxDate"
            [formControlName]="config.group[0].property">
@@ -13,7 +13,7 @@
       {{translateService.instant('EXTENDED_FILTER_DATE_MAX_ERROR', [group.get(config.group[1].property).value.format('L') || maxDate.locale(translateService.locale.getValue()).format('L')])}}
     </mat-error>
   </mat-form-field>
-  <mat-form-field class="data">
+  <mat-form-field class="data" color="primary">
     <input matInput [matDatepicker]="to" placeholder="{{translateService.instant('EXTENDED_FILTER_TO')}}"
            [max]="maxDate" [min]="group.get(config.group[0].property).value"
            [formControlName]="config.group[1].property">

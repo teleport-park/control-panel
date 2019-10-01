@@ -1,4 +1,6 @@
+@import "control-panel-theme";
 :host {
   width: 100%;
   display: block;
+  background-color: $main-bg-color;
 }

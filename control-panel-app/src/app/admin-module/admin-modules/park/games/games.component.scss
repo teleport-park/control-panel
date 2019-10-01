@@ -1,7 +1,10 @@
+@import "control-panel-theme";
+
 :host {
   width: 100%;
   table {
     width: 100%;
+    background-color: $main_bg_color;
     .amusements_logo-header-cell {
       padding-left: 70px;
     }

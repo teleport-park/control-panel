@@ -1,4 +1,4 @@
-@import 'pallete';
+@import 'control-panel-theme';
 :host {
   width: 100%;
   .card_wrapper {
@@ -7,6 +7,7 @@
   }
   .table {
     width: 100%;
+    background-color: $main_bg_color;
 
     tr {
       &.staff-row {
@@ -29,5 +30,8 @@
     .mat-column-action {
       text-align: right;
     }
+  }
+  .mat-paginator {
+    background-color: $main_bg_color;
   }
 }

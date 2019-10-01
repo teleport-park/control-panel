@@ -11,7 +11,7 @@
               <mat-icon>menu</mat-icon>
             </button></span>{{translateService.instant('ADMIN_MENU_TITLE')}}</div>
     <mat-divider></mat-divider>
-    <mat-nav-list class="nav-list-container">
+    <mat-nav-list class="nav-list-container" color="primary">
       <div class="nav-list-container_parent-container" *ngFor="let menuItem of MENU_ITEMS">
         <a mat-list-item *ngIf="!menuItem.root"
            [routerLink]="menuItem.path"

@@ -1,14 +1,23 @@
-@import 'pallete';
+@import 'control-panel-theme';
 
 :host {
-  width: 100%;
+ @include d-block();
   height: 100%;
 
   .user-component-wrapper {
     height: 100%;
-    .extended-filter_wrapper {
+    background-color: $main_bg_color;
+    .extended-filters_wrapper {
       width: 300px;
+      background-color: $main_bg_color;
     }
+  .mat-drawer {
+    border-left: 1px solid rgba($white, .3);
+    ::ng-deep .mat-drawer-inner-container {
+      background-color: $main_bg_color;
+    }
+  }
+
 
     button.extended-filters {
       position: absolute;
