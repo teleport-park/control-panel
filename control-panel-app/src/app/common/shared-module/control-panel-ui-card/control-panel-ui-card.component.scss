@@ -1,14 +1,13 @@
 @import "control-panel-theme";
 
-:host {
+
   .mat-card {
     margin: 40px 15px 10px;
-    background-color: $main_bg_color;
-    border: 1px solid;
 
     .mat-card-header {
       .mat-card-title, .mat-card-subtitle {
         margin: 0;
+        color: $white;
       }
 
       margin-bottom: 20px;
@@ -25,14 +24,13 @@
       }
     }
   }
-}
 
-:host(.primary) {
+
+
   .mat-card {
-    background-color: $main_bg_color;
     .card-header-wrapper {
       background: linear-gradient(60deg, $primary, mat-color($primary-color, 400));
       box-shadow: 0 4px 20px 0 rgba($primary, .14), 0 7px 10px -5px rgba($primary, .4);
     }
   }
-}
+

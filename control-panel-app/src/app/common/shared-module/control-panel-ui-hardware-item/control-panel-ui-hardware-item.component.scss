@@ -1,17 +1,19 @@
-@import "pallete";
+@import "control-panel-theme";
 :host {
   min-width: 250px;
+  color: mat-color($dark-color, 500);
   .hardware-item_wrapper {
-    border: 1px solid;
     padding: 20px;
     margin: 10px;
     cursor: pointer;
+    background-color: $white;
+    @include gradient-border(#EB00FF, #0087b0);
     .hardware-item_title {
       text-align: center;
     }
     .metrics {
       padding: 5px 10px;
-      background-color: rgba(0,0,0, .05);
+      background-color: $white;
       margin-bottom: 5px;
       font-size: 20px;
       font-weight: 100;

@@ -2,7 +2,6 @@
 :host {
   .table {
     width: 100%;
-    background-color: $main_bg_color;
     th.mat-header-cell {
       min-width: 60px;
       position: relative;
@@ -71,10 +70,6 @@
         }
       }
 
-      //&.selected {
-      //  background-color: rgba(0, 0, 0, .05);
-      //}
-
       .mat-column-submenu {
         text-align: right;
       }
@@ -93,7 +88,6 @@
     }
   }
   .mat-paginator {
-    background-color: $main_bg_color;
   }
   .table-wrapper {
     overflow-x: auto;

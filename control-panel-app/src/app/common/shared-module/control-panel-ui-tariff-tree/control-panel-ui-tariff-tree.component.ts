@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { Tariff, TariffNode, TariffsTree } from './control-panel-ui-tariff-tree.model';
 import { MatTreeNestedDataSource } from '@angular/material';
 import { NestedTreeControl } from '@angular/cdk/tree';
@@ -10,6 +10,8 @@ import { TranslateService } from '../../translations-module';
   styleUrls: ['./control-panel-ui-tariff-tree.component.scss']
 })
 export class ControlPanelUiTariffTreeComponent implements OnInit {
+
+  @HostBinding('class') class = 'light-theme';
 
   /**
    * last visible tariffs count

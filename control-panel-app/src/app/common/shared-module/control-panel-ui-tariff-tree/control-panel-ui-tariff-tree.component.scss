@@ -1,13 +1,10 @@
 @import "control-panel-theme";
 :host {
   width: 100%;
-  background-color: $main_bg_color;
-
   .tariff-tree_wrapper {
     width: 100%;
-    padding: 15px;
     margin: 15px 0;
-    border: 1px solid;
+    @include gradient-border(#EB00FF, #0087b0);
     .tariff-title {
       font-size: 20px;
       font-weight: 100;
@@ -18,7 +15,6 @@
         margin-top: 0;
       }
       .tariff-item {
-        background-color: rgba($white, .3);
         border-radius: 2px;
         padding: 2px 5px;
         margin-right: 10px;
@@ -36,6 +32,7 @@
     list-style-type: none;
   }
   .mat-tree {
-    background-color: $main_bg_color;
+    padding: 15px;
+    border-radius: 10px;
   }
 }

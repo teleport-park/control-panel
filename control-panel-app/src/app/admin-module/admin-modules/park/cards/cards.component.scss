@@ -7,7 +7,7 @@
   }
   .table {
     width: 100%;
-    background-color: $main_bg_color;
+    //background-color: $main_bg_color;
 
     tr {
       &.staff-row {
@@ -32,6 +32,6 @@
     }
   }
   .mat-paginator {
-    background-color: $main_bg_color;
+    //background-color: $main_bg_color;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { TranslateService } from '../../translations-module';
 import { ControllerType } from '../../../models/types';
 
@@ -8,6 +8,8 @@ import { ControllerType } from '../../../models/types';
   styleUrls: ['./control-panel-ui-hardware-item.component.scss']
 })
 export class ControlPanelUiHardwareItemComponent implements OnInit, OnDestroy {
+
+  @HostBinding('class') class = 'light-theme';
 
   readonly MINUTE: number = 60 * 1000;
 

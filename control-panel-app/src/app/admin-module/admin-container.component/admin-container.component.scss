@@ -13,17 +13,14 @@
     flex: 1 1 100%;
 
     .sidenav-inner-container {
-      background-image: url("/assets/data/images/sidebar-background.jpg");
-      background-size: cover;
-      background-position: center center;
       width: 320px;
-      color: #fff;
+      color: $white;
+      background-color: rgba($main_bg_color, .7);
 
       ::ng-deep .mat-drawer-inner-container {
         display: flex;
         flex-direction: column;
         height: 100%;
-        background-color: rgba($main_bg_color, .95);
       }
 
       .sidenav-title {
@@ -100,8 +97,6 @@
         display: flex;
         flex: 0 0 auto;
         height: 70px;
-        background-color: $main-bg-color;
-        border-bottom: 1px solid rgba($white, .3);
 
         .toolbar-title-container {
           flex: 1 1;
