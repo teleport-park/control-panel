@@ -215,3 +215,19 @@ $control-panel-light-theme: create-theme($control-panel-primary, $control-panel-
                 background: linear-gradient(90deg, $color1 0%, $color2 100%);
         }
 }
+
+@mixin custom-scroll() {
+        position: relative;
+        &::-webkit-scrollbar {
+                background-color: rgba(0,0,0,0);
+                width: 5px
+        }
+        &::-webkit-scrollbar-track {
+                background-color: rgba(0,0,0,0);
+        }
+        &::-webkit-scrollbar-thumb {
+                background-color: rgba(map-get($dark-color, 100), .8);
+                border-radius: 3px;
+        }
+        &::-webkit-scrollbar-button {display:none}
+}

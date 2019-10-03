@@ -31,6 +31,7 @@
         margin: 15px 0;
         padding: 0 15px;
         position: relative;
+
         span {
           position: absolute;
           left: 15px;
@@ -57,6 +58,7 @@
           font-size: 14px;
           font-weight: 300;
           user-select: none;
+
           .expand-icon {
             position: absolute;
             right: 10px;
@@ -80,6 +82,8 @@
             }
           }
         }
+
+        @include custom-scroll();
       }
 
       .side-nav_action-button {
@@ -117,5 +121,8 @@
         flex: 1 1 100%
       }
     }
+  }
+  .mat-drawer-content {
+    @include custom-scroll();
   }
 }
