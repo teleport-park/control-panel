@@ -50,4 +50,12 @@ export class ControlPanelUiHardwareItemComponent implements OnInit, OnDestroy {
   getDate(value) {
     return new Date(value).getTime();
   }
+
+  hasStatus() {
+    return typeof this.item.authorized === 'boolean';
+  }
+
+  isObject(value: any) {
+    return typeof value === 'object' && value !== null;
+  }
 }

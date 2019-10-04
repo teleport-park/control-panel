@@ -13,6 +13,7 @@ import { UserService } from './users/services/user.service';
 import { PackagesComponent } from './packages/packages.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { TariffsService } from './pricing/services/tariffs.service';
+import { PackagesService } from './packages/packages.service';
 
 const routes: Routes = [{
     path: '',
@@ -46,7 +47,7 @@ export const ParkRouterModule = RouterModule.forChild(routes);
         MaterialModule,
         SharedModule
     ],
-    providers: [CardsService, GamesService, UserService, TariffsService]
+    providers: [CardsService, GamesService, UserService, TariffsService, PackagesService]
 })
 export class ParkModule {
 }

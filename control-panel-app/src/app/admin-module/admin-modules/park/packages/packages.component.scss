@@ -1,0 +1,17 @@
+@import "control-panel-theme";
+
+:host {
+  @include d-block();
+  .packages_wrapper {
+    margin: 0;
+    .packages__history {
+      padding: 0 1rem;
+      .mat-table {
+        min-width: 50%;
+      }
+    }
+    .package {
+      margin: 0 -10px;
+    }
+  }
+}

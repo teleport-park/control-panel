@@ -77,6 +77,14 @@ export class ApiUrlsService implements IApiUrlsInterface {
     return ApiUrlsService.getPagedUrl(API.CASH_BOX_INSTANCES, requestMethod, id) + '/auth';
   }
 
+  public getPackages(requestMethod: 'GET' | 'PUT') {
+    return ApiUrlsService.getPagedUrl(API.PACKAGES, requestMethod);
+  }
+
+  public getPackagesHistory(requestMethod: 'GET' | 'PUT') {
+    return ApiUrlsService.getPagedUrl(API.PACKAGES_HISTORY, requestMethod);
+  }
+
   public getUsersUrl(requestMethod: string, id?: number,
                      pageSize?: number,
                      pageNumber?: number,
