@@ -84,6 +84,9 @@ export class ApiUrlsService implements IApiUrlsInterface {
   public getPackagesHistory(requestMethod: 'GET' | 'PUT') {
     return ApiUrlsService.getPagedUrl(API.PACKAGES_HISTORY, requestMethod);
   }
+  public getPrices(requestMethod: 'GET' | 'PUT') {
+    return ApiUrlsService.getPagedUrl(API.PRICES, requestMethod);
+  }
 
   public getUsersUrl(requestMethod: string, id?: number,
                      pageSize?: number,

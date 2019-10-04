@@ -21,7 +21,7 @@ export class ControlPanelUiTariffTreeComponent implements OnInit {
   /**
    * data
    */
-  private _data: TariffsTree;
+  private _data: any;
 
   /**
    * tree data
@@ -30,17 +30,17 @@ export class ControlPanelUiTariffTreeComponent implements OnInit {
   @Input() set treeData(data: TariffsTree) {
     if (data) {
       this._data = data;
-      this.treeControl = new NestedTreeControl<TariffNode>(node => node.children);
-      this.dataSource = new MatTreeNestedDataSource<TariffNode>();
-      this.dataSource.data = [{
-        label: data.root.name,
-        children: data.children.map((child: Tariff) => {
-          return {
-            label: child.name,
-            data: child.amount
-          };
-        })
-      }];
+      // this.treeControl = new NestedTreeControl<TariffNode>(node => node.children);
+      // this.dataSource = new MatTreeNestedDataSource<TariffNode>();
+      // this.dataSource.data = [{
+      //   label: data.root.name,
+      //   children: data.children.map((child: Tariff) => {
+      //     return {
+      //       label: child.name,
+      //       data: child.amount
+      //     };
+      //   })
+      // }];
     }
   }
 

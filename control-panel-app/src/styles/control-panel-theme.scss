@@ -117,6 +117,7 @@ $accent: mat-color($accent-color, 500);
 $main-bg-color: mat-color($dark-color, 500);
 $white: #FFFFFF;
 
+
 @function control-panel-theme-foreground($color) {
         @return (
                 base:              $color,

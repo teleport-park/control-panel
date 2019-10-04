@@ -1,5 +1,7 @@
+@import "control-panel-theme";
+
 :host {
-  width: 100%;
+  @include d-block();
   .tariffs_wrapper {
     width: 100%;
     padding: 15px;

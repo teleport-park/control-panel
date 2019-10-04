@@ -12,7 +12,7 @@ import { GamesComponent } from './games/games.component';
 import { UserService } from './users/services/user.service';
 import { PackagesComponent } from './packages/packages.component';
 import { PricingComponent } from './pricing/pricing.component';
-import { TariffsService } from './pricing/services/tariffs.service';
+import { PricingService } from './pricing/pricing.service';
 import { PackagesService } from './packages/packages.service';
 
 const routes: Routes = [{
@@ -47,7 +47,7 @@ export const ParkRouterModule = RouterModule.forChild(routes);
         MaterialModule,
         SharedModule
     ],
-    providers: [CardsService, GamesService, UserService, TariffsService, PackagesService]
+    providers: [CardsService, GamesService, UserService, PricingService, PackagesService]
 })
 export class ParkModule {
 }

@@ -14,6 +14,8 @@ export class PackagesService {
 
     packagesHistory$: BehaviorSubject<any[]> = new BehaviorSubject([]);
 
+    lastSyncTime$: BehaviorSubject<Date> = new BehaviorSubject(new Date());
+
 
     constructor(private http: HttpClient,
                 private urlService: ApiUrlsService,
@@ -51,7 +53,25 @@ export class PackagesService {
                 }))
             .subscribe((result: any[]) => {
                 this.packagesHistory$.next(result);
+                this.lastSyncTime$.next(result[0].timestamp);
                 this.loaderService.dispatchShowLoader(false);
+            });
+    }
+
+    synchronize() {
+        this.http.put(this.urlService.getPackages('GET'), {})
+            .pipe(
+                filter(data => !!data),
+                catchError(err => {
+                    this.loaderService.dispatchShowLoader(false);
+                    this.showError(err);
+                    this.getPackages();
+                    this.getPackagesHistory();
+                    return EMPTY;
+                }))
+            .subscribe((result: any[]) => {
+                this.getPackages();
+                this.getPackagesHistory();
             });
     }
 

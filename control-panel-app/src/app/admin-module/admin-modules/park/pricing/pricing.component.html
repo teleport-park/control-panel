@@ -1,8 +1,9 @@
-<div class="tariffs_wrapper">
-    <div class="row">
-        <div class="col-md-3" *ngFor="let tariff of service.tariffs$ | async">
+<div class="prices_wrapper">
+    <div class="row m-0">
+        <div class="col-md-3" *ngFor="let tariff of service.prices$ | async">
             <control-panel-ui-tariff-tree
                     [treeData]="tariff"></control-panel-ui-tariff-tree>
         </div>
     </div>
+<!--    <pre>{{(service.prices$ | async) | json}}</pre>-->
 </div>

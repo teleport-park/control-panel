@@ -7,11 +7,14 @@
     .packages__history {
       padding: 0 1rem;
       .mat-table {
-        min-width: 50%;
+        width: 100%;
       }
     }
-    .package {
-      margin: 0 -10px;
+    .packages {
+      padding-top: 4rem;
+      .package {
+        margin: 0 -10px;
+      }
     }
   }
 }
