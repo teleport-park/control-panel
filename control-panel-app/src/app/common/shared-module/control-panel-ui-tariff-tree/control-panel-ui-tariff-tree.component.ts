@@ -21,7 +21,7 @@ export class ControlPanelUiTariffTreeComponent implements OnInit {
   /**
    * data
    */
-  private _data: any;
+  public _data: any;
 
   /**
    * tree data
