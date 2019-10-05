@@ -28,51 +28,51 @@ export class PackagesService {
     public getPackages() {
         this.loaderService.dispatchShowLoader(true);
         this.http.get(this.urlService.getPackages('GET'))
-            .pipe(
-                filter(data => !!data),
-                catchError(err => {
-                    this.loaderService.dispatchShowLoader(false);
-                    this.showError(err);
-                    return EMPTY;
-                }))
-            .subscribe((result: any[]) => {
-                this.packages$.next(result);
+        .pipe(
+            filter(data => !!data),
+            catchError(err => {
                 this.loaderService.dispatchShowLoader(false);
-            });
+                this.showError(err);
+                return EMPTY;
+            }))
+        .subscribe((result: any[]) => {
+            this.packages$.next(result);
+            this.loaderService.dispatchShowLoader(false);
+        });
     }
 
     public getPackagesHistory() {
         this.loaderService.dispatchShowLoader(true);
         this.http.get(this.urlService.getPackagesHistory('GET'))
-            .pipe(
-                filter(data => !!data),
-                catchError(err => {
-                    this.loaderService.dispatchShowLoader(false);
-                    this.showError(err);
-                    return EMPTY;
-                }))
-            .subscribe((result: any[]) => {
-                this.packagesHistory$.next(result);
-                this.lastSyncTime$.next(result[0].timestamp);
+        .pipe(
+            filter(data => !!data),
+            catchError(err => {
                 this.loaderService.dispatchShowLoader(false);
-            });
+                this.showError(err);
+                return EMPTY;
+            }))
+        .subscribe((result: any[]) => {
+            this.packagesHistory$.next(result);
+            this.lastSyncTime$.next(result[0].timestamp);
+            this.loaderService.dispatchShowLoader(false);
+        });
     }
 
     synchronize() {
         this.http.put(this.urlService.getPackages('GET'), {})
-            .pipe(
-                filter(data => !!data),
-                catchError(err => {
-                    this.loaderService.dispatchShowLoader(false);
-                    this.showError(err);
-                    this.getPackages();
-                    this.getPackagesHistory();
-                    return EMPTY;
-                }))
-            .subscribe((result: any[]) => {
+        .pipe(
+            filter(data => !!data),
+            catchError(err => {
+                this.loaderService.dispatchShowLoader(false);
+                this.showError(err);
                 this.getPackages();
                 this.getPackagesHistory();
-            });
+                return EMPTY;
+            }))
+        .subscribe((result: any[]) => {
+            this.getPackages();
+            this.getPackagesHistory();
+        });
     }
 
     private showError(message) {

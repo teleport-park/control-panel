@@ -1,37 +1,84 @@
 <div class="table-toolbar-wrapper">
-  <button mat-raised-button *ngIf="iconSet"
-          color="primary"
-          (click)="addEntity()">
-    <mat-icon>{{iconSet}}</mat-icon>
-    {{translateService.instant('TABLE_ADD')}}
-  </button>
+    <button mat-raised-button *ngIf="iconSet"
+            color="primary"
+            (click)="addEntity()">
+        <mat-icon>{{iconSet}}</mat-icon>
+        {{translateService.instant('TABLE_ADD')}}
+    </button>
 </div>
 <div class="table-wrapper">
 
-  <table mat-table matSort [dataSource]="dataSource" class="table" (matSortChange)="sortChange($event)">
-    <!--data cells-->
-    <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">
-      <th mat-header-cell mat-sort-header [disabled]="isSortedColumn(column)" *matHeaderCellDef>
-        <span>{{translateService.instant(propertyMap[column])}}</span></th>
-      <td mat-cell *matCellDef="let row" class="simple-data">
-        <span matTooltip="{{row[column]}}" [matTooltipShowDelay]="1000" class="table_cell-inner">{{row[column]}}</span>
-      </td>
-    </ng-container>
-    <!--registered cell-->
-    <ng-container matColumnDef="registered">
-      <th mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
-        <span>{{translateService.instant(propertyMap['registered'])}}</span></th>
-      <td mat-cell *matCellDef="let item">
-        <span class="table_cell-inner">{{getFormattedData(item.registered)}}</span>
-      </td>
-    </ng-container>
+    <mat-table matSort [dataSource]="dataSource" class="table" (matSortChange)="sortChange($event)">
+        <!--data cells-->
+        <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn(column)" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap[column] || column)}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let row" class="simple-data">
+                <ng-container *ngIf="!isBoolean(row[column])">
+                    <span matTooltip="{{row[column]}}" [matTooltipShowDelay]="1000"
+                          class="table_cell-inner">{{row[column]}}</span>
+                </ng-container>
+                <ng-container *ngIf="isBoolean(row[column])">
+                    <span class="table_cell-inner"><mat-icon [color]="row[column] ? 'success' : 'warn'">{{row[column] ? 'check_circle' : 'cancel_circle'}}</mat-icon></span>
+                </ng-container>
 
-    <!--statuses cell-->
-    <ng-container matColumnDef="statuses" class="table_cell-inner">
-      <th mat-header-cell mat-sort-header [disabled]="isSortedColumn('statuses')" *matHeaderCellDef>
-        {{translateService.instant(propertyMap['statuses'])}}
-      </th>
-      <td mat-cell *matCellDef="let item">
+            </mat-cell>
+        </ng-container>
+        <!--registered cell-->
+        <ng-container matColumnDef="registered">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['registered'])}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <span class="table_cell-inner">{{getFormattedData(item.registered)}}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="expiresAt">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['expiresAt'] || 'expiresAt')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <span class="table_cell-inner">{{item.expiresAt | date: "dd.MM.yyyy HH:mm"}}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="timestamp">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['timestamp'] || 'timestamp')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <span class="table_cell-inner">{{item.timestamp | date: "dd.MM.yyyy HH:mm:ss"}}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="coins">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['coins'] || 'coins')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div class="amount d-flex align-items-center justify-content-between">
+                    <div class="table_cell-inner">{{item.coins.amount}}</div>
+                    <div><mat-icon svgIcon="coin"></mat-icon></div>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['price'] || 'price')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div class="amount d-flex align-items-center justify-content-between">
+                    <div class="table_cell-inner">{{item.price.amount}}</div>
+                    <div>BYN</div>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+
+
+        <!--statuses cell-->
+        <ng-container matColumnDef="statuses" class="table_cell-inner">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('statuses')" *matHeaderCellDef>
+                {{translateService.instant(propertyMap['statuses'])}}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let item">
         <span class="table_cell-inner">
           <div class="status-list">
             <mat-icon *ngFor="let status of item.statuses" [ngClass]="status.name.split(' ').join('').toLowerCase()"
@@ -39,31 +86,32 @@
                       matTooltip="{{status.name}}"></mat-icon>
           </div>
         </span>
-      </td>
-    </ng-container>
-    <!--submenu cell-->
-    <ng-container matColumnDef="submenu" [stickyEnd]="(point.handset | async)">
-      <th mat-header-cell *matHeaderCellDef class="submenu_header"></th>
-      <td mat-cell *matCellDef="let item" class="submenu_cell">
-        <button mat-icon-button [matMenuTriggerFor]="staffMemberMenu" (click)="$event.stopPropagation()">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #staffMemberMenu="matMenu">
-          <button mat-menu-item (click)="delete.emit(item)">
-            <mat-icon>delete</mat-icon>
-            {{translateService.instant('TABLE_DELETE')}}
-          </button>
-          <button mat-menu-item (click)="edit.emit(item)">
-            <mat-icon>edit</mat-icon>
-            {{translateService.instant('TABLE_EDIT')}}
-          </button>
-        </mat-menu>
-      </td>
-    </ng-container>
-    <!--permission cell-->
-    <ng-container matColumnDef="permissions" class="table_cell-inner">
-      <th mat-header-cell *matHeaderCellDef>{{translateService.instant(propertyMap['permissions'])}}</th>
-      <td mat-cell *matCellDef="let group">
+            </mat-cell>
+        </ng-container>
+        <!--submenu cell-->
+        <ng-container matColumnDef="submenu" [stickyEnd]="(point.handset | async)">
+            <mat-header-cell *matHeaderCellDef class="submenu_header"></mat-header-cell>
+            <mat-cell *matCellDef="let item" class="submenu_cell">
+                <button mat-icon-button [matMenuTriggerFor]="staffMemberMenu" (click)="$event.stopPropagation()">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #staffMemberMenu="matMenu">
+                    <button mat-menu-item (click)="delete.emit(item)">
+                        <mat-icon>delete</mat-icon>
+                        {{translateService.instant('TABLE_DELETE')}}
+                    </button>
+                    <button mat-menu-item (click)="edit.emit(item)">
+                        <mat-icon>edit</mat-icon>
+                        {{translateService.instant('TABLE_EDIT')}}
+                    </button>
+                </mat-menu>
+            </mat-cell>
+        </ng-container>
+        <!--permission cell-->
+        <ng-container matColumnDef="permissions" class="table_cell-inner">
+            <mat-header-cell
+                    *matHeaderCellDef>{{translateService.instant(propertyMap['permissions'])}}</mat-header-cell>
+            <mat-cell *matCellDef="let group">
         <span class="table_cell-inner">
           <ul>
           <li *ngFor="let permission of group.permissions; let i=index;" [hidden]="i > 4">
@@ -72,15 +120,15 @@
           </li>
         </ul>
         </span>
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-        [ngClass]="{'selected': selection.isSelected(row)}"
-        (click)="selectRow(row)"></tr>
-  </table>
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" [style.min-height]="minRowHeight + 'px'"
+                 [ngClass]="{'selected': selection.isSelected(row)}"
+                 (click)="selectRow(row)"></mat-row>
+    </mat-table>
 </div>
-<mat-paginator #paginator [pageSizeOptions]="[50, 100, 200]"
+<mat-paginator #paginator [pageSizeOptions]="[50, 100, 200]" *ngIf="dataSource && dataSource.data && dataSource.data.length > 50"
                [length]="itemCount"
                [pageIndex]="paginatorInit?.pageIndex"
                [pageSize]="paginatorInit?.pageSize" showFirstLastButtons

@@ -17,6 +17,7 @@ export class IconService {
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'gate-open', iconPath);
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'gate-closed', iconPath);
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'gate-blocked', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'coin', iconPath);
   }
 
   private static pushSvgIconToRegistry(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, iconName: string, iconPath: string): void {

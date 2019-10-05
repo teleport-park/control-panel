@@ -10,8 +10,6 @@ export class ControlPanelUiCardComponent {
 
   @HostBinding('class') @Input() panelUIColor: 'primary' | 'green' | 'blue' | 'red' | 'orange' = 'primary';
 
-  @HostBinding('class') class = 'light-theme';
-
   constructor() {
   }
 }

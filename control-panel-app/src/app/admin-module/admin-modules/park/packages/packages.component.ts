@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PackagesService } from './packages.service';
 
 @Component({
@@ -8,20 +8,29 @@ import { PackagesService } from './packages.service';
 })
 export class PackagesComponent implements OnInit {
 
-    packagesSyncTime: Date = new Date();
-
-    packagesHistorySyncTime: Date = new Date();
+    lightTheme = true;
 
     displayedColumns: string[] = ['timestamp', 'status'];
 
-    constructor(public service: PackagesService) {
+    packagesColumns: string[] = [
+        'title',
+        'category',
+        'cloudId',
+        'description',
+        'expiresAt',
+        'games',
+        'note',
+        'syncId',
+        'type',
+        'coins',
+        'price',
+        'unlim'];
+
+    simplePackagesColumns: string[] = ['title', 'category', 'cloudId', 'description', 'games', 'note', 'syncId', 'type', 'unlim'];
+
+    constructor(public service: PackagesService, public cd: ChangeDetectorRef) {
     }
 
     ngOnInit() {
     }
-
-    updateSyncTime(): Date {
-        return new Date();
-    }
-
 }

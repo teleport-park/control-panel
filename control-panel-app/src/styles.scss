@@ -76,6 +76,10 @@ html, body {
     color: $dark;
   }
 
+  .mat-success {
+    color: $success
+  }
+
   .control-panel-ui-package,
   .control-panel-ui-payment,
   .payment-list_item {
@@ -119,5 +123,16 @@ html, body {
   }
   .bold {
     font-weight: 700;
+  }
+
+  .word-break {
+    word-break: break-word;
+  }
+  // styles from bootstrap
+  .w-100 {
+    width: 100%;
+  }
+  .d-flex {
+    display: flex;
   }
 }

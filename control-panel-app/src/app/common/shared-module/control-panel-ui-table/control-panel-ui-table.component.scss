@@ -2,56 +2,28 @@
 :host {
   .table {
     width: 100%;
-    th.mat-header-cell {
-      min-width: 60px;
-      position: relative;
-      span {
-        position: absolute;
-        left: 0;
-        right: 0;
-        padding-left: 10px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: left;
-      }
-      &:before {
-        content: '&nbsp;';
-        visibility: hidden;
-      }
-      &.submenu_header {
-        max-width: 20px;
-      }
+    .cdk-column-cloudId, .cdk-column-unlim {
+      flex: 0 0 50px;
     }
-    th.mat-header-cell:first-of-type {
-      padding-left: 0;
+
+    .cdk-column-coins, .cdk-column-price {
+      flex: 0 0 100px;
     }
-    td.mat-cell.simple-data {
-      position: relative;
-      min-width: 50px;
-      &:before {
-        content: '&nbsp;';
-        visibility: hidden;
-      }
-      span {
-        position: absolute;
-        left: 0;
-        right: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      &.submenu_cell {
-        margin: 20px;
-      }
+
+    .cdk-column-title, .cdk-column-category {
+      flex: 0 0 150px;
+    }
+
+    .cdk-column-expiresAt {
+      flex: 0 0 120px;
     }
     .mat-row {
       .more {
         font-size: 16px;
       }
       .table_cell-inner {
-        padding-left: 10px;
-        white-space: nowrap;
+        word-break: break-word;
+        padding-right: .5rem;
         .status-list {
           padding: 0;
           .mat-icon {
@@ -76,6 +48,9 @@
       &:hover {
         background-color: rgba(0, 0, 0, .05);
         cursor: pointer;
+      }
+      .amount {
+        min-width: 60px;
       }
     }
 

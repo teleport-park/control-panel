@@ -133,5 +133,8 @@
   "CONTROLLER_ADD_TNG_TITLE": "Добавить TNG контроллер",
   "CONTROLLER_IP": "IP",
   "CONTROLLER_SECRET_KEY": "Secret key",
-  "CONTROLLER_IP_VALIDATION": "Не правильный формат IP адреса."
+  "CONTROLLER_IP_VALIDATION": "Не правильный формат IP адреса.",
+  "PACKAGE_TITLE": "Стартовый пакет",
+  "PACKAGE_EXPIRES_AT": "истекает в",
+  "PACKAGE_CATEGORY": "Категория"
 }

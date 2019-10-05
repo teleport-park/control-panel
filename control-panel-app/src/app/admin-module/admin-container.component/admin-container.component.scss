@@ -118,11 +118,9 @@
 
       .content-container {
         display: flex;
-        flex: 1 1 100%
+        flex: 1 1 100%;
+        overflow: hidden;
       }
     }
-  }
-  .mat-drawer-content {
-    @include custom-scroll();
   }
 }

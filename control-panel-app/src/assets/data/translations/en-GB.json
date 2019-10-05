@@ -132,5 +132,8 @@
   "CONTROLLER_ADD_TNG_TITLE": "Add TNG controller",
   "CONTROLLER_IP": "IP",
   "CONTROLLER_SECRET_KEY": "Secret key",
-  "CONTROLLER_IP_VALIDATION": "Wrong IP format."
+  "CONTROLLER_IP_VALIDATION": "Wrong IP format.",
+  "PACKAGE_TITLE": "Start package",
+  "PACKAGE_EXPIRES_AT": "Expires at",
+  "PACKAGE_CATEGORY": "Category"
 }

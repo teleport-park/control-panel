@@ -13,7 +13,7 @@ export class PricingService {
     /**
      * tariffs
      */
-    prices$: BehaviorSubject<TariffsTree[]> = new BehaviorSubject(null);
+    prices$: BehaviorSubject<any[]> = new BehaviorSubject(null);
 
     constructor(private http: HttpClient,
                 private urlService: ApiUrlsService,

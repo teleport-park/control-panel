@@ -2,19 +2,35 @@
 
 :host {
   @include d-block();
+  position: relative;
+  overflow: auto;
+  height: 100%;
+  @include custom-scroll();
   .packages_wrapper {
     margin: 0;
+    ::ng-deep .mat-tab-labels {
+      background-color: rgba(map-get($dark-color, 500), .5);
+    }
     .packages__history {
-      padding: 0 1rem;
       .mat-table {
         width: 100%;
       }
     }
     .packages {
-      padding-top: 4rem;
       .package {
         margin: 0 -10px;
       }
     }
+  }
+
+  .sync-action {
+    position: absolute;
+    display: inline-block;
+    right: 10px;
+    top: 5px;
+    z-index: 2;
+    padding: .1rem .1rem .1rem 1rem;
+    border-radius: 5px;
+    background-color: rgba(map-get($dark-color, 500), .7);
   }
 }

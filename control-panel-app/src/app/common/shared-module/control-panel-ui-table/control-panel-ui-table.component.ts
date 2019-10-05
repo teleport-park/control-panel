@@ -77,6 +77,8 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
     }
   }
 
+  @Input() minRowHeight = 50;
+
   /**
    * data source for table
    */
@@ -224,5 +226,13 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
   getFormattedData(data: Moment): string {
     data.locale(this.translateService.locale.value);
     return data.format('L');
+  }
+
+    /**
+     * check is boolean value
+     * @param value
+     */
+  isBoolean(value: any) {
+      return typeof value === 'boolean';
   }
 }

@@ -1,33 +1,30 @@
 <!--<pre>{{(service.packages$ | async) | json}}</pre>-->
-<div class="row packages_wrapper light-theme">
-    <div class="col-md-6 col-sm-12 packages">
-        <div *ngFor="let item of service.packages$ | async" class="package">
-            <control-panel-ui-hardware-item [item]="item"></control-panel-ui-hardware-item>
-        </div>
-    </div>
+<div class="row packages_wrapper">
+    <mat-tab-group class="w-100" [@.disabled]="true" color="accent">
+        <mat-tab label="Packages">
+            <control-panel-ui-table  [ngClass]="{'light-theme': lightTheme}"
+                                     [displayedColumns]="packagesColumns"
+                                     [simpleDataColumn]="simplePackagesColumns"
+                                     [data]="service.packages$ | async"
+                                     [minRowHeight]="80"
+            ></control-panel-ui-table>
+        </mat-tab>
+        <mat-tab label="Sync history">
+            <control-panel-ui-table  [ngClass]="{'light-theme': lightTheme}"
+                                     [displayedColumns]="['timestamp', 'status']"
+                                     [simpleDataColumn]="['status']"
+                                     [data]="service.packagesHistory$ | async"
+            ></control-panel-ui-table>
+        </mat-tab>
+    </mat-tab-group>
+</div>
 
-    <div class="col-md-6 col-sm-12">
-<!--        <pre>{{(service.packagesHistory$ | async) | json}}</pre>-->
-        <div class="packages__history">
-            <div class="sync-action mb-3 mt-3">
-                <button mat-raised-button color="primary" (click)="service.synchronize()">Sync</button>
-                <span class="ml-4">Last synchronization was at {{(service.lastSyncTime$ | async) | date:'dd.MM.yyyy HH:mm:ss'}}</span>
-            </div>
-            <table mat-table [dataSource]="service.packagesHistory$ | async" class="mat-elevation-z8">
-                <ng-container matColumnDef="timestamp">
-                    <th mat-header-cell *matHeaderCellDef> Time </th>
-                    <td mat-cell *matCellDef="let element"> {{element.timestamp | date:'dd.MM.yyyy HH:mm:ss'}} </td>
-                </ng-container>
-
-                <!-- Name Column -->
-                <ng-container matColumnDef="status">
-                    <th mat-header-cell *matHeaderCellDef> Status </th>
-                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-        </div>
-    </div>
+<div class="sync-action d-flex align-items-center">
+    <span class="mr-2">
+        <mat-slide-toggle [checked]="lightTheme" (toggleChange)="lightTheme = !lightTheme">
+            Change theme ({{lightTheme ? 'light' : 'dark'}})
+        </mat-slide-toggle>
+    </span>
+    <span class="mr-4">Last synchronization was at {{(service.lastSyncTime$ | async) | date:'dd.MM.yyyy HH:mm:ss'}}</span>
+    <button mat-raised-button color="primary" (click)="service.synchronize()">Sync</button>
 </div>
