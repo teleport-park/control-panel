@@ -32,6 +32,11 @@ export class BuildMenuHelper {
                 path: '/admin/park/visitors',
                 active: false
             }, {
+                icon: 'people_outline',
+                label: 'ADMIN_MENU_STAFF',
+                path: '/admin/park/staff',
+                active: false,
+            }, {
                 icon: 'credit_card',
                 label: 'ADMIN_MENU_CARDS',
                 path: '/admin/park/cards',

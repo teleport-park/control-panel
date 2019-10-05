@@ -14,7 +14,7 @@ export class DataService {
   /**
    * group
    */
-  groupsMap$: BehaviorSubject<AppData<Group>> = new BehaviorSubject(null);
+  groupsMap$: BehaviorSubject<Group[]> = new BehaviorSubject(null);
 
   /**
    * permissions
@@ -39,12 +39,14 @@ export class DataService {
    * get groups map
    */
   getGroups(pageSize = 5, pageIndex = 1) {
-    const requestMethod = 'GET';
-    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, null, pageSize, pageIndex);
-    this.http.request(requestMethod, url)
-      .pipe(filter(data => !!data))
-      .subscribe((result: AppData<Group>) => {
-        this.groupsMap$.next(result);
-      });
+    // const requestMethod = 'GET';
+    // const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, null, pageSize, pageIndex);
+    // this.http.request(requestMethod, url)
+    //   .pipe(filter(data => !!data))
+    //   .subscribe((result: AppData<Group>) => {
+    //     this.groupsMap$.next(result);
+    //   });
+
+      this.groupsMap$.next([{id: 1, name: 'Admin', permissions: [1, 2, 3]} as Group]);
   }
 }

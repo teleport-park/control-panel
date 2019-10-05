@@ -27,6 +27,11 @@ const routes: Routes = [{
             data: {title: 'ADMIN_MENU_USERS'},
             canActivate: [PermissionGuard]
         }, {
+            path: 'staff',
+            loadChildren: () => import('./staff/staff.module').then(m => m.StaffModule),
+            data: {title: 'ADMIN_MENU_STAFF'},
+            canActivate: [PermissionGuard]
+        }, {
             path: 'cards', component: CardsComponent, data: {title: 'ADMIN_MENU_CARDS'}, canActivate: [PermissionGuard]
         }, {
             path: 'packages', component: PackagesComponent, data: {title: 'ADMIN_MENU_PACKAGES'}, canActivate: [PermissionGuard]

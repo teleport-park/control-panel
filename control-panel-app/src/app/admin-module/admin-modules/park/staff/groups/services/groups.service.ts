@@ -47,17 +47,17 @@ export class GroupsService {
    * get groups
    */
   getGroups(): void {
-    const requestMethod = 'GET';
-    const page = this._paramsHelper.getPaginationParams(this.GROUP_STORAGE_KEY, this.storage);
-    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, null, page.pageSize, page.pageIndex + 1);
-    this.http.request(requestMethod, url)
-      .pipe(
-        finalize(() => {
-          this.loader.dispatchShowLoader(false);
-        }))
-      .subscribe((data: AppData<Group>) => {
-        this.groups$.next(data);
-      });
+    // const requestMethod = 'GET';
+    // const page = this._paramsHelper.getPaginationParams(this.GROUP_STORAGE_KEY, this.storage);
+    // const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, null, page.pageSize, page.pageIndex + 1);
+    // this.http.request(requestMethod, url)
+    //   .pipe(
+    //     finalize(() => {
+    //       this.loader.dispatchShowLoader(false);
+    //     }))
+    //   .subscribe((data: AppData<Group>) => {
+    //     this.groups$.next(data);
+    //   });
   }
 
 
@@ -66,16 +66,16 @@ export class GroupsService {
    * @param group
    */
   addGroup(group: Group): void {
-    const requestMethod = 'POST';
-    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod);
-    this.http.request(requestMethod, url, {body: group}).subscribe((result: number) => {
-      if (result) {
-        group.id = result;
-        this.addPermissionsToGroup(group);
-        return;
-      }
-      this.getGroups();
-    });
+    // const requestMethod = 'POST';
+    // const url = this.apiBuilder.getStaffGroupsUrl(requestMethod);
+    // this.http.request(requestMethod, url, {body: group}).subscribe((result: number) => {
+    //   if (result) {
+    //     group.id = result;
+    //     this.addPermissionsToGroup(group);
+    //     return;
+    //   }
+    //   this.getGroups();
+    // });
   }
 
   /**
@@ -83,13 +83,13 @@ export class GroupsService {
    * @param group
    */
   editGroup(group: Group): void {
-    const requestMethod = 'PUT';
-    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, group.id);
-    this.loader.dispatchShowLoader(true);
-    this.http.request(requestMethod, url, {body: group})
-      .subscribe(() => {
-        this.addPermissionsToGroup(group);
-      });
+    // const requestMethod = 'PUT';
+    // const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, group.id);
+    // this.loader.dispatchShowLoader(true);
+    // this.http.request(requestMethod, url, {body: group})
+    //   .subscribe(() => {
+    //     this.addPermissionsToGroup(group);
+    //   });
   }
 
   /**
@@ -97,17 +97,17 @@ export class GroupsService {
    * @param group
    */
   addPermissionsToGroup(group: Group): void {
-    const requestMethod = 'POST';
-    const url = this.apiBuilder.getPermissionsUrl(requestMethod);
-    this.http.request(requestMethod, url, {
-      body: {
-        staffGroupId: group.id,
-        permissionIds: group.permissions
-      }
-    })
-      .subscribe(() => {
-        this.getGroups();
-      });
+    // const requestMethod = 'POST';
+    // const url = this.apiBuilder.getPermissionsUrl(requestMethod);
+    // this.http.request(requestMethod, url, {
+    //   body: {
+    //     staffGroupId: group.id,
+    //     permissionIds: group.permissions
+    //   }
+    // })
+    //   .subscribe(() => {
+    //     this.getGroups();
+    //   });
   }
 
   /**
@@ -115,16 +115,16 @@ export class GroupsService {
    * @param group
    */
   deleteGroup(group: Group): void {
-    const requestMethod = 'DELETE';
-    const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, group.id);
-    this.http.request(requestMethod, url)
-      .subscribe((result: boolean) => {
-        if (result) {
-          this.getGroups();
-          return;
-        }
-        this.showErrorMessage(this.translateService.instant('ADMIN_MENU_STAFF'));
-      });
+    // const requestMethod = 'DELETE';
+    // const url = this.apiBuilder.getStaffGroupsUrl(requestMethod, group.id);
+    // this.http.request(requestMethod, url)
+    //   .subscribe((result: boolean) => {
+    //     if (result) {
+    //       this.getGroups();
+    //       return;
+    //     }
+    //     this.showErrorMessage(this.translateService.instant('ADMIN_MENU_STAFF'));
+    //   });
   }
 
   /**

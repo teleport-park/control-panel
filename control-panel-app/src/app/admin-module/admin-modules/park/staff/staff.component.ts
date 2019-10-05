@@ -168,7 +168,7 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param staffMember
    */
   selectStaffMember(staffMember: StaffMemberResponse): void {
-    this.router.navigate(['admin', 'user-management', 'staff', staffMember.id]);
+    this.router.navigate(['admin', 'staff', staffMember.id]);
   }
 
   /**
