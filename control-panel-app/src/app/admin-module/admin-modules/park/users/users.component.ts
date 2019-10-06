@@ -1,24 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Inject,
-  OnDestroy,
-  OnInit,
-  ViewChild
-} from '@angular/core';
-import { UserService } from './services/user.service';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
-import { User } from '../../../../models';
+import { Visitor } from '../../../../models';
 import { MatDialog, MatSidenavContent, PageEvent, Sort } from '@angular/material';
 import { TranslateService } from '../../../../common/translations-module';
 import { Subject } from 'rxjs';
 import { LoaderService } from '../../../../services/loader.service';
-import {
-  AddOrEditEntityDialogComponent,
-  ConfirmDialogComponent,
-  ConfirmDialogData
-} from '../../../../common/shared-module';
+import { AddOrEditEntityDialogComponent, ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { BreakpointService } from '../../../../services/breakpoint.service';
 
@@ -29,201 +16,218 @@ import { Router } from '@angular/router';
 import { ExtendedFilterFieldGroup } from '../../../../common/extended-filters-module/extended-filters.component';
 import { UserExtendedFilterConfig } from './users-extended-filters.config';
 import { ExtendedFilterUrlParamsInterface } from '../../../../interfaces/extended-filter-url-params.interface';
+import { USER_SERVICE, UserService } from '../../../../models/intefaces';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-users',
+    templateUrl: './users.component.html',
+    styleUrls: ['./users.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class UsersComponent implements OnInit, OnDestroy {
 
-  /**
-   * extended filters config
-   */
-  extendedFiltersConfig: ExtendedFilterFieldGroup[] = UserExtendedFilterConfig;
+    /**
+     * extended filters config
+     */
+    extendedFiltersConfig: ExtendedFilterFieldGroup[] = UserExtendedFilterConfig;
 
-  /**
-   * quick filter value
-   */
-  quickFilter: FormControl = new FormControl('');
+    /**
+     * quick filter value
+     */
+    quickFilter: FormControl = new FormControl('');
 
-  /**
-   * reset pagination
-   */
-  resetPagination: { reset: boolean };
+    /**
+     * reset pagination
+     */
+    resetPagination: { reset: boolean };
 
-  /**
-   * view scroll container for set and store scroll position
-   * @param element
-   */
-  @ViewChild('scrollContainer', { static: false }) set scrollContainer(element: MatSidenavContent) {
-    if (element) {
-      const storedScroll = this.storage.getValue(`${this.userService.STORAGE_KEY}_SCROLL`);
-      if (storedScroll) {
-        element.getElementRef().nativeElement.scrollTop = +storedScroll;
-      }
-      element.elementScrolled().pipe(debounceTime(1000)).subscribe((event: any) => {
-        this.storage.setValue(`${this.userService.STORAGE_KEY}_SCROLL`, event.target.scrollTop);
-      });
+    /**
+     * view scroll container for set and store scroll position
+     * @param element
+     */
+    @ViewChild('scrollContainer', {static: false}) set scrollContainer(element: MatSidenavContent) {
+        if (element) {
+            // const storedScroll = this.storage.getValue(`${this.userService.STORAGE_KEY}_SCROLL`);
+            // if (storedScroll) {
+            //   element.getElementRef().nativeElement.scrollTop = +storedScroll;
+            // }
+            element.elementScrolled().pipe(debounceTime(1000)).subscribe((event: any) => {
+                // this.storage.setValue(`${this.userService.STORAGE_KEY}_SCROLL`, event.target.scrollTop);
+            });
+        }
     }
-  }
 
-  /**
-   * subject for destroy component
-   */
-  destroyed$: Subject<boolean> = new Subject();
+    /**
+     * subject for destroy component
+     */
+    destroyed$: Subject<boolean> = new Subject();
 
-  /**
-   * list of displayed column
-   */
-  displayedColumns: string[] = ['name', 'nickname', 'phone', 'age', 'email', 'statuses', 'registered', 'submenu'];
+    /**
+     * list of displayed column
+     */
+    displayedColumns: string[] = [
+        'name',
+        'nickname',
+        'displayName',
+        'createdAt',
+        'updatedAt',
+        'gender',
+        'birthyear',
+        'phone',
+        'comment',
+        'age',
+        'email',
+        'submenu'
+    ];
 
-  /**
-   * column with data
-   */
-  columnWithData: string[] = ['name', 'nickname', 'phone', 'age', 'email'];
+    /**
+     * column with data
+     */
+    columnWithData: string[] = ['name', 'nickname', 'displayName', 'phone', 'age', 'email', 'gender', 'birthyear', 'comment'];
 
-  /**
-   * available to sort column
-   */
-  sortedColumn: string[] = [];
+    /**
+     * available to sort column
+     */
+    sortedColumn: string[] = [];
 
-  /**
-   * Constructor
-   * @param userService
-   * @param cd
-   * @param translateService
-   * @param loaderService
-   * @param dialog
-   * @param point
-   * @param router
-   * @param storage
-   * @param fb
-   * @param extendedFilterUrlBuilder
-   */
-  constructor(public userService: UserService,
-              public cd: ChangeDetectorRef,
-              public translateService: TranslateService,
-              private loaderService: LoaderService,
-              public dialog: MatDialog,
-              public point: BreakpointService,
-              private router: Router,
-              private fb: FormBuilder,
-              @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
-              @Inject('ExtendedFilterUrlParamsInterface') private extendedFilterUrlBuilder: ExtendedFilterUrlParamsInterface) {
-  }
-
-  /**
-   * on init hook
-   */
-  ngOnInit() {
-    this.quickFilter.valueChanges.pipe(
-      debounceTime(500),
-      distinctUntilChanged(),
-      takeUntil(this.destroyed$)).subscribe((value: string) => {
-      this.userService.queryString = value;
-      this.resetPagination = {reset: true};
-      this.cd.markForCheck();
-      this.cd.detectChanges();
-    });
-    const data = config as Config;
-    this.sortedColumn = data.users.sortedColumns || [];
-  }
-
-  /**
-   * open dialog
-   * @param mode
-   * @param event
-   */
-  operationWithUser(mode: 'edit' | 'add' | 'delete', event?: User): void {
-    if (mode === 'delete') {
-      this.showConfirmDialog(event);
-      return;
+    /**
+     * Constructor
+     * @param service
+     * @param cd
+     * @param translateService
+     * @param loaderService
+     * @param dialog
+     * @param point
+     * @param router
+     * @param storage
+     * @param fb
+     * @param extendedFilterUrlBuilder
+     */
+    constructor(
+        public cd: ChangeDetectorRef,
+        public translateService: TranslateService,
+        private loaderService: LoaderService,
+        public dialog: MatDialog,
+        public point: BreakpointService,
+        private router: Router,
+        private fb: FormBuilder,
+        @Inject(USER_SERVICE) private service: UserService<Visitor>,
+        @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
+        @Inject('ExtendedFilterUrlParamsInterface') private extendedFilterUrlBuilder: ExtendedFilterUrlParamsInterface) {
     }
-    this.showModalAddOrEditUser(mode, event);
-  }
 
-  /**
-   * show add or remove dialog
-   * @param mode
-   * @param user
-   */
-  private showModalAddOrEditUser(mode: 'edit' | 'add', user: User) {
-    if (mode === 'edit') {
-      this.userService.getUser(user.id)
-        .pipe(filter((data: User) => !!data))
-        .subscribe((result: User) => {
-          this.openModalDialog(mode, result);
+    /**
+     * on init hook
+     */
+    ngOnInit() {
+        this.quickFilter.valueChanges.pipe(
+            debounceTime(500),
+            distinctUntilChanged(),
+            takeUntil(this.destroyed$)).subscribe((value: string) => {
+            this.service.getUsers(value);
+            this.resetPagination = {reset: true};
+            this.cd.markForCheck();
+            this.cd.detectChanges();
         });
-      return;
+        const data = config as Config;
+        this.sortedColumn = data.users.sortedColumns || [];
     }
-    this.openModalDialog(mode, new User());
-  }
 
-  /**
-   * open modal dialog
-   * @param mode
-   * @param user
-   */
-  private openModalDialog(mode: 'edit' | 'add', user: User) {
-    this.dialog.open(AddOrEditEntityDialogComponent, {
-      data: mode === 'edit' ? Object.assign(new User(), user) : user,
-      disableClose: true
-    }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((result: User) => {
-      if (mode === 'edit') {
-        this.userService.editUser(result);
-      } else {
-        this.userService.saveUser(result);
-      }
-    });
-  }
+    /**
+     * open dialog
+     * @param mode
+     * @param event
+     */
+    operationWithUser(mode: 'edit' | 'add' | 'delete', event?: Visitor): void {
+        if (mode === 'delete') {
+            this.showConfirmDialog(event);
+            return;
+        }
+        this.showModalAddOrEditUser(mode, event);
+    }
 
-  /**
-   * show confirm dialog
-   */
-  private showConfirmDialog(user: User) {
-    this.dialog.open(ConfirmDialogComponent, {
-      data: {
-        title: 'DIALOG_CONFIRM_TITLE',
-        message: 'DIALOG_CONFIRM_MESSAGE',
-        messageParams: [`${user.name}`]
-      } as ConfirmDialogData,
-      autoFocus: false
-    }).afterClosed()
-      .pipe(filter(data => data), takeUntil(this.destroyed$))
-      .subscribe(() => {
-        this.userService.removeUser(user);
-      });
-  }
+    /**
+     * show add or remove dialog
+     * @param mode
+     * @param visitor
+     */
+    private showModalAddOrEditUser(mode: 'edit' | 'add', visitor: Visitor) {
+        if (mode === 'edit') {
+            this.service.getUser(visitor.id)
+            .pipe(filter((data: Visitor) => !!data))
+            .subscribe((user: Visitor) => {
+                this.openModalDialog(mode, user);
+            });
+            return;
+        }
+        this.openModalDialog(mode, new Visitor());
+    }
 
-  /**
-   * change page handler
-   * @param event
-   */
-  changesHandler(event: PageEvent | Sort): void {
-    this.userService.changePaginationOrSort(event);
-  }
+    /**
+     * open modal dialog
+     * @param mode
+     * @param user
+     */
+    private openModalDialog(mode: 'edit' | 'add', user: Visitor) {
+        this.dialog.open(AddOrEditEntityDialogComponent, {
+            data: mode === 'edit' ? Object.assign(new Visitor(), user) : user,
+            disableClose: true
+        }).afterClosed()
+        .pipe(filter(data => data), takeUntil(this.destroyed$))
+        .subscribe((result: Visitor) => {
+            if (mode === 'edit') {
+                this.service.editUser(result);
+            } else {
+                this.service.addUser(result);
+            }
+        });
+    }
 
-  /**
-   * apply extended filters
-   * @param filterData
-   */
-  applyFilter(filterData): void {
-    console.log('[extended filter url] -> ', this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
-  }
+    /**
+     * show confirm dialog
+     */
+    private showConfirmDialog(visitor: Visitor) {
+        this.dialog.open(ConfirmDialogComponent, {
+            data: {
+                title: 'DIALOG_CONFIRM_TITLE',
+                message: 'DIALOG_CONFIRM_MESSAGE',
+                messageParams: [`${visitor.name}`]
+            } as ConfirmDialogData,
+            autoFocus: false
+        }).afterClosed()
+        .pipe(filter(data => data), takeUntil(this.destroyed$))
+        .subscribe(() => {
+            this.service.deleteUser(visitor.id);
+        });
+    }
 
-  ngOnDestroy(): void {
-    this.destroyed$.next(true);
-    this.destroyed$.complete();
-  }
+    /**
+     * change page handler
+     * @param event
+     */
+    changesHandler(event: PageEvent | Sort): void {
+        // this.userService.changePaginationOrSort(event);
+    }
 
-  /**
-   * select user
-   * @param user
-   */
-  selectUser(user: User) {
-    this.router.navigate(['admin', 'user-management', 'users', user.id]);
-  }
+    /**
+     * apply extended filters
+     * @param filterData
+     */
+    applyFilter(filterData): void {
+        console.log('[extended filter url] -> ', this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
+    }
+
+    ngOnDestroy(): void {
+        this.destroyed$.next(true);
+        this.destroyed$.complete();
+    }
+
+    /**
+     * select user
+     * @param user
+     */
+    selectUser(user: Visitor) {
+        this.router.navigate(['admin', 'user-management', 'users', user.id]);
+    }
 }

@@ -9,7 +9,6 @@ import { SharedModule } from '../../../common/shared-module/shared.module';
 import { CardsService } from './cards/services/cards.service';
 import { GamesService } from './games/services/games.service';
 import { GamesComponent } from './games/games.component';
-import { UserService } from './users/services/user.service';
 import { PackagesComponent } from './packages/packages.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { PricingService } from './pricing/pricing.service';
@@ -56,7 +55,7 @@ export const ParkRouterModule = RouterModule.forChild(routes);
         MaterialModule,
         SharedModule
     ],
-    providers: [CardsService, GamesService, UserService, PricingService, PackagesService]
+    providers: [CardsService, GamesService, PricingService, PackagesService]
 })
 export class ParkModule {
 }

@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../services/user.service';
-import { User } from '../../../../../models';
+import { Visitor } from '../../../../../models';
 import { filter, takeUntil } from 'rxjs/operators';
 import { TranslateService } from '../../../../../common/translations-module';
 import { PropertyMap } from '../../../../utils/property-map';
@@ -30,7 +29,7 @@ export class UserComponent implements OnInit, OnDestroy {
   /**
    * user
    */
-  _user: User;
+  _user: Visitor;
 
   /**
    * user properties values
@@ -58,14 +57,12 @@ export class UserComponent implements OnInit, OnDestroy {
    *
    * @param route
    * @param router
-   * @param service
    * @param translateService
    * @param cd
    * @param dialog
    */
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private service: UserService,
               public translateService: TranslateService,
               private cd: ChangeDetectorRef,
               private dialog: MatDialog) {
@@ -73,38 +70,38 @@ export class UserComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('id');
-    this.service.usersData$.pipe(filter(data => !!data), takeUntil(this.destroyed$)).subscribe(() => {
-      this.getUser();
-    });
+    // this.service.usersData$.pipe(filter(data => !!data), takeUntil(this.destroyed$)).subscribe(() => {
+    //   this.getUser();
+    // });
   }
 
   /**
    * get users
    */
   private getUser() {
-    this.service.getUser(+this.userId)
-      .pipe(filter(data => !!data), takeUntil(this.destroyed$))
-      .subscribe((user: User) => {
-        this._user = Object.assign(new User(), user);
-        this._userPropertiesValue = Object.assign({}, this._user.getUserProperty());
-        this._userPropertiesValue.birthday = moment(this._user.birthday).format('L');
-        this._userPropertiesValue.registered = moment(this._user.registered).format('L');
-        this._userPropertiesValue.lastVisit = moment(this._user.lastVisit).format('L, h:mm');
-        this._userProperties = Object.keys(this._userPropertiesValue);
-        this.cd.markForCheck();
-      });
+    // this.service.getUser(+this.userId)
+    //   .pipe(filter(data => !!data), takeUntil(this.destroyed$))
+    //   .subscribe((user: Visitor) => {
+    //     this._user = Object.assign(new Visitor(), user);
+    //     this._userPropertiesValue = Object.assign({}, this._user.getUserProperty());
+    //     this._userPropertiesValue.birthday = moment(this._user.birthday).format('L');
+    //     this._userPropertiesValue.registered = moment(this._user.registered).format('L');
+    //     this._userPropertiesValue.lastVisit = moment(this._user.lastVisit).format('L, h:mm');
+    //     this._userProperties = Object.keys(this._userPropertiesValue);
+    //     this.cd.markForCheck();
+    //   });
   }
 
   /**
    * open modal dialog
    */
   private openModalDialog() {
-    this.dialog.open(AddOrEditEntityDialogComponent, {
-      data: this._user,
-      disableClose: true
-    }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((result: User) => {
-      this.service.editUser(result);
-    });
+    // this.dialog.open(AddOrEditEntityDialogComponent, {
+    //   data: this._user,
+    //   disableClose: true
+    // }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((result: Visitor) => {
+    //   this.service.editUser(result);
+    // });
   }
 
   /**

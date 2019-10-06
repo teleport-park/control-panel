@@ -38,7 +38,7 @@ const routes: Routes = [{
 export const TeleportVrRouteModule = RouterModule.forChild(routes);
 
 export function TeleportVrFactory(http: HttpClient, snackBar: MatSnackBar, loader: LoaderService, apiUrlService: ApiUrlsService) {
-    return new CommonInstanceService(http, snackBar, loader, apiUrlService.getTVRUrl, (item) => new TVRController(item));
+    return new CommonInstanceService(http, apiUrlService.getTVRUrl, (item) => new TVRController(item));
 }
 
 @NgModule({
@@ -50,7 +50,7 @@ export function TeleportVrFactory(http: HttpClient, snackBar: MatSnackBar, loade
         SharedModule
     ],
     providers: [
-        {provide: INSTANCE_SERVICE, useFactory: TeleportVrFactory, deps: [HttpClient, MatSnackBar, LoaderService, ApiUrlsService]}
+        {provide: INSTANCE_SERVICE, useFactory: TeleportVrFactory, deps: [HttpClient, ApiUrlsService]}
         ]
 })
 export class TeleportVrModule {

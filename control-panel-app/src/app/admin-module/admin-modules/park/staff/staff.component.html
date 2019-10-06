@@ -1,46 +1,48 @@
 <mat-sidenav-container class="staff_wrapper" *ngIf="!groupOutlet.isActivated">
-  <mat-sidenav #extendedFilter
-               mode="{{(point?.handset | async) ? 'over' : 'side'}}"
-               [opened]="!(point?.handset | async)"
-               position="end">
-    <div class="extended-filters_wrapper">
-      <extended-filters *ngIf="this.groups" [config]="extendedFiltersConfig" (applyFilter)="applyFilter($event)"></extended-filters>
-    </div>
-  </mat-sidenav>
+<!--  <mat-sidenav #extendedFilter-->
+<!--               mode="{{(point?.handset | async) ? 'over' : 'side'}}"-->
+<!--               [opened]="!(point?.handset | async)"-->
+<!--               position="end">-->
+<!--    <div class="extended-filters_wrapper">-->
+<!--      <extended-filters *ngIf="this.groups" [config]="extendedFiltersConfig" (applyFilter)="applyFilter($event)"></extended-filters>-->
+<!--    </div>-->
+<!--  </mat-sidenav>-->
   <mat-sidenav-content #scrollContainer>
     <div class="light-theme">
-      <control-panel-ui-card>
-        <div panelUICardHeaderTitle>
-          {{translateService.instant('STAFF_TABLE_LABEL')}}
-        </div>
-        <div panelUICardContent>
-          <div class="toolbar-action-buttons-group">
-            <button
-              *ngIf="(point.handset | async)"
-              mat-icon-button
-              (click)="extendedFilter.toggle()">
-              <mat-icon>menu</mat-icon>
-            </button>
-          </div>
-          <div class="staff-table-wrapper">
-            <control-panel-ui-table
-              [data]="(service.staffMembers$ | async)?.items"
-              [displayedColumns]="displayedColumns"
-              [simpleDataColumn]="simpleDataColumn"
-              [listSortedColumn]="sortedColumn"
-              [itemCount]="(service.staffMembers$ | async)?.count"
-              [storageKey]="service.STAFF_STORAGE_KEY"
-              iconSet="person_add"
-              (edit)="openDialog('edit', $event)"
-              (delete)="openDialog('delete', $event)"
-              (add)="openDialog('add')"
-              (pageChanges)="pageChangeHandler($event)"
-              (sortChanges)="pageChangeHandler($event)"
-              (selected)="selectStaffMember($event)">
-            </control-panel-ui-table>
-          </div>
-        </div>
-      </control-panel-ui-card>
+<!--      <control-panel-ui-card>-->
+<!--        <div panelUICardHeaderTitle>-->
+<!--          {{translateService.instant('STAFF_TABLE_LABEL')}}-->
+<!--        </div>-->
+<!--        <div panelUICardContent>-->
+<!--          <div class="toolbar-action-buttons-group">-->
+<!--            <button-->
+<!--              *ngIf="(point.handset | async)"-->
+<!--              mat-icon-button-->
+<!--              (click)="extendedFilter.toggle()">-->
+<!--              <mat-icon>menu</mat-icon>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <div class="staff-table-wrapper">-->
+<!--            <control-panel-ui-table-->
+<!--              [data]="(service.staffMembers$ | async)?.items"-->
+<!--              [displayedColumns]="displayedColumns"-->
+<!--              [simpleDataColumn]="simpleDataColumn"-->
+<!--              [listSortedColumn]="sortedColumn"-->
+<!--              [itemCount]="(service.staffMembers$ | async)?.count"-->
+<!--              [storageKey]="service.STAFF_STORAGE_KEY"-->
+<!--              iconSet="person_add"-->
+<!--              (edit)="openDialog('edit', $event)"-->
+<!--              (delete)="openDialog('delete', $event)"-->
+<!--              (add)="openDialog('add')"-->
+<!--              (pageChanges)="pageChangeHandler($event)"-->
+<!--              (sortChanges)="pageChangeHandler($event)"-->
+<!--              (selected)="selectStaffMember($event)">-->
+<!--            </control-panel-ui-table>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </control-panel-ui-card>-->
+
+        <pre>{{(service.users$ | async) | json}}</pre>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

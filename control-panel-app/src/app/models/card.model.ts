@@ -1,4 +1,4 @@
-import { User } from './user-management/user.model';
+import { Visitor } from './user-management/visitor.model';
 import { StaffMember } from './user-management/staff.member.model';
 
 export class Card {
@@ -6,6 +6,6 @@ export class Card {
   ownerId: number;
   ownerType: 'user' | 'staff';
   inventoryNumber: string;
-  currentOwner: User | StaffMember;
+  currentOwner: Visitor | StaffMember;
   enabled: boolean;
 }

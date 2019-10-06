@@ -15,7 +15,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
     ApiUrlsService.ORIGIN = initService.config.api_url;
   }
 
-  private static getPagedUrl(endPoint: string, requestMethod: string, id?: number | string, pageSize?: number, pageNumber?: number): string | null {
+  private static getPagedUrl(endPoint: string, requestMethod: string, id?: number | string, query?: string, pageSize?: number, pageNumber?: number): string | null {
     const originEndPoint = `${ApiUrlsService.ORIGIN}${endPoint}`;
     const aub = new ApiUrlBuilder(originEndPoint, requestMethod);
 
@@ -30,7 +30,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
 
     if (aub.isRequestMethodGet()) {
       if (id) {
-        aub.appendQueryParameter('id', id.toString());
+        aub.appendUrl(id.toString());
         return aub.build();
       }
       if (pageSize) {
@@ -39,21 +39,24 @@ export class ApiUrlsService implements IApiUrlsInterface {
       if (pageNumber) {
         aub.appendQueryParameter('pageNumber', pageNumber.toString());
       }
+      if (query) {
+          aub.appendQueryParameter('q', query);
+      }
       return aub.build();
     }
     return null;
   }
 
   public getStaffUrl(requestMethod: string, id?: number, pageSize?: number, pageNumber?: number): string | null {
-    return ApiUrlsService.getPagedUrl('api/staff', requestMethod, id, pageSize, pageNumber);
+    return ApiUrlsService.getPagedUrl('api/staff', requestMethod, id, null, pageSize, pageNumber);
   }
 
   public getStaffGroupsUrl(requestMethod: string, id?: number, pageSize?: number, pageNumber?: number): string | null {
-    return ApiUrlsService.getPagedUrl('api/staffGroups', requestMethod, id, pageSize, pageNumber);
+    return ApiUrlsService.getPagedUrl('api/staffGroups', requestMethod, id, null, pageSize, pageNumber);
   }
 
   public getPermissionsUrl(requestMethod: string, id?: number, pageSize?: number, pageNumber?: number): string | null {
-    return ApiUrlsService.getPagedUrl('api/permissions', requestMethod, id, pageSize, pageNumber);
+    return ApiUrlsService.getPagedUrl('api/permissions', requestMethod, id, null, pageSize, pageNumber);
   }
 
   public getTVRUrl(requestMethod: 'GET' | 'PUT' | 'DELETE', id?: string): string | null {
@@ -90,6 +93,12 @@ export class ApiUrlsService implements IApiUrlsInterface {
   }
   public getPrices(requestMethod: 'GET' | 'PUT') {
     return ApiUrlsService.getPagedUrl(API.PRICES, requestMethod);
+  }
+  public getVisitors(requestMethod: 'GET' | 'PUT' | 'POST' | 'DELETE', id?: string, query?: string) {
+    return ApiUrlsService.getPagedUrl(API.VISITORS, requestMethod, id, query);
+  }
+  public getStaff(requestMethod: 'GET' | 'PUT', id?: string, query?: string) {
+    return ApiUrlsService.getPagedUrl(API.STAFF, requestMethod, id, query);
   }
 
   public getUsersUrl(requestMethod: string, id?: number,

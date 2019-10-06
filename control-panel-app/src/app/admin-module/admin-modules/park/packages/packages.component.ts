@@ -8,8 +8,6 @@ import { PackagesService } from './packages.service';
 })
 export class PackagesComponent implements OnInit {
 
-    lightTheme = true;
-
     displayedColumns: string[] = ['timestamp', 'status'];
 
     packagesColumns: string[] = [

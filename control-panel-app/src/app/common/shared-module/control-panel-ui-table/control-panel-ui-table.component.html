@@ -24,20 +24,28 @@
 
             </mat-cell>
         </ng-container>
-        <!--registered cell-->
-        <ng-container matColumnDef="registered">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['registered'])}}</span></mat-header-cell>
-            <mat-cell *matCellDef="let item">
-                <span class="table_cell-inner">{{getFormattedData(item.registered)}}</span>
-            </mat-cell>
-        </ng-container>
 
         <ng-container matColumnDef="expiresAt">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['expiresAt'] || 'expiresAt')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <span class="table_cell-inner">{{item.expiresAt | date: "dd.MM.yyyy HH:mm"}}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="createdAt">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['createdAt'] || 'createdAt')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <span class="table_cell-inner">{{item.createdAt | date: "dd.MM.yyyy"}}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="updatedAt">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['updatedAt'] || 'updatedAt')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <span class="table_cell-inner">{{item.updatedAt | date: "dd.MM.yyyy"}}</span>
             </mat-cell>
         </ng-container>
 

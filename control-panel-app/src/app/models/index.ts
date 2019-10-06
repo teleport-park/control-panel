@@ -1,4 +1,4 @@
-export * from './user-management/user.model';
+export * from './user-management/visitor.model';
 export * from './user-management/group.model';
 export * from './user-management/staff.member.model';
 export * from './user-management/permission.model';

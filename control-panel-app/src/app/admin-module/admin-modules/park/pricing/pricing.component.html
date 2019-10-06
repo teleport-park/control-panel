@@ -1,9 +1,4 @@
-<div class="prices_wrapper" [ngClass]="{'light-theme': lightTheme}">
-    <span class="mr-2">
-        <mat-slide-toggle [checked]="lightTheme" (toggleChange)="lightTheme = !lightTheme">
-            Change theme ({{lightTheme ? 'light' : 'dark'}})
-        </mat-slide-toggle>
-    </span>
+<div class="prices_wrapper light-theme">
     <div class="row m-0">
         <div class="col-md-6 col-12" *ngFor="let price of service.prices$ | async">
                 <control-panel-ui-card panelUIColor="primary">

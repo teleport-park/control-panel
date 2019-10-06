@@ -15,11 +15,8 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
-               formControlName="birthday" (dateChange)="dayOfBirthChange($event.value)"
-               [max]="maxDate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <input matInput placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
+               formControlName="birthyear">
         <mat-error>
           {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_DATE_OF_BIRTH_DAY')]}}
         </mat-error>
@@ -27,11 +24,7 @@
       <div class="age-gender_wrapper">
         <mat-form-field class="age-field">
           <mat-label>{{'USER_AGE' | translate}}</mat-label>
-          <mat-select formControlName="age" (selectionChange)="ageChange(+$event.value)">
-            <mat-option *ngFor="let age of [].constructor(99); let i = index;" value="{{i + 1}}">
-              {{i + 1}}
-            </mat-option>
-          </mat-select>
+            <input matInput formControlName="age" (change)="ageChange()">
           <mat-error *ngIf="userForm.get('age')?.hasError('required')">
             {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_AGE')]}}
           </mat-error>
@@ -61,104 +54,104 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <textarea matInput placeholder="{{'USER_DESC' | translate}}" formControlName="description" [rows]="4"></textarea>
+        <textarea matInput placeholder="{{'USER_DESC' | translate}}" formControlName="comment" [rows]="4"></textarea>
       </mat-form-field>
     </form>
   </div>
 
   <!-- avatars section-->
-  <div class="col-md-6">
-    <h4>{{translateService.instant('USER_AVATARS')}}</h4>
-    <div class="avatars_toolbar">
-      <button mat-button
-              (click)="addAvatar()"
-              *ngIf="userAvatars.length < 5">
-        <mat-icon>add</mat-icon>
-        {{translateService.instant('TABLE_ADD')}}</button>
-    </div>
-    <div class="avatars-body">
+<!--  <div class="col-md-6">-->
+<!--    <h4>{{translateService.instant('USER_AVATARS')}}</h4>-->
+<!--    <div class="avatars_toolbar">-->
+<!--      <button mat-button-->
+<!--              (click)="addAvatar()"-->
+<!--              *ngIf="userAvatars.length < 5">-->
+<!--        <mat-icon>add</mat-icon>-->
+<!--        {{translateService.instant('TABLE_ADD')}}</button>-->
+<!--    </div>-->
+<!--    <div class="avatars-body">-->
 
-      <!-- Avatars table -->
-      <table mat-table [dataSource]="userAvatars" class="avatars-table">
-        <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">
-          <th mat-header-cell *matHeaderCellDef>
-            <span>{{translateService.instant(propertyMap[column])}}</span></th>
-          <td mat-cell *matCellDef="let row">
-            <span class="table_cell-inner">{{row[column]}}</span>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="gender">
-          <th mat-header-cell *matHeaderCellDef>
-            <span>{{translateService.instant(propertyMap['gender'])}}</span></th>
-          <td mat-cell *matCellDef="let item">
-            <span class="table_cell-inner">{{translateService.instant(propertyMap[item.gender])}}</span>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="submenu">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let item; let i = index;" class="table-submenu">
-            <button mat-icon-button [matMenuTriggerFor]="avatarMenu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #avatarMenu="matMenu">
-              <button mat-menu-item (click)="deleteAvatar(item)">
-                <mat-icon>delete</mat-icon>
-                {{translateService.instant('TABLE_DELETE')}}
-              </button>
-              <button mat-menu-item (click)="editAvatar(item, i)">
-                <mat-icon>edit</mat-icon>
-                {{translateService.instant('TABLE_EDIT')}}
-              </button>
-            </mat-menu>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+<!--      &lt;!&ndash; Avatars table &ndash;&gt;-->
+<!--      <table mat-table [dataSource]="userAvatars" class="avatars-table">-->
+<!--        <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">-->
+<!--          <th mat-header-cell *matHeaderCellDef>-->
+<!--            <span>{{translateService.instant(propertyMap[column])}}</span></th>-->
+<!--          <td mat-cell *matCellDef="let row">-->
+<!--            <span class="table_cell-inner">{{row[column]}}</span>-->
+<!--          </td>-->
+<!--        </ng-container>-->
+<!--        <ng-container matColumnDef="gender">-->
+<!--          <th mat-header-cell *matHeaderCellDef>-->
+<!--            <span>{{translateService.instant(propertyMap['gender'])}}</span></th>-->
+<!--          <td mat-cell *matCellDef="let item">-->
+<!--            <span class="table_cell-inner">{{translateService.instant(propertyMap[item.gender])}}</span>-->
+<!--          </td>-->
+<!--        </ng-container>-->
+<!--        <ng-container matColumnDef="submenu">-->
+<!--          <th mat-header-cell *matHeaderCellDef></th>-->
+<!--          <td mat-cell *matCellDef="let item; let i = index;" class="table-submenu">-->
+<!--            <button mat-icon-button [matMenuTriggerFor]="avatarMenu">-->
+<!--              <mat-icon>more_vert</mat-icon>-->
+<!--            </button>-->
+<!--            <mat-menu #avatarMenu="matMenu">-->
+<!--              <button mat-menu-item (click)="deleteAvatar(item)">-->
+<!--                <mat-icon>delete</mat-icon>-->
+<!--                {{translateService.instant('TABLE_DELETE')}}-->
+<!--              </button>-->
+<!--              <button mat-menu-item (click)="editAvatar(item, i)">-->
+<!--                <mat-icon>edit</mat-icon>-->
+<!--                {{translateService.instant('TABLE_EDIT')}}-->
+<!--              </button>-->
+<!--            </mat-menu>-->
+<!--          </td>-->
+<!--        </ng-container>-->
+<!--        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+<!--        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+<!--      </table>-->
 
-      <!-- Avatars form -->
-      <form [formGroup]="avatarForm" class="avatar-form" *ngIf="adding">
-        <mat-form-field>
-          <input matInput placeholder="{{'USER_NAME' | translate}}" formControlName="userName" required>
-          <mat-error>
-            {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_NAME')]}}
-          </mat-error>
-        </mat-form-field>
-        <div class="age-gender_wrapper">
-          <mat-form-field class="age-field">
-            <mat-label>{{'USER_AGE' | translate}}</mat-label>
-            <mat-select formControlName="age">
-              <mat-option *ngFor="let age of [].constructor(99); let i = index;" value="{{i + 1}}">
-                {{i + 1}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="avatarForm.get('age')?.hasError('required')">
-              {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_AGE')]}}
-            </mat-error>
-          </mat-form-field>
-          <div class="gender-field">
-            <p>{{'USER_GENDER_LABEL' | translate}}</p>
-            <mat-radio-group aria-label="Select gender" formControlName="gender" class="gender-select">
-              <mat-radio-button value="male">{{'USER_GENDER_MALE' | translate}}</mat-radio-button>
-              <mat-radio-button value="female">{{'USER_GENDER_FEMALE' | translate}}</mat-radio-button>
-            </mat-radio-group>
-          </div>
-        </div>
-        <div class="avatar-form-action">
-          <button mat-raised-button
-                  color="warn"
-                  type="button"
-                  (click)="adding = !adding">{{'DIALOG_CANCEL_BUTTON_LABEL' | translate }}</button>
-          <button mat-raised-button
-                  color="primary"
-                  type="button"
-                  (click)="avatarSubmitHandler()">
-            {{avatarIndex ? translateService.instant('USER_FORM_EDIT_BUTTON_LABEL') : translateService.instant('USER_FORM_ADD_BUTTON_LABEL')}}
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+<!--      &lt;!&ndash; Avatars form &ndash;&gt;-->
+<!--      <form [formGroup]="avatarForm" class="avatar-form" *ngIf="adding">-->
+<!--        <mat-form-field>-->
+<!--          <input matInput placeholder="{{'USER_NAME' | translate}}" formControlName="userName" required>-->
+<!--          <mat-error>-->
+<!--            {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_NAME')]}}-->
+<!--          </mat-error>-->
+<!--        </mat-form-field>-->
+<!--        <div class="age-gender_wrapper">-->
+<!--          <mat-form-field class="age-field">-->
+<!--            <mat-label>{{'USER_AGE' | translate}}</mat-label>-->
+<!--            <mat-select formControlName="age">-->
+<!--              <mat-option *ngFor="let age of [].constructor(99); let i = index;" value="{{i + 1}}">-->
+<!--                {{i + 1}}-->
+<!--              </mat-option>-->
+<!--            </mat-select>-->
+<!--            <mat-error *ngIf="avatarForm.get('age')?.hasError('required')">-->
+<!--              {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_AGE')]}}-->
+<!--            </mat-error>-->
+<!--          </mat-form-field>-->
+<!--          <div class="gender-field">-->
+<!--            <p>{{'USER_GENDER_LABEL' | translate}}</p>-->
+<!--            <mat-radio-group aria-label="Select gender" formControlName="gender" class="gender-select">-->
+<!--              <mat-radio-button value="male">{{'USER_GENDER_MALE' | translate}}</mat-radio-button>-->
+<!--              <mat-radio-button value="female">{{'USER_GENDER_FEMALE' | translate}}</mat-radio-button>-->
+<!--            </mat-radio-group>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="avatar-form-action">-->
+<!--          <button mat-raised-button-->
+<!--                  color="warn"-->
+<!--                  type="button"-->
+<!--                  (click)="adding = !adding">{{'DIALOG_CANCEL_BUTTON_LABEL' | translate }}</button>-->
+<!--          <button mat-raised-button-->
+<!--                  color="primary"-->
+<!--                  type="button"-->
+<!--                  (click)="avatarSubmitHandler()">-->
+<!--            {{avatarIndex ? translateService.instant('USER_FORM_EDIT_BUTTON_LABEL') : translateService.instant('USER_FORM_ADD_BUTTON_LABEL')}}-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--  </div>-->
   <div class="col-12">
     <div class="action-button-group">
       <button mat-raised-button

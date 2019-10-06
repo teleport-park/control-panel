@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Card } from '../../../../../models/card.model';
-import { StaffMember, User } from '../../../../../models';
+import { StaffMember, Visitor } from '../../../../../models';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { DefaultPagination } from '../../../../../models/default-pagination';
@@ -31,7 +31,7 @@ export class CardsService {
     this.http.get(`./assets/data/cards.json`).subscribe((result: Card[]) => {
       result.forEach((item: Card) => {
         if (item.ownerType === 'user') {
-          item.currentOwner = Object.assign(new User(), item.currentOwner);
+          item.currentOwner = Object.assign(new Visitor(), item.currentOwner);
         }
         if (item.ownerType === 'staff') {
           item.currentOwner = Object.assign(new StaffMember(), item.currentOwner);

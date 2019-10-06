@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 import { ExtendedFilterFieldGroup } from '../../../../common/extended-filters-module/extended-filters.component';
 import { StaffExtendedFiltersConfig } from './staff-extended-filters.config';
 import { ExtendedFilterUrlParamsInterface } from '../../../../interfaces/extended-filter-url-params.interface';
+import { USER_SERVICE, UserService } from '../../../../models/intefaces';
 
 @Component({
   selector: 'control-panel-staff',
@@ -65,7 +66,7 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param router
    * @param extendedFilterUrlBuilder
    */
-  constructor(public service: StaffService,
+  constructor(
               public cd: ChangeDetectorRef,
               public translateService: TranslateService,
               public point: BreakpointService,
@@ -73,12 +74,13 @@ export class StaffComponent implements OnInit, OnDestroy {
               private fb: FormBuilder,
               public groupsService: GroupsService,
               private router: Router,
+              @Inject(USER_SERVICE) private service: UserService<any>,
               @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
               @Inject('ExtendedFilterUrlParamsInterface') private extendedFilterUrlBuilder: ExtendedFilterUrlParamsInterface) {
   }
 
   ngOnInit() {
-    this.service.getStaffMembers();
+    // this.service.getStaffMembers();
     this.sortedColumn = config.staff.sortedColumns || [];
     const groups = this.extendedFiltersConfig.find((field) => field.property === 'group');
     this.groupsService.groups$.pipe(filter(data => !!data && !!groups), takeUntil(this.destroyed$))
@@ -115,7 +117,7 @@ export class StaffComponent implements OnInit, OnDestroy {
     }).afterClosed()
       .pipe(filter(data => data), takeUntil(this.destroyed$))
       .subscribe(() => {
-        this.service.removeStaffMember(staffMember);
+        // this.service.removeStaffMember(staffMember);
       });
   }
 
@@ -126,12 +128,12 @@ export class StaffComponent implements OnInit, OnDestroy {
    */
   private showModalAddOrEditStaffMemberUser(mode: 'edit' | 'add', staffMember?: StaffMemberResponse) {
     if (mode === 'edit') {
-      this.service.getStaffMember(staffMember.id)
-        .pipe(filter(data => !!data))
-        .subscribe((member: StaffMemberResponse) => {
-          this.showDialog(mode, member);
-        });
-      return;
+      // this.service.getStaffMember(staffMember.id)
+      //   .pipe(filter(data => !!data))
+      //   .subscribe((member: StaffMemberResponse) => {
+      //     this.showDialog(mode, member);
+      //   });
+      // return;
     }
     this.showDialog('add', new StaffMemberResponse());
   }
@@ -148,9 +150,9 @@ export class StaffComponent implements OnInit, OnDestroy {
     });
     dialog.afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((staff: StaffMember) => {
       if (mode === 'edit') {
-        this.service.editStaffMember(staff);
+        // this.service.editStaffMember(staff);
       } else {
-        this.service.addStaffMember(staff);
+        // this.service.addStaffMember(staff);
       }
     });
   }
@@ -160,7 +162,7 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param event
    */
   pageChangeHandler(event: PageEvent): void {
-    this.service.changeStaffSortOrPagination(event);
+    // this.service.changeStaffSortOrPagination(event);
   }
 
   /**

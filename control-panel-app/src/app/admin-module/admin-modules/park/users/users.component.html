@@ -1,12 +1,12 @@
 <mat-sidenav-container class="user-component-wrapper" *ngIf="!userOutlet.isActivated">
-  <mat-sidenav #extendedFilter
-               mode="{{(point?.handset | async) ? 'over' : 'side'}}"
-               [opened]="!(point?.handset | async)"
-               position="end">
-    <div class="extended-filters_wrapper">
-      <extended-filters [config]="extendedFiltersConfig" (applyFilter)="applyFilter($event)"></extended-filters>
-    </div>
-  </mat-sidenav>
+<!--  <mat-sidenav #extendedFilter-->
+<!--               mode="{{(point?.handset | async) ? 'over' : 'side'}}"-->
+<!--               [opened]="!(point?.handset | async)"-->
+<!--               position="end">-->
+<!--    <div class="extended-filters_wrapper">-->
+<!--      <extended-filters [config]="extendedFiltersConfig" (applyFilter)="applyFilter($event)"></extended-filters>-->
+<!--    </div>-->
+<!--  </mat-sidenav>-->
   <mat-sidenav-content #scrollContainer>
     <div class="light-theme">
       <control-panel-ui-card panelUIColor="primary">
@@ -26,20 +26,18 @@
                 </mat-icon>
               </mat-form-field>
             </div>
-            <button
-              *ngIf="(point.handset | async)"
-              mat-icon-button
-              (click)="extendedFilter.toggle()">
-              <mat-icon>menu</mat-icon>
-            </button>
+<!--            <button-->
+<!--              *ngIf="(point.handset | async)"-->
+<!--              mat-icon-button-->
+<!--              (click)="extendedFilter.toggle()">-->
+<!--              <mat-icon>menu</mat-icon>-->
+<!--            </button>-->
           </div>
           <control-panel-ui-table
-            [data]="(userService.usersData$ | async)?.items"
+            [data]="(service.users$ | async)"
             [displayedColumns]="displayedColumns"
             [simpleDataColumn]="columnWithData"
             [listSortedColumn]="sortedColumn"
-            [itemCount]="(userService.usersData$ | async)?.count"
-            [storageKey]="userService.STORAGE_KEY"
             [resetPagination]="resetPagination"
             iconSet="person_add"
             (edit)="operationWithUser('edit', $event)"

@@ -11,7 +11,6 @@ export class SessionsComponent implements OnInit {
   displayedColumns: string[] = ['createdAt', 'status', 'restarts', 'restartMessage'];
 
   sessionColumns: string[] = [
-    'createdAt',
     'status',
     'restarts',
      'restartMessage'

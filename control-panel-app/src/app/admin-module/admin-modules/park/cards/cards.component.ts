@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '../../../../common/translations-module';
 import { Card } from '../../../../models/card.model';
-import { Permission, StaffMember, User } from '../../../../models';
+import { Permission, StaffMember, Visitor } from '../../../../models';
 import { MatTableDataSource, PageEvent } from '@angular/material';
 import { PropertyMap } from '../../../utils/property-map';
 import { CardsService } from './services/cards.service';
@@ -72,8 +72,8 @@ export class CardsComponent implements OnInit {
    * get row class
    * @param currentOwner
    */
-  getRowClass(currentOwner: User | StaffMember): string {
-    if (currentOwner instanceof User) {
+  getRowClass(currentOwner: Visitor | StaffMember): string {
+    if (currentOwner instanceof Visitor) {
       return 'user-row';
     }
     if (currentOwner instanceof StaffMember) {

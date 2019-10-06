@@ -8,8 +8,6 @@ import { PricingService } from './pricing.service';
 })
 export class PricingComponent implements OnInit {
 
-    lightTheme = true;
-
     constructor(public service: PricingService) {
     }
 

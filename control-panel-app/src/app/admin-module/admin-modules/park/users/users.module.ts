@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { UsersComponent } from './users.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../../../../material.module';
-import { UserService } from './services/user.service';
 import { TranslationModule } from '../../../../common/translations-module/translation.module';
 import { FormModule } from '../../../../common/form/form.module';
 import { SharedModule } from '../../../../common/shared-module/shared.module';
@@ -12,6 +11,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { PermissionGuard } from '../../../../common/auth-module/guards/permission-guard';
 import { ExtendedFiltersModule } from '../../../../common/extended-filters-module/extended-filters.module';
+import { USER_SERVICE } from '../../../../models/intefaces';
+import { HttpClient } from '@angular/common/http';
+import { ApiUrlsService } from '../../../../services/api-urls.service';
+import { CommonUserService } from '../../../../services/common-services/common-user.service';
 
 const routes: Routes = [{
   path: '',
@@ -28,6 +31,10 @@ const routes: Routes = [{
 
 export const UserRoutingModule = RouterModule.forChild(routes);
 
+export function UserServiceFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
+    return new CommonUserService(http, apiUrlService.getVisitors);
+}
+
 @NgModule({
   declarations: [UsersComponent, UserComponent],
   imports: [
@@ -40,7 +47,9 @@ export const UserRoutingModule = RouterModule.forChild(routes);
     SharedModule,
     ExtendedFiltersModule
   ],
-  providers: [UserService],
+  providers: [ {
+      provide: USER_SERVICE, useFactory: UserServiceFactory, deps: [HttpClient, ApiUrlsService]
+  }],
   entryComponents: [AddOrEditEntityDialogComponent, ConfirmDialogComponent]
 })
 export class UsersModule {

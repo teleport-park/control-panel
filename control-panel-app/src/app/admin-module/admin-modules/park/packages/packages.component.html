@@ -2,7 +2,7 @@
 <div class="row packages_wrapper">
     <mat-tab-group class="w-100" [@.disabled]="true" color="accent">
         <mat-tab label="Packages">
-            <control-panel-ui-table  [ngClass]="{'light-theme': lightTheme}"
+            <control-panel-ui-table  class="light-theme"
                                      [displayedColumns]="packagesColumns"
                                      [simpleDataColumn]="simplePackagesColumns"
                                      [data]="service.packages$ | async"
@@ -10,7 +10,7 @@
             ></control-panel-ui-table>
         </mat-tab>
         <mat-tab label="Sync history">
-            <control-panel-ui-table  [ngClass]="{'light-theme': lightTheme}"
+            <control-panel-ui-table  class="light-theme"
                                      [displayedColumns]="['timestamp', 'status']"
                                      [simpleDataColumn]="['status']"
                                      [data]="service.packagesHistory$ | async"
@@ -20,11 +20,6 @@
 </div>
 
 <div class="sync-action d-flex align-items-center">
-    <span class="mr-2">
-        <mat-slide-toggle [checked]="lightTheme" (toggleChange)="lightTheme = !lightTheme">
-            Change theme ({{lightTheme ? 'light' : 'dark'}})
-        </mat-slide-toggle>
-    </span>
     <span class="mr-4">Last synchronization was at {{(service.lastSyncTime$ | async) | date:'dd.MM.yyyy HH:mm:ss'}}</span>
     <button mat-raised-button color="primary" (click)="service.synchronize()">Sync</button>
 </div>

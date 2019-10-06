@@ -1,14 +1,12 @@
-<mat-sidenav-content #scrollContainer>
-    <div class="light-theme">
-        <control-panel-ui-card panelUIColor="primary">
-            <div panelUICardHeaderTitle>{{translateService.instant('SESSIONS_TABLE_TITLE')}}</div>
-            <div panelUICardContent>
-                <control-panel-ui-table
-                        [data]="(service.sessions$ | async)"
-                        [displayedColumns]="displayedColumns"
-                        [simpleDataColumn]="sessionColumns">
-                </control-panel-ui-table>
-            </div>
-        </control-panel-ui-card>
-    </div>
-</mat-sidenav-content>
+<div class="light-theme">
+    <control-panel-ui-card panelUIColor="primary">
+        <div panelUICardHeaderTitle>{{translateService.instant('SESSIONS_TABLE_TITLE')}}</div>
+        <div panelUICardContent>
+            <control-panel-ui-table
+                    [data]="(service.sessions$ | async)"
+                    [displayedColumns]="displayedColumns"
+                    [simpleDataColumn]="sessionColumns">
+            </control-panel-ui-table>
+        </div>
+    </control-panel-ui-card>
+</div>

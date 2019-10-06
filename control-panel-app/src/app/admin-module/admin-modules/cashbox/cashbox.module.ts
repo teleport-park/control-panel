@@ -29,7 +29,7 @@ const routes: Routes = [{
 export const CashboxRouterModule = RouterModule.forChild(routes);
 
 export function CashBoxFactory(http: HttpClient, snackBar: MatSnackBar, loader: LoaderService, apiUrlService: ApiUrlsService) {
-    return new CommonInstanceService(http, snackBar, loader, apiUrlService.getCashBox, (item) => new CashBoxController(item));
+    return new CommonInstanceService(http, apiUrlService.getCashBox, (item) => new CashBoxController(item));
 }
 
 @NgModule({
