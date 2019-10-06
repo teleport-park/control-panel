@@ -8,7 +8,7 @@ export const API: {[key: string]: string | any} = {
 
   PRICES: 'cpanel/prices',
   // users
-  USERS: 'api/users/',
+  USERS: 'cpanel/visitors',
   // staff
   STAFF: 'api/staff/',
   // groups

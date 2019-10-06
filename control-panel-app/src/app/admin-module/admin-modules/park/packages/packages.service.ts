@@ -5,14 +5,15 @@ import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { catchError, filter } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { LoaderService } from '../../../../services/loader.service';
+import { Package, PackageHistory } from '../../../../models';
 
 @Injectable()
 
 export class PackagesService {
 
-    packages$: BehaviorSubject<any[]> = new BehaviorSubject([]);
+    packages$: BehaviorSubject<Package[]> = new BehaviorSubject([]);
 
-    packagesHistory$: BehaviorSubject<any[]> = new BehaviorSubject([]);
+    packagesHistory$: BehaviorSubject<PackageHistory[]> = new BehaviorSubject([]);
 
     lastSyncTime$: BehaviorSubject<Date> = new BehaviorSubject(new Date());
 
@@ -35,7 +36,7 @@ export class PackagesService {
                 this.showError(err);
                 return EMPTY;
             }))
-        .subscribe((result: any[]) => {
+        .subscribe((result: Package[]) => {
             this.packages$.next(result);
             this.loaderService.dispatchShowLoader(false);
         });
@@ -51,7 +52,7 @@ export class PackagesService {
                 this.showError(err);
                 return EMPTY;
             }))
-        .subscribe((result: any[]) => {
+        .subscribe((result: PackageHistory[]) => {
             this.packagesHistory$.next(result);
             this.lastSyncTime$.next(result[0].timestamp);
             this.loaderService.dispatchShowLoader(false);

@@ -6,3 +6,4 @@ export * from './user-management/staff-member-response.model';
 export * from './amusement.model';
 export * from './tvr.model';
 export * from './intefaces/instance-service.interface';
+export * from './package.model';
