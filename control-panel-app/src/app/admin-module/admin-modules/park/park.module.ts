@@ -14,6 +14,7 @@ import { PackagesComponent } from './packages/packages.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { PricingService } from './pricing/pricing.service';
 import { PackagesService } from './packages/packages.service';
+import { SessionsComponent } from './sessions/sessions.component';
 
 const routes: Routes = [{
     path: '',
@@ -39,13 +40,16 @@ const routes: Routes = [{
             path: 'games', component: GamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]
         }, {
             path: 'pricing', component: PricingComponent, data: {title: 'ADMIN_MENU_PRICING'}, canActivate: [PermissionGuard]
-        }]
+        },{
+            path: 'sessions', component: SessionsComponent, data: {title: 'ADMIN_MENU_SESSIONS'}, canActivate: [PermissionGuard]
+        }
+    ]
 }];
 
 export const ParkRouterModule = RouterModule.forChild(routes);
 
 @NgModule({
-    declarations: [ParkComponent, GamesComponent, PackagesComponent, PricingComponent, CardsComponent],
+    declarations: [ParkComponent, GamesComponent, PackagesComponent, PricingComponent, CardsComponent, SessionsComponent],
     imports: [
         CommonModule,
         ParkRouterModule,

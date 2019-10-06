@@ -135,5 +135,6 @@
   "CONTROLLER_IP_VALIDATION": "Wrong IP format.",
   "PACKAGE_TITLE": "Start package",
   "PACKAGE_EXPIRES_AT": "Expires at",
-  "PACKAGE_CATEGORY": "Category"
+  "PACKAGE_CATEGORY": "Category",
+  "ADMIN_MENU_SESSIONS": "Sessions"
 }

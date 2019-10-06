@@ -56,6 +56,11 @@ export class BuildMenuHelper {
                 label: 'ADMIN_MENU_PRICING',
                 path: '/admin/park/pricing',
                 active: false
+            }, {
+                icon: 'local_atm',
+                label: 'ADMIN_MENU_SESSIONS',
+                path: '/admin/park/sessions',
+                active: false
             }]
         },
         {
