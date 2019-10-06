@@ -136,5 +136,6 @@
   "PACKAGE_TITLE": "Start package",
   "PACKAGE_EXPIRES_AT": "Expires at",
   "PACKAGE_CATEGORY": "Category",
-  "ADMIN_MENU_SESSIONS": "Sessions"
+  "ADMIN_MENU_SESSIONS": "Sessions",
+  "SESSIONS_TABLE_TITLE": "Sessions table"
 }

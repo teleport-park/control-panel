@@ -6,6 +6,8 @@ export const API: {[key: string]: string | any} = {
   PACKAGES: 'cpanel/packages',
   PACKAGES_HISTORY: 'cpanel/packages/history',
 
+  SESSIONS: 'cpanel/sessions',
+
   PRICES: 'cpanel/prices',
   // users
   USERS: 'cpanel/visitors',

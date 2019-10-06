@@ -57,7 +57,7 @@ export class BuildMenuHelper {
                 path: '/admin/park/pricing',
                 active: false
             }, {
-                icon: 'local_atm',
+                icon: 'hourglass_empty',
                 label: 'ADMIN_MENU_SESSIONS',
                 path: '/admin/park/sessions',
                 active: false
