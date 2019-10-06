@@ -10,12 +10,12 @@ export class CommonUserService implements UserService<Visitor> {
     users$: BehaviorSubject<any[]> = new BehaviorSubject([]);
 
     constructor(private http: HttpClient,
-                private getUrl: (method: string, id?: string, query?: string) => string) {
+                private getUrl: (method: string, id?: string, query?: string, limit?: number, offset?: number) => string) {
         this.getUsers();
     }
 
-    getUsers(query?: string): void {
-        this.http.get(this.getUrl('GET', null, query))
+    getUsers(query?: string, limit: number = 50, offset: number = 0): void {
+        this.http.get(this.getUrl('GET', null, query, limit, offset))
         .pipe(filter(data => !!data))
         .subscribe((data: any[]) => {
             this.users$.next(data);

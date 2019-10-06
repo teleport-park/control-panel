@@ -28,7 +28,8 @@ import {
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
+    MatChipsModule
 } from '@angular/material';
 import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatPaginatorTranslateUtil } from './utils/mat-paginator-translate.util';
@@ -73,7 +74,8 @@ export const MATERIAL_MODULES = [
     MatTreeModule,
     DragDropModule,
     MatRadioModule,
-    MatTabsModule
+    MatTabsModule,
+    MatChipsModule
 ];
 
 @NgModule({

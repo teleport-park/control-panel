@@ -10,7 +10,10 @@ import { MatSnackBar } from '@angular/material';
 @Injectable()
 
 export class AuthInterceptor implements HttpInterceptor {
-    constructor(private loginService: AuthService, private translateService: TranslateService, private loader: LoaderService, private toaster: MatSnackBar) {
+    constructor(private loginService: AuthService,
+                private translateService: TranslateService,
+                private loader: LoaderService,
+                private toaster: MatSnackBar) {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

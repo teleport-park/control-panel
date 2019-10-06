@@ -77,12 +77,12 @@ export class CardsComponent implements OnInit {
       return 'user-row';
     }
     if (currentOwner instanceof StaffMember) {
-      const root = currentOwner.group.permissions as Permission[];
-      if (root.find((permission: Permission) => permission.name === 'ACCESS_ROOT')) {
-        return 'staff-root-row';
-      } else {
-        return 'staff-row';
-      }
+      // const root = currentOwner.group.permissions as Permission[];
+      // if (root.find((permission: Permission) => permission.name === 'ACCESS_ROOT')) {
+      //   return 'staff-root-row';
+      // } else {
+      //   return 'staff-row';
+      // }
     }
   }
 

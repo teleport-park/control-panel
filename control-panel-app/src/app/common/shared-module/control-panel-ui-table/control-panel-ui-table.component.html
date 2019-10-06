@@ -33,6 +33,30 @@
             </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="deletedAt">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['deletedAt'] || 'deletedAt')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <span class="table_cell-inner">{{item.deletedAt | date: "dd.MM.yyyy HH:mm"}}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="hiredAt">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['hiredAt'] || 'hiredAt')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <span class="table_cell-inner">{{item.hiredAt | date: "dd.MM.yyyy HH:mm"}}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="firedAt">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['firedAt'] || 'firedAt')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <span class="table_cell-inner">{{item.hiredAt | date: "dd.MM.yyyy HH:mm"}}</span>
+            </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="createdAt">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['createdAt'] || 'createdAt')}}</span></mat-header-cell>
@@ -79,8 +103,6 @@
             </mat-cell>
         </ng-container>
 
-
-
         <!--statuses cell-->
         <ng-container matColumnDef="statuses" class="table_cell-inner">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('statuses')" *matHeaderCellDef>
@@ -115,19 +137,19 @@
                 </mat-menu>
             </mat-cell>
         </ng-container>
-        <!--permission cell-->
-        <ng-container matColumnDef="permissions" class="table_cell-inner">
+
+        <ng-container matColumnDef="roles" class="table_cell-inner">
             <mat-header-cell
-                    *matHeaderCellDef>{{translateService.instant(propertyMap['permissions'])}}</mat-header-cell>
-            <mat-cell *matCellDef="let group">
-        <span class="table_cell-inner">
-          <ul>
-          <li *ngFor="let permission of group.permissions; let i=index;" [hidden]="i > 4">
-            <span *ngIf="i < 4">{{permission.name}}</span>
-            <span *ngIf="i === 4">{{translateService.instant('OTHERS')}}</span>
-          </li>
-        </ul>
-        </span>
+                    *matHeaderCellDef>{{translateService.instant(propertyMap['roles']) || 'roles'}}</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <span class="table_cell-inner">
+                    <ul>
+                      <li *ngFor="let role of row.roles; let i=index;" [hidden]="i > 4">
+                        <span *ngIf="i < 4">{{role}}</span>
+                        <span *ngIf="i === 4">{{translateService.instant('OTHERS')}}</span>
+                      </li>
+                    </ul>
+                </span>
             </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

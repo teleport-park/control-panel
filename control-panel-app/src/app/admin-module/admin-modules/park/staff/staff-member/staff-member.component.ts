@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material';
 import { StaffService } from '../services/staff.service';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { StaffMemberResponse } from '../../../../../models';
+import { StaffMember, StaffMemberResponse } from '../../../../../models';
 import { PropertyMap } from 'src/app/admin-module/utils/property-map';
 import { AddStaffDialogComponent } from '../../../../../common/shared-module';
 
@@ -32,7 +32,7 @@ export class StaffMemberComponent implements OnInit, OnDestroy {
   /**
    * full staff member
    */
-  _staffMemberResponse: StaffMemberResponse;
+  _staffMemberResponse: StaffMember;
   /**
    * staff properties
    */
@@ -61,23 +61,23 @@ export class StaffMemberComponent implements OnInit, OnDestroy {
     this.staffMemberId = this.route.snapshot.paramMap.get('id');
     this.service.staffMembers$.pipe(filter(data => !!data), takeUntil(this.destroyed$))
       .subscribe(() => {
-        this.getStaffMember();
+        // this.getStaffMember();
       });
   }
 
   /**
    * get staff member
    */
-  getStaffMember(): void {
-    this.service.getStaffMember(+this.staffMemberId)
-      .pipe(filter(data => !!data), takeUntil(this.destroyed$))
-      .subscribe((staffMember: StaffMemberResponse) => {
-        this._staffMemberResponse = Object.assign(new StaffMemberResponse(), staffMember);
-        this._staffMember = Object.assign({}, this._staffMemberResponse.getOwnProperties());
-        this._staffMemberProperties = Object.keys(this._staffMember);
-        this.cd.markForCheck();
-      });
-  }
+  // getStaffMember(): void {
+  //   this.service.getStaffMember(+this.staffMemberId)
+  //     .pipe(filter(data => !!data), takeUntil(this.destroyed$))
+  //     .subscribe((staffMember: StaffMemberResponse) => {
+  //       this._staffMemberResponse = Object.assign(new StaffMemberResponse(), staffMember);
+  //       this._staffMember = Object.assign({}, this._staffMemberResponse.getOwnProperties());
+  //       this._staffMemberProperties = Object.keys(this._staffMember);
+  //       this.cd.markForCheck();
+  //     });
+  // }
 
   /**
    * show dialog
@@ -87,7 +87,7 @@ export class StaffMemberComponent implements OnInit, OnDestroy {
       data: {mode: 'edit', item: this._staffMemberResponse},
       disableClose: true
     });
-    dialog.afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((staff: StaffMemberResponse) => {
+    dialog.afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((staff: StaffMember) => {
       this.service.editStaffMember(staff);
     });
   }

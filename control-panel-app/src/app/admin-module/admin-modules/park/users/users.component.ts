@@ -48,12 +48,7 @@ export class UsersComponent implements OnInit, OnDestroy {
      */
     @ViewChild('scrollContainer', {static: false}) set scrollContainer(element: MatSidenavContent) {
         if (element) {
-            // const storedScroll = this.storage.getValue(`${this.userService.STORAGE_KEY}_SCROLL`);
-            // if (storedScroll) {
-            //   element.getElementRef().nativeElement.scrollTop = +storedScroll;
-            // }
             element.elementScrolled().pipe(debounceTime(1000)).subscribe((event: any) => {
-                // this.storage.setValue(`${this.userService.STORAGE_KEY}_SCROLL`, event.target.scrollTop);
             });
         }
     }
@@ -227,7 +222,7 @@ export class UsersComponent implements OnInit, OnDestroy {
      * select user
      * @param user
      */
-    selectUser(user: Visitor) {
-        this.router.navigate(['admin', 'user-management', 'users', user.id]);
-    }
+    // selectUser(user: Visitor) {
+    //     this.router.navigate(['admin', 'user-management', 'users', user.id]);
+    // }
 }

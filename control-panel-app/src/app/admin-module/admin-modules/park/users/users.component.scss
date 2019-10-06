@@ -1,18 +1,23 @@
 @import 'control-panel-theme';
 
 :host {
- @include d-block();
+  @include d-block();
   height: 100%;
 
   .user-component-wrapper {
     height: 100%;
+
     .extended-filters_wrapper {
       width: 300px;
     }
-  .mat-drawer {
-    background-color: rgba($main_bg_color, .7);
-  }
 
+    .mat-drawer {
+      background-color: rgba($main_bg_color, .7);
+    }
+
+    .mat-drawer-content {
+      @include custom-scroll();
+    }
 
     button.extended-filters {
       position: absolute;
@@ -24,17 +29,21 @@
       padding: 0 10px;
       display: flex;
       justify-content: space-between;
+
       .users-table-filter {
         .users-table-filter-input {
           width: 200px;
           margin-right: 20px;
-          .clear-filter-icon  {
+
+          .clear-filter-icon {
             cursor: pointer;
             font-size: 16px;
           }
+
           ::ng-deep.mat-form-field-prefix {
             top: 5px;
           }
+
           .search-filter-icon {
             margin-right: 5px;
           }
@@ -45,8 +54,10 @@
         display: flex;
         width: 100%;
         justify-content: space-between;
+
         button {
           padding: 0 10px;
+
           .mat-icon {
             margin-right: 5px;
           }

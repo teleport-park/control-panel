@@ -138,5 +138,6 @@
   "PACKAGE_EXPIRES_AT": "истекает в",
   "PACKAGE_CATEGORY": "Категория",
   "ADMIN_MENU_SESSIONS": "Сессии",
-  "SESSIONS_TABLE_TITLE": "Таблица сессий"
+  "SESSIONS_TABLE_TITLE": "Таблица сессий",
+  "DISPLAYED_NAME": "Отображаемое имя"
 }

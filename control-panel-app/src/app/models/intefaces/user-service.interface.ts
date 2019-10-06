@@ -4,7 +4,7 @@ import { UserType } from '../types';
 
 export interface UserService<T> {
     users$: BehaviorSubject<T[]>;
-    getUsers(query?: string): void;
+    getUsers(query?: string, limit?: number, offset?: number): void;
     getUser(id: string): Observable<T>;
     editUser(user: T): void;
     addUser(user: T): void;

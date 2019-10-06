@@ -1,74 +1,48 @@
-<form [formGroup]="form" class="staff-member_form" #staffMemberForm="ngForm">
-  <div class="row">
-    <div class="col-md-6" [ngClass]="{'col-md-6': groupEditState, 'col-12': !groupEditState}">
-      <h4>{{'STAFF_MEMBER' | translate}}</h4>
-      <mat-form-field>
-        <input matInput placeholder="{{'FIRST_NAME' | translate}}" formControlName="firstName" required>
-        <mat-error>
-          {{'REQUIRED_FIELD' | translate:[translateService.instant('FIRST_NAME')]}}
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="{{'LAST_NAME' | translate}}" formControlName="lastName" required>
-        <mat-error>
-          {{'REQUIRED_FIELD' | translate:[translateService.instant('LAST_NAME')]}}
-        </mat-error>
-      </mat-form-field>
-      <div class="check-control">
-        <mat-checkbox formControlName="higherEducation">{{'STAFF_HIGHER_EDUCATION' | translate}}</mat-checkbox>
-      </div>
-      <mat-form-field>
-        <input matInput placeholder="{{'STAFF_PASSPORT' | translate}}" formControlName="passport" required>
-        <mat-error>
-          {{'REQUIRED_FIELD' | translate:[translateService.instant('STAFF_PASSPORT')]}}
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="{{'STAFF_EMPLOYMENT_DATE' | translate}}"
-               formControlName="employmentDate"
-               [max]="maxDate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-error>
-          {{'REQUIRED_FIELD' | translate:[translateService.instant('STAFF_EMPLOYMENT_DATE')]}}
-        </mat-error>
-      </mat-form-field>
-      <div *ngIf="mode === 'edit'" class="check-control fired-date">
-        <mat-checkbox formControlName="fired" (change)="fire($event)">{{'STAFF_FIRED_STATE' | translate}}</mat-checkbox>
-        <div *ngIf="entityModel.firingDate"><span>{{'STAFF_FIRED_DATE' | translate}}</span>:&nbsp;<span>{{entityModel.firingDate.format('L')}}</span></div>
-      </div>
-      <mat-slide-toggle formControlName="isEnabled" class="check-control">{{translateService.instant('STAFF_ENABLED')}}</mat-slide-toggle>
-      <div class="group-section">
-        <p><span class="bold">{{'GROUP' | translate}}</span>: <span>{{entityModel.group.name}}</span></p>
-        <div>
-          <button mat-icon-button class="edit-button" type="button" (click)="editGroup(!groupEditState)">
-            <mat-icon class="mat-icon-rtl-mirror">{{entityModel.group.id ? 'edit' : 'add'}}</mat-icon>
-          </button>
+<form [formGroup]="form" class="staff-member_form">
+    <div class="row">
+        <div class="col">
+            <h4>{{'STAFF_MEMBER' | translate}}</h4>
+            <mat-form-field>
+                <input matInput placeholder="{{'FIRST_NAME' | translate}}" formControlName="name" required>
+                <mat-error>
+                    {{'REQUIRED_FIELD' | translate:[translateService.instant('FIRST_NAME')]}}
+                </mat-error>
+            </mat-form-field>
+            <div class="check-control">
+                <mat-checkbox formControlName="higherEducation">{{'STAFF_HIGHER_EDUCATION' | translate}}</mat-checkbox>
+            </div>
+            <mat-form-field>
+                <input matInput placeholder="{{'STAFF_PASSPORT' | translate}}" formControlName="passport">
+                <mat-error>
+                    {{'REQUIRED_FIELD' | translate:[translateService.instant('STAFF_PASSPORT')]}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-chip-list #chipList>
+                    <mat-chip *ngFor="let role of entityModel.roles" [selectable]="true"
+                              [removable]="true" (removed)="remove(role)">
+                        {{role}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="Role"
+                           [matChipInputFor]="chipList"
+                           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                           [matChipInputAddOnBlur]="true"
+                           (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+            </mat-form-field>
+            <mat-slide-toggle formControlName="active"
+                              class="check-control">{{translateService.instant('STAFF_ENABLED')}}</mat-slide-toggle>
         </div>
-      </div>
     </div>
-    <div class="col-md-6" *ngIf="groupEditState">
-      <div class="table-selection_wrapper">
-        <h4>{{'STAFF_MEMBER_GROUP' | translate}}</h4>
-        <control-panel-ui-selection-table
-          [items]="(service.groupsMap$ | async)?.items"
-          [length]="(service.groupsMap$ | async)?.count"
-          [multipleSelection]="false"
-          [selected]="[data.item.group]"
-          (pageChange)="pageChangeHandler($event)"
-          (selectionChange)="changeGroup($event)"
-        ></control-panel-ui-selection-table>
-      </div>
+    <div class="action-button-group">
+        <button mat-raised-button
+                color="warn"
+                type="button"
+                (click)="onCancelHandler()">{{'DIALOG_CANCEL_BUTTON_LABEL' | translate }}</button>
+        <button mat-raised-button
+                color="primary"
+                type="submit"
+                (click)="onSubmitHandler()">{{(mode === 'edit' ? 'USER_FORM_EDIT_BUTTON_LABEL' : 'USER_FORM_ADD_BUTTON_LABEL') | translate }}</button>
     </div>
-  </div>
-  <div class="action-button-group">
-    <button mat-raised-button
-            color="warn"
-            type="button"
-            (click)="onCancelHandler()">{{'DIALOG_CANCEL_BUTTON_LABEL' | translate }}</button>
-    <button mat-raised-button
-            color="primary"
-            type="submit"
-            (click)="onSubmitHandler()">{{(mode === 'edit' ? 'USER_FORM_EDIT_BUTTON_LABEL' : 'USER_FORM_ADD_BUTTON_LABEL') | translate }}</button>
-  </div>
 </form>

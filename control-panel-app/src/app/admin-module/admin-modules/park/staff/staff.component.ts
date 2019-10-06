@@ -1,12 +1,11 @@
 import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { Group, StaffMember, StaffMemberResponse } from '../../../../models';
-import { StaffService } from './services/staff.service';
+import { Group, StaffMember } from '../../../../models';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { TranslateService } from '../../../../common/translations-module';
 import { BreakpointService } from '../../../../services/breakpoint.service';
 import { AddStaffDialogComponent, ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
-import { MatDialog, PageEvent } from '@angular/material';
+import { MatDialog, PageEvent, Sort } from '@angular/material';
 
 import { default as config } from '../../../../../config/app-config.json';
 import { AppData } from '../../../../interfaces';
@@ -34,12 +33,25 @@ export class StaffComponent implements OnInit, OnDestroy {
   /**
    * displayed columns
    */
-  displayedColumns: string[] = ['firstName', 'lastName', 'staffGroupName', 'submenu'];
+  displayedColumns: string[] = [
+      'name',
+      'displayName',
+      'passport',
+      'createdAt',
+      'updatedAt',
+      'deletedAt',
+      'hiredAt',
+      'firedAt',
+      'active',
+      'highEducation',
+      'roles',
+      'submenu'
+  ];
 
   /**
    * column with simple data
    */
-  simpleDataColumn: string[] = ['firstName', 'lastName', 'staffGroupName'];
+  simpleDataColumn: string[] = ['name', 'displayName', 'passport', 'active', 'highEducation'];
 
   /**
    * list sorted column
@@ -74,7 +86,7 @@ export class StaffComponent implements OnInit, OnDestroy {
               private fb: FormBuilder,
               public groupsService: GroupsService,
               private router: Router,
-              @Inject(USER_SERVICE) private service: UserService<any>,
+              @Inject(USER_SERVICE) private service: UserService<StaffMember>,
               @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
               @Inject('ExtendedFilterUrlParamsInterface') private extendedFilterUrlBuilder: ExtendedFilterUrlParamsInterface) {
   }
@@ -95,7 +107,7 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param mode
    * @param event
    */
-  openDialog(mode: 'edit' | 'add' | 'delete', event: StaffMemberResponse): void {
+  openDialog(mode: 'edit' | 'add' | 'delete', event?: StaffMember): void {
     if (mode === 'delete') {
       this.showConfirmDialog(event);
       return;
@@ -111,13 +123,13 @@ export class StaffComponent implements OnInit, OnDestroy {
       data: {
         title: 'DIALOG_CONFIRM_TITLE',
         message: 'DIALOG_CONFIRM_MESSAGE',
-        messageParams: [`${staffMember.firstName} ${staffMember.lastName}`]
+        messageParams: [`${staffMember.name}`]
       } as ConfirmDialogData,
       autoFocus: false
     }).afterClosed()
       .pipe(filter(data => data), takeUntil(this.destroyed$))
       .subscribe(() => {
-        // this.service.removeStaffMember(staffMember);
+        this.service.deleteUser(staffMember.id);
       });
   }
 
@@ -126,16 +138,16 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param mode
    * @param staffMember
    */
-  private showModalAddOrEditStaffMemberUser(mode: 'edit' | 'add', staffMember?: StaffMemberResponse) {
+  private showModalAddOrEditStaffMemberUser(mode: 'edit' | 'add', staffMember?: StaffMember) {
     if (mode === 'edit') {
-      // this.service.getStaffMember(staffMember.id)
-      //   .pipe(filter(data => !!data))
-      //   .subscribe((member: StaffMemberResponse) => {
-      //     this.showDialog(mode, member);
-      //   });
-      // return;
+      this.service.getUser(staffMember.id)
+        .pipe(filter(data => !!data))
+        .subscribe((member: StaffMember) => {
+          this.showDialog(mode, member);
+        });
+      return;
     }
-    this.showDialog('add', new StaffMemberResponse());
+    this.showDialog('add', new StaffMember());
   }
 
   /**
@@ -143,16 +155,16 @@ export class StaffComponent implements OnInit, OnDestroy {
    * @param mode
    * @param staffMember
    */
-  private showDialog(mode: 'edit' | 'add', staffMember: StaffMemberResponse) {
+  private showDialog(mode: 'edit' | 'add', staffMember: StaffMember) {
     const dialog = this.dialog.open(AddStaffDialogComponent, {
       data: {mode, item: staffMember},
       disableClose: true
     });
     dialog.afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((staff: StaffMember) => {
       if (mode === 'edit') {
-        // this.service.editStaffMember(staff);
+        this.service.editUser(staff);
       } else {
-        // this.service.addStaffMember(staff);
+        this.service.addUser(staff);
       }
     });
   }
@@ -161,7 +173,7 @@ export class StaffComponent implements OnInit, OnDestroy {
    * change page handler
    * @param event
    */
-  pageChangeHandler(event: PageEvent): void {
+  pageChangeHandler(event: Sort): void {
     // this.service.changeStaffSortOrPagination(event);
   }
 
@@ -169,9 +181,9 @@ export class StaffComponent implements OnInit, OnDestroy {
    * select staff member
    * @param staffMember
    */
-  selectStaffMember(staffMember: StaffMemberResponse): void {
-    this.router.navigate(['admin', 'staff', staffMember.id]);
-  }
+  // selectStaffMember(staffMember: StaffMember): void {
+  //   this.router.navigate(['admin', 'staff', staffMember.id]);
+  // }
 
   /**
    * apply extended filters

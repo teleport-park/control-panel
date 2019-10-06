@@ -24,6 +24,7 @@ import { USER_SERVICE } from '../../../../models/intefaces';
 import { CommonUserService } from '../../../../services/common-services/common-user.service';
 import { HttpClient } from '@angular/common/http';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
+import { API } from '../../../../api';
 
 const routes: Routes = [{
     path: '',

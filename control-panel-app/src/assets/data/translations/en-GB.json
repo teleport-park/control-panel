@@ -137,5 +137,6 @@
   "PACKAGE_EXPIRES_AT": "Expires at",
   "PACKAGE_CATEGORY": "Category",
   "ADMIN_MENU_SESSIONS": "Sessions",
-  "SESSIONS_TABLE_TITLE": "Sessions table"
+  "SESSIONS_TABLE_TITLE": "Sessions table",
+  "DISPLAYED_NAME": "Displayed name"
 }
