@@ -12,6 +12,7 @@ export class CashboxMachinesComponent implements OnInit {
   constructor(@Inject(INSTANCE_SERVICE) public service: InstanceService<CashBoxController>) { }
 
   ngOnInit() {
+      this.service.getInstances();
   }
 
   grant(item: TVRController) {

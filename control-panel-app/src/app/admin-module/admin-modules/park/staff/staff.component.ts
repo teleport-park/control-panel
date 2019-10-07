@@ -92,14 +92,8 @@ export class StaffComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.service.getStaffMembers();
     this.sortedColumn = config.staff.sortedColumns || [];
-    const groups = this.extendedFiltersConfig.find((field) => field.property === 'group');
-    this.groupsService.groups$.pipe(filter(data => !!data && !!groups), takeUntil(this.destroyed$))
-      .subscribe((data: AppData<Group>) => {
-        this.groups = data.items;
-        groups.options = this.groups.map(item => ({id: item.id, label: item.name}));
-      });
+    this.service.getUsers();
   }
 
   /**
@@ -173,17 +167,10 @@ export class StaffComponent implements OnInit, OnDestroy {
    * change page handler
    * @param event
    */
-  pageChangeHandler(event: Sort): void {
-    // this.service.changeStaffSortOrPagination(event);
+  pageChangeHandler(event: PageEvent): void {
+      this.service.pagination.setPagination({limit: event.pageSize, offset: event.pageSize * event.pageIndex});
+      this.service.getUsers();
   }
-
-  /**
-   * select staff member
-   * @param staffMember
-   */
-  // selectStaffMember(staffMember: StaffMember): void {
-  //   this.router.navigate(['admin', 'staff', staffMember.id]);
-  // }
 
   /**
    * apply extended filters

@@ -12,6 +12,7 @@ export class PricingComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.service.getPrices();
     }
 
     getPriceColumns(price) {

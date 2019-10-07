@@ -15,7 +15,6 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
     constructor(private http: HttpClient,
                 private getUrl: (method: string, ref?: string) => string,
                 private getControllerInstance: (item: ControllerType) => ControllerType) {
-        this.getInstances();
     }
 
     getInstances(): void {

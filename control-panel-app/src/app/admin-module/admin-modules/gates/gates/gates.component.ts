@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { INSTANCE_SERVICE, InstanceService } from '../../../../models';
 import { GateController } from '../../../../models/controller';
 
@@ -7,9 +7,13 @@ import { GateController } from '../../../../models/controller';
     templateUrl: './gates.component.html',
     styleUrls: ['./gates.component.scss']
 })
-export class GatesComponent {
+export class GatesComponent implements OnInit {
 
     constructor(@Inject(INSTANCE_SERVICE) public service: InstanceService<GateController>) {
+    }
+
+    ngOnInit(): void {
+        this.service.getInstances();
     }
 
     grant(item: GateController) {

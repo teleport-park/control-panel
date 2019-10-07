@@ -21,7 +21,7 @@ export class SessionsService {
     this.getSessions();
   }
 
-  private getSessions(): void {
+  getSessions(): void {
     this.loaderService.dispatchShowLoader(true);
     this.http.get(this.urlService.getSessions('GET'))
         .pipe(

@@ -15,7 +15,12 @@ export class ApiUrlsService implements IApiUrlsInterface {
         ApiUrlsService.ORIGIN = initService.config.api_url;
     }
 
-    private static getPagedUrl(endPoint: string, requestMethod: string, id?: number | string, query?: string, pageSize?: number, pageNumber?: number): string | null {
+    private static getPagedUrl(endPoint: string,
+                               requestMethod: string,
+                               id?: number | string,
+                               query?: string,
+                               limit?: number,
+                               offset?: number): string | null {
         const originEndPoint = `${ApiUrlsService.ORIGIN}${endPoint}`;
         const aub = new ApiUrlBuilder(originEndPoint, requestMethod);
 
@@ -33,11 +38,11 @@ export class ApiUrlsService implements IApiUrlsInterface {
                 aub.appendUrl(id.toString());
                 return aub.build();
             }
-            if (pageSize) {
-                aub.appendQueryParameter('limit', pageSize.toString());
+            if (limit) {
+                aub.appendQueryParameter('l', limit.toString());
             }
-            if (pageNumber) {
-                aub.appendQueryParameter('offset', pageNumber.toString());
+            if (offset || offset === 0) {
+                aub.appendQueryParameter('o', offset.toString());
             }
             if (query) {
                 aub.appendQueryParameter('q', query);
@@ -101,10 +106,11 @@ export class ApiUrlsService implements IApiUrlsInterface {
     }
 
     public getVisitors(requestMethod: 'GET' | 'PUT' | 'POST' | 'DELETE', id?: string, query?: string, limit?: number, offset?: number) {
-      return ApiUrlsService.getPagedUrl(API.VISITORS, requestMethod, id, query, limit, offset);
+        return ApiUrlsService.getPagedUrl(API.VISITORS, requestMethod, id, query, limit, offset);
     }
-    public getStaff(requestMethod: 'GET' | 'PUT' | 'POST' | 'DELETE', id?: string, query?: string) {
-      return ApiUrlsService.getPagedUrl(API.STAFF, requestMethod, id, query);
+
+    public getStaff(requestMethod: 'GET' | 'PUT' | 'POST' | 'DELETE', id?: string, query?: string, limit?: number, offset?: number) {
+        return ApiUrlsService.getPagedUrl(API.STAFF, requestMethod, id, query, limit, offset);
     }
 
     public getUsersUrl(requestMethod: string, id?: number,

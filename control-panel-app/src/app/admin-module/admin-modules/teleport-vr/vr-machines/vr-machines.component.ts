@@ -12,6 +12,7 @@ export class VrMachinesComponent implements OnInit {
   constructor(@Inject(INSTANCE_SERVICE) public service: InstanceService<TVRController>) {}
 
   ngOnInit() {
+      this.service.getInstances();
   }
 
   grant(item: TVRController) {

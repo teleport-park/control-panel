@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
 import { Visitor } from '../../../../models';
-import { MatDialog, MatSidenavContent, PageEvent, Sort } from '@angular/material';
+import { MatDialog, MatSidenavContent, PageEvent } from '@angular/material';
 import { TranslateService } from '../../../../common/translations-module';
 import { Subject } from 'rxjs';
 import { LoaderService } from '../../../../services/loader.service';
@@ -116,10 +116,12 @@ export class UsersComponent implements OnInit, OnDestroy {
      * on init hook
      */
     ngOnInit() {
+        this.service.getUsers();
         this.quickFilter.valueChanges.pipe(
             debounceTime(500),
             distinctUntilChanged(),
             takeUntil(this.destroyed$)).subscribe((value: string) => {
+            this.service.pagination.resetPagination();
             this.service.getUsers(value);
             this.resetPagination = {reset: true};
             this.cd.markForCheck();
@@ -201,8 +203,9 @@ export class UsersComponent implements OnInit, OnDestroy {
      * change page handler
      * @param event
      */
-    changesHandler(event: PageEvent | Sort): void {
-        // this.userService.changePaginationOrSort(event);
+    changesHandler(event: PageEvent): void {
+        this.service.pagination.setPagination({limit: event.pageSize, offset: event.pageSize * event.pageIndex});
+        this.service.getUsers(this.quickFilter.value);
     }
 
     /**

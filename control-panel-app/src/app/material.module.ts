@@ -35,6 +35,8 @@ import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment
 import { MatPaginatorTranslateUtil } from './utils/mat-paginator-translate.util';
 import { TranslateService } from './common/translations-module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TextFieldModule } from '@angular/cdk/text-field';
+
 
 export const APP_MOMENT_DATE_FORMATS: MatDateFormats = {
     parse: {
@@ -79,8 +81,8 @@ export const MATERIAL_MODULES = [
 ];
 
 @NgModule({
-    imports: [...MATERIAL_MODULES],
-    exports: [...MATERIAL_MODULES],
+    imports: [...MATERIAL_MODULES, TextFieldModule],
+    exports: [...MATERIAL_MODULES, TextFieldModule],
     providers: [
         // TODO check how globally change locale for date
         {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},

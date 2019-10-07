@@ -21,6 +21,7 @@ export class SessionsComponent implements OnInit {
               public cd: ChangeDetectorRef) { }
 
   ngOnInit() {
+      this.service.getSessions();
   }
 
 }

@@ -28,12 +28,12 @@
               [displayedColumns]="displayedColumns"
               [simpleDataColumn]="simpleDataColumn"
               [listSortedColumn]="sortedColumn"
+              [itemCount]="service.pagination.Count"
               iconSet="person_add"
               (edit)="openDialog('edit', $event)"
               (delete)="openDialog('delete', $event)"
               (add)="openDialog('add')"
-              (pageChanges)="pageChangeHandler($event)"
-              (sortChanges)="pageChangeHandler($event)">
+              (pageChanges)="pageChangeHandler($event)">
             </control-panel-ui-table>
           </div>
         </div>

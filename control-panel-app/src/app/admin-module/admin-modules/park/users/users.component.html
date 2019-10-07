@@ -38,6 +38,7 @@
             [displayedColumns]="displayedColumns"
             [simpleDataColumn]="columnWithData"
             [listSortedColumn]="sortedColumn"
+            [itemCount]="service.pagination.Count"
             [resetPagination]="resetPagination"
             iconSet="person_add"
             (edit)="operationWithUser('edit', $event)"

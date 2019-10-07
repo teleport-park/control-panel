@@ -30,5 +30,6 @@ export class PackagesComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.service.getPackages();
     }
 }

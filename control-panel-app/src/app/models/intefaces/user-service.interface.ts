@@ -1,10 +1,12 @@
 import { InjectionToken } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserType } from '../types';
+import { Pagination } from '../classes/pagination';
 
 export interface UserService<T> {
+    pagination: Pagination;
     users$: BehaviorSubject<T[]>;
-    getUsers(query?: string, limit?: number, offset?: number): void;
+    getUsers(query?: string): void;
     getUser(id: string): Observable<T>;
     editUser(user: T): void;
     addUser(user: T): void;

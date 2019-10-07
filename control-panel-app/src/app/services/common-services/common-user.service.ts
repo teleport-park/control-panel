@@ -1,52 +1,59 @@
 import { UserService } from '../../models/intefaces';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Visitor } from '../../models';
+import { Pagination } from '../../models/classes/pagination';
+import { UserType } from '../../models/types';
 
 
-export class CommonUserService implements UserService<Visitor> {
+export class CommonUserService implements UserService<UserType> {
 
-    users$: BehaviorSubject<any[]> = new BehaviorSubject([]);
+    users$: BehaviorSubject<UserType[]> = new BehaviorSubject([]);
+
+    pagination: Pagination = new Pagination(this.getPagedUser.bind(this));
 
     constructor(private http: HttpClient,
                 private getUrl: (method: string, id?: string, query?: string, limit?: number, offset?: number) => string) {
-        this.getUsers();
     }
 
-    getUsers(query?: string, limit: number = 50, offset: number = 0): void {
-        this.http.get(this.getUrl('GET', null, query, limit, offset))
+    getUsers(query?: string): void {
+        this.pagination.getData(query)
         .pipe(filter(data => !!data))
-        .subscribe((data: any[]) => {
-            this.users$.next(data);
-        });
+        .subscribe((result: UserType[]) => {
+                this.users$.next(result);
+            });
+    }
+
+    private getPagedUser(query?: string, limit: number = 50, offset: number = 0): Observable<HttpResponse<any>> {
+        return this.http.get(this.getUrl('GET', null, query, limit, offset), {observe: 'response'});
     }
 
     getUser(id: string): Observable<Visitor> {
         return this.http.get<Visitor>(this.getUrl('GET', id));
     }
 
-   editUser(user: Visitor): void {
+    editUser(user: Visitor): void {
         this.http.put(this.getUrl('PUT', user.id), user)
-            .pipe(filter(data => !!data))
-            .subscribe((result) => {
-                this.getUsers();
-            });
-   }
+        .pipe(filter(data => !!data))
+        .subscribe((result) => {
+            this.getUsers();
+        });
+    }
 
-   addUser(user: Visitor): void {
+    addUser(user: Visitor): void {
         this.http.post(this.getUrl('POST'), user)
-            .pipe(filter(data => !!data))
-            .subscribe((result) => {
-                this.getUsers();
-            });
-   }
+        .pipe(filter(data => !!data))
+        .subscribe((result) => {
+            this.getUsers();
+        });
+    }
 
-   deleteUser(id: string): void {
+    deleteUser(id: string): void {
         this.http.delete(this.getUrl('DELETE', id), {responseType: 'text'})
-            .pipe(filter(data => !!data))
-            .subscribe((result) => {
-                this.getUsers();
-            });
-   }
+        .pipe(filter(data => !!data))
+        .subscribe((result) => {
+            this.getUsers();
+        });
+    }
 }
