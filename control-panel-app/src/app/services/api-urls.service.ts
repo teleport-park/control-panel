@@ -96,6 +96,10 @@ export class ApiUrlsService implements IApiUrlsInterface {
         return ApiUrlsService.getPagedUrl(API.PRICES, requestMethod);
     }
 
+    public getVRGames(requestMethod: 'GET' | 'PUT') {
+        return ApiUrlsService.getPagedUrl(API.VRGAMES, requestMethod);
+    }
+
     public getVisitors(requestMethod: 'GET' | 'PUT' | 'POST' | 'DELETE', id?: string, query?: string, limit?: number, offset?: number) {
       return ApiUrlsService.getPagedUrl(API.VISITORS, requestMethod, id, query, limit, offset);
     }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {TranslateService} from '../../../../common/translations-module';
+import {VrGamesService} from './services/vr-games.service';
 
 @Component({
   selector: 'games',
@@ -7,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VrGamesComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['id'];
 
+  sessionColumns: string[] = [
+    'id'
+  ];
+
+  constructor(public service: VrGamesService,
+              public translateService: TranslateService,
+              public cd: ChangeDetectorRef) { }
   ngOnInit() {
   }
 

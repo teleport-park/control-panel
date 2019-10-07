@@ -6,7 +6,9 @@ export const API: { [key: string]: string | any } = {
     PACKAGES: 'cpanel/packages',
     PACKAGES_HISTORY: 'cpanel/packages/history',
 
-  SESSIONS: 'cpanel/sessions',
+    VRGAMES: 'cpanel/games',
+
+    SESSIONS: 'cpanel/sessions',
 
     PRICES: 'cpanel/prices',
     // visitors
