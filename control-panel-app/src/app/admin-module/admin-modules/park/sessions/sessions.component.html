@@ -5,7 +5,9 @@
             <control-panel-ui-table
                     [data]="(service.sessions$ | async)"
                     [displayedColumns]="displayedColumns"
-                    [simpleDataColumn]="sessionColumns">
+                    [simpleDataColumn]="sessionColumns"
+                    [itemCount]="service.pagination.Count"
+                    (pageChanges)="paginationChangeHandler($event)">
             </control-panel-ui-table>
         </div>
     </control-panel-ui-card>

@@ -2,7 +2,6 @@ import { IPagination, PaginationSetting } from '../intefaces';
 import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { UserType } from '../types';
 
 export class Pagination implements IPagination {
 
@@ -14,12 +13,8 @@ export class Pagination implements IPagination {
         return this._count;
     }
 
-    set Count(count: number) {
-        this._count = count;
-    }
-
     constructor(
-        private _request: (query?: string, limit?: number, offset?: number) => Observable<HttpResponse<UserType[]>>,
+        private _request: (query?: string, limit?: number, offset?: number) => Observable<HttpResponse<any[]>>,
         private _pagination: PaginationSetting = Pagination.DEFAULT_PAGINATION_SETTINGS,
     ) {
     }
@@ -32,11 +27,7 @@ export class Pagination implements IPagination {
         this._pagination.offset = Pagination.DEFAULT_PAGINATION_SETTINGS.offset;
     }
 
-    public getPagination(): PaginationSetting {
-        return this._pagination;
-    }
-
-    public getData(queryString?: string): Observable<UserType[]> {
+    public getData(queryString?: string): Observable<any[]> {
         return this._request(queryString, this._pagination.limit, this._pagination.offset)
             .pipe(
                 tap((res: HttpResponse<any[]>) => {

@@ -75,7 +75,7 @@ export class FormComponent {
      * @param item { Visitor | StaffMember }
      */
     @Input() set item(item: Visitor) {
-        this.user = Object.assign(new Visitor(), item);
+        this.user = Object.assign(new Visitor(), item, {comment: ''});
         this.userForm = this.getUserForm();
         this.userForm.patchValue(this.user);
         this.mode = 'edit';

@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 import { ExtendedFilterFieldGroup } from '../../../../common/extended-filters-module/extended-filters.component';
 import { UserExtendedFilterConfig } from './users-extended-filters.config';
 import { ExtendedFilterUrlParamsInterface } from '../../../../interfaces/extended-filter-url-params.interface';
-import { USER_SERVICE, UserService } from '../../../../models/intefaces';
+import { PaginationSetting, USER_SERVICE, UserService } from '../../../../models/intefaces';
 
 @Component({
     selector: 'app-users',
@@ -168,7 +168,7 @@ export class UsersComponent implements OnInit, OnDestroy {
      */
     private openModalDialog(mode: 'edit' | 'add', user: Visitor) {
         this.dialog.open(AddOrEditEntityDialogComponent, {
-            data: mode === 'edit' ? Object.assign(new Visitor(), user) : user,
+            data: user,
             disableClose: true
         }).afterClosed()
         .pipe(filter(data => data), takeUntil(this.destroyed$))
@@ -203,8 +203,8 @@ export class UsersComponent implements OnInit, OnDestroy {
      * change page handler
      * @param event
      */
-    changesHandler(event: PageEvent): void {
-        this.service.pagination.setPagination({limit: event.pageSize, offset: event.pageSize * event.pageIndex});
+    paginationChangeHandler(event: PaginationSetting): void {
+        this.service.pagination.setPagination(event);
         this.service.getUsers(this.quickFilter.value);
     }
 

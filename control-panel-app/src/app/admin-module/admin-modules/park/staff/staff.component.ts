@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 import { ExtendedFilterFieldGroup } from '../../../../common/extended-filters-module/extended-filters.component';
 import { StaffExtendedFiltersConfig } from './staff-extended-filters.config';
 import { ExtendedFilterUrlParamsInterface } from '../../../../interfaces/extended-filter-url-params.interface';
-import { USER_SERVICE, UserService } from '../../../../models/intefaces';
+import { PaginationSetting, USER_SERVICE, UserService } from '../../../../models/intefaces';
 
 @Component({
   selector: 'control-panel-staff',
@@ -167,8 +167,8 @@ export class StaffComponent implements OnInit, OnDestroy {
    * change page handler
    * @param event
    */
-  pageChangeHandler(event: PageEvent): void {
-      this.service.pagination.setPagination({limit: event.pageSize, offset: event.pageSize * event.pageIndex});
+  pageChangeHandler(event: PaginationSetting): void {
+      this.service.pagination.setPagination(event);
       this.service.getUsers();
   }
 

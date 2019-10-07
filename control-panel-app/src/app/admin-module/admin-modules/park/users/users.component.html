@@ -44,8 +44,8 @@
             (edit)="operationWithUser('edit', $event)"
             (delete)="operationWithUser('delete', $event)"
             (add)="operationWithUser('add')"
-            (pageChanges)="changesHandler($event)"
-            (sortChanges)="changesHandler($event)"></control-panel-ui-table>
+            (pageChanges)="paginationChangeHandler($event)"
+            (sortChanges)="paginationChangeHandler($event)"></control-panel-ui-table>
         </div>
       </control-panel-ui-card>
     </div>

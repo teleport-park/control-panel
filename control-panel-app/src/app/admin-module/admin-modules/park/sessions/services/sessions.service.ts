@@ -1,49 +1,32 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, EMPTY} from 'rxjs';
-import {LoaderService} from '../../../../../services/loader.service';
-import {HttpClient} from '@angular/common/http';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {Session} from 'inspector';
-import {catchError, filter} from 'rxjs/operators';
-import {ApiUrlsService} from '../../../../../services/api-urls.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Session } from 'inspector';
+import { ApiUrlsService } from '../../../../../services/api-urls.service';
+import { Pagination } from '../../../../../models/classes/pagination';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class SessionsService {
 
-  sessions$: BehaviorSubject<Session[]> = new BehaviorSubject([]);
+    pagination: Pagination = new Pagination(this.getPagedSessions.bind(this));
 
-  constructor(private http: HttpClient,
-              private toaster: MatSnackBar,
-              private urlService: ApiUrlsService,
-              private loaderService: LoaderService) {
-    this.getSessions();
-  }
+    sessions$: BehaviorSubject<Session[]> = new BehaviorSubject([]);
 
-  getSessions(): void {
-    this.loaderService.dispatchShowLoader(true);
-    this.http.get(this.urlService.getSessions('GET'))
-        .pipe(
-            filter(data => !!data),
-            catchError(err => {
-              this.loaderService.dispatchShowLoader(false);
-              this.showError(err);
-              return EMPTY;
-            }))
-        .subscribe((result: Session[]) => {
-          this.sessions$.next(result);
-          this.loaderService.dispatchShowLoader(false);
+    constructor(private http: HttpClient,
+                private urlService: ApiUrlsService) {
+        this.getSessions();
+    }
+
+    getSessions(): void {
+        this.pagination.getData()
+        .subscribe((sessions: Session[]) => {
+            this.sessions$.next(sessions);
         });
+    }
 
-  }
-
-  private showError(message) {
-    this.toaster.open(message, null, {
-      duration: 5000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      panelClass: 'toaster-error'
-    });
-  }
+    private getPagedSessions(query = '', limit: number = 50, offset: number = 0): Observable<HttpResponse<any>> {
+        return this.http.get(this.urlService.getSessions('GET', null, query, limit, offset), {observe: 'response'});
+    }
 }

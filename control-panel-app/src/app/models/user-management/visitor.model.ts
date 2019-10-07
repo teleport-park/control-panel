@@ -37,7 +37,7 @@ export class Visitor {
     /**
      * comment
      */
-    comment = '';
+    comment = ' ';
 
     /**
      * DOB

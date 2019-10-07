@@ -126,7 +126,7 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
   /**
    * Emit pagination changes
    */
-  @Output() pageChanges: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
+  @Output() pageChanges: EventEmitter<{limit: number, offset: number}> = new EventEmitter<{limit: number, offset: number}>();
 
   /**
    * Emit sort changes
@@ -182,7 +182,7 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
    */
   changePageHandler(event: PageEvent): void {
     this.storage.setValue(`${this.storageKey}${AppStorageKey.Pagination}`, event);
-    this.pageChanges.emit(event);
+    this.pageChanges.emit({limit: event.pageSize, offset: event.pageSize * event.pageIndex});
   }
 
   /**
