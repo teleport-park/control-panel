@@ -37,7 +37,7 @@ const routes: Routes = [{
 
 export const TeleportVrRouteModule = RouterModule.forChild(routes);
 
-export function TeleportVrFactory(http: HttpClient, snackBar: MatSnackBar, loader: LoaderService, apiUrlService: ApiUrlsService) {
+export function TeleportVrFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
     return new CommonInstanceService(http, apiUrlService.getTVRUrl, (item) => new TVRController(item));
 }
 

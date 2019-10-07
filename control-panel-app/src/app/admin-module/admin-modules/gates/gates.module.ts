@@ -27,7 +27,7 @@ const routes: Routes = [{
     }]
 }];
 
-export function GateFactory(http: HttpClient, snackBar: MatSnackBar, loader: LoaderService, apiUrlService: ApiUrlsService) {
+export function GateFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
     return new CommonInstanceService(http, apiUrlService.getGateUrl, (item) => new GateController(item));
 }
 
@@ -42,7 +42,7 @@ export const GatesRouteModule = RouterModule.forChild(routes);
         MaterialModule
     ],
     providers: [
-        {provide: INSTANCE_SERVICE, useFactory: GateFactory, deps: [HttpClient, MatSnackBar, LoaderService, ApiUrlsService]}
+        {provide: INSTANCE_SERVICE, useFactory: GateFactory, deps: [HttpClient, ApiUrlsService]}
     ]
 })
 export class GatesModule {

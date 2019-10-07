@@ -43,7 +43,7 @@ export class CommonUserService implements UserService<Visitor> {
    }
 
    deleteUser(id: string): void {
-        this.http.delete(this.getUrl('DELETE', id))
+        this.http.delete(this.getUrl('DELETE', id), {responseType: 'text'})
             .pipe(filter(data => !!data))
             .subscribe((result) => {
                 this.getUsers();

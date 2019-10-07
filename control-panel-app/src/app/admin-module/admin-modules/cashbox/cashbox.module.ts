@@ -28,7 +28,7 @@ const routes: Routes = [{
 
 export const CashboxRouterModule = RouterModule.forChild(routes);
 
-export function CashBoxFactory(http: HttpClient, snackBar: MatSnackBar, loader: LoaderService, apiUrlService: ApiUrlsService) {
+export function CashBoxFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
     return new CommonInstanceService(http, apiUrlService.getCashBox, (item) => new CashBoxController(item));
 }
 
@@ -40,7 +40,7 @@ export function CashBoxFactory(http: HttpClient, snackBar: MatSnackBar, loader: 
         SharedModule
     ],
     providers: [
-        {provide: INSTANCE_SERVICE, useFactory: CashBoxFactory, deps: [HttpClient, MatSnackBar, LoaderService, ApiUrlsService]}
+        {provide: INSTANCE_SERVICE, useFactory: CashBoxFactory, deps: [HttpClient, ApiUrlsService]}
     ]
 })
 export class CashboxModule {
