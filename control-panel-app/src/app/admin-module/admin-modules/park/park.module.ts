@@ -14,6 +14,9 @@ import { PricingComponent } from './pricing/pricing.component';
 import { PricingService } from './pricing/pricing.service';
 import { PackagesService } from './packages/packages.service';
 import { SessionsComponent } from './sessions/sessions.component';
+import { BillingComponent } from './billing/billing.component';
+import { TranslationModule } from '../../../common/translations-module/translation.module';
+import { BillingService } from './billing/services/billing.service';
 
 const routes: Routes = [{
     path: '',
@@ -39,23 +42,30 @@ const routes: Routes = [{
             path: 'games', component: GamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]
         }, {
             path: 'pricing', component: PricingComponent, data: {title: 'ADMIN_MENU_PRICING'}, canActivate: [PermissionGuard]
-        },{
+        }, {
             path: 'sessions', component: SessionsComponent, data: {title: 'ADMIN_MENU_SESSIONS'}, canActivate: [PermissionGuard]
+        }, {
+            path: 'billing', component: BillingComponent, data: {title: 'ADMIN_MENU_BILLING'}, canActivate: [PermissionGuard]
         }
     ]
 }];
 
 export const ParkRouterModule = RouterModule.forChild(routes);
 
+export const COMPONENTS = [
+    ParkComponent, GamesComponent, PackagesComponent, PricingComponent, CardsComponent, SessionsComponent, BillingComponent
+];
+
 @NgModule({
-    declarations: [ParkComponent, GamesComponent, PackagesComponent, PricingComponent, CardsComponent, SessionsComponent],
+    declarations: [...COMPONENTS],
     imports: [
         CommonModule,
         ParkRouterModule,
         MaterialModule,
-        SharedModule
+        SharedModule,
+        TranslationModule
     ],
-    providers: [CardsService, GamesService, PricingService, PackagesService]
+    providers: [CardsService, GamesService, PricingService, PackagesService, BillingService]
 })
 export class ParkModule {
 }

@@ -3,7 +3,6 @@ import { TranslateService } from '../../../translations-module';
 import { StaffMember } from '../../../../models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatChipInputEvent, MatDialogRef, PageEvent } from '@angular/material';
-import { DataService } from '../../../../services/data.service';
 import moment from 'moment';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
@@ -51,14 +50,14 @@ export class AddStaffDialogComponent implements OnInit {
     constructor(public translateService: TranslateService,
                 private cd: ChangeDetectorRef,
                 private fb: FormBuilder,
-                public service: DataService,
+                // public service: DataService,
                 public dialogRef: MatDialogRef<AddStaffDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: { mode: string, item: StaffMember }) {
         dialogRef._containerInstance._config.width = '400px';
     }
 
     ngOnInit(): void {
-        this.service.getGroups();
+        // this.service.getGroups();
         this.entityModel = this.data.item;
         this.form = this.getStaffMemberForm();
         this.form.patchValue(this.entityModel);
@@ -106,7 +105,7 @@ export class AddStaffDialogComponent implements OnInit {
      * @param event
      */
     pageChangeHandler(event: PageEvent) {
-        this.service.getGroups(event.pageSize, event.pageIndex + 1);
+        // this.service.getGroups(event.pageSize, event.pageIndex + 1);
     }
 
     add(event: MatChipInputEvent): void {

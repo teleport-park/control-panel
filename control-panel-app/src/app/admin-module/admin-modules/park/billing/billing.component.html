@@ -1,0 +1,33 @@
+<mat-tab-group [@.disabled]="true">
+    <mat-tab label="{{'BILLING_TRANSACTIONS' | translate}}">
+        <div class="quick-filter_wrapper">
+            <control-panel-ui-quick-filter class="light-theme"
+                                           (filterChange)="applyFilter($event)"></control-panel-ui-quick-filter>
+        </div>
+        <control-panel-ui-table class="light-theme"
+                                [displayedColumns]="['date', 'status', 'amount', 'currency', 'coin']"
+                                [simpleDataColumn]="['date', 'status', 'amount', 'currency', 'coin']"
+                                [data]="service.transactions$ | async"
+                                [itemCount]="15"
+        ></control-panel-ui-table>
+    </mat-tab>
+    <mat-tab label="{{'BILLING_ACCOUNTS' | translate}}">
+        <control-panel-ui-table class="light-theme"
+                                [displayedColumns]="['owner', 'timestamp', 'status', 'id', 'description']"
+                                [simpleDataColumn]="['owner', 'status', 'id', 'description']"
+                                [data]="service.accounts$ | async"
+        ></control-panel-ui-table>
+    </mat-tab>
+    <mat-tab label="{{'SYNC_HISTORY' | translate}}">
+        <control-panel-ui-table class="light-theme"
+                                [displayedColumns]="['timestamp', 'status']"
+                                [simpleDataColumn]="['status']"
+                                [data]="service.syncHistory$ | async"
+        ></control-panel-ui-table>
+    </mat-tab>
+</mat-tab-group>
+
+<div class="sync-action d-flex align-items-center">
+    <span class="mr-4">Last synchronization was at {{(service.lastSyncTime$ | async) | date:'dd.MM.yyyy HH:mm:ss'}}</span>
+    <button mat-raised-button color="primary" (click)="sync()">Sync</button>
+</div>

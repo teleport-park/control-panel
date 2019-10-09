@@ -26,43 +26,45 @@ import { AddControllerDialogComponent } from './dialogs/add-controller-dialog/ad
 import { ControlPanelUiLinearGraphComponent } from './control-panel-ui-linear-graph/control-panel-ui-linear-graph.component';
 import { ControlPanelUiGateItemComponent } from './control-panel-ui-gate-item/control-panel-ui-gate-item.component';
 import { ControlPanelTriggerComponent } from './control-panel-trigger/control-panel-trigger.component';
+import { ControlPanelUiQuickFilterComponent } from './control-panel-ui-quick-filter/control-panel-ui-quick-filter.component';
 
 const MODULES = [
-  ConfirmDialogComponent,
-  NumberDirective,
-  ControlPanelUiCardComponent,
-  ControlPanelUiTableComponent,
-  ControlPanelUiSelectionComponent,
-  AddOrEditEntityDialogComponent,
-  AddGroupDialogComponent,
-  AddSimpleEntityDialogComponent,
-  ControlPanelUiActionToolbarComponent,
-  ControlPanelUiWidgetComponent,
-  ControlPanelUiSelectionTableComponent,
-  AddStaffDialogComponent,
-  ControlPanelUiHardwareItemComponent,
-  ControlPanelUiImagePreviewComponent,
-  ControlPanelUiTariffTreeComponent,
-  ControlPanelUiPackageComponent,
-  ControlPanelUiPaymentComponent,
-  AddControllerDialogComponent,
-  ControlPanelUiLinearGraphComponent,
-  ControlPanelUiGateItemComponent,
-  ControlPanelTriggerComponent
+    ConfirmDialogComponent,
+    NumberDirective,
+    ControlPanelUiCardComponent,
+    ControlPanelUiTableComponent,
+    ControlPanelUiSelectionComponent,
+    AddOrEditEntityDialogComponent,
+    AddGroupDialogComponent,
+    AddSimpleEntityDialogComponent,
+    ControlPanelUiActionToolbarComponent,
+    ControlPanelUiWidgetComponent,
+    ControlPanelUiSelectionTableComponent,
+    AddStaffDialogComponent,
+    ControlPanelUiHardwareItemComponent,
+    ControlPanelUiImagePreviewComponent,
+    ControlPanelUiTariffTreeComponent,
+    ControlPanelUiPackageComponent,
+    ControlPanelUiPaymentComponent,
+    AddControllerDialogComponent,
+    ControlPanelUiLinearGraphComponent,
+    ControlPanelUiGateItemComponent,
+    ControlPanelTriggerComponent,
+    ControlPanelUiQuickFilterComponent
 ];
 
 @NgModule({
-  declarations: [...MODULES],
-  exports: [...MODULES],
-  imports: [
-    CommonModule,
-    TranslationModule,
-    MaterialModule,
-    ReactiveFormsModule,
-    FormsModule,
-    FormModule,
-    ChartistModule
-  ]
+    declarations: [...MODULES],
+    exports: [...MODULES],
+    imports: [
+        CommonModule,
+        TranslationModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        FormsModule,
+        FormModule,
+        ChartistModule
+    ]
 })
 export class SharedModule {
 }

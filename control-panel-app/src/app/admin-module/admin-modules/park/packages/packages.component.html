@@ -1,7 +1,7 @@
 <!--<pre>{{(service.packages$ | async) | json}}</pre>-->
 <div class="row packages_wrapper">
     <mat-tab-group class="w-100" [@.disabled]="true" color="accent">
-        <mat-tab label="Packages">
+        <mat-tab label="{{'PACKAGES' | translate}}">
             <control-panel-ui-table  class="light-theme"
                                      [displayedColumns]="packagesColumns"
                                      [simpleDataColumn]="simplePackagesColumns"
@@ -9,7 +9,7 @@
                                      [minRowHeight]="80"
             ></control-panel-ui-table>
         </mat-tab>
-        <mat-tab label="Sync history">
+        <mat-tab label="{{'SYNC_HISTORY' | translate}}">
             <control-panel-ui-table  class="light-theme"
                                      [displayedColumns]="['timestamp', 'status']"
                                      [simpleDataColumn]="['status']"

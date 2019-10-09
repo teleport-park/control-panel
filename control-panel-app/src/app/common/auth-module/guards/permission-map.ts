@@ -28,5 +28,6 @@ export const MenuPermissionMap: PermissionMap = {
     visitors: ['admin'],
     staff: ['admin'],
     packages: ['admin'],
-    pricing: ['admin']
+    pricing: ['admin'],
+    billing: ['admin']
 };

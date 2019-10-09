@@ -3,23 +3,13 @@
 :host {
   @include d-block();
   position: relative;
-  overflow: auto;
-  height: 100%;
-  @include custom-scroll();
-  .packages_wrapper {
-    margin: 0;
-    .packages__history {
-      .mat-table {
-        width: 100%;
-      }
-    }
-    .packages {
-      .package {
-        margin: 0 -10px;
-      }
+  .quick-filter_wrapper {
+    background-color: $white;
+    padding: .5rem 1rem;
+    ::ng-deep.mat-icon {
+       color: map-get($dark-color, 900);
     }
   }
-
   .sync-action {
     position: absolute;
     display: inline-block;

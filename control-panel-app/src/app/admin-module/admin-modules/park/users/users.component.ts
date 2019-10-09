@@ -5,7 +5,12 @@ import { MatDialog, MatSidenavContent, PageEvent } from '@angular/material';
 import { TranslateService } from '../../../../common/translations-module';
 import { Subject } from 'rxjs';
 import { LoaderService } from '../../../../services/loader.service';
-import { AddOrEditEntityDialogComponent, ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
+import {
+    AddOrEditEntityDialogComponent,
+    ConfirmDialogComponent,
+    ConfirmDialogData,
+    ControlPanelUiQuickFilterComponent
+} from '../../../../common/shared-module';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { BreakpointService } from '../../../../services/breakpoint.service';
 
@@ -33,11 +38,6 @@ export class UsersComponent implements OnInit, OnDestroy {
     extendedFiltersConfig: ExtendedFilterFieldGroup[] = UserExtendedFilterConfig;
 
     /**
-     * quick filter value
-     */
-    quickFilter: FormControl = new FormControl('');
-
-    /**
      * reset pagination
      */
     resetPagination: { reset: boolean };
@@ -52,6 +52,8 @@ export class UsersComponent implements OnInit, OnDestroy {
             });
         }
     }
+
+    @ViewChild('quickFilter', {static: false}) quickFilter: ControlPanelUiQuickFilterComponent;
 
     /**
      * subject for destroy component
@@ -117,18 +119,14 @@ export class UsersComponent implements OnInit, OnDestroy {
      */
     ngOnInit() {
         this.service.getUsers();
-        this.quickFilter.valueChanges.pipe(
-            debounceTime(500),
-            distinctUntilChanged(),
-            takeUntil(this.destroyed$)).subscribe((value: string) => {
-            this.service.pagination.resetPagination();
-            this.service.getUsers(value);
-            this.resetPagination = {reset: true};
-            this.cd.markForCheck();
-            this.cd.detectChanges();
-        });
         const data = config as Config;
         this.sortedColumn = data.users.sortedColumns || [];
+    }
+
+    applyQuickFilter(value: string) {
+        this.service.pagination.resetPagination();
+        this.resetPagination = {reset: true};
+        this.service.getUsers(value);
     }
 
     /**
@@ -205,7 +203,7 @@ export class UsersComponent implements OnInit, OnDestroy {
      */
     paginationChangeHandler(event: PaginationSetting): void {
         this.service.pagination.setPagination(event);
-        this.service.getUsers(this.quickFilter.value);
+        this.service.getUsers(this.quickFilter.quickFilterValue);
     }
 
     /**

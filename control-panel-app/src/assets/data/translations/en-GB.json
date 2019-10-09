@@ -136,7 +136,11 @@
   "PACKAGE_TITLE": "Start package",
   "PACKAGE_EXPIRES_AT": "Expires at",
   "PACKAGE_CATEGORY": "Category",
+  "PACKAGES": "Packages",
+  "SYNC_HISTORY": "Synchronization history",
   "ADMIN_MENU_SESSIONS": "Sessions",
   "SESSIONS_TABLE_TITLE": "Sessions table",
-  "DISPLAYED_NAME": "Displayed name"
+  "DISPLAYED_NAME": "Displayed name",
+  "BILLING_TRANSACTIONS": "Transactions",
+  "BILLING_ACCOUNTS": "Accounts"
 }

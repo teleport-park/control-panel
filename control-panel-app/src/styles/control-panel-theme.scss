@@ -232,3 +232,7 @@ $control-panel-light-theme: create-theme($control-panel-primary, $control-panel-
         }
         &::-webkit-scrollbar-button {display:none}
 }
+
+.mat-tab-labels {
+  background-color: rgba(map-get($dark-color, 500), .5);
+}

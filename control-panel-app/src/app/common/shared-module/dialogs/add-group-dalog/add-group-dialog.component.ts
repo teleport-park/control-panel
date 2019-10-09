@@ -3,7 +3,6 @@ import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, PageEvent } from '@angular/material';
 import { Group, Permission } from '../../../../models';
 import { TranslateService } from '../../../translations-module';
-import { DataService } from '../../../../services/data.service';
 
 @Component({
   selector: 'control-panel-add-group-dalog',
@@ -40,14 +39,14 @@ export class AddGroupDialogComponent implements OnInit {
   constructor(
     public translateService: TranslateService,
     public dialogRef: MatDialogRef<AddGroupDialogComponent>,
-    public service: DataService,
+    // public service: DataService,
     @Inject(MAT_DIALOG_DATA) public data: { group: Group, mode: 'add' | 'edit' }) {
     dialogRef._containerInstance._config.width = '500px';
     this.name = new FormControl(data.group.name, [Validators.required]);
   }
 
   ngOnInit(): void {
-    this.service.getPermissions();
+    // this.service.getPermissions();
   }
 
   /**
@@ -64,7 +63,7 @@ export class AddGroupDialogComponent implements OnInit {
   }
 
   pageChangeHandler(event: PageEvent): void {
-    this.service.getPermissions(event.pageSize, event.pageIndex + 1);
+    // this.service.getPermissions(event.pageSize, event.pageIndex + 1);
   }
 
   /**

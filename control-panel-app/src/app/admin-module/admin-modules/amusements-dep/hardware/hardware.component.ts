@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { HardwareService } from '../../../../services/hardware.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -17,7 +16,7 @@ export class HardwareComponent implements OnInit, OnDestroy {
 
   private destroyed$: Subject<boolean> = new Subject();
 
-  constructor(public service: HardwareService,
+  constructor(
               private router: Router,
               public dialog: MatDialog,
               public translateService: TranslateService) {

@@ -5,8 +5,6 @@
   </mat-form-field>
   <p>{{'GROUP_PERMISSIONS' | translate}}</p>
   <control-panel-ui-selection-table
-    [items]="(service.permissions$ | async)?.items"
-    [length]="(service.permissions$ | async)?.count"
     [selected]="data.group.permissions"
     (pageChange)="pageChangeHandler($event)"
     (selectionChange)="addPermissions($event)"

@@ -18,5 +18,22 @@
   }
   .staff-table-wrapper {
     overflow-x: auto;
+    .users-table-filter-input {
+      width: 200px;
+      margin-right: 20px;
+
+      .clear-filter-icon {
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      ::ng-deep.mat-form-field-prefix {
+        top: 5px;
+      }
+
+      .search-filter-icon {
+        margin-right: 5px;
+      }
+    }
   }
 }

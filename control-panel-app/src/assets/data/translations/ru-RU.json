@@ -137,7 +137,11 @@
   "PACKAGE_TITLE": "Стартовый пакет",
   "PACKAGE_EXPIRES_AT": "истекает в",
   "PACKAGE_CATEGORY": "Категория",
+  "PACKAGES": "Пакеты",
+  "SYNC_HISTORY": "История синхронизаций",
   "ADMIN_MENU_SESSIONS": "Сессии",
   "SESSIONS_TABLE_TITLE": "Таблица сессий",
-  "DISPLAYED_NAME": "Отображаемое имя"
+  "DISPLAYED_NAME": "Отображаемое имя",
+  "BILLING_TRANSACTIONS": "Транзакции",
+  "BILLING_ACCOUNTS": "Аккаунты"
 }

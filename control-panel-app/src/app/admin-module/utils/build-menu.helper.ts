@@ -61,6 +61,11 @@ export class BuildMenuHelper {
                 label: 'ADMIN_MENU_SESSIONS',
                 path: '/admin/park/sessions',
                 active: false
+            }, {
+                icon: 'monetization_on',
+                label: 'ADMIN_MENU_BILLING',
+                path: '/admin/park/billing',
+                active: false
             }]
         },
         {
