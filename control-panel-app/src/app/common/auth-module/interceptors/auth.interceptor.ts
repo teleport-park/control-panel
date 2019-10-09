@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
-import { EMPTY, Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { TranslateService } from '../../translations-module';
 import { LoaderService } from '../../../services/loader.service';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 
 @Injectable()
@@ -36,7 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
             catchError((err) => {
                 this.loader.dispatchShowLoader(false);
                 this.showError(err);
-                return EMPTY;
+                return throwError(err);
             })
         );
     }

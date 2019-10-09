@@ -23,6 +23,8 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
             const instances = result.map((item: ControllerType) => this.getControllerInstance(item));
             this.instances$.next(instances);
             this.refreshInstances$.next(true);
+        }, err => {
+            this.refreshInstances$.next(false);
         });
     }
 

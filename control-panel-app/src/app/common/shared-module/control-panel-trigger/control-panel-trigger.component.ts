@@ -32,15 +32,23 @@ export class ControlPanelTriggerComponent implements OnInit, OnDestroy {
 
     tik() {
         if (this.timerValue === 0) {
+            clearInterval(this._timer);
             this.cd.markForCheck();
             this.subscription = this.callBack().subscribe((result: boolean) => {
-                clearInterval(this._timer);
                 if (result) {
+                    clearInterval(this._timer);
                     this.timerValue = 10;
                     this._timer = this.getInterval();
+                    if (this.subscription) {
+                        this.subscription.unsubscribe();
+                    }
                     return;
                 }
+                clearInterval(this._timer);
                 this.timerValue = -1;
+                if (this.subscription) {
+                    this.subscription.unsubscribe();
+                }
                 this.cd.markForCheck();
             });
             return;
@@ -51,7 +59,6 @@ export class ControlPanelTriggerComponent implements OnInit, OnDestroy {
 
     reset() {
         this.timerValue = 0;
-        clearInterval(this._timer);
         this.tik();
     }
 
