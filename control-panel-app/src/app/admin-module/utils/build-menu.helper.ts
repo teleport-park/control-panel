@@ -42,7 +42,7 @@ export class BuildMenuHelper {
                 path: '/admin/park/cards',
                 active: false
             }, {
-                icon: 'dynamic_feed',
+                icon: 'list',
                 label: 'ADMIN_MENU_PACKAGES',
                 path: '/admin/park/packages',
                 active: false
@@ -143,7 +143,7 @@ export class BuildMenuHelper {
             active: false,
             root: true,
             children: [{
-                icon: 'meeting_room',
+                icon: 'exit_to_app',
                 path: '/admin/gate/gates',
                 label: 'ADMIN_MENU_GATES',
                 active: false
