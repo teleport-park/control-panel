@@ -5,10 +5,10 @@
                                            (filterChange)="applyFilter($event)"></control-panel-ui-quick-filter>
         </div>
         <control-panel-ui-table class="light-theme"
-                                [displayedColumns]="['date', 'status', 'amount', 'currency', 'coin']"
-                                [simpleDataColumn]="['date', 'status', 'amount', 'currency', 'coin']"
+                                [displayedColumns]="['timestamp', 'status', 'price', 'coins']"
+                                [simpleDataColumn]="['status']"
                                 [data]="service.transactions$ | async"
-                                [itemCount]="15"
+                                [itemCount]="10"
         ></control-panel-ui-table>
     </mat-tab>
     <mat-tab label="{{'BILLING_ACCOUNTS' | translate}}">

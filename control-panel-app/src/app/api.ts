@@ -1,34 +1,41 @@
 export const API: { [key: string]: string | any } = {
-    TVR_INSTANCES: 'tvr/mgmt/instances',
-    GATE_INSTANCES: 'gates/mgmt/instances',
-    CASH_BOX_INSTANCES: 'cashbox/mgmt/instances',
+   TVR_INSTANCES: 'tvr/mgmt/instances',
+   GATE_INSTANCES: 'gates/mgmt/instances',
+   CASH_BOX_INSTANCES: 'cashbox/mgmt/instances',
 
-    PACKAGES: 'cpanel/packages',
-    PACKAGES_HISTORY: 'cpanel/packages/history',
+   PACKAGES: 'cpanel/packages',
+   PACKAGES_HISTORY: 'cpanel/packages/history',
 
-    VRGAMES: 'cpanel/games',
+   VRGAMES: 'cpanel/games',
 
-    SESSIONS: 'cpanel/sessions',
+   SESSIONS: 'cpanel/sessions',
 
-    PRICES: 'cpanel/prices',
-    // visitors
-    VISITORS: 'cpanel/visitors',
-    // staff
-    STAFF: 'cpanel/staff',
-    // groups
-    GROUPS: 'api/staffgroups',
-    // permissions
-    PERMISSIONS: 'api/permissions',
-    // string search query params
-    SEARCH: 'queryString',
-    // paging params
-    paging: {
-        page: 'pageNumber',
-        size: 'pageSize'
-    },
-    // sorting
-    sorting: {
-        column: 'orderByColumn',
-        direction: 'orderDirection'
-    }
+   PRICES: 'cpanel/prices',
+   // visitors
+   VISITORS: 'cpanel/visitors',
+   // staff
+   STAFF: 'cpanel/staff',
+
+   // transactions
+   TRANSACTIONS: 'cpanel/transactions',
+
+   TRANSACTIONS_HISTORY: 'cpanel/transactions/history',
+
+
+   // groups
+   GROUPS: 'api/staffgroups',
+   // permissions
+   PERMISSIONS: 'api/permissions',
+   // string search query params
+   SEARCH: 'queryString',
+   // paging params
+   paging: {
+      page: 'pageNumber',
+      size: 'pageSize'
+   },
+   // sorting
+   sorting: {
+      column: 'orderByColumn',
+      direction: 'orderDirection'
+   }
 };
