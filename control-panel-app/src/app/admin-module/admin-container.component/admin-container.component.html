@@ -17,18 +17,17 @@
            [routerLink]="menuItem.path"
            routerLinkActive="active"
            (click)="menuItem.active = !menuItem.active">
-          <mat-icon>{{menuItem.icon}}</mat-icon>
+          <mat-icon svgIcon="{{menuItem.icon}}"></mat-icon>
           {{translateService.instant(menuItem.label)}}
-          <mat-icon class="mat-icon-rtl-mirror expand-icon" *ngIf="menuItem.children && menuItem.children.length">
-            {{menuItem.active ? 'expand_more' : 'chevron_right'}}
+          <mat-icon class="mat-icon-rtl-mirror expand-icon" svgIcon="{{menuItem.active ? 'expand_more' : 'chevron_right'}}" *ngIf="menuItem.children && menuItem.children.length">
           </mat-icon>
         </a>
         <a mat-list-item class="" *ngIf="menuItem.root"
            (click)="menuItem.active = !menuItem.active">
-          <mat-icon>{{menuItem.icon}}</mat-icon>
+          <mat-icon svgIcon="{{menuItem.icon}}"></mat-icon>
           {{translateService.instant(menuItem.label)}}
-          <mat-icon class="mat-icon-rtl-mirror expand-icon" *ngIf="menuItem.children && menuItem.children.length">
-            {{menuItem.active ? 'expand_more' : 'chevron_right'}}
+          <mat-icon svgIcon="{{menuItem.active ? 'expand_more' : 'chevron_right'}}" class="mat-icon-rtl-mirror expand-icon" *ngIf="menuItem.children && menuItem.children.length">
+
           </mat-icon>
         </a>
         <div class="nav-list-container_children-container" *ngIf="menuItem.children && menuItem.children.length && menuItem.active">
@@ -36,7 +35,7 @@
              [routerLink]="children.path"
              routerLinkActive="active"
              [routerLinkActiveOptions]="{exact: true}">
-            <mat-icon>{{children.icon}}</mat-icon>
+            <mat-icon svgIcon="{{children.icon}}"></mat-icon>
             {{translateService.instant(children.label)}}
           </a>
         </div>

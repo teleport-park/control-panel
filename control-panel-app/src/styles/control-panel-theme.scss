@@ -107,10 +107,9 @@ $dark-color: (
 );
 
 
-
 $control-panel-primary: mat-palette($primary-color);
-$control-panel-accent:  mat-palette($accent-color);
-$control-panel-warn:    mat-palette($mat-red);
+$control-panel-accent: mat-palette($accent-color);
+$control-panel-warn: mat-palette($mat-red);
 
 $primary: mat-color($primary-color, 500);
 $accent: mat-color($accent-color, 500);
@@ -119,30 +118,32 @@ $white: #FFFFFF;
 
 
 @function control-panel-theme-foreground($color) {
-        @return (
-                base:              $color,
-                divider:           rgba($color, 0.2),
-                dividers:          rgba($color, 0.54),
-                disabled:          rgba($color, 0.38),
-                disabled-button:   rgba($color, 0.38),
-                disabled-text:     rgba($color, 0.2),
-                hint-text:         rgba($color, 0.38),
-                secondary-text:    rgba($color, 0.54),
-                icon:              rgba($color, 0.54),
-                icons:             rgba($color, 0.54),
-                text:              rgba($color, .9),
-                slider-off:        rgba($color, 0.26),
-                slider-off-active: rgba($color, 0.38),
-        );
-};
+  @return (
+          base: $color,
+          divider: rgba($color, 0.2),
+          dividers: rgba($color, 0.54),
+          disabled: rgba($color, 0.38),
+          disabled-button: rgba($color, 0.38),
+          disabled-text: rgba($color, 0.2),
+          hint-text: rgba($color, 0.38),
+          secondary-text: rgba($color, 0.54),
+          icon: rgba($color, 0.54),
+          icons: rgba($color, 0.54),
+          text: rgba($color, .9),
+          slider-off: rgba($color, 0.26),
+          slider-off-active: rgba($color, 0.38),
+  );
+}
+
+;
 
 $background: (
         status-bar: green,
-        app-bar:   rgba(map-get($dark-color, 500), 0.7),
+        app-bar: rgba(map-get($dark-color, 500), 0.7),
         background: rgba($white, 0.04),
-        hover:      rgba($white, 0.2),
-        card:       rgba(map-get($dark-color, 500), 1),
-        dialog:     rgba(map-get($dark-color, 500), 1),
+        hover: rgba($white, 0.2),
+        card: rgba(map-get($dark-color, 500), 1),
+        dialog: rgba(map-get($dark-color, 500), 1),
         disabled-button: $white-12-opacity,
         raised-button: map-get($mat-grey, 800),
         focused-button: $white-6-opacity,
@@ -156,16 +157,15 @@ $background: (
 $foreground: control-panel-theme-foreground($white);
 
 
-
 @function create-theme($primary, $accent, $foreground, $background, $warn: mat-palette($mat-red)) {
-        @return (
-                primary: $primary,
-                accent: $accent,
-                warn: $warn,
-                is-dark: true,
-                foreground: $foreground,
-                background: $background,
-        );
+  @return (
+          primary: $primary,
+          accent: $accent,
+          warn: $warn,
+          is-dark: true,
+          foreground: $foreground,
+          background: $background,
+  );
 }
 
 $control-panel-theme: create-theme($control-panel-primary, $control-panel-accent, $foreground, $background, $control-panel-warn);
@@ -175,11 +175,11 @@ $control-panel-theme: create-theme($control-panel-primary, $control-panel-accent
 
 $background-light: (
         status-bar: green,
-        app-bar:   $white,
+        app-bar: $white,
         background: $white,
-        hover:      rgba(mat-color($dark-color, 500), 0.2),
-        card:       $white,
-        dialog:     $white,
+        hover: rgba(mat-color($dark-color, 500), 0.2),
+        card: $white,
+        dialog: $white,
         disabled-button: $white-12-opacity,
         raised-button: map-get($mat-grey, 800),
         focused-button: $white-6-opacity,
@@ -195,42 +195,49 @@ $foreground-light: control-panel-theme-foreground(mat-color($dark-color, 500));
 $control-panel-light-theme: create-theme($control-panel-primary, $control-panel-accent, $foreground-light, $background-light, $control-panel-warn);
 
 @mixin d-block() {
-        display: block;
-        width: 100%;
+  display: block;
+  width: 100%;
 }
 
-@mixin gradient-border ($color1, $color2) {
-        $border: 2px;
-        background-clip: padding-box;
-        border: solid $border transparent;
-        position: relative;
-        box-sizing: border-box;
-        border-radius: 10px;
-        &:before {
-                content: '';
-                position: absolute;
-                top: 0; right: 0; bottom: 0; left: 0;
-                z-index: -1;
-                margin: -$border;
-                border-radius: inherit;
-                background: linear-gradient(90deg, $color1 0%, $color2 100%);
-        }
+@mixin gradient-border($color1, $color2) {
+  $border: 2px;
+  background-clip: padding-box;
+  border: solid $border transparent;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 10px;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -$border;
+    border-radius: inherit;
+    background: linear-gradient(90deg, $color1 0%, $color2 100%);
+  }
 }
 
 @mixin custom-scroll() {
-        position: relative;
-        &::-webkit-scrollbar {
-                background-color: rgba(0,0,0,0);
-                width: 5px
-        }
-        &::-webkit-scrollbar-track {
-                background-color: rgba(0,0,0,0);
-        }
-        &::-webkit-scrollbar-thumb {
-                background-color: rgba(map-get($dark-color, 100), .8);
-                border-radius: 3px;
-        }
-        &::-webkit-scrollbar-button {display:none}
+  position: relative;
+  height: 100%;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    background-color: rgba(0, 0, 0, 0);
+    width: 5px
+  }
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(map-get($dark-color, 100), .8);
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-button {
+    display: none
+  }
 }
 
 .mat-tab-labels {

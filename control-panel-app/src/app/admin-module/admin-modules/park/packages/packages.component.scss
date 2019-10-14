@@ -3,9 +3,6 @@
 :host {
   @include d-block();
   position: relative;
-  overflow: auto;
-  height: 100%;
-  @include custom-scroll();
   .packages_wrapper {
     margin: 0;
     .packages__history {

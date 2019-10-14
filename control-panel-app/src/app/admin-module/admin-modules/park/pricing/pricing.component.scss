@@ -2,9 +2,6 @@
 
 :host {
   @include d-block();
-  overflow: auto;
-  height: 100%;
-  @include custom-scroll();
 
   .tariffs_wrapper {
     width: 100%;

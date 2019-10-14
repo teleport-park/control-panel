@@ -18,6 +18,24 @@ export class IconService {
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'gate-closed', iconPath);
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'gate-blocked', iconPath);
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'coin', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'memory', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'chevron_right', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'expand_more', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'local_parking', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'people', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'people_outline', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'list', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'local_atm', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'accessibility', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'monetization_on', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'markunread_mailbox', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'developer_board', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'router', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'videogame_asset', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'computer', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'zoom_out_map', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'exit_to_app', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'hourglass_empty', iconPath);
   }
 
   private static pushSvgIconToRegistry(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, iconName: string, iconPath: string): void {
