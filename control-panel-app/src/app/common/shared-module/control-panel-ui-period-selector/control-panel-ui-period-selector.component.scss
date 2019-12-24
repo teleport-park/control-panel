@@ -1,0 +1,12 @@
+@import "control-panel-theme";
+:host {
+  .period-selector_wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    .from, .to, .arrow, .actions {
+      margin-right: 2rem;
+    }
+  }
+}

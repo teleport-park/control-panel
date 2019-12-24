@@ -27,6 +27,8 @@ import { ControlPanelUiLinearGraphComponent } from './control-panel-ui-linear-gr
 import { ControlPanelUiGateItemComponent } from './control-panel-ui-gate-item/control-panel-ui-gate-item.component';
 import { ControlPanelTriggerComponent } from './control-panel-trigger/control-panel-trigger.component';
 import { ControlPanelUiQuickFilterComponent } from './control-panel-ui-quick-filter/control-panel-ui-quick-filter.component';
+import { ControlPanelUiTimeFilterComponent } from './control-panel-ui-time-filter/control-panel-ui-time-filter.component';
+import { ControlPanelUiPeriodSelectorComponent } from './control-panel-ui-period-selector/control-panel-ui-period-selector.component';
 
 const MODULES = [
     ConfirmDialogComponent,
@@ -50,7 +52,9 @@ const MODULES = [
     ControlPanelUiLinearGraphComponent,
     ControlPanelUiGateItemComponent,
     ControlPanelTriggerComponent,
-    ControlPanelUiQuickFilterComponent
+    ControlPanelUiQuickFilterComponent,
+   ControlPanelUiTimeFilterComponent,
+   ControlPanelUiPeriodSelectorComponent
 ];
 
 @NgModule({

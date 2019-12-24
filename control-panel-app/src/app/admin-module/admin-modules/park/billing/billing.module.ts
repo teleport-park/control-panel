@@ -8,6 +8,7 @@ import { AccountsComponent } from './components/accounts/accounts.component';
 import { PermissionGuard } from '../../../../common/auth-module/guards/permission-guard';
 import { SharedModule } from '../../../../common/shared-module/shared.module';
 import { BillingService } from './services/billing.service';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 const routes: Routes = [{
    path: '',
@@ -49,4 +50,7 @@ export const BillingRoutingModule = RouterModule.forChild(routes);
    providers: [BillingService]
 })
 export class BillingModule {
+   // constructor(overlayContainer: OverlayContainer) {
+   //    overlayContainer.getContainerElement().classList.add('light-theme');
+   // }
 }

@@ -1,0 +1,6 @@
+@import "control-panel-theme";
+:host {
+  @include d-block();
+  padding: 1rem;
+  background: #fff;
+}

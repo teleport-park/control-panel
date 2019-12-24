@@ -243,3 +243,7 @@ $control-panel-light-theme: create-theme($control-panel-primary, $control-panel-
 .mat-tab-labels {
   background-color: rgba(map-get($dark-color, 500), .5);
 }
+
+.light-theme {
+  @include angular-material-theme($control-panel-light-theme)
+}

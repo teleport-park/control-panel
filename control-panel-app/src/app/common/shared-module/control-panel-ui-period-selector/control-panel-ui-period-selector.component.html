@@ -1,0 +1,44 @@
+<div class="period-selector_wrapper">
+    <mat-form-field class="from">
+        <input matInput
+               class="light-theme"
+               [matDatepicker]="from"
+               placeholder="{{fromLabel}}"
+               [max]="_toControl.value || maxDate"
+               [min]="minDate"
+               [formControl]="_fromControl">
+        <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+        <mat-datepicker #from></mat-datepicker>
+        <mat-error *ngIf="_fromControl?.errors?.matDatepickerParse">Введите дату в формате дд.мм.гггг</mat-error>
+        <mat-error *ngIf="_fromControl?.errors?.required">Введите дату начала периода</mat-error>
+        <mat-error *ngIf="_fromControl?.errors?.matDatepickerMax">Максимальная
+            дата: {{_fromControl?.errors?.matDatepickerMax.max | date:'dd.MM.yyyy'}}</mat-error>
+        <mat-error *ngIf="_fromControl?.errors?.matDatepickerMax && _toControl?.errors?.matDatepickerMin">Дата начала
+            периода позже даты конца периода
+        </mat-error>
+    </mat-form-field>
+
+    <mat-icon class="arrow">keyboard_arrow_right</mat-icon>
+
+    <mat-form-field class="to">
+        <input matInput
+               [matDatepicker]="to"
+               placeholder="{{toLabel}}"
+               [max]="maxDate"
+               [min]="_fromControl.value"
+               [formControl]="_toControl">
+        <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+        <mat-datepicker #to></mat-datepicker>
+        <mat-error *ngIf="_toControl?.errors?.matDatepickerParse">Введите дату в формате дд.мм.гггг</mat-error>
+        <mat-error *ngIf="_toControl?.errors?.required">Введите дату конца периода</mat-error>
+        <mat-error *ngIf="_toControl?.errors?.matDatepickerMin">Минимальная
+            дата: {{_toControl.errors.matDatepickerMin.min | date: 'dd.MM.yyyy'}}</mat-error>
+        <mat-error *ngIf="_toControl?.errors?.matDatepickerMin && _fromControl?.errors?.matDatepickerMax">Дата конца
+            периода раньше начала периода
+        </mat-error>
+    </mat-form-field>
+
+    <div class="actions">
+        <button mat-raised-button color="primary" (click)="submit()">{{submitLabel}}</button>
+    </div>
+</div>
