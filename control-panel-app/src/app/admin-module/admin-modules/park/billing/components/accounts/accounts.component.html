@@ -1,0 +1,5 @@
+        <control-panel-ui-table class="light-theme"
+                                [displayedColumns]="['owner', 'timestamp', 'status', 'id', 'description']"
+                                [simpleDataColumn]="['owner', 'status', 'id', 'description']"
+                                [data]="service.accounts$ | async"
+        ></control-panel-ui-table>

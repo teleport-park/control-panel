@@ -23,6 +23,8 @@
   "ADMIN_MENU_SERVERS": "Servers",
   "ADMIN_MENU_CONTROLLERS": " Controllers",
   "ADMIN_MENU_TELEPORT_POLY": "Teleport Polygons",
+  "ADMIN_MENU_INVOICES": "Invoices",
+  "ADMIN_MENU_ACCOUNTS": "Accounts",
   "ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL": "Logout",
   "LOGIN_PAGE_LOGIN_LABEL": "Login",
   "LOGIN_PAGE_PASSWORD_LABEL": "Password",

@@ -25,6 +25,8 @@
   "ADMIN_MENU_SERVERS": "Сервера",
   "ADMIN_MENU_CONTROLLERS": "Контроллеры",
   "ADMIN_MENU_TELEPORT_POLY": "Телепорт полигоны",
+  "ADMIN_MENU_INVOICES": "Инвойсы",
+  "ADMIN_MENU_ACCOUNTS": "Аккаунты",
   "ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL": "Выйти",
   "LOGIN_PAGE_LOGIN_LABEL": "Логин",
   "LOGIN_PAGE_PASSWORD_LABEL": "Пароль",

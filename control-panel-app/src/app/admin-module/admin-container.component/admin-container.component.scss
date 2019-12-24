@@ -76,6 +76,10 @@
         .nav-list-container_children-container {
           padding-left: 35px;
 
+          .nav-list-container_sub-children-container {
+            padding-left: 35px;
+          }
+
           .mat-list-item {
             &.active {
               background-color: $primary;

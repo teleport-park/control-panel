@@ -1,73 +1,97 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav
-               mode="{{(point?.handset | async) ? 'over' : 'side'}}"
-               [opened]="!(point?.handset | async)"
-               [position]="(point?.handset | async) ? 'end' : 'start'"
-               class="sidenav-inner-container">
-    <div class="sidenav-title"><span><button
-      *ngIf="(point.handset | async)"
-      mat-icon-button
-      (click)="sidenav.toggle()">
+    <mat-sidenav #sidenav
+                 mode="{{(point?.handset | async) ? 'over' : 'side'}}"
+                 [opened]="!(point?.handset | async)"
+                 [position]="(point?.handset | async) ? 'end' : 'start'"
+                 class="sidenav-inner-container">
+        <div class="sidenav-title"><span><button
+                *ngIf="(point.handset | async)"
+                mat-icon-button
+                (click)="sidenav.toggle()">
               <mat-icon>menu</mat-icon>
             </button></span>{{translateService.instant('ADMIN_MENU_TITLE')}}</div>
-    <mat-divider></mat-divider>
-    <mat-nav-list class="nav-list-container" color="primary">
-      <div class="nav-list-container_parent-container" *ngFor="let menuItem of MENU_ITEMS">
-        <a mat-list-item *ngIf="!menuItem.root"
-           [routerLink]="menuItem.path"
-           routerLinkActive="active"
-           (click)="menuItem.active = !menuItem.active">
-          <mat-icon svgIcon="{{menuItem.icon}}"></mat-icon>
-          {{translateService.instant(menuItem.label)}}
-          <mat-icon class="mat-icon-rtl-mirror expand-icon" svgIcon="{{menuItem.active ? 'expand_more' : 'chevron_right'}}" *ngIf="menuItem.children && menuItem.children.length">
-          </mat-icon>
-        </a>
-        <a mat-list-item class="" *ngIf="menuItem.root"
-           (click)="menuItem.active = !menuItem.active">
-          <mat-icon svgIcon="{{menuItem.icon}}"></mat-icon>
-          {{translateService.instant(menuItem.label)}}
-          <mat-icon svgIcon="{{menuItem.active ? 'expand_more' : 'chevron_right'}}" class="mat-icon-rtl-mirror expand-icon" *ngIf="menuItem.children && menuItem.children.length">
-
-          </mat-icon>
-        </a>
-        <div class="nav-list-container_children-container" *ngIf="menuItem.children && menuItem.children.length && menuItem.active">
-          <a mat-list-item *ngFor="let children of menuItem.children"
-             [routerLink]="children.path"
-             routerLinkActive="active"
-             [routerLinkActiveOptions]="{exact: true}">
-            <mat-icon svgIcon="{{children.icon}}"></mat-icon>
-            {{translateService.instant(children.label)}}
-          </a>
+        <mat-divider></mat-divider>
+        <mat-nav-list class="nav-list-container" color="primary">
+            <div class="nav-list-container_parent-container" *ngFor="let menuItem of MENU_ITEMS">
+                <a mat-list-item *ngIf="!menuItem.root"
+                   [routerLink]="menuItem.path"
+                   routerLinkActive="active"
+                   (click)="menuItem.active = !menuItem.active">
+                    <mat-icon svgIcon="{{menuItem.icon}}"></mat-icon>
+                    {{translateService.instant(menuItem.label)}}
+                    <mat-icon class="mat-icon-rtl-mirror expand-icon"
+                              svgIcon="{{menuItem.active ? 'expand_more' : 'chevron_right'}}"
+                              *ngIf="menuItem.children && menuItem.children.length">
+                    </mat-icon>
+                </a>
+                <a mat-list-item class="" *ngIf="menuItem.root"
+                   (click)="menuItem.active = !menuItem.active">
+                    <mat-icon svgIcon="{{menuItem.icon}}"></mat-icon>
+                    {{translateService.instant(menuItem.label)}}
+                    <mat-icon svgIcon="{{menuItem.active ? 'expand_more' : 'chevron_right'}}"
+                              class="mat-icon-rtl-mirror expand-icon"
+                              *ngIf="menuItem.children && menuItem.children.length">
+                    </mat-icon>
+                </a>
+                <div class="nav-list-container_children-container"
+                     *ngIf="menuItem.children && menuItem.children.length && menuItem.active">
+                    <ng-container *ngFor="let children of menuItem.children">
+                        <a mat-list-item
+                           [routerLink]="children.path"
+                           (click)="children.active = !children.active"
+                           routerLinkActive="active"
+                           [routerLinkActiveOptions]="{exact: true}">
+                            <mat-icon svgIcon="{{children.icon}}"></mat-icon>
+                            {{translateService.instant(children.label)}}
+                            <mat-icon svgIcon="{{children.active ? 'expand_more' : 'chevron_right'}}"
+                                      class="mat-icon-rtl-mirror expand-icon"
+                                      *ngIf="children.children && children.children.length">
+                            </mat-icon>
+                        </a>
+                        <ng-container *ngIf="children.children && children.children.length && children.active">
+                            <div class="nav-list-container_sub-children-container">
+                                <ng-container *ngFor="let sub_children of children.children">
+                                    <a mat-list-item
+                                       [routerLink]="sub_children.path"
+                                       routerLinkActive="active"
+                                       [routerLinkActiveOptions]="{exact: true}">
+<!--                                        <mat-icon>fiber_manual_record</mat-icon>-->
+                                        {{translateService.instant(sub_children.label)}}
+                                    </a>
+                                </ng-container>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+        </mat-nav-list>
+        <div class="side-nav_action-button">
+            <language-switcher *ngIf="(point?.handset | async)"
+                               theme="light"
+                               (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
+            <button mat-button *ngIf="(point?.handset | async)"
+                    routerLink="/login">{{translateService.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
         </div>
-      </div>
-    </mat-nav-list>
-    <div class="side-nav_action-button">
-      <language-switcher *ngIf="(point?.handset | async)"
-                         theme="light"
-                         (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
-      <button mat-button *ngIf="(point?.handset | async)"
-              routerLink="/login">{{translateService.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
-    </div>
-  </mat-sidenav>
+    </mat-sidenav>
 
-  <mat-sidenav-content>
-    <mat-toolbar>
-      <div class="toolbar-title-container">
-        <a><span>{{translateService.instant(activeView)}}</span></a>
-      </div>
-      <language-switcher *ngIf="!(point?.handset | async)"
-                         (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
-      <button mat-button *ngIf="!(point?.handset | async)"
-              routerLink="/login">{{translateService.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
-      <button mat-icon-button
-              (click)="sidenav.toggle()"
-              *ngIf="(point?.handset | async)">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </mat-toolbar>
-    <div class="content-container">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <div class="toolbar-title-container">
+                <a><span>{{translateService.instant(activeView)}}</span></a>
+            </div>
+            <language-switcher *ngIf="!(point?.handset | async)"
+                               (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
+            <button mat-button *ngIf="!(point?.handset | async)"
+                    routerLink="/login">{{translateService.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
+            <button mat-icon-button
+                    (click)="sidenav.toggle()"
+                    *ngIf="(point?.handset | async)">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar>
+        <div class="content-container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
 </mat-sidenav-container>
 
