@@ -102,6 +102,16 @@
                 </div>
             </mat-cell>
         </ng-container>
+        <ng-container matColumnDef="amount">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['amount'] || 'amount')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div class="amount d-flex align-items-center justify-content-between">
+                    <div class="table_cell-inner">{{item.amount.amount}}</div>
+                    <div>{{item.amount.currency}}</div>
+                </div>
+            </mat-cell>
+        </ng-container>
 
         <!--statuses cell-->
         <ng-container matColumnDef="statuses" class="table_cell-inner">

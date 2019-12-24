@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { ApiUrlsService } from '../../../../../services/api-urls.service';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 @Injectable()
 
@@ -24,7 +24,11 @@ export class BillingService {
 
    public getTransactions(query?: string) {
       this.http.get('./assets/data/transactions.json')
-      .pipe(filter(data => !!data))
+      .pipe(filter(data => !!data),
+         map((res: any[]) => (res.map(item => {
+            item.owner = item.user.name;
+            return item;
+         }))))
       .subscribe((result: any[]) => {
          this.transactions$.next(result);
       });

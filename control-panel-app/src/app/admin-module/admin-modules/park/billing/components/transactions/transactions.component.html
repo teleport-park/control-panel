@@ -1,6 +1,5 @@
-        <control-panel-ui-table class="light-theme"
-                                [displayedColumns]="['timestamp', 'status', 'price', 'coins']"
-                                [simpleDataColumn]="['status']"
-                                [data]="service.transactions$ | async"
-                                [itemCount]="10"
-        ></control-panel-ui-table>
+<control-panel-ui-table class="light-theme"
+                            [displayedColumns]="['timestamp', 'owner', 'status', 'amount']"
+                            [simpleDataColumn]="['status', 'owner']"
+                            [data]="service.transactions$ | async"
+                            [itemCount]="10"></control-panel-ui-table>
