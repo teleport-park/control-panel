@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { ApiUrlsService } from '../../../../../services/api-urls.service';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
 
 @Injectable()
 
@@ -14,11 +14,14 @@ export class BillingService {
 
    transactions$: BehaviorSubject<any[]> = new BehaviorSubject([]);
 
+   invoices$: BehaviorSubject<any[]> = new BehaviorSubject([]);
+
    accounts$: BehaviorSubject<any[]> = new BehaviorSubject([]);
 
    constructor(private http: HttpClient, private apiBuilder: ApiUrlsService) {
       this.getSynchronizationHistory();
       this.getTransactions();
+      this.getInvoices();
       this.getAccounts();
    }
 
@@ -36,6 +39,14 @@ export class BillingService {
 
    public getAccounts() {
       this.accounts$.next([]);
+   }
+
+   public getInvoices() {
+      this.http.get('./assets/data/invoices.json')
+         .pipe(filter(data => !!data))
+         .subscribe(
+            (res: any[]) => this.invoices$.next(res)
+         );
    }
 
    public getSynchronizationHistory() {

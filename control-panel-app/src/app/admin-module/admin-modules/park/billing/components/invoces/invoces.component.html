@@ -1,1 +1,5 @@
-<p>invoces works!</p>
+<control-panel-ui-table class="light-theme"
+                        [displayedColumns]="['summary', 'type','charges', 'status', 'total', 'created_at', 'updated_at']"
+                        [simpleDataColumn]="['summary', 'type', 'status']"
+                        [data]="service.invoices$ | async"
+                        [itemCount]="20"></control-panel-ui-table>

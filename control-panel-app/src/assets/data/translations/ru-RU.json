@@ -145,5 +145,10 @@
   "SESSIONS_TABLE_TITLE": "Таблица сессий",
   "DISPLAYED_NAME": "Отображаемое имя",
   "BILLING_TRANSACTIONS": "Транзакции",
-  "BILLING_ACCOUNTS": "Аккаунты"
+  "BILLING_ACCOUNTS": "Аккаунты",
+  "STATUS": "Статус",
+  "UPDATED_AT": "Обновлено",
+  "CREATED_AT": "Создано",
+  "TYPE": "Тип",
+  "SUMMARY": "Общее"
 }

@@ -73,6 +73,22 @@
             </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="created_at">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['createdAt'] || 'createdAt')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <span class="table_cell-inner">{{item.created_at | date: "dd.MM.yyyy HH:mm"}}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="updated_at">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['updatedAt'] || 'updatedAt')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <span class="table_cell-inner">{{item.updated_at | date: "dd.MM.yyyy HH:mm"}}</span>
+            </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="timestamp">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['timestamp'] || 'timestamp')}}</span></mat-header-cell>
@@ -102,6 +118,7 @@
                 </div>
             </mat-cell>
         </ng-container>
+
         <ng-container matColumnDef="amount">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['amount'] || 'amount')}}</span></mat-header-cell>
@@ -109,6 +126,32 @@
                 <div class="amount d-flex align-items-center justify-content-between">
                     <div class="table_cell-inner">{{item.amount.amount}}</div>
                     <div>{{item.amount.currency}}</div>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['amount'] || 'amount')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div class="amount d-flex align-items-center justify-content-between">
+                    <div class="table_cell-inner">{{item.total.amount}}</div>
+                    <div>{{item.total.currency}}</div>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="charges">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['charges'] || 'charges')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div>
+                    <ng-container *ngFor="let charge of item.charges">
+                        <ng-container *ngFor="let recipient of charge.recipients">
+                            <div class="table_cell-inner">{{recipient.profile.display_name}}</div>
+                            <div class="table_cell-inner">{{recipient.profile.email}}</div>
+                        </ng-container>
+                    </ng-container>
                 </div>
             </mat-cell>
         </ng-container>

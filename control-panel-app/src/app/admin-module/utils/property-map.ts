@@ -39,5 +39,10 @@ export const PropertyMap = {
 
     title: 'PACKAGE_TITLE',
     expiresAt: 'PACKAGE_EXPIRES_AT',
-    category: 'PACKAGE_CATEGORY'
+    category: 'PACKAGE_CATEGORY',
+   status: 'STATUS',
+   updatedAt: 'UPDATED_AT',
+   createdAt: 'CREATED_AT',
+   type: 'TYPE',
+   summary: 'SUMMARY'
 };

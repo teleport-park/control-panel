@@ -144,5 +144,10 @@
   "SESSIONS_TABLE_TITLE": "Sessions table",
   "DISPLAYED_NAME": "Displayed name",
   "BILLING_TRANSACTIONS": "Transactions",
-  "BILLING_ACCOUNTS": "Accounts"
+  "BILLING_ACCOUNTS": "Accounts",
+  "STATUS": "Status",
+  "UPDATED_AT": "Updated at",
+  "CREATED_AT": "Created at",
+  "TYPE": "Type",
+  "SUMMARY": "Summary"
 }
