@@ -1,5 +1,5 @@
-        <control-panel-ui-table class="light-theme"
-                                [displayedColumns]="['owner', 'timestamp', 'status', 'id', 'description']"
-                                [simpleDataColumn]="['owner', 'status', 'id', 'description']"
+<control-panel-ui-table class="light-theme"
+                                [displayedColumns]="['id', 'user', 'balance']"
+                                [simpleDataColumn]="['id']"
                                 [data]="service.accounts$ | async"
-        ></control-panel-ui-table>
+                        [itemCount]="20"></control-panel-ui-table>

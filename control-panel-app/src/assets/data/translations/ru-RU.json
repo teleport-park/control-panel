@@ -150,5 +150,6 @@
   "UPDATED_AT": "Обновлено",
   "CREATED_AT": "Создано",
   "TYPE": "Тип",
-  "SUMMARY": "Общее"
+  "SUMMARY": "Общее",
+  "BALANCE": "Баланс"
 }

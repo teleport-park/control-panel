@@ -149,5 +149,6 @@
   "UPDATED_AT": "Updated at",
   "CREATED_AT": "Created at",
   "TYPE": "Type",
-  "SUMMARY": "Summary"
+  "SUMMARY": "Summary",
+  "BALANCE": "Balance"
 }

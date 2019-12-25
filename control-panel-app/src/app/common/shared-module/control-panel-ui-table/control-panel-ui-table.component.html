@@ -156,6 +156,34 @@
             </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="user">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['user'] || 'user')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div class="d-flex flex-column">
+                    <div class="mt-1 mb-1">
+                        name: {{item.user.display_name}}
+                    </div>
+                    <div class="mt-1 mb-1">
+                        nickname: {{item.user.nickname}}
+                    </div>
+                    <div class="mt-1 mb-1">
+                        email: {{item.user.email}}
+                    </div>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="balance">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+                <span>{{translateService.instant(propertyMap['balance'] || 'balance')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div class="table_cell-inner">
+                    {{getBalance(item.balance)}} {{item.balance[0].currency}}
+                </div>
+            </mat-cell>
+        </ng-container>
+
         <!--statuses cell-->
         <ng-container matColumnDef="statuses" class="table_cell-inner">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('statuses')" *matHeaderCellDef>

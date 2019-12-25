@@ -225,4 +225,9 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
     isBoolean(value: any) {
         return typeof value === 'boolean';
     }
+
+   getBalance(balance: {currency: string, amount: number}[]): number {
+       const amount = balance.map(i => i.amount).reduce((prev: number, curr: number) => prev + curr);
+       return +amount.toFixed(2);
+   }
 }
