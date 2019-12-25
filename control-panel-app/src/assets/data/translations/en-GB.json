@@ -105,6 +105,8 @@
   "AMUSEMENTS_ADD_TO_TARIFFS": "Add to tariffs",
   "TARIFF_LAST_TARIFFS": "Last tariffs",
   "EXTENDED_FILTER_TITLE": "Extended filters",
+  "TIME_PERIOD_FILTER_TITLE": "Filter by period",
+  "QUICK_TIME_FILTER_TITLE": "Quick filter by time",
   "FILTER_ALL_LABEL": "All",
   "EXTENDED_FILTER_ANY": "Any",
   "EXTENDED_FILTER_REGISTERED": "Registered",
@@ -151,5 +153,11 @@
   "CREATED_AT": "Created at",
   "TYPE": "Type",
   "SUMMARY": "Summary",
-  "BALANCE": "Balance"
+  "BALANCE": "Balance",
+  "TIME": "Time",
+  "QUICK_FILTER_LAST_HOUR": "last hour",
+  "QUICK_FILTER_LAST_6_HOURS": "last 6 hours",
+  "QUICK_FILTER_LAST_DAY": "last day",
+  "QUICK_FILTER_LAST_WEEK": "last week",
+  "QUICK_FILTER_LAST_MONTH": "last month"
 }

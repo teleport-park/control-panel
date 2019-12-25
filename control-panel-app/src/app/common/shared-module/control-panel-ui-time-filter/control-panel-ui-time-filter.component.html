@@ -1,5 +1,22 @@
-<h4>{{'EXTENDED_FILTER_TITLE' | translate}}</h4>
+<h4>{{'TIME_PERIOD_FILTER_TITLE' | translate}}</h4>
 <control-panel-ui-period-selector fromLabel="{{'EXTENDED_FILTER_FROM' | translate}}"
                                   toLabel="{{'EXTENDED_FILTER_TO' | translate}}"
                                   submitLabel="{{'SEARCH_BY_PERIOD' | translate}}"
+                                  class="mb-4"
 ></control-panel-ui-period-selector>
+<h4>{{'QUICK_TIME_FILTER_TITLE' | translate}}</h4>
+<div class="quick-filter_wrapper d-flex flex-column pl-1">
+    <mat-checkbox>{{'QUICK_FILTER_LAST_HOUR' | translate}}</mat-checkbox>
+    <mat-checkbox>{{'QUICK_FILTER_LAST_6_HOURS' | translate}}</mat-checkbox>
+    <mat-checkbox>{{'QUICK_FILTER_LAST_DAY' | translate}}</mat-checkbox>
+    <mat-checkbox>{{'QUICK_FILTER_LAST_WEEK' | translate}}</mat-checkbox>
+    <mat-checkbox>{{'QUICK_FILTER_LAST_MONTH' | translate}}</mat-checkbox>
+</div>
+<ng-container *ngIf="statusFilter">
+    <mat-divider class="mt-2 mb-3"></mat-divider>
+    <h4>Фильтр по статусу</h4>
+    <div class="status-filter_wrapper d-flex flex-column pl-1">
+        <mat-checkbox *ngFor="let status of statusFilter.statuses">{{status}}</mat-checkbox>
+    </div>
+</ng-container>
+

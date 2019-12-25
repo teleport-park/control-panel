@@ -1,5 +1,6 @@
 @import "control-panel-theme";
 :host {
+  @include d-block();
   .period-selector_wrapper {
     display: flex;
     justify-content: flex-start;
@@ -7,6 +8,12 @@
     flex-wrap: wrap;
     .from, .to, .arrow, .actions {
       margin-right: 2rem;
+    }
+    .from, .to {
+      width: 8rem;
+    }
+    .time {
+      width: 5rem;
     }
   }
 }

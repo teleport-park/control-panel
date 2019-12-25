@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'control-panel-ui-time-filter',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./control-panel-ui-time-filter.component.scss']
 })
 export class ControlPanelUiTimeFilterComponent implements OnInit {
+
+   @Input() statusFilter: {statuses: string[]} = null;
 
   constructor() { }
 

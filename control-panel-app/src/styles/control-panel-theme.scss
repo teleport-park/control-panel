@@ -126,7 +126,7 @@ $white: #FFFFFF;
           disabled-button: rgba($color, 0.38),
           disabled-text: rgba($color, 0.2),
           hint-text: rgba($color, 0.38),
-          secondary-text: rgba($color, 0.54),
+          secondary-text: rgba(0, 0, 0, 0.54),
           icon: rgba($color, 0.54),
           icons: rgba($color, 0.54),
           text: rgba($color, .9),
@@ -242,8 +242,4 @@ $control-panel-light-theme: create-theme($control-panel-primary, $control-panel-
 
 .mat-tab-labels {
   background-color: rgba(map-get($dark-color, 500), .5);
-}
-
-.light-theme {
-  @include angular-material-theme($control-panel-light-theme)
 }

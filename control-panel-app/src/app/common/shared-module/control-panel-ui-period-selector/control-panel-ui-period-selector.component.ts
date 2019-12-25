@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Moment } from 'moment';
 import { FormControl, Validators } from '@angular/forms';
 
@@ -12,9 +12,9 @@ export interface PeriodSelectorSubmitEvent {
 }
 
 @Component({
-  selector: 'control-panel-ui-period-selector',
-  templateUrl: './control-panel-ui-period-selector.component.html',
-  styleUrls: ['./control-panel-ui-period-selector.component.scss']
+   selector: 'control-panel-ui-period-selector',
+   templateUrl: './control-panel-ui-period-selector.component.html',
+   styleUrls: ['./control-panel-ui-period-selector.component.scss']
 })
 export class ControlPanelUiPeriodSelectorComponent {
 
@@ -54,12 +54,20 @@ export class ControlPanelUiPeriodSelectorComponent {
    /**
     * from date form control
     */
-   _fromControl = new FormControl(null, [Validators.required]);
+   _fromDateControl = new FormControl(null, [Validators.required]);
+   /**
+    * from date form control
+    */
+   _fromTimeControl = new FormControl(null, [Validators.required]);
 
    /**
     * to date form control
     */
-   _toControl = new FormControl(this.maxDate, [Validators.required]);
+   _toDateControl = new FormControl(this.maxDate, [Validators.required]);
+   /**
+    * to date form control
+    */
+   _toTimeControl = new FormControl('', [Validators.required]);
 
 
    constructor() {
@@ -69,12 +77,12 @@ export class ControlPanelUiPeriodSelectorComponent {
     * submit handler
     */
    submit() {
-      if (this.validateControl(this._fromControl) && this.validateControl(this._toControl)) {
+      if (this.validateControl(this._fromDateControl) && this.validateControl(this._toDateControl)) {
          this.selectPeriod.emit(this.preparePeriod());
          return;
       }
-      this._fromControl.markAsTouched();
-      this._toControl.markAsTouched();
+      this._fromDateControl.markAsTouched();
+      this._toDateControl.markAsTouched();
    }
 
    /**
@@ -90,10 +98,10 @@ export class ControlPanelUiPeriodSelectorComponent {
     */
    private preparePeriod(): PeriodSelectorSubmitEvent {
       return {
-         from: moment(this._fromControl.value).format(this.format),
-         to: moment(this._toControl).format(this.format),
-         fromMoment: this._fromControl.value,
-         toMoment: this._toControl.value
+         from: moment(this._fromDateControl.value).format(this.format),
+         to: moment(this._toDateControl).format(this.format),
+         fromMoment: this._fromDateControl.value,
+         toMoment: this._toDateControl.value
       };
    }
 

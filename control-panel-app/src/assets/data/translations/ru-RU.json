@@ -106,6 +106,8 @@
   "AMUSEMENTS_ADD_TO_TARIFFS": "Добавить в тарифы",
   "TARIFF_LAST_TARIFFS": "Последние тарифы",
   "EXTENDED_FILTER_TITLE": "Расширенный фильтр",
+  "TIME_PERIOD_FILTER_TITLE": "Фильтр по выбранному периоду",
+  "QUICK_TIME_FILTER_TITLE": "Быстрый фильтр по времени",
   "EXTENDED_FILTER_REGISTERED": "Зарегестрирован",
   "EXTENDED_FILTER_FROM": "С",
   "EXTENDED_FILTER_TO": "По",
@@ -152,5 +154,11 @@
   "CREATED_AT": "Создано",
   "TYPE": "Тип",
   "SUMMARY": "Общее",
-  "BALANCE": "Баланс"
+  "BALANCE": "Баланс",
+  "TIME": "Время",
+  "QUICK_FILTER_LAST_HOUR": "за последний час",
+  "QUICK_FILTER_LAST_6_HOURS": "за последние 6 часов",
+  "QUICK_FILTER_LAST_DAY": "за последний день",
+  "QUICK_FILTER_LAST_WEEK": "за последнюю неделю",
+  "QUICK_FILTER_LAST_MONTH": "за последний месяц"
 }
