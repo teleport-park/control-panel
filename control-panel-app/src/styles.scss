@@ -115,7 +115,8 @@ html, body {
     display: none;
   }
   .light-theme {
-    @include angular-material-theme($control-panel-light-theme)
+    @include angular-material-theme($control-panel-light-theme);
+    color: map-get($dark-color, 500);
   }
   .bold {
     font-weight: 700;

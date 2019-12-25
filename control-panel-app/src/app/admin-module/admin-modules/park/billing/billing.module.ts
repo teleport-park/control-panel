@@ -9,6 +9,7 @@ import { PermissionGuard } from '../../../../common/auth-module/guards/permissio
 import { SharedModule } from '../../../../common/shared-module/shared.module';
 import { BillingService } from './services/billing.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { MatInputModule } from '@angular/material';
 
 const routes: Routes = [{
    path: '',
@@ -45,7 +46,8 @@ export const BillingRoutingModule = RouterModule.forChild(routes);
    imports: [
       CommonModule,
       BillingRoutingModule,
-      SharedModule
+      SharedModule,
+      MatInputModule
    ],
    providers: [BillingService]
 })

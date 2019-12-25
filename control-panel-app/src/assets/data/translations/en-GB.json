@@ -116,6 +116,7 @@
   "EXTENDED_FILTER_WRONG_DATE_FORMAT": "Wrong date format",
   "EXTENDED_FILTER_DATE_MAX_ERROR": "Max date {0}",
   "EXTENDED_FILTER_DATE_MIN_ERROR": "Min date {0}",
+  "SEARCH_BY_PERIOD": "Search by period",
   "USER_PAGE_TITLE": "User",
   "BACK_TO_USERS": "Back to users",
   "USER_LAST_VISIT": "Last visit",
