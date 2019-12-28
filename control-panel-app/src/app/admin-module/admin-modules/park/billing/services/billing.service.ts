@@ -37,9 +37,27 @@ export class BillingService {
       });
    }
 
-   public getAccounts() {
+   public getAccounts(filterState?: { positive: boolean, negative: boolean }) {
       this.http.get('./assets/data/accounts.json')
-      .pipe(filter(data => !!data))
+      .pipe(filter(data => !!data),
+         map((res: any[]) => {
+            let result;
+            if (filterState) {
+               if ((!filterState.negative && !filterState.positive) || (filterState.negative && filterState.positive)) {
+                  return res;
+               }
+               if (filterState.negative) {
+                  result = res.filter((item) => this.getBalanceAmount(item.balance) <= 0);
+                  return result;
+               }
+               if (filterState.positive) {
+                  result = res.filter((item) => this.getBalanceAmount(item.balance) > 0);
+                  return result;
+               }
+            } else {
+               return res;
+            }
+         }))
       .subscribe(
          (res: any[]) => this.accounts$.next(res)
       );
@@ -62,5 +80,9 @@ export class BillingService {
 
    public synchronize() {
       this.lastSyncTime$.next(new Date());
+   }
+
+   private getBalanceAmount(balance: {currency: string, amount: number}[]): number {
+      return balance.map((item: {currency: string, amount: number}) => item.amount).reduce((prev, curr) => prev + curr);
    }
 }

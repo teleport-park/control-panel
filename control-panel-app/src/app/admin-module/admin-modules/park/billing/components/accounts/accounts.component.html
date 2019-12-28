@@ -4,6 +4,13 @@
         <button mat-raised-button color="primary" (click)="service.synchronize()">Sync</button>
     </div>
 </div>
+
+<div class="filter_wrapper d-flex flex-column light-theme p-3 mb-2">
+    <h4>{{'BALANCE' | translate}}</h4>
+    <mat-checkbox [(ngModel)]="filterState.positive" class="ml-1" (ngModelChange)="getFilteredResult()">{{'POSITIVE' | translate}}</mat-checkbox>
+    <mat-checkbox [(ngModel)]="filterState.negative" class="ml-1" (ngModelChange)="getFilteredResult()">{{'NEGATIVE' | translate}}</mat-checkbox>
+</div>
+
 <control-panel-ui-table class="light-theme"
                         [displayedColumns]="['id', 'user', 'balance']"
                         [simpleDataColumn]="['id']"

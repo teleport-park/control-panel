@@ -160,5 +160,7 @@
   "QUICK_FILTER_LAST_6_HOURS": "за последние 6 часов",
   "QUICK_FILTER_LAST_DAY": "за последний день",
   "QUICK_FILTER_LAST_WEEK": "за последнюю неделю",
-  "QUICK_FILTER_LAST_MONTH": "за последний месяц"
+  "QUICK_FILTER_LAST_MONTH": "за последний месяц",
+  "NEGATIVE": "Отрицательный",
+  "POSITIVE": "Положительный"
 }

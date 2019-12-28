@@ -9,6 +9,8 @@ import { PermissionGuard } from '../../../../common/auth-module/guards/permissio
 import { SharedModule } from '../../../../common/shared-module/shared.module';
 import { BillingService } from './services/billing.service';
 import { MaterialModule } from '../../../../material.module';
+import { FormsModule } from '@angular/forms';
+import { TranslationModule } from '../../../../common/translations-module/translation.module';
 
 const routes: Routes = [{
    path: '',
@@ -46,7 +48,9 @@ export const BillingRoutingModule = RouterModule.forChild(routes);
       CommonModule,
       BillingRoutingModule,
       SharedModule,
-      MaterialModule
+      MaterialModule,
+      FormsModule,
+      TranslationModule
    ],
    providers: [BillingService]
 })
