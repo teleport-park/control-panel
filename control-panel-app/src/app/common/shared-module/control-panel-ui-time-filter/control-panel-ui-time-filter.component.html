@@ -16,7 +16,7 @@
     <mat-divider class="mt-2 mb-3"></mat-divider>
     <h4>Фильтр по статусу</h4>
     <div class="status-filter_wrapper d-flex flex-column pl-1">
-        <mat-checkbox *ngFor="let status of statusFilter.statuses">{{status}}</mat-checkbox>
+        <mat-checkbox *ngFor="let status of statusFilter.statuses" [(ngModel)]="statusFilterState[status]" (ngModelChange)="applyFilter()">{{status}}</mat-checkbox>
     </div>
 </ng-container>
 

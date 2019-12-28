@@ -18,6 +18,8 @@ export interface PeriodSelectorSubmitEvent {
 })
 export class ControlPanelUiPeriodSelectorComponent {
 
+   timeStamp = moment();
+
    /**
     * from input label
     */
@@ -41,7 +43,7 @@ export class ControlPanelUiPeriodSelectorComponent {
    /**
     * max date value
     */
-   @Input() maxDate: Moment = moment();
+   @Input() maxDate: Moment = this.timeStamp;
 
    @Input() minDate: Moment;
 
@@ -67,7 +69,7 @@ export class ControlPanelUiPeriodSelectorComponent {
    /**
     * to date form control
     */
-   _toTimeControl = new FormControl('', [Validators.required]);
+   _toTimeControl = new FormControl(this.timeStamp.format('HH:mm'), [Validators.required]);
 
 
    constructor() {

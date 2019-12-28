@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BillingService } from '../../services/billing.service';
+import { TimeFilterState } from '../../../../../../common/shared-module';
 
 @Component({
   selector: 'invoces',
@@ -12,5 +13,9 @@ export class InvocesComponent implements OnInit {
 
   ngOnInit() {
   }
+
+   applyFilterHandler(filterState: TimeFilterState) {
+     this.service.getInvoices(filterState);
+   }
 
 }

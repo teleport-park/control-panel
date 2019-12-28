@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { ApiUrlsService } from '../../../../../services/api-urls.service';
 import { filter, map } from 'rxjs/operators';
+import { TimeFilterState } from '../../../../../common/shared-module';
 
 @Injectable()
 
@@ -63,9 +64,28 @@ export class BillingService {
       );
    }
 
-   public getInvoices() {
+   public getInvoices(filterState?: TimeFilterState) {
       this.http.get('./assets/data/invoices.json')
-      .pipe(filter(data => !!data))
+      .pipe(
+         filter(data => !!data),
+         map((res: any[]) => {
+            if (filterState) {
+               if (!Object.values(filterState.status).some(v => v)) {
+                  return res;
+               }
+               const statusFilters = Object.keys(filterState.status);
+               let result = [];
+               statusFilters.forEach((status: string) => {
+                  if (filterState.status[status]) {
+                     result = [...result, ...res.filter(i => i.status === status)];
+                  }
+               });
+               return result.length === res.length ? res : result;
+            } else {
+               return res;
+            }
+         })
+      )
       .subscribe(
          (res: any[]) => this.invoices$.next(res)
       );
@@ -82,7 +102,7 @@ export class BillingService {
       this.lastSyncTime$.next(new Date());
    }
 
-   private getBalanceAmount(balance: {currency: string, amount: number}[]): number {
-      return balance.map((item: {currency: string, amount: number}) => item.amount).reduce((prev, curr) => prev + curr);
+   private getBalanceAmount(balance: { currency: string, amount: number }[]): number {
+      return balance.map((item: { currency: string, amount: number }) => item.amount).reduce((prev, curr) => prev + curr);
    }
 }
