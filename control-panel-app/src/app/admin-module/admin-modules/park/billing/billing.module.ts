@@ -8,8 +8,7 @@ import { AccountsComponent } from './components/accounts/accounts.component';
 import { PermissionGuard } from '../../../../common/auth-module/guards/permission-guard';
 import { SharedModule } from '../../../../common/shared-module/shared.module';
 import { BillingService } from './services/billing.service';
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { MatInputModule } from '@angular/material';
+import { MaterialModule } from '../../../../material.module';
 
 const routes: Routes = [{
    path: '',
@@ -47,7 +46,7 @@ export const BillingRoutingModule = RouterModule.forChild(routes);
       CommonModule,
       BillingRoutingModule,
       SharedModule,
-      MatInputModule
+      MaterialModule
    ],
    providers: [BillingService]
 })

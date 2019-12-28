@@ -132,4 +132,15 @@ html, body {
   .d-flex {
     display: flex;
   }
+
+  .sync-action {
+    display: block;
+    right: 10px;
+    top: 5px;
+    z-index: 2;
+    padding: .3rem .3rem .3rem 1rem ;
+    margin: .5rem;
+    border-radius: 5px;
+    background-color: rgba(map-get($dark-color, 500), .7);
+  }
 }

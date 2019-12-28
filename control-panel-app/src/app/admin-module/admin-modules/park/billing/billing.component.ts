@@ -17,8 +17,6 @@ export class BillingComponent implements OnInit {
      this.service.getTransactions(value)
    }
 
-   sync() {
-     this.service.lastSyncTime$.next(new Date());
-   }
+
 
 }

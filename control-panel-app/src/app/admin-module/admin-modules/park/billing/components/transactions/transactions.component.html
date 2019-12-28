@@ -1,8 +1,15 @@
+<div class="d-flex align-items-center justify-content-end">
+    <div class="sync-action">
+        <span class="mr-4">Last synchronization was at {{(service.lastSyncTime$ | async) | date:'dd.MM.yyyy HH:mm:ss'}}</span>
+        <button mat-raised-button color="primary" (click)="service.synchronize()">Sync</button>
+    </div>
+</div>
+
 <control-panel-ui-time-filter class="light-theme"></control-panel-ui-time-filter>
 
 
 <control-panel-ui-table class="light-theme"
-                            [displayedColumns]="['timestamp', 'owner', 'status', 'amount']"
-                            [simpleDataColumn]="['status', 'owner']"
-                            [data]="service.transactions$ | async"
-                            [itemCount]="10"></control-panel-ui-table>
+                        [displayedColumns]="['timestamp', 'owner', 'status', 'amount']"
+                        [simpleDataColumn]="['status', 'owner']"
+                        [data]="service.transactions$ | async"
+                        [itemCount]="(service.transactions$ | async)?.length"></control-panel-ui-table>

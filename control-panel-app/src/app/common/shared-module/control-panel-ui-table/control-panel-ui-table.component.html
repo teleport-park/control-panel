@@ -239,6 +239,6 @@
                  (click)="selectRow(row)"></mat-row>
     </mat-table>
 </div>
-<mat-paginator #paginator [pageSizeOptions]="[10, 25, 50]" *ngIf="itemCount"
+<mat-paginator #paginator [pageSizeOptions]="[50]" *ngIf="itemCount"
                [length]="itemCount" showFirstLastButtons
                (page)="changePageHandler($event)"></mat-paginator>

@@ -59,4 +59,8 @@ export class BillingService {
          timestamp: '2019-10-09T21:01:49.171Z'
       }]);
    }
+
+   public synchronize() {
+      this.lastSyncTime$.next(new Date());
+   }
 }
