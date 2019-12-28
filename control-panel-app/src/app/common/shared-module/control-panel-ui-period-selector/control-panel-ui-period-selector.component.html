@@ -5,7 +5,7 @@
     </mat-form-field>
     <mat-form-field class="from">
         <input matInput
-               class="light-theme"
+               class="date-picker-input"
                [matDatepicker]="from"
                [max]="_toDateControl.value || maxDate"
                [min]="minDate"
@@ -29,6 +29,7 @@
     </mat-form-field>
     <mat-form-field class="to">
         <input matInput
+               class="date-picker-input"
                [matDatepicker]="to"
                [max]="maxDate"
                [min]="_fromDateControl.value"
