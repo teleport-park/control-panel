@@ -6,11 +6,11 @@
 ></control-panel-ui-period-selector>
 <h4>{{'QUICK_TIME_FILTER_TITLE' | translate}}</h4>
 <div class="quick-filter_wrapper d-flex flex-column pl-1">
-    <mat-checkbox>{{'QUICK_FILTER_LAST_HOUR' | translate}}</mat-checkbox>
-    <mat-checkbox>{{'QUICK_FILTER_LAST_6_HOURS' | translate}}</mat-checkbox>
-    <mat-checkbox>{{'QUICK_FILTER_LAST_DAY' | translate}}</mat-checkbox>
-    <mat-checkbox>{{'QUICK_FILTER_LAST_WEEK' | translate}}</mat-checkbox>
-    <mat-checkbox>{{'QUICK_FILTER_LAST_MONTH' | translate}}</mat-checkbox>
+    <mat-checkbox [(ngModel)]="timeFilterState.lastHour" (ngModelChange)="applyFilter()">{{'QUICK_FILTER_LAST_HOUR' | translate}}</mat-checkbox>
+    <mat-checkbox [(ngModel)]="timeFilterState.lastSixHour" (ngModelChange)="applyFilter()">{{'QUICK_FILTER_LAST_6_HOURS' | translate}}</mat-checkbox>
+    <mat-checkbox [(ngModel)]="timeFilterState.lastDay" (ngModelChange)="applyFilter()">{{'QUICK_FILTER_LAST_DAY' | translate}}</mat-checkbox>
+    <mat-checkbox [(ngModel)]="timeFilterState.lastWeek" (ngModelChange)="applyFilter()">{{'QUICK_FILTER_LAST_WEEK' | translate}}</mat-checkbox>
+    <mat-checkbox [(ngModel)]="timeFilterState.lastMonth" (ngModelChange)="applyFilter()">{{'QUICK_FILTER_LAST_MONTH' | translate}}</mat-checkbox>
 </div>
 <ng-container *ngIf="statusFilter">
     <mat-divider class="mt-2 mb-3"></mat-divider>

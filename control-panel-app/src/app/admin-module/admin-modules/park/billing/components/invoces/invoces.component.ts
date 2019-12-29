@@ -14,7 +14,8 @@ export class InvocesComponent implements OnInit {
   ngOnInit() {
   }
 
-   applyFilterHandler(filterState: TimeFilterState) {
+   applyFilterHandler(filterState: Partial<TimeFilterState>) {
+     console.table(filterState);
      this.service.getInvoices(filterState);
    }
 

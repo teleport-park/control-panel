@@ -64,7 +64,7 @@ export class BillingService {
       );
    }
 
-   public getInvoices(filterState?: TimeFilterState) {
+   public getInvoices(filterState?: Partial<TimeFilterState>) {
       this.http.get('./assets/data/invoices.json')
       .pipe(
          filter(data => !!data),
