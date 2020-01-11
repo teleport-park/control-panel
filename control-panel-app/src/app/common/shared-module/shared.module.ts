@@ -29,6 +29,7 @@ import { ControlPanelTriggerComponent } from './control-panel-trigger/control-pa
 import { ControlPanelUiQuickFilterComponent } from './control-panel-ui-quick-filter/control-panel-ui-quick-filter.component';
 import { ControlPanelUiTimeFilterComponent } from './control-panel-ui-time-filter/control-panel-ui-time-filter.component';
 import { ControlPanelUiPeriodSelectorComponent } from './control-panel-ui-period-selector/control-panel-ui-period-selector.component';
+import { MatRippleModule } from '@angular/material';
 
 const MODULES = [
     ConfirmDialogComponent,
@@ -60,15 +61,16 @@ const MODULES = [
 @NgModule({
     declarations: [...MODULES],
     exports: [...MODULES],
-    imports: [
-        CommonModule,
-        TranslationModule,
-        MaterialModule,
-        ReactiveFormsModule,
-        FormsModule,
-        FormModule,
-        ChartistModule
-    ]
+   imports: [
+      CommonModule,
+      TranslationModule,
+      MaterialModule,
+      ReactiveFormsModule,
+      FormsModule,
+      FormModule,
+      ChartistModule,
+      MatRippleModule
+   ]
 })
 export class SharedModule {
 }

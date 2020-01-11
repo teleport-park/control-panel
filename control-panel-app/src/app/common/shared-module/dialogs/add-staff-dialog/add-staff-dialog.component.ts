@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component, HostListener, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '../../../translations-module';
 import { StaffMember } from '../../../../models';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatChipInputEvent, MatDialogRef, PageEvent } from '@angular/material';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatAutocompleteSelectedEvent, MatChipInputEvent, MatDialogRef, MatFormField, PageEvent } from '@angular/material';
 import moment from 'moment';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
@@ -13,7 +13,13 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 })
 export class AddStaffDialogComponent implements OnInit {
 
+   @ViewChild('rolesRef', {static: false}) rolesRef: MatFormField;
+
    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+
+   roles: string[] = ['operator', 'admin', 'super', 'cashier'];
+
+   rolesEmpty: boolean = false;
 
    /**
     * mode
@@ -61,6 +67,9 @@ export class AddStaffDialogComponent implements OnInit {
       this.form.patchValue(this.entityModel);
       this.mode = this.data.mode;
       moment.locale(this.translateService.locale.getValue());
+      this.entityModel.roles.forEach(role => {
+         this.roles = this.roles.filter(r => r !== role);
+      });
    }
 
    /**
@@ -85,11 +94,13 @@ export class AddStaffDialogComponent implements OnInit {
       });
       if (this.form.valid) {
          const entity = this.form.getRawValue();
+         if (!this.entityModel.roles.length) {
+            this.rolesEmpty = true;
+            return;
+         }
          Object.assign(this.entityModel, entity);
          this.entityModel.hired_at = moment(entity.hired_at).format('YYYY-MM-DD');
-         if (entity.fired_at) {
-            this.entityModel.fired_at = moment(entity.fired_at).format('YYYY-MM-DD');
-         }
+         this.entityModel.fired_at = entity.fired_at ? moment(entity.fired_at).format('YYYY-MM-DD') : undefined;
          this.dialogRef.close(this.entityModel);
       }
    }
@@ -109,15 +120,12 @@ export class AddStaffDialogComponent implements OnInit {
       // this.service.getGroups(event.pageSize, event.pageIndex + 1);
    }
 
-   add(event: MatChipInputEvent): void {
-      const input = event.input;
-      const value = event.value;
-      if ((value || '').trim()) {
-         this.entityModel.roles.push(value.trim());
+   add(role: string): void {
+      if ((role || '').trim()) {
+         this.entityModel.roles.push(role.trim());
+         this.rolesEmpty = false;
       }
-      if (input) {
-         input.value = '';
-      }
+      this.roles = this.roles.filter((r: string) => r !== role);
    }
 
    remove(role: string): void {
@@ -125,6 +133,7 @@ export class AddStaffDialogComponent implements OnInit {
 
       if (index >= 0) {
          this.entityModel.roles.splice(index, 1);
+         this.roles.push(role);
       }
    }
 }

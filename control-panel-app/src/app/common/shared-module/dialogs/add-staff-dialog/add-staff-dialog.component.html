@@ -33,19 +33,23 @@
                 <mat-datepicker #fired_date></mat-datepicker>
             </mat-form-field>
             <mat-form-field>
-                <mat-chip-list #chipList>
+                <mat-label>{{'STAFF_ROLES' | translate}}</mat-label>
+                <mat-chip-list style="min-height: 20px; display: block">
                     <mat-chip *ngFor="let role of entityModel.roles" color="accent"
                               [removable]="true" (removed)="remove(role)">
                         {{role}}
                         <mat-icon matChipRemove>cancel</mat-icon>
                     </mat-chip>
-                    <input placeholder="{{'STAFF_ROLES' | translate}}"
-                           [matChipInputFor]="chipList"
-                           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                           [matChipInputAddOnBlur]="true"
-                           (matChipInputTokenEnd)="add($event)">
+                    &nbsp;
                 </mat-chip-list>
+                <mat-icon matSuffix *ngIf="roles.length" class="ml-1 add-roles_trigger" color="primary" [matMenuTriggerFor]="rolesMenu" (click)="$event.stopPropagation()">add</mat-icon>
             </mat-form-field>
+            <mat-error class="roles-error" *ngIf="rolesEmpty">{{'REQUIRED_FIELD' | translate:[translateService.instant('STAFF_ROLES')]}}</mat-error>
+            <mat-menu #rolesMenu="matMenu">
+                <button mat-menu-item (click)="add(role)" *ngFor="let role of roles">
+                    {{role}}
+                </button>
+            </mat-menu>
         </div>
     </div>
     <div class="action-button-group">
