@@ -19,7 +19,8 @@
                           class="table_cell-inner">{{row[column]}}</span>
                 </ng-container>
                 <ng-container *ngIf="isBoolean(row[column])">
-                    <span class="table_cell-inner"><mat-icon [color]="row[column] ? 'success' : 'warn'">{{row[column] ? 'check_circle' : 'cancel_circle'}}</mat-icon></span>
+                    <span class="table_cell-inner"><mat-icon
+                            [color]="row[column] ? 'success' : 'warn'">{{row[column] ? 'check_circle' : 'cancel_circle'}}</mat-icon></span>
                 </ng-container>
 
             </mat-cell>
@@ -103,7 +104,9 @@
             <mat-cell *matCellDef="let item">
                 <div class="amount d-flex align-items-center justify-content-between">
                     <div class="table_cell-inner">{{item.coins.amount}}</div>
-                    <div><mat-icon svgIcon="coin"></mat-icon></div>
+                    <div>
+                        <mat-icon svgIcon="coin"></mat-icon>
+                    </div>
                 </div>
             </mat-cell>
         </ng-container>
@@ -239,6 +242,6 @@
                  (click)="selectRow(row)"></mat-row>
     </mat-table>
 </div>
-<mat-paginator #paginator [pageSizeOptions]="[50]" *ngIf="itemCount"
+<mat-paginator #paginator [pageSizeOptions]="[25, 50]" *ngIf="itemCount"
                [length]="itemCount" showFirstLastButtons
                (page)="changePageHandler($event)"></mat-paginator>

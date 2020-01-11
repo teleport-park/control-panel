@@ -11,7 +11,7 @@ export class CommonUserService implements UserService<UserType> {
 
     users$: BehaviorSubject<UserType[]> = new BehaviorSubject([]);
 
-    pagination: Pagination = new Pagination(this.getPagedUser.bind(this));
+    pagination: Pagination = new Pagination(this.getPagedUser.bind(this), {limit: 25, offset: 0});
 
     constructor(private http: HttpClient,
                 private getUrl: (method: string, id?: string, query?: string, limit?: number, offset?: number) => string) {

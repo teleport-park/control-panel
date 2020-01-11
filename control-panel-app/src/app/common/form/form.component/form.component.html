@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col">
     <h4>{{translateService.instant('USER')}}</h4>
-    <form [formGroup]="userForm" class="user-form">
+    <form [formGroup]="userForm" class="user-form light-theme">
       <mat-form-field>
         <input matInput placeholder="{{'USER_NAME' | translate}}" formControlName="name" required>
         <mat-error>
@@ -9,18 +9,21 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="{{'NICK_NAME' | translate}}" formControlName="nickname" required>
+        <input matInput placeholder="{{'NICK_NAME' | translate}}" formControlName="display_name" required>
         <mat-error>
           {{'REQUIRED_FIELD' | translate:[translateService.instant('NICK_NAME')]}}
         </mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
-               formControlName="birthyear">
-        <mat-error>
-          {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_DATE_OF_BIRTH_DAY')]}}
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
+                   formControlName="birthday" (dateChange)="dayOfBirthChange($event.value)"
+                   [max]="maxDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>
+                {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_DATE_OF_BIRTH_DAY')]}}
+            </mat-error>
+        </mat-form-field>
       <div class="age-gender_wrapper">
         <mat-form-field class="age-field">
           <mat-label>{{'USER_AGE' | translate}}</mat-label>
@@ -53,9 +56,9 @@
           {{'REQUIRED_FIELD' | translate:[translateService.instant('PHONE')]}}
         </mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <textarea matInput placeholder="{{'USER_DESC' | translate}}" formControlName="comment" [rows]="4"></textarea>
-      </mat-form-field>
+<!--      <mat-form-field>-->
+<!--        <textarea matInput placeholder="{{'USER_DESC' | translate}}" formControlName="comment" [rows]="4"></textarea>-->
+<!--      </mat-form-field>-->
     </form>
   </div>
 

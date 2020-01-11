@@ -2,6 +2,7 @@ import { IPagination, PaginationSetting } from '../intefaces';
 import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { Sort } from '@angular/material';
 
 export class Pagination implements IPagination {
 

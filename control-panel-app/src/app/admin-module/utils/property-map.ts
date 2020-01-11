@@ -1,6 +1,6 @@
 export const PropertyMap = {
    index: 'INDEX',
-   nickName: 'NICK_NAME',
+   display_name: 'NICK_NAME',
    firstName: 'FIRST_NAME',
    lastName: 'LAST_NAME',
    phone: 'PHONE',
@@ -36,7 +36,6 @@ export const PropertyMap = {
    fired: 'STAFF_FIRED_STATE',
    higherEducation: 'STAFF_HIGHER_EDUCATION',
    isEnabled: 'STAFF_ENABLED',
-
    title: 'PACKAGE_TITLE',
    expiresAt: 'PACKAGE_EXPIRES_AT',
    category: 'PACKAGE_CATEGORY',

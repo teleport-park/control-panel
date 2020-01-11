@@ -15,6 +15,7 @@ import { USER_SERVICE } from '../../../../models/intefaces';
 import { HttpClient } from '@angular/common/http';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { CommonUserService } from '../../../../services/common-services/common-user.service';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 const routes: Routes = [{
   path: '',
@@ -53,4 +54,7 @@ export function UserServiceFactory(http: HttpClient, apiUrlService: ApiUrlsServi
   entryComponents: [AddOrEditEntityDialogComponent, ConfirmDialogComponent]
 })
 export class UsersModule {
+   constructor(overlayContainer: OverlayContainer) {
+      overlayContainer.getContainerElement().classList.add('light-theme');
+   }
 }

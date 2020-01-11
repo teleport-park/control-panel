@@ -1,91 +1,74 @@
 import moment, { Moment } from 'moment';
 
 export class Visitor {
-    /**
-     * user id
-     */
-    id: string;
+   /**
+    * user id
+    */
+   id: string;
+   /**
+    * name
+    */
+   name: string;
 
-    /**
-     * created at
-     */
-    createdAt: Date;
+   /**
+    * gender
+    */
+   gender: 'male' | 'female' | 'other';
 
-    /**
-     * updated at
-     */
-    updatedAt: Date;
-    /**
-     * name
-     */
-    name: string;
-    /**
-     * nickname
-     */
-    nickname?: string;
+   /**
+    * email
+    */
+   email: string;
 
-    gender: 'male' | 'female';
-    /**
-     * email
-     */
-    email: string;
-    /**
-     * phone
-     */
-    phone: string;
+   /**
+    * phone
+    */
+   phone: string;
 
-    /**
-     * comment
-     */
-    comment = ' ';
+   /**
+    * age
+    */
+   age: number = null;
 
-    /**
-     * DOB
-     */
-    birthyear: any = null;
+   /**
+    * display name
+    */
+   display_name: string;
 
-    /**
-     * age
-     */
-    age: number = null;
+   birthday: any;
 
-    /**
-     * display name
-     */
-    displayName: string;
+   // get Age() {
+   //     return this.age + '';
+   // }
+   // set Age(value: string) {
+   //     this.age = parseInt(value, 2);
+   // }
 
-    get Age() {
-        return this.age + '';
-    }
-    set Age(value: string) {
-        this.age = parseInt(value, 2);
-    }
+   constructor() {
+   }
 
-    constructor() {
-    }
+   /**
+    * get age
+    * @param DOB
+    */
+   getAge(DOB?: Moment): number {
+       if (DOB) {
+           this.age = Math.abs(DOB.diff(moment(), 'years'));
+           return this.age;
+       }
+       if (moment.isMoment(this.birthday)) {
+           this.age = Math.abs(this.birthday.diff(moment(), 'years'));
+           return this.age;
+       }
+       return null;
+   }
 
-    /**
-     * get age
-     * @param DOB
-     */
-    getAge(DOB?: Moment): number {
-        if (DOB) {
-            this.age = Math.abs(DOB.diff(moment(), 'years'));
-            return this.age;
-        }
-        if (moment.isMoment(this.birthyear)) {
-            this.age = Math.abs(this.birthyear.diff(moment(), 'years'));
-            return this.age;
-        }
-        return null;
-    }
-
-    /**
-     * set DOB
-     * @param age
-     */
-    setDOB(age: number): Moment {
-        this.birthyear = moment().subtract(age, 'years').year();
-        return this.birthyear;
-    }
+   /**
+    * set DOB
+    * @param age
+    */
+   setDOB(age: number): Moment {
+       this.birthday = moment().subtract(age, 'years').year();
+       return this.birthday;
+   }
 }

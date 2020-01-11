@@ -12,7 +12,7 @@ export const API: { [key: string]: string | any } = {
 
    PRICES: 'cpanel/prices',
    // visitors
-   VISITORS: 'cpanel/visitors',
+   VISITORS: 'cpanel/users/visitors',
    // staff
    STAFF: 'cpanel/staff',
 
