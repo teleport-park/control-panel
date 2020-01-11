@@ -14,13 +14,17 @@
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn(column)" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap[column] || column)}}</span></mat-header-cell>
             <mat-cell *matCellDef="let row" class="simple-data">
-                <ng-container *ngIf="!isBoolean(row[column])">
+                <ng-container *ngIf="!isBoolean(row[column]) && !column.includes('_at')">
                     <span matTooltip="{{row[column]}}" [matTooltipShowDelay]="1000"
                           class="table_cell-inner">{{row[column]}}</span>
                 </ng-container>
-                <ng-container *ngIf="isBoolean(row[column])">
+                <ng-container *ngIf="isBoolean(row[column]) && !column.includes('_at')">
                     <span class="table_cell-inner"><mat-icon
                             [color]="row[column] ? 'success' : 'warn'">{{row[column] ? 'check_circle' : 'cancel_circle'}}</mat-icon></span>
+                </ng-container>
+
+                <ng-container *ngIf="column.includes('_at')">
+                    <span class="table_cell-inner">{{row[column] | date: "dd.MM.yyyy HH:mm"}}</span>
                 </ng-container>
 
             </mat-cell>
@@ -39,54 +43,6 @@
                 <span>{{translateService.instant(propertyMap['deletedAt'] || 'deletedAt')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <span class="table_cell-inner">{{item.deletedAt | date: "dd.MM.yyyy HH:mm"}}</span>
-            </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="hiredAt">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['hiredAt'] || 'hiredAt')}}</span></mat-header-cell>
-            <mat-cell *matCellDef="let item">
-                <span class="table_cell-inner">{{item.hiredAt | date: "dd.MM.yyyy HH:mm"}}</span>
-            </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="firedAt">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['firedAt'] || 'firedAt')}}</span></mat-header-cell>
-            <mat-cell *matCellDef="let item">
-                <span class="table_cell-inner">{{item.hiredAt | date: "dd.MM.yyyy HH:mm"}}</span>
-            </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="createdAt">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['createdAt'] || 'createdAt')}}</span></mat-header-cell>
-            <mat-cell *matCellDef="let item">
-                <span class="table_cell-inner">{{item.createdAt | date: "dd.MM.yyyy"}}</span>
-            </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="updatedAt">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['updatedAt'] || 'updatedAt')}}</span></mat-header-cell>
-            <mat-cell *matCellDef="let item">
-                <span class="table_cell-inner">{{item.updatedAt | date: "dd.MM.yyyy"}}</span>
-            </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="created_at">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['createdAt'] || 'createdAt')}}</span></mat-header-cell>
-            <mat-cell *matCellDef="let item">
-                <span class="table_cell-inner">{{item.created_at | date: "dd.MM.yyyy HH:mm"}}</span>
-            </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="updated_at">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['updatedAt'] || 'updatedAt')}}</span></mat-header-cell>
-            <mat-cell *matCellDef="let item">
-                <span class="table_cell-inner">{{item.updated_at | date: "dd.MM.yyyy HH:mm"}}</span>
             </mat-cell>
         </ng-container>
 

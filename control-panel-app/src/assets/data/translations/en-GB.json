@@ -163,5 +163,10 @@
   "NEGATIVE": "Negative",
   "POSITIVE": "Positive",
   "WHO_IM_LABEL": "Enter card number",
-  "ADMIN_WHO_IS": "Who is"
+  "ADMIN_WHO_IS": "Who is",
+  "STAFF_HIRED_AT":  "Hired",
+  "STAFF_FIRED_AT": "Fired",
+  "STAFF_CREATED_AT": "Created",
+  "STAFF_UPDATED_AT": "Updated",
+  "STAFF_ROLES": "Roles"
 }

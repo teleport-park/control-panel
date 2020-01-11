@@ -9,6 +9,6 @@
                                 (apply)="applyFilterHandler($event)"></control-panel-ui-time-filter>
 <control-panel-ui-table class="light-theme"
                         [displayedColumns]="['summary', 'type','charges', 'status', 'total', 'created_at', 'updated_at']"
-                        [simpleDataColumn]="['summary', 'type', 'status']"
+                        [simpleDataColumn]="['summary', 'type', 'status', 'created_at', 'updated_at']"
                         [data]="service.invoices$ | async"
                         [itemCount]="(service.invoices$ | async)?.length"></control-panel-ui-table>

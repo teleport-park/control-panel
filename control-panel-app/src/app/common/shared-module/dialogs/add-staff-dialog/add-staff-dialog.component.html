@@ -9,7 +9,7 @@
                 </mat-error>
             </mat-form-field>
             <div class="check-control">
-                <mat-checkbox formControlName="higherEducation">{{'STAFF_HIGHER_EDUCATION' | translate}}</mat-checkbox>
+                <mat-checkbox formControlName="high_education">{{'STAFF_HIGHER_EDUCATION' | translate}}</mat-checkbox>
             </div>
             <mat-form-field>
                 <input matInput placeholder="{{'STAFF_PASSPORT' | translate}}" formControlName="passport">
@@ -18,21 +18,34 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
+                <input matInput [matDatepicker]="hired_date" placeholder="{{'STAFF_HIRED_AT' | translate}}"
+                       formControlName="hired_at">
+                <mat-datepicker-toggle matSuffix [for]="hired_date"></mat-datepicker-toggle>
+                <mat-datepicker #hired_date></mat-datepicker>
+                <mat-error>
+                    {{'REQUIRED_FIELD' | translate:[translateService.instant('STAFF_HIRED_AT')]}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput [matDatepicker]="fired_date" placeholder="{{'STAFF_FIRED_AT' | translate}}"
+                       formControlName="fired_at">
+                <mat-datepicker-toggle matSuffix [for]="fired_date"></mat-datepicker-toggle>
+                <mat-datepicker #fired_date></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
                 <mat-chip-list #chipList>
-                    <mat-chip *ngFor="let role of entityModel.roles" [selectable]="true"
+                    <mat-chip *ngFor="let role of entityModel.roles" color="accent"
                               [removable]="true" (removed)="remove(role)">
                         {{role}}
                         <mat-icon matChipRemove>cancel</mat-icon>
                     </mat-chip>
-                    <input placeholder="Role"
+                    <input placeholder="{{'STAFF_ROLES' | translate}}"
                            [matChipInputFor]="chipList"
                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                            [matChipInputAddOnBlur]="true"
                            (matChipInputTokenEnd)="add($event)">
                 </mat-chip-list>
             </mat-form-field>
-            <mat-slide-toggle formControlName="active"
-                              class="check-control">{{translateService.instant('STAFF_ENABLED')}}</mat-slide-toggle>
         </div>
     </div>
     <div class="action-button-group">

@@ -73,7 +73,7 @@
   "DIALOG_CONFIRM_TITLE": "Внимание",
   "DIALOG_CONFIRM_MESSAGE": "Вы хотите удалить {0} из списка?",
   "STAFF_TABLE_LABEL": "Список сотрудников",
-  "NAME": "Название",
+  "NAME": "Имя",
   "GROUP_PERMISSIONS": "Разрешения",
   "ADMIN_MENU_SETTINGS": "Настройки",
   "ADMIN_MENU_ZONES": "Зоны",
@@ -164,5 +164,10 @@
   "NEGATIVE": "Отрицательный",
   "POSITIVE": "Положительный",
   "WHO_IM_LABEL": "Введите номер карты",
-  "ADMIN_WHO_IS": "Кто это"
+  "ADMIN_WHO_IS": "Кто это",
+  "STAFF_HIRED_AT":  "Нанят",
+  "STAFF_FIRED_AT": "Уволен",
+  "STAFF_CREATED_AT": "Создан",
+  "STAFF_UPDATED_AT": "Обновлен",
+  "STAFF_ROLES": "Роли"
 }

@@ -34,7 +34,7 @@ export const PropertyMap = {
    employmentDate: 'STAFF_EMPLOYMENT_DATE',
    firingDate: 'STAFF_FIRED_DATE',
    fired: 'STAFF_FIRED_STATE',
-   higherEducation: 'STAFF_HIGHER_EDUCATION',
+   high_education: 'STAFF_HIGHER_EDUCATION',
    isEnabled: 'STAFF_ENABLED',
    title: 'PACKAGE_TITLE',
    expiresAt: 'PACKAGE_EXPIRES_AT',
@@ -46,5 +46,10 @@ export const PropertyMap = {
    summary: 'SUMMARY',
    user: 'USER',
    balance: 'BALANCE',
-   timestamp: 'TRANSACTION_DATE'
+   timestamp: 'TRANSACTION_DATE',
+   hired_at: 'STAFF_HIRED_AT',
+   fired_at: 'STAFF_FIRED_AT',
+   created_at: 'STAFF_CREATED_AT',
+   updated_at: 'STAFF_UPDATED_AT',
+   roles: 'STAFF_ROLES'
 };
