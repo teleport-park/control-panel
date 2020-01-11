@@ -23,7 +23,7 @@ export const MenuPermissionMap: PermissionMap = {
    'poly-controllers': ['admin'],
    park: ['admin'],
    sessions: ['admin'],
-   cards: null,
+   cards: ['admin'],
    games: null,
    visitors: ['admin'],
    staff: ['admin'],

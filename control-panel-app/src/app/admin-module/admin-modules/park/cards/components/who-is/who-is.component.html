@@ -1,0 +1,40 @@
+<div class="who-is_wrapper light-theme">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <control-panel-ui-quick-filter label="{{'WHO_IM_LABEL' | translate}}"
+                                       (filterChange)="setCardNumber($event)"></control-panel-ui-quick-filter>
+        <button mat-flat-button color="accent"
+                (click)="searchCard()">{{'USERS_TABLE_FILTER_INPUT_LABEL' | translate}}</button>
+    </div>
+    <ng-container *ngIf="_result">
+        <control-panel-ui-card panelUIColor="primary">
+            <div panelUICardHeaderTitle>{{_result?.roles[0]}}</div>
+            <div panelUICardContent>
+                <h4>Profile</h4>
+                <ng-container *ngFor="let key of getKeys(_result.profile)">
+                    <p>
+                        <span class="bold">{{key}}: </span>
+                        <span class="italic">{{_result.profile[key]}}</span>
+                    </p>
+                </ng-container>
+                <h4>Card</h4>
+                <ng-container *ngFor="let key of getKeys(_result.card)">
+                    <p>
+                        <span class="bold">{{key}}: </span>
+                        <span *ngIf="key.includes('_at')"
+                              class="italic">{{_result.card[key] | date:'dd.MM.yyyy hh:mm'}}</span>
+                        <span *ngIf="!key.includes('_at')" class="italic">{{_result.card[key]}}</span>
+                    </p>
+                </ng-container>
+                <h4>Account</h4>
+                <p>
+                    <span class="bold">id: </span>
+                    <span class="italic">{{_result.account.id}}</span>
+                </p>
+                <p>
+                    <span class="bold">balance: </span>
+                    <span class="italic">{{_result.account.balance[0].amount}} {{_result.account.balance[0].currency}}</span>
+                </p>
+            </div>
+        </control-panel-ui-card>
+    </ng-container>
+</div>

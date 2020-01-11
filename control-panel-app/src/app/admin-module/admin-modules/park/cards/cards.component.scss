@@ -1,6 +1,14 @@
 @import 'control-panel-theme';
 :host {
-  width: 100%;
+  @include d-block();
+  height: 100%;
+  .mat-tab-group {
+    height: 100%;
+    ::ng-deep .mat-tab-body-wrapper {
+      height: 100%;
+      background-color: $white;
+    }
+  }
   .card_wrapper {
     height: 100%;
     overflow: auto;
@@ -33,5 +41,8 @@
   }
   .mat-paginator {
     //background-color: $main_bg_color;
+  }
+  .who-is_tab {
+    height: 100%;
   }
 }

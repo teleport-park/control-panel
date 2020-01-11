@@ -162,5 +162,7 @@
   "QUICK_FILTER_LAST_WEEK": "за последнюю неделю",
   "QUICK_FILTER_LAST_MONTH": "за последний месяц",
   "NEGATIVE": "Отрицательный",
-  "POSITIVE": "Положительный"
+  "POSITIVE": "Положительный",
+  "WHO_IM_LABEL": "Введите номер карты",
+  "ADMIN_WHO_IS": "Кто это"
 }

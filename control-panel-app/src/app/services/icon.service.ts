@@ -36,6 +36,7 @@ export class IconService {
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'zoom_out_map', iconPath);
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'exit_to_app', iconPath);
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'hourglass_empty', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'credit_card', iconPath);
   }
 
   private static pushSvgIconToRegistry(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, iconName: string, iconPath: string): void {

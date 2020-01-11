@@ -161,5 +161,7 @@
   "QUICK_FILTER_LAST_WEEK": "last week",
   "QUICK_FILTER_LAST_MONTH": "last month",
   "NEGATIVE": "Negative",
-  "POSITIVE": "Positive"
+  "POSITIVE": "Positive",
+  "WHO_IM_LABEL": "Enter card number",
+  "ADMIN_WHO_IS": "Who is"
 }

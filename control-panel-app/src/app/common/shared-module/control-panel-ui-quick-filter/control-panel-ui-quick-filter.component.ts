@@ -1,37 +1,40 @@
-import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 @Component({
-    selector: 'control-panel-ui-quick-filter',
-    templateUrl: './control-panel-ui-quick-filter.component.html',
-    styleUrls: ['./control-panel-ui-quick-filter.component.scss']
+   selector: 'control-panel-ui-quick-filter',
+   templateUrl: './control-panel-ui-quick-filter.component.html',
+   styleUrls: ['./control-panel-ui-quick-filter.component.scss']
 })
 export class ControlPanelUiQuickFilterComponent implements OnDestroy {
 
-    _control: FormControl = new FormControl('');
+   @Input() label: string = 'USERS_TABLE_FILTER_INPUT_LABEL';
 
-    get quickFilterValue() {
-        return this._control.value;
-    }
+   _control:
+      FormControl = new FormControl('');
 
-    destroy$: Subject<boolean> = new Subject();
+   get quickFilterValue() {
+      return this._control.value;
+   }
 
-    @Output() filterChange: EventEmitter<string> = new EventEmitter();
+   destroy$: Subject<boolean> = new Subject();
 
-    constructor() {
-        this._control.valueChanges.pipe(
-            debounceTime(500),
-            distinctUntilChanged(),
-            takeUntil(this.destroy$))
-        .subscribe((value: string) => {
-            this.filterChange.emit(value);
-        });
-    }
+   @Output() filterChange: EventEmitter<string> = new EventEmitter();
 
-    ngOnDestroy(): void {
-        this.destroy$.next(true);
-        this.destroy$.complete();
-    }
+   constructor() {
+      this._control.valueChanges.pipe(
+         debounceTime(500),
+         distinctUntilChanged(),
+         takeUntil(this.destroy$))
+      .subscribe((value: string) => {
+         this.filterChange.emit(value);
+      });
+   }
+
+   ngOnDestroy(): void {
+      this.destroy$.next(true);
+      this.destroy$.complete();
+   }
 }

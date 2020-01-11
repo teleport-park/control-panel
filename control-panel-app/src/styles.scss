@@ -117,9 +117,16 @@ html, body {
   .light-theme {
     @include angular-material-theme($control-panel-light-theme);
     color: map-get($dark-color, 500);
+    .mat-flat-button.mat-accent {
+      color: #fff;
+    }
   }
   .bold {
     font-weight: 700;
+  }
+
+  .italic {
+    font-style: italic;
   }
 
   .word-break {

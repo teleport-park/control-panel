@@ -1,83 +1,85 @@
-<div class="card_wrapper">
-  <control-panel-ui-card *ngIf="(service.cards | async)">
-    <div panelUICardHeaderTitle>{{translateService.instant('CARD_LIST')}}</div>
-    <div panelUICardContent>
-      <table mat-table [dataSource]="dataSource" class="table">
+<mat-tab-group [@.disabled]="true" color="accent">
+    <mat-tab label="{{'ADMIN_MENU_CARDS' | translate}}">
+        <div class="card_wrapper light-theme">
+            <table mat-table [dataSource]="dataSource" class="table">
 
-        <!--index column-->
-        <ng-container matColumnDef="index">
-          <th mat-header-cell *matHeaderCellDef>
-            <span>{{translateService.instant(propertyMap['index'])}}</span></th>
-          <td mat-cell *matCellDef="let row; let i = index">
-            <span class="table_cell-inner">{{i + 1}}</span>
-          </td>
-        </ng-container>
+                <!--index column-->
+                <ng-container matColumnDef="index">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <span>{{translateService.instant(propertyMap['index'])}}</span></th>
+                    <td mat-cell *matCellDef="let row; let i = index">
+                        <span class="table_cell-inner">{{i + 1}}</span>
+                    </td>
+                </ng-container>
 
-        <!--data cells-->
-        <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">
-          <th mat-header-cell *matHeaderCellDef>
-            <span>{{translateService.instant(propertyMap[column])}}</span></th>
-          <td mat-cell *matCellDef="let row">
-            <span class="table_cell-inner">{{row[column]}}</span>
-          </td>
-        </ng-container>
+                <!--data cells-->
+                <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <span>{{translateService.instant(propertyMap[column])}}</span></th>
+                    <td mat-cell *matCellDef="let row">
+                        <span class="table_cell-inner">{{row[column]}}</span>
+                    </td>
+                </ng-container>
 
-        <!--owner cell-->
-        <ng-container matColumnDef="currentOwner">
-          <th mat-header-cell *matHeaderCellDef>
-            <span>{{translateService.instant(propertyMap['currentOwner'])}}</span></th>
-          <td mat-cell *matCellDef="let row">
-            <span class="table_cell-inner">{{row.currentOwner.firstName}} {{row.currentOwner.lastName}}</span>
-          </td>
-        </ng-container>
+                <!--owner cell-->
+                <ng-container matColumnDef="currentOwner">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <span>{{translateService.instant(propertyMap['currentOwner'])}}</span></th>
+                    <td mat-cell *matCellDef="let row">
+                        <span class="table_cell-inner">{{row.currentOwner.firstName}} {{row.currentOwner.lastName}}</span>
+                    </td>
+                </ng-container>
 
-        <!--enabled cell-->
-        <ng-container matColumnDef="enabled">
-          <th mat-header-cell *matHeaderCellDef>
-            {{translateService.instant(propertyMap['enabled'])}}
-          </th>
-          <td mat-cell *matCellDef="let row">
+                <!--enabled cell-->
+                <ng-container matColumnDef="enabled">
+                    <th mat-header-cell *matHeaderCellDef>
+                        {{translateService.instant(propertyMap['enabled'])}}
+                    </th>
+                    <td mat-cell *matCellDef="let row">
           <span *ngIf="row['enabled']" class="table_cell-inner">
             <mat-icon class="card-activated">check_circle</mat-icon>
           </span>
-            <span *ngIf="!row['enabled']" class="table_cell-inner">
+                        <span *ngIf="!row['enabled']" class="table_cell-inner">
             <mat-icon class="card-deactivated">cancel</mat-icon>
           </span>
-          </td>
-        </ng-container>
+                    </td>
+                </ng-container>
 
-        <!--action cell-->
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef>
-            {{translateService.instant(propertyMap['action'])}}
-          </th>
-          <td mat-cell *matCellDef="let row">
-            <button mat-icon-button [matMenuTriggerFor]="actionMenu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #actionMenu="matMenu">
-              <button mat-menu-item (click)="row.enabled = true; changeCardState(row)">
-                <mat-icon>check_circle</mat-icon>
-                {{translateService.instant('CARD_ACTION_ACTIVATE')}}
-              </button>
-              <button mat-menu-item (click)="row.enabled = false; changeCardState(row)">
-                <mat-icon>cancel</mat-icon>
-                {{translateService.instant('CARD_ACTION_DEACTIVATE')}}
-              </button>
-            </mat-menu>
-          </td>
-        </ng-container>
+                <!--action cell-->
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef>
+                        {{translateService.instant(propertyMap['action'])}}
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <button mat-icon-button [matMenuTriggerFor]="actionMenu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #actionMenu="matMenu">
+                            <button mat-menu-item (click)="row.enabled = true; changeCardState(row)">
+                                <mat-icon>check_circle</mat-icon>
+                                {{translateService.instant('CARD_ACTION_ACTIVATE')}}
+                            </button>
+                            <button mat-menu-item (click)="row.enabled = false; changeCardState(row)">
+                                <mat-icon>cancel</mat-icon>
+                                {{translateService.instant('CARD_ACTION_DEACTIVATE')}}
+                            </button>
+                        </mat-menu>
+                    </td>
+                </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-            [ngClass]="getRowClass(row.currentOwner)"></tr>
-      </table>
-      <mat-paginator [pageSizeOptions]="[50, 100, 200]"
-                     [length]="service.cards?.getValue()?.length"
-                     [pageIndex]="paginatorInit?.pageIndex"
-                     [pageSize]="paginatorInit?.pageSize"
-                     showFirstLastButtons
-                     (page)="changePageHandler($event)"></mat-paginator>
-    </div>
-  </control-panel-ui-card>
-</div>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                    [ngClass]="getRowClass(row.currentOwner)"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[50, 100, 200]"
+                           [length]="service.cards$?.getValue()?.length"
+                           [pageIndex]="paginatorInit?.pageIndex"
+                           [pageSize]="paginatorInit?.pageSize"
+                           showFirstLastButtons
+                           (page)="changePageHandler($event)"></mat-paginator>
+        </div>
+    </mat-tab>
+    <mat-tab label="{{'ADMIN_WHO_IS' | translate}}" class="who-is_tab">
+        <who-is></who-is>
+    </mat-tab>
+</mat-tab-group>

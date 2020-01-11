@@ -16,6 +16,7 @@ import { PackagesService } from './packages/packages.service';
 import { SessionsComponent } from './sessions/sessions.component';
 import { TranslationModule } from '../../../common/translations-module/translation.module';
 import { BillingService } from './billing/services/billing.service';
+import { WhoIsComponent } from './cards/components/who-is/who-is.component';
 
 const routes: Routes = [{
    path: '',
@@ -55,7 +56,7 @@ const routes: Routes = [{
 export const ParkRouterModule = RouterModule.forChild(routes);
 
 export const COMPONENTS = [
-   ParkComponent, GamesComponent, PackagesComponent, PricingComponent, CardsComponent, SessionsComponent
+   ParkComponent, GamesComponent, PackagesComponent, PricingComponent, CardsComponent, SessionsComponent, WhoIsComponent
 ];
 
 @NgModule({
