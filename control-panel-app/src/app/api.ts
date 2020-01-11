@@ -14,7 +14,7 @@ export const API: { [key: string]: string | any } = {
    // visitors
    VISITORS: 'cpanel/users/visitors',
    // staff
-   STAFF: 'cpanel/staff',
+   STAFF: 'cpanel/users/staff',
 
    // transactions
    TRANSACTIONS: 'cpanel/transactions',

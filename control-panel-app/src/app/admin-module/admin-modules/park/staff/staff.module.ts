@@ -24,6 +24,7 @@ import { USER_SERVICE } from '../../../../models/intefaces';
 import { CommonUserService } from '../../../../services/common-services/common-user.service';
 import { HttpClient } from '@angular/common/http';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 const routes: Routes = [{
    path: '',
@@ -71,4 +72,7 @@ export function StaffServiceFactory(http: HttpClient, urlService: ApiUrlsService
    ]
 })
 export class StaffModule {
+   constructor(overlayContainer: OverlayContainer) {
+      overlayContainer.getContainerElement().classList.add('light-theme');
+   }
 }

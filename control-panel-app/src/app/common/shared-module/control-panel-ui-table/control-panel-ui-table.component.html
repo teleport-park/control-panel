@@ -211,11 +211,11 @@
                 </button>
                 <mat-menu #staffMemberMenu="matMenu">
                     <button mat-menu-item (click)="delete.emit(item)">
-                        <mat-icon>delete</mat-icon>
+                        <mat-icon color="warn">delete</mat-icon>
                         {{translateService.instant('TABLE_DELETE')}}
                     </button>
                     <button mat-menu-item (click)="edit.emit(item)">
-                        <mat-icon>edit</mat-icon>
+                        <mat-icon color="primary">edit</mat-icon>
                         {{translateService.instant('TABLE_EDIT')}}
                     </button>
                 </mat-menu>
