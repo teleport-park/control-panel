@@ -1,22 +1,56 @@
 @import "control-panel-theme";
+
 :host {
   @include d-block();
+
   .period-selector_wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
+
     .from, .to, .arrow, .actions {
       margin-right: 2rem;
     }
+
     .from, .to {
       width: 8rem;
     }
+
     .time {
       width: 5rem;
+      margin-right: 1rem;
     }
   }
+
   .date-picker-input {
     line-height: 1;
+  }
+
+  .quick-time-filter_wrapper {
+    display: flex;
+
+    .period-fast-link {
+      cursor: pointer;
+      margin-bottom: .3rem;
+
+      span {
+        border-bottom: 1px dashed $inactive;
+      }
+
+      &.active {
+        color: mat-color($primary-color, 900);
+        span {
+          border-bottom-color: mat-color($primary-color, 900);
+        }
+      }
+      &:hover {
+        color: mat-color($primary-color, 200);
+        span {
+          border-bottom-color: mat-color($primary-color, 300);
+        }
+      }
+    }
   }
 }

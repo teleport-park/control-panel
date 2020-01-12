@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+const moment = require('moment');
 
 export interface TimeFilterState {
    status: { [key: string]: boolean };

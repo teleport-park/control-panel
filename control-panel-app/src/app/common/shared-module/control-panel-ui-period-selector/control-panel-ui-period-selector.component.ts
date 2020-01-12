@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { Moment } from 'moment';
 import { FormControl, Validators } from '@angular/forms';
 
@@ -17,6 +17,8 @@ export interface PeriodSelectorSubmitEvent {
    styleUrls: ['./control-panel-ui-period-selector.component.scss']
 })
 export class ControlPanelUiPeriodSelectorComponent {
+
+   @ViewChildren('fast_link') linkList: QueryList<ElementRef>;
 
    timeStamp = moment();
 
@@ -56,23 +58,35 @@ export class ControlPanelUiPeriodSelectorComponent {
    /**
     * from date form control
     */
-   _fromDateControl = new FormControl(null, [Validators.required]);
+   _fromDateControl = new FormControl(null);
    /**
     * from date form control
     */
-   _fromTimeControl = new FormControl(null, [Validators.required]);
+   _fromTimeControl = new FormControl(null);
 
    /**
     * to date form control
     */
-   _toDateControl = new FormControl(this.maxDate, [Validators.required]);
+   _toDateControl = new FormControl(this.maxDate);
    /**
     * to date form control
     */
-   _toTimeControl = new FormControl(this.timeStamp.format('HH:mm'), [Validators.required]);
+   _toTimeControl = new FormControl(this.timeStamp.format('HH:mm'));
 
 
-   constructor() {
+   constructor(private renderer: Renderer2) {
+   }
+
+   public setPeriod(unit: string, value: number, index: number) {
+      console.log(this.linkList);
+      this.linkList.forEach(link => {
+         this.renderer.removeClass(link.nativeElement, 'active');
+      });
+      this.renderer.addClass(this.linkList.toArray()[index].nativeElement, 'active');
+      this.timeStamp = moment();
+      const fromDate = moment().subtract(value, unit);
+      this._fromTimeControl.setValue(fromDate.format('HH:mm'));
+      this._fromDateControl.setValue(fromDate);
    }
 
    /**
