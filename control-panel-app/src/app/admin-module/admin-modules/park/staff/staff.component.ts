@@ -46,7 +46,7 @@ export class StaffComponent implements OnInit, OnDestroy {
     */
    displayedColumns: string[] = [
       'name',
-      'display_name',
+      // 'display_name',
       'passport',
       'hired_at',
       'fired_at',
@@ -62,7 +62,7 @@ export class StaffComponent implements OnInit, OnDestroy {
     */
    simpleDataColumn: string[] = [
       'name',
-      'display_name',
+      // 'display_name',
       'passport',
       'hired_at',
       'fired_at',

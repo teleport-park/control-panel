@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TranslateService } from '../../../../common/translations-module';
 import { Card } from '../../../../models/card.model';
 import { StaffMember, Visitor } from '../../../../models';
@@ -12,7 +12,8 @@ import { StorageService } from '../../../../services/storage.service';
 @Component({
    selector: 'control-panel-cards',
    templateUrl: './cards.component.html',
-   styleUrls: ['./cards.component.scss']
+   styleUrls: ['./cards.component.scss'],
+   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardsComponent implements OnInit {
 
@@ -46,13 +47,18 @@ export class CardsComponent implements OnInit {
     * @param translateService
     * @param service
     * @param storage
+    * @param cd
     */
-   constructor(public translateService: TranslateService, public service: CardsService, public storage: StorageService) {
+   constructor(public translateService: TranslateService,
+               public service: CardsService,
+               public storage: StorageService,
+               private cd: ChangeDetectorRef) {
    }
 
    ngOnInit() {
       this.service.cards$.pipe(filter(data => !!data)).subscribe((result: Card[]) => {
          this.initDataSource(result);
+         this.cd.markForCheck();
       });
       if (this.storage && this.storage.getValue(this.service.STORAGE_KEY)) {
          this.paginatorInit = this.storage.getValue(this.service.STORAGE_KEY);
