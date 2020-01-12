@@ -132,7 +132,7 @@
       "currency": "BYN",
       "amount": 31.25
     },
-    "status": "paid",
+    "status": "canceled",
     "payments": [
       {
         "id": "5e032ca35e8549c7b82fe386",
@@ -411,7 +411,7 @@
       "currency": "BYN",
       "amount": 46.08
     },
-    "status": "paid",
+    "status": "progress",
     "payments": [
       {
         "id": "5e032ca3e7d9b3afce4e62bc",
@@ -597,7 +597,7 @@
       "currency": "BYN",
       "amount": 19.31
     },
-    "status": "unpaid",
+    "status": "canceled",
     "payments": [
       {
         "id": "5e032ca342f22f6c550cdb4a",
@@ -969,7 +969,7 @@
       "currency": "BYN",
       "amount": 85.79
     },
-    "status": "unpaid",
+    "status": "progress",
     "payments": [
       {
         "id": "5e032ca3496544b048799525",

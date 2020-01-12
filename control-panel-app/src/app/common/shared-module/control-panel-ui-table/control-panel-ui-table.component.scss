@@ -60,10 +60,35 @@
     }
 
     .status-icon {
-      color: #FF0000;
+      color: $warn;
 
       &.active {
-        color: #00AE12;
+        color: $success;
+      }
+    }
+    .control-panel-ui-table {
+      &_paid {
+        color: $success;
+      }
+      &_unpaid {
+        color: $inactive;
+      }
+      &_canceled {
+        color: $warn;
+      }
+      &_progress {
+        color: $info;
+      }
+    }
+    .control-panel-ui-table-amount {
+      &_positive {
+        color: $success;
+      }
+      &_negative {
+        color: $warn;
+      }
+      &_null {
+        color: $inactive;
       }
     }
   }

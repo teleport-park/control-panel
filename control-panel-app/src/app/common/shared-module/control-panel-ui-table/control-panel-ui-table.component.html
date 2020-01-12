@@ -16,7 +16,8 @@
             <mat-cell *matCellDef="let row" class="simple-data">
                 <ng-container *ngIf="!isBoolean(row[column]) && !column.includes('_at')">
                     <span matTooltip="{{row[column]}}" [matTooltipShowDelay]="1000"
-                          class="table_cell-inner">{{row[column]}}</span>
+                          class="table_cell-inner"
+                          [ngClass]="'control-panel-ui-table_' + row[column]">{{row[column]}}</span>
                 </ng-container>
                 <ng-container *ngIf="isBoolean(row[column]) && !column.includes('_at')">
                     <span class="table_cell-inner"><mat-icon
@@ -108,7 +109,6 @@
                     <ng-container *ngFor="let charge of item.charges">
                         <ng-container *ngFor="let recipient of charge.recipients">
                             <div class="table_cell-inner">{{recipient.profile.display_name}}</div>
-                            <div class="table_cell-inner">{{recipient.profile.email}}</div>
                         </ng-container>
                     </ng-container>
                 </div>
@@ -137,7 +137,8 @@
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['balance'] || 'balance')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
-                <div class="table_cell-inner">
+                <div class="table_cell-inner"
+                     [ngClass]="'control-panel-ui-table-amount_' + (getBalance(item.balance) > 0 ? 'positive' : getBalance(item.balance) < 0 ? 'negative' : 'null')">
                     {{getBalance(item.balance)}} {{item.balance[0].currency}}
                 </div>
             </mat-cell>
@@ -183,12 +184,7 @@
                     *matHeaderCellDef>{{translateService.instant(propertyMap['roles']) || 'roles'}}</mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <span class="table_cell-inner">
-                    <ul>
-                      <li *ngFor="let role of row.roles; let i=index;" [hidden]="i > 4">
-                        <span *ngIf="i < 4">{{role}}</span>
-                        <span *ngIf="i === 4">{{translateService.instant('OTHERS')}}</span>
-                      </li>
-                    </ul>
+                    <span>{{row.roles.join(', ')}}</span>
                 </span>
             </mat-cell>
         </ng-container>

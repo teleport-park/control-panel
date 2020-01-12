@@ -5,7 +5,7 @@
     </div>
 </div>
 <control-panel-ui-time-filter class="light-theme"
-                              [statusFilter]="{statuses: ['paid', 'unpaid']}"
+                              [statusFilter]="{statuses: ['paid', 'unpaid', 'canceled', 'progress']}"
                                 (apply)="applyFilterHandler($event)"></control-panel-ui-time-filter>
 <control-panel-ui-table class="light-theme"
                         [displayedColumns]="['summary', 'type','charges', 'status', 'total', 'created_at', 'updated_at']"

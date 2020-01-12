@@ -100,7 +100,7 @@ export class AddStaffDialogComponent implements OnInit {
          }
          Object.assign(this.entityModel, entity);
          this.entityModel.hired_at = moment(entity.hired_at).format('YYYY-MM-DD');
-         this.entityModel.fired_at = entity.fired_at ? moment(entity.fired_at).format('YYYY-MM-DD') : undefined;
+         this.entityModel.fired_at = entity.fired_at ? moment(entity.fired_at).format('YYYY-MM-DD') : null;
          this.dialogRef.close(this.entityModel);
       }
    }
@@ -110,14 +110,6 @@ export class AddStaffDialogComponent implements OnInit {
     */
    onCancelHandler(): void {
       this.dialogRef.close();
-   }
-
-   /**
-    * change page handler
-    * @param event
-    */
-   pageChangeHandler(event: PageEvent) {
-      // this.service.getGroups(event.pageSize, event.pageIndex + 1);
    }
 
    add(role: string): void {

@@ -34,6 +34,10 @@
       {
         "currency": "BYN",
         "amount": 83.64
+      },
+      {
+        "currency": "BYN",
+        "amount": -83.64
       }
     ]
   },
@@ -72,6 +76,10 @@
       {
         "currency": "BYN",
         "amount": 30.25
+      },
+      {
+        "currency": "BYN",
+        "amount": -30.25
       }
     ]
   },
@@ -194,7 +202,7 @@
     "balance": [
       {
         "currency": "BYN",
-        "amount": 22.81
+        "amount": 0
       }
     ]
   },
