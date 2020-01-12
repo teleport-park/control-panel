@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Visitor } from '../../models';
-import { Pagination } from '../../models/classes/pagination';
+import { RequestHelper } from '../../models/helpers/request-helper';
 import { UserType } from '../../models/types';
 
 
@@ -11,22 +11,30 @@ export class CommonUserService implements UserService<UserType> {
 
    users$: BehaviorSubject<UserType[]> = new BehaviorSubject([]);
 
-   pagination: Pagination = new Pagination(this.getPagedUser.bind(this), {limit: 25, offset: 0});
+   requestHelper: RequestHelper = new RequestHelper(this.getPagedUser.bind(this), {limit: 25, offset: 0});
 
-   constructor(private http: HttpClient,
-               private getUrl: (method: string, id?: string, query?: string, limit?: number, offset?: number) => string) {
+   constructor(
+      private http: HttpClient,
+      private getUrl: (method: string,
+                       id?: string,
+                       query?: string,
+                       limit?: number,
+                       offset?: number,
+                       otherParams?: { [key: string]: string }) => string,
+      private sortingInitState: {[key: string]: string} = {}) {
+      this.requestHelper = new RequestHelper(this.getPagedUser.bind(this), {limit: 25, offset: 0}, sortingInitState);
    }
 
    getUsers(query?: string): void {
-      this.pagination.getData(query)
+      this.requestHelper.getData(query)
       .pipe(filter(data => !!data))
       .subscribe((result: UserType[]) => {
          this.users$.next(result);
       });
    }
 
-   private getPagedUser(query?: string, limit: number = 50, offset: number = 0): Observable<HttpResponse<any>> {
-      return this.http.get(this.getUrl('GET', null, query, limit, offset), {observe: 'response'});
+   private getPagedUser(query?: string, limit: number = 50, offset: number = 0, otherParams: { [key: string]: string } = {}): Observable<HttpResponse<any>> {
+      return this.http.get(this.getUrl('GET', null, query, limit, offset, otherParams), {observe: 'response'});
    }
 
    getUser(id: string): Observable<Visitor> {

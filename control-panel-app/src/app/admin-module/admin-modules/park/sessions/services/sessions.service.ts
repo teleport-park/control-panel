@@ -3,14 +3,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Session } from 'inspector';
 import { ApiUrlsService } from '../../../../../services/api-urls.service';
-import { Pagination } from '../../../../../models/classes/pagination';
+import { RequestHelper } from '../../../../../models/helpers/request-helper';
 
 @Injectable({
     providedIn: 'root'
 })
 export class SessionsService {
 
-    pagination: Pagination = new Pagination(this.getPagedSessions.bind(this));
+    pagination: RequestHelper = new RequestHelper(this.getPagedSessions.bind(this));
 
     sessions$: BehaviorSubject<Session[]> = new BehaviorSubject([]);
 

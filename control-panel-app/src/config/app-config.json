@@ -1,14 +1,14 @@
 {
   "users": {
     "sortedColumns": [
-      "firstName",
-      "lastName",
-      "email",
-      "phone"
+      "name", "registered", "gender", "phone"
     ]
   },
   "staff": {
     "sortedColumns": [
+      "name",
+      "hired_at",
+      "fired_at"
     ]
   },
   "permissions": {

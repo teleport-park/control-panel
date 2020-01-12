@@ -20,7 +20,8 @@ export class ApiUrlsService implements IApiUrlsInterface {
                               id?: number | string,
                               query?: string,
                               limit?: number,
-                              offset?: number): string | null {
+                              offset?: number,
+                              otherParams?: {[key: string]: string}): string | null {
       const originEndPoint = `${ApiUrlsService.ORIGIN}${endPoint}`;
       const aub = new ApiUrlBuilder(originEndPoint, requestMethod);
 
@@ -46,6 +47,11 @@ export class ApiUrlsService implements IApiUrlsInterface {
          }
          if (query) {
             aub.appendQueryParameter('q', query);
+         }
+         if (otherParams) {
+            Object.keys(otherParams).forEach(key => {
+               aub.appendQueryParameter(key, otherParams[key].toString());
+            });
          }
          return aub.build();
       }
@@ -105,12 +111,22 @@ export class ApiUrlsService implements IApiUrlsInterface {
       return ApiUrlsService.getPagedUrl(API.VRGAMES, requestMethod);
    }
 
-   public getVisitors(requestMethod: 'GET' | 'PUT' | 'POST' | 'DELETE', id?: string, query?: string, limit?: number, offset?: number) {
-      return ApiUrlsService.getPagedUrl(API.VISITORS, requestMethod, id, query, limit, offset);
+   public getVisitors(requestMethod: 'GET' | 'PUT' | 'POST' | 'DELETE',
+                      id?: string,
+                      query?: string,
+                      limit?: number,
+                      offset?: number,
+                      otherParams?: {[key: string]: string}) {
+      return ApiUrlsService.getPagedUrl(API.VISITORS, requestMethod, id, query, limit, offset, otherParams);
    }
 
-   public getStaff(requestMethod: 'GET' | 'PUT' | 'POST' | 'DELETE', id?: string, query?: string, limit?: number, offset?: number) {
-      return ApiUrlsService.getPagedUrl(API.STAFF, requestMethod, id, query, limit, offset);
+   public getStaff(requestMethod: 'GET' | 'PUT' | 'POST' | 'DELETE',
+                   id?: string,
+                   query?: string,
+                   limit?: number,
+                   offset?: number,
+                   otherParams?: {[key: string]: string}) {
+      return ApiUrlsService.getPagedUrl(API.STAFF, requestMethod, id, query, limit, offset, otherParams);
    }
 
    public getTransactions(requestMethod: 'GET') {

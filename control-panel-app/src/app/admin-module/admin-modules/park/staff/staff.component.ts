@@ -10,7 +10,7 @@ import {
    ConfirmDialogData,
    ControlPanelUiQuickFilterComponent
 } from '../../../../common/shared-module';
-import { MatDialog } from '@angular/material';
+import { MatDialog, Sort } from '@angular/material';
 
 import { default as config } from '../../../../../config/app-config.json';
 import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
@@ -115,7 +115,7 @@ export class StaffComponent implements OnInit, OnDestroy {
    }
 
    applyQuickFilter(value: string) {
-      this.service.pagination.resetPagination();
+      this.service.requestHelper.resetPagination();
       this.resetPagination = {reset: true};
       this.service.getUsers(value);
    }
@@ -195,7 +195,16 @@ export class StaffComponent implements OnInit, OnDestroy {
     * @param event
     */
    pageChangeHandler(event: PaginationSetting): void {
-      this.service.pagination.setPagination(event);
+      this.service.requestHelper.setPagination(event);
+      this.service.getUsers(this.quickFilter.quickFilterValue);
+   }
+
+   sortChangeHandler(event: Sort) {
+      const sort = {};
+      if (event.direction) {
+         sort[event.active.replace('_at', '')] = event.direction;
+      }
+      this.service.requestHelper.setSorting(sort);
       this.service.getUsers(this.quickFilter.quickFilterValue);
    }
 

@@ -25,6 +25,10 @@ import { CommonUserService } from '../../../../services/common-services/common-u
 import { HttpClient } from '@angular/common/http';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { Sort } from '@angular/material';
+import { AppStorageKey } from '../../../../models/app-storage-key';
+
+const storageKey: string = 'STAFF';
 
 const routes: Routes = [{
    path: '',
@@ -45,8 +49,17 @@ const routes: Routes = [{
 export const StaffRoutingModule = RouterModule.forChild(routes);
 
 export function StaffServiceFactory(http: HttpClient, urlService: ApiUrlsService) {
-   return new CommonUserService(http, urlService.getStaff);
+   return new CommonUserService(http, urlService.getStaff, sortStorageSet());
 }
+
+const sortStorageSet = () => {
+   const sortState: Sort = JSON.parse(localStorage.getItem(storageKey + AppStorageKey.Sort)) as Sort;
+   if (sortState) {
+      const sort = {};
+      sort[sortState.active] = sortState.direction;
+      return sort;
+   }
+};
 
 @NgModule({
    declarations: [StaffComponent, GroupsComponent, StaffMemberComponent],

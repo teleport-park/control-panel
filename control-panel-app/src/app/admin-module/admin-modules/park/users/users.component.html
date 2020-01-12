@@ -28,12 +28,14 @@
             [displayedColumns]="displayedColumns"
             [simpleDataColumn]="columnWithData"
             [listSortedColumn]="sortedColumn"
-            [itemCount]="service.pagination.Count"
+            [itemCount]="service.requestHelper.Count"
             [resetPagination]="resetPagination"
+            storageKey="VISITORS"
             iconSet="person_add"
             (edit)="operationWithUser('edit', $event)"
             (delete)="operationWithUser('delete', $event)"
             (add)="operationWithUser('add')"
+            (sortChanges)="sortChangeHandler($event)"
             (pageChanges)="paginationChangeHandler($event)"></control-panel-ui-table>
         </div>
       </control-panel-ui-card>

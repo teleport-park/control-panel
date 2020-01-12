@@ -11,7 +11,7 @@
     <mat-table matSort [dataSource]="dataSource" class="table" (matSortChange)="sortChange($event)">
         <!--data cells-->
         <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn(column)" *matHeaderCellDef>
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn(column)" [ngClass]="{'sort-column': !isSortedColumn(column)}" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap[column] || column)}}</span></mat-header-cell>
             <mat-cell *matCellDef="let row" class="simple-data">
                 <ng-container *ngIf="!isBoolean(row[column]) && !column.includes('_at')">
@@ -32,7 +32,7 @@
         </ng-container>
 
         <ng-container matColumnDef="expiresAt">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('expiresAt')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['expiresAt'] || 'expiresAt')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <span class="table_cell-inner">{{item.expiresAt | date: "dd.MM.yyyy HH:mm"}}</span>
@@ -40,7 +40,7 @@
         </ng-container>
 
         <ng-container matColumnDef="deletedAt">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('deletedAt')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['deletedAt'] || 'deletedAt')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <span class="table_cell-inner">{{item.deletedAt | date: "dd.MM.yyyy HH:mm"}}</span>
@@ -48,7 +48,7 @@
         </ng-container>
 
         <ng-container matColumnDef="timestamp">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('timestamp')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['timestamp'] || 'timestamp')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <span class="table_cell-inner">{{item.timestamp | date: "dd.MM.yyyy HH:mm:ss"}}</span>
@@ -56,7 +56,7 @@
         </ng-container>
 
         <ng-container matColumnDef="coins">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('coins')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['coins'] || 'coins')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div class="amount d-flex align-items-center justify-content-between">
@@ -69,7 +69,7 @@
         </ng-container>
 
         <ng-container matColumnDef="price">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('price')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['price'] || 'price')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div class="amount d-flex align-items-center justify-content-between">
@@ -80,7 +80,7 @@
         </ng-container>
 
         <ng-container matColumnDef="amount">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('amount')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['amount'] || 'amount')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div class="amount d-flex align-items-center justify-content-between">
@@ -91,7 +91,7 @@
         </ng-container>
 
         <ng-container matColumnDef="total">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('total')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['amount'] || 'amount')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div class="amount d-flex align-items-center justify-content-between">
@@ -102,7 +102,7 @@
         </ng-container>
 
         <ng-container matColumnDef="charges">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('charges')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['charges'] || 'charges')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div>
@@ -116,7 +116,7 @@
         </ng-container>
 
         <ng-container matColumnDef="user">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('user')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['user'] || 'user')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div class="d-flex flex-column">
@@ -134,7 +134,7 @@
         </ng-container>
 
         <ng-container matColumnDef="balance">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('registered')" *matHeaderCellDef>
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('balance')" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap['balance'] || 'balance')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div class="table_cell-inner"

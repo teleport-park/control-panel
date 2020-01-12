@@ -30,12 +30,14 @@
                                 [displayedColumns]="displayedColumns"
                                 [simpleDataColumn]="simpleDataColumn"
                                 [listSortedColumn]="sortedColumn"
-                                [itemCount]="service.pagination.Count"
+                                [itemCount]="service.requestHelper.Count"
                                 [resetPagination]="resetPagination"
+                                storageKey="STAFF"
                                 iconSet="person_add"
                                 (edit)="openDialog('edit', $event)"
                                 (delete)="openDialog('delete', $event)"
                                 (add)="openDialog('add')"
+                                (sortChanges)="sortChangeHandler($event)"
                                 (pageChanges)="pageChangeHandler($event)">
                         </control-panel-ui-table>
                     </div>
