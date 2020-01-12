@@ -8,8 +8,8 @@ export const UserExtendedFilterConfig: ExtendedFilterFieldGroup[] = [
     from: 1,
     to: 99,
     group: [
-      {property: 'age[min]'},
-      {property: 'age[max]'}
+      {property: 'min'},
+      {property: 'max'}
     ]
   }, {
     property: 'gender',
@@ -24,7 +24,7 @@ export const UserExtendedFilterConfig: ExtendedFilterFieldGroup[] = [
     label: 'EXTENDED_FILTER_REGISTERED',
     type: 'date-period',
     group: [
-      {property: 'registered[min]'}, {property: 'registered[max]'}
+      {property: 'from'}, {property: 'to'}
     ]
   }
 ];

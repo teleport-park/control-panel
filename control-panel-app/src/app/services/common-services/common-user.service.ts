@@ -20,7 +20,8 @@ export class CommonUserService implements UserService<UserType> {
                        query?: string,
                        limit?: number,
                        offset?: number,
-                       otherParams?: { [key: string]: string }) => string,
+                       sortingParams?: { [key: string]: string },
+                       filtersQuery?: string) => string,
       private sortingInitState: {[key: string]: string} = {}) {
       this.requestHelper = new RequestHelper(this.getPagedUser.bind(this), {limit: 25, offset: 0}, sortingInitState);
    }
@@ -33,8 +34,13 @@ export class CommonUserService implements UserService<UserType> {
       });
    }
 
-   private getPagedUser(query?: string, limit: number = 50, offset: number = 0, otherParams: { [key: string]: string } = {}): Observable<HttpResponse<any>> {
-      return this.http.get(this.getUrl('GET', null, query, limit, offset, otherParams), {observe: 'response'});
+   private getPagedUser(query?: string,
+                        limit: number = 50,
+                        offset: number = 0,
+                        sortingParams: { [key: string]: string } = {},
+                        filtersQuery: string = ''
+                        ): Observable<HttpResponse<any>> {
+      return this.http.get(this.getUrl('GET', null, query, limit, offset, sortingParams, filtersQuery), {observe: 'response'});
    }
 
    getUser(id: string): Observable<Visitor> {

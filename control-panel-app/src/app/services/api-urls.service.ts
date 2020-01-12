@@ -21,7 +21,8 @@ export class ApiUrlsService implements IApiUrlsInterface {
                               query?: string,
                               limit?: number,
                               offset?: number,
-                              otherParams?: {[key: string]: string}): string | null {
+                              sortingParams?: {[key: string]: string},
+                              filterRequest?: string): string | null {
       const originEndPoint = `${ApiUrlsService.ORIGIN}${endPoint}`;
       const aub = new ApiUrlBuilder(originEndPoint, requestMethod);
 
@@ -48,10 +49,13 @@ export class ApiUrlsService implements IApiUrlsInterface {
          if (query) {
             aub.appendQueryParameter('q', query);
          }
-         if (otherParams) {
-            Object.keys(otherParams).forEach(key => {
-               aub.appendQueryParameter(key, otherParams[key].toString());
+         if (sortingParams) {
+            Object.keys(sortingParams).forEach(key => {
+               aub.appendQueryParameter(key, sortingParams[key].toString());
             });
+         }
+         if (filterRequest) {
+            aub.addQueryParams(filterRequest);
          }
          return aub.build();
       }
@@ -116,8 +120,9 @@ export class ApiUrlsService implements IApiUrlsInterface {
                       query?: string,
                       limit?: number,
                       offset?: number,
-                      otherParams?: {[key: string]: string}) {
-      return ApiUrlsService.getPagedUrl(API.VISITORS, requestMethod, id, query, limit, offset, otherParams);
+                      sortingParams?: {[key: string]: string},
+                      filterRequest?: string) {
+      return ApiUrlsService.getPagedUrl(API.VISITORS, requestMethod, id, query, limit, offset, sortingParams, filterRequest);
    }
 
    public getStaff(requestMethod: 'GET' | 'PUT' | 'POST' | 'DELETE',
@@ -125,8 +130,8 @@ export class ApiUrlsService implements IApiUrlsInterface {
                    query?: string,
                    limit?: number,
                    offset?: number,
-                   otherParams?: {[key: string]: string}) {
-      return ApiUrlsService.getPagedUrl(API.STAFF, requestMethod, id, query, limit, offset, otherParams);
+                   sortingParams?: {[key: string]: string}) {
+      return ApiUrlsService.getPagedUrl(API.STAFF, requestMethod, id, query, limit, offset, sortingParams);
    }
 
    public getTransactions(requestMethod: 'GET') {

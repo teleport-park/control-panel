@@ -11,6 +11,8 @@ export class RequestHelper implements IRequestHelper {
 
     private _count: number;
 
+    private _filterRequest: string;
+
     get Count() {
         return this._count;
     }
@@ -19,7 +21,8 @@ export class RequestHelper implements IRequestHelper {
         private _request: (query?: string,
                            limit?: number,
                            offset?: number,
-                           otherParams?: {[key: string]: string}) => Observable<HttpResponse<any[]>>,
+                           otherParams?: {[key: string]: string},
+                           filterRequest?: string) => Observable<HttpResponse<any[]>>,
         private _pagination: PaginationSetting = RequestHelper.DEFAULT_PAGINATION_SETTINGS,
         private _sorting: SortingSettings = RequestHelper.DEFAULT_SORTING_SETTINGS
     ) {
@@ -41,8 +44,12 @@ export class RequestHelper implements IRequestHelper {
         this._pagination.offset = RequestHelper.DEFAULT_PAGINATION_SETTINGS.offset;
     }
 
-    public getData(queryString?: string): Observable<any[]> {
-        return this._request(queryString, this._pagination.limit, this._pagination.offset, this._sorting)
+    public setExtendedFilterRequest(request: string): void {
+       this._filterRequest = request;
+    }
+
+   public getData(queryString?: string): Observable<any[]> {
+        return this._request(queryString, this._pagination.limit, this._pagination.offset, this._sorting, this._filterRequest)
             .pipe(
                 tap((res: HttpResponse<any[]>) => {
                     this._count = +res.headers.get('x-total-count');

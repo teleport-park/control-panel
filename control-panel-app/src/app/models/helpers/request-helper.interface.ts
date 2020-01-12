@@ -12,6 +12,8 @@ export interface IRequestHelper {
 
    resetSorting(): void;
 
+   setExtendedFilterRequest(request: string): void;
+
    getData(queryString?: string): Observable<any>;
 }
 

@@ -1,4 +1,4 @@
 {
-  "api_url": "/",
+  "api_url": "http://demo.teleport-park.com/",
   "refresh_interval": 10
 }

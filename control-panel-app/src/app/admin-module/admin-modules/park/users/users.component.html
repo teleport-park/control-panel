@@ -1,12 +1,12 @@
 <mat-sidenav-container class="user-component-wrapper" *ngIf="!userOutlet.isActivated">
-<!--  <mat-sidenav #extendedFilter-->
-<!--               mode="{{(point?.handset | async) ? 'over' : 'side'}}"-->
-<!--               [opened]="!(point?.handset | async)"-->
-<!--               position="end">-->
-<!--    <div class="extended-filters_wrapper">-->
-<!--      <extended-filters [config]="extendedFiltersConfig" (applyFilter)="applyFilter($event)"></extended-filters>-->
-<!--    </div>-->
-<!--  </mat-sidenav>-->
+  <mat-sidenav #extendedFilter
+               mode="{{(point?.handset | async) ? 'over' : 'side'}}"
+               [opened]="!(point?.handset | async)"
+               position="end">
+    <div class="extended-filters_wrapper">
+      <extended-filters [config]="extendedFiltersConfig" (applyFilter)="applyFilter($event)"></extended-filters>
+    </div>
+  </mat-sidenav>
   <mat-sidenav-content #scrollContainer>
     <div class="light-theme">
       <control-panel-ui-card panelUIColor="primary">
@@ -16,12 +16,12 @@
             <div class="users-table-filter">
                 <control-panel-ui-quick-filter #quickFilter (filterChange)="applyQuickFilter($event)"></control-panel-ui-quick-filter>
             </div>
-<!--            <button-->
-<!--              *ngIf="(point.handset | async)"-->
-<!--              mat-icon-button-->
-<!--              (click)="extendedFilter.toggle()">-->
-<!--              <mat-icon>menu</mat-icon>-->
-<!--            </button>-->
+            <button
+              *ngIf="(point.handset | async)"
+              mat-icon-button
+              (click)="extendedFilter.toggle()">
+              <mat-icon>menu</mat-icon>
+            </button>
           </div>
           <control-panel-ui-table
             [data]="(service.users$ | async)"
