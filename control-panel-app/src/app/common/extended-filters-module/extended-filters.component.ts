@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 export interface ExtendedFilterFieldGroup {
    property: string;
    value?: any;
-   type?: 'check-box-group' | 'range' | 'select' | 'date-period';
+   type?: 'check-box-group' | 'range' | 'select' | 'date-period' | 'radio-button-group';
    group?: ExtendedFilterFieldGroup[];
    options?: Options[];
    label?: string;

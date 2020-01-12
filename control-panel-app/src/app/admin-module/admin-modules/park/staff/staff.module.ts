@@ -56,7 +56,7 @@ const sortStorageSet = () => {
    const sortState: Sort = JSON.parse(localStorage.getItem(storageKey + AppStorageKey.Sort)) as Sort;
    if (sortState) {
       const sort = {};
-      sort[sortState.active] = sortState.direction;
+      sort[sortState.active.replace('_at', '')] = sortState.direction;
       return sort;
    }
 };

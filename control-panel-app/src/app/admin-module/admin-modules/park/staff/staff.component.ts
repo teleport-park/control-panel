@@ -214,6 +214,8 @@ export class StaffComponent implements OnInit, OnDestroy {
     */
    applyFilter(filterData): void {
       console.log('[extended filter url] -> ', this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
+      this.service.requestHelper.setExtendedFilterRequest(this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
+      this.service.getUsers(this.quickFilter.quickFilterValue);
    }
 
    ngOnDestroy(): void {

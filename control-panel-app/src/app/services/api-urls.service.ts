@@ -130,8 +130,9 @@ export class ApiUrlsService implements IApiUrlsInterface {
                    query?: string,
                    limit?: number,
                    offset?: number,
-                   sortingParams?: {[key: string]: string}) {
-      return ApiUrlsService.getPagedUrl(API.STAFF, requestMethod, id, query, limit, offset, sortingParams);
+                   sortingParams?: {[key: string]: string},
+                   filterRequest?: string) {
+      return ApiUrlsService.getPagedUrl(API.STAFF, requestMethod, id, query, limit, offset, sortingParams, filterRequest);
    }
 
    public getTransactions(requestMethod: 'GET') {

@@ -1,0 +1,11 @@
+:host {
+  .radio-button-group-filter {
+    .mat-radio-group {
+      display: flex;
+      flex-direction: column;
+      .mat-radio-button {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

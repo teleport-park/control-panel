@@ -143,7 +143,7 @@ $background: (
         background: rgba($white, 0.04),
         hover: rgba($white, 0.2),
         card: rgba(map-get($dark-color, 500), 1),
-        dialog: rgba(map-get($dark-color, 500), 1),
+        dialog: rgba(map-get($dark-color, 500), .7),
         disabled-button: $white-12-opacity,
         raised-button: map-get($mat-grey, 800),
         focused-button: $white-6-opacity,

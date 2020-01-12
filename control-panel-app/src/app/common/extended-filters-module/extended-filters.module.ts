@@ -8,6 +8,7 @@ import { ExtendedFiltersDirective } from './extended-filters.directive';
 import { DatePeriodFieldComponent } from './fields-components/date-period-field/date-period-field.component';
 import { CheckBoxGroupFieldComponent } from './fields-components/check-box-group-field/check-box-group-field.component';
 import { RangeFieldComponent } from './fields-components/range-field/range-field.component';
+import { RadioButtonGroupFieldComponent } from './fields-components/radio-button-group-field/radio-button-group-field.component';
 
 @NgModule({
   declarations: [
@@ -16,12 +17,13 @@ import { RangeFieldComponent } from './fields-components/range-field/range-field
     ExtendedFiltersDirective,
     DatePeriodFieldComponent,
     CheckBoxGroupFieldComponent,
-    RangeFieldComponent],
+    RangeFieldComponent,
+    RadioButtonGroupFieldComponent],
   imports: [
     CommonModule, MaterialModule, ReactiveFormsModule
   ],
   exports: [ExtendedFiltersComponent, ExtendedFiltersDirective],
-  entryComponents: [SelectFieldComponent, DatePeriodFieldComponent, CheckBoxGroupFieldComponent, RangeFieldComponent]
+  entryComponents: [SelectFieldComponent, DatePeriodFieldComponent, CheckBoxGroupFieldComponent, RangeFieldComponent, RadioButtonGroupFieldComponent]
 })
 export class ExtendedFiltersModule {
 }
