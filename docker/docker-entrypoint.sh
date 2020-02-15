@@ -13,6 +13,7 @@ if [ ${CONTEXT} != '' ] && [ ${CONTEXT} != '/' ]; then
   echo "Context ${CONTEXT} found... making aliasing for it into relational link ${TGT}"
   mkdir -p $(dirname $TGT)
   ln -s /app $TGT
+  cat ${TEMPLATES_DIR}/index.html | envsubst > ${DOCROOT}/index.html
 else
   echo "Aliasing root $DOCROOT to application"
   ln -s /app $DOCROOT
