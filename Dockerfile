@@ -13,7 +13,7 @@ RUN npm run build-${stage}
 ## RUNNER SERVER IMAGE
 FROM nginx:latest AS final-image
 
-COPY ./docker /docker
+COPY docker /docker
 RUN chmod +x /docker/docker-entrypoint.sh
 
 WORKDIR /app
