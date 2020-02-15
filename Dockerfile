@@ -13,13 +13,14 @@ RUN npm run build-${stage}
 ## RUNNER SERVER IMAGE
 FROM nginx:latest AS final-image
 
+COPY ./docker /docker
+RUN chmod +x /docker/docker-entrypoint.sh
 
-WORKDIR /usr/share/nginx/html
+WORKDIR /app
 RUN rm -rf ./*
 COPY --from=build-image /app/dist/* .
-RUN ls -la
 
 ENV API_BASE_URL="http://teleport-park.com/"
+ENV CONTEXT="/"
 
-CMD echo '{"api_base_url": "{$API_BASE_URL}"}' > ./config/app-init-config.json \
-    && nginx -g 'daemon off;'
+ENTRYPOINT ["/docker/docker-entrypoint.sh"]
