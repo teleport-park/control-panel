@@ -67,8 +67,8 @@ html, body {
     font-size: 1rem;
   }
   .toaster-error {
-    background-color: #FF0000;
-    color: #fff;
+    background-color: #FF0000 !important;
+    color: #fff !important;
   }
   .mat-menu-item .mat-icon {
     margin-right: 6px;
