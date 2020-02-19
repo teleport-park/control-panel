@@ -31,7 +31,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
          return aub.build();
       }
 
-      if (aub.isRequestMethodPost()) {
+      if (aub.isRequestMethodPost() || aub.isRequestMethodPatch()) {
          return aub.build();
       }
 
@@ -113,6 +113,9 @@ export class ApiUrlsService implements IApiUrlsInterface {
 
    public getVRGames(requestMethod: 'GET' | 'PUT') {
       return ApiUrlsService.getPagedUrl(API.VRGAMES, requestMethod);
+   }
+   public getGames(requestMethod: 'GET' | 'PATCH') {
+      return ApiUrlsService.getPagedUrl(API.GAMES, requestMethod);
    }
 
    public getVisitors(requestMethod: 'GET' | 'PUT' | 'POST' | 'DELETE',

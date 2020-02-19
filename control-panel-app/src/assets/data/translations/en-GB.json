@@ -168,5 +168,10 @@
   "STAFF_FIRED_AT": "Fired",
   "STAFF_CREATED_AT": "Created",
   "STAFF_UPDATED_AT": "Updated",
-  "STAFF_ROLES": "Roles"
+  "STAFF_ROLES": "Roles",
+  "PRICE": "Price",
+  "ONLY_NUMBER": "Field {0} can contain only numbers",
+  "CHANGE_PRICE_FOR_SELECTED": "Change price for selected",
+  "APPLY_PRICE_TITLE": "Apply price",
+  "FOR_NEXT_GAMES_LABEL": "for next games:"
 }

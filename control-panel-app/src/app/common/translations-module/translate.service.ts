@@ -64,7 +64,7 @@ export class TranslateService {
    * @param interpolateParams
    */
   instant(key: string, interpolateParams?: string[]): string {
-    if (interpolateParams) {
+    if (interpolateParams && this._translations[key]) {
       return this.interpolateParams(this._translations[key], interpolateParams);
     }
     return this._translations[key] || key;

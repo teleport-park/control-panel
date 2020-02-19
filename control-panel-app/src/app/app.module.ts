@@ -18,6 +18,7 @@ import { ExtendedFilterUrlParamsInterface } from './interfaces/extended-filter-u
 import { BuildExtendedFilterParamsHelper } from './utils/build-extended-filter-params-helper';
 import { IconService } from './services/icon.service';
 import { InitService } from './services/init.service';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 export function initializeApp(initService: InitService) {
   return (): Promise<any> => {
@@ -57,5 +58,7 @@ export function initializeApp(initService: InitService) {
 })
 export class AppModule {
   // need init icon service
-  constructor(private iconService: IconService) {  }
+   constructor(overlayContainer: OverlayContainer, private iconService: IconService) {
+      overlayContainer.getContainerElement().classList.add('light-theme');
+   }
 }

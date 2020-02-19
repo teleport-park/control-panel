@@ -24,7 +24,6 @@ export const MenuPermissionMap: PermissionMap = {
    park: ['admin'],
    sessions: ['admin'],
    cards: ['admin'],
-   games: null,
    visitors: ['admin'],
    staff: ['admin'],
    packages: ['admin'],
@@ -32,5 +31,6 @@ export const MenuPermissionMap: PermissionMap = {
    billing: ['admin'],
    transactions: ['admin'],
    invoices: ['admin'],
-   accounts: ['admin']
+   accounts: ['admin'],
+   games: ['admin']
 };

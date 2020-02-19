@@ -18,6 +18,10 @@ export class ApiUrlBuilder implements IApiUrlBuilderInterface {
       return this._requestMethod === 'POST';
    }
 
+   public isRequestMethodPatch(): boolean {
+      return this._requestMethod === 'PATCH';
+   }
+
    public isRequestMethodPut(): boolean {
       return this._requestMethod === 'PUT';
    }

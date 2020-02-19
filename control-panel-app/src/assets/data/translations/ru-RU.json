@@ -169,5 +169,10 @@
   "STAFF_FIRED_AT": "Уволен",
   "STAFF_CREATED_AT": "Создан",
   "STAFF_UPDATED_AT": "Обновлен",
-  "STAFF_ROLES": "Роли"
+  "STAFF_ROLES": "Роли",
+  "PRICE": "Цена",
+  "ONLY_NUMBER": "Поле {0} может содержать только цифры",
+  "CHANGE_PRICE_FOR_SELECTED": "Изменить цену для выбранных",
+  "APPLY_PRICE_TITLE": "Применить цену",
+  "FOR_NEXT_GAMES_LABEL": "для сдедующих игр:"
 }

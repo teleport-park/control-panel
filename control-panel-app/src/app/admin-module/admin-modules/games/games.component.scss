@@ -1,0 +1,26 @@
+@import "control-panel-theme";
+
+:host {
+  display: block;
+  width: 100%;
+  background-color: $white;
+  .toolbar {
+    padding: .5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+  }
+  .mat-column-price {
+    width: 25rem;
+  }
+  .mat-row {
+    height: 4.5rem;
+  }
+  .amount-field {
+    width: 10rem;
+    margin-right: 1rem;
+  }
+  .currency-field {
+    width: 6rem;
+  }
+}
+
+
