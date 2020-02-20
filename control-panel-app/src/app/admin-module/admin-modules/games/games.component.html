@@ -43,7 +43,7 @@
                         <ng-container *ngIf="game.price">
                             <span>{{game.price.amount}} {{game.price.currency}}</span>
                         </ng-container>
-                        <button mat-icon-button color="accent" (click)="_editRowId = game.id; game.price = game.price || {amount: 0, currency: null}">
+                        <button mat-icon-button color="accent" (click)="_editRowId = game.id; game.price = game.price || {amount: 0, currency: 'TLPVR'}">
                             <mat-icon>edit</mat-icon>
                         </button>
                     </ng-container>
@@ -53,13 +53,15 @@
                                 <mat-form-field class="amount-field">
                                     <input matInput [value]="game?.price?.amount" [(ngModel)]="game.price.amount">
                                 </mat-form-field>
-                                <mat-form-field class="currency-field">
-                                    <mat-select [(ngModel)]="game.price.currency">
-                                        <mat-option value="TLPVR">TLPVR</mat-option>
-                                        <mat-option value="COIN">COIN</mat-option>
-                                        <mat-option value="BYN">BYN</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
+                                <div>{{game?.price?.currency}}</div>
+
+<!--                                <mat-form-field class="currency-field">-->
+<!--                                    <mat-select [(ngModel)]="game.price.currency">-->
+<!--                                        <mat-option value="TLPVR">TLPVR</mat-option>-->
+<!--                                        <mat-option value="COIN">COIN</mat-option>-->
+<!--                                        <mat-option value="BYN">BYN</mat-option>-->
+<!--                                    </mat-select>-->
+<!--                                </mat-form-field>-->
                             </div>
                             <div class="d-flex">
                                 <button mat-icon-button color="primary" (click)="inlineChangePriceHandler(game)" [disabled]="!game.price.currency">
@@ -81,6 +83,10 @@
             (click)="selection.toggle(row)">
         </tr>
     </table>
+    <div [hidden]="dataSource.data.length < 10">
+        <mat-paginator  [pageSizeOptions]="[10, 20, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+
 </div>
 
 <ng-template #priceDialogTemplate>
@@ -95,14 +101,15 @@
             <mat-error *ngIf="priceControl?.errors?.required">{{translation.instant('REQUIRED_FIELD', [translation.instant('PRICE')])}}</mat-error>
             <mat-error *ngIf="priceControl?.errors?.pattern">{{translation.instant('ONLY_NUMBER', [translation.instant('PRICE')])}}</mat-error>
         </mat-form-field>
-        <mat-form-field class="currency-field">
-            <mat-select [placeholder]="translation.instant('TRANSACTION_CURRENCY')" [formControl]="currencyControl">
-                <mat-option value="TLPVR">TLPVR</mat-option>
-                <mat-option value="COIN">COIN</mat-option>
-                <mat-option value="BYN">BYN</mat-option>
-            </mat-select>
-            <mat-error *ngIf="currencyControl?.errors?.required">{{translation.instant('REQUIRED_FIELD', [translation.instant('PRICE')])}}</mat-error>
-        </mat-form-field>
+        <div>TLPVR</div>
+<!--        <mat-form-field class="currency-field">-->
+<!--            <mat-select [placeholder]="translation.instant('TRANSACTION_CURRENCY')" [formControl]="currencyControl">-->
+<!--                <mat-option value="TLPVR">TLPVR</mat-option>-->
+<!--                <mat-option value="COIN">COIN</mat-option>-->
+<!--                <mat-option value="BYN">BYN</mat-option>-->
+<!--            </mat-select>-->
+<!--            <mat-error *ngIf="currencyControl?.errors?.required">{{translation.instant('REQUIRED_FIELD', [translation.instant('PRICE')])}}</mat-error>-->
+<!--        </mat-form-field>-->
     </div>
     <div class="actions d-flex align-items-center justify-content-end">
         <button mat-flat-button color="warn" class="ml-2" mat-dialog-close>{{translation.instant('DIALOG_CANCEL_BUTTON_LABEL')}}</button>

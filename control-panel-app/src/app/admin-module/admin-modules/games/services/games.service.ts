@@ -16,6 +16,14 @@ export class GamesService {
    getGames() {
       this.http.request('GET', this.apiUrl.getGames('GET')).subscribe(
          (res: Game[]) => {
+            // TODO mock data
+            res.push(...res);
+            res.push(...res);
+            res.push(...res);
+            res.push(...res);
+            res.push(...res);
+            res.push(...res);
+            res.push(...res);
             this.games$.next(res);
          }
       );

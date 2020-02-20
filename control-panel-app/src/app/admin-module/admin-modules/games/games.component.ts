@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { MatDialog, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
 import { Game } from './games.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { GamesService } from './services/games.service';
@@ -16,6 +16,8 @@ export class GamesComponent implements OnInit {
 
    @ViewChild('priceDialogTemplate', {static: false}) priceDialog: TemplateRef<any>;
 
+   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
    displayedColumns: string[] = ['select', 'id', 'name', 'type', 'price'];
 
    dataSource: MatTableDataSource<Game>;
@@ -26,7 +28,7 @@ export class GamesComponent implements OnInit {
 
    priceControl: FormControl = new FormControl(0, [Validators.required, Validators.pattern('[0-9]+')]);
 
-   currencyControl: FormControl = new FormControl(null, Validators.required);
+   currencyControl: FormControl = new FormControl('TLPVR', Validators.required);
 
    constructor(private service: GamesService,
                private cd: ChangeDetectorRef,
@@ -37,8 +39,11 @@ export class GamesComponent implements OnInit {
    ngOnInit(): void {
       this.service.games$.subscribe((res: Game[]) => {
          this.dataSource = new MatTableDataSource<Game>(res);
-         this.cd.markForCheck();
+         if (res.length > 10) {
+            this.dataSource.paginator = this.paginator;
+         }
          this._editRowId = null;
+         this.cd.markForCheck();
       });
       this.service.getGames();
    }
@@ -63,10 +68,20 @@ export class GamesComponent implements OnInit {
             currency: game.price.currency
          }
       };
-      this.service.updatePrice([payload as Game]);
+      this.service.updatePrice([payload as Game]).subscribe(
+         (res: Game[]) => {
+            this.dataSource = new MatTableDataSource<Game>(res);
+            if (res.length > 10) {
+               this.dataSource.paginator = this.paginator;
+            }
+            this._editRowId = null;
+            this.cd.markForCheck();
+         }
+      );
    }
 
    changePriceForSelectedHandler() {
+      this._editRowId = null;
       this.dialog.open(this.priceDialog, {
          width: '500px'
       });
@@ -107,8 +122,9 @@ export class GamesComponent implements OnInit {
       forkJoin(requests).subscribe((res: Game[][]) => {
          const result = res[res.length - 1];
          this.dataSource.data.forEach(item => {
-            item.price = result.find(i => i.id === item.id).price || item.price;
+            item.price = result.find(i => i.name === item.name).price || item.price;
          });
+         this.dialog.closeAll();
       });
    }
 }
