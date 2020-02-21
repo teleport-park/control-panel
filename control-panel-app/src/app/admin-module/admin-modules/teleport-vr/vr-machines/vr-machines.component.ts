@@ -1,25 +1,105 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { INSTANCE_SERVICE, InstanceService} from '../../../../models';
-import { TVRController } from '../../../../models/controller';
+import { Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { INSTANCE_SERVICE, InstanceService } from '../../../../models';
+import { TNGController } from '../../../../models/controller';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
+import { TranslateService } from '../../../../common/translations-module';
 
 @Component({
-  selector: 'mashines',
-  templateUrl: './vr-machines.component.html',
-  styleUrls: ['./vr-machines.component.scss']
+   selector: 'mashines',
+   templateUrl: './vr-machines.component.html',
+   styleUrls: ['./vr-machines.component.scss']
 })
-export class VrMachinesComponent implements OnInit {
+export class VrMachinesComponent implements OnInit, OnDestroy {
 
-  constructor(@Inject(INSTANCE_SERVICE) public service: InstanceService<TVRController>) {}
+   private destroyed$: Subject<boolean> = new Subject();
 
-  ngOnInit() {
+   @ViewChild('formTemplate', {static: true}) formTemplate: TemplateRef<any>;
+
+   form: FormGroup;
+
+   _dialog: MatDialogRef<any>;
+
+   _edit: boolean = false;
+
+   _editInstanceId: string;
+
+   constructor(@Inject(INSTANCE_SERVICE) public service: InstanceService<TNGController>,
+               public translations: TranslateService,
+               private fb: FormBuilder,
+               private dialog: MatDialog) {
+   }
+
+   ngOnInit() {
       this.service.getInstances();
-  }
+      this.service.operationSuccess$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(res => {
+         // tslint:disable-next-line:no-unused-expression
+         this._dialog && this._dialog.close();
+         this._editInstanceId = null;
+      });
+   }
 
-  grant(item: TVRController) {
-    this.service.grant(item);
-  }
+   grant(item: TNGController) {
+      this.service.grant(item);
+   }
 
-  revoke(item: TVRController) {
-    this.service.revoke(item);
-  }
+   revoke(item: TNGController) {
+      this.service.revoke(item);
+   }
+
+   add() {
+      this.initForm();
+      this._edit = false;
+      this._dialog = this.dialog.open(this.formTemplate, {
+         width: '500px'
+      });
+   }
+
+   edit(item: TNGController) {
+      this.initForm();
+      this.form.patchValue(item);
+      this._edit = true;
+      this._editInstanceId = item.id;
+      this._dialog = this.dialog.open(this.formTemplate, {
+         width: '500px'
+      });
+   }
+
+   remove(item: TNGController) {
+      this.dialog.open(ConfirmDialogComponent, {
+         data: {
+            title: 'DIALOG_CONFIRM_TITLE',
+            message: this.translations.instant('DIALOG_CONFIRM_SERVER_MESSAGE', [item.display_name])
+         } as ConfirmDialogData
+      }).afterClosed().subscribe(res => {
+         if (res) {
+            this.service.remove(item.id);
+         }
+      });
+   }
+
+   submit() {
+      if (this.form.invalid) {
+         return;
+      }
+      this._edit ? this.service.update(this.form.getRawValue(), this._editInstanceId) : this.service.add(this.form.getRawValue());
+   }
+
+   private initForm() {
+      this.form = this.fb.group({
+         address: ['', Validators.required],
+         name: '',
+         enabled: true
+      });
+   }
+
+   ngOnDestroy(): void {
+      this.destroyed$.next(true);
+      this.destroyed$.complete();
+   }
 }

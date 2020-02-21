@@ -71,7 +71,7 @@
   "DIALOG_CANCEL_BUTTON_LABEL": "Отменить",
   "DIALOG_CONFIRM_BUTTON_LABEL": "Подтвердить",
   "DIALOG_CONFIRM_TITLE": "Внимание",
-  "DIALOG_CONFIRM_MESSAGE": "Вы хотите удалить {0} из списка?",
+  "DIALOG_CONFIRM_SERVER_MESSAGE": "Вы хотите удалить сервер {0} из списка?",
   "STAFF_TABLE_LABEL": "Список сотрудников",
   "NAME": "Имя",
   "GROUP_PERMISSIONS": "Разрешения",
@@ -174,5 +174,7 @@
   "ONLY_NUMBER": "Поле {0} может содержать только цифры",
   "CHANGE_PRICE_FOR_SELECTED": "Изменить цену для выбранных",
   "APPLY_PRICE_TITLE": "Применить цену",
-  "FOR_NEXT_GAMES_LABEL": "для сдедующих игр:"
+  "FOR_NEXT_GAMES_LABEL": "для сдедующих игр:",
+  "EDIT_SERVER_TITLE": "Редактировать сервер",
+  "ADD_SERVER_TITLE": "Добавить сервер"
 }

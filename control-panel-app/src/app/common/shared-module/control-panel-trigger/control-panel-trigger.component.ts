@@ -13,12 +13,12 @@ export class ControlPanelTriggerComponent implements OnInit, OnDestroy {
 
     private subscription: Subscription;
 
-    @Input() timerValue = 10;
+    @Input() timerValue = 9;
 
     @Input() callBack: () => Observable<boolean> = () => {
         console.warn('callback is not assigned');
         return of(false);
-    };
+    }
 
     constructor(private cd: ChangeDetectorRef, private initService: InitService) {
         if (initService.config.refresh_interval) {
@@ -37,7 +37,7 @@ export class ControlPanelTriggerComponent implements OnInit, OnDestroy {
             this.subscription = this.callBack().subscribe((result: boolean) => {
                 if (result) {
                     clearInterval(this._timer);
-                    this.timerValue = 10;
+                    this.timerValue = this.initService.config.refresh_interval;
                     this._timer = this.getInterval();
                     if (this.subscription) {
                         this.subscription.unsubscribe();

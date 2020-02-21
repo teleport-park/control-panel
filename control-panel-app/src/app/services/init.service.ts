@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
  */
 export interface InitConfig {
     api_url: string;
-    refresh_interval: 10;
+    refresh_interval: number;
 }
 
 @Injectable({

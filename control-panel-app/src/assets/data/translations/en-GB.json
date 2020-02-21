@@ -70,6 +70,7 @@
   "DIALOG_CONFIRM_BUTTON_LABEL": "Confirm",
   "DIALOG_CONFIRM_TITLE": "Warning",
   "DIALOG_CONFIRM_MESSAGE": "Are you want delete {0} from list?",
+  "DIALOG_CONFIRM_SERVER_MESSAGE": "Are you want delete server {0} from list?",
   "STAFF_TABLE_LABEL": "Staff list",
   "NAME": "Name",
   "GROUP_PERMISSIONS": "Permissions",
@@ -173,5 +174,7 @@
   "ONLY_NUMBER": "Field {0} can contain only numbers",
   "CHANGE_PRICE_FOR_SELECTED": "Change price for selected",
   "APPLY_PRICE_TITLE": "Apply price",
-  "FOR_NEXT_GAMES_LABEL": "for next games:"
+  "FOR_NEXT_GAMES_LABEL": "for next games:",
+  "EDIT_SERVER_TITLE": "Edit server",
+  "ADD_SERVER_TITLE": "Add server"
 }

@@ -32,35 +32,35 @@ import { ControlPanelUiPeriodSelectorComponent } from './control-panel-ui-period
 import { MatRippleModule } from '@angular/material';
 
 const MODULES = [
-    ConfirmDialogComponent,
-    NumberDirective,
-    ControlPanelUiCardComponent,
-    ControlPanelUiTableComponent,
-    ControlPanelUiSelectionComponent,
-    AddOrEditEntityDialogComponent,
-    AddGroupDialogComponent,
-    AddSimpleEntityDialogComponent,
-    ControlPanelUiActionToolbarComponent,
-    ControlPanelUiWidgetComponent,
-    ControlPanelUiSelectionTableComponent,
-    AddStaffDialogComponent,
-    ControlPanelUiHardwareItemComponent,
-    ControlPanelUiImagePreviewComponent,
-    ControlPanelUiTariffTreeComponent,
-    ControlPanelUiPackageComponent,
-    ControlPanelUiPaymentComponent,
-    AddControllerDialogComponent,
-    ControlPanelUiLinearGraphComponent,
-    ControlPanelUiGateItemComponent,
-    ControlPanelTriggerComponent,
-    ControlPanelUiQuickFilterComponent,
+   ConfirmDialogComponent,
+   NumberDirective,
+   ControlPanelUiCardComponent,
+   ControlPanelUiTableComponent,
+   ControlPanelUiSelectionComponent,
+   AddOrEditEntityDialogComponent,
+   AddGroupDialogComponent,
+   AddSimpleEntityDialogComponent,
+   ControlPanelUiActionToolbarComponent,
+   ControlPanelUiWidgetComponent,
+   ControlPanelUiSelectionTableComponent,
+   AddStaffDialogComponent,
+   ControlPanelUiHardwareItemComponent,
+   ControlPanelUiImagePreviewComponent,
+   ControlPanelUiTariffTreeComponent,
+   ControlPanelUiPackageComponent,
+   ControlPanelUiPaymentComponent,
+   AddControllerDialogComponent,
+   ControlPanelUiLinearGraphComponent,
+   ControlPanelUiGateItemComponent,
+   ControlPanelTriggerComponent,
+   ControlPanelUiQuickFilterComponent,
    ControlPanelUiTimeFilterComponent,
    ControlPanelUiPeriodSelectorComponent
 ];
 
 @NgModule({
-    declarations: [...MODULES],
-    exports: [...MODULES],
+   declarations: [...MODULES],
+   exports: [...MODULES],
    imports: [
       CommonModule,
       TranslationModule,
@@ -70,7 +70,8 @@ const MODULES = [
       FormModule,
       ChartistModule,
       MatRippleModule
-   ]
+   ],
+   entryComponents: [ConfirmDialogComponent]
 })
 export class SharedModule {
 }

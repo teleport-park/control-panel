@@ -78,7 +78,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
       if (requestMethod === 'GET') {
          return ApiUrlsService.getPagedUrl(API.TVR_INSTANCES, requestMethod, id);
       }
-      return ApiUrlsService.getPagedUrl(API.TVR_INSTANCES, requestMethod, id) + '/auth';
+      return ApiUrlsService.getPagedUrl(API.TVR_INSTANCES, requestMethod, id);
    }
 
    public getGateUrl(requestMethod: 'GET' | 'PUT' | 'DELETE', id?: string): string | null {

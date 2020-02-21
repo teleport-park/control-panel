@@ -1,34 +1,59 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { InjectionToken } from '@angular/core';
 import { ControllerType } from '../types';
 
 export interface InstanceService<T> {
-    /**
-     * instances behaviour subject
-     */
-    instances$: BehaviorSubject<Array<T>>;
+   /**
+    * instances behaviour subject
+    */
+   instances$: BehaviorSubject<Array<T>>;
 
-    /**
-     * get instances
-     */
-    getInstances(): void;
+   /**
+    * stream operation error
+    */
+   operationError$: Subject<any>;
 
-    /**
-     * grant
-     * @param item
-     */
-    grant(item: T): void;
+   /**
+    * stream operation success
+    */
+   operationSuccess$: Subject<any>;
 
-    /**
-     * revoke
-     * @param item
-     */
-    revoke(item: T): void;
+   /**
+    * get instances
+    */
+   getInstances(): void;
 
-    /**
-     * refresh instances
-     */
-    refresh(): Observable<boolean>;
+   /**
+    * grant
+    * @param item
+    */
+   grant(item: T): void;
+
+   /**
+    * revoke
+    * @param item
+    */
+   revoke(item: T): void;
+
+   /**
+    * refresh instances
+    */
+   refresh(): Observable<boolean>;
+
+   /**
+    * add instance
+    */
+   add(item: T): void;
+
+   /**
+    * edit instance
+    */
+   update(item: T, id: string): void;
+
+   /**
+    * remove instance
+    */
+   remove(id): void;
 }
 
 export const INSTANCE_SERVICE = new InjectionToken<InstanceService<ControllerType>>('InstanceService');

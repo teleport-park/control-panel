@@ -31,6 +31,10 @@ export class ControlPanelUiHardwareItemComponent implements OnInit, OnDestroy {
 
   @Output() revoke: EventEmitter<ControllerType> = new EventEmitter();
 
+  @Output() edit: EventEmitter<ControllerType> = new EventEmitter();
+
+  @Output() remove: EventEmitter<ControllerType> = new EventEmitter();
+
   constructor(public translateService: TranslateService) {
   }
 
@@ -57,5 +61,9 @@ export class ControlPanelUiHardwareItemComponent implements OnInit, OnDestroy {
 
   isObject(value: any) {
     return typeof value === 'object' && value !== null;
+  }
+
+  isBoolean(value: any): boolean {
+     return typeof value === 'boolean';
   }
 }

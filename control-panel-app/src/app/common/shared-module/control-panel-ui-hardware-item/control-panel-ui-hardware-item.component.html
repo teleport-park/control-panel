@@ -1,37 +1,52 @@
-<div class="hardware-item_wrapper mat-elevation-z2" (click)="goToDevice()">
-  <div class="hardware-item_title">
-    <h4>{{item.TYPE}}</h4>
-  </div>
-  <ng-container *ngFor="let key of objectKeys(item)">
-    <ng-container [ngSwitch]="key" *ngIf="!isObject(item[key])">
-      <p *ngSwitchDefault class="word-break"><span class="bold">{{key.charAt(0).toUpperCase() + key.slice(1)}}: </span>{{item[key]}}</p>
-      <p *ngSwitchCase="'online'" class="status"><span class="bold">{{key.charAt(0).toUpperCase() + key.slice(1)}}: </span>
-        <mat-icon [ngClass]="{'offline': (date - getDate(item[key])) > MINUTE, 'online': (date - getDate(item[key])) < MINUTE}">radio_button_checked</mat-icon>
-        ({{item[key] | date:'dd.MM.yyyy hh:mm'}})
-      </p>
-      <ng-container *ngSwitchCase="'authorized'"></ng-container>
-      <ng-container *ngSwitchCase="'TYPE'"></ng-container>
-    </ng-container>
-    <ng-container *ngIf="isObject(item[key])">
-      <span class="bold">{{key.charAt(0).toUpperCase() + key.slice(1)}}:</span>
-      <div class="pl-3">
-        <ng-container *ngFor="let keyIn of objectKeys(item[key])">
-          <ng-container [ngSwitch]="keyIn">
-            <p *ngSwitchDefault class="word-break"><span class="bold">{{keyIn.charAt(0).toUpperCase() + keyIn.slice(1)}}: </span>{{item[key][keyIn]}}</p>
-          </ng-container>
+<div class="hardware-item_wrapper mat-elevation-z2 position-relative" (click)="goToDevice()">
+
+    <div class="hardware-item_title">
+        <h4>{{item.TYPE}}</h4>
+    </div>
+    <ng-container *ngFor="let key of objectKeys(item)">
+        <ng-container [ngSwitch]="key" *ngIf="!isObject(item[key])">
+            <p *ngSwitchDefault class="word-break d-flex align-items-center"><span
+                    class="bold mr-2">{{key.charAt(0).toUpperCase() + key.slice(1)}}: </span>
+                <ng-container *ngIf="!isBoolean(item[key])">{{item[key]}}</ng-container>
+                <ng-container *ngIf="isBoolean(item[key])">
+                    <mat-icon
+                            [ngClass]="{'offline': !item[key], 'online': item[key]}">{{item[key] ? 'desktop_windows' : 'desktop_access_disabled'}}</mat-icon>
+                </ng-container>
+            </p>
+            <p *ngSwitchCase="'online'" class="status"><span class="bold">{{key.charAt(0).toUpperCase() + key.slice(1)}}
+                : </span>
+                <mat-icon [ngClass]="{'offline': !item[key], 'online': item[key]}">radio_button_checked</mat-icon>
+            </p>
+            <ng-container *ngSwitchCase="'authorized'"></ng-container>
+            <ng-container *ngSwitchCase="'TYPE'"></ng-container>
         </ng-container>
-      </div>
+        <ng-container *ngIf="isObject(item[key])">
+            <span class="bold">{{key.charAt(0).toUpperCase() + key.slice(1)}}:</span>
+            <div class="pl-3">
+                <ng-container *ngFor="let keyIn of objectKeys(item[key])">
+                    <ng-container [ngSwitch]="keyIn">
+                        <p *ngSwitchDefault class="word-break"><span
+                                class="bold">{{keyIn.charAt(0).toUpperCase() + keyIn.slice(1)}}
+                            : </span>{{item[key][keyIn]}}</p>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </ng-container>
     </ng-container>
-  </ng-container>
-  <p class="status" *ngIf="hasStatus()">
-    <span class="bold">Status:</span>
-    <mat-icon [ngClass]="{'authorized': item.authorized, 'unauthorized': !item.authorized}">power_settings_new</mat-icon>
-    &nbsp;
-    <span>({{item.authorized ? 'Authorized' : 'Unauthorized'}})</span>
-  </p>
-  <div class="actions" *ngIf="hasStatus()">
-    <button mat-raised-button color="primary" *ngIf="!item.authorized" (click)="grant.emit(item)">Grant</button>
-    <button mat-raised-button color="warn" *ngIf="item.authorized" (click)="revoke.emit(item)">Revoke</button>
-  </div>
+    <p class="status" *ngIf="hasStatus()">
+        <span class="bold">Status:</span>
+        <mat-icon [ngClass]="{'authorized': item.authorized, 'unauthorized': !item.authorized}">power_settings_new
+        </mat-icon>
+        &nbsp;
+        <span>({{item.authorized ? 'Authorized' : 'Unauthorized'}})</span>
+    </p>
+<!--    <div class="actions" *ngIf="hasStatus()">-->
+<!--        <button mat-raised-button color="primary" *ngIf="!item.authorized" (click)="grant.emit(item)">Grant</button>-->
+<!--        <button mat-raised-button color="warn" *ngIf="item.authorized" (click)="revoke.emit(item)">Revoke</button>-->
+<!--    </div>-->
+    <div class="action-button justify-content-end d-flex">
+        <button mat-icon-button color="primary" (click)="edit.emit(item)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="remove.emit(item)"><mat-icon>delete</mat-icon></button>
+    </div>
 </div>
 
