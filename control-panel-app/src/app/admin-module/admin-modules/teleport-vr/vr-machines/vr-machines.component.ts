@@ -92,7 +92,11 @@ export class VrMachinesComponent implements OnInit, OnDestroy {
 
    private initForm() {
       this.form = this.fb.group({
-         address: ['', Validators.required],
+         address: ['', [
+            Validators.required,
+            Validators.pattern('(?:https?)://(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$')
+         ]
+         ],
          name: '',
          enabled: true
       });

@@ -176,5 +176,10 @@
   "APPLY_PRICE_TITLE": "Применить цену",
   "FOR_NEXT_GAMES_LABEL": "для сдедующих игр:",
   "EDIT_SERVER_TITLE": "Редактировать сервер",
-  "ADD_SERVER_TITLE": "Добавить сервер"
+  "ADD_SERVER_TITLE": "Добавить сервер",
+  "SERVER_IP_ADDRESS": "IP адрес",
+  "SERVER_ENABLED": "Состояние",
+  "SERVER_BOUND": "Связан",
+  "SERVER_ONLINE": "В сети",
+  "SERVER_IP_INVALID_ERROR": "Введите валидный IP адрес"
 }

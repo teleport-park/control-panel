@@ -176,5 +176,10 @@
   "APPLY_PRICE_TITLE": "Apply price",
   "FOR_NEXT_GAMES_LABEL": "for next games:",
   "EDIT_SERVER_TITLE": "Edit server",
-  "ADD_SERVER_TITLE": "Add server"
+  "ADD_SERVER_TITLE": "Add server",
+  "SERVER_IP_ADDRESS": "IP address",
+  "SERVER_ENABLED": "Enabled",
+  "SERVER_BOUND": "Bound",
+  "SERVER_ONLINE": "Online",
+  "SERVER_IP_INVALID_ERROR": "Enter valid IP address"
 }

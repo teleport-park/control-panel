@@ -8,10 +8,10 @@ export class BaseController {
    * id
    */
   id: string;
-  /**
-   * reference id
-   */
-  ref: string;
+   /**
+    * reference id
+    */
+   ref: string;
 
   online: Date;
 
@@ -22,6 +22,8 @@ export class BaseController {
   name: string;
 
    display_name: string;
+
+   address: string;
 
   constructor(model) {
     Object.keys(model).forEach(key => {
