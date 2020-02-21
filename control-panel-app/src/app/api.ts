@@ -8,7 +8,7 @@ export const API: { [key: string]: string | any } = {
 
    GAMES: 'cpanel/tp/games',
 
-   VRGAMES: 'cpanel/games',
+   VRGAMES: 'tng/mgmt/games',
 
    SESSIONS: 'cpanel/sessions',
 

@@ -111,7 +111,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
       return ApiUrlsService.getPagedUrl(API.PRICES, requestMethod);
    }
 
-   public getVRGames(requestMethod: 'GET' | 'PUT') {
+   public getVRGames(requestMethod: 'GET' | 'PATCH') {
       return ApiUrlsService.getPagedUrl(API.VRGAMES, requestMethod);
    }
    public getGames(requestMethod: 'GET' | 'PATCH') {
