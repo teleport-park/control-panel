@@ -20,7 +20,7 @@
     <form [formGroup]="form" class="d-flex flex-column">
         <mat-form-field>
             <label>
-                <input matInput placeholder="ip" formControlName="address">
+                <input matInput placeholder="{{'SERVER_IP_ADDRESS' | translate}}" formControlName="address">
             </label>
             <mat-error *ngIf="form.get('address')?.errors?.required">{{translations.instant('REQUIRED_FIELD', ['ip'])}}</mat-error>
             <mat-error *ngIf="form.get('address')?.errors?.pattern">{{translations.instant('SERVER_IP_INVALID_ERROR')}}</mat-error>

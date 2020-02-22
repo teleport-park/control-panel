@@ -177,9 +177,16 @@
   "FOR_NEXT_GAMES_LABEL": "для сдедующих игр:",
   "EDIT_SERVER_TITLE": "Редактировать сервер",
   "ADD_SERVER_TITLE": "Добавить сервер",
-  "SERVER_IP_ADDRESS": "IP адрес",
+  "SERVER_IP_ADDRESS": "Адрес",
   "SERVER_ENABLED": "Состояние",
   "SERVER_BOUND": "Связан",
   "SERVER_ONLINE": "В сети",
-  "SERVER_IP_INVALID_ERROR": "Введите валидный IP адрес"
+  "SERVER_IP_INVALID_ERROR": "Введите валидный IP адрес",
+  "ENABLE": "Активировать",
+  "DISABLE": "Деактивировать",
+  "DIALOG_CHANGE_ENABLE_STATUS_MESSAGE": "игру \"{0}\"?",
+  "ENABLED": "Активна",
+  "ORIGIN": "Источник",
+  "VERSION": "Версия",
+  "CODE": "Код"
 }

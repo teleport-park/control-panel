@@ -29,10 +29,12 @@ export class VrGamesService {
       });
    }
 
-   update(game: VRGame) {
-      const payload = new VRGameRequest(game);
-      this.http.patch(this.urlService.getVRGames('PATCH'), payload).subscribe(
-         res => this.getGames()
+   update(game: VRGameRequest) {
+      this.http.patch(this.urlService.getVRGames('PATCH'), game).subscribe(
+         res => {
+            console.log(res);
+            this.getGames();
+         }
       );
    }
 }

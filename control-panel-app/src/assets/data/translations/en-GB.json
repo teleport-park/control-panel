@@ -177,9 +177,16 @@
   "FOR_NEXT_GAMES_LABEL": "for next games:",
   "EDIT_SERVER_TITLE": "Edit server",
   "ADD_SERVER_TITLE": "Add server",
-  "SERVER_IP_ADDRESS": "IP address",
+  "SERVER_IP_ADDRESS": "Address",
   "SERVER_ENABLED": "Enabled",
   "SERVER_BOUND": "Bound",
   "SERVER_ONLINE": "Online",
-  "SERVER_IP_INVALID_ERROR": "Enter valid IP address"
+  "SERVER_IP_INVALID_ERROR": "Enter valid IP address",
+  "ENABLE": "Enable",
+  "DISABLE": "Disable",
+  "DIALOG_CHANGE_ENABLE_STATUS_MESSAGE": "game \"{0}\"?",
+  "ENABLED": "Enabled",
+  "ORIGIN": "Origin",
+  "VERSION": "Version",
+  "CODE": "Code"
 }

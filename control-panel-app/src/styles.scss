@@ -120,6 +120,9 @@ html, body {
     .mat-flat-button.mat-accent {
       color: #fff;
     }
+    .mat-icon-button.mat-success {
+      color: $success
+    }
   }
   .bold {
     font-weight: 700;

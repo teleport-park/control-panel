@@ -1,3 +1,52 @@
-<p *ngFor="let game of service.vrGames$ | async">
+<!--<p *ngFor="let game of service.vrGames$ | async">-->
+<!--    -->
+<!--</p>-->
+<!--<pre>{{ service.vrGames$ | async | json }}</pre>-->
+<div class="light-theme">
+    <table mat-table [dataSource]="service.vrGames$ | async" class="w-100">
 
-</p>
+        <!-- Position Column -->
+        <ng-container matColumnDef="code_name">
+            <th mat-header-cell *matHeaderCellDef> {{translateService.instant('CODE')}} </th>
+            <td mat-cell *matCellDef="let game"> {{game.code_name}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="version">
+            <th mat-header-cell *matHeaderCellDef> {{translateService.instant('VERSION')}} </th>
+            <td mat-cell *matCellDef="let game"> {{game.version}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> {{translateService.instant('AMUSEMENTS_NAME_LABEL')}} </th>
+            <td mat-cell *matCellDef="let game"> {{game.name}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="origin">
+            <th mat-header-cell *matHeaderCellDef> {{translateService.instant('ORIGIN')}} </th>
+            <td mat-cell *matCellDef="let game"> {{game.origin}} </td>
+        </ng-container>
+        <ng-container matColumnDef="enabled">
+            <th mat-header-cell *matHeaderCellDef> {{translateService.instant('ENABLED')}} </th>
+            <td mat-cell *matCellDef="let game">
+            <button *ngIf="game.enabled"
+                    mat-icon-button color="success"
+                    matTooltip="{{'DISABLE' | translate}}"
+                    matTooltipPosition="left"
+                    (click)="toggleGameHandler(game)"><mat-icon>check</mat-icon></button>
+            <button *ngIf="!game.enabled"
+                    mat-icon-button
+                    matTooltip="{{'ENABLE' | translate}}"
+                    matTooltipPosition="left"
+                    color="warn"
+                    (click)="toggleGameHandler(game)"><mat-icon>clear</mat-icon></button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
