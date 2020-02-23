@@ -30,6 +30,7 @@
   "LOGIN_PAGE_PASSWORD_LABEL": "Password",
   "LOGIN_PAGE_LOGIN_BUTTON_LABEL": "Login",
   "REQUIRED_FIELD": "\"{0}\" is required",
+  "REQUIRED": "required field",
   "AUTH_FILED_TOAST_MESSAGE": "Login or password incorrect",
   "USERS_TABLE_TITLE": "Users table",
   "INDEX": "№",
@@ -188,5 +189,17 @@
   "ENABLED": "Enabled",
   "ORIGIN": "Origin",
   "VERSION": "Version",
-  "CODE": "Code"
+  "CODE": "Code",
+  "CHIP_ID": "Chip ID",
+  "COMMENT": "Comment",
+  "BINDING": "Binding",
+  "BOUND_AT": "Bound at",
+  "BOUND": "Bound",
+  "UNBOUND": "Unbound",
+  "CARD_UNBOUND": "Card unbound",
+  "TABLE_BOUND_CARD": "Bound card",
+  "BOUND_CARD_SUCCESS": "Bound card success",
+  "UNBOUND_CARD_SUCCESS": "Unbound card success",
+  "ENTER_CARD_NUMBER": "Enter card number",
+  "FOR_USER": "for user"
 }

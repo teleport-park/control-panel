@@ -20,7 +20,9 @@ import { Router } from '@angular/router';
 import { ExtendedFilterFieldGroup } from '../../../../common/extended-filters-module/extended-filters.component';
 import { StaffExtendedFiltersConfig } from './staff-extended-filters.config';
 import { ExtendedFilterUrlParamsInterface } from '../../../../interfaces/extended-filter-url-params.interface';
-import { PaginationSetting, USER_SERVICE, UserService } from '../../../../models/intefaces';
+import { ENTITY_SERVICE, EntityService, PaginationSetting } from '../../../../models/intefaces';
+import { BoundCardDialogComponent } from '../../../../common/shared-module/dialogs/bound-card-dialog/bound-card-dialog.component';
+import { CardsService } from '../cards/services/cards.service';
 
 @Component({
    selector: 'control-panel-staff',
@@ -46,7 +48,6 @@ export class StaffComponent implements OnInit, OnDestroy {
     */
    displayedColumns: string[] = [
       'name',
-      // 'display_name',
       'passport',
       'hired_at',
       'fired_at',
@@ -83,19 +84,6 @@ export class StaffComponent implements OnInit, OnDestroy {
 
    private destroyed$: Subject<boolean> = new Subject();
 
-   /**
-    * Constructor
-    * @param service
-    * @param cd
-    * @param translateService
-    * @param point
-    * @param dialog
-    * @param storage
-    * @param fb
-    * @param groupsService,
-    * @param router
-    * @param extendedFilterUrlBuilder
-    */
    constructor(
       public cd: ChangeDetectorRef,
       public translateService: TranslateService,
@@ -104,20 +92,21 @@ export class StaffComponent implements OnInit, OnDestroy {
       private fb: FormBuilder,
       public groupsService: GroupsService,
       private router: Router,
-      @Inject(USER_SERVICE) private service: UserService<StaffMember>,
+      private cardService: CardsService,
+      @Inject(ENTITY_SERVICE) private service: EntityService<StaffMember>,
       @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
       @Inject('ExtendedFilterUrlParamsInterface') private extendedFilterUrlBuilder: ExtendedFilterUrlParamsInterface) {
    }
 
    ngOnInit() {
       this.sortedColumn = config.staff.sortedColumns || [];
-      this.service.getUsers();
+      this.service.getEntities();
    }
 
    applyQuickFilter(value: string) {
       this.service.requestHelper.resetPagination();
       this.resetPagination = {reset: true};
-      this.service.getUsers(value);
+      this.service.getEntities(value);
    }
 
    /**
@@ -147,7 +136,7 @@ export class StaffComponent implements OnInit, OnDestroy {
       }).afterClosed()
       .pipe(filter(data => data), takeUntil(this.destroyed$))
       .subscribe(() => {
-         this.service.deleteUser(staffMember.id);
+         this.service.deleteEntity(staffMember.id);
       });
    }
 
@@ -158,7 +147,7 @@ export class StaffComponent implements OnInit, OnDestroy {
     */
    private showModalAddOrEditStaffMemberUser(mode: 'edit' | 'add', staffMember?: StaffMember) {
       if (mode === 'edit') {
-         this.service.getUser(staffMember.id)
+         this.service.getEntity(staffMember.id)
          .pipe(filter(data => !!data))
          .subscribe((member: StaffMember) => {
             this.showDialog(mode, member);
@@ -183,9 +172,9 @@ export class StaffComponent implements OnInit, OnDestroy {
       });
       dialog.afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((staff: StaffMember) => {
          if (mode === 'edit') {
-            this.service.editUser(staff);
+            this.service.editEntity(staff);
          } else {
-            this.service.addUser(staff);
+            this.service.addEntity(staff);
          }
       });
    }
@@ -196,7 +185,7 @@ export class StaffComponent implements OnInit, OnDestroy {
     */
    pageChangeHandler(event: PaginationSetting): void {
       this.service.requestHelper.setPagination(event);
-      this.service.getUsers(this.quickFilter.quickFilterValue);
+      this.service.getEntities(this.quickFilter.quickFilterValue);
    }
 
    sortChangeHandler(event: Sort) {
@@ -205,7 +194,7 @@ export class StaffComponent implements OnInit, OnDestroy {
          sort[event.active.replace('_at', '')] = event.direction;
       }
       this.service.requestHelper.setSorting(sort);
-      this.service.getUsers(this.quickFilter.quickFilterValue);
+      this.service.getEntities(this.quickFilter.quickFilterValue);
    }
 
    /**
@@ -215,10 +204,23 @@ export class StaffComponent implements OnInit, OnDestroy {
    applyFilter(filterData): void {
       console.log('[extended filter url] -> ', this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
       this.service.requestHelper.setExtendedFilterRequest(this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
-      this.service.getUsers(this.quickFilter.quickFilterValue);
+      this.service.getEntities(this.quickFilter.quickFilterValue);
+   }
+
+   boundCard(user: StaffMember) {
+      this.dialog.open(BoundCardDialogComponent, {
+         data: {
+            user
+         }
+      }).afterClosed().subscribe(cardId => {
+         if (cardId) {
+            this.cardService.boundCard(cardId, user);
+         }
+      });
    }
 
    ngOnDestroy(): void {
+      this.service.requestHelper.resetPagination();
       this.destroyed$.next(true);
       this.destroyed$.complete();
    }

@@ -118,6 +118,10 @@ export class ApiUrlsService implements IApiUrlsInterface {
       return ApiUrlsService.getPagedUrl(API.GAMES, requestMethod);
    }
 
+   public getCards(requestMethod: 'GET' | 'DELETE' | 'PUT', id?: string) {
+      return ApiUrlsService.getPagedUrl(API.CARDS, requestMethod, id);
+   }
+
    public getVisitors(requestMethod: 'GET' | 'PUT' | 'POST' | 'DELETE',
                       id?: string,
                       query?: string,

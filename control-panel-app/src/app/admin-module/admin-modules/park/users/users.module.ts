@@ -11,10 +11,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { PermissionGuard } from '../../../../common/auth-module/guards/permission-guard';
 import { ExtendedFiltersModule } from '../../../../common/extended-filters-module/extended-filters.module';
-import { SortingSettings, USER_SERVICE } from '../../../../models/intefaces';
+import { ENTITY_SERVICE } from '../../../../models/intefaces';
 import { HttpClient } from '@angular/common/http';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
-import { CommonUserService } from '../../../../services/common-services/common-user.service';
+import { CommonEntityService } from '../../../../services/common-services/common-entity.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppStorageKey } from '../../../../models/app-storage-key';
 import { Sort } from '@angular/material';
@@ -37,7 +37,7 @@ const routes: Routes = [{
 export const UserRoutingModule = RouterModule.forChild(routes);
 
 export function UserServiceFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
-   return new CommonUserService(http, apiUrlService.getVisitors, sortStorageSet());
+   return new CommonEntityService(http, apiUrlService.getVisitors, sortStorageSet());
 }
 
 const sortStorageSet = () => {
@@ -62,7 +62,7 @@ const sortStorageSet = () => {
       ExtendedFiltersModule
    ],
    providers: [{
-      provide: USER_SERVICE, useFactory: UserServiceFactory, deps: [HttpClient, ApiUrlsService]
+      provide: ENTITY_SERVICE, useFactory: UserServiceFactory, deps: [HttpClient, ApiUrlsService]
    }],
    entryComponents: [AddOrEditEntityDialogComponent, ConfirmDialogComponent]
 })

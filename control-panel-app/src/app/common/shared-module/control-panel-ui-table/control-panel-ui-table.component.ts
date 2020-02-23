@@ -11,223 +11,227 @@ import { DefaultSort } from '../../../models/default-sort';
 import { Moment } from 'moment';
 
 @Component({
-    selector: 'control-panel-ui-table',
-    templateUrl: './control-panel-ui-table.component.html',
-    styleUrls: ['./control-panel-ui-table.component.scss']
+   selector: 'control-panel-ui-table',
+   templateUrl: './control-panel-ui-table.component.html',
+   styleUrls: ['./control-panel-ui-table.component.scss']
 })
 export class ControlPanelUiTableComponent<T> implements OnInit {
 
-    /**
-     * property translations map
-     */
-    propertyMap = PropertyMap;
+   /**
+    * property translations map
+    */
+   propertyMap = PropertyMap;
 
-    _data: any[];
+   _data: any[];
 
-    @Input() valueMap: string[] = [];
+   @Input() valueMap: string[] = [];
 
-    @Input() displayedColumns: string[] = [];
+   @Input() displayedColumns: string[] = [];
 
-    @Input() simpleDataColumn: string[] = [];
+   @Input() simpleDataColumn: string[] = [];
 
-    @Input() listSortedColumn: string[] = [];
+   @Input() listSortedColumn: string[] = [];
 
-    /**
-     * items total count
-     */
-    @Input() itemCount: number;
+   /**
+    * items total count
+    */
+   @Input() itemCount: number;
 
-    /**
-     * icon set
-     */
-    @Input() iconSet: string;
+   /**
+    * icon set
+    */
+   @Input() iconSet: string;
 
-    /**
-     * data source for table
-     */
-    @Input() set data(data: T[]) {
-        if (data) {
-            this._data = data;
-            this.initDataSource();
-        }
-    }
+   /**
+    * data source for table
+    */
+   @Input() set data(data: T[]) {
+      if (data) {
+         this._data = data;
+         this.initDataSource();
+      }
+   }
 
-    paginatorInit: PageEvent;
+   paginatorInit: PageEvent;
 
-    @Input() storageKey: string;
+   @Input() storageKey: string;
 
-    /**
-     * reset pagination
-     * @param data
-     */
-    @Input() set resetPagination(data: { reset: boolean }) {
-        if (data && this.paginator) {
-            this.paginator.pageIndex = 0;
-            this.changePageHandler({pageIndex: 0, pageSize: this.paginator.pageSize} as PageEvent);
-        }
-    }
+   /**
+    * reset pagination
+    * @param data
+    */
+   @Input() set resetPagination(data: { reset: boolean }) {
+      if (data && this.paginator) {
+         this.paginator.pageIndex = 0;
+         this.changePageHandler({pageIndex: 0, pageSize: this.paginator.pageSize} as PageEvent);
+      }
+   }
 
-    @Input() minRowHeight = 50;
+   @Input() minRowHeight = 50;
 
-    /**
-     * data source for table
-     */
-    public dataSource: MatTableDataSource<any>;
+   @Input() card = false;
 
-    /**
-     * MatSort instance
-     */
-    sortInst: MatSort;
+   /**
+    * data source for table
+    */
+   public dataSource: MatTableDataSource<any>;
 
-    /**
-     * mat sort instance
-     */
-    @ViewChild(MatSort, {static: true}) set sort(sort: MatSort) {
-        if (sort) {
-            this.sortInst = sort;
-        }
-    }
+   /**
+    * MatSort instance
+    */
+   sortInst: MatSort;
 
-    /**
-     * mat paginator instance
-     */
-    @ViewChild('paginator', {static: false}) paginator: MatPaginator;
+   /**
+    * mat sort instance
+    */
+   @ViewChild(MatSort, {static: true}) set sort(sort: MatSort) {
+      if (sort) {
+         this.sortInst = sort;
+      }
+   }
 
-    /**
-     * selection
-     */
-    public selection: SelectionModel<any>;
+   /**
+    * mat paginator instance
+    */
+   @ViewChild('paginator', {static: false}) paginator: MatPaginator;
 
-    /**
-     * delete emit
-     */
-    @Output() delete: EventEmitter<any> = new EventEmitter();
+   /**
+    * selection
+    */
+   public selection: SelectionModel<any>;
 
-    /**
-     * edit emit
-     */
-    @Output() edit: EventEmitter<any> = new EventEmitter();
+   /**
+    * delete emit
+    */
+   @Output() delete: EventEmitter<any> = new EventEmitter();
 
-    /**
-     * add emit
-     */
-    @Output() add: EventEmitter<void> = new EventEmitter();
+   /**
+    * edit emit
+    */
+   @Output() edit: EventEmitter<any> = new EventEmitter();
 
-    /**
-     * Emit pagination changes
-     */
-    @Output() pageChanges: EventEmitter<{ limit: number, offset: number }> = new EventEmitter<{ limit: number, offset: number }>();
+   /**
+    * add emit
+    */
+   @Output() add: EventEmitter<void> = new EventEmitter();
 
-    /**
-     * Emit sort changes
-     */
-    @Output() sortChanges: EventEmitter<Sort> = new EventEmitter();
+   @Output() boundCard: EventEmitter<T> = new EventEmitter();
 
-    /**
-     * selected item
-     */
-    @Output() selected: EventEmitter<T> = new EventEmitter();
+   /**
+    * Emit pagination changes
+    */
+   @Output() pageChanges: EventEmitter<{ limit: number, offset: number }> = new EventEmitter<{ limit: number, offset: number }>();
 
-    /**
-     * constructor
-     * @param translateService
-     * @param cd
-     * @param point
-     * @param injector
-     * @param icon
-     * @param storage
-     */
-    constructor(public translateService: TranslateService,
-                private cd: ChangeDetectorRef,
-                public point: BreakpointService,
-                public injector: Injector,
-                public icon: IconService,
-                @Inject('IAppStorageInterface') private storage: IAppStorageInterface) {
-    }
+   /**
+    * Emit sort changes
+    */
+   @Output() sortChanges: EventEmitter<Sort> = new EventEmitter();
 
-    ngOnInit() {
-        this.initTableState();
-    }
+   /**
+    * selected item
+    */
+   @Output() selected: EventEmitter<T> = new EventEmitter();
 
-    /**
-     * init data source
-     */
-    private initDataSource() {
-        this.dataSource = new MatTableDataSource(this._data);
-        this.selection = new SelectionModel(false, []);
-        this.cd.markForCheck();
-    }
+   /**
+    * constructor
+    * @param translateService
+    * @param cd
+    * @param point
+    * @param injector
+    * @param icon
+    * @param storage
+    */
+   constructor(public translateService: TranslateService,
+               private cd: ChangeDetectorRef,
+               public point: BreakpointService,
+               public injector: Injector,
+               public icon: IconService,
+               @Inject('IAppStorageInterface') private storage: IAppStorageInterface) {
+   }
 
-    /**
-     * map sortable column
-     * @param column
-     */
-    isSortedColumn(column: string): boolean {
-        return !this.listSortedColumn.includes(column);
-    }
+   ngOnInit() {
+      this.initTableState();
+   }
 
-    /**
-     * change page
-     * @param event
-     */
-    changePageHandler(event: PageEvent): void {
-        this.storage.setValue(`${this.storageKey}${AppStorageKey.Pagination}`, event);
-        this.pageChanges.emit({limit: event.pageSize, offset: event.pageSize * event.pageIndex});
-    }
+   /**
+    * init data source
+    */
+   private initDataSource() {
+      this.dataSource = new MatTableDataSource(this._data);
+      this.selection = new SelectionModel(false, []);
+      this.cd.markForCheck();
+   }
 
-    /**
-     * add event
-     */
-    addEntity(): void {
-        this.add.emit();
-    }
+   /**
+    * map sortable column
+    * @param column
+    */
+   isSortedColumn(column: string): boolean {
+      return !this.listSortedColumn.includes(column);
+   }
 
-    selectRow(row): void {
-        this.selection.select(row);
-        this.selected.emit(row);
-    }
+   /**
+    * change page
+    * @param event
+    */
+   changePageHandler(event: PageEvent): void {
+      this.storage.setValue(`${this.storageKey}${AppStorageKey.Pagination}`, event);
+      this.pageChanges.emit({limit: event.pageSize, offset: event.pageSize * event.pageIndex});
+   }
 
-    /**
-     * Change sort change
-     * @param event
-     */
-    sortChange(event: Sort) {
-        this.storage.setValue(`${this.storageKey}${AppStorageKey.Sort}`, event);
-        this.sortChanges.emit(event);
-    }
+   /**
+    * add event
+    */
+   addEntity(): void {
+      this.add.emit();
+   }
 
-    /**
-     * init table state
-     */
-    private initTableState() {
-        if (this.storage && this.storage.getValue(`${this.storageKey}${AppStorageKey.Pagination}`)) {
-            this.paginatorInit = this.storage.getValue(`${this.storageKey}${AppStorageKey.Pagination}`);
-        }
-        if (this.storage && this.storage.getValue(`${this.storageKey}${AppStorageKey.Sort}`)) {
-            this.sortInst.active = this.storage.getValue<DefaultSort>(`${this.storageKey}${AppStorageKey.Sort}`).active;
-            this.sortInst.direction = this.storage.getValue<DefaultSort>(`${this.storageKey}${AppStorageKey.Sort}`).direction;
-        }
-    }
+   selectRow(row): void {
+      this.selection.select(row);
+      this.selected.emit(row);
+   }
 
-    /**
-     * get formatted data
-     * @param data
-     */
-    getFormattedData(data: Moment): string {
-        data.locale(this.translateService.locale.value);
-        return data.format('L');
-    }
+   /**
+    * Change sort change
+    * @param event
+    */
+   sortChange(event: Sort) {
+      this.storage.setValue(`${this.storageKey}${AppStorageKey.Sort}`, event);
+      this.sortChanges.emit(event);
+   }
 
-    /**
-     * check is boolean value
-     * @param value
-     */
-    isBoolean(value: any) {
-        return typeof value === 'boolean';
-    }
+   /**
+    * init table state
+    */
+   private initTableState() {
+      if (this.storage && this.storage.getValue(`${this.storageKey}${AppStorageKey.Pagination}`)) {
+         this.paginatorInit = this.storage.getValue(`${this.storageKey}${AppStorageKey.Pagination}`);
+      }
+      if (this.storage && this.storage.getValue(`${this.storageKey}${AppStorageKey.Sort}`)) {
+         this.sortInst.active = this.storage.getValue<DefaultSort>(`${this.storageKey}${AppStorageKey.Sort}`).active;
+         this.sortInst.direction = this.storage.getValue<DefaultSort>(`${this.storageKey}${AppStorageKey.Sort}`).direction;
+      }
+   }
 
-   getBalance(balance: {currency: string, amount: number}[]): number {
-       const amount = balance.map(i => i.amount).reduce((prev: number, curr: number) => prev + curr);
-       return +amount.toFixed(2);
+   /**
+    * get formatted data
+    * @param data
+    */
+   getFormattedData(data: Moment): string {
+      data.locale(this.translateService.locale.value);
+      return data.format('L');
+   }
+
+   /**
+    * check is boolean value
+    * @param value
+    */
+   isBoolean(value: any) {
+      return typeof value === 'boolean';
+   }
+
+   getBalance(balance: { currency: string, amount: number }[]): number {
+      const amount = balance.map(i => i.amount).reduce((prev: number, curr: number) => prev + curr);
+      return +amount.toFixed(2);
    }
 }

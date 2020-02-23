@@ -5,7 +5,6 @@ import { StaffMember, Visitor } from '../../../../models';
 import { MatTableDataSource, PageEvent } from '@angular/material';
 import { PropertyMap } from '../../../utils/property-map';
 import { CardsService } from './services/cards.service';
-import { filter } from 'rxjs/operators';
 import { DefaultPagination } from '../../../../models/default-pagination';
 import { StorageService } from '../../../../services/storage.service';
 
@@ -30,12 +29,12 @@ export class CardsComponent implements OnInit {
    /**
     * displayed column
     */
-   displayedColumns: string[] = ['index', 'currentOwner', 'inventoryNumber', 'enabled', 'action'];
+   displayedColumns: string[] = ['index', 'chip_id', 'created_at', 'comment', 'binding', 'action'];
 
    /**
     * simple data column
     */
-   simpleDataColumn: string[] = ['inventoryNumber'];
+   simpleDataColumn: string[] = ['chip_id', 'comment'];
 
    /**
     * paginator init
@@ -56,10 +55,11 @@ export class CardsComponent implements OnInit {
    }
 
    ngOnInit() {
-      this.service.cards$.pipe(filter(data => !!data)).subscribe((result: Card[]) => {
+      this.service.cards$.subscribe((result: Card[]) => {
          this.initDataSource(result);
          this.cd.markForCheck();
       });
+      this.service.getCards();
       if (this.storage && this.storage.getValue(this.service.STORAGE_KEY)) {
          this.paginatorInit = this.storage.getValue(this.service.STORAGE_KEY);
       } else {
@@ -82,22 +82,6 @@ export class CardsComponent implements OnInit {
       if (currentOwner instanceof Visitor) {
          return 'user-row';
       }
-      if (currentOwner instanceof StaffMember) {
-         // const root = currentOwner.group.permissions as Permission[];
-         // if (root.find((permission: Permission) => permission.name === 'ACCESS_ROOT')) {
-         //   return 'staff-root-row';
-         // } else {
-         //   return 'staff-row';
-         // }
-      }
-   }
-
-   /**
-    * change card state handler
-    * @param card
-    */
-   changeCardState(card: Card) {
-      console.log(card);
    }
 
    /**

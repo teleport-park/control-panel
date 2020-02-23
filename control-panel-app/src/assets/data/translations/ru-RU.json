@@ -32,6 +32,7 @@
   "LOGIN_PAGE_PASSWORD_LABEL": "Пароль",
   "LOGIN_PAGE_LOGIN_BUTTON_LABEL": "Войти",
   "REQUIRED_FIELD": "Поле \"{0}\" обязательно",
+  "REQUIRED": "обязательное поле",
   "AUTH_FILED_TOAST_MESSAGE": "Логин или пароль не корректны",
   "USERS_TABLE_TITLE": "Таблица пользователей",
   "INDEX": "№",
@@ -188,5 +189,17 @@
   "ENABLED": "Активна",
   "ORIGIN": "Источник",
   "VERSION": "Версия",
-  "CODE": "Код"
+  "CODE": "Код",
+  "CHIP_ID": "ID карты",
+  "COMMENT": "Комментарий",
+  "BINDING": "Принадлежность",
+  "BOUND_AT": "Првязана",
+  "BOUND": "Привязать",
+  "UNBOUND": "Отвязать",
+  "CARD_UNBOUND": "Карта не привязана",
+  "TABLE_BOUND_CARD": "Привязать карту",
+  "BOUND_CARD_SUCCESS": "Карта успешно привязана",
+  "UNBOUND_CARD_SUCCESS": "Карта успешно отвязана",
+  "ENTER_CARD_NUMBER": "Введите номер карты",
+  "FOR_USER": "для пользователя"
 }

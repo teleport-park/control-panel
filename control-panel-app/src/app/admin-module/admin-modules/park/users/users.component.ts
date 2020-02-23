@@ -21,7 +21,9 @@ import { Router } from '@angular/router';
 import { ExtendedFilterFieldGroup } from '../../../../common/extended-filters-module/extended-filters.component';
 import { UserExtendedFilterConfig } from './users-extended-filters.config';
 import { ExtendedFilterUrlParamsInterface } from '../../../../interfaces/extended-filter-url-params.interface';
-import { PaginationSetting, USER_SERVICE, UserService } from '../../../../models/intefaces';
+import { ENTITY_SERVICE, EntityService, PaginationSetting } from '../../../../models/intefaces';
+import { BoundCardDialogComponent } from '../../../../common/shared-module/dialogs/bound-card-dialog/bound-card-dialog.component';
+import { CardsService } from '../cards/services/cards.service';
 
 @Component({
    selector: 'app-users',
@@ -83,19 +85,6 @@ export class UsersComponent implements OnInit, OnDestroy {
     */
    sortedColumn: string[] = [];
 
-   /**
-    * Constructor
-    * @param service
-    * @param cd
-    * @param translateService
-    * @param loaderService
-    * @param dialog
-    * @param point
-    * @param router
-    * @param storage
-    * @param fb
-    * @param extendedFilterUrlBuilder
-    */
    constructor(
       public cd: ChangeDetectorRef,
       public translateService: TranslateService,
@@ -104,7 +93,8 @@ export class UsersComponent implements OnInit, OnDestroy {
       public point: BreakpointService,
       private router: Router,
       private fb: FormBuilder,
-      @Inject(USER_SERVICE) private service: UserService<Visitor>,
+      private cardService: CardsService,
+      @Inject(ENTITY_SERVICE) private service: EntityService<Visitor>,
       @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
       @Inject('ExtendedFilterUrlParamsInterface') private extendedFilterUrlBuilder: ExtendedFilterUrlParamsInterface) {
    }
@@ -113,7 +103,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     * on init hook
     */
    ngOnInit() {
-      this.service.getUsers();
+      this.service.getEntities();
       const data = config as Config;
       this.sortedColumn = data.users.sortedColumns || [];
    }
@@ -121,7 +111,7 @@ export class UsersComponent implements OnInit, OnDestroy {
    applyQuickFilter(value: string) {
       this.service.requestHelper.resetPagination();
       this.resetPagination = {reset: true};
-      this.service.getUsers(value);
+      this.service.getEntities(value);
    }
 
    /**
@@ -144,7 +134,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     */
    private showModalAddOrEditUser(mode: 'edit' | 'add', visitor: Visitor) {
       if (mode === 'edit') {
-         this.service.getUser(visitor.id)
+         this.service.getEntity(visitor.id)
          .pipe(filter((data: Visitor) => !!data))
          .subscribe((user: Visitor) => {
             this.openModalDialog(mode, user);
@@ -167,9 +157,9 @@ export class UsersComponent implements OnInit, OnDestroy {
       .pipe(filter(data => data), takeUntil(this.destroyed$))
       .subscribe((result: Visitor) => {
          if (mode === 'edit') {
-            this.service.editUser(result);
+            this.service.editEntity(result);
          } else {
-            this.service.addUser(result);
+            this.service.addEntity(result);
          }
       });
    }
@@ -188,7 +178,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       }).afterClosed()
       .pipe(filter(data => data), takeUntil(this.destroyed$))
       .subscribe(() => {
-         this.service.deleteUser(visitor.id);
+         this.service.deleteEntity(visitor.id);
       });
    }
 
@@ -198,7 +188,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     */
    paginationChangeHandler(event: PaginationSetting): void {
       this.service.requestHelper.setPagination(event);
-      this.service.getUsers(this.quickFilter.quickFilterValue);
+      this.service.getEntities(this.quickFilter.quickFilterValue);
    }
 
    sortChangeHandler(event: Sort) {
@@ -207,7 +197,7 @@ export class UsersComponent implements OnInit, OnDestroy {
          sort[event.active] = event.direction;
       }
       this.service.requestHelper.setSorting(sort);
-      this.service.getUsers(this.quickFilter.quickFilterValue);
+      this.service.getEntities(this.quickFilter.quickFilterValue);
    }
 
    /**
@@ -216,10 +206,23 @@ export class UsersComponent implements OnInit, OnDestroy {
     */
    applyFilter(filterData): void {
       this.service.requestHelper.setExtendedFilterRequest(this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
-      this.service.getUsers(this.quickFilter.quickFilterValue);
+      this.service.getEntities(this.quickFilter.quickFilterValue);
+   }
+
+   boundCard(user: Visitor) {
+      this.dialog.open(BoundCardDialogComponent, {
+         data: {
+            user
+         }
+      }).afterClosed().subscribe(cardId => {
+         if (cardId) {
+            this.cardService.boundCard(cardId, user);
+         }
+      });
    }
 
    ngOnDestroy(): void {
+      this.service.requestHelper.resetPagination();
       this.destroyed$.next(true);
       this.destroyed$.complete();
    }

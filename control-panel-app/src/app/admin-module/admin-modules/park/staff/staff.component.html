@@ -26,17 +26,19 @@
                     <div class="staff-table-wrapper">
                         <control-panel-ui-quick-filter #quickFilter (filterChange)="applyQuickFilter($event)"></control-panel-ui-quick-filter>
                         <control-panel-ui-table
-                                [data]="(service.users$ | async)"
+                                [data]="(service.entities$ | async)"
                                 [displayedColumns]="displayedColumns"
                                 [simpleDataColumn]="simpleDataColumn"
                                 [listSortedColumn]="sortedColumn"
                                 [itemCount]="service.requestHelper.Count"
                                 [resetPagination]="resetPagination"
+                                [card]="true"
                                 storageKey="STAFF"
                                 iconSet="person_add"
                                 (edit)="openDialog('edit', $event)"
                                 (delete)="openDialog('delete', $event)"
                                 (add)="openDialog('add')"
+                                (boundCard)="boundCard($event)"
                                 (sortChanges)="sortChangeHandler($event)"
                                 (pageChanges)="pageChangeHandler($event)">
                         </control-panel-ui-table>

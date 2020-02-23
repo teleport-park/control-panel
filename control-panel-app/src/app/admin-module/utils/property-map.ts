@@ -51,5 +51,9 @@ export const PropertyMap = {
    fired_at: 'STAFF_FIRED_AT',
    created_at: 'STAFF_CREATED_AT',
    updated_at: 'STAFF_UPDATED_AT',
-   roles: 'STAFF_ROLES'
+   roles: 'STAFF_ROLES',
+   chip_id: 'CHIP_ID',
+   comment: 'COMMENT',
+   binding: 'BINDING',
+   bound_at: 'BOUND_AT'
 };

@@ -70,6 +70,11 @@ html, body {
     background-color: #FF0000 !important;
     color: #fff !important;
   }
+
+  .toaster-success {
+    background-color: $success !important;
+    color: #FFF !important;
+  }
   .mat-menu-item .mat-icon {
     margin-right: 6px;
     color: $dark;
@@ -119,9 +124,13 @@ html, body {
     color: map-get($dark-color, 500);
     .mat-flat-button.mat-accent {
       color: #fff;
+
     }
-    .mat-icon-button.mat-success {
-      color: $success
+    .mat-flat-button {
+      background-color: rgb(240, 240, 240);
+    }
+    .mat-icon-button.mat-success, .mat-icon.mat-success {
+      color: $success !important;
     }
   }
   .bold {
@@ -130,6 +139,10 @@ html, body {
 
   .italic {
     font-style: italic;
+  }
+
+  .label {
+    color: rgba(0, 0, 0, 0.6);
   }
 
   .word-break {

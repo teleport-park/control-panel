@@ -1,11 +1,14 @@
-import { Visitor } from './user-management/visitor.model';
-import { StaffMember } from './user-management/staff.member.model';
-
 export class Card {
-  id: string;
-  ownerId: number;
-  ownerType: 'user' | 'staff';
-  inventoryNumber: string;
-  currentOwner: Visitor | StaffMember;
-  enabled: boolean;
+   chip_id: string;
+   created_at: string;
+   comment: string;
+   binding: {
+      bound_at: string;
+      user: {
+         id: string;
+         type: string;
+         roles: string[];
+         display_name: string;
+      }
+   };
 }

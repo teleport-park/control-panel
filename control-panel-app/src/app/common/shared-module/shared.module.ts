@@ -30,9 +30,11 @@ import { ControlPanelUiQuickFilterComponent } from './control-panel-ui-quick-fil
 import { ControlPanelUiTimeFilterComponent } from './control-panel-ui-time-filter/control-panel-ui-time-filter.component';
 import { ControlPanelUiPeriodSelectorComponent } from './control-panel-ui-period-selector/control-panel-ui-period-selector.component';
 import { MatRippleModule } from '@angular/material';
+import { BoundCardDialogComponent } from './dialogs/bound-card-dialog/bound-card-dialog.component';
 
 const MODULES = [
    ConfirmDialogComponent,
+   BoundCardDialogComponent,
    NumberDirective,
    ControlPanelUiCardComponent,
    ControlPanelUiTableComponent,
@@ -71,7 +73,7 @@ const MODULES = [
       ChartistModule,
       MatRippleModule
    ],
-   entryComponents: [ConfirmDialogComponent]
+   entryComponents: [ConfirmDialogComponent, BoundCardDialogComponent]
 })
 export class SharedModule {
 }

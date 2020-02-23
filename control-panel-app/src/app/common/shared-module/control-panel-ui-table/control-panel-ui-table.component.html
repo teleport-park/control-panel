@@ -175,6 +175,10 @@
                         <mat-icon color="primary">edit</mat-icon>
                         {{translateService.instant('TABLE_EDIT')}}
                     </button>
+                    <button *ngIf="card" mat-menu-item (click)="boundCard.emit(item)">
+                        <mat-icon color="accent">credit_card</mat-icon>
+                        {{translateService.instant('TABLE_BOUND_CARD')}}
+                    </button>
                 </mat-menu>
             </mat-cell>
         </ng-container>

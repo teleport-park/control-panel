@@ -20,8 +20,8 @@ import { GroupsService } from './groups/services/groups.service';
 import { PermissionGuard } from '../../../../common/auth-module/guards/permission-guard';
 import { StaffMemberComponent } from './staff-member/staff-member.component';
 import { ExtendedFiltersModule } from '../../../../common/extended-filters-module/extended-filters.module';
-import { USER_SERVICE } from '../../../../models/intefaces';
-import { CommonUserService } from '../../../../services/common-services/common-user.service';
+import { ENTITY_SERVICE } from '../../../../models/intefaces';
+import { CommonEntityService } from '../../../../services/common-services/common-entity.service';
 import { HttpClient } from '@angular/common/http';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -49,7 +49,7 @@ const routes: Routes = [{
 export const StaffRoutingModule = RouterModule.forChild(routes);
 
 export function StaffServiceFactory(http: HttpClient, urlService: ApiUrlsService) {
-   return new CommonUserService(http, urlService.getStaff, sortStorageSet());
+   return new CommonEntityService(http, urlService.getStaff, sortStorageSet());
 }
 
 const sortStorageSet = () => {
@@ -74,7 +74,7 @@ const sortStorageSet = () => {
       ExtendedFiltersModule
    ],
    providers: [StaffService, GroupsService,
-      {provide: USER_SERVICE, useFactory: StaffServiceFactory, deps: [HttpClient, ApiUrlsService]}
+      {provide: ENTITY_SERVICE, useFactory: StaffServiceFactory, deps: [HttpClient, ApiUrlsService]}
    ],
    entryComponents: [
       AddOrEditEntityDialogComponent,

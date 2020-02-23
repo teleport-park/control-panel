@@ -24,17 +24,19 @@
             </button>
           </div>
           <control-panel-ui-table
-            [data]="(service.users$ | async)"
+            [data]="(service.entities$ | async)"
             [displayedColumns]="displayedColumns"
             [simpleDataColumn]="columnWithData"
             [listSortedColumn]="sortedColumn"
             [itemCount]="service.requestHelper.Count"
             [resetPagination]="resetPagination"
+            [card]="true"
             storageKey="VISITORS"
             iconSet="person_add"
             (edit)="operationWithUser('edit', $event)"
             (delete)="operationWithUser('delete', $event)"
             (add)="operationWithUser('add')"
+            (boundCard)="boundCard($event)"
             (sortChanges)="sortChangeHandler($event)"
             (pageChanges)="paginationChangeHandler($event)"></control-panel-ui-table>
         </div>
