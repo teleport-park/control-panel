@@ -214,7 +214,7 @@ export class StaffComponent implements OnInit, OnDestroy {
          }
       }).afterClosed().subscribe(cardId => {
          if (cardId) {
-            this.cardService.boundCard(cardId, user);
+            this.cardService.boundCard(cardId, {id: user.id, type: 'staff'});
          }
       });
    }
