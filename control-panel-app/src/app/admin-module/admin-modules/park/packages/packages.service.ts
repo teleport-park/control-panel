@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { filter } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material';
 import { LoaderService } from '../../../../services/loader.service';
 import { Package, PackageHistory } from '../../../../models';
+import { ToasterService } from '../../../../services/toaster.service';
 
 @Injectable()
 
@@ -20,7 +20,7 @@ export class PackagesService {
 
    constructor(private http: HttpClient,
                private urlService: ApiUrlsService,
-               private toaster: MatSnackBar,
+               private toaster: ToasterService,
                private loaderService: LoaderService) {
       this.getPackages();
       this.getPackagesHistory();
@@ -49,6 +49,13 @@ export class PackagesService {
       });
    }
 
+   public addPackage(data: any) {
+      this.loaderService.dispatchShowLoader(true);
+      this.http.post(this.urlService.getPackages('POST'), data).subscribe(res => {
+         this.toaster.success('PACKAGE_ADDED_SUCCESSFUL');
+      });
+   }
+
    synchronize() {
       this.http.put(this.urlService.getPackages('GET'), {})
       .pipe(
@@ -56,15 +63,6 @@ export class PackagesService {
       .subscribe((result: any[]) => {
          this.getPackages();
          this.getPackagesHistory();
-      });
-   }
-
-   private showError(message) {
-      this.toaster.open(message, null, {
-         duration: 5000,
-         horizontalPosition: 'center',
-         verticalPosition: 'top',
-         panelClass: 'toaster-error'
       });
    }
 }

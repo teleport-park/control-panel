@@ -201,5 +201,13 @@
   "BOUND_CARD_SUCCESS": "Карта успешно привязана",
   "UNBOUND_CARD_SUCCESS": "Карта успешно отвязана",
   "ENTER_CARD_NUMBER": "Введите номер карты",
-  "FOR_USER": "для пользователя"
+  "FOR_USER": "для пользователя",
+  "PLAYERS_COUNT": "Количество игроков",
+  "NOTE": "Описание",
+  "ADD_PACKAGE_TITLE": "Добавить пакет",
+  "PAYMENTS": "Платежи",
+  "CHARGES": "Расходы",
+  "PLAYERS": "Игроки",
+  "BACK": "Назад",
+  "ONLY_INTEGER_ERROR": "введите целое положительное число"
 }

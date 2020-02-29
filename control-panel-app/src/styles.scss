@@ -148,6 +148,13 @@ html, body {
   .word-break {
     word-break: break-word;
   }
+
+  button {
+    .mat-icon {
+      margin-bottom: 0.25rem;
+      margin-right: .5rem;
+    }
+  }
   // styles from bootstrap
   .w-100 {
     width: 100%;

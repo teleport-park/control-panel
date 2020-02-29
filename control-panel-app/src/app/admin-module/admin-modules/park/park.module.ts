@@ -17,6 +17,8 @@ import { SessionsComponent } from './sessions/sessions.component';
 import { TranslationModule } from '../../../common/translations-module/translation.module';
 import { BillingService } from './billing/services/billing.service';
 import { WhoIsComponent } from './cards/components/who-is/who-is.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddPackageComponent } from './packages/add-package/add-package.component';
 
 const routes: Routes = [{
    path: '',
@@ -39,6 +41,10 @@ const routes: Routes = [{
       }, {
          path: 'packages', component: PackagesComponent, data: {title: 'ADMIN_MENU_PACKAGES'}, canActivate: [PermissionGuard]
       }, {
+         path: 'packages', component: PackagesComponent, data: {title: 'ADMIN_MENU_PACKAGES'}, canActivate: [PermissionGuard]
+      }, {
+         path: 'packages/add', component: AddPackageComponent
+      }, {
          path: 'games', component: GamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]
       }, {
          path: 'pricing', component: PricingComponent, data: {title: 'ADMIN_MENU_PRICING'}, canActivate: [PermissionGuard]
@@ -56,7 +62,14 @@ const routes: Routes = [{
 export const ParkRouterModule = RouterModule.forChild(routes);
 
 export const COMPONENTS = [
-   ParkComponent, GamesComponent, PackagesComponent, PricingComponent, CardsComponent, SessionsComponent, WhoIsComponent
+   ParkComponent,
+   GamesComponent,
+   PackagesComponent,
+   PricingComponent,
+   CardsComponent,
+   SessionsComponent,
+   WhoIsComponent,
+   AddPackageComponent
 ];
 
 @NgModule({
@@ -66,7 +79,8 @@ export const COMPONENTS = [
       ParkRouterModule,
       MaterialModule,
       SharedModule,
-      TranslationModule
+      TranslationModule,
+      ReactiveFormsModule
    ],
    providers: [CardsService, GamesService, PricingService, PackagesService, BillingService]
 })

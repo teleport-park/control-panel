@@ -1,35 +1,41 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { PackagesService } from './packages.service';
 
 @Component({
-    selector: 'packages',
-    templateUrl: './packages.component.html',
-    styleUrls: ['./packages.component.scss']
+   selector: 'packages',
+   templateUrl: './packages.component.html',
+   styleUrls: ['./packages.component.scss']
 })
 export class PackagesComponent implements OnInit {
 
-    displayedColumns: string[] = ['timestamp', 'status'];
+   @ViewChild('formTemplate', {static: false}) formTemplate: TemplateRef<any>;
 
-    packagesColumns: string[] = [
-        'title',
-        'category',
-        'cloudId',
-        'description',
-        'expiresAt',
-        'games',
-        'note',
-        'syncId',
-        'type',
-        'coins',
-        'price',
-        'unlim'];
+   displayedColumns: string[] = ['timestamp', 'status'];
 
-    simplePackagesColumns: string[] = ['title', 'category', 'cloudId', 'description', 'games', 'note', 'syncId', 'type', 'unlim'];
+   packagesColumns: string[] = [
+      'title',
+      'category',
+      'cloudId',
+      'description',
+      'expiresAt',
+      'games',
+      'note',
+      'syncId',
+      'type',
+      'coins',
+      'price',
+      'unlim'];
 
-    constructor(public service: PackagesService, public cd: ChangeDetectorRef) {
-    }
+   simplePackagesColumns: string[] = ['title', 'category', 'cloudId', 'description', 'games', 'note', 'syncId', 'type', 'unlim'];
 
-    ngOnInit() {
-        this.service.getPackages();
-    }
+
+   constructor(public service: PackagesService,
+               public cd: ChangeDetectorRef) {
+   }
+
+   ngOnInit() {
+      this.service.getPackages();
+   }
+
+
 }

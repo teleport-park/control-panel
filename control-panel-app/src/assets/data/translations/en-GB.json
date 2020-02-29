@@ -166,7 +166,7 @@
   "POSITIVE": "Positive",
   "WHO_IM_LABEL": "Enter card number",
   "ADMIN_WHO_IS": "Who is",
-  "STAFF_HIRED_AT":  "Hired",
+  "STAFF_HIRED_AT": "Hired",
   "STAFF_FIRED_AT": "Fired",
   "STAFF_CREATED_AT": "Created",
   "STAFF_UPDATED_AT": "Updated",
@@ -201,5 +201,13 @@
   "BOUND_CARD_SUCCESS": "Bound card success",
   "UNBOUND_CARD_SUCCESS": "Unbound card success",
   "ENTER_CARD_NUMBER": "Enter card number",
-  "FOR_USER": "for user"
+  "FOR_USER": "for user",
+  "PLAYERS_COUNT": "Players count",
+  "NOTE": "Note",
+  "ADD_PACKAGE_TITLE": "Add package",
+  "PAYMENTS": "Payments",
+  "CHARGES": "Charges",
+  "PLAYERS": "Players",
+  "BACK": "Back",
+  "ONLY_INTEGER_ERROR": "enter positive integer number"
 }
