@@ -1,11 +1,12 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '../../../../../common/translations-module';
 import { Currencies } from '../../../../utils/utils';
 import { Router } from '@angular/router';
 import { PackagesService } from '../packages.service';
-import { MatDialog, MatSelectionList } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../../common/shared-module';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
    selector: 'add-package',
@@ -105,6 +106,13 @@ export class AddPackageComponent implements OnInit {
 
    back() {
       this.router.navigate(['admin', 'park', 'packages']);
+   }
+
+   dropPayment(event: CdkDragDrop<AbstractControl[]>) {
+      moveItemInArray(this.payments.controls, event.previousIndex, event.currentIndex);
+   }
+   dropCharge(event: CdkDragDrop<AbstractControl[]>) {
+      moveItemInArray(this.charges.controls, event.previousIndex, event.currentIndex);
    }
 
    /**

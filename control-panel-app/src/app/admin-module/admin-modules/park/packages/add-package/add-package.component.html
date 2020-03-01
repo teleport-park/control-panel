@@ -44,10 +44,10 @@
                     </button>
                 </div>
 
-                <div formArrayName="payments">
+                <div formArrayName="payments" class="drop-list" cdkDropList (cdkDropListDropped)="dropPayment($event)">
                     <ng-container *ngFor="let payment of payments.controls; let index = index">
-                        <div [formGroupName]="index" class="payment">
-                            <div class="mt-0 d-flex justify-content-between align-items-center">{{translationService.instant('TRANSACTION_NUMBER')}} {{index + 1}}
+                        <div [formGroupName]="index" class="payment drop-box light-theme" cdkDrag>
+                            <div class="mt-0 d-flex justify-content-between align-items-center drop-handler" cdkDragHandle>{{translationService.instant('TRANSACTION_NUMBER')}} {{index + 1}}
                                 <button type="button" mat-button color="warn"
                                         (click)="showConfirmDialog(index, true)"
                                         class="pl-2 delete-button">
@@ -106,10 +106,10 @@
                     </button>
                 </div>
 
-                <div formArrayName="charges">
+                <div formArrayName="charges" class="drop-list" cdkDropList (cdkDropListDropped)="dropCharge($event)">
                     <ng-container *ngFor="let charge of charges.controls; let index = index">
-                        <div [formGroupName]="index" class="charge ">
-                            <div class="mt-0 d-flex justify-content-between align-items-center">{{translationService.instant('TRANSACTION_NUMBER')}} {{index + 1}}
+                        <div [formGroupName]="index" class="charge drop-box light-theme" cdkDrag >
+                            <div class="mt-0 d-flex justify-content-between align-items-center drop-handler" cdkDragHandle>{{translationService.instant('TRANSACTION_NUMBER')}} {{index + 1}}
                                 <button type="button" mat-button color="warn" (click)="showConfirmDialog(index)"
                                         class="pl-2 delete-button">
                                     <mat-icon>clear</mat-icon>
