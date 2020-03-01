@@ -16,18 +16,22 @@
     margin-top: .5rem;
     background-color: #FFF;
 
-    .mat-form-field:not(.area) {
-      width: 8rem;
-    }
+  //  .mat-form-field:not(.area) {
+  //    width: 8rem;
+  //  }
     .currency {
       width: 6rem;
     }
-  }
-  .delete-button {
-    //font-size: .8rem;
-    .mat-icon {
 
+    .drag-icon {
+      color: rgba(0, 0, 0, .6);
     }
+  //}
+  //.delete-button {
+  //  //font-size: .8rem;
+  //  .mat-icon {
+  //
+  //  }
   }
 
   .select {

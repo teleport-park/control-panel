@@ -1,22 +1,28 @@
-@import "control-panel-theme";
+@import "src/styles/control-panel-theme";
 
 :host {
+  display: block;
   width: 100%;
-  table {
-    width: 100%;
-    //background-color: $main_bg_color;
-    .amusements_logo-header-cell {
-      padding-left: 70px;
-    }
-    .amusements_desc-list {
-      padding: 0;
-    }
-    .amusements_name {
-      font-size: 26px;
-      font-weight: 300;
-    }
-    .cell_align-left {
-      text-align: right;
-    }
+  background-color: $white;
+  height: 100%;
+  overflow: auto;
+  .toolbar {
+    padding: .5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+  }
+  .mat-column-price {
+    width: 25rem;
+  }
+  .mat-row {
+    height: 4.5rem;
+  }
+  .amount-field {
+    width: 10rem;
+    margin-right: 1rem;
+  }
+  .currency-field {
+    width: 6rem;
   }
 }
+
+

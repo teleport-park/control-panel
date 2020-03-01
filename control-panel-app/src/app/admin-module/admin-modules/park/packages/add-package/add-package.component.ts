@@ -50,7 +50,7 @@ export class AddPackageComponent implements OnInit {
    getPayment() {
       return this.fb.group({
          amount: this.fb.group({
-            currency: Currencies[0],
+            currency: Currencies[1],
             amount: ['', Validators.required],
             inPercentage: false
          }),

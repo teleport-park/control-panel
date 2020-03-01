@@ -214,8 +214,8 @@
   "REMOVE_CHARGE_CONFIRM_MESSAGE": "Удалить списание №{0} из списка?",
   "IN_PERCENTAGE": "в процентах",
   "PLAYER": "Игрок",
-  "SELECT_ALL": "выбрать всех",
-  "DESELECT_ALL": "отменить всех",
+  "SELECT_ALL": "выбрать все",
+  "DESELECT_ALL": "отменить все",
   "PLAYERS_MIN_ERROR": "минимальное число игроков",
   "PLAYERS_MAX_ERROR": "максимальное число игроков"
 }

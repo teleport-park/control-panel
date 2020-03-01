@@ -47,12 +47,13 @@ const routes: Routes = [
                 loadChildren: () => import('./admin-modules/settings/settings.module').then(m => m.SettingsModule),
                 data: {title: 'ADMIN_MENU_SETTINGS'},
                 canActivate: [PermissionGuard]
-            }, {
-                path: 'games',
-                loadChildren: () => import('./admin-modules/games/games.module').then(m => m.GamesModule),
-                data: {title: 'ADMIN_MENU_GAMES'},
-                canActivate: [PermissionGuard]
             }
+           // {
+           //      path: 'games',
+           //      loadChildren: () => import('./admin-modules/games/games.module').then(m => m.GamesModule),
+           //      data: {title: 'ADMIN_MENU_GAMES'},
+           //      canActivate: [PermissionGuard]
+           //  }
             // {
             //     path: 'dashboard',
             //     loadChildren: () => import('./admin-modules/dashboard/dashboard.module').then(m => m.DashboardModule),

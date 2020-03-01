@@ -90,12 +90,6 @@ export class BuildMenuHelper {
          }]
       },
       {
-         icon: 'videogame_asset',
-         label: 'ADMIN_MENU_GAMES',
-         path: '/admin/games',
-         active: false
-      },
-      {
          icon: 'memory',
          label: 'ADMIN_MENU_TELEPORT_VR',
          path: '/admin/teleport-vr',

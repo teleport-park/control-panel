@@ -1,27 +1,31 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Amusement } from '../../../../../models';
+import { BehaviorSubject } from 'rxjs';
+import { Game } from '../games.model';
+import { ApiUrlsService } from '../../../../../services/api-urls.service';
 
 @Injectable()
+
 export class GamesService {
-  /**
-   * amusements
-   */
-  amusements$: BehaviorSubject<Amusement[]> = new BehaviorSubject(null);
 
-  constructor(private http: HttpClient) {
-    this.getAmusements();
-  }
+   games$: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
 
-  /**
-   * get amusements
-   */
-  getAmusements(): void {
-    const url = './assets/data/amusements.json';
-    this.http.request<Amusement[]>('GET', url)
-      .subscribe((data: Amusement[]) => {
-        this.amusements$.next(data);
-      });
-  }
+   constructor(private http: HttpClient, private apiUrl: ApiUrlsService) {
+   }
+
+   getGames() {
+      this.http.request('GET', this.apiUrl.getGames('GET')).subscribe(
+         (res: Game[]) => {
+            this.games$.next(res);
+         }
+      );
+   }
+
+   updatePrice(game: Game[]) {
+      return this.http.request('PATCH', this.apiUrl.getGames('PATCH'), {body: game});
+      // this.http.request('PATCH', this.apiUrl.getGames('PATCH'), {body: game}).subscribe(
+      //    (res: Game[]) =>  this.games$.next(res)
+      // );
+   }
+
 }
