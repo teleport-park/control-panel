@@ -1,25 +1,28 @@
-<div class="light-theme mb-5">
+<div class="light-theme mb-2">
     <h3>{{translationService.instant('ADD_PACKAGE_TITLE')}}</h3>
-    <form [formGroup]="form" class="">
-        <div class="col-xl-3 d-flex flex-column">
-            <mat-form-field>
-                <input matInput placeholder="{{translationService.instant('AMUSEMENTS_NAME_LABEL')}}"
-                       formControlName="name" required>
-                <mat-error
-                        *ngIf="form.get('name')?.errors?.required">{{translationService.instant('REQUIRED_FIELD', [translationService.instant('AMUSEMENTS_NAME_LABEL')])}}</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <input type="number" [min]="1" [max]="20" matInput
-                       placeholder="{{translationService.instant('PLAYERS_COUNT')}}"
-                       formControlName="players">
-                <mat-error
-                        *ngIf="form.get('players')?.errors?.required">{{translationService.instant('REQUIRED_FIELD', [translationService.instant('PLAYERS_COUNT')])}}</mat-error>
-                <mat-error
-                        *ngIf="form.get('players')?.errors?.pattern">{{translationService.instant('ONLY_INTEGER_ERROR')}}</mat-error>
-                <mat-error
-                        *ngIf="form.get('players')?.errors?.min">{{translationService.instant('MIN_ERROR')}}</mat-error>
-            </mat-form-field>
-            <mat-form-field>
+    <form [formGroup]="form" class="container-fluid">
+        <div class="row">
+            <div class="col-xl-3 d-flex flex-column">
+                <mat-form-field>
+                    <input matInput placeholder="{{translationService.instant('AMUSEMENTS_NAME_LABEL')}}"
+                           formControlName="name" required>
+                    <mat-error
+                            *ngIf="form.get('name')?.errors?.required">{{translationService.instant('REQUIRED_FIELD', [translationService.instant('AMUSEMENTS_NAME_LABEL')])}}</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input type="number" matInput
+                           placeholder="{{translationService.instant('PLAYERS_COUNT')}}"
+                           formControlName="players">
+                    <mat-error
+                            *ngIf="form.get('players')?.errors?.required">{{translationService.instant('REQUIRED_FIELD', [translationService.instant('PLAYERS_COUNT')])}}</mat-error>
+                    <mat-error
+                            *ngIf="form.get('players')?.errors?.pattern">{{translationService.instant('ONLY_INTEGER_ERROR')}}</mat-error>
+                    <mat-error
+                            *ngIf="form.get('players')?.errors?.min">{{translationService.instant('PLAYERS_MIN_ERROR')}} {{form.get('players')?.errors?.min.min}}</mat-error>
+                    <mat-error
+                            *ngIf="form.get('players')?.errors?.max">{{translationService.instant('PLAYERS_MAX_ERROR')}} {{form.get('players')?.errors?.max.max}}</mat-error>
+                </mat-form-field>
+                <mat-form-field>
             <textarea matInput [maxLength]="255"
                       placeholder="{{translationService.instant('NOTE')}}"
                       formControlName="note"
@@ -28,101 +31,146 @@
                       cdkTextareaAutosize
                       cdkAutosizeMinRows="1"
                       cdkAutosizeMaxRows="5"></textarea>
-            </mat-form-field>
-        </div>
-
-        <div class="payments_wrapper mb-4 col-xl-3 pb-3 pt-3">
-            <div class="d-flex align-items-center justify-content-between">
-                <h4 class="mb-0">{{translationService.instant('PAYMENTS')}}</h4>
-                <button type="button" mat-flat-button color="primary" (click)="addPayment()" class="ml-5 pl-2">
-                    <mat-icon>add</mat-icon>
-                    {{translationService.instant('TABLE_ADD')}}
-                </button>
-            </div>
-
-            <div formArrayName="payments">
-                <ng-container *ngFor="let payment of payments.controls; let index = index">
-                    <div [formGroupName]="index" class="payment">
-                        <p class="mt-0 bold">{{translationService.instant('TRANSACTION_NUMBER')}} {{index + 1}}</p>
-                        <div formGroupName="amount" class="d-flex align-items-center justify-content-between w-100">
-                            <div class="flex-grow-1">
-                                <mat-form-field class="mr-2">
-                                    <input matInput formControlName="amount"
-                                           placeholder="{{translationService.instant('TRANSACTION_AMOUNT')}}">
-                                    <mat-error
-                                            *ngIf="payments.at(index).get('amount').get('amount')?.errors?.required">{{translationService.instant('REQUIRED_FIELD', [translationService.instant('TRANSACTION_AMOUNT')])}}</mat-error>
-                                </mat-form-field>
-                                <mat-form-field class="currency" *ngIf="!payments.at(index).get('inPercentage').value">
-                                    <mat-select formControlName="currency"
-                                                placeholder="{{translationService.instant('TRANSACTION_CURRENCY')}}">
-                                        <mat-option *ngFor="let currency of _currencies"
-                                                    [value]="currency">{{currency}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <span *ngIf="payments.at(index).get('inPercentage').value">%</span>
-                            </div>
-                            <button type="button" mat-flat-button color="warn" (click)="showConfirmDialog(index, true)"
-                                    class="pl-2">
-                                <mat-icon>clear</mat-icon>
-                                {{translationService.instant('TABLE_DELETE')}}
-                            </button>
-                        </div>
-                        <mat-checkbox formControlName="inPercentage">{{translationService.instant('IN_PERCENTAGE')}}</mat-checkbox>
-                    </div>
-                </ng-container>
+                </mat-form-field>
             </div>
         </div>
-        <div class="charges_wrapper mb-4 col-xl-3 pb-3 pt-3">
-            <div class="d-flex align-items-center justify-content-between">
-                <h4 class="mb-0">{{translationService.instant('CHARGES')}}</h4>
-                <button type="button" mat-flat-button color="primary" (click)="addCharge()" class="ml-5 pl-2">
-                    <mat-icon>add</mat-icon>
-                    {{translationService.instant('TABLE_ADD')}}
-                </button>
-            </div>
+        <div class="row">
+            <div class="payments_wrapper mb-4 col-xl-6 pb-3 pt-3">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">{{translationService.instant('PAYMENTS')}}</h4>
+                    <button type="button" mat-flat-button color="primary" (click)="addPayment()" class="ml-5 pl-2" *ngIf="payments.controls.length === 0">
+                        <mat-icon>add</mat-icon>
+                        {{translationService.instant('TABLE_ADD')}}
+                    </button>
+                </div>
 
-            <div formArrayName="charges">
-                <ng-container *ngFor="let charge of charges.controls; let index = index">
-                    <div [formGroupName]="index" class="charge ">
-                        <p class="mt-0 bold">{{translationService.instant('TRANSACTION_NUMBER')}} {{index + 1}}</p>
-                        <div formGroupName="amount" class="d-flex align-items-center justify-content-between w-100">
-                            <div class="flex-grow-1">
-                                <mat-form-field class="mr-2">
-                                    <input matInput formControlName="amount"
-                                           placeholder="{{translationService.instant('TRANSACTION_AMOUNT')}}">
-                                    <mat-error
-                                            *ngIf="charges.at(index).get('amount').get('amount')?.errors?.required">{{translationService.instant('REQUIRED_FIELD', [translationService.instant('TRANSACTION_AMOUNT')])}}</mat-error>
-                                </mat-form-field>
-                                <mat-form-field class="currency" *ngIf="!charges.at(index).get('inPercentage').value">
-                                    <mat-select formControlName="currency"
-                                                placeholder="{{translationService.instant('TRANSACTION_CURRENCY')}}">
-                                        <mat-option *ngFor="let currency of _currencies"
-                                                    [value]="currency">{{currency}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <span *ngIf="charges.at(index).get('inPercentage').value">%</span>
+                <div formArrayName="payments">
+                    <ng-container *ngFor="let payment of payments.controls; let index = index">
+                        <div [formGroupName]="index" class="payment">
+                            <div class="mt-0 d-flex justify-content-between align-items-center">{{translationService.instant('TRANSACTION_NUMBER')}} {{index + 1}}
+                                <button type="button" mat-button color="warn"
+                                        (click)="showConfirmDialog(index, true)"
+                                        class="pl-2 delete-button">
+                                    <mat-icon>clear</mat-icon>
+                                    {{translationService.instant('TABLE_DELETE')}}
+                                </button></div>
+                            <div formGroupName="amount" class="d-flex flex-column justify-content-between w-100">
+                                <div class="flex-grow-1">
+                                    <mat-form-field class="mr-2">
+                                        <input matInput formControlName="amount"
+                                               placeholder="{{translationService.instant('TRANSACTION_AMOUNT')}}">
+                                        <mat-error
+                                                *ngIf="payments.at(index).get('amount').get('amount')?.errors?.required">{{translationService.instant('REQUIRED_FIELD', [translationService.instant('TRANSACTION_AMOUNT')])}}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field class="currency" *ngIf="!payments.at(index).get('amount').get('inPercentage').value">
+                                        <mat-select formControlName="currency"
+                                                    placeholder="{{translationService.instant('TRANSACTION_CURRENCY')}}">
+                                            <mat-option *ngFor="let currency of _currencies"
+                                                        [value]="currency">{{currency}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <span *ngIf="payments.at(index).get('amount').get('inPercentage').value">%</span>
+                                </div>
+                                <mat-checkbox class="mt-2"
+                                        formControlName="inPercentage">{{translationService.instant('IN_PERCENTAGE')}}</mat-checkbox>
+
                             </div>
-                            <button type="button" mat-flat-button color="warn" (click)="showConfirmDialog(index)"
-                                    class="pl-2">
-                                <mat-icon>clear</mat-icon>
-                                {{translationService.instant('TABLE_DELETE')}}
-                            </button>
+
+                            <mat-form-field class="area w-100">
+                            <textarea matInput [maxLength]="255"
+                                      placeholder="{{translationService.instant('NOTE')}}"
+                                      formControlName="note"
+                                      style="box-sizing: content-box"
+                                      autocomplete="off"
+                                      cdkTextareaAutosize
+                                      cdkAutosizeMinRows="1"
+                                      cdkAutosizeMaxRows="2"></textarea>
+                            </mat-form-field>
+
                         </div>
-                        <mat-checkbox formControlName="inPercentage">{{translationService.instant('IN_PERCENTAGE')}}</mat-checkbox>
-                        <h5 class="mt-4">{{translationService.instant('PLAYERS')}}</h5>
-                        <mat-selection-list formControlName="players">
-                            <mat-list-option *ngFor="let player of getPlayersArray()" [value]="player">
-                                {{player + 1}}
-                            </mat-list-option>
-                        </mat-selection-list>
+                    </ng-container>
+                    <div class="d-flex align-items-center justify-content-end mt-2" *ngIf="payments.controls.length > 0">
+                        <button type="button" mat-flat-button color="primary" (click)="addPayment()" class="ml-5 pl-2">
+                            <mat-icon>add</mat-icon>
+                            {{translationService.instant('TABLE_ADD')}}
+                        </button>
                     </div>
-                </ng-container>
+                </div>
+            </div>
+            <div class="charges_wrapper mb-4 col-xl-6 pb-3 pt-3">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">{{translationService.instant('CHARGES')}}</h4>
+                    <button type="button" mat-flat-button color="primary" (click)="addCharge()" class="ml-5 pl-2" *ngIf="charges.controls.length === 0">
+                        <mat-icon>add</mat-icon>
+                        {{translationService.instant('TABLE_ADD')}}
+                    </button>
+                </div>
+
+                <div formArrayName="charges">
+                    <ng-container *ngFor="let charge of charges.controls; let index = index">
+                        <div [formGroupName]="index" class="charge ">
+                            <div class="mt-0 d-flex justify-content-between align-items-center">{{translationService.instant('TRANSACTION_NUMBER')}} {{index + 1}}
+                                <button type="button" mat-button color="warn" (click)="showConfirmDialog(index)"
+                                        class="pl-2 delete-button">
+                                    <mat-icon>clear</mat-icon>
+                                    {{translationService.instant('TABLE_DELETE')}}
+                                </button>
+                            </div>
+                            <div formGroupName="amount" class="d-flex flex-column justify-content-between w-100">
+                                <div class="flex-grow-1">
+                                    <mat-form-field class="mr-2">
+                                        <input matInput formControlName="amount"
+                                               placeholder="{{translationService.instant('TRANSACTION_AMOUNT')}}">
+                                        <mat-error
+                                                *ngIf="charges.at(index).get('amount').get('amount')?.errors?.required">{{translationService.instant('REQUIRED_FIELD', [translationService.instant('TRANSACTION_AMOUNT')])}}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field class="currency" *ngIf="!charges.at(index).get('amount').get('inPercentage').value">
+                                        <mat-select formControlName="currency"
+                                                    placeholder="{{translationService.instant('TRANSACTION_CURRENCY')}}">
+                                            <mat-option *ngFor="let currency of _currencies"
+                                                        [value]="currency">{{currency}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <span *ngIf="charges.at(index).get('amount').get('inPercentage').value">%</span>
+                                </div>
+                                <mat-checkbox class="mt-2"
+                                        formControlName="inPercentage">{{translationService.instant('IN_PERCENTAGE')}}</mat-checkbox>
+                            </div>
+<!--                            <mat-form-field class="area w-100">-->
+<!--                            <textarea matInput [maxLength]="255"-->
+<!--                                      placeholder="{{translationService.instant('NOTE')}}"-->
+<!--                                      formControlName="note"-->
+<!--                                      style="box-sizing: content-box"-->
+<!--                                      autocomplete="off"-->
+<!--                                      cdkTextareaAutosize-->
+<!--                                      cdkAutosizeMinRows="1"-->
+<!--                                      cdkAutosizeMaxRows="2"></textarea>-->
+<!--                            </mat-form-field>-->
+
+                            <p class="d-flex justify-content-end" *ngIf="getPlayersArray().length > 0">
+                                <span (click)="list.selectAll()" class="select">{{translationService.instant('SELECT_ALL')}}</span>
+                                <span (click)="list.deselectAll()" class="select">{{translationService.instant('DESELECT_ALL')}}</span>
+                            </p>
+                            <mat-selection-list #list formControlName="players">
+                                <mat-list-option checkboxPosition="before" *ngFor="let player of getPlayersArray()" [value]="player">
+                                    {{translationService.instant('PLAYER')}} {{player + 1}}
+                                </mat-list-option>
+                            </mat-selection-list>
+                        </div>
+                    </ng-container>
+                    <div class="d-flex align-items-center justify-content-end mt-2" *ngIf="charges.controls.length > 0">
+                        <button type="button" mat-flat-button color="primary" (click)="addCharge()" class="ml-5 pl-2">
+                            <mat-icon>add</mat-icon>
+                            {{translationService.instant('TABLE_ADD')}}
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
 </div>
 
-<div class="toolbar mt-4">
+<div class="toolbar mb-2">
     <button type="button" mat-flat-button color="warn" (click)="back()" class="mr-4 pl-3">
         <mat-icon>keyboard_backspace</mat-icon>
         {{translationService.instant('BACK')}}</button>

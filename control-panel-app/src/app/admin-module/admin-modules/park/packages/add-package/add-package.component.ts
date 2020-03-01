@@ -4,7 +4,7 @@ import { TranslateService } from '../../../../../common/translations-module';
 import { Currencies } from '../../../../utils/utils';
 import { Router } from '@angular/router';
 import { PackagesService } from '../packages.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSelectionList } from '@angular/material';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../../common/shared-module';
 
 @Component({
@@ -39,7 +39,7 @@ export class AddPackageComponent implements OnInit {
       this.charges = this.fb.array([]);
       this.form = this.fb.group({
          name: ['', Validators.required],
-         players: [1, [Validators.required, Validators.pattern('[0-9]+')]],
+         players: [1, [Validators.required, Validators.pattern('[0-9]+'), Validators.min(1), Validators.max(15)]],
          note: '',
          payments: this.payments,
          charges: this.charges
@@ -50,9 +50,10 @@ export class AddPackageComponent implements OnInit {
       return this.fb.group({
          amount: this.fb.group({
             currency: Currencies[0],
-            amount: ['', Validators.required]
+            amount: ['', Validators.required],
+            inPercentage: false
          }),
-         inPercentage: false
+         note: ''
       });
    }
 
@@ -60,9 +61,10 @@ export class AddPackageComponent implements OnInit {
       return this.fb.group({
          amount: this.fb.group({
             currency: Currencies[0],
-            amount: ['', Validators.required]
+            amount: ['', Validators.required],
+            inPercentage: false
          }),
-         inPercentage: false,
+         note: '',
          players: []
       });
    }
@@ -95,7 +97,7 @@ export class AddPackageComponent implements OnInit {
 
    getPlayersArray() {
       const array = [];
-      for (let i = 0; i < +this.form.get('players').value && i < 20; i++) {
+      for (let i = 0; i < +this.form.get('players').value && i < 15; i++) {
          array.push(i);
       }
       return array;

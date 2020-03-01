@@ -177,7 +177,7 @@ $background-light: (
         status-bar: green,
         app-bar: $white,
         background: $white,
-        hover: rgba(mat-color($dark-color, 500), 0.2),
+        hover: rgba(mat-color($dark-color, 500), 0.05),
         card: $white,
         dialog: $white,
         disabled-button: $white-12-opacity,

@@ -212,5 +212,8 @@
   "ONLY_INTEGER_ERROR": "enter positive integer number",
   "REMOVE_PAYMENT_CONFIRM_MASSAGE": "Remove payment №{0} from list?",
   "REMOVE_CHARGE_CONFIRM_MESSAGE": "Remove charge №{0} from list?",
-  "IN_PERCENTAGE": "in percentage"
+  "IN_PERCENTAGE": "in percentage",
+  "PLAYER": "Player",
+  "SELECT_ALL": "select all",
+  "DESELECT_ALL": "deselect all"
 }

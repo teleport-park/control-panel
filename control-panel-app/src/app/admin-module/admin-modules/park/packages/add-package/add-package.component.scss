@@ -16,11 +16,32 @@
     margin-top: .5rem;
     background-color: #FFF;
 
-    .mat-form-field {
+    .mat-form-field:not(.area) {
       width: 8rem;
     }
     .currency {
       width: 6rem;
     }
+  }
+  .delete-button {
+    //font-size: .8rem;
+    .mat-icon {
+
+    }
+  }
+
+  .select {
+    margin-right: 1rem;
+    text-decoration: underline;
+    cursor: pointer;
+    user-select: none;
+    color: #6f2cff;
+    &:hover {
+      color: #4828a8;
+    }
+  }
+  ::ng-deep.mat-list-option {
+    width: auto;
+    display: inline-block;
   }
 }

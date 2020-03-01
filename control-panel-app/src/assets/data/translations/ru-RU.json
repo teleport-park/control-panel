@@ -206,11 +206,16 @@
   "NOTE": "Описание",
   "ADD_PACKAGE_TITLE": "Добавить пакет",
   "PAYMENTS": "Платежи",
-  "CHARGES": "Списания",
+  "CHARGES": "Начисление",
   "PLAYERS": "Игроки",
   "BACK": "Назад",
   "ONLY_INTEGER_ERROR": "введите целое положительное число",
   "REMOVE_PAYMENT_CONFIRM_MASSAGE": "Удалить платеж №{0} из списка?",
   "REMOVE_CHARGE_CONFIRM_MESSAGE": "Удалить списание №{0} из списка?",
-  "IN_PERCENTAGE": "в процентах"
+  "IN_PERCENTAGE": "в процентах",
+  "PLAYER": "Игрок",
+  "SELECT_ALL": "выбрать всех",
+  "DESELECT_ALL": "отменить всех",
+  "PLAYERS_MIN_ERROR": "минимальное число игроков",
+  "PLAYERS_MAX_ERROR": "максимальное число игроков"
 }
