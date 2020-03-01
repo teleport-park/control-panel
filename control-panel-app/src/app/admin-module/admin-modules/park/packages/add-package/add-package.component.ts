@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '../../../../../common/translations-module';
 import { Currencies } from '../../../../utils/utils';
 import { Router } from '@angular/router';
 import { PackagesService } from '../packages.service';
+import { MatDialog } from '@angular/material';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../../common/shared-module';
 
 @Component({
    selector: 'add-package',
@@ -23,7 +25,9 @@ export class AddPackageComponent implements OnInit {
    constructor(public fb: FormBuilder,
                public translationService: TranslateService,
                private router: Router,
-               private service: PackagesService) {
+               private service: PackagesService,
+               private cd: ChangeDetectorRef,
+               private dialog: MatDialog) {
    }
 
    ngOnInit() {
@@ -47,7 +51,8 @@ export class AddPackageComponent implements OnInit {
          amount: this.fb.group({
             currency: Currencies[0],
             amount: ['', Validators.required]
-         })
+         }),
+         inPercentage: false
       });
    }
 
@@ -57,6 +62,7 @@ export class AddPackageComponent implements OnInit {
             currency: Currencies[0],
             amount: ['', Validators.required]
          }),
+         inPercentage: false,
          players: []
       });
    }
@@ -97,5 +103,30 @@ export class AddPackageComponent implements OnInit {
 
    back() {
       this.router.navigate(['admin', 'park', 'packages']);
+   }
+
+   /**
+    * show confirm dialog
+    */
+   private showConfirmDialog(index: number, payments?: boolean) {
+      this.dialog.open(ConfirmDialogComponent, {
+         data: {
+            title: 'DIALOG_CONFIRM_TITLE',
+            message: payments ? 'REMOVE_PAYMENT_CONFIRM_MASSAGE' : 'REMOVE_CHARGE_CONFIRM_MESSAGE',
+            messageParams: [(index + 1).toString()]
+         } as ConfirmDialogData,
+         autoFocus: false
+      }).afterClosed()
+      .subscribe((res) => {
+         if (!res) {
+            return;
+         }
+         if (payments) {
+            this.removePayment(index);
+         } else {
+            this.removeCharge(index);
+         }
+         this.cd.markForCheck();
+      });
    }
 }

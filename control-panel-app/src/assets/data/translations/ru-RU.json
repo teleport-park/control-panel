@@ -206,8 +206,11 @@
   "NOTE": "Описание",
   "ADD_PACKAGE_TITLE": "Добавить пакет",
   "PAYMENTS": "Платежи",
-  "CHARGES": "Расходы",
+  "CHARGES": "Списания",
   "PLAYERS": "Игроки",
   "BACK": "Назад",
-  "ONLY_INTEGER_ERROR": "введите целое положительное число"
+  "ONLY_INTEGER_ERROR": "введите целое положительное число",
+  "REMOVE_PAYMENT_CONFIRM_MASSAGE": "Удалить платеж №{0} из списка?",
+  "REMOVE_CHARGE_CONFIRM_MESSAGE": "Удалить списание №{0} из списка?",
+  "IN_PERCENTAGE": "в процентах"
 }
