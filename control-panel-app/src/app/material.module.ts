@@ -1,35 +1,37 @@
 import { NgModule } from '@angular/core';
 
 import {
-   DateAdapter,
-   MAT_DATE_FORMATS,
-   MAT_DATE_LOCALE,
-   MatButtonModule,
-   MatCardModule,
-   MatCheckboxModule,
-   MatDateFormats,
-   MatDatepickerModule,
-   MatDialogModule,
-   MatFormFieldModule,
-   MatIconModule,
-   MatInputModule,
-   MatListModule,
-   MatMenuModule,
-   MatPaginatorIntl,
-   MatPaginatorModule,
-   MatProgressSpinnerModule,
-   MatRadioModule,
-   MatSelectModule,
-   MatSidenavModule,
-   MatSlideToggleModule,
-   MatSnackBarModule,
-   MatSortModule,
-   MatTableModule,
-   MatTabsModule,
-   MatToolbarModule,
-   MatTooltipModule,
-   MatTreeModule,
-   MatChipsModule, MatAutocompleteModule
+    DateAdapter,
+    MAT_DATE_FORMATS,
+    MAT_DATE_LOCALE,
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDateFormats,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatPaginatorIntl,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatTreeModule
 } from '@angular/material';
 import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatPaginatorTranslateUtil } from './utils/mat-paginator-translate.util';
@@ -78,7 +80,8 @@ export const MATERIAL_MODULES = [
     MatRadioModule,
     MatTabsModule,
     MatChipsModule,
-   MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSliderModule
 ];
 
 @NgModule({

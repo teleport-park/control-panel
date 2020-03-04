@@ -16,6 +16,10 @@
       }
     }
   }
+  .light-theme {
+    background-color: $white;
+    overflow: hidden;
+  }
 
   .sync-action {
     position: absolute;

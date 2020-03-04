@@ -28,6 +28,8 @@ export class PackagesComponent implements OnInit {
 
    simplePackagesColumns: string[] = ['title', 'category', 'cloudId', 'description', 'games', 'note', 'syncId', 'type', 'unlim'];
 
+   _sliderValue: string = '00:00';
+
 
    constructor(public service: PackagesService,
                public cd: ChangeDetectorRef) {

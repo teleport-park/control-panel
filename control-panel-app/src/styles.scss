@@ -132,6 +132,11 @@ html, body {
     .mat-icon-button.mat-success, .mat-icon.mat-success {
       color: $success !important;
     }
+    .mat-accent {
+      .mat-slider-thumb-label-text {
+        color: $white;
+      }
+    }
   }
   .bold {
     font-weight: 700;
@@ -168,7 +173,6 @@ html, body {
     top: 5px;
     z-index: 2;
     padding: .3rem .3rem .3rem 1rem ;
-    margin: .5rem;
     border-radius: 5px;
     background-color: rgba(map-get($dark-color, 500), .7);
   }

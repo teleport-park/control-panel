@@ -1,4 +1,3 @@
-<!--<pre>{{(service.packages$ | async) | json}}</pre>-->
 <div class="row packages_wrapper">
     <mat-tab-group class="w-100" [@.disabled]="true" color="accent">
         <mat-tab label="{{'PACKAGES' | translate}}">
@@ -16,6 +15,12 @@
                                     [simpleDataColumn]="['status']"
                                     [data]="service.packagesHistory$ | async"
             ></control-panel-ui-table>
+        </mat-tab>
+        <mat-tab label="Overview">
+            <div class="light-theme pt-5">
+                <control-panel-ui-time-slider (sliderChange)="_sliderValue = $event"></control-panel-ui-time-slider>
+                <p class="pl-4"><span class="bold">{{'TIME' | translate}}: </span>{{_sliderValue}}</p>
+            </div>
         </mat-tab>
     </mat-tab-group>
 </div>

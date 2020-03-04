@@ -31,49 +31,51 @@ import { ControlPanelUiTimeFilterComponent } from './control-panel-ui-time-filte
 import { ControlPanelUiPeriodSelectorComponent } from './control-panel-ui-period-selector/control-panel-ui-period-selector.component';
 import { MatRippleModule } from '@angular/material';
 import { BoundCardDialogComponent } from './dialogs/bound-card-dialog/bound-card-dialog.component';
+import { ControlPanelUiTimeSliderComponent } from './control-panel-ui-time-slider/control-panel-ui-time-slider.component';
 
 const MODULES = [
-   ConfirmDialogComponent,
-   BoundCardDialogComponent,
-   NumberDirective,
-   ControlPanelUiCardComponent,
-   ControlPanelUiTableComponent,
-   ControlPanelUiSelectionComponent,
-   AddOrEditEntityDialogComponent,
-   AddGroupDialogComponent,
-   AddSimpleEntityDialogComponent,
-   ControlPanelUiActionToolbarComponent,
-   ControlPanelUiWidgetComponent,
-   ControlPanelUiSelectionTableComponent,
-   AddStaffDialogComponent,
-   ControlPanelUiHardwareItemComponent,
-   ControlPanelUiImagePreviewComponent,
-   ControlPanelUiTariffTreeComponent,
-   ControlPanelUiPackageComponent,
-   ControlPanelUiPaymentComponent,
-   AddControllerDialogComponent,
-   ControlPanelUiLinearGraphComponent,
-   ControlPanelUiGateItemComponent,
-   ControlPanelTriggerComponent,
-   ControlPanelUiQuickFilterComponent,
-   ControlPanelUiTimeFilterComponent,
-   ControlPanelUiPeriodSelectorComponent
+    ConfirmDialogComponent,
+    BoundCardDialogComponent,
+    NumberDirective,
+    ControlPanelUiCardComponent,
+    ControlPanelUiTableComponent,
+    ControlPanelUiSelectionComponent,
+    AddOrEditEntityDialogComponent,
+    AddGroupDialogComponent,
+    AddSimpleEntityDialogComponent,
+    ControlPanelUiActionToolbarComponent,
+    ControlPanelUiWidgetComponent,
+    ControlPanelUiSelectionTableComponent,
+    AddStaffDialogComponent,
+    ControlPanelUiHardwareItemComponent,
+    ControlPanelUiImagePreviewComponent,
+    ControlPanelUiTariffTreeComponent,
+    ControlPanelUiPackageComponent,
+    ControlPanelUiPaymentComponent,
+    AddControllerDialogComponent,
+    ControlPanelUiLinearGraphComponent,
+    ControlPanelUiGateItemComponent,
+    ControlPanelTriggerComponent,
+    ControlPanelUiQuickFilterComponent,
+    ControlPanelUiTimeFilterComponent,
+    ControlPanelUiPeriodSelectorComponent,
+    ControlPanelUiTimeSliderComponent
 ];
 
 @NgModule({
-   declarations: [...MODULES],
-   exports: [...MODULES],
-   imports: [
-      CommonModule,
-      TranslationModule,
-      MaterialModule,
-      ReactiveFormsModule,
-      FormsModule,
-      FormModule,
-      ChartistModule,
-      MatRippleModule
-   ],
-   entryComponents: [ConfirmDialogComponent, BoundCardDialogComponent]
+    declarations: [...MODULES],
+    exports: [...MODULES],
+    imports: [
+        CommonModule,
+        TranslationModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        FormsModule,
+        FormModule,
+        ChartistModule,
+        MatRippleModule
+    ],
+    entryComponents: [ConfirmDialogComponent, BoundCardDialogComponent]
 })
 export class SharedModule {
 }

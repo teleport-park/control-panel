@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  padding: 1rem 1.7rem;
+
+  ::ng-deep .mat-slider-horizontal .mat-slider-thumb-label {
+    right: -25px;
+    top: -65px;
+    width: 50px;
+    height: 50px;
+    color: #FFF;
+    .mat-slider-thumb-label-text {
+      font-size: 1.2rem;
+    }
+  }
+}
