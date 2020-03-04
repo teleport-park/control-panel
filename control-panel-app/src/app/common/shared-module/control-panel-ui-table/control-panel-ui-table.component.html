@@ -188,7 +188,7 @@
                     *matHeaderCellDef>{{translateService.instant(propertyMap['roles']) || 'roles'}}</mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <span class="table_cell-inner">
-                    <span>{{row.roles.join(', ')}}</span>
+                    <span>{{row.roles.map(mapRoles).join(', ')}}</span>
                 </span>
             </mat-cell>
         </ng-container>

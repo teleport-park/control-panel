@@ -1,131 +1,126 @@
-import { ChangeDetectorRef, Component, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, HostListener, Inject, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '../../../translations-module';
 import { StaffMember } from '../../../../models';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatAutocompleteSelectedEvent, MatChipInputEvent, MatDialogRef, MatFormField, PageEvent } from '@angular/material';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef, MatFormField } from '@angular/material';
 import moment from 'moment';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 @Component({
-   selector: 'control-panel-add-staff-dialog',
-   templateUrl: './add-staff-dialog.component.html',
-   styleUrls: ['./add-staff-dialog.component.scss']
+    selector: 'control-panel-add-staff-dialog',
+    templateUrl: './add-staff-dialog.component.html',
+    styleUrls: ['./add-staff-dialog.component.scss']
 })
 export class AddStaffDialogComponent implements OnInit {
 
-   @ViewChild('rolesRef', {static: false}) rolesRef: MatFormField;
+    @ViewChild('rolesRef', {static: false}) rolesRef: MatFormField;
 
-   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+    @Output() save: EventEmitter<StaffMember> = new EventEmitter();
 
-   roles: string[] = ['operator', 'admin', 'super', 'cashier'];
+    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-   rolesEmpty: boolean = false;
+    roles: string[] = ['operator', 'admin', 'super', 'cashier'];
 
-   /**
-    * mode
-    */
-   mode = 'add';
+    rolesEmpty: boolean = false;
 
-   /**
-    * model
-    */
-   entityModel: StaffMember;
+    /**
+     * model
+     */
+    entityModel: StaffMember;
 
-   /**
-    * form
-    */
-   form: FormGroup;
+    /**
+     * form
+     */
+    form: FormGroup;
 
-   /**
-    * listen enter key press to submit
-    * @param event
-    */
-   @HostListener('document:keydown.enter', ['$event']) enterKeyEvent(event: KeyboardEvent) {
-      this.onSubmitHandler();
-   }
+    /**
+     * listen enter key press to submit
+     * @param event
+     */
+    @HostListener('document:keydown.enter', ['$event']) enterKeyEvent(event: KeyboardEvent) {
+        this.onSubmitHandler();
+    }
 
-   /**
-    * constructor
-    * @param translateService
-    * @param fb
-    * @param dialogRef
-    * @param data
-    * @param cd
-    */
-   constructor(public translateService: TranslateService,
-               private cd: ChangeDetectorRef,
-               private fb: FormBuilder,
-               public dialogRef: MatDialogRef<AddStaffDialogComponent>,
-               @Inject(MAT_DIALOG_DATA) public data: { mode: string, item: StaffMember }) {
-      dialogRef._containerInstance._config.width = '400px';
-   }
+    /**
+     * constructor
+     * @param translateService
+     * @param fb
+     * @param dialogRef
+     * @param data
+     * @param cd
+     */
+    constructor(public translateService: TranslateService,
+                private cd: ChangeDetectorRef,
+                private fb: FormBuilder,
+                public dialogRef: MatDialogRef<AddStaffDialogComponent>,
+                @Inject(MAT_DIALOG_DATA) public data: { mode: string, item: StaffMember }) {
+        dialogRef._containerInstance._config.width = '400px';
+    }
 
-   ngOnInit(): void {
-      // this.service.getGroups();
-      this.entityModel = this.data.item;
-      this.form = this.getStaffMemberForm();
-      this.form.patchValue(this.entityModel);
-      this.mode = this.data.mode;
-      moment.locale(this.translateService.locale.getValue());
-      this.entityModel.roles.forEach(role => {
-         this.roles = this.roles.filter(r => r !== role);
-      });
-   }
+    ngOnInit(): void {
+        this.entityModel = this.data.item;
+        this.form = this.getStaffMemberForm();
+        this.form.patchValue(this.entityModel);
+        moment.locale(this.translateService.locale.getValue());
+        this.entityModel.roles.forEach(role => {
+            this.roles = this.roles.filter(r => r !== role);
+        });
+    }
 
-   /**
-    * get staff member form
-    */
-   private getStaffMemberForm() {
-      return this.fb.group({
-         name: ['', Validators.required],
-         passport: '',
-         high_education: false,
-         hired_at: ['', Validators.required],
-         fired_at: ''
-      });
-   }
+    /**
+     * get staff member form
+     */
+    private getStaffMemberForm() {
+        return this.fb.group({
+            name: ['', Validators.required],
+            passport: '',
+            high_education: false,
+            hired_at: ['', Validators.required],
+            fired_at: ''
+        });
+    }
 
-   /**
-    * submit handler
-    */
-   onSubmitHandler(): void {
-      Object.keys(this.form.controls).forEach(key => {
-         this.form.get(key).markAsDirty();
-      });
-      if (this.form.valid) {
-         const entity = this.form.getRawValue();
-         if (!this.entityModel.roles.length) {
-            this.rolesEmpty = true;
-            return;
-         }
-         Object.assign(this.entityModel, entity);
-         this.entityModel.hired_at = moment(entity.hired_at).format('YYYY-MM-DD');
-         this.entityModel.fired_at = entity.fired_at ? moment(entity.fired_at).format('YYYY-MM-DD') : null;
-         this.dialogRef.close(this.entityModel);
-      }
-   }
+    /**
+     * submit handler
+     */
+    onSubmitHandler(): void {
+        Object.keys(this.form.controls).forEach(key => {
+            this.form.get(key).markAsDirty();
+        });
+        if (this.form.valid) {
+            const entity = this.form.getRawValue();
+            if (!this.entityModel.roles.length) {
+                this.rolesEmpty = true;
+                return;
+            }
+            Object.assign(this.entityModel, entity);
+            this.entityModel.hired_at = moment(entity.hired_at).toISOString();
+            this.entityModel.fired_at = entity.fired_at ? moment(entity.fired_at).format('YYYY-MM-DD') : null;
+            this.save.emit(this.entityModel);
+        }
+    }
 
-   /**
-    * cancel handler
-    */
-   onCancelHandler(): void {
-      this.dialogRef.close();
-   }
+    /**
+     * cancel handler
+     */
+    onCancelHandler(): void {
+        this.dialogRef.close();
+    }
 
-   add(role: string): void {
-      if ((role || '').trim()) {
-         this.entityModel.roles.push(role.trim());
-         this.rolesEmpty = false;
-      }
-      this.roles = this.roles.filter((r: string) => r !== role);
-   }
+    add(role: string): void {
+        if ((role || '').trim()) {
+            this.entityModel.roles.push(role.trim());
+            this.rolesEmpty = false;
+        }
+        this.roles = this.roles.filter((r: string) => r !== role);
+    }
 
-   remove(role: string): void {
-      const index = this.entityModel.roles.indexOf(role);
+    remove(role: string): void {
+        const index = this.entityModel.roles.indexOf(role);
 
-      if (index >= 0) {
-         this.entityModel.roles.splice(index, 1);
-         this.roles.push(role);
-      }
-   }
+        if (index >= 0) {
+            this.entityModel.roles.splice(index, 1);
+            this.roles.push(role);
+        }
+    }
 }

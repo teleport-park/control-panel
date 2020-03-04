@@ -215,5 +215,12 @@
   "IN_PERCENTAGE": "in percentage",
   "PLAYER": "Player",
   "SELECT_ALL": "select all",
-  "DESELECT_ALL": "deselect all"
+  "DESELECT_ALL": "deselect all",
+  "cashier": "cashier",
+  "admin": "admin",
+  "operator": "operator",
+  "super": "super-user",
+  "STAFF_STATE": "State",
+  "STAFF_HIRED": "hired",
+  "STAFF_FIRED": "fired"
 }

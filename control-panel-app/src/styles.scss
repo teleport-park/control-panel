@@ -149,7 +149,7 @@ html, body {
     word-break: break-word;
   }
 
-  button {
+  button:not(.mat-icon-button) {
     .mat-icon {
       margin-right: .5rem;
     }

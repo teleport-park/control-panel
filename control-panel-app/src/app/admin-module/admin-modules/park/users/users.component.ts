@@ -1,16 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { Visitor } from '../../../../models';
-import { MatDialog, MatSidenavContent, Sort } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSidenavContent, Sort } from '@angular/material';
 import { TranslateService } from '../../../../common/translations-module';
 import { Subject } from 'rxjs';
 import { LoaderService } from '../../../../services/loader.service';
-import {
-   AddOrEditEntityDialogComponent,
-   ConfirmDialogComponent,
-   ConfirmDialogData,
-   ControlPanelUiQuickFilterComponent
-} from '../../../../common/shared-module';
+import { ConfirmDialogComponent, ConfirmDialogData, ControlPanelUiQuickFilterComponent } from '../../../../common/shared-module';
 import { FormBuilder } from '@angular/forms';
 import { BreakpointService } from '../../../../services/breakpoint.service';
 
@@ -26,212 +21,225 @@ import { BoundCardDialogComponent } from '../../../../common/shared-module/dialo
 import { CardsService } from '../cards/services/cards.service';
 
 @Component({
-   selector: 'app-users',
-   templateUrl: './users.component.html',
-   styleUrls: ['./users.component.scss'],
-   changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-users',
+    templateUrl: './users.component.html',
+    styleUrls: ['./users.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class UsersComponent implements OnInit, OnDestroy {
 
-   /**
-    * extended filters config
-    */
-   extendedFiltersConfig: ExtendedFilterFieldGroup[] = UserExtendedFilterConfig;
+    /**
+     * extended filters config
+     */
+    extendedFiltersConfig: ExtendedFilterFieldGroup[] = UserExtendedFilterConfig;
 
-   /**
-    * reset pagination
-    */
-   resetPagination: { reset: boolean };
+    /**
+     * reset pagination
+     */
+    resetPagination: { reset: boolean };
 
-   /**
-    * view scroll container for set and store scroll position
-    * @param element
-    */
-   @ViewChild('scrollContainer', {static: false}) set scrollContainer(element: MatSidenavContent) {
-      if (element) {
-         element.elementScrolled().pipe(debounceTime(1000)).subscribe((event: any) => {
-         });
-      }
-   }
+    /**
+     * view scroll container for set and store scroll position
+     * @param element
+     */
+    @ViewChild('scrollContainer', {static: false}) set scrollContainer(element: MatSidenavContent) {
+        if (element) {
+            element.elementScrolled().pipe(debounceTime(1000)).subscribe((event: any) => {
+            });
+        }
+    }
 
-   @ViewChild('quickFilter', {static: false}) quickFilter: ControlPanelUiQuickFilterComponent;
+    @ViewChild('quickFilter', {static: false}) quickFilter: ControlPanelUiQuickFilterComponent;
 
-   /**
-    * subject for destroy component
-    */
-   destroyed$: Subject<boolean> = new Subject();
+    @ViewChild('form', {static: true}) form: TemplateRef<any>;
 
-   /**
-    * list of displayed column
-    */
-   displayedColumns: string[] = [
-      'name',
-      'display_name',
-      'gender',
-      'phone',
-      'age',
-      'email',
-      'submenu'
-   ];
+    /**
+     * subject for destroy component
+     */
+    destroyed$: Subject<boolean> = new Subject();
 
-   /**
-    * column with data
-    */
-   columnWithData: string[] = ['name', 'nickname', 'display_name', 'phone', 'age', 'email', 'gender', 'birthyear', 'comment'];
+    /**
+     * list of displayed column
+     */
+    displayedColumns: string[] = [
+        'name',
+        'display_name',
+        'gender',
+        'phone',
+        'age',
+        'email',
+        'submenu'
+    ];
 
-   /**
-    * available to sort column
-    */
-   sortedColumn: string[] = [];
+    /**
+     * column with data
+     */
+    columnWithData: string[] = ['name', 'nickname', 'display_name', 'phone', 'age', 'email', 'gender', 'birthyear', 'comment'];
 
-   constructor(
-      public cd: ChangeDetectorRef,
-      public translateService: TranslateService,
-      private loaderService: LoaderService,
-      public dialog: MatDialog,
-      public point: BreakpointService,
-      private router: Router,
-      private fb: FormBuilder,
-      private cardService: CardsService,
-      @Inject(ENTITY_SERVICE) private service: EntityService<Visitor>,
-      @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
-      @Inject('ExtendedFilterUrlParamsInterface') private extendedFilterUrlBuilder: ExtendedFilterUrlParamsInterface) {
-   }
+    /**
+     * available to sort column
+     */
+    sortedColumn: string[] = [];
 
-   /**
-    * on init hook
-    */
-   ngOnInit() {
-      this.service.getEntities();
-      const data = config as Config;
-      this.sortedColumn = data.users.sortedColumns || [];
-   }
+    _dialog: MatDialogRef<any>;
 
-   applyQuickFilter(value: string) {
-      this.service.requestHelper.resetPagination();
-      this.resetPagination = {reset: true};
-      this.service.getEntities(value);
-   }
+    _mode: 'add' | 'edit';
 
-   /**
-    * open dialog
-    * @param mode
-    * @param event
-    */
-   operationWithUser(mode: 'edit' | 'add' | 'delete', event?: Visitor): void {
-      if (mode === 'delete') {
-         this.showConfirmDialog(event);
-         return;
-      }
-      this.showModalAddOrEditUser(mode, event);
-   }
+    constructor(
+        public cd: ChangeDetectorRef,
+        public translateService: TranslateService,
+        private loaderService: LoaderService,
+        public dialog: MatDialog,
+        public point: BreakpointService,
+        private router: Router,
+        private fb: FormBuilder,
+        private cardService: CardsService,
+        @Inject(ENTITY_SERVICE) private service: EntityService<Visitor>,
+        @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
+        @Inject('ExtendedFilterUrlParamsInterface') private extendedFilterUrlBuilder: ExtendedFilterUrlParamsInterface) {
+    }
 
-   /**
-    * show add or remove dialog
-    * @param mode
-    * @param visitor
-    */
-   private showModalAddOrEditUser(mode: 'edit' | 'add', visitor: Visitor) {
-      if (mode === 'edit') {
-         this.service.getEntity(visitor.id)
-         .pipe(filter((data: Visitor) => !!data))
-         .subscribe((user: Visitor) => {
-            this.openModalDialog(mode, user);
-         });
-         return;
-      }
-      this.openModalDialog(mode, new Visitor());
-   }
+    /**
+     * on init hook
+     */
+    ngOnInit() {
+        this.service.entities$
+        .pipe(takeUntil(this.destroyed$))
+        .subscribe(res => {
+            this._dialog && this._dialog.close();
+            this._mode = null;
+        });
+        this.service.getEntities();
+        const data = config as Config;
+        this.sortedColumn = data.users.sortedColumns || [];
 
-   /**
-    * open modal dialog
-    * @param mode
-    * @param user
-    */
-   private openModalDialog(mode: 'edit' | 'add', user: Visitor) {
-      this.dialog.open(AddOrEditEntityDialogComponent, {
-         data: user,
-         disableClose: true
-      }).afterClosed()
-      .pipe(filter(data => data), takeUntil(this.destroyed$))
-      .subscribe((result: Visitor) => {
-         if (mode === 'edit') {
-            this.service.editEntity(result);
-         } else {
-            this.service.addEntity(result);
-         }
-      });
-   }
+    }
 
-   /**
-    * show confirm dialog
-    */
-   private showConfirmDialog(visitor: Visitor) {
-      this.dialog.open(ConfirmDialogComponent, {
-         data: {
-            title: 'DIALOG_CONFIRM_TITLE',
-            message: 'DIALOG_CONFIRM_MESSAGE',
-            messageParams: [`${visitor.name}`]
-         } as ConfirmDialogData,
-         autoFocus: false
-      }).afterClosed()
-      .pipe(filter(data => data), takeUntil(this.destroyed$))
-      .subscribe(() => {
-         this.service.deleteEntity(visitor.id);
-      });
-   }
+    applyQuickFilter(value: string) {
+        this.service.requestHelper.resetPagination();
+        this.resetPagination = {reset: true};
+        this.service.getEntities(value);
+    }
 
-   /**
-    * change page handler
-    * @param event
-    */
-   paginationChangeHandler(event: PaginationSetting): void {
-      this.service.requestHelper.setPagination(event);
-      this.service.getEntities(this.quickFilter.quickFilterValue);
-   }
+    /**
+     * open dialog
+     * @param mode
+     * @param event
+     */
+    operationWithUser(mode: 'edit' | 'add' | 'delete', event?: Visitor): void {
+        if (mode === 'delete') {
+            this.showConfirmDialog(event);
+            return;
+        }
+        this.showModalAddOrEditUser(mode, event);
+    }
 
-   sortChangeHandler(event: Sort) {
-      const sort = {};
-      if (event.direction) {
-         sort[event.active] = event.direction;
-      }
-      this.service.requestHelper.setSorting(sort);
-      this.service.getEntities(this.quickFilter.quickFilterValue);
-   }
+    submit(visitor: Visitor) {
+        if (this._mode === 'edit') {
+            this.service.editEntity(visitor);
+        } else {
+            this.service.addEntity(visitor);
+        }
+    }
 
-   /**
-    * apply extended filters
-    * @param filterData
-    */
-   applyFilter(filterData): void {
-      this.service.requestHelper.setExtendedFilterRequest(this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
-      this.service.getEntities(this.quickFilter.quickFilterValue);
-   }
+    /**
+     * show add or remove dialog
+     * @param mode
+     * @param visitor
+     */
+    private showModalAddOrEditUser(mode: 'edit' | 'add', visitor: Visitor) {
+        this._mode = mode;
+        if (mode === 'edit') {
+            this.service.getEntity(visitor.id)
+            .pipe(filter((data: Visitor) => !!data))
+            .subscribe((user: Visitor) => {
+                this.openModalDialog(user);
+            });
+            return;
+        }
+        this.openModalDialog(new Visitor());
+    }
 
-   boundCard(user: Visitor) {
-      this.dialog.open(BoundCardDialogComponent, {
-         data: {
-            user
-         }
-      }).afterClosed().subscribe(cardId => {
-         if (cardId) {
-            this.cardService.boundCard(cardId, {id: user.id, type: 'visitor'});
-         }
-      });
-   }
+    /**
+     * open modal dialog
+     * @param user
+     */
+    private openModalDialog(user: Visitor) {
+        this._dialog = this.dialog.open(this.form, {
+            data: user,
+            disableClose: true
+        });
+    }
 
-   ngOnDestroy(): void {
-      this.service.requestHelper.resetPagination();
-      this.destroyed$.next(true);
-      this.destroyed$.complete();
-   }
+    /**
+     * show confirm dialog
+     */
+    private showConfirmDialog(visitor: Visitor) {
+        this.dialog.open(ConfirmDialogComponent, {
+            data: {
+                title: 'DIALOG_CONFIRM_TITLE',
+                message: 'DIALOG_CONFIRM_MESSAGE',
+                messageParams: [`${visitor.name}`]
+            } as ConfirmDialogData,
+            autoFocus: false
+        }).afterClosed()
+        .pipe(filter(data => data), takeUntil(this.destroyed$))
+        .subscribe(() => {
+            this.service.deleteEntity(visitor.id);
+        });
+    }
 
-   /**
-    * select user
-    * @param user
-    */
-   // selectUser(user: Visitor) {
-   //     this.router.navigate(['admin', 'user-management', 'users', user.id]);
-   // }
+    /**
+     * change page handler
+     * @param event
+     */
+    paginationChangeHandler(event: PaginationSetting): void {
+        this.service.requestHelper.setPagination(event);
+        this.service.getEntities(this.quickFilter.quickFilterValue);
+    }
+
+    sortChangeHandler(event: Sort) {
+        const sort = {};
+        if (event.direction) {
+            sort[event.active] = event.direction;
+        }
+        this.service.requestHelper.setSorting(sort);
+        this.service.getEntities(this.quickFilter.quickFilterValue);
+    }
+
+    /**
+     * apply extended filters
+     * @param filterData
+     */
+    applyFilter(filterData): void {
+        this.service.requestHelper.setExtendedFilterRequest(this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
+        this.service.getEntities(this.quickFilter.quickFilterValue);
+    }
+
+    boundCard(user: Visitor) {
+        this.dialog.open(BoundCardDialogComponent, {
+            data: {
+                user
+            }
+        }).afterClosed().subscribe(cardId => {
+            if (cardId) {
+                this.cardService.boundCard(cardId, {id: user.id, type: 'visitor'});
+            }
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.service.requestHelper.resetPagination();
+        this.destroyed$.next(true);
+        this.destroyed$.complete();
+    }
+
+    /**
+     * select user
+     * @param user
+     */
+    // selectUser(user: Visitor) {
+    //     this.router.navigate(['admin', 'user-management', 'users', user.id]);
+    // }
 }

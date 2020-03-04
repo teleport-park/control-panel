@@ -234,4 +234,6 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
       const amount = balance.map(i => i.amount).reduce((prev: number, curr: number) => prev + curr);
       return +amount.toFixed(2);
    }
+
+   mapRoles = (role) => this.translateService.instant(role);
 }

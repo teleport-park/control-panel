@@ -44,4 +44,13 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<ng-template #form let-data>
+    <control-panel-ui-form [item]="data"
+                           [mode]="_mode"
+                           (save)="submit($event)"
+                           (cancel)="_dialog.close()"
+                           ></control-panel-ui-form>
+</ng-template>
+
 <router-outlet #userOutlet="outlet" (deactivate)="cd.markForCheck()"></router-outlet>

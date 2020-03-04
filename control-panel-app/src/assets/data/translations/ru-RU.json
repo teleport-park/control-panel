@@ -217,5 +217,12 @@
   "SELECT_ALL": "выбрать все",
   "DESELECT_ALL": "отменить все",
   "PLAYERS_MIN_ERROR": "минимальное число игроков",
-  "PLAYERS_MAX_ERROR": "максимальное число игроков"
+  "PLAYERS_MAX_ERROR": "максимальное число игроков",
+  "cashier": "кассир",
+  "admin": "администратор",
+  "operator": "оператор",
+  "super": "супер-пользователь",
+  "STAFF_STATE": "Состояние",
+  "STAFF_HIRED": "не уволен",
+  "STAFF_FIRED": "уволен"
 }
