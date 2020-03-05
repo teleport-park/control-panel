@@ -9,13 +9,13 @@
                                     [minRowHeight]="80"
             ></control-panel-ui-table>
         </mat-tab>
-        <mat-tab label="{{'SYNC_HISTORY' | translate}}">
-            <control-panel-ui-table class="light-theme"
-                                    [displayedColumns]="['timestamp', 'status']"
-                                    [simpleDataColumn]="['status']"
-                                    [data]="service.packagesHistory$ | async"
-            ></control-panel-ui-table>
-        </mat-tab>
+<!--        <mat-tab label="{{'SYNC_HISTORY' | translate}}">-->
+<!--            <control-panel-ui-table class="light-theme"-->
+<!--                                    [displayedColumns]="['timestamp', 'status']"-->
+<!--                                    [simpleDataColumn]="['status']"-->
+<!--                                    [data]="service.packagesHistory$ | async"-->
+<!--            ></control-panel-ui-table>-->
+<!--        </mat-tab>-->
         <mat-tab label="Overview">
             <div class="light-theme pt-5">
                 <control-panel-ui-time-slider (sliderChange)="_sliderValue = $event"></control-panel-ui-time-slider>
@@ -25,8 +25,8 @@
     </mat-tab-group>
 </div>
 
-<div class="sync-action d-flex align-items-center">
-    <span class="mr-4">Last synchronization was at {{(service.lastSyncTime$ | async) | date:'dd.MM.yyyy HH:mm:ss'}}</span>
-    <button mat-raised-button color="primary" (click)="service.synchronize()">Sync</button>
-</div>
+<!--<div class="sync-action d-flex align-items-center">-->
+<!--    <span class="mr-4">Last synchronization was at {{(service.lastSyncTime$ | async) | date:'dd.MM.yyyy HH:mm:ss'}}</span>-->
+<!--    <button mat-raised-button color="primary" (click)="service.synchronize()">Sync</button>-->
+<!--</div>-->
 

@@ -91,4 +91,6 @@ export class CardsComponent implements OnInit {
    changePageHandler(event: PageEvent): void {
       this.storage.setValue(this.service.STORAGE_KEY, event);
    }
+
+    mapRoles = (role) => this.translateService.instant(role);
 }

@@ -220,7 +220,10 @@
   "admin": "admin",
   "operator": "operator",
   "super": "super-user",
+  "visitor": "visitor",
   "STAFF_STATE": "State",
   "STAFF_HIRED": "hired",
-  "STAFF_FIRED": "fired"
+  "STAFF_FIRED": "fired",
+  "MAX_VALUE_ERROR": "Max value ",
+  "INVALID_PATTERN": "Invalid value format"
 }

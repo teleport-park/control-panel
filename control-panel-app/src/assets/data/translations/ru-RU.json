@@ -222,7 +222,10 @@
   "admin": "администратор",
   "operator": "оператор",
   "super": "супер-пользователь",
+  "visitor": "посетитель",
   "STAFF_STATE": "Состояние",
   "STAFF_HIRED": "не уволен",
-  "STAFF_FIRED": "уволен"
+  "STAFF_FIRED": "уволен",
+  "MAX_VALUE_ERROR": "Максимальное значение",
+  "INVALID_PATTERN": "Некорректный формат"
 }

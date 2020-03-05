@@ -1,7 +1,20 @@
 <div class="who-is_wrapper light-theme">
     <div class="d-flex flex-column justify-content-center align-items-center">
-        <control-panel-ui-quick-filter label="{{'WHO_IM_LABEL' | translate}}"
-                                       (filterChange)="setCardNumber($event)"></control-panel-ui-quick-filter>
+        <mat-radio-group [formControl]="_mode" class="d-flex justify-content-between mb-3 mt-2" (change)="changeModeHandler($event)">
+            <mat-radio-button value="int">int</mat-radio-button>
+            <mat-radio-button value="hex">hex</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field class="mb-3">
+            <input matInput [formControl]="_control" placeholder="{{'WHO_IM_LABEL' | translate}}" [maxLength]="_mode.value === 'hex' ? 8 : 10">
+            <mat-error *ngIf="_control?.errors?.max">{{'MAX_VALUE_ERROR' | translate}} {{_control?.errors?.max.max}}</mat-error>
+            <mat-error *ngIf="_control?.errors?.pattern">{{'INVALID_PATTERN' | translate}}</mat-error>
+            <mat-icon matPrefix class="search-filter-icon">search</mat-icon>
+            <mat-icon *ngIf="_control.value"
+                      matSuffix
+                      (click)="_control.setValue('')"
+                      class="clear-filter-icon">clear
+            </mat-icon>
+        </mat-form-field>
         <button mat-flat-button color="accent"
                 (click)="searchCard()">{{'USERS_TABLE_FILTER_INPUT_LABEL' | translate}}</button>
     </div>

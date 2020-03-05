@@ -1,5 +1,5 @@
 <mat-tab-group [@.disabled]="true" color="accent">
-    <mat-tab label="{{'ADMIN_MENU_CARDS' | translate}}">
+    <mat-tab label="{{'ADMIN_MENU_CARDS' | translate}}" >
         <div class="card_wrapper light-theme">
             <table mat-table [dataSource]="dataSource" class="table">
                 <ng-container matColumnDef="index">
@@ -29,14 +29,12 @@
                         <span>{{translateService.instant(propertyMap['binding'])}}</span></th>
                     <td mat-cell *matCellDef="let row">
                         <ng-container *ngIf="row.binding">
-                            <div class="mb-1 mt-1"><span class="bold">{{translateService.instant('NAME')}}
-                                :</span>{{row.binding.user.display_name}}</div>
-                            <div class="mb-1"><span class="bold">{{translateService.instant('TYPE')}}
-                                :</span>{{row.binding.user.type}}</div>
-                            <div class="mb-1"><span class="bold">{{translateService.instant('STAFF_ROLES')}}
-                                :</span>{{row.binding.user.roles.join(', ') }}</div>
-                            <div class="mb-1"><span class="bold">{{translateService.instant('BOUND_AT')}}
-                                :</span>{{row.binding.bound_at | date: 'dd.MM.yyyy hh.mm'}}</div>
+                            <div class="mb-1 mt-1">
+                                {{row.binding.user.display_name}} /
+                                <span class="label">
+                                    {{row.binding.user.roles.map(mapRoles).join(', ') }}
+                                </span>
+                            </div>
                         </ng-container>
                         <ng-container *ngIf="!row.binding">
                             <div class="d-flex align-items-center">
