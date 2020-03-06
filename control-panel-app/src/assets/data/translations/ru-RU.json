@@ -132,7 +132,7 @@
   "STAFF_HIGHER_EDUCATION": "Высшее образование",
   "STAFF_FIRED_DATE": "Дата увольнения",
   "STAFF_FIRED_STATE": "Уволен",
-  "STAFF_ENABLED": "Активный",
+  "STAFF_ENABLED": "Активно",
   "OTHERS": "Остальные...",
   "ADMIN_MENU_CASHBOX": "Кассы",
   "ADMIN_MENU_GATES": "Ворота",
@@ -227,5 +227,7 @@
   "STAFF_HIRED": "не уволен",
   "STAFF_FIRED": "уволен",
   "MAX_VALUE_ERROR": "Максимальное значение",
-  "INVALID_PATTERN": "Некорректный формат"
+  "INVALID_PATTERN": "Некорректный формат",
+  "EDIT_PACKAGE_TITLE": "Редактировать пакет",
+  "DIALOG_PACKAGE_TOGGLE_CONFIRM_MESSAGE": "{0} пакет {1}?"
 }

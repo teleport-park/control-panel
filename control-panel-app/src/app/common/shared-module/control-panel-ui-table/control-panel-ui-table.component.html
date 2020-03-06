@@ -192,6 +192,23 @@
                 </span>
             </mat-cell>
         </ng-container>
+
+        <ng-container matColumnDef="enabled">
+            <mat-header-cell *matHeaderCellDef> {{translateService.instant('ENABLED')}} </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let item">
+                <button *ngIf="item.enabled"
+                        mat-icon-button color="success"
+                        matTooltip="{{'DISABLE' | translate}}"
+                        matTooltipPosition="left"
+                        (click)="toggle.emit(item)"><mat-icon>check</mat-icon></button>
+                <button *ngIf="!item.enabled"
+                        mat-icon-button
+                        matTooltip="{{'ENABLE' | translate}}"
+                        matTooltipPosition="left"
+                        color="warn"
+                        (click)="toggle.emit(item)"><mat-icon>clear</mat-icon></button>
+            </mat-cell>
+        </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;" [style.min-height]="minRowHeight + 'px'"
                  [ngClass]="{'selected': selection.isSelected(row)}"

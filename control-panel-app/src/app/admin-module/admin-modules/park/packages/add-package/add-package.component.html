@@ -1,5 +1,5 @@
 <div class="light-theme mb-2">
-    <h3>{{translationService.instant('ADD_PACKAGE_TITLE')}}</h3>
+    <h3>{{translationService.instant(service.packageForEdit ? 'EDIT_PACKAGE_TITLE' : 'ADD_PACKAGE_TITLE')}}</h3>
     <form [formGroup]="form" class="container-fluid">
         <div class="row">
             <div class="col-xl-3 d-flex flex-column">
@@ -178,6 +178,6 @@
         {{translationService.instant('BACK')}}</button>
     <button type="button" mat-flat-button color="accent" (click)="submit()" class="pl-3">
         <mat-icon>check</mat-icon>
-        {{translationService.instant('TABLE_ADD')}}</button>
+        {{translationService.instant(service.packageForEdit ? 'USER_FORM_EDIT_BUTTON_LABEL' : 'TABLE_ADD')}}</button>
 </div>
 

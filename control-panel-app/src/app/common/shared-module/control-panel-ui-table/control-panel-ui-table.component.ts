@@ -132,14 +132,13 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
     */
    @Output() selected: EventEmitter<T> = new EventEmitter();
 
+    /**
+     * toggle item
+     */
+   @Output() toggle: EventEmitter<T> = new EventEmitter();
+
    /**
     * constructor
-    * @param translateService
-    * @param cd
-    * @param point
-    * @param injector
-    * @param icon
-    * @param storage
     */
    constructor(public translateService: TranslateService,
                private cd: ChangeDetectorRef,

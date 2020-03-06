@@ -26,12 +26,12 @@ export class ApiUrlsService implements IApiUrlsInterface {
       const originEndPoint = `${ApiUrlsService.ORIGIN}${endPoint}`;
       const aub = new ApiUrlBuilder(originEndPoint, requestMethod);
 
-      if (aub.isRequestMethodDelete() || aub.isRequestMethodPut()) {
-         aub.appendUrl(id.toString());
+      if (aub.isRequestMethodDelete() || aub.isRequestMethodPut() || aub.isRequestMethodPatch()) {
+         aub.appendUrl(id ? id.toString() : '');
          return aub.build();
       }
 
-      if (aub.isRequestMethodPost() || aub.isRequestMethodPatch()) {
+      if (aub.isRequestMethodPost()) {
          return aub.build();
       }
 
@@ -95,8 +95,8 @@ export class ApiUrlsService implements IApiUrlsInterface {
       return ApiUrlsService.getPagedUrl(API.CASH_BOX_INSTANCES, requestMethod, id) + '/auth';
    }
 
-   public getPackages(requestMethod: 'GET' | 'PUT' | 'POST') {
-      return ApiUrlsService.getPagedUrl(API.PACKAGES, requestMethod);
+   public getPackages(requestMethod: 'GET' | 'PUT' | 'POST' | 'PATCH', id?: string) {
+      return ApiUrlsService.getPagedUrl(API.PACKAGES, requestMethod, id);
    }
 
    public getSessions(requestMethod: 'GET' | 'PUT', id?: string, query?: string, limit?: number, offset?: number) {
