@@ -15,7 +15,6 @@ import { MatDialog, MatDialogRef, Sort } from '@angular/material';
 import { default as config } from '../../../../../config/app-config.json';
 import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
 import { FormBuilder } from '@angular/forms';
-import { GroupsService } from './groups/services/groups.service';
 import { Router } from '@angular/router';
 import { ExtendedFilterFieldGroup } from '../../../../common/extended-filters-module/extended-filters.component';
 import { StaffExtendedFiltersConfig } from './staff-extended-filters.config';
@@ -92,7 +91,6 @@ export class StaffComponent implements OnInit, OnDestroy {
         public point: BreakpointService,
         public dialog: MatDialog,
         private fb: FormBuilder,
-        public groupsService: GroupsService,
         private router: Router,
         private cardService: CardsService,
         @Inject(ENTITY_SERVICE) private service: EntityService<StaffMember>,
@@ -135,8 +133,8 @@ export class StaffComponent implements OnInit, OnDestroy {
         this.dialog.open(ConfirmDialogComponent, {
             data: {
                 title: 'DIALOG_CONFIRM_TITLE',
-                message: 'DIALOG_CONFIRM_MESSAGE',
-                messageParams: [`${staffMember.name}`]
+                message: 'DIALOG_CONFIRM_DELETE_STAFF_MESSAGE',
+                messageParams: [staffMember.name]
             } as ConfirmDialogData,
             autoFocus: false
         }).afterClosed()
@@ -208,8 +206,8 @@ export class StaffComponent implements OnInit, OnDestroy {
      * @param filterData
      */
     applyFilter(filterData): void {
-        console.log('[extended filter url] -> ', this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
         this.service.requestHelper.setExtendedFilterRequest(this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
+        this.service.requestHelper.filterData = filterData;
         this.service.getEntities(this.quickFilter.quickFilterValue);
     }
 

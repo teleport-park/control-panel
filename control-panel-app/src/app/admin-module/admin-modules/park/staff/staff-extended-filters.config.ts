@@ -30,7 +30,7 @@ export const StaffExtendedFiltersConfig: ExtendedFilterFieldGroup[] = [
     //   options: []
     // }
     {
-        property: 'roles',
+        property: 'role',
         label: 'STAFF_ROLES',
         type: 'radio-button-group',
         options: [
@@ -40,13 +40,13 @@ export const StaffExtendedFiltersConfig: ExtendedFilterFieldGroup[] = [
             {value: 'operator', label: 'operator'},
         ]
     },
-    {
-        property: 'state',
-        label: 'STAFF_STATE',
-        type: 'check-box-group',
-        options: [
-            {value: 'hired', label: 'STAFF_HIRED'},
-            {value: 'fired', label: 'STAFF_FIRED'}
-        ]
-    }
+    // {
+    //     property: 'state',
+    //     label: 'STAFF_STATE',
+    //     type: 'check-box-group',
+    //     options: [
+    //         {value: 'hired', label: 'STAFF_HIRED'},
+    //         {value: 'fired', label: 'STAFF_FIRED'}
+    //     ]
+    // }
 ];

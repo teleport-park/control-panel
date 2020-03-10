@@ -94,8 +94,12 @@ export class AddStaffDialogComponent implements OnInit {
                 return;
             }
             Object.assign(this.entityModel, entity);
-            this.entityModel.hired_at = moment(entity.hired_at).toISOString();
-            this.entityModel.fired_at = entity.fired_at ? moment(entity.fired_at).format('YYYY-MM-DD') : null;
+            this.entityModel.hired_at = moment(entity.hired_at).format('YYYY-MM-DD');
+            if (!entity.fired_at) {
+                delete this.entityModel.fired_at;
+            } else {
+                this.entityModel.fired_at = entity.fired_at ? moment(entity.fired_at).format('YYYY-MM-DD') : '';
+            }
             this.save.emit(this.entityModel);
         }
     }

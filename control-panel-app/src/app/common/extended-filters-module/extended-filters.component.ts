@@ -35,7 +35,10 @@ export interface Options {
 })
 
 export class ExtendedFiltersComponent<T> implements OnInit, OnDestroy {
+
     @Input() config: ExtendedFilterFieldGroup[] = [];
+
+    @Input() state: any;
 
     form: FormGroup;
 
@@ -49,20 +52,10 @@ export class ExtendedFiltersComponent<T> implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.form = this.createForm();
-        console.log(this.form.getRawValue());
+        if (this.state) {
+            this.form.patchValue(this.state);
+        }
         this.subscribeToForm();
-        // this.formSub = this.form.valueChanges.pipe(debounceTime(300),
-        //     switchMap(res => {
-        //         this.applyFilter.emit(this.form.getRawValue());
-        //         console.log(this.form.getRawValue());
-        //         return EMPTY;
-        //     })).subscribe();
-        // this.form.valueChanges.pipe(
-        //   debounceTime(500),
-        //   distinctUntilChanged(),
-        //   takeUntil(this.destroyed$)).subscribe((result) => {
-        //   this.applyFilter.emit(result);
-        // });
     }
 
     createForm(): FormGroup {
@@ -94,7 +87,6 @@ export class ExtendedFiltersComponent<T> implements OnInit, OnDestroy {
         this.formSub = this.form.valueChanges.pipe(debounceTime(300),
             switchMap(res => {
                 this.applyFilter.emit(this.form.getRawValue());
-                console.log(this.form.getRawValue());
                 return EMPTY;
             })).subscribe();
     }

@@ -143,7 +143,7 @@ export class FormComponent {
                 delete this.user.email;
             }
             if (user.birthday) {
-                this.user.birthday = user.birthday.format('YYYY-MM-DD');
+                this.user.birthday = moment(user.birthday).format('YYYY-MM-DD');
             }
             this.save.emit(this.user);
         }

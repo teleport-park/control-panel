@@ -229,5 +229,6 @@
   "MAX_VALUE_ERROR": "Максимальное значение",
   "INVALID_PATTERN": "Некорректный формат",
   "EDIT_PACKAGE_TITLE": "Редактировать пакет",
-  "DIALOG_PACKAGE_TOGGLE_CONFIRM_MESSAGE": "{0} пакет {1}?"
+  "DIALOG_PACKAGE_TOGGLE_CONFIRM_MESSAGE": "{0} пакет {1}?",
+  "DIALOG_CONFIRM_DELETE_STAFF_MESSAGE": "Вы хотите удалить сотрудника {0} из списка?"
 }

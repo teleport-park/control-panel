@@ -13,6 +13,8 @@ export class RequestHelper implements IRequestHelper {
 
     private _filterRequest: string;
 
+    public filterData: any;
+
     get Count() {
         return this._count;
     }
@@ -21,7 +23,7 @@ export class RequestHelper implements IRequestHelper {
         private _request: (query?: string,
                            limit?: number,
                            offset?: number,
-                           otherParams?: {[key: string]: string},
+                           otherParams?: { [key: string]: string },
                            filterRequest?: string) => Observable<HttpResponse<any[]>>,
         private _pagination: PaginationSetting = RequestHelper.DEFAULT_PAGINATION_SETTINGS,
         private _sorting: SortingSettings = RequestHelper.DEFAULT_SORTING_SETTINGS
@@ -33,11 +35,11 @@ export class RequestHelper implements IRequestHelper {
     }
 
     public setSorting(props: SortingSettings): void {
-       this._sorting = props;
+        this._sorting = props;
     }
 
     public resetSorting(): void {
-       this._sorting = {};
+        this._sorting = {};
     }
 
     public resetPagination() {
@@ -45,16 +47,20 @@ export class RequestHelper implements IRequestHelper {
     }
 
     public setExtendedFilterRequest(request: string): void {
-       this._filterRequest = request;
+        this._filterRequest = request;
     }
 
-   public getData(queryString?: string): Observable<any[]> {
+    public resetFilterRequest() {
+        this._filterRequest = '';
+    }
+
+    public getData(queryString?: string): Observable<any[]> {
         return this._request(queryString, this._pagination.limit, this._pagination.offset, this._sorting, this._filterRequest)
-            .pipe(
-                tap((res: HttpResponse<any[]>) => {
-                    this._count = +res.headers.get('x-total-count');
-                }),
-                map((response: HttpResponse<any>) => response.body)
-            );
+        .pipe(
+            tap((res: HttpResponse<any[]>) => {
+                this._count = +res.headers.get('x-total-count');
+            }),
+            map((response: HttpResponse<any>) => response.body)
+        );
     }
 }

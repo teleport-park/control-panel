@@ -71,6 +71,8 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
 
    @Input() card = false;
 
+   @Input() deleteDisable = false;
+
    /**
     * data source for table
     */

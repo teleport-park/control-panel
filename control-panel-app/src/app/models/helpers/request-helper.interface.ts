@@ -4,6 +4,8 @@ export interface IRequestHelper {
 
    Count: number;
 
+   filterData: any;
+
    setPagination(pagingProps: PaginationSetting): void;
 
    resetPagination(): void;

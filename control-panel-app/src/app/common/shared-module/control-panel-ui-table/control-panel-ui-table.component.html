@@ -167,7 +167,7 @@
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #staffMemberMenu="matMenu">
-                    <button mat-menu-item (click)="delete.emit(item)">
+                    <button *ngIf="!deleteDisable" mat-menu-item (click)="delete.emit(item)">
                         <mat-icon color="warn">delete</mat-icon>
                         {{translateService.instant('TABLE_DELETE')}}
                     </button>

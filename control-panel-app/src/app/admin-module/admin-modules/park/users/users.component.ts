@@ -221,6 +221,9 @@ export class UsersComponent implements OnInit, OnDestroy {
             filterData.reg_to = moment();
         }
         this.service.requestHelper.setExtendedFilterRequest(this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
+        this.service.requestHelper.filterData = filterData;
+        this.resetPagination = {reset: true};
+        this.service.requestHelper.resetPagination();
         this.service.getEntities(this.quickFilter.quickFilterValue);
     }
 
