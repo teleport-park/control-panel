@@ -13,7 +13,7 @@
         <mat-divider></mat-divider>
         <mat-nav-list class="nav-list-container" color="primary">
             <div class="nav-list-container_parent-container" *ngFor="let menuItem of MENU_ITEMS">
-                <a mat-list-item *ngIf="!menuItem.root"
+                <a mat-list-item *ngIf="!menuItem.root" [ngClass]="{'italic': !menuItem.ready}"
                    [routerLink]="menuItem.path"
                    routerLinkActive="active"
                    (click)="menuItem.active = !menuItem.active">
@@ -24,7 +24,7 @@
                               *ngIf="menuItem.children && menuItem.children.length">
                     </mat-icon>
                 </a>
-                <a mat-list-item class="" *ngIf="menuItem.root"
+                <a mat-list-item class="" *ngIf="menuItem.root" [ngClass]="{'italic': !menuItem.ready}"
                    (click)="menuItem.active = !menuItem.active">
                     <mat-icon svgIcon="{{menuItem.icon}}"></mat-icon>
                     {{translateService.instant(menuItem.label)}}
@@ -37,6 +37,7 @@
                      *ngIf="menuItem.children && menuItem.children.length && menuItem.active">
                     <ng-container *ngFor="let children of menuItem.children">
                         <a mat-list-item
+                           [ngClass]="{'italic': !children.ready}"
                            [routerLink]="children.path"
                            (click)="children.active = !children.active"
                            routerLinkActive="active"
@@ -52,10 +53,10 @@
                             <div class="nav-list-container_sub-children-container">
                                 <ng-container *ngFor="let sub_children of children.children">
                                     <a mat-list-item
+                                       [ngClass]="{'italic': !sub_children.ready}"
                                        [routerLink]="sub_children.path"
                                        routerLinkActive="active"
                                        [routerLinkActiveOptions]="{exact: true}">
-<!--                                        <mat-icon>fiber_manual_record</mat-icon>-->
                                         {{translateService.instant(sub_children.label)}}
                                     </a>
                                 </ng-container>

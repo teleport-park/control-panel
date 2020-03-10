@@ -3,14 +3,14 @@
     <h4>{{translateService.instant('USER')}}</h4>
     <form [formGroup]="userForm" class="user-form light-theme">
       <mat-form-field>
-        <input matInput placeholder="{{'USER_NAME' | translate}}" formControlName="name">
+        <input matInput placeholder="{{'USER_NAME' | translate}} ({{'NICK_NAME' | translate}})" formControlName="name">
           <mat-icon matPrefix
                     (click)="$event.stopPropagation();toggleGender()"
                     svgIcon="{{userForm.get('gender').value}}"
                     class="gender-icon mr-2"
                     matTooltip="{{'TOGGLE_GENDER_TOOLTIP' | translate}}" [matTooltipShowDelay]="300"></mat-icon>
         <mat-error>
-          {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_NAME')]}}
+          {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_NAME') + '(' + translateService.instant('NICK_NAME') + ')']}}
         </mat-error>
       </mat-form-field>
         <mat-form-field>
