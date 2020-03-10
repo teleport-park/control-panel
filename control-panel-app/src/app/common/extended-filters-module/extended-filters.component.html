@@ -1,13 +1,12 @@
 <div class="extended-filter_wrapper">
     <h3>{{translateService.instant('EXTENDED_FILTER_TITLE')}}</h3>
     <ng-container *ngIf="form">
-        <form
-                class="extended-filters-form" [formGroup]="form">
+        <form class="extended-filters-form" [formGroup]="form">
             <ng-container *ngFor="let field of config;" extendedFilters [config]="field" [group]="form"></ng-container>
         </form>
         <div class="submit d-flex justify-content-between mt-2">
             <button mat-flat-button color="warn" (click)="clearFilter()">Очистить</button>
-            <button mat-flat-button color="primary" (click)="applyFilterHandler()">Применить</button>
+<!--            <button mat-flat-button color="primary" (click)="applyFilterHandler()">Применить</button>-->
         </div>
     </ng-container>
 </div>

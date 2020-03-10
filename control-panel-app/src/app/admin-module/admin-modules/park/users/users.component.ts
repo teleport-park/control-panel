@@ -19,6 +19,7 @@ import { ExtendedFilterUrlParamsInterface } from '../../../../interfaces/extende
 import { ENTITY_SERVICE, EntityService, PaginationSetting } from '../../../../models/intefaces';
 import { BoundCardDialogComponent } from '../../../../common/shared-module/dialogs/bound-card-dialog/bound-card-dialog.component';
 import { CardsService } from '../cards/services/cards.service';
+import moment, { Moment } from 'moment';
 
 @Component({
     selector: 'app-users',
@@ -212,7 +213,13 @@ export class UsersComponent implements OnInit, OnDestroy {
      * apply extended filters
      * @param filterData
      */
-    applyFilter(filterData): void {
+    applyFilter(filterData: {reg_from: Moment, reg_to: Moment}): void {
+        if (!filterData.reg_from) {
+            delete filterData.reg_to;
+        }
+        if (filterData.reg_from && !filterData.reg_to) {
+            filterData.reg_to = moment();
+        }
         this.service.requestHelper.setExtendedFilterRequest(this.extendedFilterUrlBuilder.getExtendedFilterParams(filterData));
         this.service.getEntities(this.quickFilter.quickFilterValue);
     }

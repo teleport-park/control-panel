@@ -103,7 +103,7 @@ export class FormComponent {
             age: '',
             birthday: '',
             gender: 'male',
-            email: ['', [Validators.required, Validators.pattern(FormComponent.EMAIL_REGEXP)]],
+            email: ['', [Validators.pattern(FormComponent.EMAIL_REGEXP)]],
             phone: ['', Validators.required]
         });
     }
@@ -139,6 +139,9 @@ export class FormComponent {
             // need to add masked value to user phone
             this.user.phone = this.phoneInput.nativeElement.value;
             this.user.age = +this.userForm.get('age').value;
+            if (!user.email) {
+                delete this.user.email;
+            }
             if (user.birthday) {
                 this.user.birthday = user.birthday.format('YYYY-MM-DD');
             }

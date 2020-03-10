@@ -8,11 +8,11 @@ export const UserExtendedFilterConfig: ExtendedFilterFieldGroup[] = [
     from: 1,
     to: 99,
     group: [
-      {property: 'min'},
-      {property: 'max'}
+      {property: 'age_min'},
+      {property: 'age_max'}
     ]
   }, {
-    property: 'gender',
+    property: 'genders[]',
     label: 'USER_GENDER_LABEL',
     type: 'check-box-group',
     options: [
@@ -24,7 +24,7 @@ export const UserExtendedFilterConfig: ExtendedFilterFieldGroup[] = [
     label: 'EXTENDED_FILTER_REGISTERED',
     type: 'date-period',
     group: [
-      {property: 'from'}, {property: 'to'}
+      {property: 'reg_from'}, {property: 'reg_to'}
     ]
   }
 ];

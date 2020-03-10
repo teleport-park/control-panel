@@ -30,6 +30,7 @@ export class DatePeriodFieldComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.group.get(this.config.group[1].property).setValue(this.maxDate, {emitEvent: false});
   }
 
 }
