@@ -228,5 +228,6 @@
   "INVALID_PATTERN": "Invalid value format",
   "EDIT_PACKAGE_TITLE": "Edit package",
   "DIALOG_PACKAGE_TOGGLE_CONFIRM_MESSAGE": "{0} package {1}?",
-  "DIALOG_CONFIRM_DELETE_STAFF_MESSAGE": "Do you want to delete an employee {0} from list?"
+  "DIALOG_CONFIRM_DELETE_STAFF_MESSAGE": "Do you want to delete an employee {0} from list?",
+  "TOGGLE_GENDER_TOOLTIP": "Toggle gender"
 }

@@ -4,12 +4,14 @@
     <form [formGroup]="userForm" class="user-form light-theme">
       <mat-form-field>
         <input matInput placeholder="{{'USER_NAME' | translate}}" formControlName="name">
+          <mat-icon matPrefix
+                    (click)="$event.stopPropagation();toggleGender()"
+                    svgIcon="{{userForm.get('gender').value}}"
+                    class="gender-icon mr-2"
+                    matTooltip="{{'TOGGLE_GENDER_TOOLTIP' | translate}}" [matTooltipShowDelay]="300"></mat-icon>
         <mat-error>
           {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_NAME')]}}
         </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="{{'NICK_NAME' | translate}}" formControlName="display_name">
       </mat-form-field>
         <mat-form-field>
             <input matInput [matDatepicker]="picker" placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
@@ -23,13 +25,6 @@
           <mat-label>{{'USER_AGE' | translate}}</mat-label>
             <input matInput formControlName="age" (change)="ageChange()">
         </mat-form-field>
-        <div class="gender-field">
-          <p>{{'USER_GENDER_LABEL' | translate}}</p>
-          <mat-radio-group aria-label="Select gender" formControlName="gender" class="gender-select">
-            <mat-radio-button value="male">{{'USER_GENDER_MALE' | translate}}</mat-radio-button>
-            <mat-radio-button value="female">{{'USER_GENDER_FEMALE' | translate}}</mat-radio-button>
-          </mat-radio-group>
-        </div>
       </div>
       <mat-form-field>
         <input matInput placeholder="{{'EMAIL' | translate}}" formControlName="email">

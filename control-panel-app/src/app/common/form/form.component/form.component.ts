@@ -5,6 +5,7 @@ import moment, { Moment } from 'moment';
 import { TranslateService } from '../../translations-module';
 import { DateAdapter } from '@angular/material';
 import { Avatar } from '../../../models/user-management/avatar.model';
+import { toggleGender } from '../../../utils/utils';
 
 @Component({
     selector: 'control-panel-ui-form',
@@ -62,6 +63,10 @@ export class FormComponent {
         this.user = Object.assign(new Visitor(), item, {comment: ''});
         this.userForm = this.getUserForm();
         this.userForm.patchValue(this.user);
+        if (item.name && item.display_name && item.name !== item.display_name) {
+            this.userForm.get('name').setValue(item.name + ` (${item.display_name})`);
+        }
+
     }
 
     /**
@@ -99,7 +104,7 @@ export class FormComponent {
     private getUserForm() {
         return this.fb.group({
             name: ['', Validators.required],
-            display_name: '',
+            nickname: '',
             age: '',
             birthday: '',
             gender: 'male',
@@ -139,6 +144,7 @@ export class FormComponent {
             // need to add masked value to user phone
             this.user.phone = this.phoneInput.nativeElement.value;
             this.user.age = +this.userForm.get('age').value;
+            this.extractNickName(user);
             if (!user.email) {
                 delete this.user.email;
             }
@@ -147,6 +153,23 @@ export class FormComponent {
             }
             this.save.emit(this.user);
         }
+    }
+
+    private extractNickName(user: Visitor) {
+        const indexStart = user.name.indexOf('(');
+        if (indexStart > -1) {
+            let indexEnd = user.name.indexOf(')');
+            if (indexEnd < 0) {
+                indexEnd = user.name.length;
+            }
+            this.user.nickname = user.name.slice(indexStart + 1, indexEnd).trim();
+            this.user.name = user.name.slice(0, indexStart).trim();
+        }
+    }
+
+    toggleGender() {
+        const control = this.userForm.get('gender');
+        control.setValue(toggleGender(control.value));
     }
 
     /**

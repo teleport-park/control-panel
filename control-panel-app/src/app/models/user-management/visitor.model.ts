@@ -35,6 +35,8 @@ export class Visitor {
     */
    display_name: string;
 
+    nickname: string;
+
    birthday: any;
 
    // get Age() {
