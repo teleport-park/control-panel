@@ -10,8 +10,9 @@
   }
   .toolbar-action-buttons-group {
     display: flex;
-    flex-direction: row-reverse;
-    margin-bottom: 15px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
   }
   .extended-filters_wrapper {
     width: 300px;

@@ -1,10 +1,13 @@
 <mat-sidenav-container class="staff_wrapper" *ngIf="!groupOutlet.isActivated">
       <mat-sidenav #extendedFilter
                    mode="{{(point?.handset | async) ? 'over' : 'side'}}"
-                   [opened]="!(point?.handset | async)"
+                   [opened]="false"
                    position="end">
         <div class="extended-filters_wrapper">
-          <extended-filters [config]="extendedFiltersConfig" [state]="service.requestHelper.filterData" (applyFilter)="applyFilter($event)"></extended-filters>
+          <extended-filters [config]="extendedFiltersConfig"
+                            [state]="service.requestHelper.filterData"
+                            (close)="extendedFilter.close()"
+                            (applyFilter)="applyFilter($event)"></extended-filters>
         </div>
       </mat-sidenav>
     <mat-sidenav-content #scrollContainer>
@@ -15,16 +18,24 @@
                 </div>
                 <div panelUICardContent>
                     <div class="toolbar-action-buttons-group">
-                        <button
-                                *ngIf="(point.handset | async)"
-                                mat-icon-button
-                                (click)="extendedFilter.toggle()">
-                            <mat-icon>menu</mat-icon>
-                        </button>
-                    </div>
-
-                    <div class="staff-table-wrapper">
                         <control-panel-ui-quick-filter #quickFilter (filterChange)="applyQuickFilter($event)"></control-panel-ui-quick-filter>
+                        <ng-container *ngIf="!(point?.handset | async)">
+                            <button
+                                    *ngIf="!extendedFilter.opened"
+                                    mat-flat-button
+                                    (click)="extendedFilter.toggle()">
+                                <mat-icon class="mb-1">keyboard_backspace</mat-icon>
+                                {{translateService.instant('SHOW_FILTER')}}
+                            </button>
+                        </ng-container>
+                        <ng-container *ngIf="(point?.handset | async)">
+                            <button mat-icon-button
+                                    (click)="extendedFilter.toggle()">
+                                <mat-icon>menu</mat-icon>
+                            </button>
+                        </ng-container>
+                    </div>
+                    <div class="staff-table-wrapper">
                         <control-panel-ui-table
                                 [data]="(service.entities$ | async)"
                                 [displayedColumns]="displayedColumns"

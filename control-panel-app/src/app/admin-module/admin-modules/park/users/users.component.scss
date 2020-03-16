@@ -28,26 +28,10 @@
     }
 
     .user-table-toolbar {
-      padding: 0 10px;
       display: flex;
       justify-content: space-between;
-
-      .users-table-filter {
-      }
-
-      .toolbar-action-buttons-group {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-
-        button {
-          padding: 0 10px;
-
-          .mat-icon {
-            margin-right: 5px;
-          }
-        }
-      }
+      align-items: center;
+      margin-bottom: 1rem;
     }
 
     .mat-column-select {

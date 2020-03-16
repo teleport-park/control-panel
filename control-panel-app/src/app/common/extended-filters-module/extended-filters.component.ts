@@ -45,6 +45,9 @@ export class ExtendedFiltersComponent<T> implements OnInit, OnDestroy {
     formSub: Subscription;
 
     @Output() applyFilter: EventEmitter<T> = new EventEmitter();
+
+    @Output() close: EventEmitter<void> = new EventEmitter();
+
     private destroyed$: Subject<boolean> = new Subject<boolean>();
 
     constructor(private fb: FormBuilder, public translateService: TranslateService) {

@@ -231,5 +231,8 @@
   "EDIT_PACKAGE_TITLE": "Редактировать пакет",
   "DIALOG_PACKAGE_TOGGLE_CONFIRM_MESSAGE": "{0} пакет {1}?",
   "DIALOG_CONFIRM_DELETE_STAFF_MESSAGE": "Вы хотите удалить сотрудника {0} из списка?",
-  "TOGGLE_GENDER_TOOLTIP": "Изменить пол"
+  "TOGGLE_GENDER_TOOLTIP": "Изменить пол",
+  "CLOSE": "Закрыть",
+  "CLEAR": "Очистить",
+  "SHOW_FILTER": "Показать фильтр"
 }
