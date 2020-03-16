@@ -11,3 +11,4 @@ back-end/ControlPanel/bin/Debug/netcoreapp2.2/ControlPanel.runtimeconfig.dev.jso
 back-end/ControlPanel/bin/Debug/netcoreapp2.2/ControlPanel.pdb
 back-end/ControlPanel/bin/Debug/netcoreapp2.2/ControlPanel.dll
 back-end/ControlPanel/bin/Debug/netcoreapp2.2/ControlPanel.deps.json
+package-lock.json
