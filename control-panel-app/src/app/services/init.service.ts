@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export interface InitConfig {
     api_url: string;
     refresh_interval: number;
+    ws_url: string;
 }
 
 @Injectable({
@@ -17,7 +18,7 @@ export class InitService {
     /**
      * init config
      */
-    config: InitConfig = {api_url: '/', refresh_interval: 10};
+    config: InitConfig = {api_url: '/', refresh_interval: 10, ws_url: '/'};
 
     constructor() {
     }
