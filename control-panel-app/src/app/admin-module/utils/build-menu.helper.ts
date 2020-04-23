@@ -110,6 +110,35 @@ export class BuildMenuHelper {
                 active: false
             }]
         }, {
+            icon: 'markunread_mailbox',
+            label: 'ADMIN_MENU_CASHBOX',
+            path: '/admin/cashbox',
+            active: false,
+            root: true,
+            children: [{
+                icon: 'monetization_on',
+                label: 'ADMIN_MENU_CASHBOX',
+                path: '/admin/cashbox/cashbox-machines',
+                active: false,
+            }]
+        }, {
+            icon: 'accessibility',
+            label: 'ADMIN_MENU_GATES',
+            path: '/admin/gate',
+            active: false,
+            root: true,
+            children: [{
+                icon: 'exit_to_app',
+                path: '/admin/gate/gates',
+                label: 'ADMIN_MENU_GATES',
+                active: false
+            }, {
+                icon: 'zoom_out_map',
+                path: '/admin/gate/zones',
+                label: 'ADMIN_MENU_ZONES',
+                active: false
+            }]
+        }, {
             icon: 'memory',
             path: '/admin/teleport-ng',
             label: 'ADMIN_MENU_TELEPORT_NG',
@@ -146,35 +175,6 @@ export class BuildMenuHelper {
                 icon: 'developer_board',
                 path: '/admin/teleport-poly/poly-controllers',
                 label: 'ADMIN_MENU_CONTROLLERS',
-                active: false
-            }]
-        }, {
-            icon: 'markunread_mailbox',
-            label: 'ADMIN_MENU_CASHBOX',
-            path: '/admin/cashbox',
-            active: false,
-            root: true,
-            children: [{
-                icon: 'monetization_on',
-                label: 'ADMIN_MENU_CASHBOX',
-                path: '/admin/cashbox/cashbox-machines',
-                active: false,
-            }]
-        }, {
-            icon: 'accessibility',
-            label: 'ADMIN_MENU_GATES',
-            path: '/admin/gate',
-            active: false,
-            root: true,
-            children: [{
-                icon: 'exit_to_app',
-                path: '/admin/gate/gates',
-                label: 'ADMIN_MENU_GATES',
-                active: false
-            }, {
-                icon: 'zoom_out_map',
-                path: '/admin/gate/zones',
-                label: 'ADMIN_MENU_ZONES',
                 active: false
             }]
         }, {
