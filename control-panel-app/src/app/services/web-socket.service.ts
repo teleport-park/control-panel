@@ -35,6 +35,10 @@ export class WebSocketService implements IWebSocketService, OnDestroy {
 
     public initConnection() {
         this.wsConfig.url = this.initService.config.ws_url;
+        if (!this.wsConfig.url) {
+            console.warn('Web Socket URL is missing');
+            return;
+        }
 
         this.reconnectInterval = this.wsConfig.reconnectInterval || 5000;
         this.reconnectAttempts = this.wsConfig.reconnectAttempts || 10;
@@ -124,6 +128,14 @@ export class WebSocketService implements IWebSocketService, OnDestroy {
         return this.wsMessages$.pipe(
             map((message: any) => message)
         );
+    }
+
+    public dummyMessage() {
+        if (this.isConnected) {
+            this.websocket$.next('data');
+        } else {
+            this.wsMessages$.next('dummy');
+        }
     }
 
     /*

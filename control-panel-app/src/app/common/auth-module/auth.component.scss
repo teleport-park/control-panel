@@ -1,3 +1,5 @@
+@import "control-panel-theme";
+
 :host {
   height: 100%;
   .login-container {
@@ -15,9 +17,27 @@
     .login-form {
       display: flex;
       flex-direction: column;
-      .login-field {
-        margin-bottom: 5px;
-      }
     }
+  }
+
+  .login-field {
+    margin-bottom: 1rem;
+  }
+
+  .ws__message {
+    font-size: 2rem;
+    color: white;
+  }
+  #mock-card {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 2rem 1rem;
+    border-radius: .5rem;
+    background-color: rgba(0, 0, 0, .5);
   }
 }

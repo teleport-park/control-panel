@@ -232,5 +232,8 @@
   "TOGGLE_GENDER_TOOLTIP": "Toggle gender",
   "CLOSE": "Close",
   "CLEAR": "Clear",
-  "SHOW_FILTER": "Show filter"
+  "SHOW_FILTER": "Show filter",
+  "ENTER_CARD": "Enter card...",
+  "CARD_LABEL": "Card number",
+  "ENTER_CARD_MANUALLY": "Enter card manually"
 }

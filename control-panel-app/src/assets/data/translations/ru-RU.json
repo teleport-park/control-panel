@@ -234,5 +234,8 @@
   "TOGGLE_GENDER_TOOLTIP": "Изменить пол",
   "CLOSE": "Закрыть",
   "CLEAR": "Очистить",
-  "SHOW_FILTER": "Показать фильтр"
+  "SHOW_FILTER": "Показать фильтр",
+  "ENTER_CARD": "Введите карту...",
+  "CARD_LABEL": "Номер карты",
+  "ENTER_CARD_MANUALLY": "Ввести карту вручную"
 }
