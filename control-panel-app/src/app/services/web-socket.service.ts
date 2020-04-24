@@ -159,7 +159,7 @@ export class WebSocketService implements IWebSocketService, OnDestroy {
     }
 
     private unsubscribe() {
-        this.websocketSub.unsubscribe();
-        this.statusSub.unsubscribe();
+        this.websocketSub && this.websocketSub.unsubscribe();
+        this.statusSub && this.statusSub.unsubscribe();
     }
 }

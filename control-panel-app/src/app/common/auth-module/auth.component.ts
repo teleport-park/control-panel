@@ -50,7 +50,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         this.service.logout();
         const literal = 'returnUrl';
         this.returnUrl = this.route.snapshot.queryParams[literal] || '/admin';
-        this.wsService.status.subscribe(res => {
+        this.wsService.status && this.wsService.status.subscribe(res => {
             this.enterCard = !!res;
             this.wsAvailable = !!res;
             this.cd.markForCheck();
@@ -63,7 +63,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     private login(res) {
         this.service.login(res).subscribe(r => {
             if (r) {
-                this.wsSubscription.unsubscribe();
+                this.wsSubscription && this.wsSubscription.unsubscribe();
                 this.router.navigate([this.returnUrl]);
             }
         });
