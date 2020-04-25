@@ -237,5 +237,8 @@
   "SHOW_FILTER": "Показать фильтр",
   "ENTER_CARD": "Введите карту...",
   "CARD_LABEL": "Номер карты",
-  "ENTER_CARD_MANUALLY": "Ввести карту вручную"
+  "ENTER_CARD_MANUALLY": "Ввести карту вручную",
+  "SERVER_TYPE": "Тип",
+  "ENABLE_SERVER": "Включить сервер",
+  "DISABLE_SERVER": "Выключить сервер"
 }

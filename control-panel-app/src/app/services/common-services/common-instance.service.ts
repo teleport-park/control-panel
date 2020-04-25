@@ -90,7 +90,16 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
       );
    }
 
-   ngOnDestroy(): void {
+   toggle(item: ControllerType): void {
+       this.http.patch(this.getUrl('PATCH', item.id), {enabled: !item.enabled}).subscribe(
+           res => {
+               this.operationSuccess$.next(res);
+               this.refresh();
+           }
+       );
+   }
+
+    ngOnDestroy(): void {
       this.instances$.complete();
       this.refreshInstances$.complete();
    }

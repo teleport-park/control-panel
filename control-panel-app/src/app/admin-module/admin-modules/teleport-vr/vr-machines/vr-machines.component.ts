@@ -9,101 +9,108 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/sh
 import { TranslateService } from '../../../../common/translations-module';
 
 @Component({
-   selector: 'mashines',
-   templateUrl: './vr-machines.component.html',
-   styleUrls: ['./vr-machines.component.scss']
+    selector: 'mashines',
+    templateUrl: './vr-machines.component.html',
+    styleUrls: ['./vr-machines.component.scss']
 })
 export class VrMachinesComponent implements OnInit, OnDestroy {
 
-   private destroyed$: Subject<boolean> = new Subject();
+    _controllerTypes: string[] = ['playvr', 'polygon'];
 
-   @ViewChild('formTemplate', {static: true}) formTemplate: TemplateRef<any>;
+    private destroyed$: Subject<boolean> = new Subject();
 
-   form: FormGroup;
+    @ViewChild('formTemplate', {static: true}) formTemplate: TemplateRef<any>;
 
-   _dialog: MatDialogRef<any>;
+    form: FormGroup;
 
-   _edit: boolean = false;
+    _dialog: MatDialogRef<any>;
 
-   _editInstanceId: string;
+    _edit: boolean = false;
 
-   constructor(@Inject(INSTANCE_SERVICE) public service: InstanceService<TNGController>,
-               public translations: TranslateService,
-               private fb: FormBuilder,
-               private dialog: MatDialog) {
-   }
+    _editInstanceId: string;
 
-   ngOnInit() {
-      this.service.getInstances();
-      this.service.operationSuccess$
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe(res => {
-         // tslint:disable-next-line:no-unused-expression
-         this._dialog && this._dialog.close();
-         this._editInstanceId = null;
-      });
-   }
+    constructor(@Inject(INSTANCE_SERVICE) public service: InstanceService<TNGController>,
+                public translations: TranslateService,
+                private fb: FormBuilder,
+                private dialog: MatDialog) {
+    }
 
-   grant(item: TNGController) {
-      this.service.grant(item);
-   }
+    ngOnInit() {
+        this.service.getInstances();
+        this.service.operationSuccess$
+        .pipe(takeUntil(this.destroyed$))
+        .subscribe(res => {
+            this._dialog && this._dialog.close();
+            this._editInstanceId = null;
+        });
+    }
 
-   revoke(item: TNGController) {
-      this.service.revoke(item);
-   }
+    grant(item: TNGController) {
+        this.service.grant(item);
+    }
 
-   add() {
-      this.initForm();
-      this._edit = false;
-      this._dialog = this.dialog.open(this.formTemplate, {
-         width: '500px'
-      });
-   }
+    revoke(item: TNGController) {
+        this.service.revoke(item);
+    }
 
-   edit(item: TNGController) {
-      this.initForm();
-      this.form.patchValue(item);
-      this._edit = true;
-      this._editInstanceId = item.id;
-      this._dialog = this.dialog.open(this.formTemplate, {
-         width: '500px'
-      });
-   }
+    add() {
+        this.initForm();
+        this._edit = false;
+        this._dialog = this.dialog.open(this.formTemplate, {
+            width: '500px'
+        });
+    }
 
-   remove(item: TNGController) {
-      this.dialog.open(ConfirmDialogComponent, {
-         data: {
-            title: 'DIALOG_CONFIRM_TITLE',
-            message: this.translations.instant('DIALOG_CONFIRM_SERVER_MESSAGE', [item.display_name])
-         } as ConfirmDialogData
-      }).afterClosed().subscribe(res => {
-         if (res) {
-            this.service.remove(item.id);
-         }
-      });
-   }
+    edit(item: TNGController) {
+        this.initForm();
+        this.form.patchValue(item);
+        this._edit = true;
+        this._editInstanceId = item.id;
+        this._dialog = this.dialog.open(this.formTemplate, {
+            width: '500px'
+        });
+    }
 
-   submit() {
-      if (this.form.invalid) {
-         return;
-      }
-      this._edit ? this.service.update(this.form.getRawValue(), this._editInstanceId) : this.service.add(this.form.getRawValue());
-   }
+    remove(item: TNGController) {
+        this.dialog.open(ConfirmDialogComponent, {
+            data: {
+                title: 'DIALOG_CONFIRM_TITLE',
+                message: this.translations.instant('DIALOG_CONFIRM_SERVER_MESSAGE', [item.display_name])
+            } as ConfirmDialogData
+        }).afterClosed().subscribe(res => {
+            if (res) {
+                this.service.remove(item.id);
+            }
+        });
+    }
 
-   private initForm() {
-      this.form = this.fb.group({
-         address: ['', [
-            Validators.required,
-            Validators.pattern('(?:https?)://(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$')
-         ]
-         ],
-         name: '',
-         enabled: true
-      });
-   }
+    toggle(item: TNGController) {
+        this.service.toggle(item);
+    }
 
-   ngOnDestroy(): void {
-      this.destroyed$.next(true);
-      this.destroyed$.complete();
-   }
+    submit() {
+        if (this.form.invalid) {
+            return;
+        }
+        this._edit ? this.service.update(this.form.getRawValue(), this._editInstanceId) : this.service.add(this.form.getRawValue());
+    }
+
+    private initForm() {
+        this.form = this.fb.group({
+            address: ['', [
+                Validators.required,
+                Validators.pattern(
+                    '(?:https?)://(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$'
+                )]
+            ],
+            name: '',
+            type: 'playvr',
+            enabled: true
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.destroyed$.next(true);
+        this.destroyed$.complete();
+    }
 }

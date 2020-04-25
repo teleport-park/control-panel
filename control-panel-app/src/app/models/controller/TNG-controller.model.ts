@@ -6,9 +6,11 @@ export class TNGController extends BaseController {
      */
     readonly TYPE: string = 'TNG';
 
-   enabled: boolean;
+    type: 'playvr' | 'polygon';
 
-   bound: boolean;
+    enabled: boolean;
+
+    bound: boolean;
 
     constructor(model) {
         super(model);

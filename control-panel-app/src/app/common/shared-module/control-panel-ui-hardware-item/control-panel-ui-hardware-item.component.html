@@ -8,6 +8,10 @@
         {{item.address}}
     </p>
     <p>
+        <span class="bold">{{translateService.instant('SERVER_TYPE')}}:</span>
+        {{item.type}}
+    </p>
+    <p>
         <span class="bold">{{translateService.instant('SERVER_ENABLED')}}:</span>
         <mat-icon [ngClass]="{'offline': !item.enabled, 'online': item.enabled}">
             {{item.enabled ? 'desktop_windows' : 'desktop_access_disabled'}}
@@ -20,9 +24,20 @@
         </mat-icon>
     </p>
     <p><span class="bold">{{translateService.instant('SERVER_ONLINE')}}:</span><mat-icon [ngClass]="{'offline': !item.online, 'online': item.online}">radio_button_checked</mat-icon></p>
-    <div class="action-button justify-content-end d-flex">
-        <button mat-icon-button color="primary" (click)="edit.emit(item)"><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button color="warn" (click)="remove.emit(item)"><mat-icon>delete</mat-icon></button>
+    <div class="action-button justify-content-between d-flex align-items-center mt-5">
+        <mat-slide-toggle color="success" (change)="toggle.emit(item)" [checked]="item.enabled"><span class="label">{{(item.enabled ? 'DISABLE_SERVER' : 'ENABLE_SERVER') | translate}}</span></mat-slide-toggle>
+        <div>
+            <button mat-icon-button
+                    matTooltip="{{'TABLE_EDIT' | translate}}"
+                    [matTooltipShowDelay]="500"
+                    matTooltipPosition="above"
+                    color="primary" (click)="edit.emit(item)"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button
+                    matTooltip="{{'TABLE_DELETE' | translate}}"
+                    [matTooltipShowDelay]="500"
+                    matTooltipPosition="above"
+                    color="warn" (click)="remove.emit(item)"><mat-icon>delete</mat-icon></button>
+        </div>
     </div>
 </div>
 

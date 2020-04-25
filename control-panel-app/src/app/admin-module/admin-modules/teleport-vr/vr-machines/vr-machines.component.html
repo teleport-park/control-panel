@@ -9,7 +9,8 @@
         <control-panel-ui-hardware-item [item]="item" (grant)="grant($event)"
                                         (edit)="edit($event)"
                                         (remove)="remove($event)"
-                                        (revoke)="revoke($event)"></control-panel-ui-hardware-item>
+                                        (revoke)="revoke($event)"
+                                        (toggle)="toggle($event)"></control-panel-ui-hardware-item>
     </div>
 </div>
 
@@ -20,15 +21,22 @@
     <form [formGroup]="form" class="d-flex flex-column">
         <mat-form-field>
             <label>
-                <input matInput placeholder="{{'SERVER_IP_ADDRESS' | translate}}" formControlName="address">
+                <input matInput placeholder="{{'NAME' | translate}}" formControlName="name">
             </label>
-            <mat-error *ngIf="form.get('address')?.errors?.required">{{translations.instant('REQUIRED_FIELD', ['ip'])}}</mat-error>
-            <mat-error *ngIf="form.get('address')?.errors?.pattern">{{translations.instant('SERVER_IP_INVALID_ERROR')}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select formControlName="type">
+                <mat-option *ngFor="let type of _controllerTypes" [value]="type">{{type}}</mat-option>
+            </mat-select>
         </mat-form-field>
         <mat-form-field>
             <label>
-                <input matInput placeholder="{{'NAME' | translate}}" formControlName="name">
+                <input matInput placeholder="{{'SERVER_IP_ADDRESS' | translate}}" formControlName="address">
             </label>
+            <mat-error
+                    *ngIf="form.get('address')?.errors?.required">{{translations.instant('REQUIRED_FIELD', ['ip'])}}</mat-error>
+            <mat-error
+                    *ngIf="form.get('address')?.errors?.pattern">{{translations.instant('SERVER_IP_INVALID_ERROR')}}</mat-error>
         </mat-form-field>
         <mat-checkbox formControlName="enabled">Enabled</mat-checkbox>
     </form>
