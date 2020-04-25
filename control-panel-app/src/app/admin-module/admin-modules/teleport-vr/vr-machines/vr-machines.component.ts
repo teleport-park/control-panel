@@ -1,8 +1,8 @@
 import { Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { INSTANCE_SERVICE, InstanceService } from '../../../../models';
 import { TNGController } from '../../../../models/controller';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef, MatRadioChange } from '@angular/material';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
@@ -15,7 +15,11 @@ import { TranslateService } from '../../../../common/translations-module';
 })
 export class VrMachinesComponent implements OnInit, OnDestroy {
 
+
+
     _controllerTypes: string[] = ['playvr', 'polygon'];
+
+    _filterTypes: string[] = ['all', ...this._controllerTypes];
 
     private destroyed$: Subject<boolean> = new Subject();
 
@@ -28,6 +32,8 @@ export class VrMachinesComponent implements OnInit, OnDestroy {
     _edit: boolean = false;
 
     _editInstanceId: string;
+
+    _typeFilterControl: FormControl = new FormControl('all');
 
     constructor(@Inject(INSTANCE_SERVICE) public service: InstanceService<TNGController>,
                 public translations: TranslateService,
@@ -90,9 +96,14 @@ export class VrMachinesComponent implements OnInit, OnDestroy {
 
     submit() {
         if (this.form.invalid) {
+            this.form.markAllAsTouched();
             return;
         }
         this._edit ? this.service.update(this.form.getRawValue(), this._editInstanceId) : this.service.add(this.form.getRawValue());
+    }
+
+    typeFilterHandler(event: MatRadioChange) {
+        this.service.filterInstanceByType(event.value);
     }
 
     private initForm() {

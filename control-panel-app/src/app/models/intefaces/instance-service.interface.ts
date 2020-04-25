@@ -9,6 +9,11 @@ export interface InstanceService<T> {
     instances$: BehaviorSubject<Array<T>>;
 
     /**
+     * instances
+     */
+    _instances: Array<T>;
+
+    /**
      * stream operation error
      */
     operationError$: Subject<any>;
@@ -59,6 +64,11 @@ export interface InstanceService<T> {
      * toggle enabled state
      */
     toggle(item: T): void;
-}
+
+    /**
+     * filter instance by type
+     */
+    filterInstanceByType(type: string): void;
+ }
 
 export const INSTANCE_SERVICE = new InjectionToken<InstanceService<ControllerType>>('InstanceService');

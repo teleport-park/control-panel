@@ -1,5 +1,5 @@
 {
-  "api_url": "/",
-  "refresh_interval": 3,
+  "api_url": "https://demo2.teleport-park.com/",
+  "refresh_interval": 60,
   "ws_url": ""
 }

@@ -238,5 +238,8 @@
   "ENTER_CARD_MANUALLY": "Enter card manually",
   "SERVER_TYPE": "Type",
   "ENABLE_SERVER": "Enable server",
-  "DISABLE_SERVER": "Disable server"
+  "DISABLE_SERVER": "Disable server",
+  "All": "All",
+  "LIST_EMPTY": "List empty",
+  "TYPE_FILTER": "Filter by type"
 }

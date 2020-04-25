@@ -1,5 +1,11 @@
-<div class="actions d-flex justify-content-end">
-    <button mat-flat-button color="accent" (click)="add()">
+<div class="actions d-flex justify-content-between align-items-center pl-3 pr-3 m-1 mb-2">
+    <section class="p-2 mb-3">
+        <h5 class="mb-3">{{'TYPE_FILTER' | translate}}</h5>
+        <mat-radio-group [formControl]="_typeFilterControl" (change)="typeFilterHandler($event)">
+            <mat-radio-button class="mr-3" *ngFor="let type of _filterTypes" [value]="type">{{type.toUpperCase() | translate}}</mat-radio-button>
+        </mat-radio-group>
+    </section>
+    <button mat-flat-button color="accent" (click)="add()" class="align-self-end mb-3">
         <mat-icon>add</mat-icon>
         {{translations.instant('ADD_SERVER_TITLE')}}
     </button>
@@ -12,6 +18,7 @@
                                         (revoke)="revoke($event)"
                                         (toggle)="toggle($event)"></control-panel-ui-hardware-item>
     </div>
+    <p *ngIf="!(service.instances$ | async)?.length" class="ml-3">{{'LIST_EMPTY' | translate}}</p>
 </div>
 
 <control-panel-trigger [callBack]="service.refresh.bind(service)"></control-panel-trigger>
@@ -26,7 +33,7 @@
         </mat-form-field>
         <mat-form-field>
             <mat-select formControlName="type">
-                <mat-option *ngFor="let type of _controllerTypes" [value]="type">{{type}}</mat-option>
+                <mat-option *ngFor="let type of _controllerTypes" [value]="type">{{type.toUpperCase()}}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field>

@@ -240,5 +240,8 @@
   "ENTER_CARD_MANUALLY": "Ввести карту вручную",
   "SERVER_TYPE": "Тип",
   "ENABLE_SERVER": "Включить сервер",
-  "DISABLE_SERVER": "Выключить сервер"
+  "DISABLE_SERVER": "Выключить сервер",
+  "ALL": "Все",
+  "LIST_EMPTY": "Список пустой",
+  "TYPE_FILTER": "Фильтр по типу"
 }
