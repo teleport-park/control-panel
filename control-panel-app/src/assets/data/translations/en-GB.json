@@ -237,8 +237,8 @@
   "CARD_LABEL": "Card number",
   "ENTER_CARD_MANUALLY": "Enter card manually",
   "SERVER_TYPE": "Type",
-  "ENABLE_SERVER": "Enable server",
-  "DISABLE_SERVER": "Disable server",
+  "ENABLE_SERVER": "Enable",
+  "DISABLE_SERVER": "Disable",
   "All": "All",
   "LIST_EMPTY": "List empty",
   "TYPE_FILTER": "Filter by type"
