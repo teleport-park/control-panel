@@ -1,2 +1,14 @@
 :host {
+  .actions {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: .5rem;
+  }
+  tr {
+    &.playvr {
+      background-color: #fdffea;
+    }
+    &.polygon {
+      background-color: #dffaff;
+    }
+  }
 }

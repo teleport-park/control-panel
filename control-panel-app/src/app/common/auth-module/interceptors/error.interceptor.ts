@@ -3,23 +3,22 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
-import { LoaderService } from '../../../services/loader.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-  constructor(private loginService: AuthService) {
-  }
+    constructor(private loginService: AuthService) {
+    }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(catchError(err => {
-      if (err.status === 401) {
-        this.loginService.logout();
-        location.reload();
-      }
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        return next.handle(req).pipe(catchError(err => {
+            if (err.status === 401) {
+                this.loginService.logout();
+                location.reload();
+            }
 
-      const error = err.error.message || err.statusText;
-      return throwError(error);
-    }));
-  }
+            const error = err.error.message || err.statusText;
+            return throwError(error);
+        }));
+    }
 }
