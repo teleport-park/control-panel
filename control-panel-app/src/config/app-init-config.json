@@ -1,6 +1,5 @@
 {
-//  "api_url": "https://demo2.teleport-park.com/",
-  "api_url": "/",
+  "api_url": "https://demo2.teleport-park.com/",
   "refresh_interval": 3,
   "ws_url": ""
 }

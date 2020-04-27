@@ -1,1 +1,53 @@
-<p>ng-games works!</p>
+<div class="actions d-flex justify-content-between align-items-center pl-3 pr-3 m-1 mb-2">
+    <section class="p-2 mb-3">
+        <h5 class="mb-3">{{'TYPE_FILTER' | translate}}</h5>
+        <mat-radio-group [formControl]="_typeFilterControl" (change)="typeFilterHandler($event)">
+            <mat-radio-button class="mr-3" *ngFor="let type of _filterTypes" [value]="type">{{type.toUpperCase() | translate}}</mat-radio-button>
+        </mat-radio-group>
+    </section>
+</div>
+
+<div class="light-theme">
+    <table mat-table [dataSource]="service.vrGames$ | async" class="w-100">
+        <ng-container matColumnDef="code_name">
+            <th mat-header-cell *matHeaderCellDef> {{translateService.instant('CODE')}} </th>
+            <td mat-cell *matCellDef="let game"> {{game.code_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="version">
+            <th mat-header-cell *matHeaderCellDef> {{translateService.instant('VERSION')}} </th>
+            <td mat-cell *matCellDef="let game"> {{game.version}} </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> {{translateService.instant('AMUSEMENTS_NAME_LABEL')}} </th>
+            <td mat-cell *matCellDef="let game"> {{game.name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> {{translateService.instant('SERVER_TYPE')}} </th>
+            <td mat-cell *matCellDef="let game"> {{game.type}} </td>
+        </ng-container>
+        <ng-container matColumnDef="origin">
+            <th mat-header-cell *matHeaderCellDef> {{translateService.instant('ORIGIN')}} </th>
+            <td mat-cell *matCellDef="let game"> {{game.origin}} </td>
+        </ng-container>
+        <ng-container matColumnDef="enabled">
+            <th mat-header-cell *matHeaderCellDef> {{translateService.instant('ENABLED')}} </th>
+            <td mat-cell *matCellDef="let game">
+            <button *ngIf="game.enabled"
+                    mat-icon-button color="success"
+                    matTooltip="{{'DISABLE' | translate}}"
+                    matTooltipPosition="left"
+                    (click)="toggleGameHandler(game)"><mat-icon>check</mat-icon></button>
+            <button *ngIf="!game.enabled"
+                    mat-icon-button
+                    matTooltip="{{'ENABLE' | translate}}"
+                    matTooltipPosition="left"
+                    color="warn"
+                    (click)="toggleGameHandler(game)"><mat-icon>clear</mat-icon></button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="row.type"></tr>
+    </table>
+</div>
+

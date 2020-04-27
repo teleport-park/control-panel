@@ -9,7 +9,7 @@ import { VRGame, VRGameRequest } from '../../../../../models/vr-game.model';
 @Injectable({
     providedIn: 'root'
 })
-export class VrGamesService {
+export class NgGamesService {
 
     vrGames$: BehaviorSubject<VRGame[]> = new BehaviorSubject([]);
 
@@ -60,7 +60,7 @@ export class VrGamesService {
         //     }, ];
         // this.filterInstanceByType(this._gameType);
         // this.loaderService.dispatchShowLoader(false);
-        this.http.get(this.urlService.getVRGames('GET'))
+        this.http.get(this.urlService.getTNGGames('GET'))
         .subscribe((result: VRGame[]) => {
             this._vrGames = result;
             this.filterInstanceByType(this._gameType);
@@ -69,7 +69,7 @@ export class VrGamesService {
     }
 
     update(game: VRGameRequest) {
-        this.http.patch(this.urlService.getVRGames('PATCH'), game).subscribe(
+        this.http.patch(this.urlService.getTNGGames('PATCH'), game).subscribe(
             res => {
                 this.getGames();
             }

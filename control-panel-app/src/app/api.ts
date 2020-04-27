@@ -1,8 +1,8 @@
 export const API: { [key: string]: string | any } = {
    // ready
-   TVR_INSTANCES: 'tng/mgmt/servers',
-   GAMES: 'cpanel/tp/games',
-   VRGAMES: 'tng/mgmt/games',
+   TNG_INSTANCES: 'tng/mgmt/servers',
+    TNG_GAMES: 'tng/mgmt/games',
+    GAMES: 'cpanel/tp/games',
    CARDS: 'cpanel/users/cards',
    // visitors
    VISITORS: 'cpanel/users/visitors',

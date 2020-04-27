@@ -76,9 +76,9 @@ export class ApiUrlsService implements IApiUrlsInterface {
 
    public getTVRUrl(requestMethod: 'GET' | 'PUT' | 'DELETE' | 'PATCH', id?: string): string | null {
       if (requestMethod === 'GET') {
-         return ApiUrlsService.getPagedUrl(API.TVR_INSTANCES, requestMethod, id);
+         return ApiUrlsService.getPagedUrl(API.TNG_INSTANCES, requestMethod, id);
       }
-      return ApiUrlsService.getPagedUrl(API.TVR_INSTANCES, requestMethod, id);
+      return ApiUrlsService.getPagedUrl(API.TNG_INSTANCES, requestMethod, id);
    }
 
    public getGateUrl(requestMethod: 'GET' | 'PUT' | 'DELETE', id?: string): string | null {
@@ -111,8 +111,8 @@ export class ApiUrlsService implements IApiUrlsInterface {
       return ApiUrlsService.getPagedUrl(API.PRICES, requestMethod);
    }
 
-   public getVRGames(requestMethod: 'GET' | 'PATCH') {
-      return ApiUrlsService.getPagedUrl(API.VRGAMES, requestMethod);
+   public getTNGGames(requestMethod: 'GET' | 'PATCH') {
+      return ApiUrlsService.getPagedUrl(API.TNG_GAMES, requestMethod);
    }
    public getGames(requestMethod: 'GET' | 'PATCH') {
       return ApiUrlsService.getPagedUrl(API.GAMES, requestMethod);

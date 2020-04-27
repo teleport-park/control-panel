@@ -94,21 +94,47 @@ export class BuildMenuHelper {
         },
         {
             icon: 'memory',
+            path: '/admin/teleport-ng',
+            label: 'ADMIN_MENU_TELEPORT_NG',
+            active: false,
+            root: true,
+            children: [
+                {
+                    icon: 'router',
+                    path: '/admin/teleport-ng/ng-servers',
+                    label: 'ADMIN_MENU_SERVERS',
+                    active: false
+                }, {
+                    icon: 'videogame_asset',
+                    path: '/admin/teleport-ng/ng-games',
+                    label: 'ADMIN_MENU_GAMES',
+                    active: false
+                }]
+        },
+        {
+            icon: 'memory',
             label: 'ADMIN_MENU_TELEPORT_VR',
             path: '/admin/teleport-vr',
             active: false,
             root: true,
-            children: [{
-                icon: 'computer',
-                path: '/admin/teleport-vr/vr-machines',
-                label: 'ADMIN_MENU_MACHINES',
-                active: false
-            }, {
-                icon: 'videogame_asset',
-                path: '/admin/teleport-vr/vr-games',
-                label: 'ADMIN_MENU_GAMES',
-                active: false
-            }]
+            children: [
+                {
+                    icon: 'developer_board',
+                    path: '/admin/teleport-vr/vr-controllers',
+                    label: 'ADMIN_MENU_CONTROLLERS',
+                    active: false
+                },
+                {
+                    icon: 'computer',
+                    path: '/admin/teleport-vr/vr-machines',
+                    label: 'ADMIN_MENU_MACHINES',
+                    active: false
+                }, {
+                    icon: 'videogame_asset',
+                    path: '/admin/teleport-vr/vr-games',
+                    label: 'ADMIN_MENU_GAMES',
+                    active: false
+                }]
         }, {
             icon: 'markunread_mailbox',
             label: 'ADMIN_MENU_CASHBOX',
@@ -138,29 +164,8 @@ export class BuildMenuHelper {
                 label: 'ADMIN_MENU_ZONES',
                 active: false
             }]
-        }, {
-            icon: 'memory',
-            path: '/admin/teleport-ng',
-            label: 'ADMIN_MENU_TELEPORT_NG',
-            active: false,
-            root: true,
-            children: [{
-                icon: 'developer_board',
-                path: '/admin/teleport-ng/ng-controllers',
-                label: 'ADMIN_MENU_CONTROLLERS',
-                active: false
-            }, {
-                icon: 'router',
-                path: '/admin/teleport-ng/ng-servers',
-                label: 'ADMIN_MENU_SERVERS',
-                active: false
-            }, {
-                icon: 'videogame_asset',
-                path: '/admin/teleport-ng/ng-games',
-                label: 'ADMIN_MENU_GAMES',
-                active: false
-            }]
-        }, {
+        },
+        {
             icon: 'memory',
             path: '/admin/teleport-poly',
             label: 'ADMIN_MENU_TELEPORT_POLY',
