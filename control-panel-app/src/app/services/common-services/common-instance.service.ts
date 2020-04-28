@@ -104,7 +104,9 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
     }
 
     filterInstanceByType(type: 'all' | 'playvr' | 'polygon'): void {
-        const filteredList = type !== 'all' ? this._instances.filter(i => i.type === type) : this._instances;
+        const filteredList = type !== 'all' &&
+        this._instances &&
+        this._instances.length ? this._instances.filter(i => i.type === type) : this._instances;
         this.instances$.next(filteredList);
         this._filterType = type;
     }

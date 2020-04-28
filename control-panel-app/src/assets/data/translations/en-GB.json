@@ -241,5 +241,6 @@
   "DISABLE_SERVER": "Disable",
   "All": "All",
   "LIST_EMPTY": "List empty",
-  "TYPE_FILTER": "Filter by type"
+  "TYPE_FILTER": "Filter by type",
+  "CHANGE_URL_TITLE": "Enter URL"
 }

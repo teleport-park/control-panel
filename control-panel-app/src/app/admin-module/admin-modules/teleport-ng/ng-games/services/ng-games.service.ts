@@ -77,7 +77,9 @@ export class NgGamesService {
     }
 
     filterInstanceByType(type: 'all' | 'polygon' | 'playvr') {
-        const filteredList = type !== 'all' ? this._vrGames.filter(g => g.type === type) : this._vrGames;
+        const filteredList = type !== 'all' &&
+        this._vrGames &&
+        this._vrGames.length ? this._vrGames.filter(g => g.type === type) : this._vrGames;
         this.vrGames$.next(filteredList);
         this._gameType = type;
     }

@@ -4,12 +4,16 @@
                  [opened]="!(point?.handset | async)"
                  [position]="(point?.handset | async) ? 'end' : 'start'"
                  class="sidenav-inner-container">
-        <div class="sidenav-title"><span><button
+        <div class="sidenav-title">
+            <span>
+                <button
                 *ngIf="(point.handset | async)"
                 mat-icon-button
                 (click)="sidenav.toggle()">
               <mat-icon>menu</mat-icon>
-            </button></span>{{translateService.instant('ADMIN_MENU_TITLE')}}</div>
+            </button>
+            </span><div (click)="openUrlForm()" class="sidenav-title__link">{{translateService.instant('ADMIN_MENU_TITLE')}}</div>
+        </div>
         <mat-divider></mat-divider>
         <mat-nav-list class="nav-list-container" color="primary">
             <div class="nav-list-container_parent-container" *ngFor="let menuItem of MENU_ITEMS">
@@ -95,4 +99,25 @@
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
+
+<ng-template #apiUrlForm>
+    <h5 class="mb-4">{{'CHANGE_URL_TITLE' | translate}}</h5>
+    <mat-form-field class="mb-2 w-100">
+        <label>
+            <input matInput placeholder="URL" [formControl]="apiUrlControl">
+        </label>
+        <mat-error *ngIf="apiUrlControl.errors?.required">
+            {{'REQUIRED_FIELD' | translate:[translateService.instant('URL')]}}
+        </mat-error>
+        <mat-error
+                *ngIf="apiUrlControl?.errors?.pattern">{{translateService.instant('SERVER_IP_INVALID_ERROR')}}</mat-error>
+        <mat-icon
+                  matSuffix
+                  (click)="apiUrlControl.setValue(initService.DefaultApi)"
+                  class="reset">autorenew</mat-icon>
+    </mat-form-field>
+    <control-panel-ui-action-toolbar (confirm)="changeApiUrl()"
+                                     (cancel)="_dialog.close()"
+                                     [mode]="'edit'"></control-panel-ui-action-toolbar>
+</ng-template>
 

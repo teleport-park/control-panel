@@ -243,5 +243,6 @@
   "DISABLE_SERVER": "Выключить",
   "ALL": "Все",
   "LIST_EMPTY": "Список пустой",
-  "TYPE_FILTER": "Фильтр по типу"
+  "TYPE_FILTER": "Фильтр по типу",
+  "CHANGE_URL_TITLE": "Введите URL"
 }

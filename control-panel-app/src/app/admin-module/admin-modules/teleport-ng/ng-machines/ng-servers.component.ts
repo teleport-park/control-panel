@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { TranslateService } from '../../../../common/translations-module';
+import { urlPattern } from '../../../../utils/utils';
 
 @Component({
     selector: 'ng-servers',
@@ -111,7 +112,8 @@ export class NgServersComponent implements OnInit, OnDestroy {
             address: ['', [
                 Validators.required,
                 Validators.pattern(
-                    '(?:https?)://(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$'
+                // '(?:https?)://(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$'
+                    urlPattern
                 )]
             ],
             name: '',

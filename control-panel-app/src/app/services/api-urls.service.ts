@@ -9,10 +9,10 @@ import { API } from '../api';
 })
 export class ApiUrlsService implements IApiUrlsInterface {
 
-   private static ORIGIN: string;
+   private static GET_API_URL: () => string;
 
    constructor(private initService: InitService) {
-      ApiUrlsService.ORIGIN = initService.config.api_url;
+      ApiUrlsService.GET_API_URL = () => initService.config.api_url;
    }
 
    private static getPagedUrl(endPoint: string,
@@ -23,7 +23,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
                               offset?: number,
                               sortingParams?: {[key: string]: string},
                               filterRequest?: string): string | null {
-      const originEndPoint = `${ApiUrlsService.ORIGIN}${endPoint}`;
+      const originEndPoint = `${ApiUrlsService.GET_API_URL()}${endPoint}`;
       const aub = new ApiUrlBuilder(originEndPoint, requestMethod);
 
       if (aub.isRequestMethodDelete() || aub.isRequestMethodPut() || aub.isRequestMethodPatch()) {
@@ -153,7 +153,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
                       orderDirection?: number,
                       queryString?: string): string | null {
       const endPoint = 'api/users';
-      const originEndPoint = `${ApiUrlsService.ORIGIN}${endPoint}`;
+      const originEndPoint = `${ApiUrlsService.GET_API_URL()}${endPoint}`;
       const aub = new ApiUrlBuilder(originEndPoint, requestMethod);
 
       if (aub.isRequestMethodDelete() || aub.isRequestMethodPut()) {
