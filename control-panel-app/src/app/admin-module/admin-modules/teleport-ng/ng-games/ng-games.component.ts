@@ -49,7 +49,13 @@ export class NgGamesComponent {
     }
 
     typeFilterHandler(event: MatRadioChange) {
-        this.service.filterInstanceByType(event.value);
+        this.service.gameType = event.value;
+        this.service.applyFilter();
+    }
+
+    applyFilter(value: string) {
+        this.service.filterValue = value;
+        this.service.applyFilter();
     }
 
 }

@@ -60,6 +60,6 @@ export class ApiUrlBuilder implements IApiUrlBuilderInterface {
    }
 
    public build(): string {
-      return `${this._endPoint}/${this._url}`;
+      return `${this._endPoint}${this._url}`;
    }
 }

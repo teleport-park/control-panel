@@ -12,7 +12,9 @@ export class ApiUrlsService implements IApiUrlsInterface {
    private static GET_API_URL: () => string;
 
    constructor(private initService: InitService) {
-      ApiUrlsService.GET_API_URL = () => initService.config.api_url;
+      ApiUrlsService.GET_API_URL = () => {
+          return initService.config.api_url.endsWith('/') ? initService.config.api_url : initService.config.api_url + '/';
+      };
    }
 
    private static getPagedUrl(endPoint: string,
@@ -27,7 +29,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
       const aub = new ApiUrlBuilder(originEndPoint, requestMethod);
 
       if (aub.isRequestMethodDelete() || aub.isRequestMethodPut() || aub.isRequestMethodPatch()) {
-         aub.appendUrl(id ? id.toString() : '');
+         aub.appendUrl(id ? '/' + id.toString() : '');
          return aub.build();
       }
 
@@ -37,7 +39,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
 
       if (aub.isRequestMethodGet()) {
          if (id) {
-            aub.appendUrl(id.toString());
+            aub.appendUrl('/' + id.toString());
             return aub.build();
          }
          if (limit) {
@@ -157,7 +159,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
       const aub = new ApiUrlBuilder(originEndPoint, requestMethod);
 
       if (aub.isRequestMethodDelete() || aub.isRequestMethodPut()) {
-         aub.appendUrl(id.toString());
+         aub.appendUrl('/' + id.toString());
          return aub.build();
       }
 

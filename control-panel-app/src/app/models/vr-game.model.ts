@@ -5,6 +5,7 @@ export class VRGame {
     name: string;
     origin: string;
     enabled: boolean;
+    active: boolean;
 }
 
 export class VRGameRequest {

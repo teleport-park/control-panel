@@ -15,7 +15,9 @@ export class NgGamesService {
 
     _vrGames: VRGame[];
 
-    _gameType: 'all' | 'polygon' | 'playvr' = 'all';
+    gameType: 'all' | 'polygon' | 'playvr' = 'all';
+
+    filterValue: string = '';
 
     constructor(private http: HttpClient,
                 private toaster: MatSnackBar,
@@ -26,44 +28,10 @@ export class NgGamesService {
 
     private getGames(): void {
         this.loaderService.dispatchShowLoader(true);
-        // this._vrGames = [
-        //     {
-        //         code_name: 'A-Tech',
-        //         type: 'playvr',
-        //         version: '1.0.0_licensed',
-        //         name: 'A-Tech Cybernetic VR',
-        //         origin: 'steam',
-        //         enabled: true
-        //     }, { code_name: 'A-Tech',
-        //         type: 'polygon',
-        //         version: '1.0.0_licensed',
-        //         name: 'A-Tech Cybernetic VR',
-        //         origin: 'steam',
-        //         enabled: true}, { code_name: 'A-Tech',
-        //         type: 'polygon',
-        //         version: '1.0.0_licensed',
-        //         name: 'A-Tech Cybernetic VR',
-        //         origin: 'steam',
-        //         enabled: true}, { code_name: 'A-Tech',
-        //         type: 'polygon',
-        //         version: '1.0.0_licensed',
-        //         name: 'A-Tech Cybernetic VR',
-        //         origin: 'steam',
-        //         enabled: true},
-        //     {
-        //         code_name: 'A-Tech',
-        //         type: 'playvr',
-        //         version: '1.0.0_licensed',
-        //         name: 'A-Tech Cybernetic VR',
-        //         origin: 'steam',
-        //         enabled: true
-        //     }, ];
-        // this.filterInstanceByType(this._gameType);
-        // this.loaderService.dispatchShowLoader(false);
         this.http.get(this.urlService.getTNGGames('GET'))
         .subscribe((result: VRGame[]) => {
             this._vrGames = result;
-            this.filterInstanceByType(this._gameType);
+            this.applyFilter();
             this.loaderService.dispatchShowLoader(false);
         });
     }
@@ -76,11 +44,17 @@ export class NgGamesService {
         );
     }
 
-    filterInstanceByType(type: 'all' | 'polygon' | 'playvr') {
-        const filteredList = type !== 'all' &&
-        this._vrGames &&
-        this._vrGames.length ? this._vrGames.filter(g => g.type === type) : this._vrGames;
+    applyFilter() {
+        let filteredList = this.filterInstanceByType(this._vrGames);
+        filteredList = this.filterInstanceByName(filteredList);
         this.vrGames$.next(filteredList);
-        this._gameType = type;
+    }
+
+    filterInstanceByType(items: VRGame[]): VRGame[] {
+        return this.gameType !== 'all' ? items.filter(g => g.type === this.gameType) : items;
+    }
+
+    filterInstanceByName(items: VRGame[]): VRGame[] {
+        return this.filterValue ? items.filter(i => i.name.toLowerCase().startsWith(this.filterValue.toLowerCase())) : items;
     }
 }
