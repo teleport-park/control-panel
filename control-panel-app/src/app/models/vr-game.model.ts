@@ -1,7 +1,7 @@
 export class VRGame {
     type: 'polygon' | 'playvr';
     code_name: string;
-    version: string;
+    fingerprint: string;
     name: string;
     origin: string;
     enabled: boolean;
@@ -9,12 +9,12 @@ export class VRGame {
 
 export class VRGameRequest {
     code_name: string = '';
-    version: string = '';
+    type: string = '';
     enabled: boolean = false;
 
     constructor(game: VRGame) {
         this.code_name = game.code_name;
+        this.type = game.type;
         this.enabled = game.enabled;
-        this.version = game.version;
     }
 }

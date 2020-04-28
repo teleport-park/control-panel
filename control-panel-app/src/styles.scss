@@ -154,6 +154,14 @@ html, body {
     }
     .mat-success {
       color: $success;
+      //.mat-slide-toggle-label {
+      //  .mat-slide-toggle-bar {
+      //    background-color: rgba($warn, .54);
+      //    .mat-slide-toggle-thumb {
+      //      background-color: $warn;
+      //    }
+      //  }
+      //}
       &.mat-checked {
         .mat-slide-toggle-label {
           .mat-slide-toggle-bar {
@@ -162,6 +170,15 @@ html, body {
               background-color: $success;
             }
           }
+        }
+      }
+    }
+    .mat-cell {
+      .sub_text {
+        font-size: .9rem;
+        color: #8d8d8d;
+        span {
+          margin-right: .35rem;
         }
       }
     }

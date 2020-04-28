@@ -5,6 +5,7 @@ import { VRGame, VRGameRequest } from '../../../../models/vr-game.model';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { MatDialog, MatRadioChange } from '@angular/material';
 import { FormControl } from '@angular/forms';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle/typings/slide-toggle';
 
 @Component({
     selector: 'ng-games',
@@ -19,7 +20,7 @@ export class NgGamesComponent {
 
     _typeFilterControl: FormControl = new FormControl('all');
 
-    displayedColumns: string[] = ['code_name', 'version', 'name', 'type', 'origin', 'enabled'];
+    displayedColumns: string[] = ['name', 'type', 'active', 'enabled'];
 
     constructor(public service: NgGamesService,
                 public translateService: TranslateService,
@@ -27,7 +28,7 @@ export class NgGamesComponent {
                 private dialog: MatDialog) {
     }
 
-    toggleGameHandler(game: VRGame) {
+    toggleGameHandler(event: MatSlideToggleChange, game: VRGame) {
         this.dialog.open(ConfirmDialogComponent, {
             data: {
                 title: 'DIALOG_CONFIRM_TITLE',
@@ -38,8 +39,12 @@ export class NgGamesComponent {
             if (res) {
                 const payload = new VRGameRequest(game);
                 payload.enabled = !payload.enabled;
+                game.enabled = !game.enabled;
+                event.source.checked = game.enabled;
+                this.cd.markForCheck();
                 this.service.update(payload);
             }
+            event.source.checked = game.enabled;
         });
     }
 
