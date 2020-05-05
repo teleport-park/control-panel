@@ -2,7 +2,8 @@
     <section class="p-2 mb-3">
         <h5 class="mb-3">{{'TYPE_FILTER' | translate}}</h5>
         <mat-radio-group [formControl]="_typeFilterControl" (change)="typeFilterHandler($event)">
-            <mat-radio-button class="mr-3" *ngFor="let type of _filterTypes" [value]="type">{{type.toUpperCase() | translate}}</mat-radio-button>
+            <mat-radio-button class="mr-3" *ngFor="let type of _filterTypes"
+                              [value]="type">{{type.toUpperCase() | translate}}</mat-radio-button>
         </mat-radio-group>
     </section>
     <button mat-flat-button color="accent" (click)="add()" class="align-self-end mb-3">
@@ -16,7 +17,8 @@
                                         (edit)="edit($event)"
                                         (remove)="remove($event)"
                                         (revoke)="revoke($event)"
-                                        (toggle)="toggle($event)"></control-panel-ui-hardware-item>
+                                        (toggle)="toggle($event)"
+                                        (getGames)="getServerGames($event)"></control-panel-ui-hardware-item>
     </div>
     <p *ngIf="!(service.instances$ | async)?.length" class="ml-3">{{'LIST_EMPTY' | translate}}</p>
 </div>
@@ -50,4 +52,11 @@
     <control-panel-ui-action-toolbar (confirm)="submit()"
                                      (cancel)="_dialog.close()"
                                      [mode]="_edit ? 'edit' : 'add'"></control-panel-ui-action-toolbar>
+</ng-template>
+
+<ng-template #games>
+    <div mat-dialog-title>{{'ADMIN_MENU_GAMES' | translate}} | {{_games.server}}</div>
+    <div mat-dialog-content>
+        <control-panel-games-list [games]="_games.games" (toggle)="toggleGame($event)"></control-panel-games-list>
+    </div>
 </ng-template>

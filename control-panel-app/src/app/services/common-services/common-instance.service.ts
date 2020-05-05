@@ -111,6 +111,10 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
         this._filterType = type;
     }
 
+    getServersGames(serverId: string): Observable<any> {
+        return this.http.get(this.getUrl('GET', serverId) + '/games');
+    }
+
     ngOnDestroy(): void {
         this.instances$.complete();
         this.refreshInstances$.complete();

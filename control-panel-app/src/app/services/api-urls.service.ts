@@ -76,7 +76,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
       return ApiUrlsService.getPagedUrl('api/permissions', requestMethod, id, null, pageSize, pageNumber);
    }
 
-   public getTVRUrl(requestMethod: 'GET' | 'PUT' | 'DELETE' | 'PATCH', id?: string): string | null {
+   public getTNGUrl(requestMethod: 'GET' | 'PUT' | 'DELETE' | 'PATCH', id?: string): string | null {
       if (requestMethod === 'GET') {
          return ApiUrlsService.getPagedUrl(API.TNG_INSTANCES, requestMethod, id);
       }

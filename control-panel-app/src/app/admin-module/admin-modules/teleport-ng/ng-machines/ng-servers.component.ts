@@ -8,6 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { TranslateService } from '../../../../common/translations-module';
 import { urlPattern } from '../../../../utils/utils';
+import { VRGame } from '../../../../models/vr-game.model';
 
 @Component({
     selector: 'ng-servers',
@@ -22,9 +23,12 @@ export class NgServersComponent implements OnInit, OnDestroy {
 
     _filterTypes: string[] = ['all', ...this._controllerTypes];
 
+    _games: {server: string, games: VRGame[]};
+
     private destroyed$: Subject<boolean> = new Subject();
 
     @ViewChild('formTemplate', {static: true}) formTemplate: TemplateRef<any>;
+    @ViewChild('games', {static: true}) games: TemplateRef<any>;
 
     form: FormGroup;
 
@@ -120,6 +124,17 @@ export class NgServersComponent implements OnInit, OnDestroy {
             type: 'playvr',
             enabled: true
         });
+    }
+
+    getServerGames(item: TNGController) {
+        this.service.getServersGames(item.id).subscribe(res => {
+            this._games = {server: item.display_name || item.address, games: res};
+            this.dialog.open(this.games);
+        });
+    }
+
+    toggleGame(game: VRGame) {
+        console.log(game);
     }
 
     ngOnDestroy(): void {

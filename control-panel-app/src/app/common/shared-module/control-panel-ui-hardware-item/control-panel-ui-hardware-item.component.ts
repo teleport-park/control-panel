@@ -37,6 +37,8 @@ export class ControlPanelUiHardwareItemComponent implements OnInit, OnDestroy {
 
   @Output() toggle: EventEmitter<ControllerType> = new EventEmitter();
 
+  @Output() getGames: EventEmitter<ControllerType> = new EventEmitter();
+
   constructor(public translateService: TranslateService) {
   }
 

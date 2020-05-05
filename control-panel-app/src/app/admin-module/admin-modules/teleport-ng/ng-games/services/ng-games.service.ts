@@ -57,4 +57,6 @@ export class NgGamesService {
     filterInstanceByName(items: VRGame[]): VRGame[] {
         return this.filterValue ? items.filter(i => i.name.toLowerCase().startsWith(this.filterValue.toLowerCase())) : items;
     }
+
+
 }

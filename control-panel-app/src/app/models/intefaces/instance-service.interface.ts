@@ -69,6 +69,11 @@ export interface InstanceService<T> {
      * filter instance by type
      */
     filterInstanceByType(type: string): void;
- }
+
+    /**
+     * get server games
+     */
+    getServersGames(serverId: string): Observable<any>;
+}
 
 export const INSTANCE_SERVICE = new InjectionToken<InstanceService<ControllerType>>('InstanceService');

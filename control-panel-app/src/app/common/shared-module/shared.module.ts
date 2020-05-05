@@ -32,6 +32,7 @@ import { ControlPanelUiPeriodSelectorComponent } from './control-panel-ui-period
 import { MatRippleModule } from '@angular/material';
 import { BoundCardDialogComponent } from './dialogs/bound-card-dialog/bound-card-dialog.component';
 import { ControlPanelUiTimeSliderComponent } from './control-panel-ui-time-slider/control-panel-ui-time-slider.component';
+import { ControlPanelGamesListComponent } from './control-panel-games-list/control-panel-games-list.component';
 
 const MODULES = [
     ConfirmDialogComponent,
@@ -59,7 +60,8 @@ const MODULES = [
     ControlPanelUiQuickFilterComponent,
     ControlPanelUiTimeFilterComponent,
     ControlPanelUiPeriodSelectorComponent,
-    ControlPanelUiTimeSliderComponent
+    ControlPanelUiTimeSliderComponent,
+    ControlPanelGamesListComponent
 ];
 
 @NgModule({

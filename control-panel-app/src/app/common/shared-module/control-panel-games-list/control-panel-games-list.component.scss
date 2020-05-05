@@ -1,0 +1,12 @@
+:host {
+  table {
+    .mat-column {
+      &-active, &-enabled, &-type {
+        width: 5rem;
+      }
+      &-name {
+        width: 30rem;
+      }
+    }
+  }
+}
