@@ -1,6 +1,10 @@
 :host {
   table {
     .mat-column {
+      &-index {
+        padding-left: .5rem;
+        width: 2rem;
+      }
       &-active {
         text-align: center;
       }

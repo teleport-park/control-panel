@@ -57,7 +57,7 @@
 <ng-template #games>
     <div mat-dialog-title>{{'ADMIN_MENU_GAMES' | translate}} | {{_games.server}}</div>
     <div mat-dialog-content>
-        <control-panel-games-list [games]="_games.games" (toggle)="toggleGame($event)"></control-panel-games-list>
+        <control-panel-games-list [games]="_games.games"></control-panel-games-list>
     </div>
     <div mat-dialog-actions class="d-flex justify-content-end">
         <button mat-button color="warn" [mat-dialog-close]>{{'CLOSE' | translate}}</button>

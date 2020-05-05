@@ -37,7 +37,11 @@ export class NgGamesService {
     }
 
     update(game: VRGameRequest) {
-        return this.http.patch(this.urlService.getTNGGames('PATCH'), game);
+        this.http.patch(this.urlService.getTNGGames('PATCH'), game).subscribe(
+            res => {
+                this.getGames();
+            }
+        );
     }
 
     applyFilter() {

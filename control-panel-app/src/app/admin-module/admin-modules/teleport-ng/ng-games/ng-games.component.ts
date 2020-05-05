@@ -1,9 +1,9 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '../../../../common/translations-module';
 import { NgGamesService } from './services/ng-games.service';
 import { VRGame, VRGameRequest } from '../../../../models/vr-game.model';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
-import { MatDialog, MatRadioChange } from '@angular/material';
+import { MatDialog, MatRadioChange, MatSort, MatSortable, MatTableDataSource } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle/typings/slide-toggle';
 
@@ -12,7 +12,7 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle/typings/sli
     templateUrl: './ng-games.component.html',
     styleUrls: ['./ng-games.component.scss']
 })
-export class NgGamesComponent {
+export class NgGamesComponent implements OnInit {
 
     _controllerTypes: string[] = ['playvr', 'polygon'];
 
@@ -22,10 +22,23 @@ export class NgGamesComponent {
 
     displayedColumns: string[] = ['name', 'type', 'active', 'enabled'];
 
+    dataSource = new MatTableDataSource();
+
+    @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+
     constructor(public service: NgGamesService,
                 public translateService: TranslateService,
                 public cd: ChangeDetectorRef,
                 private dialog: MatDialog) {
+    }
+
+    ngOnInit(): void {
+        this.sort.sort(({ id: 'name', start: 'asc'}) as MatSortable);
+        this.service.vrGames$.subscribe(res => {
+            this.dataSource.data = res;
+            this.dataSource.sort = this.sort;
+        });
     }
 
     toggleGameHandler(event: MatSlideToggleChange, game: VRGame) {
@@ -39,13 +52,12 @@ export class NgGamesComponent {
             if (res) {
                 const payload = new VRGameRequest(game);
                 payload.enabled = !payload.enabled;
-                event.source.checked = payload.enabled;
-                this.service.update(payload).subscribe(([result]: [VRGame]) => {
-                    game = result;
-                    event.source.checked = result.enabled;
-                    this.cd.markForCheck();
-                });
+                game.enabled = !game.enabled;
+                event.source.checked = game.enabled;
+                this.cd.markForCheck();
+                this.service.update(payload);
             }
+            event.source.checked = game.enabled;
         });
     }
 

@@ -13,7 +13,7 @@ export class ControlPanelGamesListComponent implements OnInit {
 
     @Input() games: VRGame[];
 
-    displayedColumns: string[] = ['name', 'origin', 'active'];
+    displayedColumns: string[] = ['index', 'name', 'origin', 'active'];
 
     @Output() toggle: EventEmitter<{game: VRGame, event: MatSlideToggleChange}> = new EventEmitter();
 

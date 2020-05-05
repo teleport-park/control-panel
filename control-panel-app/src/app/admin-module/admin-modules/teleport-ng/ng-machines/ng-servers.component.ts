@@ -134,16 +134,6 @@ export class NgServersComponent implements OnInit, OnDestroy {
         });
     }
 
-    toggleGame({game, event}: {game: VRGame, event: MatSlideToggleChange}) {
-        const payload = new VRGameRequest(game);
-        payload.enabled = !payload.enabled;
-        event.source.checked = payload.enabled;
-        this.gameService.update(payload).subscribe(([res]: [VRGame]) => {
-            game = res;
-            event.source.checked = res.enabled;
-        });
-    }
-
     ngOnDestroy(): void {
         this.destroyed$.next(true);
         this.destroyed$.complete();
