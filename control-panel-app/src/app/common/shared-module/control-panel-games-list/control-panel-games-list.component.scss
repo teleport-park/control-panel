@@ -1,7 +1,10 @@
 :host {
   table {
     .mat-column {
-      &-active, &-enabled, &-type {
+      &-active {
+        text-align: center;
+      }
+      &-active, &-origin, &-type {
         width: 5rem;
       }
       &-name {
