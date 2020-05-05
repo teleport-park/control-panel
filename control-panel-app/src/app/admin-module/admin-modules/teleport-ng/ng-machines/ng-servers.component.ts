@@ -1,14 +1,15 @@
 import { Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { INSTANCE_SERVICE, InstanceService } from '../../../../models';
 import { TNGController } from '../../../../models/controller';
-import { MatDialog, MatDialogRef, MatRadioChange } from '@angular/material';
+import { MatDialog, MatDialogRef, MatRadioChange, MatSlideToggleChange } from '@angular/material';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { TranslateService } from '../../../../common/translations-module';
 import { urlPattern } from '../../../../utils/utils';
-import { VRGame } from '../../../../models/vr-game.model';
+import { VRGame, VRGameRequest } from '../../../../models/vr-game.model';
+import { NgGamesService } from '../ng-games/services/ng-games.service';
 
 @Component({
     selector: 'ng-servers',
@@ -41,6 +42,7 @@ export class NgServersComponent implements OnInit, OnDestroy {
     _typeFilterControl: FormControl = new FormControl('all');
 
     constructor(@Inject(INSTANCE_SERVICE) public service: InstanceService<TNGController>,
+                private gameService: NgGamesService,
                 public translations: TranslateService,
                 private fb: FormBuilder,
                 private dialog: MatDialog) {
@@ -116,7 +118,6 @@ export class NgServersComponent implements OnInit, OnDestroy {
             address: ['', [
                 Validators.required,
                 Validators.pattern(
-                // '(?:https?)://(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$'
                     urlPattern
                 )]
             ],
@@ -133,8 +134,14 @@ export class NgServersComponent implements OnInit, OnDestroy {
         });
     }
 
-    toggleGame(game: VRGame) {
-        console.log(game);
+    toggleGame({game, event}: {game: VRGame, event: MatSlideToggleChange}) {
+        const payload = new VRGameRequest(game);
+        payload.enabled = !payload.enabled;
+        event.source.checked = payload.enabled;
+        this.gameService.update(payload).subscribe(([res]: [VRGame]) => {
+            game = res;
+            event.source.checked = res.enabled;
+        });
     }
 
     ngOnDestroy(): void {

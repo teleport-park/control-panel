@@ -16,7 +16,7 @@
         <mat-icon [ngClass]="{'offline': !item.enabled, 'online': item.enabled}">
             {{item.enabled ? 'desktop_windows' : 'desktop_access_disabled'}}
         </mat-icon>
-        <a mat-button *ngIf="item.enabled" class="ml-2" href="#" (click)="$event.preventDefault(); getGames.emit(item)">{{'ADMIN_MENU_GAMES' | translate}}</a>
+<!--        <a mat-button *ngIf="item.enabled" class="ml-2" href="#" (click)="$event.preventDefault(); getGames.emit(item)">{{'ADMIN_MENU_GAMES' | translate}}</a>-->
     </p>
     <p>
         <span class="bold">{{translateService.instant('SERVER_BOUND')}}:</span>
@@ -28,6 +28,12 @@
     <div class="action-button justify-content-between d-flex align-items-center mt-2">
         <mat-slide-toggle color="success" (change)="toggle.emit(item)" [checked]="item.enabled"><span class="label">{{(item.enabled ? 'DISABLE_SERVER' : 'ENABLE_SERVER') | translate}}</span></mat-slide-toggle>
         <div>
+            <a *ngIf="item.enabled" class="game-link mr-3" href="#" (click)="$event.preventDefault(); getGames.emit(item)">{{'ADMIN_MENU_GAMES' | translate}}</a>
+<!--            <button mat-icon-button-->
+<!--                    matTooltip="{{'ADMIN_MENU_GAMES' | translate}}"-->
+<!--                    [matTooltipShowDelay]="500"-->
+<!--                    matTooltipPosition="above"-->
+<!--                    color="primary" (click)="$event.preventDefault(); getGames.emit(item)"><mat-icon>videogame_asset</mat-icon></button>-->
             <button mat-icon-button
                     matTooltip="{{'TABLE_EDIT' | translate}}"
                     [matTooltipShowDelay]="500"

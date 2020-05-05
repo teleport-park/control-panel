@@ -26,7 +26,7 @@ export class NgGamesService {
         this.getGames();
     }
 
-    private getGames(): void {
+    public getGames(): void {
         this.loaderService.dispatchShowLoader(true);
         this.http.get(this.urlService.getTNGGames('GET'))
         .subscribe((result: VRGame[]) => {
@@ -37,11 +37,7 @@ export class NgGamesService {
     }
 
     update(game: VRGameRequest) {
-        this.http.patch(this.urlService.getTNGGames('PATCH'), game).subscribe(
-            res => {
-                this.getGames();
-            }
-        );
+        return this.http.patch(this.urlService.getTNGGames('PATCH'), game);
     }
 
     applyFilter() {
@@ -57,6 +53,4 @@ export class NgGamesService {
     filterInstanceByName(items: VRGame[]): VRGame[] {
         return this.filterValue ? items.filter(i => i.name.toLowerCase().startsWith(this.filterValue.toLowerCase())) : items;
     }
-
-
 }

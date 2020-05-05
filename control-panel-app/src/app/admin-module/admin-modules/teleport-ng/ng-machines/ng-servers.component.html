@@ -47,7 +47,7 @@
             <mat-error
                     *ngIf="form.get('address')?.errors?.pattern">{{translations.instant('SERVER_IP_INVALID_ERROR')}}</mat-error>
         </mat-form-field>
-        <mat-checkbox formControlName="enabled">Enabled</mat-checkbox>
+        <mat-checkbox formControlName="enabled">{{'ENABLE_SERVER' | translate}}</mat-checkbox>
     </form>
     <control-panel-ui-action-toolbar (confirm)="submit()"
                                      (cancel)="_dialog.close()"
@@ -58,5 +58,8 @@
     <div mat-dialog-title>{{'ADMIN_MENU_GAMES' | translate}} | {{_games.server}}</div>
     <div mat-dialog-content>
         <control-panel-games-list [games]="_games.games" (toggle)="toggleGame($event)"></control-panel-games-list>
+    </div>
+    <div mat-dialog-actions class="d-flex justify-content-end">
+        <button mat-button color="warn" [mat-dialog-close]>{{'CLOSE' | translate}}</button>
     </div>
 </ng-template>

@@ -1,3 +1,10 @@
+<div class="loader" *ngIf="(loaderService.showLoader$ | async)">
+    <mat-progress-spinner
+            color="primary"
+            mode="indeterminate">
+    </mat-progress-spinner>
+</div>
+
 <div class="light-theme">
     <table mat-table [dataSource]="games" class="w-100">
         <ng-container matColumnDef="name">

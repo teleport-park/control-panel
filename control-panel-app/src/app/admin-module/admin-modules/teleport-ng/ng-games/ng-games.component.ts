@@ -39,12 +39,13 @@ export class NgGamesComponent {
             if (res) {
                 const payload = new VRGameRequest(game);
                 payload.enabled = !payload.enabled;
-                game.enabled = !game.enabled;
-                event.source.checked = game.enabled;
-                this.cd.markForCheck();
-                this.service.update(payload);
+                event.source.checked = payload.enabled;
+                this.service.update(payload).subscribe(([result]: [VRGame]) => {
+                    game = result;
+                    event.source.checked = result.enabled;
+                    this.cd.markForCheck();
+                });
             }
-            event.source.checked = game.enabled;
         });
     }
 
