@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VrMachinesComponent } from './vr-machines/vr-machines.component';
-import { VrControllersComponent } from './vr-controllers/vr-controllers.component';
 import { VrGamesComponent } from './vr-games/vr-games.component';
 import { TeleportVrComponent } from './teleport-vr.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -13,11 +12,6 @@ const routes: Routes = [{
         path: '',
         redirectTo: 'vr-controllers',
         pathMatch: 'full'
-    }, {
-        path: 'vr-controllers',
-        component: VrControllersComponent,
-        data: {title: 'ADMIN_MENU_CONTROLLERS'},
-        canActivate: [PermissionGuard]
     }, {
         path: 'vr-machines',
         component: VrMachinesComponent,
@@ -34,7 +28,7 @@ const routes: Routes = [{
 export const TeleportNGRouterModule = RouterModule.forChild(routes);
 
 @NgModule({
-    declarations: [VrMachinesComponent, VrControllersComponent, VrGamesComponent, TeleportVrComponent],
+    declarations: [VrMachinesComponent, VrGamesComponent, TeleportVrComponent],
     imports: [
         CommonModule,
         TeleportNGRouterModule

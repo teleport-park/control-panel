@@ -14,46 +14,53 @@ import { CommonInstanceService } from '../../../services';
 import { TNGController } from '../../../models/controller';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslationModule } from '../../../common/translations-module/translation.module';
+import { NgControllersComponent } from './ng-controllers/ng-controllers.component';
 
 const routes: Routes = [{
-   path: '',
-   component: TeleportNgComponent,
-   children: [
-      {path: '', redirectTo: 'ng-machines', pathMatch: 'full'},
-      {
-         path: 'ng-servers',
-         component: NgServersComponent,
-         data: {title: 'ADMIN_MENU_MACHINES'},
-         canActivate: [PermissionGuard]
-      },
-      {
-         path: 'ng-games',
-         component: NgGamesComponent,
-         data: {title: 'ADMIN_MENU_GAMES'},
-         canActivate: [PermissionGuard]
-      }
-   ]
+    path: '',
+    component: TeleportNgComponent,
+    children: [
+        {path: '', redirectTo: 'ng-machines', pathMatch: 'full'},
+        {
+            path: 'ng-servers',
+            component: NgServersComponent,
+            data: {title: 'ADMIN_MENU_MACHINES'},
+            canActivate: [PermissionGuard]
+        },
+        {
+            path: 'ng-controllers',
+            component: NgControllersComponent,
+            data: {title: 'ADMIN_MENU_CONTROLLERS'},
+            canActivate: [PermissionGuard]
+        },
+        {
+            path: 'ng-games',
+            component: NgGamesComponent,
+            data: {title: 'ADMIN_MENU_GAMES'},
+            canActivate: [PermissionGuard]
+        }
+    ]
 }];
 
 export const TeleportVrRouteModule = RouterModule.forChild(routes);
 
 export function TeleportVrFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
-   return new CommonInstanceService(http, apiUrlService.getTNGUrl, (item) => new TNGController(item));
+    return new CommonInstanceService(http, apiUrlService.getTNGUrl, (item) => new TNGController(item));
 }
 
 @NgModule({
-   declarations: [TeleportNgComponent, NgServersComponent, NgGamesComponent],
-   imports: [
-      CommonModule,
-      TeleportVrRouteModule,
-      MaterialModule,
-      SharedModule,
-      ReactiveFormsModule,
-      TranslationModule
-   ],
-   providers: [
-      {provide: INSTANCE_SERVICE, useFactory: TeleportVrFactory, deps: [HttpClient, ApiUrlsService]}
-   ]
+    declarations: [TeleportNgComponent, NgServersComponent, NgGamesComponent, NgControllersComponent],
+    imports: [
+        CommonModule,
+        TeleportVrRouteModule,
+        MaterialModule,
+        SharedModule,
+        ReactiveFormsModule,
+        TranslationModule
+    ],
+    providers: [
+        {provide: INSTANCE_SERVICE, useFactory: TeleportVrFactory, deps: [HttpClient, ApiUrlsService]}
+    ]
 })
 export class TeleportNgModule {
 }

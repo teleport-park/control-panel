@@ -100,6 +100,11 @@ export class BuildMenuHelper {
             root: true,
             children: [
                 {
+                    icon: 'developer_board',
+                    path: '/admin/teleport-ng/ng-controllers',
+                    label: 'ADMIN_MENU_CONTROLLERS',
+                    active: false
+                }, {
                     icon: 'router',
                     path: '/admin/teleport-ng/ng-servers',
                     label: 'ADMIN_MENU_SERVERS',
@@ -118,12 +123,6 @@ export class BuildMenuHelper {
             active: false,
             root: true,
             children: [
-                {
-                    icon: 'developer_board',
-                    path: '/admin/teleport-vr/vr-controllers',
-                    label: 'ADMIN_MENU_CONTROLLERS',
-                    active: false
-                },
                 {
                     icon: 'computer',
                     path: '/admin/teleport-vr/vr-machines',
