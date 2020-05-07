@@ -20,6 +20,10 @@ export class ControllersService implements IControllerService<ControllerType> {
         .subscribe(res => {
             this.controllers$.next(res);
         });
+        // setTimeout(() => {
+        //     this.controllers$.next(this.mockData);
+        //     this.refreshControllers$.next(true);
+        // });
     }
 
     refresh() {
@@ -36,7 +40,7 @@ export class ControllersService implements IControllerService<ControllerType> {
             authorized: true
         };
         this.http.put(this.getUrl('PUT', id), payload)
-        .subscribe(res => {
+        .subscribe(_ => {
             this.getControllers();
         });
     }
@@ -50,7 +54,7 @@ export class ControllersService implements IControllerService<ControllerType> {
             authorized: false
         };
         this.http.put(this.getUrl('PUT', id), payload)
-        .subscribe(res => {
+        .subscribe(_ => {
             this.getControllers();
         });
     }

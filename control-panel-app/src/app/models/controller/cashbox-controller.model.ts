@@ -2,10 +2,10 @@ import { BaseController } from './base-controller.model';
 import { TVRModel } from '../tvr.model';
 
 export class CashBoxController extends BaseController {
-    /**
-     * type
-     */
-    readonly TYPE: string = 'CASH-BOX';
+
+    uuid: string;
+
+    ip: string;
 
     constructor(model: TVRModel) {
         super(model);

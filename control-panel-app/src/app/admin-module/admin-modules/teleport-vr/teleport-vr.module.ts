@@ -8,6 +8,7 @@ import { PermissionGuard } from '../../../common/auth-module/guards/permission-g
 import { SharedModule } from '../../../common/shared-module/shared.module';
 import { MaterialModule } from '../../../material.module';
 import { TranslationModule } from '../../../common/translations-module/translation.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [{
     path: '', component: TeleportVrComponent,
@@ -37,7 +38,8 @@ export const TeleportNGRouterModule = RouterModule.forChild(routes);
         TeleportNGRouterModule,
         SharedModule,
         MaterialModule,
-        TranslationModule
+        TranslationModule,
+        ReactiveFormsModule
     ]
 })
 export class TeleportVrModule {

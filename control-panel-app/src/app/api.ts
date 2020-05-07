@@ -9,6 +9,9 @@ export const API = {
     TVR_MACHINES: 'tvr/mgmt/instances',
     TVR_GAMES: 'tvr/mgmt/games',
 
+    // Cash box section
+    CASH_BOX_INSTANCES: 'tvr/mgmt/cashbox',
+
 
     GAMES: 'cpanel/games',
     CARDS: 'cpanel/users/cards',
@@ -19,8 +22,6 @@ export const API = {
 
 
     GATE_INSTANCES: 'gates/mgmt/instances',
-    CASH_BOX_INSTANCES: 'cashbox/mgmt/instances',
-
     PACKAGES: 'cpanel/packages',
     PACKAGES_HISTORY: 'cpanel/packages/history',
     SESSIONS: 'cpanel/sessions',

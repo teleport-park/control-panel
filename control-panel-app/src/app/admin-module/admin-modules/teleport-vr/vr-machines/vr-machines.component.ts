@@ -1,9 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { ControllersService } from '../../../../services/common-services/controllers.service';
 import { CONTROLLER_SERVICE, IControllerService } from '../../../../models/intefaces';
-import { BaseController, TVRController } from '../../../../models/controller';
+import { TVRController } from '../../../../models/controller';
 import { TranslateService } from '../../../../common/translations-module';
 
 const mockData = [
@@ -63,17 +63,18 @@ export function ControllerServiceFactory(http: HttpClient, apiUrlService: ApiUrl
 }
 
 @Component({
-  selector: 'vr-machines',
-  templateUrl: './vr-machines.component.html',
-  styleUrls: ['./vr-machines.component.scss'],
+    selector: 'vr-machines',
+    templateUrl: './vr-machines.component.html',
+    styleUrls: ['./vr-machines.component.scss'],
     providers: [
         {provide: CONTROLLER_SERVICE, useFactory: ControllerServiceFactory, deps: [HttpClient, ApiUrlsService]}
     ]
 })
 export class VrMachinesComponent {
 
-  constructor(@Inject(CONTROLLER_SERVICE) public service: IControllerService<TVRController>,
-              private translateService: TranslateService) { }
+    constructor(@Inject(CONTROLLER_SERVICE) public service: IControllerService<TVRController>,
+                private translateService: TranslateService) {
+    }
 
 
     grant(item: TVRController) {

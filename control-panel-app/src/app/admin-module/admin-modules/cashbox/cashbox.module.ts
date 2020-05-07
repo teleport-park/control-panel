@@ -5,13 +5,13 @@ import { CashboxMachinesComponent } from './cashbox-machines/cashbox-machines.co
 import { RouterModule, Routes } from '@angular/router';
 import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
 import { HttpClient } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material';
-import { LoaderService } from '../../../services/loader.service';
 import { ApiUrlsService } from '../../../services/api-urls.service';
 import { CommonInstanceService } from '../../../services';
 import { CashBoxController } from '../../../models/controller';
 import { INSTANCE_SERVICE } from '../../../models';
 import { SharedModule } from '../../../common/shared-module/shared.module';
+import { MaterialModule } from '../../../material.module';
+import { TranslationModule } from '../../../common/translations-module/translation.module';
 
 const routes: Routes = [{
     path: '',
@@ -37,7 +37,9 @@ export function CashBoxFactory(http: HttpClient, apiUrlService: ApiUrlsService) 
     imports: [
         CommonModule,
         CashboxRouterModule,
-        SharedModule
+        SharedModule,
+        MaterialModule,
+        TranslationModule
     ],
     providers: [
         {provide: INSTANCE_SERVICE, useFactory: CashBoxFactory, deps: [HttpClient, ApiUrlsService]}
