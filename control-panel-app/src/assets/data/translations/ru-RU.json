@@ -247,5 +247,6 @@
   "CHANGE_URL_TITLE": "Введите URL",
   "ACTIVATED": "включена",
   "DEACTIVATED": "выключена",
-  "SUCCESS": "успешно"
+  "SUCCESS": "успешно",
+  "SOURCE": "Источник"
 }

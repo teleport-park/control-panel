@@ -18,7 +18,7 @@ export class GamesComponent implements OnInit {
 
    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-   displayedColumns: string[] = ['select', 'id', 'name', 'type', 'price'];
+   displayedColumns: string[] = ['select', 'name', 'source', 'active', 'price'];
 
    dataSource: MatTableDataSource<Game>;
 

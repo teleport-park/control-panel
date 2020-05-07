@@ -19,19 +19,30 @@
                 </mat-checkbox>
             </td>
         </ng-container>
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> id</th>
-            <td mat-cell *matCellDef="let game"> {{game.id}} </td>
-        </ng-container>
-
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> {{translation.instant('AMUSEMENTS_NAME_LABEL')}} </th>
-            <td mat-cell *matCellDef="let game"> {{game.name}} </td>
+            <td mat-cell *matCellDef="let game">
+                <div class="name mt-3">{{game.name}}</div>
+                <div class="sub_text mb-3">
+                    <span>id:</span><span class="info">{{game.id}}</span>
+                </div></td>
+        </ng-container>
+        <ng-container matColumnDef="source">
+            <th mat-header-cell *matHeaderCellDef> {{translation.instant('SOURCE')}} </th>
+            <td mat-cell *matCellDef="let game">
+                <div class="name mt-3">{{game.source}}</div>
+                <div class="sub_text mb-3" *ngIf="game.type">
+                    <span>{{'TYPE' | translate}}:</span><span class="info">{{game.type}}</span>
+                </div>
+            </td>
         </ng-container>
 
-        <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef> {{translation.instant('TYPE')}} </th>
-            <td mat-cell *matCellDef="let game"> {{game.type}} </td>
+        <ng-container matColumnDef="active">
+            <th mat-header-cell *matHeaderCellDef> {{translation.instant('ENABLED')}} </th>
+            <td mat-cell *matCellDef="let game">
+                <mat-icon color="{{game.active ? 'success' : 'warn'}}">{{game.active ? 'check' : 'clear'}}</mat-icon>
+            </td>
+
         </ng-container>
 
         <ng-container matColumnDef="price">
@@ -83,8 +94,8 @@
             (click)="selection.toggle(row)">
         </tr>
     </table>
-    <div [hidden]="dataSource.data.length < 10">
-        <mat-paginator  [pageSizeOptions]="[10, 20, 100]" showFirstLastButtons></mat-paginator>
+    <div [hidden]="dataSource.data.length < 50">
+        <mat-paginator  [pageSizeOptions]="[50]" showFirstLastButtons></mat-paginator>
     </div>
 
 </div>
