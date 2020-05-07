@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TeleportNgComponent } from './teleport-ng.component';
-import { NgServersComponent } from './ng-machines/ng-servers.component';
+import { NgServersComponent } from './ng-servers/ng-servers.component';
 import { NgGamesComponent } from './ng-games/ng-games.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
@@ -44,7 +44,7 @@ const routes: Routes = [{
 
 export const TeleportVrRouteModule = RouterModule.forChild(routes);
 
-export function TeleportVrFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
+export function TeleportNgFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
     return new CommonInstanceService(http, apiUrlService.getTNGUrl, (item) => new TNGController(item));
 }
 
@@ -59,7 +59,7 @@ export function TeleportVrFactory(http: HttpClient, apiUrlService: ApiUrlsServic
         TranslationModule
     ],
     providers: [
-        {provide: INSTANCE_SERVICE, useFactory: TeleportVrFactory, deps: [HttpClient, ApiUrlsService]}
+        {provide: INSTANCE_SERVICE, useFactory: TeleportNgFactory, deps: [HttpClient, ApiUrlsService]}
     ]
 })
 export class TeleportNgModule {

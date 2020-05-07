@@ -3,31 +3,35 @@
  */
 export class BaseController {
 
-  static readonly MOCK_REF: string = 'mock_ref';
-  /**
-   * id
-   */
-  id: string;
-   /**
-    * reference id
-    */
-   ref: string;
+    /**
+     * type
+     */
+    type: 'playvr' | 'polygon';
+    /**
+     * id
+     */
+    id: string;
 
-  online: Date;
+    /**
+     * online
+     */
+    online: Date;
 
-  token: string;
+    connected: string | Date;
 
-  authorized: boolean;
+    token: string;
 
-  name: string;
+    authorized: boolean;
 
-   display_name: string;
+    name: string;
 
-   address: string;
+    display_name: string;
 
-  constructor(model) {
-    Object.keys(model).forEach(key => {
-      this[key] = model[key];
-    });
-  }
+    address: string;
+
+    constructor(model) {
+        Object.keys(model).forEach(key => {
+            this[key] = model[key];
+        });
+    }
 }

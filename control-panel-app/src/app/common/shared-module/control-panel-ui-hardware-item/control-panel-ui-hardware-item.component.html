@@ -16,7 +16,6 @@
         <mat-icon [ngClass]="{'offline': !item.enabled, 'online': item.enabled}">
             {{item.enabled ? 'desktop_windows' : 'desktop_access_disabled'}}
         </mat-icon>
-<!--        <a mat-button *ngIf="item.enabled" class="ml-2" href="#" (click)="$event.preventDefault(); getGames.emit(item)">{{'ADMIN_MENU_GAMES' | translate}}</a>-->
     </p>
     <p>
         <span class="bold">{{translateService.instant('SERVER_BOUND')}}:</span>

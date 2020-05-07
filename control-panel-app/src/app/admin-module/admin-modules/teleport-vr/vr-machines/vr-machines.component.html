@@ -1,1 +1,41 @@
-<p>ng-servers works!</p>
+<ng-container *ngTemplateOutlet="(service.controllers$ | async)?.length ? instances : empty"></ng-container>
+
+<ng-template #instances>
+    <div class="row m-0">
+        <div *ngFor="let item of (service.controllers$ | async)"
+             class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 instance">
+            <control-panel-ui-item-card [item]="item">
+                <div class="hardware-item_title">
+                    <h4>{{item.uuid}}</h4>
+                </div>
+                <p>
+                    <span class="bold">{{translateService.instant('IP')}}:</span>
+                    {{item.ip}}
+                </p>
+
+                <p>
+                    <span class="bold">{{translateService.instant('CONTROLLER_AUTHORIZED')}}:</span>
+                    <mat-icon [ngClass]="{'offline': !item.authorized, 'online': item.authorized}">
+                        {{item.authorized ? 'check' : 'clear'}}
+                    </mat-icon>
+                </p>
+                <p>
+                    <span class="bold">{{translateService.instant('SERVER_ONLINE')}}:</span>
+                    <mat-icon [ngClass]="{'offline': !item.online, 'online': item.online}">radio_button_checked
+                    </mat-icon>
+                </p>
+                <div class="actions">
+                    <button mat-flat-button color="warn" *ngIf="item.authorized" (click)="revoke(item)">revoke</button>
+                    <button mat-flat-button color="primary" *ngIf="!item.authorized" (click)="grant(item)">grant
+                    </button>
+                </div>
+            </control-panel-ui-item-card>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #empty>
+    <p class="ml-3">{{'LIST_EMPTY' | translate}}</p>
+</ng-template>
+
+<control-panel-trigger [callBack]="service.refresh.bind(service)"></control-panel-trigger>

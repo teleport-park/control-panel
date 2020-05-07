@@ -13,12 +13,48 @@
 </div>
 <div class="row instances_wrapper">
     <div *ngFor="let item of service.instances$ | async" class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 instance">
-        <control-panel-ui-hardware-item [item]="item" (grant)="grant($event)"
-                                        (edit)="edit($event)"
-                                        (remove)="remove($event)"
-                                        (revoke)="revoke($event)"
-                                        (toggle)="toggle($event)"
-                                        (getGames)="getServerGames($event)"></control-panel-ui-hardware-item>
+        <control-panel-ui-item-card [item]="item">
+            <div class="hardware-item_title">
+                <h4>{{item.display_name}}</h4>
+            </div>
+            <p>
+                <span class="bold">{{translations.instant('SERVER_IP_ADDRESS')}}:</span>
+                {{item.address}}
+            </p>
+            <p>
+                <span class="bold">{{translations.instant('SERVER_TYPE')}}:</span>
+                {{item.type.toUpperCase()}}
+            </p>
+            <p>
+                <span class="bold">{{translations.instant('SERVER_ENABLED')}}:</span>
+                <mat-icon [ngClass]="{'offline': !item.enabled, 'online': item.enabled}">
+                    {{item.enabled ? 'desktop_windows' : 'desktop_access_disabled'}}
+                </mat-icon>
+            </p>
+            <p>
+                <span class="bold">{{translations.instant('SERVER_BOUND')}}:</span>
+                <mat-icon [ngClass]="{'offline': !item.bound, 'online': item.bound}">
+                    {{item.bound ? 'check' : 'clear'}}
+                </mat-icon>
+            </p>
+            <p><span class="bold">{{translations.instant('SERVER_ONLINE')}}:</span><mat-icon [ngClass]="{'offline': !item.online, 'online': item.online}">radio_button_checked</mat-icon></p>
+            <div class="action-button justify-content-between d-flex align-items-center mt-2">
+                <mat-slide-toggle color="success" (change)="toggle(item)" [checked]="item.enabled"><span class="label">{{(item.enabled ? 'DISABLE_SERVER' : 'ENABLE_SERVER') | translate}}</span></mat-slide-toggle>
+                <div>
+                    <a *ngIf="item.enabled" class="game-link mr-3" href="#" (click)="$event.preventDefault(); getServerGames(item)">{{'ADMIN_MENU_GAMES' | translate}}</a>
+                    <button mat-icon-button
+                            matTooltip="{{'TABLE_EDIT' | translate}}"
+                            [matTooltipShowDelay]="500"
+                            matTooltipPosition="above"
+                            color="primary" (click)="edit(item)"><mat-icon>edit</mat-icon></button>
+                    <button mat-icon-button
+                            matTooltip="{{'TABLE_DELETE' | translate}}"
+                            [matTooltipShowDelay]="500"
+                            matTooltipPosition="above"
+                            color="warn" (click)="remove(item)"><mat-icon>delete</mat-icon></button>
+                </div>
+            </div>
+        </control-panel-ui-item-card>
     </div>
     <p *ngIf="!(service.instances$ | async)?.length" class="ml-3">{{'LIST_EMPTY' | translate}}</p>
 </div>

@@ -27,18 +27,18 @@ export interface InstanceService<T> {
      * get instances
      */
     getInstances(): void;
-
-    /**
-     * grant
-     * @param item
-     */
-    grant(item: T): void;
-
-    /**
-     * revoke
-     * @param item
-     */
-    revoke(item: T): void;
+    //
+    // /**
+    //  * grant
+    //  * @param item
+    //  */
+    // grant(item: T): void;
+    //
+    // /**
+    //  * revoke
+    //  * @param item
+    //  */
+    // revoke(item: T): void;
 
     /**
      * refresh instances

@@ -16,12 +16,12 @@ export class GatesComponent implements OnInit {
         this.service.getInstances();
     }
 
-    grant(item: GateController) {
-        this.service.grant(item);
-    }
-
-    revoke(item: GateController) {
-        this.service.revoke(item);
-    }
+    // grant(item: GateController) {
+    //     this.service.grant(item);
+    // }
+    //
+    // revoke(item: GateController) {
+    //     this.service.revoke(item);
+    // }
 
 }

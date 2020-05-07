@@ -15,12 +15,12 @@ export class CashboxMachinesComponent implements OnInit {
       this.service.getInstances();
   }
 
-  grant(item: TVRController) {
-    this.service.grant(item);
-  }
-
-  revoke(item: TVRController) {
-    this.service.revoke(item);
-  }
+  // grant(item: TVRController) {
+  //   this.service.grant(item);
+  // }
+  //
+  // revoke(item: TVRController) {
+  //   this.service.revoke(item);
+  // }
 
 }

@@ -36,31 +36,31 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
         });
     }
 
-    grant(item: ControllerType): void {
-        // TODO mock instances
-        if (item.ref === BaseController.MOCK_REF) {
-            this.instances$.getValue().find((instance: ControllerType) => instance.id === item.id).authorized = true;
-            return;
-        }
-        this.http.put<any>(this.getUrl('PUT', item.ref), {})
-        .subscribe((result) => {
-            console.log('[grant result] -> ', result);
-            this.getInstances();
-        });
-    }
-
-    revoke(item: ControllerType): void {
-        // TODO mock instances
-        if (item.ref === BaseController.MOCK_REF) {
-            this.instances$.getValue().find((instance: ControllerType) => instance.id === item.id).authorized = false;
-            return;
-        }
-        this.http.delete<any>(this.getUrl('DELETE', item.ref))
-        .subscribe((result) => {
-            console.log('[revoke result] -> ', result);
-            this.getInstances();
-        });
-    }
+    // grant(item: ControllerType): void {
+    //     // TODO mock instances
+    //     if (item.ref === BaseController.MOCK_REF) {
+    //         this.instances$.getValue().find((instance: ControllerType) => instance.id === item.id).authorized = true;
+    //         return;
+    //     }
+    //     this.http.put<any>(this.getUrl('PUT', item.ref), {})
+    //     .subscribe((result) => {
+    //         console.log('[grant result] -> ', result);
+    //         this.getInstances();
+    //     });
+    // }
+    //
+    // revoke(item: ControllerType): void {
+    //     // TODO mock instances
+    //     if (item.ref === BaseController.MOCK_REF) {
+    //         this.instances$.getValue().find((instance: ControllerType) => instance.id === item.id).authorized = false;
+    //         return;
+    //     }
+    //     this.http.delete<any>(this.getUrl('DELETE', item.ref))
+    //     .subscribe((result) => {
+    //         console.log('[revoke result] -> ', result);
+    //         this.getInstances();
+    //     });
+    // }
 
     refresh(): Observable<boolean> {
         this.getInstances();

@@ -248,5 +248,8 @@
   "ACTIVATED": "включена",
   "DEACTIVATED": "выключена",
   "SUCCESS": "успешно",
-  "SOURCE": "Источник"
+  "SOURCE": "Источник",
+  "CONTROLLER_AUTHORIZED": "Авторизован",
+  "CONTROLLER_CONNECTED": "Соединен",
+  "MINUTES_AGO": "мин. назад"
 }

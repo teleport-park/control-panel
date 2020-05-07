@@ -10,7 +10,5 @@ export class GateController extends BaseController {
 
   constructor(model: TVRModel) {
     super(model);
-    // TODO if doesn't have ref mock him
-    this.ref = model.ref ? model.ref : BaseController.MOCK_REF;
   }
 }

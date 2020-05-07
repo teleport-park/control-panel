@@ -1,14 +1,14 @@
 import { Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { INSTANCE_SERVICE, InstanceService } from '../../../../models';
 import { TNGController } from '../../../../models/controller';
-import { MatDialog, MatDialogRef, MatRadioChange, MatSlideToggleChange } from '@angular/material';
+import { MatDialog, MatDialogRef, MatRadioChange } from '@angular/material';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { TranslateService } from '../../../../common/translations-module';
 import { urlPattern } from '../../../../utils/utils';
-import { VRGame, VRGameRequest } from '../../../../models/vr-game.model';
+import { VRGame } from '../../../../models/vr-game.model';
 import { NgGamesService } from '../ng-games/services/ng-games.service';
 
 @Component({
@@ -16,19 +16,19 @@ import { NgGamesService } from '../ng-games/services/ng-games.service';
     templateUrl: './ng-servers.component.html',
     styleUrls: ['./ng-servers.component.scss']
 })
+
 export class NgServersComponent implements OnInit, OnDestroy {
-
-
 
     _controllerTypes: string[] = ['playvr', 'polygon'];
 
     _filterTypes: string[] = ['all', ...this._controllerTypes];
 
-    _games: {server: string, games: VRGame[]};
+    _games: { server: string, games: VRGame[] };
 
     private destroyed$: Subject<boolean> = new Subject();
 
     @ViewChild('formTemplate', {static: true}) formTemplate: TemplateRef<any>;
+
     @ViewChild('games', {static: true}) games: TemplateRef<any>;
 
     form: FormGroup;
@@ -56,14 +56,6 @@ export class NgServersComponent implements OnInit, OnDestroy {
             this._dialog && this._dialog.close();
             this._editInstanceId = null;
         });
-    }
-
-    grant(item: TNGController) {
-        this.service.grant(item);
-    }
-
-    revoke(item: TNGController) {
-        this.service.revoke(item);
     }
 
     add() {

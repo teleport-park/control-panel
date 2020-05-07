@@ -5,6 +5,9 @@ import { VrGamesComponent } from './vr-games/vr-games.component';
 import { TeleportVrComponent } from './teleport-vr.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PermissionGuard } from '../../../common/auth-module/guards/permission-guard';
+import { SharedModule } from '../../../common/shared-module/shared.module';
+import { MaterialModule } from '../../../material.module';
+import { TranslationModule } from '../../../common/translations-module/translation.module';
 
 const routes: Routes = [{
     path: '', component: TeleportVrComponent,
@@ -31,7 +34,10 @@ export const TeleportNGRouterModule = RouterModule.forChild(routes);
     declarations: [VrMachinesComponent, VrGamesComponent, TeleportVrComponent],
     imports: [
         CommonModule,
-        TeleportNGRouterModule
+        TeleportNGRouterModule,
+        SharedModule,
+        MaterialModule,
+        TranslationModule
     ]
 })
 export class TeleportVrModule {

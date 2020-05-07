@@ -246,5 +246,8 @@
   "ACTIVATED": "activated",
   "DEACTIVATED": "deactivated",
   "SUCCESS": "successful",
-  "SOURCE": "Source"
+  "SOURCE": "Source",
+  "CONTROLLER_AUTHORIZED": "Authorised",
+  "CONTROLLER_CONNECTED": "Connected",
+  "MINUTES_AGO": "min. ago"
 }

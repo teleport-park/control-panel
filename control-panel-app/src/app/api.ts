@@ -1,7 +1,15 @@
-export const API: { [key: string]: string | any } = {
-    // ready
+export const API = {
+    // TNG section
     TNG_INSTANCES: 'tng/mgmt/servers',
     TNG_GAMES: 'tng/mgmt/games',
+    TNG_CONTROLLERS: 'tng/mgmt/controllers',
+
+    // TVR section
+
+    TVR_MACHINES: 'tvr/mgmt/instances',
+    TVR_GAMES: 'tvr/mgmt/games',
+
+
     GAMES: 'cpanel/games',
     CARDS: 'cpanel/users/cards',
     // visitors
