@@ -244,5 +244,8 @@
   "ALL": "Все",
   "LIST_EMPTY": "Список пустой",
   "TYPE_FILTER": "Фильтр по типу",
-  "CHANGE_URL_TITLE": "Введите URL"
+  "CHANGE_URL_TITLE": "Введите URL",
+  "ACTIVATED": "включена",
+  "DEACTIVATED": "выключена",
+  "SUCCESS": "успешно"
 }

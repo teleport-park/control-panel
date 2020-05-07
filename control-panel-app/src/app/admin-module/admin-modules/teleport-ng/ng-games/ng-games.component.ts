@@ -2,7 +2,6 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '../../../../common/translations-module';
 import { NgGamesService } from './services/ng-games.service';
 import { VRGame, VRGameRequest } from '../../../../models/vr-game.model';
-import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { MatDialog, MatRadioChange, MatSort, MatSortable, MatTableDataSource } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle/typings/slide-toggle';
@@ -34,7 +33,7 @@ export class NgGamesComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.sort.sort(({ id: 'name', start: 'asc'}) as MatSortable);
+        this.sort.sort(({id: 'name', start: 'asc'}) as MatSortable);
         this.service.vrGames$.subscribe(res => {
             this.dataSource.data = res;
             this.dataSource.sort = this.sort;
@@ -42,23 +41,13 @@ export class NgGamesComponent implements OnInit {
     }
 
     toggleGameHandler(event: MatSlideToggleChange, game: VRGame) {
-        this.dialog.open(ConfirmDialogComponent, {
-            data: {
-                title: 'DIALOG_CONFIRM_TITLE',
-                message: this.translateService.instant(game.enabled ? 'DISABLE' : 'ENABLE') + ' ' +
-                    this.translateService.instant('DIALOG_CHANGE_ENABLE_STATUS_MESSAGE', [game.name])
-            } as ConfirmDialogData
-        }).afterClosed().subscribe(res => {
-            if (res) {
-                const payload = new VRGameRequest(game);
-                payload.enabled = !payload.enabled;
-                game.enabled = !game.enabled;
-                event.source.checked = game.enabled;
-                this.cd.markForCheck();
-                this.service.update(payload);
-            }
-            event.source.checked = game.enabled;
-        });
+        const payload = new VRGameRequest(game);
+        payload.enabled = !payload.enabled;
+        game.enabled = !game.enabled;
+        event.source.checked = game.enabled;
+        this.cd.markForCheck();
+        this.service.update(payload);
+        event.source.checked = game.enabled;
     }
 
     typeFilterHandler(event: MatRadioChange) {

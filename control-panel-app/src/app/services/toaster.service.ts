@@ -17,8 +17,8 @@ export class ToasterService {
       });
    }
 
-   public success(message) {
-      this.toaster.open(this.translations.instant(message), null, {
+   public success(message, translate?: boolean) {
+      this.toaster.open(translate ? this.translations.instant(message) : message, null, {
          duration: 5000,
          panelClass: 'toaster-success'
       });

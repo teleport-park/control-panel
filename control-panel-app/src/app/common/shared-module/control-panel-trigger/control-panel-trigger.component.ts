@@ -13,7 +13,9 @@ export class ControlPanelTriggerComponent implements OnInit, OnDestroy {
 
     private subscription: Subscription;
 
-    @Input() timerValue = 9;
+    _timerValue: number = 10;
+
+    @Input() timerValue;
 
     @Input() callBack: () => Observable<boolean> = () => {
         console.warn('callback is not assigned');
@@ -21,23 +23,23 @@ export class ControlPanelTriggerComponent implements OnInit, OnDestroy {
     }
 
     constructor(private cd: ChangeDetectorRef, private initService: InitService) {
-        if (initService.config.refresh_interval) {
-            this.timerValue = initService.config.refresh_interval;
-        }
     }
 
     ngOnInit() {
+        if (this.initService.config.refresh_interval || this.timerValue) {
+            this._timerValue = this.timerValue || this.initService.config.refresh_interval;
+        }
         this._timer = this.getInterval();
     }
 
     tik() {
-        if (this.timerValue === 0) {
+        if (this._timerValue === 0) {
             clearInterval(this._timer);
             this.cd.markForCheck();
             this.subscription = this.callBack().subscribe((result: boolean) => {
                 if (result) {
                     clearInterval(this._timer);
-                    this.timerValue = this.initService.config.refresh_interval;
+                    this._timerValue = this.timerValue || this.initService.config.refresh_interval;
                     this._timer = this.getInterval();
                     if (this.subscription) {
                         this.subscription.unsubscribe();
@@ -45,7 +47,7 @@ export class ControlPanelTriggerComponent implements OnInit, OnDestroy {
                     return;
                 }
                 clearInterval(this._timer);
-                this.timerValue = -1;
+                this._timerValue = -1;
                 if (this.subscription) {
                     this.subscription.unsubscribe();
                 }
@@ -53,12 +55,12 @@ export class ControlPanelTriggerComponent implements OnInit, OnDestroy {
             });
             return;
         }
-        this.timerValue--;
+        this._timerValue--;
         this.cd.markForCheck();
     }
 
     reset() {
-        this.timerValue = 0;
+        this._timerValue = 0;
         this.tik();
     }
 

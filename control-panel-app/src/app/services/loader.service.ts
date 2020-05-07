@@ -15,7 +15,7 @@ export class LoaderService {
   loaderTread$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor() {
-    this.loaderTread$.pipe(debounceTime(500)).subscribe((value: boolean) => {
+    this.loaderTread$.pipe(debounceTime(1000)).subscribe((value: boolean) => {
       this.showLoader$.next(value);
     });
   }

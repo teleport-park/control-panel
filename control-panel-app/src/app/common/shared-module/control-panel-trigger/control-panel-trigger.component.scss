@@ -7,3 +7,12 @@
     width: 12rem;
   }
 }
+
+:host(.absolute-right-top) {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  button {
+    width: 12rem;
+  }
+}
