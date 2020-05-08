@@ -9,7 +9,7 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/sh
 import { TranslateService } from '../../../../common/translations-module';
 import { urlPattern } from '../../../../utils/utils';
 import { VRGame } from '../../../../models/vr-game.model';
-import { NgGamesService } from '../ng-games/services/ng-games.service';
+import { ControllerGamesService } from '../../../../services/common-services/controller-games.service';
 
 @Component({
     selector: 'ng-servers',
@@ -42,7 +42,7 @@ export class NgServersComponent implements OnInit, OnDestroy {
     _typeFilterControl: FormControl = new FormControl('all');
 
     constructor(@Inject(INSTANCE_SERVICE) public service: InstanceService<TNGController>,
-                private gameService: NgGamesService,
+                private gameService: ControllerGamesService,
                 public translations: TranslateService,
                 private fb: FormBuilder,
                 private dialog: MatDialog) {

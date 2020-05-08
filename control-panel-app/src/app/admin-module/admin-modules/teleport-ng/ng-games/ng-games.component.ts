@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '../../../../common/translations-module';
-import { NgGamesService } from './services/ng-games.service';
+import { ControllerGamesService } from '../../../../services/common-services/controller-games.service';
 import { VRGame, VRGameRequest } from '../../../../models/vr-game.model';
-import { MatDialog, MatRadioChange, MatSort, MatSortable, MatTableDataSource } from '@angular/material';
+import { MatRadioChange, MatSort, MatSortable, MatTableDataSource } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle/typings/slide-toggle';
 
@@ -26,13 +26,13 @@ export class NgGamesComponent implements OnInit {
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
 
-    constructor(public service: NgGamesService,
+    constructor(public service: ControllerGamesService,
                 public translateService: TranslateService,
-                public cd: ChangeDetectorRef,
-                private dialog: MatDialog) {
+                public cd: ChangeDetectorRef) {
     }
 
     ngOnInit(): void {
+        this.service.getGames();
         this.sort.sort(({id: 'name', start: 'asc'}) as MatSortable);
         this.service.vrGames$.subscribe(res => {
             this.dataSource.data = res;
@@ -59,5 +59,4 @@ export class NgGamesComponent implements OnInit {
         this.service.filterValue = value;
         this.service.applyFilter();
     }
-
 }

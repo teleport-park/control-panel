@@ -128,6 +128,12 @@ export class ApiUrlsService implements IApiUrlsInterface {
         return ApiUrlsService.getPagedUrl(API.TVR_MACHINES, requestMethod, id);
     }
 
+    public getTVRGames(requestMethod: 'GET' | 'PATCH') {
+        return ApiUrlsService.getPagedUrl(API.TVR_GAMES, requestMethod);
+    }
+
+    // Games
+
     public getGames(requestMethod: 'GET' | 'PATCH') {
         return ApiUrlsService.getPagedUrl(API.GAMES, requestMethod);
     }

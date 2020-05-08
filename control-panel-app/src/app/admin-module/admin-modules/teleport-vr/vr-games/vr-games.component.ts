@@ -1,14 +1,16 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatRadioChange, MatSlideToggleChange, MatSort, MatSortable, MatTableDataSource } from '@angular/material';
-import { NgGamesService } from '../../teleport-ng/ng-games/services/ng-games.service';
+import { ControllerGamesService } from '../../../../services/common-services/controller-games.service';
 import { TranslateService } from '../../../../common/translations-module';
 import { VRGame, VRGameRequest } from '../../../../models/vr-game.model';
+import { ApiUrlsService } from '../../../../services/api-urls.service';
 
 @Component({
     selector: 'vr-games',
     templateUrl: './vr-games.component.html',
-    styleUrls: ['./vr-games.component.scss']
+    styleUrls: ['./vr-games.component.scss'],
+    providers: [ControllerGamesService]
 })
 export class VrGamesComponent implements OnInit {
 
@@ -25,12 +27,15 @@ export class VrGamesComponent implements OnInit {
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
 
-    constructor(public service: NgGamesService,
+    constructor(public service: ControllerGamesService,
                 public translateService: TranslateService,
+                private urlService: ApiUrlsService,
                 public cd: ChangeDetectorRef) {
     }
 
     ngOnInit(): void {
+        this.service.url = this.urlService.getTVRGames;
+        this.service.getGames();
         this.sort.sort(({id: 'name', start: 'asc'}) as MatSortable);
         this.service.vrGames$.subscribe(res => {
             this.dataSource.data = res;

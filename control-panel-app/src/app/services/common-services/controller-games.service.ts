@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ApiUrlsService } from '../../../../../services/api-urls.service';
-import { LoaderService } from '../../../../../services/loader.service';
-import { VRGame, VRGameRequest } from '../../../../../models/vr-game.model';
-import { ToasterService } from '../../../../../services/toaster.service';
-import { TranslateService } from '../../../../../common/translations-module';
+import { ApiUrlsService } from '../api-urls.service';
+import { LoaderService } from '../loader.service';
+import { VRGame, VRGameRequest } from '../../models/vr-game.model';
+import { ToasterService } from '../toaster.service';
+import { TranslateService } from '../../common/translations-module';
 
-@Injectable({
-    providedIn: 'root'
-})
-export class NgGamesService {
+@Injectable()
+export class ControllerGamesService {
 
     vrGames$: BehaviorSubject<VRGame[]> = new BehaviorSubject([]);
 
@@ -22,16 +20,18 @@ export class NgGamesService {
 
     refreshGames$: Subject<boolean> = new Subject();
 
+    url: (method) => string = this.urlService.getTNGGames;
+
     constructor(private http: HttpClient,
                 private toaster: ToasterService,
                 private urlService: ApiUrlsService,
                 private translation: TranslateService,
                 private loaderService: LoaderService) {
-        this.getGames();
+        // this.getGames();
     }
 
     public getGames(): void {
-        this.http.get(this.urlService.getTNGGames('GET'))
+        this.http.get(this.url('GET'))
         .subscribe((result: VRGame[]) => {
             this._vrGames = result;
             this.applyFilter();
@@ -44,7 +44,7 @@ export class NgGamesService {
 
     update(game: VRGameRequest) {
         this.loaderService.dispatchShowLoader(true);
-        this.http.patch(this.urlService.getTNGGames('PATCH'), game).subscribe(
+        this.http.patch(this.url('PATCH'), game).subscribe(
             res => {
                 this.toaster.success(this.getMessage(game), false);
                 this.getGames();
