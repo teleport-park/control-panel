@@ -1,7 +1,7 @@
 <div class="light-theme">
     <div class="toolbar d-flex justify-content-between align-items-center">
         <control-panel-ui-quick-filter (filterChange)="applyFilter($event)"></control-panel-ui-quick-filter>
-        <button mat-flat-button color="primary" [disabled]="!selection.hasValue()" (click)="changePriceForSelectedHandler()">{{translation.instant('CHANGE_PRICE_FOR_SELECTED')}}</button>
+        <button mat-flat-button color="primary" *ngIf="selection.hasValue()" (click)="changePriceForSelectedHandler()">{{translation.instant('CHANGE_PRICE_FOR_SELECTED')}}</button>
     </div>
 
     <table mat-table [dataSource]="dataSource" class=" w-100">
