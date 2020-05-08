@@ -287,7 +287,7 @@ const routes: Routes = [{
 export const TeleportNGRouterModule = RouterModule.forChild(routes);
 
 export function VrMachinesFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
-    return new CommonInstanceService(http, apiUrlService.getTVRMachines, (item) => new TVRController(item), mockData);
+    return new CommonInstanceService(http, apiUrlService.getTVRMachines, (item) => new TVRController(item));
 }
 
 @NgModule({
