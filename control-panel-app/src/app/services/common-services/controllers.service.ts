@@ -16,17 +16,17 @@ export class ControllersService implements IControllerService<ControllerType> {
     }
 
     getControllers() {
-        // this.http.get(this.getUrl('GET'))
-        // .subscribe(res => {
-        //     this.controllers$.next(res);
-        //     this.refreshControllers$.next(true);
-        // }, error => {
-        //     this.refreshControllers$.next(false);
-        // });
-        setTimeout(() => {
-            this.controllers$.next(this.mockData);
+        this.http.get(this.getUrl('GET'))
+        .subscribe(res => {
+            this.controllers$.next(res);
             this.refreshControllers$.next(true);
+        }, error => {
+            this.refreshControllers$.next(false);
         });
+        // setTimeout(() => {
+        //     this.controllers$.next(this.mockData);
+        //     this.refreshControllers$.next(true);
+        // });
     }
 
     refresh() {
