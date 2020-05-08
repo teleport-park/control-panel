@@ -1,35 +1,53 @@
-<ng-container *ngTemplateOutlet="(service.controllers$ | async)?.length ? instances : empty"></ng-container>
+<ng-container *ngTemplateOutlet="(service.instances$ | async)?.length ? instances : empty"></ng-container>
 
 <ng-template #instances>
     <div class="row m-0">
-        <div *ngFor="let item of (service.controllers$ | async)"
+        <div *ngFor="let item of (service.instances$ | async)"
              class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 instance">
             <control-panel-ui-item-card [item]="item">
                 <div class="hardware-item_title">
-                    <h4 matTooltip="{{item.uuid}}"
-                        [matTooltipShowDelay]="1000"
-                        matTooltipPosition="below">{{_transformToken(item.uuid)}}</h4>
+                    <h4>{{item.display_name || item.name}}</h4>
                 </div>
+                <p  matTooltip="{{item.machine_token}}"
+                    [matTooltipShowDelay]="1000"
+                    matTooltipPosition="below">
+                    <span class="bold">{{translateService.instant('TOKEN')}}:</span>
+                    {{_transformToken(item.machine_token)}}
+                </p>
+                <p>
+                    <span class="bold">{{translateService.instant('SERVER_ENABLED')}}:</span>
+                    <mat-icon [ngClass]="{'offline': !item.enabled, 'online': item.enabled}">
+                        {{item.enabled ? 'desktop_windows' : 'desktop_access_disabled'}}
+                    </mat-icon>
+                </p>
+                <p>
+                    <span class="bold">{{translateService.instant('REGISTERED')}}:</span>
+                    <mat-icon [ngClass]="{'offline': !item.registered, 'online': item.registered}">
+                        {{item.registered ? 'check' : 'clear'}}
+                    </mat-icon>
+                </p>
+                <p>
+                    <span class="bold">{{translateService.instant('CONTROLLER_CONNECTED')}}:</span>
+                    <mat-icon [ngClass]="{'offline': !item.connected, 'online': item.connected}">
+                        {{item.connected ? 'check' : 'clear'}}
+                    </mat-icon>
+                </p>
                 <p>
                     <span class="bold">{{translateService.instant('IP')}}:</span>
-                    {{item.ip}}
-                </p>
-
-                <p>
-                    <span class="bold">{{translateService.instant('CONTROLLER_AUTHORIZED')}}:</span>
-                    <mat-icon [ngClass]="{'offline': !item.authorized, 'online': item.authorized}">
-                        {{item.authorized ? 'check' : 'clear'}}
-                    </mat-icon>
+                    {{item.ip_address || 'N/A' | translate}}
                 </p>
                 <p>
-                    <span class="bold">{{translateService.instant('SERVER_ONLINE')}}:</span>
-                    <mat-icon [ngClass]="{'offline': !item.online, 'online': item.online}">radio_button_checked
-                    </mat-icon>
+                    <span class="bold">{{translateService.instant('GAME')}}:</span>
+                    {{item.game?.name || 'N/A' | translate}}
+                </p>
+                <p>
+                    <span class="bold">{{translateService.instant('STATUS')}}:</span>
+                    {{item.status ? (item.status.toUpperCase() | translate) : 'N/A' | translate}}
                 </p>
                 <div class="actions">
-                    <button mat-flat-button color="warn" *ngIf="item.authorized" (click)="revoke(item)">revoke</button>
-                    <button mat-flat-button color="primary" *ngIf="!item.authorized" (click)="grant(item)">grant
-                    </button>
+                    <button mat-flat-button color="primary" *ngIf="!item.registered" (click)="register(item)">{{'REGISTER' | translate}}</button>
+<!--                    <button mat-flat-button color="primary" *ngIf="!item.authorized" (click)="grant(item)">grant-->
+<!--                    </button>-->
                 </div>
             </control-panel-ui-item-card>
         </div>

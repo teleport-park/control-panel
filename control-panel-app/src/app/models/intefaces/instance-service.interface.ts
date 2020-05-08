@@ -27,18 +27,6 @@ export interface InstanceService<T> {
      * get instances
      */
     getInstances(): void;
-    //
-    // /**
-    //  * grant
-    //  * @param item
-    //  */
-    // grant(item: T): void;
-    //
-    // /**
-    //  * revoke
-    //  * @param item
-    //  */
-    // revoke(item: T): void;
 
     /**
      * refresh instances
@@ -54,6 +42,11 @@ export interface InstanceService<T> {
      * edit instance
      */
     update(item: T, id: string): void;
+
+    /**
+     * register
+     */
+    register(item: Partial<T>, id: string): void;
 
     /**
      * remove instance

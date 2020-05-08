@@ -6,7 +6,7 @@ export const API = {
 
     // TVR section
 
-    TVR_MACHINES: 'tvr/mgmt/instances',
+    TVR_MACHINES: 'mgmt/machines',
     TVR_GAMES: 'tvr/mgmt/games',
 
     // Cash box section

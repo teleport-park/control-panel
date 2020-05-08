@@ -29,6 +29,10 @@ export class BaseController {
 
     address: string;
 
+    uuid: string;
+
+    ip: string;
+
     constructor(model) {
         Object.keys(model).forEach(key => {
             this[key] = model[key];

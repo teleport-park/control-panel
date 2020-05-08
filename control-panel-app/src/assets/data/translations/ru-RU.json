@@ -251,5 +251,8 @@
   "SOURCE": "Источник",
   "CONTROLLER_AUTHORIZED": "Авторизован",
   "CONTROLLER_CONNECTED": "Соединен",
-  "MINUTES_AGO": "мин. назад"
+  "MINUTES_AGO": "мин. назад",
+  "REGISTER": "Зарегестрировать",
+  "GAME": "Игра",
+  "TOKEN": "Токен"
 }

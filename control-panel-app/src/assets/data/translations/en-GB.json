@@ -249,5 +249,8 @@
   "SOURCE": "Source",
   "CONTROLLER_AUTHORIZED": "Authorised",
   "CONTROLLER_CONNECTED": "Connected",
-  "MINUTES_AGO": "min. ago"
+  "MINUTES_AGO": "min. ago",
+  "REGISTER": "Register",
+  "GAME": "Game",
+  "TOKEN": "Token"
 }
