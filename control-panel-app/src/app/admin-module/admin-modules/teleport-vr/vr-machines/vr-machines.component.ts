@@ -5,6 +5,7 @@ import { ControllersService } from '../../../../services/common-services/control
 import { CONTROLLER_SERVICE, IControllerService } from '../../../../models/intefaces';
 import { TVRController } from '../../../../models/controller';
 import { TranslateService } from '../../../../common/translations-module';
+import { transformToken } from '../../../../utils/utils';
 
 const mockData = [
     {
@@ -83,5 +84,9 @@ export class VrMachinesComponent {
 
     revoke(item: TVRController) {
         this.service.revoke(item, item.uuid);
+    }
+
+    _transformToken(token: string) {
+        return transformToken(token);
     }
 }

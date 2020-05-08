@@ -5,6 +5,7 @@ import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { ControllersService } from '../../../../services/common-services/controllers.service';
 import { CONTROLLER_SERVICE, IControllerService } from '../../../../models/intefaces';
 import { TranslateService } from '../../../../common/translations-module';
+import { transformToken } from '../../../../utils/utils';
 
 const mockData = [
     {
@@ -82,5 +83,9 @@ export class CashboxMachinesComponent {
 
     revoke(item: CashBoxController) {
         this.service.revoke(item, item.uuid);
+    }
+
+    _transformToken(token: string) {
+        return transformToken(token);
     }
 }

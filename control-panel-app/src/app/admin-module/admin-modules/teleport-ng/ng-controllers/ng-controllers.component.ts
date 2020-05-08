@@ -6,6 +6,7 @@ import { CONTROLLER_SERVICE, IControllerService } from '../../../../models/intef
 import { HttpClient } from '@angular/common/http';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { BaseController } from '../../../../models/controller';
+import { transformToken } from '../../../../utils/utils';
 
 const mockData = [
     {
@@ -74,5 +75,9 @@ export class NgControllersComponent {
 
     revoke(item: BaseController) {
         this.service.revoke(item);
+    }
+
+    _transformToken(token: string) {
+        return transformToken(token);
     }
 }
