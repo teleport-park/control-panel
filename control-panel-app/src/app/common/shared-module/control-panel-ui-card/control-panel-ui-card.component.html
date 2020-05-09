@@ -1,5 +1,5 @@
-<mat-card>
-  <mat-card-header>
+<mat-card [ngClass]="{'mt-4': hideHeader}" class="mat-elevation-z0">
+  <mat-card-header *ngIf="!hideHeader">
     <div class="card-header-wrapper">
       <mat-card-title><ng-content select="[panelUICardHeaderTitle]"></ng-content></mat-card-title>
       <mat-card-subtitle><ng-content select="[panelUICardHeaderSubtitle]"></ng-content></mat-card-subtitle>

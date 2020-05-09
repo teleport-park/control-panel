@@ -19,7 +19,7 @@
                 (click)="searchCard()">{{'USERS_TABLE_FILTER_INPUT_LABEL' | translate}}</button>
     </div>
     <ng-container *ngIf="_result">
-        <control-panel-ui-card panelUIColor="primary">
+        <control-panel-ui-card class="primary">
             <div panelUICardHeaderTitle>{{_result?.roles[0]}}</div>
             <div panelUICardContent>
                 <h4>Profile</h4>

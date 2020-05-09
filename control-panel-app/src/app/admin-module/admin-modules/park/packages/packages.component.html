@@ -2,7 +2,7 @@
     <mat-tab-group class="w-100" [@.disabled]="true" color="accent">
         <mat-tab label="{{'PACKAGES' | translate}}">
             <div class="light-theme">
-                <control-panel-ui-card panelUIColor="primary">
+                <control-panel-ui-card class="primary">
                     <div panelUICardHeaderTitle>{{translationService.instant('PACKAGES_LIST_TITLE')}}</div>
                     <div panelUICardContent>
                         <a mat-flat-button color="accent" routerLink="add"  class="ml-2 mt-1 mb-1"><mat-icon>add</mat-icon>{{'ADD_PACKAGE_TITLE' | translate}}</a>

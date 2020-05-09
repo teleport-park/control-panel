@@ -1,14 +1,26 @@
-<div class="d-flex align-items-center justify-content-end">
-    <div class="sync-action">
-        <span class="mr-4">Last synchronization was at {{(service.lastSyncTime$ | async) | date:'dd.MM.yyyy HH:mm:ss'}}</span>
-        <button mat-raised-button color="primary" (click)="service.synchronize()">Sync</button>
-    </div>
+<div class="light-theme">
+    <control-panel-ui-card class="primary">
+        <div panelUICardHeaderTitle>{{'INVOICES_LIST_TITLE' | translate}}</div>
+        <div panelUICardContent>
+            <div class="d-flex align-items-center justify-content-end">
+                <span class="mr-4">Last synchronization was at {{(service.lastSyncTime$ | async) | date:'dd.MM.yyyy HH:mm:ss'}}</span>
+                <button mat-raised-button color="primary" (click)="service.synchronize()">Sync</button>
+            </div>
+            <control-panel-ui-card [hideHeader]="true" class="d-inline-block">
+                <div panelUICardContent>
+                    <control-panel-ui-time-filter [statusFilter]="{statuses: ['paid', 'unpaid', 'canceled', 'progress']}"
+                                                  (apply)="applyFilterHandler($event)"></control-panel-ui-time-filter>
+                </div>
+            </control-panel-ui-card>
+            <control-panel-ui-table class="light-theme"
+                                    [displayedColumns]="['summary', 'type','charges', 'status', 'total', 'created_at', 'updated_at']"
+                                    [simpleDataColumn]="['summary', 'type', 'status', 'created_at', 'updated_at']"
+                                    [data]="service.invoices$ | async"
+                                    [itemCount]="(service.invoices$ | async)?.length"></control-panel-ui-table>
+            <control-panel-ui-empty *ngIf="!(service.invoices$ | async)?.length"></control-panel-ui-empty>
+        </div>
+    </control-panel-ui-card>
 </div>
-<control-panel-ui-time-filter class="light-theme"
-                              [statusFilter]="{statuses: ['paid', 'unpaid', 'canceled', 'progress']}"
-                                (apply)="applyFilterHandler($event)"></control-panel-ui-time-filter>
-<control-panel-ui-table class="light-theme"
-                        [displayedColumns]="['summary', 'type','charges', 'status', 'total', 'created_at', 'updated_at']"
-                        [simpleDataColumn]="['summary', 'type', 'status', 'created_at', 'updated_at']"
-                        [data]="service.invoices$ | async"
-                        [itemCount]="(service.invoices$ | async)?.length"></control-panel-ui-table>
+
+
+

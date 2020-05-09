@@ -1,36 +1,84 @@
 @import "control-panel-theme";
 
+@mixin shadow($color) {
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba($color, .4);
+}
 
-  .mat-card {
-    margin: 40px 15px 10px;
+.mat-card {
+  margin: 40px 15px 1rem;
+  border: 1px solid rgba(0, 0, 0, .15);
 
-    .mat-card-header {
-      .mat-card-title, .mat-card-subtitle {
-        margin: 0;
-        color: $white;
-      }
+  .mat-card-header {
+    .mat-card-title, .mat-card-subtitle {
+      margin: 0;
+      color: $white;
+    }
 
-      margin-bottom: 20px;
+    margin-bottom: 20px;
 
-      ::ng-deep .mat-card-header-text {
-        margin: 0 !important;
-      }
+    ::ng-deep .mat-card-header-text {
+      margin: 0 !important;
+    }
 
-      .card-header-wrapper {
-        width: 100%;
-        padding: 15px;
-        margin-top: -35px;
-        border-radius: 3px;
-      }
+    .card-header-wrapper {
+      width: 100%;
+      padding: 15px;
+      margin-top: -35px;
+      border-radius: 3px;
     }
   }
+}
 
 
+.mat-card {
+  .card-header-wrapper {
+    background: linear-gradient(60deg, $primary, mat-color($primary-color, 400));
+    @include shadow($primary)
+  }
+}
 
+:host(.primary) {
   .mat-card {
     .card-header-wrapper {
       background: linear-gradient(60deg, $primary, mat-color($primary-color, 400));
-      box-shadow: 0 4px 20px 0 rgba($primary, .14), 0 7px 10px -5px rgba($primary, .4);
+      @include shadow($primary)
     }
   }
+}
+
+:host(.green) {
+  .mat-card {
+    .card-header-wrapper {
+      background: linear-gradient(60deg, #18ad23, #147a1f);
+      @include shadow(rgb(40, 176, 71));
+    }
+  }
+}
+
+:host(.blue) {
+  .mat-card {
+    .card-header-wrapper {
+      background: linear-gradient(60deg, $accent, mat-color($accent-color, 400));
+      @include shadow($accent);
+    }
+  }
+}
+
+:host(.red) {
+  .mat-card {
+    .card-header-wrapper {
+      background: linear-gradient(60deg, #f44336, #e1382d);
+      @include shadow(rgb(176, 40, 40))
+    }
+  }
+}
+
+:host(.orange) {
+  .mat-card {
+    .card-header-wrapper {
+      background: linear-gradient(60deg, #ff930e, #e1870e);
+      @include shadow(rgb(255, 147, 14))
+    }
+  }
+}
 

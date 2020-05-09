@@ -1,7 +1,7 @@
 <div class="prices_wrapper light-theme">
     <div class="row m-0">
         <div class="col-md-6 col-12" *ngFor="let price of service.prices$ | async">
-                <control-panel-ui-card panelUIColor="primary">
+                <control-panel-ui-card class="primary">
                     <div panelUICardHeaderTitle>{{price.id}}</div>
                     <div panelUICardContent>
                         <p class="bold">Game:</p>

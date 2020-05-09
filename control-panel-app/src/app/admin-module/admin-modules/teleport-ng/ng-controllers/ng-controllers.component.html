@@ -34,8 +34,8 @@
 </ng-template>
 
 <ng-template #empty>
-    <p class="ml-3">{{'LIST_EMPTY' | translate}}</p>
+    <control-panel-ui-empty></control-panel-ui-empty>
 </ng-template>
 
-<control-panel-trigger [callBack]="service.refresh.bind(service)"></control-panel-trigger>
+<control-panel-trigger [callBack]="service.refresh.bind(service)" [timerValue]="200"></control-panel-trigger>
 

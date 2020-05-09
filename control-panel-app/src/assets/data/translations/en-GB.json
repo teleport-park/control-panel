@@ -254,5 +254,8 @@
   "GAME": "Game",
   "TOKEN": "Token",
   "GAMES_LIST_TITLE": "Games list",
-  "PACKAGES_LIST_TITLE": "Package list"
+  "PACKAGES_LIST_TITLE": "Package list",
+  "TRANSACTIONS_LIST_TITLE": "Transactions list",
+  "ACCOUNTS_LIST_TITLE": "Accounts list",
+  "INVOICES_LIST_TITLE": "Invoices list"
 }

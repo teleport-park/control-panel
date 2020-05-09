@@ -1,7 +1,7 @@
 <mat-tab-group [@.disabled]="true" color="accent">
     <mat-tab label="{{'ADMIN_MENU_CARDS' | translate}}" >
         <div class="card_wrapper light-theme">
-            <control-panel-ui-card panelUIColor="primary">
+            <control-panel-ui-card class="primary">
                 <div panelUICardHeaderTitle>{{translateService.instant('CARD_LIST')}}</div>
                 <div panelUICardContent>
                     <table mat-table [dataSource]="dataSource" class="table">

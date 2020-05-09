@@ -1,18 +1,27 @@
-<div class="d-flex align-items-center justify-content-end">
-    <div class="sync-action">
-        <span class="mr-4">Last synchronization was at {{(service.lastSyncTime$ | async) | date:'dd.MM.yyyy HH:mm:ss'}}</span>
-        <button mat-raised-button color="primary" (click)="service.synchronize()">Sync</button>
-    </div>
+<div class="light-theme">
+    <control-panel-ui-card class="primary">
+        <div panelUICardHeaderTitle>{{'ACCOUNTS_LIST_TITLE' | translate}}</div>
+        <div panelUICardContent>
+            <div class="d-flex align-items-center justify-content-end">
+                <span class="mr-4">Last synchronization was at {{(service.lastSyncTime$ | async) | date:'dd.MM.yyyy HH:mm:ss'}}</span>
+                <button mat-raised-button color="primary" (click)="service.synchronize()">Sync</button>
+            </div>
+            <control-panel-ui-card [hideHeader]="true" class="d-inline-block">
+                <div panelUICardContent>
+                    <h4>{{'BALANCE' | translate}}: </h4>
+                    <div class="filter_wrapper d-flex align-items-center">
+                        <mat-checkbox [(ngModel)]="filterState.positive" class="mr-3"
+                                      (ngModelChange)="getFilteredResult()">{{'POSITIVE' | translate}}</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="filterState.negative"
+                                      (ngModelChange)="getFilteredResult()">{{'NEGATIVE' | translate}}</mat-checkbox>
+                    </div>
+                </div>
+            </control-panel-ui-card>
+            <control-panel-ui-table [displayedColumns]="['id', 'user', 'balance']"
+                                    [simpleDataColumn]="['id']"
+                                    [data]="service.accounts$ | async"
+                                    [itemCount]="(service.accounts$ | async)?.length"></control-panel-ui-table>
+            <control-panel-ui-empty *ngIf="!(service.accounts$ | async)?.length"></control-panel-ui-empty>
+        </div>
+    </control-panel-ui-card>
 </div>
-
-<div class="filter_wrapper d-flex flex-column light-theme p-3 mb-2">
-    <h4>{{'BALANCE' | translate}}</h4>
-    <mat-checkbox [(ngModel)]="filterState.positive" class="ml-1" (ngModelChange)="getFilteredResult()">{{'POSITIVE' | translate}}</mat-checkbox>
-    <mat-checkbox [(ngModel)]="filterState.negative" class="ml-1" (ngModelChange)="getFilteredResult()">{{'NEGATIVE' | translate}}</mat-checkbox>
-</div>
-
-<control-panel-ui-table class="light-theme"
-                        [displayedColumns]="['id', 'user', 'balance']"
-                        [simpleDataColumn]="['id']"
-                        [data]="service.accounts$ | async"
-                        [itemCount]="(service.accounts$ | async)?.length"></control-panel-ui-table>

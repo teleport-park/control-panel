@@ -272,4 +272,7 @@ html, body {
     //background-color: $backdrop;
     z-index: 1000;
   }
+  .mat-card-content {
+    margin-bottom: 0;
+  }
 }

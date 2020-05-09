@@ -243,7 +243,7 @@
   "ENABLE_SERVER": "Включить",
   "DISABLE_SERVER": "Выключить",
   "ALL": "Все",
-  "LIST_EMPTY": "Список пустой",
+  "LIST_EMPTY": "Данные отсутствуют",
   "TYPE_FILTER": "Фильтр по типу",
   "CHANGE_URL_TITLE": "Введите URL",
   "ACTIVATED": "включена",
@@ -256,5 +256,8 @@
   "REGISTER": "Зарегестрировать",
   "GAME": "Игра",
   "TOKEN": "Токен",
-  "GAMES_LIST_TITLE": "Список игр"
+  "GAMES_LIST_TITLE": "Список игр",
+  "TRANSACTIONS_LIST_TITLE": "Список транзакций",
+  "ACCOUNTS_LIST_TITLE": "Список аккаунтов",
+  "INVOICES_LIST_TITLE": "Список счетов"
 }

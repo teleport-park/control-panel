@@ -8,11 +8,11 @@
   }
 }
 
-:host(.absolute-right-top) {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+:host(.absolute) {
+  position: inherit;
   button {
     width: 12rem;
   }
 }
+
+
