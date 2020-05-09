@@ -86,7 +86,7 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
     }
 
     toggle(item: ControllerType): void {
-        this.http.patch(this.getUrl('PATCH', item.id), {enabled: !item.enabled}).subscribe(
+        this.http.patch(this.getUrl('PATCH', item.id || item.token), {enabled: !item.enabled}).subscribe(
             res => {
                 this.operationSuccess$.next(res);
                 this.refresh();

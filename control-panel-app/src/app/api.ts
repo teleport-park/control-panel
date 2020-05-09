@@ -11,6 +11,7 @@ export const API = {
     TVR_GAMES: 'tvr/mgmt/games',
 
     // Cash box section
+
     CASH_BOX_INSTANCES: 'tvr/mgmt/cashbox',
 
 

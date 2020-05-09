@@ -8,8 +8,6 @@ import { ControllerType } from '../../../models/types';
 })
 export class ControlPanelUiItemCardComponent implements OnInit {
 
-    @HostBinding('class') class = 'light-theme';
-
     /**
      * items
      */

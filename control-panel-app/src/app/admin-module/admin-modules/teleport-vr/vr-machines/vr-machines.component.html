@@ -4,7 +4,7 @@
     <div class="row m-0">
         <div *ngFor="let item of (service.instances$ | async)"
              class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 instance">
-            <control-panel-ui-item-card [item]="item">
+            <control-panel-ui-item-card [item]="item" [class.unregistered]="!item.registered" class="light-theme">
                 <div class="hardware-item_title">
                     <h4>{{item.display_name || item.name}}</h4>
                 </div>
@@ -44,8 +44,31 @@
                     <span class="bold">{{translateService.instant('STATUS')}}:</span>
                     {{item.status ? (item.status.toUpperCase() | translate) : 'N/A' | translate}}
                 </p>
-                <div class="actions">
-                    <button mat-flat-button color="primary" *ngIf="!item.registered" (click)="register(item)">{{'REGISTER' | translate}}</button>
+                <div *ngIf="item.registered" class="action-button justify-content-between d-flex align-items-center mt-2">
+                    <mat-slide-toggle color="success" (change)="toggle(item)" [checked]="item.enabled"><span
+                            class="label">{{(item.enabled ? 'DISABLE_SERVER' : 'ENABLE_SERVER') | translate}}</span>
+                    </mat-slide-toggle>
+                    <div>
+                        <a *ngIf="item.enabled" class="game-link mr-3" href="#"
+                           (click)="$event.preventDefault(); getServerGames(item)">{{'ADMIN_MENU_GAMES' | translate}}</a>
+                        <button mat-icon-button
+                                matTooltip="{{'TABLE_EDIT' | translate}}"
+                                [matTooltipShowDelay]="500"
+                                matTooltipPosition="above"
+                                color="primary" (click)="edit(item)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button
+                                matTooltip="{{'TABLE_DELETE' | translate}}"
+                                [matTooltipShowDelay]="500"
+                                matTooltipPosition="above"
+                                color="warn" (click)="remove(item)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="!item.registered" class="actions">
+                    <button mat-flat-button color="primary" *ngIf="!item.registered" (click)="registerHandler(item)">{{'REGISTER' | translate}}</button>
 <!--                    <button mat-flat-button color="primary" *ngIf="!item.authorized" (click)="grant(item)">grant-->
 <!--                    </button>-->
                 </div>
@@ -58,4 +81,27 @@
     <control-panel-ui-empty></control-panel-ui-empty>
 </ng-template>
 
-<control-panel-trigger [callBack]="service.refresh.bind(service)"></control-panel-trigger>
+<ng-template #registerForm let-data>
+    <h4>{{'REGISTER' | translate}}</h4>
+    <ng-container *ngTemplateOutlet="form"></ng-container>
+    <button mat-flat-button color="primary" (click)="register(data)">{{'REGISTER' | translate}}</button>
+</ng-template>
+
+<ng-template #editForm let-data>
+    <h4>{{'EDIT' | translate}}</h4>
+    <ng-container *ngTemplateOutlet="form"></ng-container>
+    <button mat-flat-button color="primary" (click)="submit(data)">{{'SAVE' | translate}}</button>
+</ng-template>
+
+<ng-template #form>
+    <form [formGroup]="_form">
+        <mat-form-field>
+            <label>
+                <input matInput placeholder="{{'NAME' | translate}}" formControlName="name">
+            </label>
+        </mat-form-field>
+        <mat-checkbox formControlName="enabled">{{'ENABLED' | translate}}</mat-checkbox>
+    </form>
+</ng-template>
+
+<control-panel-trigger [callBack]="service.refresh.bind(service)" [timerValue]="200"></control-panel-trigger>

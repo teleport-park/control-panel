@@ -56,7 +56,7 @@ export interface InstanceService<T> {
     /**
      * toggle enabled state
      */
-    toggle(item: T): void;
+    toggle(item: T, id?: string): void;
 
     /**
      * filter instance by type

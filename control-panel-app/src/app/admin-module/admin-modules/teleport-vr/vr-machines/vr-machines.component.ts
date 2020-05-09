@@ -1,8 +1,12 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { INSTANCE_SERVICE, InstanceService } from '../../../../models/intefaces';
 import { TVRController } from '../../../../models/controller';
 import { TranslateService } from '../../../../common/translations-module';
 import { transformToken } from '../../../../utils/utils';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { ControllerGamesService } from '../../../../services/common-services/controller-games.service';
+import { ApiUrlsService } from '../../../../services/api-urls.service';
 
 // export function ControllerServiceFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
 //     return new ControllersService(http, apiUrlService.getTVRMachines, mockData);
@@ -19,8 +23,18 @@ import { transformToken } from '../../../../utils/utils';
 })
 export class VrMachinesComponent implements OnInit {
 
+    @ViewChild('registerForm', {static: false}) registerForm: TemplateRef<any>;
+
+    @ViewChild('editForm', {static: false}) editForm: TemplateRef<any>;
+
+    _form: FormGroup;
+
+    _dialog: MatDialogRef<any>;
+
     constructor(@Inject(INSTANCE_SERVICE) public service: InstanceService<TVRController>,
-                private translateService: TranslateService) {
+                private translateService: TranslateService,
+                private fb: FormBuilder,
+                private dialog: MatDialog) {
     }
 
     ngOnInit(): void {
@@ -31,8 +45,47 @@ export class VrMachinesComponent implements OnInit {
         return transformToken(token);
     }
 
+    registerHandler(item: TVRController) {
+        this.initForm();
+        this._dialog = this.dialog.open(this.registerForm, {
+            data: item
+        });
+    }
+
+    toggle(item: TVRController) {
+        this.service.toggle(item);
+    }
+
+    edit(item: TVRController) {
+        this.initForm(item);
+        this.dialog.open(this.editForm, {
+            data: item
+        });
+    }
+
+    remove(item: TVRController) {
+
+    }
+
+    submit(item: TVRController) {
+        this.service.update(this._form.getRawValue(), item.token);
+    }
+
     register(item: TVRController) {
-        const {name, machine_token} = item;
-        this.service.register({name, enabled: !item.enabled}, machine_token);
+        this.service.register(this._form.getRawValue(), item.token);
+    }
+
+    getServerGames(item: TVRController) {
+        this.service.getServersGames(item.token).subscribe(
+            res => console.log(res)
+        );
+    }
+
+    private initForm(init?: Partial<{name: string, enabled}>) {
+        this._form = this.fb.group({
+            name: '',
+            enabled: true
+        });
+        init && this._form.patchValue(init);
     }
 }

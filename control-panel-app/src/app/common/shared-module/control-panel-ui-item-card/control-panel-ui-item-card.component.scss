@@ -96,3 +96,9 @@
     }
   }
 }
+
+:host(.unregistered) {
+  .hardware-item_wrapper {
+    background-color: #d2d2d2;
+  }
+}
