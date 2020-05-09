@@ -1,12 +1,13 @@
 export const API = {
     // TNG section
+
     TNG_INSTANCES: 'tng/mgmt/servers',
     TNG_GAMES: 'tng/mgmt/games',
     TNG_CONTROLLERS: 'tng/mgmt/controllers',
 
     // TVR section
 
-    TVR_MACHINES: 'mgmt/machines',
+    TVR_MACHINES: 'tvr/mgmt/machines',
     TVR_GAMES: 'tvr/mgmt/games',
 
     // Cash box section
