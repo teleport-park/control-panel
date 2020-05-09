@@ -23,4 +23,10 @@ export class ToasterService {
          panelClass: 'toaster-success'
       });
    }
+   public info(message, translate?: boolean) {
+      this.toaster.open(translate ? this.translations.instant(message) : message, null, {
+         duration: 5000,
+         panelClass: 'toaster-info'
+      });
+   }
 }

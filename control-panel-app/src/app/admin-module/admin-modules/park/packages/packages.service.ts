@@ -57,14 +57,14 @@ export class PackagesService {
         this.loaderService.dispatchShowLoader(true);
         this.http.post(this.urlService.getPackages('POST'), data).subscribe(
             res => {
-                this.toaster.success('PACKAGE_ADDED_SUCCESSFUL');
+                this.toaster.success('PACKAGE_ADDED_SUCCESSFUL', true);
             });
     }
 
     public editPackage(data: Package) {
         this.http.put(this.urlService.getPackages('PUT', this.packageForEdit.id), data).subscribe(
             res => {
-                this.toaster.success('PACKAGE_ADDED_SUCCESSFUL');
+                this.toaster.success('PACKAGE_ADDED_SUCCESSFUL', true);
                 this.packageForEdit = null;
             }
         );
@@ -73,7 +73,7 @@ export class PackagesService {
     public togglePackage(id: string, body: any) {
         this.http.patch(this.urlService.getPackages('PATCH', id), body).subscribe(
             res => {
-                this.toaster.success('PACKAGE_ADDED_SUCCESSFUL');
+                this.toaster.success('PACKAGE_ADDED_SUCCESSFUL', true);
             }
         );
     }

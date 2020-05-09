@@ -79,6 +79,10 @@ html, body {
     background-color: $success !important;
     color: #FFF !important;
   }
+  .toaster-info {
+    background-color: map-get($accent-color, 900) !important;
+    color: #FFF !important;
+  }
 
   .mat-menu-item .mat-icon {
     margin-right: 6px;
