@@ -15,7 +15,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/control-panel-app",
             "index": "src/index.html",
@@ -42,6 +42,9 @@
           },
           "configurations": {
             "production": {
+              "customWebpackConfig": {
+                "path": "./webpack.config.js"
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
