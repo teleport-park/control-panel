@@ -16,8 +16,8 @@ export const UserExtendedFilterConfig: ExtendedFilterFieldGroup[] = [
     label: 'USER_GENDER_LABEL',
     type: 'check-box-group',
     options: [
-      {value: 'male', label: 'USER_GENDER_MALE'},
-      {value: 'female', label: 'USER_GENDER_FEMALE'}
+      {value: 'male', label: 'MALE'},
+      {value: 'female', label: 'FEMALE'}
     ]
   }, {
     property: 'registered',

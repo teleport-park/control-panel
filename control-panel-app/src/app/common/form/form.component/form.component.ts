@@ -5,7 +5,7 @@ import moment, { Moment } from 'moment';
 import { TranslateService } from '../../translations-module';
 import { DateAdapter } from '@angular/material';
 import { Avatar } from '../../../models/user-management/avatar.model';
-import { toggleGender } from '../../../utils/utils';
+import { genders, toggleGender } from '../../../utils/utils';
 
 @Component({
     selector: 'control-panel-ui-form',
@@ -13,6 +13,8 @@ import { toggleGender } from '../../../utils/utils';
     styleUrls: ['./form.component.scss']
 })
 export class FormComponent {
+
+    _genders = genders;
 
     /**
      * email regexp

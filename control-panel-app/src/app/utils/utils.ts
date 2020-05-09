@@ -1,4 +1,4 @@
-const genders: string[] = ['male', 'female'];
+export const genders: string[] = ['male', 'female'];
 
 export const toggleGender = (gender: string) => {
     const index = genders.indexOf(gender) + 1;
