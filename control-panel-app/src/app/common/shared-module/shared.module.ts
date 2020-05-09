@@ -18,12 +18,7 @@ import { ControlPanelUiSelectionTableComponent } from './control-panel-ui-select
 import { AddStaffDialogComponent } from './dialogs/add-staff-dialog/add-staff-dialog.component';
 import { ChartistModule } from 'ng-chartist';
 import { ControlPanelUiImagePreviewComponent } from './control-panel-ui-image-preview/control-panel-ui-image-preview.component';
-import { ControlPanelUiTariffTreeComponent } from './control-panel-ui-tariff-tree/control-panel-ui-tariff-tree.component';
-import { ControlPanelUiPackageComponent } from './control-panel-ui-package/control-panel-ui-package.component';
-import { ControlPanelUiPaymentComponent } from './control-panel-ui-payment/control-panel-ui-payment.component';
 import { AddControllerDialogComponent } from './dialogs/add-controller-dialog/add-controller-dialog.component';
-import { ControlPanelUiLinearGraphComponent } from './control-panel-ui-linear-graph/control-panel-ui-linear-graph.component';
-import { ControlPanelUiGateItemComponent } from './control-panel-ui-gate-item/control-panel-ui-gate-item.component';
 import { ControlPanelTriggerComponent } from './control-panel-trigger/control-panel-trigger.component';
 import { ControlPanelUiQuickFilterComponent } from './control-panel-ui-quick-filter/control-panel-ui-quick-filter.component';
 import { ControlPanelUiTimeFilterComponent } from './control-panel-ui-time-filter/control-panel-ui-time-filter.component';
@@ -34,6 +29,9 @@ import { ControlPanelUiTimeSliderComponent } from './control-panel-ui-time-slide
 import { ControlPanelGamesListComponent } from './control-panel-games-list/control-panel-games-list.component';
 import { ControlPanelUiItemCardComponent } from './control-panel-ui-item-card/control-panel-ui-item-card.component';
 import { ControlPanelUiEmptyComponent } from './control-panel-ui-empty/control-panel-ui-empty.component';
+import { ControlPanelUiTariffTreeComponent } from './control-panel-ui-tariff-tree/control-panel-ui-tariff-tree.component';
+import { ControlPanelUiPackageComponent } from './control-panel-ui-package/control-panel-ui-package.component';
+import { ControlPanelUiPaymentComponent } from './control-panel-ui-payment/control-panel-ui-payment.component';
 
 const MODULES = [
     ConfirmDialogComponent,
@@ -50,12 +48,7 @@ const MODULES = [
     ControlPanelUiSelectionTableComponent,
     AddStaffDialogComponent,
     ControlPanelUiImagePreviewComponent,
-    ControlPanelUiTariffTreeComponent,
-    ControlPanelUiPackageComponent,
-    ControlPanelUiPaymentComponent,
     AddControllerDialogComponent,
-    ControlPanelUiLinearGraphComponent,
-    ControlPanelUiGateItemComponent,
     ControlPanelTriggerComponent,
     ControlPanelUiQuickFilterComponent,
     ControlPanelUiTimeFilterComponent,
@@ -63,7 +56,10 @@ const MODULES = [
     ControlPanelUiTimeSliderComponent,
     ControlPanelGamesListComponent,
     ControlPanelUiItemCardComponent,
-    ControlPanelUiEmptyComponent
+    ControlPanelUiEmptyComponent,
+    ControlPanelUiTariffTreeComponent,
+    ControlPanelUiPackageComponent,
+    ControlPanelUiPaymentComponent,
 ];
 
 @NgModule({

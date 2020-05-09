@@ -1,10 +1,5 @@
 :host {
-  .range-filter {
-    display: flex;
-    justify-content: space-between;
-    max-width: 300px;
-    .range-field {
-      max-width: 100px;
-    }
+  .range-field {
+    max-width: 5rem;
   }
 }
