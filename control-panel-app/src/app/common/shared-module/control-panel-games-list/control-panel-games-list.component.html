@@ -32,12 +32,6 @@
                 <mat-icon color="{{game.active ? 'success' : 'warn'}}">{{game.active ? 'check' : 'clear'}}</mat-icon>
             </td>
         </ng-container>
-        <!--        <ng-container matColumnDef="enabled">-->
-        <!--            <th mat-header-cell *matHeaderCellDef></th>-->
-        <!--            <td mat-cell *matCellDef="let game">-->
-        <!--                <mat-slide-toggle color="success" [checked]="game.enabled"-->
-        <!--                                  (change)="toggleGameHandler($event, game)"></mat-slide-toggle>-->
-        <!--        </ng-container>-->
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="row.type"
             [class.inactive]="!row.enabled"></tr>

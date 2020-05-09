@@ -1,15 +1,22 @@
 <div class="row packages_wrapper">
     <mat-tab-group class="w-100" [@.disabled]="true" color="accent">
         <mat-tab label="{{'PACKAGES' | translate}}">
-            <a mat-flat-button color="accent" routerLink="add"  class="ml-2 mt-1 mb-1"><mat-icon>add</mat-icon>{{'ADD_PACKAGE_TITLE' | translate}}</a>
-            <control-panel-ui-table class="light-theme"
-                                    [displayedColumns]="packagesColumns"
-                                    [simpleDataColumn]="simplePackagesColumns"
-                                    [data]="service.packages$ | async"
-                                    [minRowHeight]="80"
-                                    (edit)="edit($event)"
-                                    (toggle)="showConfirmDialog($event)"
-            ></control-panel-ui-table>
+            <div class="light-theme">
+                <control-panel-ui-card panelUIColor="primary">
+                    <div panelUICardHeaderTitle>{{translationService.instant('PACKAGES_LIST_TITLE')}}</div>
+                    <div panelUICardContent>
+                        <a mat-flat-button color="accent" routerLink="add"  class="ml-2 mt-1 mb-1"><mat-icon>add</mat-icon>{{'ADD_PACKAGE_TITLE' | translate}}</a>
+                        <control-panel-ui-table class="light-theme"
+                                                [displayedColumns]="packagesColumns"
+                                                [simpleDataColumn]="simplePackagesColumns"
+                                                [data]="service.packages$ | async"
+                                                [minRowHeight]="80"
+                                                (edit)="edit($event)"
+                                                (toggle)="showConfirmDialog($event)"
+                        ></control-panel-ui-table>
+                    </div>
+                </control-panel-ui-card>
+            </div>
         </mat-tab>
 <!--        <mat-tab label="{{'SYNC_HISTORY' | translate}}">-->
 <!--            <control-panel-ui-table class="light-theme"-->
@@ -19,7 +26,7 @@
 <!--            ></control-panel-ui-table>-->
 <!--        </mat-tab>-->
         <mat-tab label="Overview">
-            <div class="light-theme pt-5">
+            <div class="slider-wrapper light-theme pt-5">
                 <control-panel-ui-time-slider (sliderChange)="_sliderValue = $event"></control-panel-ui-time-slider>
                 <p class="pl-4"><span class="bold">{{'TIME' | translate}}: </span>{{_sliderValue}}</p>
             </div>

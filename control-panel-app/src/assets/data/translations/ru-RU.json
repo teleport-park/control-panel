@@ -34,7 +34,7 @@
   "REQUIRED_FIELD": "Поле \"{0}\" обязательно",
   "REQUIRED": "обязательное поле",
   "AUTH_FILED_TOAST_MESSAGE": "Логин или пароль не корректны",
-  "USERS_TABLE_TITLE": "Таблица пользователей",
+  "USERS_TABLE_TITLE": "Список пользователей",
   "INDEX": "№",
   "USER": "Пользователь",
   "USER_AVATARS": "Аватары пользователя",
@@ -144,6 +144,7 @@
   "PACKAGE_EXPIRES_AT": "истекает в",
   "PACKAGE_CATEGORY": "Категория",
   "PACKAGES": "Пакеты",
+  "PACKAGES_LIST_TITLE": "Список пакетов",
   "SYNC_HISTORY": "История синхронизаций",
   "ADMIN_MENU_SESSIONS": "Сессии",
   "SESSIONS_TABLE_TITLE": "Таблица сессий",
@@ -254,5 +255,6 @@
   "MINUTES_AGO": "мин. назад",
   "REGISTER": "Зарегестрировать",
   "GAME": "Игра",
-  "TOKEN": "Токен"
+  "TOKEN": "Токен",
+  "GAMES_LIST_TITLE": "Список игр"
 }

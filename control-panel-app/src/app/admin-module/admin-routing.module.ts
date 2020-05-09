@@ -59,17 +59,6 @@ const routes: Routes = [
             //     loadChildren: () => import('./admin-modules/dashboard/dashboard.module').then(m => m.DashboardModule),
             //     data: {title: 'ADMIN_MENU_DASHBOARD'},
             //     canActivate: [PermissionGuard]
-            // }, {
-            //     path: 'amusements',
-            //     loadChildren: () => import('./admin-modules/amusements/amusements.module').then(m => m.AmusementsModule),
-            //     data: {title: 'ADMIN_MENU_AMUSEMENT'},
-            //     canActivate: [PermissionGuard]
-            // },
-            // {
-            //     path: 'billing',
-            //     loadChildren: () => import('./admin-modules/billing/billing.module').then(m => m.BillingModule),
-            //     data: {title: 'ADMIN_MENU_BILLING'},
-            //     canActivate: [PermissionGuard]
             // },
             // {
             //     path: 'user-management',

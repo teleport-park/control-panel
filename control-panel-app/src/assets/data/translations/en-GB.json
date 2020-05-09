@@ -252,5 +252,7 @@
   "MINUTES_AGO": "min. ago",
   "REGISTER": "Register",
   "GAME": "Game",
-  "TOKEN": "Token"
+  "TOKEN": "Token",
+  "GAMES_LIST_TITLE": "Games list",
+  "PACKAGES_LIST_TITLE": "Package list"
 }

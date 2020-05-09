@@ -16,7 +16,6 @@ import { ControlPanelUiActionToolbarComponent } from './control-panel-ui-action-
 import { ControlPanelUiWidgetComponent } from './control-panel-ui-widget/control-panel-ui-widget.component';
 import { ControlPanelUiSelectionTableComponent } from './control-panel-ui-selection-table/control-panel-ui-selection-table.component';
 import { AddStaffDialogComponent } from './dialogs/add-staff-dialog/add-staff-dialog.component';
-import { ControlPanelUiHardwareItemComponent } from './control-panel-ui-hardware-item/control-panel-ui-hardware-item.component';
 import { ChartistModule } from 'ng-chartist';
 import { ControlPanelUiImagePreviewComponent } from './control-panel-ui-image-preview/control-panel-ui-image-preview.component';
 import { ControlPanelUiTariffTreeComponent } from './control-panel-ui-tariff-tree/control-panel-ui-tariff-tree.component';
@@ -49,7 +48,6 @@ const MODULES = [
     ControlPanelUiWidgetComponent,
     ControlPanelUiSelectionTableComponent,
     AddStaffDialogComponent,
-    ControlPanelUiHardwareItemComponent,
     ControlPanelUiImagePreviewComponent,
     ControlPanelUiTariffTreeComponent,
     ControlPanelUiPackageComponent,
