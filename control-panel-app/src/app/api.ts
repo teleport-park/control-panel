@@ -21,12 +21,17 @@ export const API = {
     VISITORS: 'cpanel/users/visitors',
     // staff
     STAFF: 'cpanel/users/staff',
+    // sessions
+    SESSIONS: 'cpanel/sessions',
+    // Billing
+    BILLING_ACCOUNTS: 'cpanel/billing/accounts',
+    BILLING_INVOICES: 'cpanel/billing/invoices',
+    BILLING_TRANSACTIONS: 'cpanel/billing/transactions',
 
 
     GATE_INSTANCES: 'gates/mgmt/instances',
     PACKAGES: 'cpanel/packages',
     PACKAGES_HISTORY: 'cpanel/packages/history',
-    SESSIONS: 'cpanel/sessions',
     PRICES: 'cpanel/prices',
     // transactions
     TRANSACTIONS: 'cpanel/transactions',

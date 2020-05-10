@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center justify-content-between table-toolbar-wrapper">
+<div class="d-flex align-items-center justify-content-between" [class.table-toolbar-wrapper]="iconSet">
     <button mat-raised-button *ngIf="iconSet"
             color="primary"
             (click)="addEntity()">

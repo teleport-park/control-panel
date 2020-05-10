@@ -5,7 +5,7 @@ import { map, tap } from 'rxjs/operators';
 
 export class RequestHelper implements IRequestHelper {
 
-    static readonly DEFAULT_PAGINATION_SETTINGS: PaginationSetting = {limit: 10, offset: 0};
+    static readonly DEFAULT_PAGINATION_SETTINGS: PaginationSetting = {limit: 50, offset: 0};
 
     static readonly DEFAULT_SORTING_SETTINGS: SortingSettings = {};
 

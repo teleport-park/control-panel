@@ -27,7 +27,7 @@ export class BillingService {
    }
 
    public getTransactions(query?: string) {
-      this.http.get('./assets/data/transactions.json')
+      this.http.get(this.apiBuilder.getBillingTransactions('GET'))
       .pipe(filter(data => !!data),
          map((res: any[]) => (res.map(item => {
             item.owner = item.user.name;
@@ -39,7 +39,7 @@ export class BillingService {
    }
 
    public getAccounts(filterState?: { positive: boolean, negative: boolean }) {
-      this.http.get('./assets/data/accounts.json')
+      this.http.get(this.apiBuilder.getBillingAccounts('GET'))
       .pipe(filter(data => !!data),
          map((res: any[]) => {
             let result;
@@ -65,7 +65,7 @@ export class BillingService {
    }
 
    public getInvoices(filterState?: Partial<TimeFilterState>) {
-      this.http.get('./assets/data/invoices.json')
+      this.http.get(this.apiBuilder.getBillingInvoices('GET'))
       .pipe(
          filter(data => !!data),
          map((res: any[]) => {

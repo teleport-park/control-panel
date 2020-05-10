@@ -63,13 +63,13 @@ export class ApiUrlsService implements IApiUrlsInterface {
         return null;
     }
 
-    public getStaffUrl(requestMethod: string, id?: number, pageSize?: number, pageNumber?: number): string | null {
-        return ApiUrlsService.getPagedUrl('api/staff', requestMethod, id, null, pageSize, pageNumber);
-    }
-
-    public getStaffGroupsUrl(requestMethod: string, id?: number, pageSize?: number, pageNumber?: number): string | null {
-        return ApiUrlsService.getPagedUrl('api/staffGroups', requestMethod, id, null, pageSize, pageNumber);
-    }
+    // public getStaffUrl(requestMethod: string, id?: number, pageSize?: number, pageNumber?: number): string | null {
+    //     return ApiUrlsService.getPagedUrl('api/staff', requestMethod, id, null, pageSize, pageNumber);
+    // }
+    //
+    // public getStaffGroupsUrl(requestMethod: string, id?: number, pageSize?: number, pageNumber?: number): string | null {
+    //     return ApiUrlsService.getPagedUrl('api/staffGroups', requestMethod, id, null, pageSize, pageNumber);
+    // }
 
     public getPermissionsUrl(requestMethod: string, id?: number, pageSize?: number, pageNumber?: number): string | null {
         return ApiUrlsService.getPagedUrl('api/permissions', requestMethod, id, null, pageSize, pageNumber);
@@ -106,7 +106,6 @@ export class ApiUrlsService implements IApiUrlsInterface {
     }
 
     // TNG section
-
     public getTNGUrl(requestMethod: 'GET' | 'PUT' | 'DELETE' | 'PATCH', id?: string): string | null {
         if (requestMethod === 'GET') {
             return ApiUrlsService.getPagedUrl(API.TNG_INSTANCES, requestMethod, id);
@@ -123,7 +122,6 @@ export class ApiUrlsService implements IApiUrlsInterface {
     }
 
     // TVR section
-
     public getTVRMachines(requestMethod: 'GET' | 'PUT' | 'POST', id?: string) {
         return ApiUrlsService.getPagedUrl(API.TVR_MACHINES, requestMethod, id);
     }
@@ -133,13 +131,23 @@ export class ApiUrlsService implements IApiUrlsInterface {
     }
 
     // Games
-
     public getGames(requestMethod: 'GET' | 'PATCH') {
         return ApiUrlsService.getPagedUrl(API.GAMES, requestMethod);
     }
 
     public getCards(requestMethod: 'GET' | 'DELETE' | 'PUT', id?: string) {
         return ApiUrlsService.getPagedUrl(API.CARDS, requestMethod, id);
+    }
+
+    // Billing
+    public getBillingAccounts(requestMethod: 'GET') {
+        return ApiUrlsService.getPagedUrl(API.BILLING_ACCOUNTS, requestMethod);
+    }
+    public getBillingTransactions(requestMethod: 'GET') {
+        return ApiUrlsService.getPagedUrl(API.BILLING_TRANSACTIONS, requestMethod);
+    }
+    public getBillingInvoices(requestMethod: 'GET') {
+        return ApiUrlsService.getPagedUrl(API.BILLING_INVOICES, requestMethod);
     }
 
     public getVisitors(requestMethod: 'GET' | 'PUT' | 'POST' | 'DELETE',
