@@ -7,8 +7,8 @@ import {
     Injector,
     Input,
     OnInit,
-    Output,
-    ViewChild
+    Output, QueryList,
+    ViewChild, ViewChildren
 } from '@angular/core';
 import { TranslateService } from '../../translations-module';
 import { MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort } from '@angular/material';
@@ -73,8 +73,14 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
      */
     @Input() set resetPagination(data: { reset: boolean }) {
         if (data && this.paginator) {
-            this.paginator.pageIndex = 0;
-            this.changePageHandler({pageIndex: 0, pageSize: this.paginator.pageSize} as PageEvent);
+            let pageSize = null;
+            this.paginator.toArray().forEach(p => {
+                if (!pageSize) {
+                    pageSize = p.pageSize;
+                }
+                p.pageIndex = 0;
+            });
+            this.changePageHandler({pageIndex: 0, pageSize} as PageEvent);
         }
     }
 
@@ -106,7 +112,7 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
     /**
      * mat paginator instance
      */
-    @ViewChild('paginator', {static: false}) paginator: MatPaginator;
+    @ViewChildren('paginator') paginator: QueryList<MatPaginator>;
 
     /**
      * selection
@@ -156,7 +162,6 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
     constructor(public translateService: TranslateService,
                 private cd: ChangeDetectorRef,
                 public point: BreakpointService,
-                public injector: Injector,
                 public icon: IconService,
                 @Inject('IAppStorageInterface') private storage: IAppStorageInterface) {
     }
@@ -189,6 +194,10 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
     changePageHandler(event: PageEvent): void {
         this.storage.setValue(`${this.storageKey}${AppStorageKey.Pagination}`, event);
         this.pageChanges.emit({limit: event.pageSize, offset: event.pageSize * event.pageIndex});
+        this.paginator.toArray().forEach(p => {
+            p.pageSize = event.pageSize;
+            p.pageIndex = event.pageIndex;
+        });
     }
 
     /**

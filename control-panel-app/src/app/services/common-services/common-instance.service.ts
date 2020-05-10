@@ -39,7 +39,7 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
             this._instances = result.map((item: ControllerType) => this.getControllerInstance(item));
             this.filterInstanceByType(this._filterType);
             this.refreshInstances$.next(true);
-        }, err => {
+        }, _ => {
             this.refreshInstances$.next(false);
         });
     }
@@ -59,7 +59,7 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
     }
 
     update(item: ControllerType, id: string): void {
-        this.http.put(this.getUrl('PUT', id), item).subscribe(
+        this.http.patch(this.getUrl('PATCH', id), item).subscribe(
             res => {
                 this.operationSuccess$.next(res);
                 this.refresh();
@@ -67,8 +67,8 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
         );
     }
 
-    register({name, enabled}: ControllerType, id: string): void {
-        this.http.post(this.getUrl('PUT', id), {name, enabled}).subscribe(
+    register({access_token, name, enabled}: ControllerType): void {
+        this.http.post(this.getUrl('POST'), {access_token, name, enabled}).subscribe(
             res => {
                 this.operationSuccess$.next(res);
                 this.refresh();
@@ -85,8 +85,8 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
         );
     }
 
-    toggle(item: ControllerType): void {
-        this.http.patch(this.getUrl('PATCH', item.id || item.token), {enabled: !item.enabled}).subscribe(
+    toggle(item: ControllerType, id: string): void {
+        this.http.patch(this.getUrl('PATCH', id), {enabled: !item.enabled}).subscribe(
             res => {
                 this.operationSuccess$.next(res);
                 this.refresh();

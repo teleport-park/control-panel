@@ -38,7 +38,11 @@
                 </p>
                 <p>
                     <span class="bold">{{translateService.instant('GAME')}}:</span>
-                    {{item.game?.name || 'N/A' | translate}}
+                    <span *ngIf="item.game" class="d-inline-flex flex-column">
+                        <span class="bold">{{item.game?.name || 'N/A' | translate}}</span>
+                        <span class="sub_text">id:{{item.game?.id || 'N/A' | translate}}</span>
+                    </span>
+                    <span *ngIf="!item.game">{{'N/A' | translate}}</span>
                 </p>
                 <p>
                     <span class="bold">{{translateService.instant('STATUS')}}:</span>
@@ -71,8 +75,6 @@
                 <div *ngIf="!item.registered" class="actions">
                     <button mat-flat-button color="primary" *ngIf="!item.registered"
                             (click)="registerHandler(item)">{{'REGISTER' | translate}}</button>
-                    <!--                    <button mat-flat-button color="primary" *ngIf="!item.authorized" (click)="grant(item)">grant-->
-                    <!--                    </button>-->
                 </div>
             </control-panel-ui-item-card>
         </div>

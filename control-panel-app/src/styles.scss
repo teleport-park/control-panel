@@ -179,7 +179,7 @@ html, body {
     }
     .mat-cell {
       .sub_text {
-        font-size: .9rem;
+        font-size: .85rem;
         color: #8d8d8d;
         span {
           margin-right: .35rem;
@@ -190,6 +190,14 @@ html, body {
 
   .bold {
     font-weight: 700;
+  }
+
+  .sub_text {
+    font-size: .9rem;
+    color: #8d8d8d;
+    span {
+      margin-right: .35rem;
+    }
   }
 
   .italic {

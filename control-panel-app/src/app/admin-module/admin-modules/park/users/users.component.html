@@ -23,33 +23,14 @@
                                               (applyFilter)="applyFilter($event)"></extended-filters>
                         </div>
                     </control-panel-ui-card>
-                    <div class="user-table-toolbar mt-3">
-                        <!--                        <ng-container *ngIf="!(point?.handset | async)">-->
-                        <!--                            <button-->
-                        <!--                                    *ngIf="!extendedFilter.opened"-->
-                        <!--                                    mat-flat-button-->
-                        <!--                                    (click)="extendedFilter.toggle()">-->
-                        <!--                                <mat-icon class="mb-1">keyboard_backspace</mat-icon>-->
-                        <!--                                {{translateService.instant('SHOW_FILTER')}}-->
-                        <!--                            </button>-->
-                        <!--                        </ng-container>-->
-                        <!--                        <ng-container *ngIf="(point?.handset | async)">-->
-                        <!--                            <button mat-icon-button-->
-                        <!--                                    (click)="extendedFilter.toggle()">-->
-                        <!--                                <mat-icon>menu</mat-icon>-->
-                        <!--                            </button>-->
-                        <!--                        </ng-container>-->
-                        <div class="users-table-filter">
-                            <control-panel-ui-quick-filter #quickFilter
-                                                           (filterChange)="applyQuickFilter($event)"></control-panel-ui-quick-filter>
+                    <control-panel-ui-card class="d-inline-block no-margin mt-3" [hideHeader]="true">
+                        <div panelUICardContent>
+                            <div class="users-table-filter">
+                                <control-panel-ui-quick-filter #quickFilter
+                                                               (filterChange)="applyQuickFilter($event)"></control-panel-ui-quick-filter>
+                            </div>
                         </div>
-                        <button mat-raised-button
-                                color="primary"
-                                (click)="operationWithUser('add')">
-                            <mat-icon>person_add</mat-icon>
-                            {{translateService.instant('TABLE_ADD')}}
-                        </button>
-                    </div>
+                    </control-panel-ui-card>
                     <control-panel-ui-table
                             [data]="(service.entities$ | async)"
                             [displayedColumns]="displayedColumns"

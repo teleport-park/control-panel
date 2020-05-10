@@ -46,7 +46,7 @@ export interface InstanceService<T> {
     /**
      * register
      */
-    register(item: Partial<T>, id: string): void;
+    register(item: Partial<T>): void;
 
     /**
      * remove instance

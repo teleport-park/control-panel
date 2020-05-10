@@ -1,23 +1,27 @@
-<!--<div class="table-toolbar-wrapper">-->
-<!--    <button mat-raised-button *ngIf="iconSet"-->
-<!--            color="primary"-->
-<!--            (click)="addEntity()">-->
-<!--        <mat-icon>{{iconSet}}</mat-icon>-->
-<!--        {{translateService.instant('TABLE_ADD')}}-->
-<!--    </button>-->
-<!--</div>-->
+<div class="d-flex align-items-center justify-content-between table-toolbar-wrapper">
+    <button mat-raised-button *ngIf="iconSet"
+            color="primary"
+            (click)="addEntity()">
+        <mat-icon>{{iconSet}}</mat-icon>
+        {{translateService.instant('TABLE_ADD')}}
+    </button>
+    <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
+                   *ngIf="(itemCount && dataSource.data.length > 10) && itemCount > 25"
+                   [length]="itemCount" showFirstLastButtons
+                   (page)="changePageHandler($event)"></mat-paginator>
+</div>
 <div class="table-wrapper">
-
     <mat-table matSort [dataSource]="dataSource" class="table" (matSortChange)="sortChange($event)">
         <!--data cells-->
         <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">
-            <mat-header-cell mat-sort-header [disabled]="isSortedColumn(column)" [ngClass]="{'sort-column': !isSortedColumn(column)}" *matHeaderCellDef>
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn(column)"
+                             [ngClass]="{'sort-column': !isSortedColumn(column)}" *matHeaderCellDef>
                 <span>{{translateService.instant(propertyMap[column] || column)}}</span></mat-header-cell>
             <mat-cell *matCellDef="let row" class="simple-data">
                 <ng-container *ngIf="!isBoolean(row[column]) && !column.includes('_at')">
                     <span matTooltip="{{row[column]}}" [matTooltipShowDelay]="1000"
                           class="table_cell-inner"
-                          [ngClass]="'control-panel-ui-table_' + row[column]">{{row[column]}}</span>
+                          [ngClass]="'control-panel-ui-table_' + row[column]">{{propertyMap[row[column]] ? (propertyMap[row[column]] | translate) : row[column]}}</span>
                 </ng-container>
                 <ng-container *ngIf="isBoolean(row[column]) && !column.includes('_at')">
                     <span class="table_cell-inner"><mat-icon
@@ -150,13 +154,14 @@
                 {{translateService.instant(propertyMap['statuses'])}}
             </mat-header-cell>
             <mat-cell *matCellDef="let item">
-        <span class="table_cell-inner">
-          <div class="status-list">
-            <mat-icon *ngFor="let status of item.statuses" [ngClass]="status.name.split(' ').join('').toLowerCase()"
-                      [svgIcon]="status.name.split(' ').join('').toLowerCase()"
-                      matTooltip="{{status.name}}"></mat-icon>
-          </div>
-        </span>
+                <div class="table_cell-inner">
+                    <div class="status-list">
+                        <mat-icon *ngFor="let status of item.statuses"
+                                  [ngClass]="status.name.split(' ').join('').toLowerCase()"
+                                  [svgIcon]="status.name.split(' ').join('').toLowerCase()"
+                                  matTooltip="{{status.name}}"></mat-icon>
+                    </div>
+                </div>
             </mat-cell>
         </ng-container>
         <!--submenu cell-->
@@ -200,13 +205,17 @@
                         mat-icon-button color="success"
                         matTooltip="{{'DISABLE' | translate}}"
                         matTooltipPosition="left"
-                        (click)="toggle.emit(item)"><mat-icon>check</mat-icon></button>
+                        (click)="toggle.emit(item)">
+                    <mat-icon>check</mat-icon>
+                </button>
                 <button *ngIf="!item.enabled"
                         mat-icon-button
                         matTooltip="{{'ENABLE' | translate}}"
                         matTooltipPosition="left"
                         color="warn"
-                        (click)="toggle.emit(item)"><mat-icon>clear</mat-icon></button>
+                        (click)="toggle.emit(item)">
+                    <mat-icon>clear</mat-icon>
+                </button>
             </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -215,6 +224,6 @@
                  (click)="selectRow(row)"></mat-row>
     </mat-table>
 </div>
-<mat-paginator #paginator [pageSizeOptions]="[25, 50]" *ngIf="itemCount"
+<mat-paginator #paginator [pageSizeOptions]="[25, 50]" *ngIf="itemCount && itemCount > 25"
                [length]="itemCount" showFirstLastButtons
                (page)="changePageHandler($event)"></mat-paginator>

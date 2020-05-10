@@ -6,7 +6,7 @@ import { ControllerType } from '../../../models/types';
     templateUrl: './control-panel-ui-item-card.component.html',
     styleUrls: ['./control-panel-ui-item-card.component.scss']
 })
-export class ControlPanelUiItemCardComponent implements OnInit {
+export class ControlPanelUiItemCardComponent {
 
     /**
      * items
@@ -15,8 +15,4 @@ export class ControlPanelUiItemCardComponent implements OnInit {
 
     constructor() {
     }
-
-    ngOnInit() {
-    }
-
 }

@@ -124,7 +124,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
 
     // TVR section
 
-    public getTVRMachines(requestMethod: 'GET' | 'PUT', id?: string) {
+    public getTVRMachines(requestMethod: 'GET' | 'PUT' | 'POST', id?: string) {
         return ApiUrlsService.getPagedUrl(API.TVR_MACHINES, requestMethod, id);
     }
 

@@ -1,5 +1,7 @@
 @import "control-panel-theme";
 :host {
+  padding-top: 1rem;
+  display: block;
   .table {
     width: 100%;
     overflow: hidden;
@@ -106,7 +108,6 @@
     overflow-y: hidden;
   }
   .table-toolbar-wrapper {
-    display: flex;
-    justify-content: flex-end;
+    min-height: 56px;
   }
 }

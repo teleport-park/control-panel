@@ -52,7 +52,7 @@ export class NgServersComponent implements OnInit, OnDestroy {
         this.service.getInstances();
         this.service.operationSuccess$
         .pipe(takeUntil(this.destroyed$))
-        .subscribe(res => {
+        .subscribe(_ => {
             this._dialog && this._dialog.close();
             this._editInstanceId = null;
         });
@@ -90,7 +90,7 @@ export class NgServersComponent implements OnInit, OnDestroy {
     }
 
     toggle(item: TNGController) {
-        this.service.toggle(item);
+        this.service.toggle(item, item.id);
     }
 
     submit() {
