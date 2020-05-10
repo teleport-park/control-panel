@@ -18,56 +18,57 @@ import { CommonEntityService } from '../../../../services/common-services/common
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppStorageKey } from '../../../../models/app-storage-key';
 import { Sort } from '@angular/material';
+import { LoaderService } from '../../../../services/loader.service';
 
 const storageKey: string = 'VISITORS';
 
 const routes: Routes = [{
-   path: '',
-   component: UsersComponent,
-   children: [{
-      path: ':id',
-      component: UserComponent,
-      data: {
-         title: 'ADMIN_MENU_USERS'
-      },
-      canActivate: [PermissionGuard]
-   }]
+    path: '',
+    component: UsersComponent,
+    children: [{
+        path: ':id',
+        component: UserComponent,
+        data: {
+            title: 'ADMIN_MENU_USERS'
+        },
+        canActivate: [PermissionGuard]
+    }]
 }];
 
 export const UserRoutingModule = RouterModule.forChild(routes);
 
-export function UserServiceFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
-   return new CommonEntityService(http, apiUrlService.getVisitors, sortStorageSet());
+export function UserServiceFactory(http: HttpClient, apiUrlService: ApiUrlsService, loader: LoaderService) {
+    return new CommonEntityService(http, apiUrlService.getVisitors, sortStorageSet(), loader);
 }
 
 const sortStorageSet = () => {
-   const sortState: Sort = JSON.parse(localStorage.getItem(storageKey + AppStorageKey.Sort)) as Sort;
-   if (sortState) {
-      const sort = {};
-      sort[sortState.active] = sortState.direction;
-      return sort;
-   }
+    const sortState: Sort = JSON.parse(localStorage.getItem(storageKey + AppStorageKey.Sort)) as Sort;
+    if (sortState) {
+        const sort = {};
+        sort[sortState.active] = sortState.direction;
+        return sort;
+    }
 };
 
 @NgModule({
-   declarations: [UsersComponent, UserComponent],
-   imports: [
-      CommonModule,
-      ReactiveFormsModule,
-      MaterialModule,
-      UserRoutingModule,
-      TranslationModule,
-      FormModule,
-      SharedModule,
-      ExtendedFiltersModule
-   ],
-   providers: [{
-      provide: ENTITY_SERVICE, useFactory: UserServiceFactory, deps: [HttpClient, ApiUrlsService]
-   }],
-   entryComponents: [AddOrEditEntityDialogComponent, ConfirmDialogComponent]
+    declarations: [UsersComponent, UserComponent],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MaterialModule,
+        UserRoutingModule,
+        TranslationModule,
+        FormModule,
+        SharedModule,
+        ExtendedFiltersModule
+    ],
+    providers: [{
+        provide: ENTITY_SERVICE, useFactory: UserServiceFactory, deps: [HttpClient, ApiUrlsService, LoaderService]
+    }],
+    entryComponents: [AddOrEditEntityDialogComponent, ConfirmDialogComponent]
 })
 export class UsersModule {
-   constructor(overlayContainer: OverlayContainer) {
-      overlayContainer.getContainerElement().classList.add('light-theme');
-   }
+    constructor(overlayContainer: OverlayContainer) {
+        overlayContainer.getContainerElement().classList.add('light-theme');
+    }
 }

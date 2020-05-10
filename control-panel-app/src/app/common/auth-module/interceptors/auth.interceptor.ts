@@ -19,7 +19,6 @@ export class AuthInterceptor implements HttpInterceptor {
    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       const user: { token: string } = this.loginService.currentUserValue;
       if (user && user.token) {
-         this.loader.dispatchShowLoader(true);
          req = req.clone({
             setHeaders: {
                Authorization: `Bearer ${user.token}`,
@@ -30,7 +29,7 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(req).pipe(
          tap((res) => {
             if (res instanceof HttpResponse) {
-               this.loader.dispatchShowLoader(false);
+               // this.loader.dispatchShowLoader(false);
             }
          }),
          catchError((err) => {

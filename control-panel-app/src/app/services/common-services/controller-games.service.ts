@@ -10,13 +10,15 @@ import { TranslateService } from '../../common/translations-module';
 @Injectable()
 export class ControllerGamesService {
 
-    vrGames$: BehaviorSubject<VRGame[]> = new BehaviorSubject([]);
-
     _vrGames: VRGame[];
+
+    _loaderDebounce: number = 100;
 
     gameType: 'all' | 'polygon' | 'playvr' = 'all';
 
     filterValue: string = '';
+
+    vrGames$: BehaviorSubject<VRGame[]> = new BehaviorSubject([]);
 
     refreshGames$: Subject<boolean> = new Subject();
 
@@ -31,13 +33,14 @@ export class ControllerGamesService {
     }
 
     public getGames(): void {
+        this.loaderService.dispatchShowLoader(true, this._loaderDebounce);
         this.http.get(this.url('GET'))
         .subscribe((result: VRGame[]) => {
             this._vrGames = result;
             this.applyFilter();
             this.loaderService.dispatchShowLoader(false);
             this.refreshGames$.next(true);
-        }, error => {
+        }, _ => {
             this.refreshGames$.next(false);
         });
     }
@@ -45,7 +48,7 @@ export class ControllerGamesService {
     update(game: VRGameRequest) {
         this.loaderService.dispatchShowLoader(true);
         this.http.patch(this.url('PATCH'), game).subscribe(
-            res => {
+            _ => {
                 this.toaster.success(this.getMessage(game), false);
                 this.getGames();
             }
@@ -53,6 +56,7 @@ export class ControllerGamesService {
     }
 
     refresh() {
+        this._loaderDebounce = 1500;
         this.getGames();
         return this.refreshGames$;
     }

@@ -27,6 +27,7 @@ import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Sort } from '@angular/material';
 import { AppStorageKey } from '../../../../models/app-storage-key';
+import { LoaderService } from '../../../../services/loader.service';
 
 const storageKey: string = 'STAFF';
 
@@ -48,8 +49,8 @@ const routes: Routes = [{
 
 export const StaffRoutingModule = RouterModule.forChild(routes);
 
-export function StaffServiceFactory(http: HttpClient, urlService: ApiUrlsService) {
-   return new CommonEntityService(http, urlService.getStaff, sortStorageSet());
+export function StaffServiceFactory(http: HttpClient, urlService: ApiUrlsService, loader: LoaderService) {
+   return new CommonEntityService(http, urlService.getStaff, sortStorageSet(), loader);
 }
 
 const sortStorageSet = () => {
@@ -74,7 +75,7 @@ const sortStorageSet = () => {
       ExtendedFiltersModule
    ],
    providers: [StaffService, GroupsService,
-      {provide: ENTITY_SERVICE, useFactory: StaffServiceFactory, deps: [HttpClient, ApiUrlsService]}
+      {provide: ENTITY_SERVICE, useFactory: StaffServiceFactory, deps: [HttpClient, ApiUrlsService, LoaderService]}
    ],
    entryComponents: [
       AddOrEditEntityDialogComponent,

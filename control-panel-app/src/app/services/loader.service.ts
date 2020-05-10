@@ -1,30 +1,34 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { BehaviorSubject, timer } from 'rxjs';
+import { debounce, debounceTime } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class LoaderService {
 
-  /**
-   * Loader observer
-   */
-  showLoader$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    _debounce: number = 100;
 
-  loaderTread$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    /**
+     * Loader observer
+     */
+    showLoader$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  constructor() {
-    this.loaderTread$.pipe(debounceTime(1000)).subscribe((value: boolean) => {
-      this.showLoader$.next(value);
-    });
-  }
+    loaderTread$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  /**
-   * shw or hide loader
-   * @param value
-   */
-  dispatchShowLoader(value: boolean) {
-    this.loaderTread$.next(value);
-  }
+    constructor() {
+        this.loaderTread$.pipe(debounce(() => timer(this._debounce))).subscribe((value: boolean) => {
+            this.showLoader$.next(value);
+        });
+    }
+
+    /**
+     * show or hide loader
+     * @param value
+     * @param deb
+     */
+    dispatchShowLoader(value: boolean, deb: number = 100) {
+        this._debounce = deb;
+        this.loaderTread$.next(value);
+    }
 }
