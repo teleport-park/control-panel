@@ -11,6 +11,10 @@
                         matTooltipPosition="below">{{_transformToken(item.token)}}</h4>
                 </div>
                 <p>
+                    <span class="bold">{{translateService.instant('TOKEN')}}:</span>
+                    {{item.token}}
+                </p>
+                <p>
                     <span class="bold">{{translateService.instant('TYPE')}}:</span>
                     {{item.type.toUpperCase()}}
                 </p>
@@ -25,8 +29,8 @@
                     {{getMinutesAgo(item.connected)}}
                 </p>
                 <div class="actions">
-                    <button mat-flat-button color="warn" *ngIf="item.authorized" (click)="revoke(item)">revoke</button>
-                    <button mat-flat-button color="primary" *ngIf="!item.authorized" (click)="grant(item)">grant</button>
+                    <button mat-flat-button color="warn" *ngIf="item.authorized" (click)="revoke(item)">{{translateService.instant('REVOKE')}}</button>
+                    <button mat-flat-button color="primary" *ngIf="!item.authorized" (click)="grant(item)">{{translateService.instant('GRANT')}}</button>
                 </div>
             </control-panel-ui-item-card>
         </div>
@@ -37,5 +41,5 @@
     <control-panel-ui-empty></control-panel-ui-empty>
 </ng-template>
 
-<control-panel-trigger [callBack]="service.refresh.bind(service)" [timerValue]="200"></control-panel-trigger>
+<control-panel-trigger [callBack]="service.refresh.bind(service)"></control-panel-trigger>
 

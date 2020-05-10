@@ -23,14 +23,10 @@
                                               (applyFilter)="applyFilter($event)"></extended-filters>
                         </div>
                     </control-panel-ui-card>
-                    <control-panel-ui-card class="d-inline-block no-margin mt-3" [hideHeader]="true">
-                        <div panelUICardContent>
-                            <div class="users-table-filter">
-                                <control-panel-ui-quick-filter #quickFilter
-                                                               (filterChange)="applyQuickFilter($event)"></control-panel-ui-quick-filter>
-                            </div>
-                        </div>
-                    </control-panel-ui-card>
+                    <div class="users-table-filter">
+                        <control-panel-ui-quick-filter #quickFilter
+                                                       (filterChange)="applyQuickFilter($event)"></control-panel-ui-quick-filter>
+                    </div>
                     <control-panel-ui-table
                             [data]="(service.entities$ | async)"
                             [displayedColumns]="displayedColumns"

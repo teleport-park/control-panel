@@ -17,7 +17,7 @@
                         </div>
                     </div>
                 </control-panel-ui-card>
-                <control-panel-trigger [callBack]="service.refresh.bind(service)" [timerValue]="10"
+                <control-panel-trigger [callBack]="service.refresh.bind(service)"
                                        class="absolute"></control-panel-trigger>
             </div>
             <control-panel-ui-quick-filter (filterChange)="applyFilter($event)"></control-panel-ui-quick-filter>

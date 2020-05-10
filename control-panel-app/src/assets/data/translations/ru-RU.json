@@ -253,6 +253,7 @@
   "CONTROLLER_AUTHORIZED": "Авторизован",
   "CONTROLLER_CONNECTED": "Соединен",
   "MINUTES_AGO": "мин. назад",
+  "SECONDS_AGO": "сек. назад",
   "REGISTER": "Зарегестрировать",
   "GAME": "Игра",
   "TOKEN": "Токен",
@@ -261,5 +262,7 @@
   "ACCOUNTS_LIST_TITLE": "Список аккаунтов",
   "INVOICES_LIST_TITLE": "Список счетов",
   "MIN_AGE_VALIDATION_ERROR": "Минимальный возраст {0} лет",
-  "MAX_DATE_VALIDATION_ERROR": "Дата рождения не соответствует минимальному возрасту в {0} лет, максимальная дата {1}"
+  "MAX_DATE_VALIDATION_ERROR": "Дата рождения не соответствует минимальному возрасту в {0} лет, максимальная дата {1}",
+  "GRANT": "Разрешить",
+  "REVOKE": "Запретить"
 }

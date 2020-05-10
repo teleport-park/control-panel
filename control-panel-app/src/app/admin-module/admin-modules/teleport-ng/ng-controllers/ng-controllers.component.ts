@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ControllersService } from '../../../../services/common-services/controllers.service';
 import { TranslateService } from '../../../../common/translations-module';
 import moment from 'moment';
@@ -55,6 +55,7 @@ export function ControllerServiceFactory(http: HttpClient, apiUrlService: ApiUrl
     selector: 'vr-controllers',
     templateUrl: './ng-controllers.component.html',
     styleUrls: ['./ng-controllers.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
         {provide: CONTROLLER_SERVICE, useFactory: ControllerServiceFactory, deps: [HttpClient, ApiUrlsService]}
     ]
@@ -66,7 +67,7 @@ export class NgControllersComponent {
     }
 
     getMinutesAgo(date: string | Date) {
-        return Math.abs(moment(date).diff(Date.now(), 'minutes')) + ' ' + this.translateService.instant('MINUTES_AGO');
+        return Math.abs(moment(date).diff(Date.now(), 'seconds')) + ' ' + this.translateService.instant('SECONDS_AGO');
     }
 
     grant(item: BaseController) {

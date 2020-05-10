@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { Subject } from 'rxjs';
+import { VRGame } from '../../../../models/vr-game.model';
 
 // export function ControllerServiceFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
 //     return new ControllersService(http, apiUrlService.getTVRMachines, mockData);
@@ -30,9 +31,13 @@ export class VrMachinesComponent implements OnInit, OnDestroy {
 
     @ViewChild('editForm', {static: false}) editForm: TemplateRef<any>;
 
+    @ViewChild('games', {static: true}) games: TemplateRef<any>;
+
     _form: FormGroup;
 
     _dialog: MatDialogRef<any>;
+
+    _games: { server: string, games: VRGame[] };
 
     private destroyed$: Subject<boolean> = new Subject();
 
@@ -98,7 +103,10 @@ export class VrMachinesComponent implements OnInit, OnDestroy {
 
     getServerGames(item: TVRController) {
         this.service.getServersGames(item.access_token).subscribe(
-            res => console.log(res)
+            res => {
+                this._games = {server: item.display_name || item.address, games: res};
+                this.dialog.open(this.games);
+            }
         );
     }
 
