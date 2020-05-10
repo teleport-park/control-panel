@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '../../../../common/translations-module';
 import { ControllerGamesService } from '../../../../services/common-services/controller-games.service';
-import { VRGame, VRGameRequest } from '../../../../models/vr-game.model';
+import { NGGame, NGGameRequest } from '../../../../models/game.model';
 import { MatRadioChange, MatSort, MatSortable, MatTableDataSource } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle/typings/slide-toggle';
@@ -40,8 +40,8 @@ export class NgGamesComponent implements OnInit {
         });
     }
 
-    toggleGameHandler(event: MatSlideToggleChange, game: VRGame) {
-        const payload = new VRGameRequest(game);
+    toggleGameHandler(event: MatSlideToggleChange, game: NGGame) {
+        const payload = new NGGameRequest(game);
         payload.enabled = !payload.enabled;
         game.enabled = !game.enabled;
         event.source.checked = game.enabled;

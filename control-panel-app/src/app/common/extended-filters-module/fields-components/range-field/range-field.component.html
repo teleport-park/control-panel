@@ -2,19 +2,21 @@
     <div class="mr-3 bold">{{translateService.instant(config.label)}}:</div>
     <mat-form-field class="range-field" color="primary">
         <mat-label>{{translateService.instant('EXTENDED_FILTER_FROM')}}</mat-label>
-        <mat-select [formControlName]="config.group[0].property" #from>
-            <mat-option *ngFor="let i of range" [value]="i"
-                        [disabled]="i > to.value">
-                {{i}}
-            </mat-option>
-        </mat-select>
+<!--        <mat-select [formControlName]="config.group[0].property" #from>-->
+<!--            <mat-option *ngFor="let i of range" [value]="i"-->
+<!--                        [disabled]="i > to.value">-->
+<!--                {{i}}-->
+<!--            </mat-option>-->
+<!--        </mat-select>-->
+        <input matInput type="number" [formControlName]="config.group[0].property">
     </mat-form-field>
     <mat-form-field class="range-field" color="primary">
         <mat-label>{{translateService.instant('EXTENDED_FILTER_TO')}}</mat-label>
-        <mat-select [formControlName]="config.group[1].property" #to>
-            <mat-option *ngFor="let i of range" [value]="i" [disabled]="i < from.value">
-                {{i}}
-            </mat-option>
-        </mat-select>
+<!--        <mat-select [formControlName]="config.group[1].property" #to>-->
+<!--            <mat-option *ngFor="let i of range" [value]="i" [disabled]="i < from.value">-->
+<!--                {{i}}-->
+<!--            </mat-option>-->
+<!--        </mat-select>-->
+        <input matInput type="number" [formControlName]="config.group[1].property">
     </mat-form-field>
 </div>

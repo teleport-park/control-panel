@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '../../translations-module';
-import { VRGame } from '../../../models/vr-game.model';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle/typings/slide-toggle';
 import { LoaderService } from '../../../services/loader.service';
+import { NGGame } from '../../../models/game.model';
 
 @Component({
     selector: 'control-panel-games-list',
@@ -11,11 +11,11 @@ import { LoaderService } from '../../../services/loader.service';
 })
 export class ControlPanelGamesListComponent implements OnInit {
 
-    @Input() games: VRGame[];
+    @Input() games: NGGame[];
 
     displayedColumns: string[] = ['index', 'name', 'origin', 'active'];
 
-    @Output() toggle: EventEmitter<{game: VRGame, event: MatSlideToggleChange}> = new EventEmitter();
+    @Output() toggle: EventEmitter<{game: NGGame, event: MatSlideToggleChange}> = new EventEmitter();
 
     constructor(private translateService: TranslateService, public loaderService: LoaderService) {
     }
@@ -23,7 +23,7 @@ export class ControlPanelGamesListComponent implements OnInit {
     ngOnInit() {
     }
 
-    toggleGameHandler(event: MatSlideToggleChange, game: VRGame) {
+    toggleGameHandler(event: MatSlideToggleChange, game: NGGame) {
         this.toggle.emit({game, event});
     }
 }

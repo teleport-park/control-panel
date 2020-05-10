@@ -2,41 +2,22 @@
     <control-panel-ui-card class="primary">
         <div panelUICardHeaderTitle>{{translateService.instant('GAMES_LIST_TITLE')}}</div>
         <div panelUICardContent>
-            <div class="d-flex align-items-start justify-content-between ">
-                <control-panel-ui-card class="primary d-inline-block no-margin" [hideHeader]="true">
-                    <div panelUICardContent>
-                        <div class="actions d-flex justify-content-between align-items-center">
-                            <section>
-                                <h5 class="mb-3">{{'TYPE_FILTER' | translate}}</h5>
-                                <mat-radio-group [formControl]="_typeFilterControl"
-                                                 (change)="typeFilterHandler($event)">
-                                    <mat-radio-button class="mr-3" *ngFor="let type of _filterTypes"
-                                                      [value]="type">{{type.toUpperCase() | translate}}</mat-radio-button>
-                                </mat-radio-group>
-                            </section>
-                        </div>
-                    </div>
-                </control-panel-ui-card>
+            <div class="d-flex align-items-start justify-content-between mb-2">
+                <control-panel-ui-quick-filter (filterChange)="applyFilter($event)"></control-panel-ui-quick-filter>
                 <control-panel-trigger [callBack]="service.refresh.bind(service)"
                                        class="absolute"></control-panel-trigger>
             </div>
-            <control-panel-ui-quick-filter (filterChange)="applyFilter($event)"></control-panel-ui-quick-filter>
             <table mat-table [dataSource]="dataSource" matSort class="w-100 mb-5">
                 <ng-container matColumnDef="name">
                     <th mat-header-cell *matHeaderCellDef
                         mat-sort-header> {{translateService.instant('AMUSEMENTS_NAME_LABEL')}} </th>
                     <td mat-cell *matCellDef="let game">
-                        <div class="name mt-3">{{game.name}}</div>
+                        <div class="name mt-3">{{game.name || 'N/A'}}</div>
                         <div class="sub_text mb-3">
-                            <span>code:</span><span class="info">{{game.code_name}},</span>
-                            <span>fingerprint:</span><span class="info">{{game.fingerprint}},</span>
-                            <span>origin:</span><span class="info">{{game.origin}}</span>
+                            <span>{{('ID' | translate).toLowerCase()}}:</span><span class="info">{{game.id || 'N/A'}},</span>
+                            <span>{{('FINGERPRINT' | translate).toLowerCase()}}:</span><span class="info">{{game.fingerprint || 'N/A'}}</span>
                         </div>
                     </td>
-                </ng-container>
-                <ng-container matColumnDef="type">
-                    <th mat-header-cell *matHeaderCellDef> {{translateService.instant('SERVER_TYPE')}} </th>
-                    <td mat-cell *matCellDef="let game"> {{game.type}} </td>
                 </ng-container>
                 <ng-container matColumnDef="active">
                     <th mat-header-cell *matHeaderCellDef> {{translateService.instant('ENABLED')}} </th>

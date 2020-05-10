@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { TranslateService } from '../../../../common/translations-module';
 import { urlPattern } from '../../../../utils/utils';
-import { VRGame } from '../../../../models/vr-game.model';
+import { NGGame } from '../../../../models/game.model';
 import { ControllerGamesService } from '../../../../services/common-services/controller-games.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class NgServersComponent implements OnInit, OnDestroy {
 
     _filterTypes: string[] = ['all', ...this._controllerTypes];
 
-    _games: { server: string, games: VRGame[] };
+    _games: { server: string, games: NGGame[] };
 
     private destroyed$: Subject<boolean> = new Subject();
 

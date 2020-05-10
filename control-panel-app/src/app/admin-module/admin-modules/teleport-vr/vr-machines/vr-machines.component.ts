@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { Subject } from 'rxjs';
-import { VRGame } from '../../../../models/vr-game.model';
+import { NGGame } from '../../../../models/game.model';
 
 // export function ControllerServiceFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
 //     return new ControllersService(http, apiUrlService.getTVRMachines, mockData);
@@ -37,7 +37,7 @@ export class VrMachinesComponent implements OnInit, OnDestroy {
 
     _dialog: MatDialogRef<any>;
 
-    _games: { server: string, games: VRGame[] };
+    _games: { server: string, games: NGGame[] };
 
     private destroyed$: Subject<boolean> = new Subject();
 

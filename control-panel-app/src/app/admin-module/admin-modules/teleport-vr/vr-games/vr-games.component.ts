@@ -1,10 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatRadioChange, MatSlideToggleChange, MatSort, MatSortable, MatTableDataSource } from '@angular/material';
+import { MatSlideToggleChange, MatSort, MatSortable, MatTableDataSource } from '@angular/material';
 import { ControllerGamesService } from '../../../../services/common-services/controller-games.service';
 import { TranslateService } from '../../../../common/translations-module';
-import { VRGame, VRGameRequest } from '../../../../models/vr-game.model';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
+import { VRGame, VRGameRequest } from '../../../../models/game.model';
 
 @Component({
     selector: 'vr-games',
@@ -14,13 +13,7 @@ import { ApiUrlsService } from '../../../../services/api-urls.service';
 })
 export class VrGamesComponent implements OnInit {
 
-    _controllerTypes: string[] = ['playvr', 'polygon'];
-
-    _filterTypes: string[] = ['all', ...this._controllerTypes];
-
-    _typeFilterControl: FormControl = new FormControl('all');
-
-    displayedColumns: string[] = ['name', 'type', 'active', 'enabled'];
+    displayedColumns: string[] = ['name', 'active', 'enabled'];
 
     dataSource = new MatTableDataSource();
 
@@ -49,15 +42,9 @@ export class VrGamesComponent implements OnInit {
         game.enabled = !game.enabled;
         event.source.checked = game.enabled;
         this.cd.markForCheck();
-        this.service.update(payload);
+        this.service.update(payload, game.name);
         event.source.checked = game.enabled;
     }
-
-    typeFilterHandler(event: MatRadioChange) {
-        this.service.gameType = event.value;
-        this.service.applyFilter();
-    }
-
     applyFilter(value: string) {
         this.service.filterValue = value;
         this.service.applyFilter();
