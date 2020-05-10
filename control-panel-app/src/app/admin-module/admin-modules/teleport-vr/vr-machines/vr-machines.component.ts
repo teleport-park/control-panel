@@ -1,17 +1,21 @@
 import { Component, Inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { INSTANCE_SERVICE, InstanceService } from '../../../../models/intefaces';
-import { TVRController } from '../../../../models/controller';
+import { TNGController, TVRController } from '../../../../models/controller';
 import { TranslateService } from '../../../../common/translations-module';
 import { transformToken } from '../../../../utils/utils';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { ControllerGamesService } from '../../../../services/common-services/controller-games.service';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 
 // export function ControllerServiceFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
 //     return new ControllersService(http, apiUrlService.getTVRMachines, mockData);
 // }
 
+const modalConfig: MatDialogConfig = {
+    width: '400px'
+};
 
 @Component({
     selector: 'vr-machines',
@@ -48,6 +52,7 @@ export class VrMachinesComponent implements OnInit {
     registerHandler(item: TVRController) {
         this.initForm();
         this._dialog = this.dialog.open(this.registerForm, {
+            ...modalConfig,
             data: item
         });
     }
@@ -59,12 +64,22 @@ export class VrMachinesComponent implements OnInit {
     edit(item: TVRController) {
         this.initForm(item);
         this.dialog.open(this.editForm, {
+            ...modalConfig,
             data: item
         });
     }
 
     remove(item: TVRController) {
-
+        this.dialog.open(ConfirmDialogComponent, {
+            data: {
+                title: 'DIALOG_CONFIRM_TITLE',
+                message: this.translateService.instant('DIALOG_CONFIRM_SERVER_MESSAGE', [item.display_name])
+            } as ConfirmDialogData
+        }).afterClosed().subscribe(res => {
+            if (res) {
+                this.service.remove(item.id);
+            }
+        });
     }
 
     submit(item: TVRController) {

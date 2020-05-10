@@ -8,9 +8,9 @@
                 <div class="hardware-item_title">
                     <h4>{{item.display_name || item.name}}</h4>
                 </div>
-                <p  matTooltip="{{item.machine_token}}"
-                    [matTooltipShowDelay]="1000"
-                    matTooltipPosition="below">
+                <p matTooltip="{{item.machine_token}}"
+                   [matTooltipShowDelay]="1000"
+                   matTooltipPosition="below">
                     <span class="bold">{{translateService.instant('TOKEN')}}:</span>
                     {{_transformToken(item.machine_token)}}
                 </p>
@@ -44,7 +44,8 @@
                     <span class="bold">{{translateService.instant('STATUS')}}:</span>
                     {{item.status ? (item.status.toUpperCase() | translate) : 'N/A' | translate}}
                 </p>
-                <div *ngIf="item.registered" class="action-button justify-content-between d-flex align-items-center mt-2">
+                <div *ngIf="item.registered"
+                     class="action-button justify-content-between d-flex align-items-center mt-2">
                     <mat-slide-toggle color="success" (change)="toggle(item)" [checked]="item.enabled"><span
                             class="label">{{(item.enabled ? 'DISABLE_SERVER' : 'ENABLE_SERVER') | translate}}</span>
                     </mat-slide-toggle>
@@ -68,9 +69,10 @@
                     </div>
                 </div>
                 <div *ngIf="!item.registered" class="actions">
-                    <button mat-flat-button color="primary" *ngIf="!item.registered" (click)="registerHandler(item)">{{'REGISTER' | translate}}</button>
-<!--                    <button mat-flat-button color="primary" *ngIf="!item.authorized" (click)="grant(item)">grant-->
-<!--                    </button>-->
+                    <button mat-flat-button color="primary" *ngIf="!item.registered"
+                            (click)="registerHandler(item)">{{'REGISTER' | translate}}</button>
+                    <!--                    <button mat-flat-button color="primary" *ngIf="!item.authorized" (click)="grant(item)">grant-->
+                    <!--                    </button>-->
                 </div>
             </control-panel-ui-item-card>
         </div>
@@ -82,26 +84,34 @@
 </ng-template>
 
 <ng-template #registerForm let-data>
-    <h4>{{'REGISTER' | translate}}</h4>
+    <h4 class="mt-n2 mb-2">{{'REGISTER' | translate}}</h4>
     <ng-container *ngTemplateOutlet="form"></ng-container>
-    <button mat-flat-button color="primary" (click)="register(data)">{{'REGISTER' | translate}}</button>
+    <div class="d-flex justify-content-end mb-n2 mt-2">
+        <button mat-flat-button color="warn" mat-dialog-close>{{'DIALOG_CANCEL_BUTTON_LABEL' | translate}}</button>
+        <button mat-flat-button color="primary" class="ml-2"
+                (click)="register(data)">{{'REGISTER' | translate}}</button>
+    </div>
 </ng-template>
 
 <ng-template #editForm let-data>
-    <h4>{{'EDIT' | translate}}</h4>
+    <h4 class="mt-n2 mb-2">{{'TABLE_EDIT' | translate}}</h4>
     <ng-container *ngTemplateOutlet="form"></ng-container>
-    <button mat-flat-button color="primary" (click)="submit(data)">{{'SAVE' | translate}}</button>
+    <div class="d-flex justify-content-end mb-n2 mt-2">
+        <button mat-flat-button color="warn" mat-dialog-close>{{'DIALOG_CANCEL_BUTTON_LABEL' | translate}}</button>
+        <button mat-flat-button color="primary" class="ml-2"
+                (click)="submit(data)">{{'USER_FORM_EDIT_BUTTON_LABEL' | translate}}</button>
+    </div>
 </ng-template>
 
 <ng-template #form>
-    <form [formGroup]="_form">
+    <form [formGroup]="_form" class="d-flex flex-column">
         <mat-form-field>
             <label>
-                <input matInput placeholder="{{'NAME' | translate}}" formControlName="name">
+                <input matInput placeholder="{{'NAME' | translate}}" formControlName="name" [maxLength]="50">
             </label>
         </mat-form-field>
-        <mat-checkbox formControlName="enabled">{{'ENABLED' | translate}}</mat-checkbox>
+        <mat-checkbox formControlName="enabled">{{'EXTENDED_FILTER_STAFF_ACTIVE' | translate}}</mat-checkbox>
     </form>
 </ng-template>
 
-<control-panel-trigger [callBack]="service.refresh.bind(service)" [timerValue]="200"></control-panel-trigger>
+<control-panel-trigger [callBack]="service.refresh.bind(service)"></control-panel-trigger>
