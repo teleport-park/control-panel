@@ -1,11 +1,11 @@
-<div class="table-toolbar-wrapper">
-    <button mat-raised-button *ngIf="iconSet"
-            color="primary"
-            (click)="addEntity()">
-        <mat-icon>{{iconSet}}</mat-icon>
-        {{translateService.instant('TABLE_ADD')}}
-    </button>
-</div>
+<!--<div class="table-toolbar-wrapper">-->
+<!--    <button mat-raised-button *ngIf="iconSet"-->
+<!--            color="primary"-->
+<!--            (click)="addEntity()">-->
+<!--        <mat-icon>{{iconSet}}</mat-icon>-->
+<!--        {{translateService.instant('TABLE_ADD')}}-->
+<!--    </button>-->
+<!--</div>-->
 <div class="table-wrapper">
 
     <mat-table matSort [dataSource]="dataSource" class="table" (matSortChange)="sortChange($event)">

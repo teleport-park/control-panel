@@ -1,4 +1,4 @@
-<p>{{translateService.instant(config.label)}}:</p>
+<div class="mr-3 bold">{{translateService.instant(config.label)}}:</div>
 <div class="dates" [formGroup]="group">
   <mat-form-field class="data" color="primary">
     <input matInput [matDatepicker]="from" placeholder="{{translateService.instant('EXTENDED_FILTER_FROM')}}"

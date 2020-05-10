@@ -1,10 +1,16 @@
 :host {
+  display: flex;
+  align-items: center;
+  //margin: 0 1rem;
   .dates {
     display: flex;
     justify-content: space-between;
     max-width: 300px;
     .data {
       max-width: 100px;
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
     }
   }
 }

@@ -30,8 +30,9 @@
     .user-table-toolbar {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: start;
       margin-bottom: 1rem;
+      flex-wrap: wrap;
     }
 
     .mat-column-select {

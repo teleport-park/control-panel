@@ -1,7 +1,14 @@
 :host {
   display: block;
   .extended-filter_wrapper {
-    padding: 15px .5rem;
-    width: 300px;
+    padding: 0 .5rem;
+    .extended-filters-form {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      &>.field:not(:last-child) {
+        margin-right: 1.5rem;
+      }
+    }
   }
 }

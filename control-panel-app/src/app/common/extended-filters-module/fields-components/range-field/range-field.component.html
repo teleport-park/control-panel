@@ -1,5 +1,5 @@
 <div class="range-filter_wrapper d-flex align-items-center justify-content-between" [formGroup]="group">
-    <div>{{translateService.instant(config.label)}}:</div>
+    <div class="mr-3 bold">{{translateService.instant(config.label)}}:</div>
     <mat-form-field class="range-field" color="primary">
         <mat-label>{{translateService.instant('EXTENDED_FILTER_FROM')}}</mat-label>
         <mat-select [formControlName]="config.group[0].property" #from>
