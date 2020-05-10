@@ -43,6 +43,8 @@
                     {{'REQUIRED_FIELD' | translate:[translateService.instant('CARD_LABEL')]}}
                 </mat-error>
             </mat-form-field>
+                <language-switcher [placeholder]="translateService.instant('LANGUAGE_SWITCHER_LABEL')"
+                                   (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
             <button mat-raised-button
                     color="primary"
                     class="mb-3"
