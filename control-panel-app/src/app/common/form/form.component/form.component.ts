@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Injector, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { StaffMember, Visitor } from '../../../models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import moment, { Moment } from 'moment';
@@ -6,6 +6,7 @@ import { TranslateService } from '../../translations-module';
 import { DateAdapter } from '@angular/material';
 import { Avatar } from '../../../models/user-management/avatar.model';
 import { genders, toggleGender } from '../../../utils/utils';
+import { InitService } from '../../../services/init.service';
 
 @Component({
     selector: 'control-panel-ui-form',
@@ -13,13 +14,12 @@ import { genders, toggleGender } from '../../../utils/utils';
     styleUrls: ['./form.component.scss']
 })
 export class FormComponent {
-
-    _genders = genders;
-
     /**
      * email regexp
      */
     static readonly EMAIL_REGEXP: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/i;
+
+    _genders = genders;
 
     /**
      * user model
@@ -37,10 +37,7 @@ export class FormComponent {
     simpleDataColumn: string[] = this.displayedColumns
     .filter(item => item !== 'birthday' && item !== 'gender' && item !== 'submenu');
 
-    /**
-     * max date for DOB field
-     */
-    maxDate = moment();
+    minDOBDate: Moment;
 
     /**
      * adding flag
@@ -88,16 +85,17 @@ export class FormComponent {
 
     /**
      * constructor
-     * @param fb
      * @param translateService
-     * @param injector
+     * @param initService
+     * @param fb
      * @param dateAdapter
      */
-    constructor(private fb: FormBuilder,
-                public translateService: TranslateService,
-                private injector: Injector,
+    constructor(public translateService: TranslateService,
+                public initService: InitService,
+                private fb: FormBuilder,
                 private dateAdapter: DateAdapter<Date>) {
         dateAdapter.setLocale(translateService.locale.getValue());
+        this.minDOBDate = moment().subtract(initService.config.visitor_min_age, 'years');
     }
 
     /**
@@ -107,7 +105,7 @@ export class FormComponent {
         return this.fb.group({
             name: ['', Validators.required],
             nickname: '',
-            age: '',
+            age: ['', Validators.min(this.initService.config.visitor_min_age)],
             birthday: '',
             gender: 'male',
             email: ['', [Validators.pattern(FormComponent.EMAIL_REGEXP)]],
@@ -120,6 +118,9 @@ export class FormComponent {
      * @param date
      */
     dayOfBirthChange(date: Moment): void {
+        if (this.userForm.get('birthday').invalid) {
+            return;
+        }
         this.userForm.get('age').setValue(this.user.getAge(date));
     }
 
@@ -127,9 +128,12 @@ export class FormComponent {
      * age change handler
      */
     ageChange(): void {
-        const age = +this.userForm.get('age').value;
-        if (age > 0 && age < 100) {
-            this.userForm.get('birthday').setValue(this.user.setDOB(age));
+        const age = this.userForm.get('age');
+        if (this.userForm.get('age').invalid) {
+            return;
+        }
+        if (age.value > 0 && age.value < 100) {
+            this.userForm.get('birthday').setValue(this.user.setDOB(age.value));
         }
     }
 

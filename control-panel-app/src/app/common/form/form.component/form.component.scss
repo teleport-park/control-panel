@@ -70,10 +70,10 @@
   .age-gender_wrapper {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
     align-items: baseline;
+
     .age-field {
-      max-width: 80px;
+      max-width: 8rem;
     }
     .gender-field {
       p {

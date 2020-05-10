@@ -259,5 +259,7 @@
   "GAMES_LIST_TITLE": "Список игр",
   "TRANSACTIONS_LIST_TITLE": "Список транзакций",
   "ACCOUNTS_LIST_TITLE": "Список аккаунтов",
-  "INVOICES_LIST_TITLE": "Список счетов"
+  "INVOICES_LIST_TITLE": "Список счетов",
+  "MIN_AGE_VALIDATION_ERROR": "Минимальный возраст {0} лет",
+  "MAX_DATE_VALIDATION_ERROR": "Дата рождения не соответствует минимальному возрасту в {0} лет, максимальная дата {1}"
 }

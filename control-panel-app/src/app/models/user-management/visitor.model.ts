@@ -70,7 +70,7 @@ export class Visitor {
     * @param age
     */
    setDOB(age: number): Moment {
-       this.birthday = moment().subtract(age, 'years').year();
+       this.birthday = moment().subtract(age, 'years');
        return this.birthday;
    }
 }

@@ -7,6 +7,7 @@ export interface InitConfig {
     api_url: string;
     refresh_interval: number;
     ws_url: string;
+    visitor_min_age: number;
 }
 
 @Injectable({
@@ -26,7 +27,7 @@ export class InitService {
     /**
      * init config
      */
-    config: InitConfig = {api_url: '/', refresh_interval: 10, ws_url: '/'};
+    config: InitConfig = {api_url: '/', refresh_interval: 10, ws_url: '/', visitor_min_age: 7};
 
 
 
@@ -42,7 +43,7 @@ export class InitService {
                 const config = require('../../config/app-init-config.json');
                 if (config && config.api_url) {
                     console.log('[API_URL]:', config.api_url);
-                    this.config = config;
+                    this.config = {...this.config, ...config};
                     const apiUrlFromStorage = JSON.parse(localStorage.getItem(this.API_URL));
                     this._defaultApiUrl = config.api_url;
                     if (apiUrlFromStorage) {
