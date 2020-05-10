@@ -3,6 +3,7 @@ import { BaseController } from './base-controller.model';
 
 export class TVRController extends BaseController {
 
+    access_token: string;
     machine_token: string;
     name: string;
     enabled: boolean;
