@@ -108,9 +108,11 @@
 <ng-template #priceDialogTemplate>
     <h3 mat-dialog-title>{{translation.instant('APPLY_PRICE_TITLE')}}</h3>
     <p>{{translation.instant('FOR_NEXT_GAMES_LABEL')}}</p>
-    <ul class="mb-4">
-        <li *ngFor="let game of selection.selected">{{game.name}}</li>
-    </ul>
+    <div class="games-list mb-4">
+        <ul>
+            <li *ngFor="let game of selection.selected">{{game.name}}</li>
+        </ul>
+    </div>
     <div class="d-flex align-items-center light-theme mb-4">
         <mat-form-field class="amount-field mr-4">
             <input [formControl]="priceControl" matInput [placeholder]="translation.instant('PRICE')">

@@ -8,123 +8,123 @@ import { FormControl, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 
 @Component({
-   selector: 'games',
-   templateUrl: './games.component.html',
-   styleUrls: ['./games.component.scss']
+    selector: 'games',
+    templateUrl: './games.component.html',
+    styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
 
-   @ViewChild('priceDialogTemplate', {static: false}) priceDialog: TemplateRef<any>;
+    @ViewChild('priceDialogTemplate', {static: false}) priceDialog: TemplateRef<any>;
 
-   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-   displayedColumns: string[] = ['select', 'name', 'source', 'active', 'price'];
+    displayedColumns: string[] = ['select', 'name', 'source', 'active', 'price'];
 
-   dataSource: MatTableDataSource<Game>;
+    dataSource: MatTableDataSource<Game>;
 
-   selection = new SelectionModel<Game>(true, []);
+    selection = new SelectionModel<Game>(true, []);
 
-   _editRowId: string = null;
+    _editRowId: string = null;
 
-   priceControl: FormControl = new FormControl(0, [Validators.required, Validators.pattern('[0-9]+')]);
+    priceControl: FormControl = new FormControl(0, [Validators.required, Validators.pattern('[0-9]+')]);
 
-   currencyControl: FormControl = new FormControl('TLPVR', Validators.required);
+    currencyControl: FormControl = new FormControl('TLPVR', Validators.required);
 
-   constructor(private service: GamesService,
-               private cd: ChangeDetectorRef,
-               private dialog: MatDialog,
-               public translation: TranslateService) {
-   }
+    constructor(private service: GamesService,
+                private cd: ChangeDetectorRef,
+                private dialog: MatDialog,
+                public translation: TranslateService) {
+    }
 
-   ngOnInit(): void {
-      this.service.games$.subscribe((res: Game[]) => {
-         this.dataSource = new MatTableDataSource<Game>(res);
-         if (res.length > 10) {
-            this.dataSource.paginator = this.paginator;
-         }
-         this._editRowId = null;
-         this.cd.markForCheck();
-      });
-      this.service.getGames();
-   }
-
-   isAllSelected() {
-      const numSelected = this.selection.selected.length;
-      const numRows = this.dataSource.data.length;
-      return numSelected === numRows;
-   }
-
-   masterToggle() {
-      this.isAllSelected() ?
-         this.selection.clear() :
-         this.dataSource.data.forEach(row => this.selection.select(row));
-   }
-
-   inlineChangePriceHandler(game: Game) {
-      const payload = {
-         id: game.id,
-         price: {
-            amount: +game.price.amount,
-            currency: game.price.currency
-         }
-      };
-      this.service.updatePrice([payload as Game]).subscribe(
-         (res: Game[]) => {
+    ngOnInit(): void {
+        this.service.games$.subscribe((res: Game[]) => {
             this.dataSource = new MatTableDataSource<Game>(res);
             if (res.length > 10) {
-               this.dataSource.paginator = this.paginator;
+                this.dataSource.paginator = this.paginator;
             }
             this._editRowId = null;
             this.cd.markForCheck();
-         }
-      );
-   }
+        });
+        this.service.getGames();
+    }
 
-   changePriceForSelectedHandler() {
-      this._editRowId = null;
-      this.dialog.open(this.priceDialog, {
-         width: '500px'
-      });
-   }
+    isAllSelected() {
+        const numSelected = this.selection.selected.length;
+        const numRows = this.dataSource.data.length;
+        return numSelected === numRows;
+    }
 
-   applyFilter(value) {
-      this.dataSource.filter = value;
-   }
+    masterToggle() {
+        this.isAllSelected() ?
+            this.selection.clear() :
+            this.dataSource.data.forEach(row => this.selection.select(row));
+    }
 
-   applyPrice() {
-      this.currencyControl.markAsTouched();
-      this.priceControl.markAsTouched();
-      if (this.currencyControl.invalid || this.priceControl.invalid) {
-         return;
-      }
-      const requests = [];
-      this.selection.selected.forEach((item: Game) => {
-         const payload = {
-            id: item.id,
+    inlineChangePriceHandler(game: Game) {
+        const payload = {
+            id: game.id,
             price: {
-               amount: +this.priceControl.value,
-               currency: this.currencyControl.value
+                amount: +game.price.amount,
+                currency: game.price.currency
             }
-         };
-         requests.push(this.service.updatePrice([payload as Game]));
-      });
-      // const payload = this.selection.selected.map((item: Game) => {
-      //    return {
-      //       id: item.id,
-      //       price: {
-      //          amount: +this.priceControl.value,
-      //          currency: this.currencyControl.value
-      //       }
-      //    };
-      // });
-      // this.service.updatePrice(payload as Game[]);
+        };
+        this.service.updatePrice([payload as Game]).subscribe(
+            (res: Game[]) => {
+                this.dataSource = new MatTableDataSource<Game>(res);
+                if (res.length > 10) {
+                    this.dataSource.paginator = this.paginator;
+                }
+                this._editRowId = null;
+                this.cd.markForCheck();
+            }
+        );
+    }
 
-      forkJoin(requests).subscribe((res: Game[][]) => {
-         const result = res[res.length - 1];
-         this.dataSource.data.forEach(item => {
-            item.price = result.find(i => i.name === item.name).price || item.price;
-         });
-         this.dialog.closeAll();
-      });
-   }
+    changePriceForSelectedHandler() {
+        this._editRowId = null;
+        this.dialog.open(this.priceDialog, {
+            width: '500px'
+        });
+    }
+
+    applyFilter(value) {
+        this.dataSource.filter = value;
+    }
+
+    applyPrice() {
+        this.currencyControl.markAsTouched();
+        this.priceControl.markAsTouched();
+        if (this.currencyControl.invalid || this.priceControl.invalid) {
+            return;
+        }
+        const requests = [];
+        this.selection.selected.forEach((item: Game) => {
+            const payload = {
+                id: item.id,
+                price: {
+                    amount: +this.priceControl.value,
+                    currency: this.currencyControl.value
+                }
+            };
+            requests.push(this.service.updatePrice([payload as Game]));
+        });
+        // const payload = this.selection.selected.map((item: Game) => {
+        //    return {
+        //       id: item.id,
+        //       price: {
+        //          amount: +this.priceControl.value,
+        //          currency: this.currencyControl.value
+        //       }
+        //    };
+        // });
+        // this.service.updatePrice(payload as Game[]);
+
+        forkJoin(requests).subscribe((res: Game[][]) => {
+            const result = res[res.length - 1];
+            this.dataSource.data.forEach(item => {
+                item.price = (result.find(i => i.name === item.name) || {price: null}).price || item.price;
+            });
+            this.dialog.closeAll();
+        });
+    }
 }
