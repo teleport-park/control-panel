@@ -61,7 +61,8 @@ export class GamesComponent implements OnInit {
     masterToggle() {
         this.isAllSelected() ?
             this.selection.clear() :
-            this.dataSource.data.forEach(row => this.selection.select(row));
+            // this.dataSource.data.forEach(row => this.selection.select(row));
+        this.dataSource.filteredData.forEach(row => this.selection.select(row));
     }
 
     inlineChangePriceHandler(game: Game) {

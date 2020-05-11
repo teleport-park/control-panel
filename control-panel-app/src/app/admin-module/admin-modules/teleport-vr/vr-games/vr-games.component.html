@@ -14,8 +14,8 @@
                     <td mat-cell *matCellDef="let game">
                         <div class="name mt-3">{{game.name || 'N/A'}}</div>
                         <div class="sub_text mb-3">
-                            <span>{{('ID' | translate).toLowerCase()}}:</span><span class="info">{{game.id || 'N/A'}},</span>
-                            <span>{{('FINGERPRINT' | translate).toLowerCase()}}:</span><span class="info">{{game.fingerprint || 'N/A'}}</span>
+                            <span>{{translateService.instant('ID').toLowerCase()}}:</span><span class="info">{{game.id || 'N/A'}},</span>
+                            <span>{{translateService.instant('FINGERPRINT').toLowerCase()}}:</span><span class="info">{{game.fingerprint || 'N/A'}}</span>
                         </div>
                     </td>
                 </ng-container>

@@ -30,8 +30,8 @@ export class PackagesService {
 
     public getPackages() {
         this.loaderService.dispatchShowLoader(true);
-        // this.http.get(this.urlService.getPackages('GET'))
-        this.http.get('./assets/data/packages.json')
+        this.http.get(this.urlService.getPackages('GET'))
+        // this.http.get('./assets/data/packages.json')
         .pipe(
             filter(data => !!data))
         .subscribe((result: Package[]) => {

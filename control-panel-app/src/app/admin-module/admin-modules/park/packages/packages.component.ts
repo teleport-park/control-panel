@@ -3,7 +3,7 @@ import { PackagesService } from './packages.service';
 import { Router } from '@angular/router';
 import { Package } from './package.model';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSlideToggleChange, MatTableDataSource } from '@angular/material';
 import { TranslateService } from '../../../../common/translations-module';
 
 @Component({
@@ -15,25 +15,30 @@ export class PackagesComponent implements OnInit {
 
     @ViewChild('formTemplate', {static: false}) formTemplate: TemplateRef<any>;
 
-    displayedColumns: string[] = ['timestamp', 'status'];
+    // displayedColumns: string[] = ['timestamp', 'status'];
 
-    packagesColumns: string[] = [
-        'name',
-        'players',
-        'cloudId',
-        'description',
-        'expiresAt',
-        'games',
-        'note',
-        'syncId',
-        'type',
-        'unlim',
-        'enabled',
-        'submenu'];
+    // packagesColumns: string[] = [
+    //     'name',
+    //     'players',
+    //     'cloudId',
+    //     'description',
+    //     'expiresAt',
+    //     'games',
+    //     'note',
+    //     'syncId',
+    //     'type',
+    //     'unlim',
+    //     'active',
+    //     'toggle',
+    //     'submenu'];
+    //
+    // simplePackagesColumns: string[] = ['name', 'players', 'cloudId', 'description', 'games', 'note', 'syncId', 'type', 'unlim'];
 
-    simplePackagesColumns: string[] = ['name', 'players', 'cloudId', 'description', 'games', 'note', 'syncId', 'type', 'unlim'];
+    displayedColumns: string[] = ['name', 'enabled', 'submenu'];
 
     _sliderValue: string = '00:00';
+
+    dataSource: MatTableDataSource<Package>;
 
 
     constructor(public service: PackagesService,
@@ -45,6 +50,9 @@ export class PackagesComponent implements OnInit {
 
     ngOnInit() {
         this.service.getPackages();
+        this.service.packages$.subscribe(res => {
+            this.dataSource = new MatTableDataSource(res);
+        });
     }
 
     edit(item: Package) {
@@ -52,22 +60,21 @@ export class PackagesComponent implements OnInit {
         this.router.navigate(['admin', 'park', 'packages', 'add']);
     }
 
-    toggle(item: Package) {
-        this.service.togglePackage(item.id, {enabled: !item.enabled});
-        item.enabled = !item.enabled;
+    applyFilter(value) {
+        this.dataSource.filter = value;
     }
 
     /**
      * show confirm dialog
      */
-    showConfirmDialog(item: Package) {
+    showConfirmDialog(event: MatSlideToggleChange, pack: Package) {
         this.dialog.open(ConfirmDialogComponent, {
             data: {
                 title: 'DIALOG_CONFIRM_TITLE',
                 message: 'DIALOG_PACKAGE_TOGGLE_CONFIRM_MESSAGE',
                 messageParams: [
-                    item.enabled ? this.translationService.instant('DISABLE') : this.translationService.instant('ENABLE'),
-                    item.name
+                    pack.enabled ? this.translationService.instant('DISABLE') : this.translationService.instant('ENABLE'),
+                    pack.name
                 ]
             } as ConfirmDialogData,
             autoFocus: false
@@ -76,9 +83,18 @@ export class PackagesComponent implements OnInit {
             if (!res) {
                 return;
             }
-            this.toggle(item);
+            this.toggle(event, pack);
             this.cd.markForCheck();
         });
+    }
+
+    toggle(event: MatSlideToggleChange, pack: Package) {
+        const payload = {enabled: !pack.enabled};
+        pack.enabled = !pack.enabled;
+        event.source.checked = pack.enabled;
+        this.cd.markForCheck();
+        this.service.togglePackage(pack.id, payload);
+        event.source.checked = pack.enabled;
     }
 
 }

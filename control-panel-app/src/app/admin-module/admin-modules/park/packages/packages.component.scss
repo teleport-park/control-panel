@@ -31,4 +31,17 @@
     border-radius: 5px;
     background-color: rgba(map-get($dark-color, 500), .7);
   }
+
+  .package-table {
+    width: 100%;
+    table-layout: fixed;
+    .mat-column {
+      &-submenu {
+        width: 3rem;
+      }
+      &-enabled {
+        width: 4rem;
+      }
+    }
+  }
 }
