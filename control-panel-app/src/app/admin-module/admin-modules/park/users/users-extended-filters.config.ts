@@ -8,8 +8,8 @@ export const UserExtendedFilterConfig: ExtendedFilterFieldGroup[] = [
     from: 1,
     to: 99,
     group: [
-      {property: 'age_min'},
-      {property: 'age_max'}
+      {property: 'age_min', validators: [{key: 'min', value: 1}]},
+      {property: 'age_max', validators: [{key: 'max', value: 99}]}
     ]
   }, {
     property: 'genders[]',

@@ -228,6 +228,7 @@
   "STAFF_HIRED": "не уволен",
   "STAFF_FIRED": "уволен",
   "MAX_VALUE_ERROR": "Максимальное значение",
+  "MIN_VALUE_ERROR": "Минимальное значение",
   "INVALID_PATTERN": "Некорректный формат",
   "EDIT_PACKAGE_TITLE": "Редактировать пакет",
   "DIALOG_PACKAGE_TOGGLE_CONFIRM_MESSAGE": "{0} пакет {1}?",

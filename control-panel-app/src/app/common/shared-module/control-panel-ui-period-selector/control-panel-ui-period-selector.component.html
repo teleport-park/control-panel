@@ -1,12 +1,12 @@
 <div class="period-selector_wrapper">
-    <div class="quick-time-filter_wrapper mb-4">
+    <div class="quick-time-filter_wrapper mb-4 flex-wrap">
         <div #fast_link class="period-fast-link mr-4" (click)="setPeriod('hour', 1, 0)"><span>{{'QUICK_FILTER_LAST_HOUR' | translate}}</span></div>
         <div #fast_link class="period-fast-link mr-4" (click)="setPeriod('hour', 6,1)"><span>{{'QUICK_FILTER_LAST_6_HOURS' | translate}}</span></div>
         <div #fast_link class="period-fast-link mr-4" (click)="setPeriod('day', 1,2)"><span>{{'QUICK_FILTER_LAST_DAY' | translate}}</span></div>
         <div #fast_link class="period-fast-link mr-4" (click)="setPeriod('week', 1,3)"><span>{{'QUICK_FILTER_LAST_WEEK' | translate}}</span></div>
         <div #fast_link class="period-fast-link mr-4" (click)="setPeriod('month', 1,4)"><span>{{'QUICK_FILTER_LAST_MONTH' | translate}}</span></div>
     </div>
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center flex-wrap">
         <mat-form-field class="time">
             <input matInput type="time" [formControl]="_fromTimeControl" placeholder="{{fromLabel}}">
             <mat-hint>{{'TIME' | translate}}</mat-hint>
@@ -54,7 +54,7 @@
             <mat-hint>{{'TRANSACTION_DATE' | translate}}</mat-hint>
         </mat-form-field>
         <div class="actions">
-            <button mat-raised-button color="primary" (click)="submit()" style="color: #fff">{{submitLabel}}</button>
+            <button mat-flat-button color="primary" (click)="submit()" style="color: #fff">{{submitLabel}}</button>
         </div>
     </div>
 </div>

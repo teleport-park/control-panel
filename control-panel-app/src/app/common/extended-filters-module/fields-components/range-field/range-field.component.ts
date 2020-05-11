@@ -24,4 +24,17 @@ export class RangeFieldComponent implements OnInit {
     }
   }
 
+  checkMax() {
+      if (this.config.group[1].validators && this.config.group[1].validators.length) {
+          return (this.config.group[1].validators.find(i => i.key === 'max') || {value: null}).value;
+      }
+      return null;
+  }
+
+  checkMin() {
+      if (this.config.group[0].validators && this.config.group[0].validators.length) {
+          return (this.config.group[0].validators.find(i => i.key === 'min') || {value: null}).value;
+      }
+      return null;
+  }
 }

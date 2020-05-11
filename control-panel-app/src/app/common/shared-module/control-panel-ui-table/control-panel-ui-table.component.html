@@ -25,7 +25,7 @@
                 </ng-container>
                 <ng-container *ngIf="isBoolean(row[column]) && !column.includes('_at')">
                     <span class="table_cell-inner"><mat-icon
-                            [color]="row[column] ? 'success' : 'warn'">{{row[column] ? 'check_circle' : 'cancel_circle'}}</mat-icon></span>
+                            color="{{row[column] ? 'success' : 'warn'}}">{{row[column] ? 'check_circle' : 'cancel_circle'}}</mat-icon></span>
                 </ng-container>
 
                 <ng-container *ngIf="column.includes('_at')">

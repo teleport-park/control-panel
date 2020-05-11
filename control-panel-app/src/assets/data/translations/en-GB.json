@@ -225,6 +225,7 @@
   "STAFF_HIRED": "hired",
   "STAFF_FIRED": "fired",
   "MAX_VALUE_ERROR": "Max value ",
+  "MIN_VALUE_ERROR": "Min value",
   "INVALID_PATTERN": "Invalid value format",
   "EDIT_PACKAGE_TITLE": "Edit package",
   "DIALOG_PACKAGE_TOGGLE_CONFIRM_MESSAGE": "{0} package {1}?",
