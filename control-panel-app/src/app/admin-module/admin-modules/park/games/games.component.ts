@@ -6,6 +6,7 @@ import { GamesService } from './services/games.service';
 import { TranslateService } from '../../../../common/translations-module';
 import { FormControl, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
+import { LoaderService } from '../../../../services/loader.service';
 
 @Component({
     selector: 'games',
@@ -26,6 +27,8 @@ export class GamesComponent implements OnInit {
 
     _editRowId: string = null;
 
+    _editRowPrice: {amount: number, currency: string} = null;
+
     priceControl: FormControl = new FormControl(0, [Validators.required, Validators.pattern('[0-9]+')]);
 
     currencyControl: FormControl = new FormControl('TLPVR', Validators.required);
@@ -33,6 +36,7 @@ export class GamesComponent implements OnInit {
     constructor(private service: GamesService,
                 private cd: ChangeDetectorRef,
                 private dialog: MatDialog,
+                public loaderService: LoaderService,
                 public translation: TranslateService) {
     }
 
@@ -91,6 +95,12 @@ export class GamesComponent implements OnInit {
         this.dataSource.filter = value;
     }
 
+    revertPrice(id: string) {
+        this.dataSource.data.find(i => i.id === this._editRowId).price = this._editRowPrice;
+        this._editRowId = id;
+        this.cd.markForCheck();
+    }
+
     applyPrice() {
         this.currencyControl.markAsTouched();
         this.priceControl.markAsTouched();
@@ -118,12 +128,14 @@ export class GamesComponent implements OnInit {
         //    };
         // });
         // this.service.updatePrice(payload as Game[]);
-
+        this.loaderService.dispatchShowLoader(true, 10);
         forkJoin(requests).subscribe((res: Game[][]) => {
             const result = res[res.length - 1];
             this.dataSource.data.forEach(item => {
-                item.price = (result.find(i => i.name === item.name) || {price: null}).price || item.price;
+                item.price = (result.find(i => i.id === item.id) || {price: null}).price || item.price;
             });
+            this.cd.markForCheck();
+            this.loaderService.dispatchShowLoader(false);
             this.dialog.closeAll();
         });
     }

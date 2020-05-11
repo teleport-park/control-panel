@@ -41,6 +41,7 @@ export class IconService {
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'female', iconPath);
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'settings', iconPath);
     IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'empty', iconPath);
+    IconService.pushSvgIconToRegistry(iconRegistry, sanitizer, 'calendar', iconPath);
   }
 
   private static pushSvgIconToRegistry(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, iconName: string, iconPath: string): void {

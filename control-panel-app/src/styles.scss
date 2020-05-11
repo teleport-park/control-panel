@@ -287,4 +287,16 @@ html, body {
   .mat-card-content {
     margin-bottom: 0;
   }
+
+  .mat-datepicker-toggle {
+    .mat-icon-button {
+      width: 1.8rem;
+      height: 1.8rem;
+      .mat-datepicker-toggle-default-icon {
+        height: 1.6rem;
+        width: 1.5rem;
+        font-size: 1.2rem;
+      }
+    }
+  }
 }

@@ -57,7 +57,7 @@
                                 <ng-container *ngIf="game.price">
                                     <span>{{game.price.amount}} {{game.price.currency}}</span>
                                 </ng-container>
-                                <button mat-icon-button color="accent" (click)="_editRowId = game.id; game.price = game.price || {amount: 0, currency: 'TLPVR'}">
+                                <button mat-icon-button color="accent" (click)="_editRowId ? revertPrice(game.id) : _editRowId = game.id; game.price = game.price || {amount: 0, currency: 'TLPVR'}; _editRowPrice = {amount: game.price.amount, currency: game.price.currency}">
                                     <mat-icon>edit</mat-icon>
                                 </button>
                             </ng-container>
@@ -65,7 +65,7 @@
                                 <div class="d-flex align-items-center justify-content-between w-100">
                                     <div class="d-flex align-items-center">
                                         <mat-form-field class="amount-field">
-                                            <input matInput [value]="game?.price?.amount" [(ngModel)]="game.price.amount">
+                                            <input matInput amount-format value="{{game?.price?.amount}}" [(ngModel)]="game.price.amount">
                                         </mat-form-field>
                                         <div>{{game?.price?.currency}}</div>
 
@@ -81,7 +81,7 @@
                                         <button mat-icon-button color="primary" (click)="inlineChangePriceHandler(game)" [disabled]="!game.price.currency">
                                             <mat-icon>check</mat-icon>
                                         </button>
-                                        <button mat-icon-button color="warn" (click)="_editRowId = null">
+                                        <button mat-icon-button color="warn" (click)="game.price = _editRowPrice; _editRowId = null; _editRowPrice = null">
                                             <mat-icon>close</mat-icon>
                                         </button>
                                     </div>
@@ -106,29 +106,38 @@
 </div>
 
 <ng-template #priceDialogTemplate>
-    <h3 mat-dialog-title>{{translation.instant('APPLY_PRICE_TITLE')}}</h3>
-    <p>{{translation.instant('FOR_NEXT_GAMES_LABEL')}}</p>
-    <div class="games-list mb-4">
-        <ul>
-            <li *ngFor="let game of selection.selected">{{game.name}}</li>
-        </ul>
+    <div class="price-dialog_wrapper">
+        <div class="loader" *ngIf="(loaderService.showLoader$ | async)">
+            <mat-progress-spinner
+                    color="primary"
+                    mode="indeterminate">
+            </mat-progress-spinner>
+        </div>
+        <h3 mat-dialog-title>{{translation.instant('APPLY_PRICE_TITLE')}}</h3>
+        <p>{{translation.instant('FOR_NEXT_GAMES_LABEL')}}</p>
+        <div class="games-list mb-4">
+            <ul>
+                <li *ngFor="let game of selection.selected">{{game.name}}</li>
+            </ul>
+        </div>
+        <div class="d-flex align-items-center light-theme mb-4">
+            <mat-form-field class="amount-field mr-4">
+                <input [formControl]="priceControl" amount-format matInput [placeholder]="translation.instant('PRICE')">
+                <mat-error *ngIf="priceControl?.errors?.required">{{translation.instant('REQUIRED_FIELD', [translation.instant('PRICE')])}}</mat-error>
+                <mat-error *ngIf="priceControl?.errors?.pattern">{{translation.instant('ONLY_NUMBER', [translation.instant('PRICE')])}}</mat-error>
+            </mat-form-field>
+            <div>TLPVR</div>
+            <!--        <mat-form-field class="currency-field">-->
+            <!--            <mat-select [placeholder]="translation.instant('TRANSACTION_CURRENCY')" [formControl]="currencyControl">-->
+            <!--                <mat-option value="TLPVR">TLPVR</mat-option>-->
+            <!--                <mat-option value="COIN">COIN</mat-option>-->
+            <!--                <mat-option value="BYN">BYN</mat-option>-->
+            <!--            </mat-select>-->
+            <!--            <mat-error *ngIf="currencyControl?.errors?.required">{{translation.instant('REQUIRED_FIELD', [translation.instant('PRICE')])}}</mat-error>-->
+            <!--        </mat-form-field>-->
+        </div>
     </div>
-    <div class="d-flex align-items-center light-theme mb-4">
-        <mat-form-field class="amount-field mr-4">
-            <input [formControl]="priceControl" matInput [placeholder]="translation.instant('PRICE')">
-            <mat-error *ngIf="priceControl?.errors?.required">{{translation.instant('REQUIRED_FIELD', [translation.instant('PRICE')])}}</mat-error>
-            <mat-error *ngIf="priceControl?.errors?.pattern">{{translation.instant('ONLY_NUMBER', [translation.instant('PRICE')])}}</mat-error>
-        </mat-form-field>
-        <div>TLPVR</div>
-<!--        <mat-form-field class="currency-field">-->
-<!--            <mat-select [placeholder]="translation.instant('TRANSACTION_CURRENCY')" [formControl]="currencyControl">-->
-<!--                <mat-option value="TLPVR">TLPVR</mat-option>-->
-<!--                <mat-option value="COIN">COIN</mat-option>-->
-<!--                <mat-option value="BYN">BYN</mat-option>-->
-<!--            </mat-select>-->
-<!--            <mat-error *ngIf="currencyControl?.errors?.required">{{translation.instant('REQUIRED_FIELD', [translation.instant('PRICE')])}}</mat-error>-->
-<!--        </mat-form-field>-->
-    </div>
+
     <div class="actions d-flex align-items-center justify-content-end">
         <button mat-flat-button color="warn" class="ml-2" mat-dialog-close>{{translation.instant('DIALOG_CANCEL_BUTTON_LABEL')}}</button>
         <button mat-flat-button color="accent" class="ml-2" (click)="applyPrice()">{{translation.instant('DIALOG_CONFIRM_BUTTON_LABEL')}}</button>
