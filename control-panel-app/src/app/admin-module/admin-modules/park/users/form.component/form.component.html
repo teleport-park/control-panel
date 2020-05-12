@@ -50,7 +50,7 @@
             </mat-form-field>
             <mat-form-field>
                 <input matInput #phoneInput placeholder="{{'PHONE' | translate}}" formControlName="phone"
-                       mask=" (00) 000 00 00">
+                       mask="000000000000000" [validation]="false">
                 <mat-error>
                     {{'REQUIRED_FIELD' | translate:[translateService.instant('PHONE')]}}
                 </mat-error>

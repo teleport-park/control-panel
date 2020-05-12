@@ -61,7 +61,7 @@ const sortStorageSet = () => {
         TranslationModule,
         SharedModule,
         ExtendedFiltersModule,
-        NgxMaskModule.forRoot({prefix: '+375'})
+        NgxMaskModule.forRoot({prefix: '+'})
     ],
     providers: [{
         provide: ENTITY_SERVICE, useFactory: UserServiceFactory, deps: [HttpClient, ApiUrlsService, LoaderService]

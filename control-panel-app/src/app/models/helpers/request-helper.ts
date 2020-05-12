@@ -15,6 +15,8 @@ export class RequestHelper implements IRequestHelper {
 
     public filterData: any;
 
+    public _query: string;
+
     get Count() {
         return this._count;
     }
@@ -55,7 +57,8 @@ export class RequestHelper implements IRequestHelper {
     }
 
     public getData(queryString?: string): Observable<any[]> {
-        return this._request(queryString, this._pagination.limit, this._pagination.offset, this._sorting, this._filterRequest)
+        this._query = queryString !== undefined ? queryString : this._query;
+        return this._request(this._query, this._pagination.limit, this._pagination.offset, this._sorting, this._filterRequest)
         .pipe(
             tap((res: HttpResponse<any[]>) => {
                 this._count = +res.headers.get('x-total-count');

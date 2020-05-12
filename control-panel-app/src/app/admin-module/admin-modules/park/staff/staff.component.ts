@@ -224,6 +224,7 @@ export class StaffComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+        this.service.requestHelper._query = null;
         this.service.requestHelper.resetPagination();
         this.destroyed$.next(true);
         this.destroyed$.complete();
