@@ -29,16 +29,26 @@ export const StaffExtendedFiltersConfig: ExtendedFilterFieldGroup[] = [
     //   type: 'select',
     //   options: []
     // }
+    // {
+    //     property: 'role',
+    //     label: 'STAFF_ROLES',
+    //     type: 'radio-button-group',
+    //     options: [
+    //         {value: 'super', label: 'super'},
+    //         {value: 'admin', label: 'admin'},
+    //         {value: 'cashier', label: 'cashier'},
+    //         {value: 'operator', label: 'operator'},
+    //     ]
+    // },
     {
-        property: 'role',
-        label: 'STAFF_ROLES',
-        type: 'radio-button-group',
-        options: [
-            {value: 'super', label: 'super'},
-            {value: 'admin', label: 'admin'},
-            {value: 'cashier', label: 'cashier'},
-            {value: 'operator', label: 'operator'},
-        ]
+      property: 'roles[]',
+      label: 'STAFF_ROLES',
+      type: 'check-box-group',
+      options: [
+          {value: 'admin', label: 'admin'},
+          {value: 'cashier', label: 'cashier'},
+          {value: 'operator', label: 'operator'},
+      ]
     },
     // {
     //     property: 'state',

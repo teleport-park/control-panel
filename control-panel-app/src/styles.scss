@@ -186,6 +186,15 @@ html, body {
         }
       }
     }
+
+  }
+
+  .mat-list-option {
+    .mat-list-item-content {
+      .mat-list-text {
+        padding-left: .4rem !important;
+      }
+    }
   }
 
   .bold {

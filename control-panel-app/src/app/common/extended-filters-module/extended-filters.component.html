@@ -1,13 +1,12 @@
 <div class="extended-filter_wrapper">
-    <h4>{{translateService.instant('EXTENDED_FILTER_TITLE')}}</h4>
+    <h5 class="mb-2">{{translateService.instant('EXTENDED_FILTER_TITLE')}}</h5>
     <ng-container *ngIf="form">
         <form class="extended-filters-form" [formGroup]="form">
             <div *ngFor="let field of config;" class="field">
                 <ng-container extendedFilters [config]="field" [group]="form"></ng-container>
             </div>
         </form>
-        <div class="submit d-flex justify-content-end">
-            <!--            <button mat-flat-button color="primary" (click)="close.emit()">{{translateService.instant('CLOSE')}}</button>-->
+        <div class="submit d-flex justify-content-start mt-2">
             <button mat-flat-button color="warn" type="button" (click)="clearFilter()">{{translateService.instant('CLEAR')}}</button>
         </div>
     </ng-container>
