@@ -73,14 +73,9 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
      */
     @Input() set resetPagination(data: { reset: boolean }) {
         if (data && this.paginator) {
-            let pageSize = null;
             this.paginator.toArray().forEach(p => {
-                if (!pageSize) {
-                    pageSize = p.pageSize;
-                }
                 p.pageIndex = 0;
             });
-            this.changePageHandler({pageIndex: 0, pageSize} as PageEvent);
         }
     }
 
