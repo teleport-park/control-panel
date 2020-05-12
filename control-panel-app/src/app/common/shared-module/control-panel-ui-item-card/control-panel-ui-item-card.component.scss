@@ -26,6 +26,7 @@
     .hardware-item_title {
       text-align: center;
       margin-bottom: 1rem;
+
       & > h4 {
         white-space: nowrap;
         overflow: hidden;
@@ -87,17 +88,17 @@
     word-break: break-word;
   }
 
-  .mat-icon {
-    &.offline {
-      color: $warn;
-    }
-
-    &.online {
-      color: $success;
-    }
+  &.offline {
+    color: $warn;
   }
+
+  &.online {
+    color: $success;
+  }
+
   .game-link {
     color: rgba(0, 0, 0, .7);
+
     &:hover {
       color: map-get($primary-color, 500);
     }
@@ -108,9 +109,11 @@
   .hardware-item_wrapper {
     background-color: rgba(255, 255, 255, .5);
     color: rgba(0, 0, 0, .6);
+
     &:hover {
       background-color: rgba(255, 255, 255, 1);
     }
+
     &:before {
       opacity: .5;
     }

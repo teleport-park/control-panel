@@ -3,9 +3,11 @@ import { TVRModel } from '../tvr.model';
 
 export class CashBoxController extends BaseController {
 
-    uuid: string;
+    locked: boolean;
+    enabled: boolean;
+    access_token: string;
 
-    ip: string;
+    connected_at: string | Date;
 
     constructor(model: TVRModel) {
         super(model);

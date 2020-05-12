@@ -82,11 +82,8 @@ export class ApiUrlsService implements IApiUrlsInterface {
         return ApiUrlsService.getPagedUrl(API.GATE_INSTANCES, requestMethod, id) + '/auth';
     }
 
-    public getCashBox(requestMethod: 'GET' | 'PUT' | 'DELETE', id?: string): string | null {
-        if (requestMethod === 'GET') {
-            return ApiUrlsService.getPagedUrl(API.CASH_BOX_INSTANCES, requestMethod, id);
-        }
-        return ApiUrlsService.getPagedUrl(API.CASH_BOX_INSTANCES, requestMethod, id) + '/auth';
+    public getCashBox(requestMethod: 'GET' | 'PATCH', id?: string): string | null {
+        return ApiUrlsService.getPagedUrl(API.CASH_BOX_INSTANCES, requestMethod, id);
     }
 
     public getPackages(requestMethod: 'GET' | 'PUT' | 'POST' | 'PATCH', id?: string) {
@@ -143,9 +140,11 @@ export class ApiUrlsService implements IApiUrlsInterface {
     public getBillingAccounts(requestMethod: 'GET') {
         return ApiUrlsService.getPagedUrl(API.BILLING_ACCOUNTS, requestMethod);
     }
+
     public getBillingTransactions(requestMethod: 'GET') {
         return ApiUrlsService.getPagedUrl(API.BILLING_TRANSACTIONS, requestMethod);
     }
+
     public getBillingInvoices(requestMethod: 'GET') {
         return ApiUrlsService.getPagedUrl(API.BILLING_INVOICES, requestMethod);
     }

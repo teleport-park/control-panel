@@ -269,5 +269,7 @@
   "MAX_DATE_VALIDATION_ERROR": "Дата рождения не соответствует минимальному возрасту в {0} лет, максимальная дата {1}",
   "GRANT": "Разрешить",
   "REVOKE": "Запретить",
-  "FINGERPRINT": ""
+  "FINGERPRINT": "",
+  "CONTROLLER_LOCKED": "Заблокирован",
+  "CONTROLLER_UNLOCKED": "Разблокирован"
 }

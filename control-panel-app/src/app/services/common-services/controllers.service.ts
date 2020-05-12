@@ -10,8 +10,7 @@ export class ControllersService implements IControllerService<ControllerType> {
     controllers$: BehaviorSubject<any> = new BehaviorSubject<any>([]);
 
     constructor(private http: HttpClient,
-                private getUrl: (method: string, ref?: string) => string,
-                private mockData: any) {
+                private getUrl: (method: string, ref?: string) => string) {
         this.getControllers();
     }
 
@@ -23,10 +22,6 @@ export class ControllersService implements IControllerService<ControllerType> {
         }, error => {
             this.refreshControllers$.next(false);
         });
-        // setTimeout(() => {
-        //     this.controllers$.next(this.mockData);
-        //     this.refreshControllers$.next(true);
-        // });
     }
 
     refresh() {
@@ -60,5 +55,12 @@ export class ControllersService implements IControllerService<ControllerType> {
         .subscribe(_ => {
             this.getControllers();
         });
+    }
+
+    toggle(payload: {enabled: boolean}, id: string) {
+        this.http.patch(this.getUrl('PATCH', id), payload)
+            .subscribe(_ => {
+                this.getControllers();
+            });
     }
 }

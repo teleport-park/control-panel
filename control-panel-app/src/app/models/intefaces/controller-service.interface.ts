@@ -21,6 +21,13 @@ export interface IControllerService<T> {
     revoke(item: T, id?: string): void;
 
     /**
+     * toggle
+     * @param payload
+     * @param id
+     */
+    toggle(payload: {enabled: boolean}, id): void;
+
+    /**
      * get controllers list
      */
     getControllers(): void;

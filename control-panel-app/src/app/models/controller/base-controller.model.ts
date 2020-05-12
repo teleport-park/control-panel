@@ -29,8 +29,6 @@ export class BaseController {
 
     address: string;
 
-    uuid: string;
-
     ip: string;
 
     constructor(model) {

@@ -267,5 +267,7 @@
   "MAX_DATE_VALIDATION_ERROR": "Date of birth does not match the minimum age of {0} years, the maximum date is {1}",
   "GRANT": "Grant",
   "REVOKE": "Revoke",
-  "FINGERPRINT": ""
+  "FINGERPRINT": "",
+  "CONTROLLER_LOCKED": "Locked",
+  "CONTROLLER_UNLOCKED": "Unlocked"
 }
