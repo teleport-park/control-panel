@@ -12,7 +12,7 @@ export const API = {
 
     // Cash box section
 
-    CASH_BOX_INSTANCES: 'tvr/mgmt/cashbox',
+    CASH_BOX_INSTANCES: 'cashbox/mgmt/machines',
 
 
     GAMES: 'cpanel/games',

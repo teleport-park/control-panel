@@ -17,7 +17,7 @@ export class FormComponent {
     /**
      * email regexp
      */
-    static readonly EMAIL_REGEXP: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/i;
+    static readonly EMAIL_REGEXP: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]{1,60}\.)+[a-zA-ZА-Яа-я]{2,}))$/i;
 
     _genders = genders;
 
@@ -103,6 +103,7 @@ export class FormComponent {
      */
     private getUserForm() {
         return this.fb.group({
+            id: '',
             name: ['', Validators.required],
             nickname: '',
             age: ['', [Validators.min(this.initService.config.visitor_min_age), Validators.max(99)]],
@@ -168,7 +169,7 @@ export class FormComponent {
             if (indexEnd < 0) {
                 indexEnd = user.name.length;
             }
-            this.user.nickname = user.name.slice(indexStart + 1, indexEnd).trim();
+            this.user.nickname = user.name.slice(indexStart + 1, indexEnd).trim().substring(0, 100);
             this.user.name = user.name.slice(0, indexStart).trim();
         }
     }
