@@ -265,6 +265,7 @@
   "ACCOUNTS_LIST_TITLE": "Список аккаунтов",
   "INVOICES_LIST_TITLE": "Список счетов",
   "MIN_AGE_VALIDATION_ERROR": "Минимальный возраст {0} лет",
+  "MAX_AGE_VALIDATION_ERROR": "Максимальный возраст {0} лет",
   "MAX_DATE_VALIDATION_ERROR": "Дата рождения не соответствует минимальному возрасту в {0} лет, максимальная дата {1}",
   "GRANT": "Разрешить",
   "REVOKE": "Запретить",

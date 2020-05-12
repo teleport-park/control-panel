@@ -263,6 +263,7 @@
   "ACCOUNTS_LIST_TITLE": "Accounts list",
   "INVOICES_LIST_TITLE": "Invoices list",
   "MIN_AGE_VALIDATION_ERROR": "Min age {0} years",
+  "MAX_AGE_VALIDATION_ERROR": "Max age {0} years",
   "MAX_DATE_VALIDATION_ERROR": "Date of birth does not match the minimum age of {0} years, the maximum date is {1}",
   "GRANT": "Grant",
   "REVOKE": "Revoke",

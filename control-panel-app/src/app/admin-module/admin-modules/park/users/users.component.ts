@@ -13,13 +13,13 @@ import { default as config } from '../../../../../config/app-config.json';
 import { Config } from '../../../../interfaces';
 import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
 import { Router } from '@angular/router';
-import { ExtendedFilterFieldGroup } from '../../../../common/extended-filters-module/extended-filters.component';
-import { UserExtendedFilterConfig } from './users-extended-filters.config';
+import { ExtendedConfigBuilder } from './users-extended-filters.config';
 import { ExtendedFilterUrlParamsInterface } from '../../../../interfaces/extended-filter-url-params.interface';
 import { ENTITY_SERVICE, EntityService, PaginationSetting } from '../../../../models/intefaces';
 import { BoundCardDialogComponent } from '../../../../common/shared-module/dialogs/bound-card-dialog/bound-card-dialog.component';
 import { CardsService } from '../cards/services/cards.service';
 import moment, { Moment } from 'moment';
+import { InitService } from '../../../../services/init.service';
 
 @Component({
     selector: 'app-users',
@@ -33,7 +33,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     /**
      * extended filters config
      */
-    extendedFiltersConfig: ExtendedFilterFieldGroup[] = UserExtendedFilterConfig;
+    extendedFiltersConfig: ExtendedConfigBuilder;
 
     /**
      * reset pagination
@@ -96,6 +96,7 @@ export class UsersComponent implements OnInit, OnDestroy {
         private router: Router,
         private fb: FormBuilder,
         private cardService: CardsService,
+        private initService: InitService,
         @Inject(ENTITY_SERVICE) private service: EntityService<Visitor>,
         @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
         @Inject('ExtendedFilterUrlParamsInterface') private extendedFilterUrlBuilder: ExtendedFilterUrlParamsInterface) {
@@ -114,7 +115,7 @@ export class UsersComponent implements OnInit, OnDestroy {
         this.service.getEntities();
         const data = config as Config;
         this.sortedColumn = data.users.sortedColumns || [];
-
+        this.extendedFiltersConfig = new ExtendedConfigBuilder(this.initService);
     }
 
     applyQuickFilter(value: string) {
@@ -213,7 +214,7 @@ export class UsersComponent implements OnInit, OnDestroy {
      * apply extended filters
      * @param filterData
      */
-    applyFilter(filterData: {reg_from: Moment, reg_to: Moment}): void {
+    applyFilter(filterData: { reg_from: Moment, reg_to: Moment }): void {
         if (!filterData.reg_from) {
             delete filterData.reg_to;
         }

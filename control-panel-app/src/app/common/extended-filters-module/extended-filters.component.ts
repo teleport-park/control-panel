@@ -16,6 +16,7 @@ export interface ExtendedFilterFieldGroup {
     label?: string;
     from?: number;
     to?: number;
+    initialValue?: any;
     validators?: [{key: string, value: any}];
 }
 
@@ -72,6 +73,9 @@ export class ExtendedFiltersComponent<T> implements OnInit, OnDestroy {
                         childControl.validators.forEach(validator => {
                             c.setValidators(Validators[validator.key](validator.value));
                         });
+                    }
+                    if (childControl.initialValue) {
+                        c.setValue(childControl.initialValue);
                     }
                     group.addControl(childControl.property, c);
                 });

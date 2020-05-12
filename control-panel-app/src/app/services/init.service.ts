@@ -27,7 +27,7 @@ export class InitService {
     /**
      * init config
      */
-    config: InitConfig = {api_url: '/', refresh_interval: 10, ws_url: '/', visitor_min_age: 7};
+    config: InitConfig = {api_url: '/', refresh_interval: 10, ws_url: '/', visitor_min_age: 1};
 
 
 
@@ -38,7 +38,7 @@ export class InitService {
      * init app
      */
     init() {
-        return new Promise<void>((resolve, reject) => {
+        return new Promise<void>((resolve, _) => {
             try {
                 const config = require('../../config/app-init-config.json');
                 if (config && config.api_url) {

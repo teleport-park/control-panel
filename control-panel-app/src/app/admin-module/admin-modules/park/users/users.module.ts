@@ -4,9 +4,8 @@ import { UsersComponent } from './users.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../../../../material.module';
 import { TranslationModule } from '../../../../common/translations-module/translation.module';
-import { FormModule } from '../../../../common/form/form.module';
 import { SharedModule } from '../../../../common/shared-module/shared.module';
-import { AddOrEditEntityDialogComponent, ConfirmDialogComponent } from '../../../../common/shared-module';
+import { ConfirmDialogComponent } from '../../../../common/shared-module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { PermissionGuard } from '../../../../common/auth-module/guards/permission-guard';
@@ -19,6 +18,8 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppStorageKey } from '../../../../models/app-storage-key';
 import { Sort } from '@angular/material';
 import { LoaderService } from '../../../../services/loader.service';
+import { NgxMaskModule } from 'ngx-mask';
+import { FormComponent } from './form.component/form.component';
 
 const storageKey: string = 'VISITORS';
 
@@ -51,21 +52,21 @@ const sortStorageSet = () => {
 };
 
 @NgModule({
-    declarations: [UsersComponent, UserComponent],
+    declarations: [UsersComponent, UserComponent, FormComponent],
     imports: [
         CommonModule,
         ReactiveFormsModule,
         MaterialModule,
         UserRoutingModule,
         TranslationModule,
-        FormModule,
         SharedModule,
-        ExtendedFiltersModule
+        ExtendedFiltersModule,
+        NgxMaskModule.forRoot({prefix: '+375'})
     ],
     providers: [{
         provide: ENTITY_SERVICE, useFactory: UserServiceFactory, deps: [HttpClient, ApiUrlsService, LoaderService]
     }],
-    entryComponents: [AddOrEditEntityDialogComponent, ConfirmDialogComponent]
+    entryComponents: [ConfirmDialogComponent]
 })
 export class UsersModule {
     constructor(overlayContainer: OverlayContainer) {

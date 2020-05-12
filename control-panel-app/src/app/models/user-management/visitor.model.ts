@@ -1,4 +1,5 @@
 import moment, { Moment } from 'moment';
+import { InitService } from '../../services/init.service';
 
 export class Visitor {
    /**
@@ -28,7 +29,7 @@ export class Visitor {
    /**
     * age
     */
-   age: number = null;
+   age: number;
 
    /**
     * display name
@@ -39,14 +40,10 @@ export class Visitor {
 
    birthday: any;
 
-   // get Age() {
-   //     return this.age + '';
-   // }
-   // set Age(value: string) {
-   //     this.age = parseInt(value, 2);
-   // }
-
-   constructor() {
+   constructor(private init?: InitService) {
+       if (init) {
+           this.age = init.config.visitor_min_age;
+       }
    }
 
    /**

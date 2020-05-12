@@ -1,12 +1,12 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { StaffMember, Visitor } from '../../../models';
+import { StaffMember, Visitor } from '../../../../../models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import moment, { Moment } from 'moment';
-import { TranslateService } from '../../translations-module';
+import { TranslateService } from '../../../../../common/translations-module';
 import { DateAdapter } from '@angular/material';
-import { Avatar } from '../../../models/user-management/avatar.model';
-import { genders, toggleGender } from '../../../utils/utils';
-import { InitService } from '../../../services/init.service';
+import { Avatar } from '../../../../../models/user-management/avatar.model';
+import { genders, toggleGender } from '../../../../../utils/utils';
+import { InitService } from '../../../../../services/init.service';
 
 @Component({
     selector: 'control-panel-ui-form',
@@ -59,7 +59,7 @@ export class FormComponent {
      * @param item { Visitor | StaffMember }
      */
     @Input() set item(item: Visitor) {
-        this.user = Object.assign(new Visitor(), item, {comment: ''});
+        this.user = Object.assign(new Visitor(this.initService), item, {comment: ''});
         this.userForm = this.getUserForm();
         this.userForm.patchValue(this.user);
         if (item.name && item.display_name && item.name !== item.display_name) {
@@ -105,7 +105,7 @@ export class FormComponent {
         return this.fb.group({
             name: ['', Validators.required],
             nickname: '',
-            age: ['', Validators.min(this.initService.config.visitor_min_age)],
+            age: ['', [Validators.min(this.initService.config.visitor_min_age), Validators.max(99)]],
             birthday: '',
             gender: 'male',
             email: ['', [Validators.pattern(FormComponent.EMAIL_REGEXP)]],

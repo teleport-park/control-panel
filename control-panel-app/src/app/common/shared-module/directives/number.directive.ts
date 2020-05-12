@@ -6,6 +6,8 @@ import { MatSnackBar } from '@angular/material';
 })
 
 export class NumberDirective {
+
+    @Input() max: number = 99;
     /**
      * element ref
      */
@@ -14,7 +16,7 @@ export class NumberDirective {
     /**
      * pattern
      */
-    pattern = '^[\\d]*\\.?[\\d]*$';
+    pattern = '^[0-9]+$';
 
     /**
      * constructor
@@ -26,7 +28,7 @@ export class NumberDirective {
     /**
      * listener for key down event
      */
-    @HostListener('keypress', ['$event']) onKeyPress(event: KeyboardEvent) {
+    @HostListener('keydown', ['$event']) onKeyPress(event: KeyboardEvent) {
         if (event.keyCode !== 8 && event.keyCode !== 46 && event.keyCode !== 37 && event.keyCode !== 39 && !event.ctrlKey) {
             return new RegExp(this.pattern).test(event.key);
         }

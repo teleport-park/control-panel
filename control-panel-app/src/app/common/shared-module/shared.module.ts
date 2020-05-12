@@ -7,10 +7,8 @@ import { AmountFormatDirective, NumberDirective } from './directives/number.dire
 import { ControlPanelUiCardComponent } from './control-panel-ui-card/control-panel-ui-card.component';
 import { ControlPanelUiTableComponent } from './control-panel-ui-table/control-panel-ui-table.component';
 import { ControlPanelUiSelectionComponent } from './control-panel-ui-selection/control-panel-ui-selection.component';
-import { AddOrEditEntityDialogComponent } from './dialogs/add-entity-dialog/add-or-edit-entity-dialog.component';
 import { AddGroupDialogComponent } from './dialogs/add-group-dalog/add-group-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormModule } from '../form/form.module';
 import { AddSimpleEntityDialogComponent } from './dialogs/add-simple-entity-dialog/add-simple-entity-dialog.component';
 import { ControlPanelUiActionToolbarComponent } from './control-panel-ui-action-toolbar/control-panel-ui-action-toolbar.component';
 import { ControlPanelUiWidgetComponent } from './control-panel-ui-widget/control-panel-ui-widget.component';
@@ -41,7 +39,6 @@ const MODULES = [
     ControlPanelUiCardComponent,
     ControlPanelUiTableComponent,
     ControlPanelUiSelectionComponent,
-    AddOrEditEntityDialogComponent,
     AddGroupDialogComponent,
     AddSimpleEntityDialogComponent,
     ControlPanelUiActionToolbarComponent,
@@ -72,7 +69,6 @@ const MODULES = [
         MaterialModule,
         ReactiveFormsModule,
         FormsModule,
-        FormModule,
         ChartistModule,
         MatRippleModule
     ],

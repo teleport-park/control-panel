@@ -7,14 +7,12 @@ import { StaffService } from './services/staff.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../../../material.module';
 import { TranslationModule } from '../../../../common/translations-module/translation.module';
-import { FormModule } from '../../../../common/form/form.module';
 import { SharedModule } from '../../../../common/shared-module/shared.module';
 import {
-   AddGroupDialogComponent,
-   AddOrEditEntityDialogComponent,
-   AddSimpleEntityDialogComponent,
-   AddStaffDialogComponent,
-   ConfirmDialogComponent
+    AddGroupDialogComponent,
+    AddSimpleEntityDialogComponent,
+    AddStaffDialogComponent,
+    ConfirmDialogComponent
 } from '../../../../common/shared-module';
 import { GroupsService } from './groups/services/groups.service';
 import { PermissionGuard } from '../../../../common/auth-module/guards/permission-guard';
@@ -32,61 +30,59 @@ import { LoaderService } from '../../../../services/loader.service';
 const storageKey: string = 'STAFF';
 
 const routes: Routes = [{
-   path: '',
-   component: StaffComponent,
-   children: [{
-      path: 'groups',
-      component: GroupsComponent,
-      data: {title: 'ADMIN_MENU_GROUPS'},
-      canActivate: [PermissionGuard]
-   }, {
-      path: ':id',
-      component: StaffMemberComponent,
-      data: {title: 'ADMIN_MENU_STAFF'},
-      canActivate: [PermissionGuard]
-   }]
+    path: '',
+    component: StaffComponent,
+    children: [{
+        path: 'groups',
+        component: GroupsComponent,
+        data: {title: 'ADMIN_MENU_GROUPS'},
+        canActivate: [PermissionGuard]
+    }, {
+        path: ':id',
+        component: StaffMemberComponent,
+        data: {title: 'ADMIN_MENU_STAFF'},
+        canActivate: [PermissionGuard]
+    }]
 }];
 
 export const StaffRoutingModule = RouterModule.forChild(routes);
 
 export function StaffServiceFactory(http: HttpClient, urlService: ApiUrlsService, loader: LoaderService) {
-   return new CommonEntityService(http, urlService.getStaff, sortStorageSet(), loader);
+    return new CommonEntityService(http, urlService.getStaff, sortStorageSet(), loader);
 }
 
 const sortStorageSet = () => {
-   const sortState: Sort = JSON.parse(localStorage.getItem(storageKey + AppStorageKey.Sort)) as Sort;
-   if (sortState) {
-      const sort = {};
-      sort[sortState.active.replace('_at', '')] = sortState.direction;
-      return sort;
-   }
+    const sortState: Sort = JSON.parse(localStorage.getItem(storageKey + AppStorageKey.Sort)) as Sort;
+    if (sortState) {
+        const sort = {};
+        sort[sortState.active.replace('_at', '')] = sortState.direction;
+        return sort;
+    }
 };
 
 @NgModule({
-   declarations: [StaffComponent, GroupsComponent, StaffMemberComponent],
-   imports: [
-      CommonModule,
-      StaffRoutingModule,
-      ReactiveFormsModule,
-      MaterialModule,
-      TranslationModule,
-      FormModule,
-      SharedModule,
-      ExtendedFiltersModule
-   ],
-   providers: [StaffService, GroupsService,
-      {provide: ENTITY_SERVICE, useFactory: StaffServiceFactory, deps: [HttpClient, ApiUrlsService, LoaderService]}
-   ],
-   entryComponents: [
-      AddOrEditEntityDialogComponent,
-      ConfirmDialogComponent,
-      AddGroupDialogComponent,
-      AddSimpleEntityDialogComponent,
-      AddStaffDialogComponent
-   ]
+    declarations: [StaffComponent, GroupsComponent, StaffMemberComponent],
+    imports: [
+        CommonModule,
+        StaffRoutingModule,
+        ReactiveFormsModule,
+        MaterialModule,
+        TranslationModule,
+        SharedModule,
+        ExtendedFiltersModule
+    ],
+    providers: [StaffService, GroupsService,
+        {provide: ENTITY_SERVICE, useFactory: StaffServiceFactory, deps: [HttpClient, ApiUrlsService, LoaderService]}
+    ],
+    entryComponents: [
+        ConfirmDialogComponent,
+        AddGroupDialogComponent,
+        AddSimpleEntityDialogComponent,
+        AddStaffDialogComponent
+    ]
 })
 export class StaffModule {
-   constructor(overlayContainer: OverlayContainer) {
-      overlayContainer.getContainerElement().classList.add('light-theme');
-   }
+    constructor(overlayContainer: OverlayContainer) {
+        overlayContainer.getContainerElement().classList.add('light-theme');
+    }
 }

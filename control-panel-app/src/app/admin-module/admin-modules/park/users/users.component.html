@@ -3,11 +3,11 @@
                  mode="{{(point?.handset | async) ? 'over' : 'side'}}"
                  [opened]="false"
                  position="end">
-        <div class="extended-filters_wrapper">
-            <extended-filters [config]="extendedFiltersConfig" [state]="service.requestHelper.filterData"
-                              (close)="extendedFilter.close()"
-                              (applyFilter)="applyFilter($event)"></extended-filters>
-        </div>
+<!--        <div class="extended-filters_wrapper">-->
+<!--            <extended-filters [config]="extendedFiltersConfig.config" [state]="service.requestHelper.filterData"-->
+<!--                              (close)="extendedFilter.close()"-->
+<!--                              (applyFilter)="applyFilter($event)"></extended-filters>-->
+<!--        </div>-->
     </mat-sidenav>
     <mat-sidenav-content #scrollContainer>
         <div class="light-theme">
@@ -17,7 +17,7 @@
                     <control-panel-ui-card class="no-margin" [hideHeader]="true">
                         <div panelUICardHeaderTitle>{{translateService.instant('USERS_TABLE_TITLE')}}</div>
                         <div panelUICardContent>
-                            <extended-filters [config]="extendedFiltersConfig"
+                            <extended-filters [config]="extendedFiltersConfig.config"
                                               [state]="service.requestHelper.filterData"
                                               (close)="extendedFilter.close()"
                                               (applyFilter)="applyFilter($event)"></extended-filters>

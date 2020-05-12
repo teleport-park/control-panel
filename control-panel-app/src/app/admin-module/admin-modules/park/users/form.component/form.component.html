@@ -27,9 +27,11 @@
             <div class="age-gender_wrapper mb-2">
                 <mat-form-field class="age-field">
                     <mat-label>{{'USER_AGE' | translate}}</mat-label>
-                    <input matInput formControlName="age" type="number" (change)="ageChange()">
+                    <input matInput formControlName="age" number type="number" max="99" min="{{initService.config.visitor_min_age}}" (change)="ageChange()">
                     <mat-error
                             *ngIf="userForm.get('age')?.errors?.min">{{'MIN_AGE_VALIDATION_ERROR' | translate:[userForm.get('age')?.errors?.min.min]}}</mat-error>
+                    <mat-error
+                            *ngIf="userForm.get('age')?.errors?.max">{{'MAX_AGE_VALIDATION_ERROR' | translate:[userForm.get('age')?.errors?.max.max]}}</mat-error>
                 </mat-form-field>
                 <mat-radio-group formControlName="gender">
                     <mat-radio-button *ngFor="let gender of _genders" [value]="gender"

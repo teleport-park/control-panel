@@ -1,11 +1,8 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Visitor } from '../../../../../models';
-import { filter, takeUntil } from 'rxjs/operators';
 import { TranslateService } from '../../../../../common/translations-module';
 import { PropertyMap } from '../../../../utils/property-map';
-import moment from 'moment';
-import { AddOrEditEntityDialogComponent } from '../../../../../common/shared-module';
 import { MatDialog } from '@angular/material';
 import { Subject } from 'rxjs';
 
