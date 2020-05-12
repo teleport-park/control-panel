@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ExtendedFilterFieldGroup } from '../../extended-filters.component';
 import { FormGroup } from '@angular/forms';
 import { TranslateService } from '../../../translations-module';
@@ -8,7 +8,7 @@ import { TranslateService } from '../../../translations-module';
   templateUrl: './range-field.component.html',
   styleUrls: ['./range-field.component.scss']
 })
-export class RangeFieldComponent implements OnInit {
+export class RangeFieldComponent {
 
   config: ExtendedFilterFieldGroup;
 
@@ -16,13 +16,7 @@ export class RangeFieldComponent implements OnInit {
 
   range: number[] = [];
 
-  constructor(public translateService: TranslateService) { }
-
-  ngOnInit() {
-    for (let i = this.config.from; i <= this.config.to; i++) {
-      this.range.push(i);
-    }
-  }
+  constructor(public translateService: TranslateService, public cd: ChangeDetectorRef) { }
 
   checkMax() {
       if (this.config.group[1].validators && this.config.group[1].validators.length) {
@@ -36,5 +30,11 @@ export class RangeFieldComponent implements OnInit {
           return (this.config.group[0].validators.find(i => i.key === 'min') || {value: null}).value;
       }
       return null;
+  }
+
+  init() {
+      this.config.group.forEach(i => {
+          this.group.get(i.property).setValue(i.initialValue, {emitEvent: false});
+      });
   }
 }

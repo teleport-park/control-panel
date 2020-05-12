@@ -1,22 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ExtendedFilterFieldGroup } from '../../extended-filters.component';
 import { FormGroup } from '@angular/forms';
 import { TranslateService } from '../../../translations-module';
 
 @Component({
-  selector: 'radio-button-group-field',
-  templateUrl: './radio-button-group-field.component.html',
-  styleUrls: ['./radio-button-group-field.component.scss']
+    selector: 'radio-button-group-field',
+    templateUrl: './radio-button-group-field.component.html',
+    styleUrls: ['./radio-button-group-field.component.scss']
 })
-export class RadioButtonGroupFieldComponent implements OnInit {
+export class RadioButtonGroupFieldComponent {
 
-   config: ExtendedFilterFieldGroup;
+    config: ExtendedFilterFieldGroup;
 
-   group: FormGroup;
+    group: FormGroup;
 
-   constructor(public translateService: TranslateService) { }
+    constructor(public translateService: TranslateService) {
+    }
 
-  ngOnInit() {
-  }
+    init() {
 
+    }
 }

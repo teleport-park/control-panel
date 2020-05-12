@@ -1,8 +1,20 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    QueryList,
+    ViewChildren
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '../translations-module';
 import { EMPTY, Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { ExtendedFiltersDirective } from './extended-filters.directive';
 
 /**
  * extended filters group
@@ -17,7 +29,7 @@ export interface ExtendedFilterFieldGroup {
     from?: number;
     to?: number;
     initialValue?: any;
-    validators?: [{key: string, value: any}];
+    validators?: [{ key: string, value: any }];
 }
 
 /**
@@ -33,10 +45,13 @@ export interface Options {
 @Component({
     selector: 'extended-filters',
     templateUrl: './extended-filters.component.html',
-    styleUrls: ['./extended-filters.component.scss']
+    styleUrls: ['./extended-filters.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ExtendedFiltersComponent<T> implements OnInit, OnDestroy {
+
+    @ViewChildren(ExtendedFiltersDirective) fields: QueryList<ExtendedFiltersDirective>;
 
     @Input() config: ExtendedFilterFieldGroup[] = [];
 
@@ -46,13 +61,13 @@ export class ExtendedFiltersComponent<T> implements OnInit, OnDestroy {
 
     formSub: Subscription;
 
-    @Output() applyFilter: EventEmitter<T> = new EventEmitter();
+    @Output() applyFilter: EventEmitter<T | any> = new EventEmitter();
 
     @Output() close: EventEmitter<void> = new EventEmitter();
 
     private destroyed$: Subject<boolean> = new Subject<boolean>();
 
-    constructor(private fb: FormBuilder, public translateService: TranslateService) {
+    constructor(private fb: FormBuilder, public translateService: TranslateService, private cd: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -68,7 +83,7 @@ export class ExtendedFiltersComponent<T> implements OnInit, OnDestroy {
         this.config.forEach((control: ExtendedFilterFieldGroup) => {
             if (control.group) {
                 control.group.forEach(childControl => {
-                    const c =  this.fb.control(childControl.value);
+                    const c = this.fb.control(childControl.value);
                     if (childControl.validators && childControl.validators.length) {
                         childControl.validators.forEach(validator => {
                             c.setValidators(Validators[validator.key](validator.value));
@@ -88,12 +103,10 @@ export class ExtendedFiltersComponent<T> implements OnInit, OnDestroy {
 
 
     clearFilter() {
-        this.form = null;
-        setTimeout(() => {
-            this.form = this.createForm();
-            this.subscribeToForm();
-            this.applyFilter.emit(this.form.getRawValue());
-        });
+        this.form.reset();
+        this.applyFilter.emit(this.form.getRawValue());
+        this.fields.toArray().forEach(c => c.update());
+        this.subscribeToForm();
     }
 
     private subscribeToForm() {

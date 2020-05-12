@@ -3,7 +3,7 @@
     <ng-container *ngIf="form">
         <form class="extended-filters-form" [formGroup]="form">
             <div *ngFor="let field of config;" class="field">
-                <ng-container  extendedFilters [config]="field" [group]="form"></ng-container>
+                <ng-container extendedFilters [config]="field" [group]="form"></ng-container>
             </div>
         </form>
         <div class="submit d-flex justify-content-end">

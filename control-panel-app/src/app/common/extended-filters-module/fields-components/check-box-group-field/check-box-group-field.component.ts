@@ -1,22 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslateService } from '../../../translations-module';
 import { FormGroup } from '@angular/forms';
 import { ExtendedFilterFieldGroup } from '../../extended-filters.component';
 
 @Component({
-  selector: 'check-box-group-field',
-  templateUrl: './check-box-group-field.component.html',
-  styleUrls: ['./check-box-group-field.component.scss']
+    selector: 'check-box-group-field',
+    templateUrl: './check-box-group-field.component.html',
+    styleUrls: ['./check-box-group-field.component.scss']
 })
-export class CheckBoxGroupFieldComponent implements OnInit {
+export class CheckBoxGroupFieldComponent {
 
-  config: ExtendedFilterFieldGroup;
+    config: ExtendedFilterFieldGroup;
 
-  group: FormGroup;
+    group: FormGroup;
 
-  constructor(public translateService: TranslateService) { }
+    constructor(public translateService: TranslateService) {
+    }
 
-  ngOnInit() {
-  }
+    init() {
 
+    }
 }

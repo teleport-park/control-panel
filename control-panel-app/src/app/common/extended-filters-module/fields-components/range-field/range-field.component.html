@@ -18,7 +18,8 @@
 <!--                {{i}}-->
 <!--            </mat-option>-->
 <!--        </mat-select>-->
-        <input matInput type="number" [max]="checkMax()" [formControlName]="config.group[1].property">
+        <input matInput type="number" [max]="checkMax()" [min]="checkMin()" [formControlName]="config.group[1].property">
         <mat-error *ngIf="group.get(config.group[1].property)?.errors?.max">{{('MAX_VALUE_ERROR' | translate) + ' ' + group.get(config.group[1].property)?.errors?.max.max}}</mat-error>
+        <mat-error *ngIf="group.get(config.group[1].property)?.errors?.min">{{('MIN_VALUE_ERROR' | translate) + ' ' + group.get(config.group[0].property)?.errors?.min.min}}</mat-error>
     </mat-form-field>
 </div>
