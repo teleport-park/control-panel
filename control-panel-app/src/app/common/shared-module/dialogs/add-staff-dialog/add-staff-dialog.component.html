@@ -28,9 +28,13 @@
             </mat-form-field>
             <mat-form-field>
                 <input matInput [matDatepicker]="fired_date" placeholder="{{'STAFF_FIRED_AT' | translate}}"
+                       [min]="form.get('hired_at').value"
                        formControlName="fired_at">
                 <mat-datepicker-toggle matSuffix [for]="fired_date"></mat-datepicker-toggle>
                 <mat-datepicker #fired_date></mat-datepicker>
+                <mat-error *ngIf="form.get('fired_at')?.errors?.matDatepickerMin">
+                    {{'MIN_DATE_VALIDATION_ERROR' | translate:[form.get('fired_at')?.errors?.matDatepickerMin.min | date: 'dd.MM.yyyy']}}
+                </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>{{'STAFF_ROLES' | translate}}</mat-label>

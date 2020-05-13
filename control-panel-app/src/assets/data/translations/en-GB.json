@@ -270,5 +270,6 @@
   "FINGERPRINT": "",
   "CONTROLLER_LOCKED": "Locked",
   "CONTROLLER_UNLOCKED": "Unlocked",
-  "PASTED_VALUE_INVALID": "Pasted value invalid"
+  "PASTED_VALUE_INVALID": "Pasted value invalid",
+  "MIN_DATE_VALIDATION_ERROR": "Min date is {0}"
 }

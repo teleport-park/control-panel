@@ -61,6 +61,7 @@ export class AddStaffDialogComponent implements OnInit {
         this.entityModel = this.data.item;
         this.form = this.getStaffMemberForm();
         this.form.patchValue(this.entityModel);
+        this.form.get('hired_at').setValue(moment());
         moment.locale(this.translateService.locale.getValue());
         this.entityModel.roles.forEach(role => {
             this.roles = this.roles.filter(r => r !== role);
