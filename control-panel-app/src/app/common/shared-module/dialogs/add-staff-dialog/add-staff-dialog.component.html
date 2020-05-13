@@ -12,7 +12,7 @@
                 <mat-checkbox formControlName="high_education">{{'STAFF_HIGHER_EDUCATION' | translate}}</mat-checkbox>
             </div>
             <mat-form-field>
-                <input matInput placeholder="{{'STAFF_PASSPORT' | translate}}" formControlName="passport">
+                <input matInput alphanumeric-latin placeholder="{{'STAFF_PASSPORT' | translate}}" formControlName="passport">
                 <mat-error>
                     {{'REQUIRED_FIELD' | translate:[translateService.instant('STAFF_PASSPORT')]}}
                 </mat-error>

@@ -118,3 +118,76 @@ export class AmountFormatDirective {
         return this._allowedKey.includes(code);
     }
 }
+
+import { MatSnackBarConfig } from '@angular/material';
+import { ToasterService } from '../../../services/toaster.service';
+
+/**
+ * custom paste event interface for IE
+ */
+export interface PasteEvent extends Event {
+    clipboardData: DataTransfer;
+}
+
+// tslint:disable-next-line:directive-selector
+@Directive({selector: 'input[alphanumeric-latin]'})
+
+export class AlphanumericLatinDirective {
+
+    /**
+     * input message value
+     */
+    @Input() message: string;
+
+    /**
+     * element ref
+     */
+    private el: HTMLInputElement;
+
+    /**
+     * pattern
+     */
+    pattern: RegExp = new RegExp('^[a-zA-Z0-9]+$');
+
+    /**
+     * constructor
+     */
+    constructor(el: ElementRef, private toaster: ToasterService) {
+        this.el = el.nativeElement;
+    }
+
+    /**
+     * listener for key down event
+     */
+    @HostListener('keydown', ['$event'])
+    onKeyDown(e: any) {
+        if (!e.ctrlKey && !this.pattern.test(e.key)) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    }
+
+    /**
+     * listener for blur event
+     */
+    @HostListener('blur', ['$event'])
+    onBlur(event: any) {
+        event.target.value = event.target.value.toUpperCase().trim();
+    }
+
+    /**
+     * listener for paste event
+     */
+    @HostListener('paste', ['$event'])
+    onPaste(event: PasteEvent) {
+        const clipboardData = event.clipboardData || (<any>window).clipboardData;
+        const pastedText = clipboardData.getData('text');
+        if (!this.pattern.test(pastedText)) {
+            this.toaster.error('PASTED_VALUE_INVALID');
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        }
+    }
+}

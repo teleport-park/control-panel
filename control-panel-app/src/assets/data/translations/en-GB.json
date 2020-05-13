@@ -269,5 +269,6 @@
   "REVOKE": "Revoke",
   "FINGERPRINT": "",
   "CONTROLLER_LOCKED": "Locked",
-  "CONTROLLER_UNLOCKED": "Unlocked"
+  "CONTROLLER_UNLOCKED": "Unlocked",
+  "PASTED_VALUE_INVALID": "Pasted value invalid"
 }

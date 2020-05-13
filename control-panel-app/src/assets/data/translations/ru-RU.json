@@ -271,5 +271,6 @@
   "REVOKE": "Запретить",
   "FINGERPRINT": "",
   "CONTROLLER_LOCKED": "Заблокирован",
-  "CONTROLLER_UNLOCKED": "Разблокирован"
+  "CONTROLLER_UNLOCKED": "Разблокирован",
+  "PASTED_VALUE_INVALID": "Вставляемое значенние не корректно"
 }

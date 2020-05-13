@@ -17,6 +17,7 @@ export class FormComponent {
     /**
      * email regexp
      */
+        // tslint:disable-next-line:max-line-length
     static readonly EMAIL_REGEXP: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]{1,60}\.)+[a-zA-ZА-Яа-я]{2,}))$/i;
 
     _genders = genders;
@@ -62,6 +63,7 @@ export class FormComponent {
         this.user = Object.assign(new Visitor(this.initService), item, {comment: ''});
         this.userForm = this.getUserForm();
         this.userForm.patchValue(this.user);
+        this.userForm.get('age').value && this.ageChange();
         if (item.name && item.display_name && item.name !== item.display_name) {
             this.userForm.get('name').setValue(item.name + ` (${item.display_name})`);
         }
