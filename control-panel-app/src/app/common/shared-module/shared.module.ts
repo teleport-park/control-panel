@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
 import { TranslationModule } from '../translations-module/translation.module';
 import { MaterialModule } from '../../material.module';
-import { AlphanumericLatinDirective, AmountFormatDirective, NumberDirective } from './directives/number.directive';
+import { AlphanumericLatinDirective, AmountFormatDirective, Hex4ByteDirective, NumberDirective } from './directives/number.directive';
 import { ControlPanelUiCardComponent } from './control-panel-ui-card/control-panel-ui-card.component';
 import { ControlPanelUiTableComponent } from './control-panel-ui-table/control-panel-ui-table.component';
 import { ControlPanelUiSelectionComponent } from './control-panel-ui-selection/control-panel-ui-selection.component';
@@ -37,6 +37,7 @@ const MODULES = [
     NumberDirective,
     AmountFormatDirective,
     AlphanumericLatinDirective,
+    Hex4ByteDirective,
     ControlPanelUiCardComponent,
     ControlPanelUiTableComponent,
     ControlPanelUiSelectionComponent,

@@ -37,6 +37,7 @@
         <p class="wrapper">
             <mat-form-field class="login-field" color="accent">
                 <input matInput
+                       hex4byte
                        placeholder="{{translateService.instant('CARD_LABEL')}}"
                        [formControl]="cardControl">
                 <mat-error *ngIf="cardControl.errors?.required">
