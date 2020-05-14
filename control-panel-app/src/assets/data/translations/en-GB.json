@@ -190,6 +190,7 @@
   "DISABLE": "Disable",
   "DIALOG_CHANGE_ENABLE_STATUS_MESSAGE": "game \"{0}\"?",
   "ENABLED": "Enabled",
+  "ENABLED_ALT": "Enabled",
   "ORIGIN": "Origin",
   "VERSION": "Version",
   "CODE": "Code",
@@ -273,5 +274,7 @@
   "CONTROLLER_UNLOCKED": "Unlocked",
   "PASTED_VALUE_INVALID": "Pasted value invalid",
   "MIN_DATE_VALIDATION_ERROR": "Min date is {0}",
-  "CHIP_ID_COPY_SUCCESSFUL": "Chip id copied to clip board"
+  "CHIP_ID_COPY_SUCCESSFUL": "Chip id copied to clip board",
+  "PROMO_LIST": "Promos list",
+  "ARCHIVED": "Archived"
 }

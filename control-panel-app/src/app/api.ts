@@ -28,9 +28,12 @@ export const API = {
     BILLING_INVOICES: 'cpanel/billing/invoices',
     BILLING_TRANSACTIONS: 'cpanel/billing/transactions',
 
+    // Packages
+    PACKAGES: 'cpanel/packages',
+    PROMO: 'cpanel/promos',
 
     GATE_INSTANCES: 'gates/mgmt/instances',
-    PACKAGES: 'cpanel/packages',
+
     PACKAGES_HISTORY: 'cpanel/packages/history',
     PRICES: 'cpanel/prices',
     // transactions

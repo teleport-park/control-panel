@@ -1,0 +1,15 @@
+:host {
+  .promo-table {
+    width: 100%;
+    table-layout: fixed;
+
+    .mat-column {
+      &-enabled {
+        width: 5rem;
+      }
+      &-archived {
+        width: 5rem;
+      }
+    }
+  }
+}
