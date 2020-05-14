@@ -1,115 +1,103 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Visitor } from '../../../../../models';
 import { TranslateService } from '../../../../../common/translations-module';
-import { PropertyMap } from '../../../../utils/property-map';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { Subject } from 'rxjs';
+import { ENTITY_SERVICE, EntityService } from '../../../../../models/intefaces';
+import moment from 'moment';
 
 @Component({
-  selector: 'user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+    selector: 'user',
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit, OnDestroy {
 
-  /**
-   * property map
-   */
-  propertyMap = PropertyMap;
+    @ViewChild('form', {static: true}) form: TemplateRef<any>;
 
-  /**
-   * user id
-   */
-  userId: string;
+    /**
+     * user id
+     */
+    userId: string;
 
-  /**
-   * user
-   */
-  _user: Visitor;
+    /**
+     * user
+     */
+    _user: Visitor;
 
-  /**
-   * user properties values
-   */
-  _userPropertiesValue: any;
+    _dialog: MatDialogRef<any>;
 
-  /**
-   * user properties keys
-   */
-  _userProperties: string[];
+    private destroyed$: Subject<boolean> = new Subject();
 
-  /**
-   * simple columns
-   */
-  simpleDataColumn = ['name', 'age'];
+    /**
+     * constructor
+     * @param service
+     * @param route
+     * @param router
+     * @param translateService
+     * @param cd
+     * @param dialog
+     */
+    constructor(@Inject(ENTITY_SERVICE) private service: EntityService<Visitor>,
+                private route: ActivatedRoute,
+                private router: Router,
+                public translateService: TranslateService,
+                private cd: ChangeDetectorRef,
+                private dialog: MatDialog) {
+    }
 
-  /**
-   * displayed column
-   */
-  displayedColumns = ['name', 'age', 'gender'];
+    ngOnInit() {
+        this.userId = this.route.snapshot.paramMap.get('id');
+        this.service.entities$.subscribe(
+            _ => {
+                if (this._dialog) {
+                    this._dialog.close();
+                    this.service.getEntity(this.userId).subscribe((res: Visitor) => {
+                        this._user = res;
+                        this.cd.markForCheck();
+                    });
+                }
+            }
+        );
+        this.service.getEntity(this.userId).subscribe((res: Visitor) => {
+            this._user = res;
+            this.cd.markForCheck();
+        });
+    }
 
-  private destroyed$: Subject<boolean> = new Subject();
+    /**
+     * back to users
+     */
+    back() {
+        this.router.navigate(['admin', 'park', 'visitors']);
+    }
 
-  /**
-   *
-   * @param route
-   * @param router
-   * @param translateService
-   * @param cd
-   * @param dialog
-   */
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              public translateService: TranslateService,
-              private cd: ChangeDetectorRef,
-              private dialog: MatDialog) {
-  }
+    getUserDOB(date: string) {
+        return moment(date, 'YYYY-MM-DD').format('DD.MM.YYYY');
+    }
 
-  ngOnInit() {
-    this.userId = this.route.snapshot.paramMap.get('id');
-    // this.service.usersData$.pipe(filter(data => !!data), takeUntil(this.destroyed$)).subscribe(() => {
-    //   this.getUser();
-    // });
-  }
+    getBalance(balance: { currency: string, amount: number }[]): number | string {
+        if (!balance) {
+            return 'N/A';
+        }
+        const amount = balance.map(i => i.amount).reduce((prev: number, curr: number) => prev + curr);
+        return +amount.toFixed(2);
+    }
 
-  /**
-   * get users
-   */
-  private getUser() {
-    // this.service.getUser(+this.userId)
-    //   .pipe(filter(data => !!data), takeUntil(this.destroyed$))
-    //   .subscribe((user: Visitor) => {
-    //     this._user = Object.assign(new Visitor(), user);
-    //     this._userPropertiesValue = Object.assign({}, this._user.getUserProperty());
-    //     this._userPropertiesValue.birthday = moment(this._user.birthday).format('L');
-    //     this._userPropertiesValue.registered = moment(this._user.registered).format('L');
-    //     this._userPropertiesValue.lastVisit = moment(this._user.lastVisit).format('L, h:mm');
-    //     this._userProperties = Object.keys(this._userPropertiesValue);
-    //     this.cd.markForCheck();
-    //   });
-  }
+    openModalDialog(user: Visitor) {
+        this._dialog = this.dialog.open(this.form, {
+            data: user,
+            disableClose: true
+        });
+    }
 
-  /**
-   * open modal dialog
-   */
-  private openModalDialog() {
-    // this.dialog.open(AddOrEditEntityDialogComponent, {
-    //   data: this._user,
-    //   disableClose: true
-    // }).afterClosed().pipe(filter(data => data), takeUntil(this.destroyed$)).subscribe((result: Visitor) => {
-    //   this.service.editUser(result);
-    // });
-  }
+    submit(visitor: Visitor) {
+        this.service.editEntity(visitor);
+    }
 
-  /**
-   * back to users
-   */
-  back() {
-    this.router.navigate(['admin', 'user-management', 'users']);
-  }
-
-  ngOnDestroy(): void {
-    this.destroyed$.next(true);
-    this.destroyed$.complete();
-  }
+    ngOnDestroy(): void {
+        this.destroyed$.next(true);
+        this.destroyed$.complete();
+    }
 }

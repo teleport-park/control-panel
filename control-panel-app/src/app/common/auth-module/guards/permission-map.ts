@@ -25,6 +25,7 @@ export const MenuPermissionMap: PermissionMap = {
     sessions: ['admin'],
     cards: ['admin'],
     visitors: ['admin'],
+    'visitors/:id': ['admin'],
     staff: ['admin'],
     packages: ['admin'],
     pack: ['admin'],

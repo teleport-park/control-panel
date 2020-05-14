@@ -1,29 +1,6 @@
-@import "control-panel-theme";
-
 :host {
-  padding: 15px;
-  @include d-block();
-  h5 {
-    margin-bottom: 15px;
-  }
-  button {
-    padding: 0 10px;
-    .mat-icon {
-      margin-right: 5px;
-    }
-  }
-  .user_wrapper {
-    padding: 20px;
-    background-color: white;
-    .user-property {
-      font-weight: 700;
-    }
-  }
-  .user-toolbar {
-    margin: 15px 0;
-  }
-  .avatars-table {
-    width: 100%;
-    margin-bottom: 15px;
+  .bold {
+    display: inline-block;
+    min-width: 12rem;
   }
 }

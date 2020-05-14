@@ -143,7 +143,7 @@
             <mat-cell *matCellDef="let item">
                 <div class="table_cell-inner"
                      [ngClass]="'control-panel-ui-table-amount_' + (getBalance(item.balance) > 0 ? 'positive' : getBalance(item.balance) < 0 ? 'negative' : 'null')">
-                    {{getBalance(item.balance)}} {{item.balance[0].currency}}
+                    {{getBalance(item.balance)}} {{item.balance ? item.balance[0]?.currency : ''}}
                 </div>
             </mat-cell>
         </ng-container>
@@ -179,6 +179,10 @@
                     <button mat-menu-item (click)="edit.emit(item)">
                         <mat-icon color="primary">edit</mat-icon>
                         {{translateService.instant('TABLE_EDIT')}}
+                    </button>
+                    <button *ngIf="!showDisable" mat-menu-item (click)="show.emit(item)">
+                        <mat-icon color="success">visibility</mat-icon>
+                        {{translateService.instant('TABLE_SHOW')}}
                     </button>
                     <button *ngIf="card" mat-menu-item (click)="boundCard.emit(item)">
                         <mat-icon color="accent">credit_card</mat-icon>

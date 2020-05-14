@@ -12,6 +12,10 @@
     .mat-card-title, .mat-card-subtitle {
       margin: 0;
       color: $white;
+      &::ng-deep * {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 
     margin-bottom: .7rem;

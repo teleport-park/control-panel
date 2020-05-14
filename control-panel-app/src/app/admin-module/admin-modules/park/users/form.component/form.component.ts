@@ -63,7 +63,7 @@ export class FormComponent {
         this.user = Object.assign(new Visitor(this.initService), item, {comment: ''});
         this.userForm = this.getUserForm();
         this.userForm.patchValue(this.user);
-        this.userForm.get('age').value && this.ageChange();
+        this.userForm.get('age').value && !this.userForm.get('birthday').value && this.ageChange();
         if (item.name && item.display_name && item.name !== item.display_name) {
             this.userForm.get('name').setValue(item.name + ` (${item.display_name})`);
         }

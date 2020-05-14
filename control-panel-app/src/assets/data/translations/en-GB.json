@@ -276,5 +276,6 @@
   "MIN_DATE_VALIDATION_ERROR": "Min date is {0}",
   "CHIP_ID_COPY_SUCCESSFUL": "Chip id copied to clip board",
   "PROMO_LIST": "Promos list",
-  "ARCHIVED": "Archived"
+  "ARCHIVED": "Archived",
+  "TABLE_SHOW": "Show"
 }

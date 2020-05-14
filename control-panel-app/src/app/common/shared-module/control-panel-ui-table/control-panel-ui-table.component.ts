@@ -85,6 +85,8 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
 
     @Input() deleteDisable = false;
 
+    @Input() showDisable = false;
+
     /**
      * data source for table
      */
@@ -130,6 +132,8 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
     @Output() add: EventEmitter<void> = new EventEmitter();
 
     @Output() boundCard: EventEmitter<T> = new EventEmitter();
+
+    @Output() show: EventEmitter<T> = new EventEmitter();
 
     /**
      * Emit pagination changes
@@ -246,7 +250,10 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
         return typeof value === 'boolean';
     }
 
-    getBalance(balance: { currency: string, amount: number }[]): number {
+    getBalance(balance: { currency: string, amount: number }[]): number | string {
+        if (!balance) {
+            return 'N/A';
+        }
         const amount = balance.map(i => i.amount).reduce((prev: number, curr: number) => prev + curr);
         return +amount.toFixed(2);
     }

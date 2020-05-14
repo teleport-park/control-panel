@@ -3,11 +3,6 @@
                  mode="{{(point?.handset | async) ? 'over' : 'side'}}"
                  [opened]="false"
                  position="end">
-<!--        <div class="extended-filters_wrapper">-->
-<!--            <extended-filters [config]="extendedFiltersConfig.config" [state]="service.requestHelper.filterData"-->
-<!--                              (close)="extendedFilter.close()"-->
-<!--                              (applyFilter)="applyFilter($event)"></extended-filters>-->
-<!--        </div>-->
     </mat-sidenav>
     <mat-sidenav-content #scrollContainer>
         <div class="light-theme">
@@ -43,6 +38,7 @@
                             (add)="operationWithUser('add')"
                             (boundCard)="boundCard($event)"
                             (sortChanges)="sortChangeHandler($event)"
+                            (show)="selectUser($event)"
                             (pageChanges)="paginationChangeHandler($event)"></control-panel-ui-table>
                 </div>
             </control-panel-ui-card>

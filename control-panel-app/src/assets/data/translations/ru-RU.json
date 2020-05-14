@@ -278,5 +278,6 @@
   "MIN_DATE_VALIDATION_ERROR": "Минимальная дата {0}",
   "CHIP_ID_COPY_SUCCESSFUL": "ID карты скопированно в буфер",
   "PROMO_LIST": "Список промо",
-  "ARCHIVED": "Архивный"
+  "ARCHIVED": "Архивный",
+  "TABLE_SHOW": "Открыть"
 }

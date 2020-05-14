@@ -100,7 +100,7 @@ export class CardsComponent implements OnInit {
     async copyClipboard(value: string) {
         if (navigator.clipboard && navigator.clipboard.writeText) {
             await navigator.clipboard.writeText(value);
-            this.toaster.success('CHIP_ID_COPY_SUCCESSFUL');
+            this.toaster.success('CHIP_ID_COPY_SUCCESSFUL', true);
         }
     }
 }

@@ -70,13 +70,14 @@ export class UsersComponent implements OnInit, OnDestroy {
         'phone',
         'age',
         'email',
+        'balance',
         'submenu'
     ];
 
     /**
      * column with data
      */
-    columnWithData: string[] = ['name', 'nickname', 'display_name', 'phone', 'age', 'email', 'gender', 'birthyear', 'comment'];
+    columnWithData: string[] = ['name', 'nickname', 'display_name', 'phone', 'age', 'email', 'gender', 'birthyear', 'comment', ];
 
     /**
      * available to sort column
@@ -251,7 +252,7 @@ export class UsersComponent implements OnInit, OnDestroy {
      * select user
      * @param user
      */
-    // selectUser(user: Visitor) {
-    //     this.router.navigate(['admin', 'user-management', 'users', user.id]);
-    // }
+    selectUser(user: Visitor) {
+        this.router.navigate(['admin', 'park', 'visitors', user.id]);
+    }
 }
