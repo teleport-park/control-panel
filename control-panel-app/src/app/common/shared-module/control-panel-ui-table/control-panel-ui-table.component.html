@@ -180,10 +180,6 @@
                         <mat-icon color="primary">edit</mat-icon>
                         {{translateService.instant('TABLE_EDIT')}}
                     </button>
-                    <button *ngIf="!showDisable" mat-menu-item (click)="show.emit(item)">
-                        <mat-icon color="success">visibility</mat-icon>
-                        {{translateService.instant('TABLE_SHOW')}}
-                    </button>
                     <button *ngIf="card" mat-menu-item (click)="boundCard.emit(item)">
                         <mat-icon color="accent">credit_card</mat-icon>
                         {{translateService.instant('TABLE_BOUND_CARD')}}

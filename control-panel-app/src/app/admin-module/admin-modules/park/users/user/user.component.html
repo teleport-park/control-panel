@@ -30,7 +30,11 @@
                 <span class="bold">{{translateService.instant('BALANCE')}}:</span>
                 {{getBalance(_user.balance) + (_user.balance?.length ? _user.balance[0]?.currency : '')}}
             </p>
-            <button mat-raised-button color="primary" (click)="openModalDialog(_user)"><mat-icon>edit</mat-icon>{{translateService.instant('TABLE_EDIT')}}</button>
+            <div class="d-flex mt-4">
+                <button mat-flat-button color="warn" (click)="back()" class="mr-3"><mat-icon>arrow_back</mat-icon>{{translateService.instant('CLOSE')}}</button>
+                <button mat-flat-button color="primary" (click)="openModalDialog(_user)"><mat-icon>edit</mat-icon>{{translateService.instant('TABLE_EDIT')}}</button>
+            </div>
+
         </div>
     </control-panel-ui-card>
 </div>

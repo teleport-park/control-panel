@@ -85,8 +85,6 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
 
     @Input() deleteDisable = false;
 
-    @Input() showDisable = false;
-
     /**
      * data source for table
      */
@@ -132,8 +130,6 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
     @Output() add: EventEmitter<void> = new EventEmitter();
 
     @Output() boundCard: EventEmitter<T> = new EventEmitter();
-
-    @Output() show: EventEmitter<T> = new EventEmitter();
 
     /**
      * Emit pagination changes
