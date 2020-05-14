@@ -2,8 +2,10 @@
 <p><span class="label">{{'FOR_USER' | translate}}</span> {{data.user.name}}</p>
 <mat-form-field class="w-100">
     <label>
-        <input matInput hex4byte placeholder="{{'CARD_INVENTORY_NUMBER' | translate}}" [formControl]="cardNumber">
+        <input matInput placeholder="{{'CARD_INVENTORY_NUMBER' | translate}}" [formControl]="cardNumber">
     </label>
+    <mat-error *ngIf="cardNumber?.errors?.max">{{'MAX_VALUE_ERROR' | translate}} {{cardNumber?.errors?.max.max}}</mat-error>
+    <mat-error *ngIf="cardNumber?.errors?.incorrect">{{'INVALID_PATTERN' | translate}}</mat-error>
     <mat-error *ngIf="cardNumber?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
 </mat-form-field>
 <control-panel-ui-action-toolbar

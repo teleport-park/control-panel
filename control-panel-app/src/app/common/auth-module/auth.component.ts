@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WebSocketService } from '../../services/web-socket.service';
 import { Subscription } from 'rxjs';
+import { to4Hex } from '../../admin-module/utils/utils';
 
 @Component({
     selector: 'app-login',
@@ -72,6 +73,11 @@ export class AuthComponent implements OnInit, OnDestroy {
     onSubmit() {
         if (!this.cardControl.value) {
             this.cardControl.markAsTouched();
+            return;
+        }
+        const res = to4Hex(String(this.cardControl.value).toString());
+        if (!res) {
+            this.cardControl.setErrors({incorrect: true});
             return;
         }
         this.login(this.cardControl.value);
