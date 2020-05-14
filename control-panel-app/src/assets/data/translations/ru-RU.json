@@ -273,5 +273,6 @@
   "CONTROLLER_LOCKED": "Заблокирован",
   "CONTROLLER_UNLOCKED": "Разблокирован",
   "PASTED_VALUE_INVALID": "Вставляемое значенние не корректно",
-  "MIN_DATE_VALIDATION_ERROR": "Минимальная дата {0}"
+  "MIN_DATE_VALIDATION_ERROR": "Минимальная дата {0}",
+  "CHIP_ID_COPY_SUCCESSFUL": "ID карты скопированно в буфер"
 }

@@ -12,6 +12,16 @@
                                 <span class="table_cell-inner">{{i + 1}}</span>
                             </td>
                         </ng-container>
+                        <ng-container matColumnDef="chip_id">
+                            <th mat-header-cell *matHeaderCellDef>
+                                <span>{{translateService.instant(propertyMap['chip_id'])}}</span></th>
+                            <td mat-cell *matCellDef="let row">
+                                <div class="chip_id d-flex align-items-center justify-content-between">
+                                    <span class="table_cell-inner">{{row.chip_id}}</span>
+                                    <mat-icon class="copy-icon" (click)="copyClipboard(row.chip_id)">file_copy</mat-icon>
+                                </div>
+                            </td>
+                        </ng-container>
                         <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">
                             <th mat-header-cell *matHeaderCellDef>
                                 <span>{{translateService.instant(propertyMap[column])}}</span></th>

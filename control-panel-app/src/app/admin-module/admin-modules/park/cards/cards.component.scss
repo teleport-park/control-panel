@@ -63,4 +63,27 @@
     height: 100%;
 
   }
+
+  .chip_id {
+    max-width: 120px;
+    span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .copy-icon {
+      color: rgba(0, 0, 0, .2);
+      cursor: pointer;
+      height: 20px;
+      width: 20px;
+      font-size: 20px;
+      margin-right: .5rem;
+      margin-top: -.5rem;
+      user-select: none;
+
+      &:hover {
+        color: rgba(0, 0, 0, .6);
+      }
+    }
+  }
+
 }

@@ -7,6 +7,7 @@ import { PropertyMap } from '../../../utils/property-map';
 import { CardsService } from './services/cards.service';
 import { DefaultPagination } from '../../../../models/default-pagination';
 import { StorageService } from '../../../../services/storage.service';
+import { ToasterService } from '../../../../services/toaster.service';
 
 @Component({
    selector: 'control-panel-cards',
@@ -34,23 +35,25 @@ export class CardsComponent implements OnInit {
    /**
     * simple data column
     */
-   simpleDataColumn: string[] = ['chip_id', 'comment'];
+   simpleDataColumn: string[] = ['comment'];
 
    /**
     * paginator init
     */
    paginatorInit: PageEvent;
 
-   /**
-    * constructor
-    * @param translateService
-    * @param service
-    * @param storage
-    * @param cd
-    */
+    /**
+     * constructor
+     * @param translateService
+     * @param service
+     * @param storage
+     * @param toaster
+     * @param cd
+     */
    constructor(public translateService: TranslateService,
                public service: CardsService,
                public storage: StorageService,
+               private toaster: ToasterService,
                private cd: ChangeDetectorRef) {
    }
 
@@ -93,4 +96,11 @@ export class CardsComponent implements OnInit {
    }
 
     mapRoles = (role) => this.translateService.instant(role);
+
+    async copyClipboard(value: string) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(value);
+            this.toaster.success('CHIP_ID_COPY_SUCCESSFUL');
+        }
+    }
 }
