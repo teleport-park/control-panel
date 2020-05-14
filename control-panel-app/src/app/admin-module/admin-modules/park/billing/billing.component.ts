@@ -14,9 +14,6 @@ export class BillingComponent implements OnInit {
   }
 
    applyFilter(value: string) {
-     this.service.getTransactions(value)
+     this.service.getTransactions(value);
    }
-
-
-
 }

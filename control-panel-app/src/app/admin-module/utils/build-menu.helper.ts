@@ -45,8 +45,19 @@ export class BuildMenuHelper {
             }, {
                 icon: 'list',
                 label: 'ADMIN_MENU_PACKAGES',
-                path: '/admin/park/packages',
-                active: false
+                path: '/admin/park/pack',
+                active: false,
+                children: [{
+                    icon: '',
+                    label: 'ADMIN_MENU_PACKAGES',
+                    path: '/admin/park/pack/packages',
+                    active: false,
+                }, {
+                    icon: '',
+                    label: 'ADMIN_MENU_PROMO',
+                    path: '/admin/park/pack/promo',
+                    active: false,
+                }]
             }, {
                 icon: 'videogame_asset',
                 label: 'ADMIN_MENU_GAMES',

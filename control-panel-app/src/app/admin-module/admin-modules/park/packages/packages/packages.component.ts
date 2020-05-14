@@ -1,18 +1,17 @@
 import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { PackagesService } from './packages.service';
-import { Router } from '@angular/router';
-import { Package } from './package.model';
-import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { MatDialog, MatSlideToggleChange, MatTableDataSource } from '@angular/material';
-import { TranslateService } from '../../../../common/translations-module';
+import { Package } from '../package.model';
+import { PackagesService } from '../packages.service';
+import { TranslateService } from '../../../../../common/translations-module';
+import { Router } from '@angular/router';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../../common/shared-module';
 
 @Component({
-    selector: 'packages',
-    templateUrl: './packages.component.html',
-    styleUrls: ['./packages.component.scss']
+  selector: 'packages',
+  templateUrl: './packages.component.html',
+  styleUrls: ['./packages.component.scss']
 })
 export class PackagesComponent implements OnInit {
-
     @ViewChild('formTemplate', {static: false}) formTemplate: TemplateRef<any>;
 
     // displayedColumns: string[] = ['timestamp', 'status'];
@@ -96,5 +95,4 @@ export class PackagesComponent implements OnInit {
         this.service.togglePackage(pack.id, payload);
         event.source.checked = pack.enabled;
     }
-
 }

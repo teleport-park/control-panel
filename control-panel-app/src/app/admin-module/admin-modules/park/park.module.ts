@@ -9,7 +9,6 @@ import { SharedModule } from '../../../common/shared-module/shared.module';
 import { CardsService } from './cards/services/cards.service';
 import { GamesService } from './games/services/games.service';
 import { GamesComponent } from './games/games.component';
-import { PackagesComponent } from './packages/packages.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { PricingService } from './pricing/pricing.service';
 import { PackagesService } from './packages/packages.service';
@@ -18,72 +17,68 @@ import { TranslationModule } from '../../../common/translations-module/translati
 import { BillingService } from './billing/services/billing.service';
 import { WhoIsComponent } from './cards/components/who-is/who-is.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddPackageComponent } from './packages/add-package/add-package.component';
 
 const routes: Routes = [{
-   path: '',
-   component: ParkComponent,
-   children: [
-      {
-         path: '', redirectTo: 'visitors', pathMatch: 'full'
-      }, {
-         path: 'visitors',
-         loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
-         data: {title: 'ADMIN_MENU_USERS'},
-         canActivate: [PermissionGuard]
-      }, {
-         path: 'staff',
-         loadChildren: () => import('./staff/staff.module').then(m => m.StaffModule),
-         data: {title: 'ADMIN_MENU_STAFF'},
-         canActivate: [PermissionGuard]
-      }, {
-         path: 'cards', component: CardsComponent, data: {title: 'ADMIN_MENU_CARDS'}, canActivate: [PermissionGuard]
-      }, {
-         path: 'packages', component: PackagesComponent, data: {title: 'ADMIN_MENU_PACKAGES'}, canActivate: [PermissionGuard]
-      }, {
-         path: 'packages', component: PackagesComponent, data: {title: 'ADMIN_MENU_PACKAGES'}, canActivate: [PermissionGuard]
-      }, {
-         path: 'packages/add', component: AddPackageComponent
-      }, {
-         path: 'games', component: GamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]
-      }, {
-         path: 'pricing', component: PricingComponent, data: {title: 'ADMIN_MENU_PRICING'}, canActivate: [PermissionGuard]
-      }, {
-         path: 'sessions', component: SessionsComponent, data: {title: 'ADMIN_MENU_SESSIONS'}, canActivate: [PermissionGuard]
-      }, {
-         path: 'billing',
-         loadChildren: () => import('./billing/billing.module').then(m => m.BillingModule),
-         data: {title: 'ADMIN_MENU_BILLING'},
-         canActivate: [PermissionGuard]
-      }
-   ]
+    path: '',
+    component: ParkComponent,
+    children: [
+        {
+            path: '', redirectTo: 'visitors', pathMatch: 'full'
+        }, {
+            path: 'visitors',
+            loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
+            data: {title: 'ADMIN_MENU_USERS'},
+            canActivate: [PermissionGuard]
+        }, {
+            path: 'staff',
+            loadChildren: () => import('./staff/staff.module').then(m => m.StaffModule),
+            data: {title: 'ADMIN_MENU_STAFF'},
+            canActivate: [PermissionGuard]
+        }, {
+            path: 'cards', component: CardsComponent, data: {title: 'ADMIN_MENU_CARDS'}, canActivate: [PermissionGuard]
+        }, {
+            path: 'pack',
+            loadChildren: () => import('./packages/packages-frame.module').then(m => m.PackagesFrameModule),
+            data: {title: 'ADMIN_MENU_PACKAGES'},
+            canActivate: [PermissionGuard]
+        }, {
+            path: 'games', component: GamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]
+        }, {
+            path: 'pricing', component: PricingComponent, data: {title: 'ADMIN_MENU_PRICING'}, canActivate: [PermissionGuard]
+        }, {
+            path: 'sessions', component: SessionsComponent, data: {title: 'ADMIN_MENU_SESSIONS'}, canActivate: [PermissionGuard]
+        }, {
+            path: 'billing',
+            loadChildren: () => import('./billing/billing.module').then(m => m.BillingModule),
+            data: {title: 'ADMIN_MENU_BILLING'},
+            canActivate: [PermissionGuard]
+        }
+    ]
 }];
 
 export const ParkRouterModule = RouterModule.forChild(routes);
 
 export const COMPONENTS = [
-   ParkComponent,
-   GamesComponent,
-   PackagesComponent,
-   PricingComponent,
-   CardsComponent,
-   SessionsComponent,
-   WhoIsComponent,
-   AddPackageComponent
+    ParkComponent,
+    GamesComponent,
+    PricingComponent,
+    CardsComponent,
+    SessionsComponent,
+    WhoIsComponent
 ];
 
 @NgModule({
-   declarations: [...COMPONENTS],
-   imports: [
-      CommonModule,
-      ParkRouterModule,
-      MaterialModule,
-      SharedModule,
-      TranslationModule,
-      ReactiveFormsModule,
-      FormsModule
-   ],
-   providers: [CardsService, GamesService, PricingService, PackagesService, BillingService]
+    declarations: [...COMPONENTS],
+    imports: [
+        CommonModule,
+        ParkRouterModule,
+        MaterialModule,
+        SharedModule,
+        TranslationModule,
+        ReactiveFormsModule,
+        FormsModule
+    ],
+    providers: [CardsService, GamesService, PricingService, PackagesService, BillingService]
 })
 export class ParkModule {
 }

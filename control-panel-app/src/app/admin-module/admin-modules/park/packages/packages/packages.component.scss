@@ -1,0 +1,47 @@
+@import "control-panel-theme";
+
+:host {
+  @include d-block();
+  position: relative;
+  .packages_wrapper {
+    margin: 0;
+    .packages__history {
+      .mat-table {
+        width: 100%;
+      }
+    }
+    .packages {
+      .package {
+        margin: 0 -10px;
+      }
+    }
+  }
+  .slider-wrapper {
+    background-color: $white;
+    overflow: hidden;
+  }
+
+  .sync-action {
+    position: absolute;
+    display: inline-block;
+    right: 10px;
+    top: 5px;
+    z-index: 2;
+    padding: .1rem .1rem .1rem 1rem;
+    border-radius: 5px;
+    background-color: rgba(map-get($dark-color, 500), .7);
+  }
+
+  .package-table {
+    width: 100%;
+    table-layout: fixed;
+    .mat-column {
+      &-submenu {
+        width: 3rem;
+      }
+      &-enabled {
+        width: 4rem;
+      }
+    }
+  }
+}
