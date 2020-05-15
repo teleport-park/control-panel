@@ -28,6 +28,8 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
             <control-panel-ui-empty class="black" *ngIf="!(service.promo$ | async)?.length"></control-panel-ui-empty>
+            <p>TEST cron editor</p>
+            <cron-editor [formControl]="cronControl" [options]="cronOptions"></cron-editor>
         </div>
     </control-panel-ui-card>
 </div>

@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PackagesComponent } from './packages/packages.component';
 import { PromoComponent } from './promo/promo.component';
 import { AddPackageComponent } from './packages/add-package/add-package.component';
+import { CronEditorModule } from '../../../common/control-panel-cron-generator/cron-editor.module';
 
 const routes: Routes = [{
     path: '',
@@ -92,7 +93,8 @@ export const COMPONENTS = [
         SharedModule,
         TranslationModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        CronEditorModule
     ],
     providers: [CardsService, GamesService, PricingService, PackagesService, BillingService]
 })

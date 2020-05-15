@@ -79,6 +79,7 @@ html, body {
     background-color: $success !important;
     color: #FFF !important;
   }
+
   .toaster-info {
     background-color: map-get($accent-color, 900) !important;
     color: #FFF !important;
@@ -156,6 +157,7 @@ html, body {
         color: $white;
       }
     }
+
     .mat-success {
       color: $success;
       //.mat-slide-toggle-label {
@@ -170,6 +172,7 @@ html, body {
         .mat-slide-toggle-label {
           .mat-slide-toggle-bar {
             background-color: rgba($success, .54);
+
             .mat-slide-toggle-thumb {
               background-color: $success;
             }
@@ -177,16 +180,21 @@ html, body {
         }
       }
     }
+
     .mat-cell {
       .sub_text {
         font-size: .85rem;
         color: #8d8d8d;
+
         span {
           margin-right: .35rem;
         }
       }
     }
 
+    .mat-tab-labels {
+      background-color: #fff;
+    }
   }
 
   .mat-list-option {
@@ -204,6 +212,7 @@ html, body {
   .sub_text {
     font-size: .9rem;
     color: #8d8d8d;
+
     span {
       margin-right: .35rem;
     }
@@ -278,9 +287,11 @@ html, body {
   .drop-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }
+
   .mat-dialog-content {
     @include custom-scroll();
   }
+
   .loader-container {
     position: absolute;
     left: 0;
@@ -293,6 +304,7 @@ html, body {
     background-color: $backdrop;
     z-index: 1000;
   }
+
   .mat-card-content {
     margin-bottom: 0;
   }
@@ -301,6 +313,7 @@ html, body {
     .mat-icon-button {
       width: 1.8rem;
       height: 1.8rem;
+
       .mat-datepicker-toggle-default-icon {
         height: 1.6rem;
         width: 1.5rem;
