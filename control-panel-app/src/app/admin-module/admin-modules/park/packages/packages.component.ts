@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatSlideToggleChange, MatTableDataSource } from '@angular/material';
-import { Package } from '../package.model';
-import { PackagesService } from '../packages.service';
-import { TranslateService } from '../../../../../common/translations-module';
+import { Package } from './package.model';
+import { PackagesService } from './packages.service';
+import { TranslateService } from '../../../../common/translations-module';
 import { Router } from '@angular/router';
-import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../../common/shared-module';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 
 @Component({
   selector: 'packages',

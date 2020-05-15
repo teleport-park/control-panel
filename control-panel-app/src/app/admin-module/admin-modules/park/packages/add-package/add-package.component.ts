@@ -123,7 +123,7 @@ export class AddPackageComponent implements OnInit {
     }
 
     back() {
-        this.router.navigate(['admin', 'park', 'pack', 'packages']);
+        this.router.navigate(['admin', 'park', 'packages']);
     }
 
     dropPayment(event: CdkDragDrop<AbstractControl[]>) {

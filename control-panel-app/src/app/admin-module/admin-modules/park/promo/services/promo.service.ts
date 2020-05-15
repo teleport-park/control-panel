@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApiUrlsService } from '../../../../../../services/api-urls.service';
+import { ApiUrlsService } from '../../../../../services/api-urls.service';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 

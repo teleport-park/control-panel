@@ -17,6 +17,9 @@ import { TranslationModule } from '../../../common/translations-module/translati
 import { BillingService } from './billing/services/billing.service';
 import { WhoIsComponent } from './cards/components/who-is/who-is.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PackagesComponent } from './packages/packages.component';
+import { PromoComponent } from './promo/promo.component';
+import { AddPackageComponent } from './packages/add-package/add-package.component';
 
 const routes: Routes = [{
     path: '',
@@ -37,9 +40,19 @@ const routes: Routes = [{
         }, {
             path: 'cards', component: CardsComponent, data: {title: 'ADMIN_MENU_CARDS'}, canActivate: [PermissionGuard]
         }, {
-            path: 'pack',
-            loadChildren: () => import('./packages/packages-frame.module').then(m => m.PackagesFrameModule),
+            path: 'packages',
+            component: PackagesComponent,
             data: {title: 'ADMIN_MENU_PACKAGES'},
+            canActivate: [PermissionGuard]
+        }, {
+            path: 'packages/add',
+            component: AddPackageComponent,
+            data: {title: 'ADMIN_MENU_PACKAGES'},
+            canActivate: [PermissionGuard]
+        }, {
+            path: 'promo',
+            component: PromoComponent,
+            data: {title: 'ADMIN_MENU_PROMO'},
             canActivate: [PermissionGuard]
         }, {
             path: 'games', component: GamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]
@@ -64,7 +77,10 @@ export const COMPONENTS = [
     PricingComponent,
     CardsComponent,
     SessionsComponent,
-    WhoIsComponent
+    WhoIsComponent,
+    PackagesComponent,
+    PromoComponent,
+    AddPackageComponent
 ];
 
 @NgModule({

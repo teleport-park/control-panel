@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PromoService } from './services/promo.service';
-import { TranslateService } from '../../../../../common/translations-module';
+import { TranslateService } from '../../../../common/translations-module';
 
 @Component({
     selector: 'promo',
