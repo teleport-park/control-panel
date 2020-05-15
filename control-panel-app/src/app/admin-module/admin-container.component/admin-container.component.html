@@ -86,11 +86,11 @@
             </div>
         </mat-nav-list>
         <mat-divider *ngIf="(point?.handset | async)"></mat-divider>
-        <div class="side-nav_action-button">
-            <language-switcher *ngIf="(point?.handset | async)"
+        <div *ngIf="(point?.handset | async)" class="side-nav_action-button">
+            <language-switcher
                                theme="light"
                                (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
-            <button mat-button *ngIf="(point?.handset | async)"
+            <button mat-button
                     class="mb-3"
                     routerLink="/login">{{translateService.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
         </div>

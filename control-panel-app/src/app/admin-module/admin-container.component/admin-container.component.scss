@@ -36,8 +36,10 @@
           position: absolute;
           left: 15px;
         }
+
         .sidenav-title__link {
           cursor: pointer;
+
           &:hover {
             text-decoration: underline;
           }
@@ -67,9 +69,7 @@
           user-select: none;
 
           .expand-icon {
-            //position: absolute;
-            //right: 0;
-            //justify-self: flex-end;
+            margin-right: -.5rem;
           }
 
           .mat-icon:not(.expand-icon) {
