@@ -25,11 +25,11 @@ export class GamesComponent implements OnInit {
 
     selection = new SelectionModel<Game>(true, []);
 
-    _editRowId: string = null;
+    _editRow: Game[] = null;
 
-    _editRowPrice: {amount: number, currency: string} = null;
+    _editRowPrice: { amount: number, currency: string } = null;
 
-    priceControl: FormControl = new FormControl(0, [Validators.required, Validators.pattern('[0-9]+')]);
+    priceControl: FormControl = new FormControl(0, [Validators.required, Validators.pattern('[0-9\.]+')]);
 
     currencyControl: FormControl = new FormControl('TLPVR', Validators.required);
 
@@ -46,7 +46,7 @@ export class GamesComponent implements OnInit {
             if (res.length > 10) {
                 this.dataSource.paginator = this.paginator;
             }
-            this._editRowId = null;
+            this._editRow = null;
             this.cd.markForCheck();
         });
         this.service.getGames();
@@ -62,31 +62,34 @@ export class GamesComponent implements OnInit {
         this.isAllSelected() ?
             this.selection.clear() :
             // this.dataSource.data.forEach(row => this.selection.select(row));
-        this.dataSource.filteredData.forEach(row => this.selection.select(row));
+            this.dataSource.filteredData.forEach(row => this.selection.select(row));
     }
 
     inlineChangePriceHandler(game: Game) {
-        const payload = {
-            id: game.id,
-            price: {
-                amount: +game.price.amount,
-                currency: game.price.currency
-            }
-        };
-        this.service.updatePrice([payload as Game]).subscribe(
-            (res: Game[]) => {
-                this.dataSource = new MatTableDataSource<Game>(res);
-                if (res.length > 10) {
-                    this.dataSource.paginator = this.paginator;
-                }
-                this._editRowId = null;
-                this.cd.markForCheck();
-            }
-        );
+        // const payload = {
+        //     id: game.id,
+        //     price: {
+        //         amount: +game.price.amount,
+        //         currency: game.price.currency
+        //     }
+        // };
+        // this.service.updatePrice([payload as Game]).subscribe(
+        //     (res: Game[]) => {
+        //         this.dataSource = new MatTableDataSource<Game>(res);
+        //         if (res.length > 10) {
+        //             this.dataSource.paginator = this.paginator;
+        //         }
+        //         this._editRowId = null;
+        //         this.cd.markForCheck();
+        //     }
+        // );
+        this.priceControl.setValue(game.price.amount);
+        this._editRow = [game];
+        this.changePriceForSelectedHandler();
     }
 
     changePriceForSelectedHandler() {
-        this._editRowId = null;
+        this.selection.selected.length === 1 && this.priceControl.setValue(this.selection.selected[0].price.amount);
         this.dialog.open(this.priceDialog, {
             width: '500px'
         });
@@ -96,11 +99,11 @@ export class GamesComponent implements OnInit {
         this.dataSource.filter = value;
     }
 
-    revertPrice(id: string) {
-        this.dataSource.data.find(i => i.id === this._editRowId).price = this._editRowPrice;
-        this._editRowId = id;
-        this.cd.markForCheck();
-    }
+    // revertPrice(id: string) {
+    //     this.dataSource.data.find(i => i.id === this._editRow).price = this._editRowPrice;
+    //     this._editRow = id;
+    //     this.cd.markForCheck();
+    // }
 
     applyPrice() {
         this.currencyControl.markAsTouched();
@@ -110,6 +113,16 @@ export class GamesComponent implements OnInit {
         }
         const requests = [];
         this.selection.selected.forEach((item: Game) => {
+            const payload = {
+                id: item.id,
+                price: {
+                    amount: +this.priceControl.value,
+                    currency: this.currencyControl.value
+                }
+            };
+            requests.push(this.service.updatePrice([payload as Game]));
+        });
+        this._editRow.forEach((item: Game) => {
             const payload = {
                 id: item.id,
                 price: {
@@ -138,6 +151,12 @@ export class GamesComponent implements OnInit {
             this.cd.markForCheck();
             this.loaderService.dispatchShowLoader(false);
             this.dialog.closeAll();
+            this.reset();
         });
+    }
+
+    reset() {
+        this.priceControl.setValue(0);
+        this._editRow = [];
     }
 }

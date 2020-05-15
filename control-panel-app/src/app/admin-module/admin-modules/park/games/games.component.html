@@ -4,7 +4,8 @@
         <div panelUICardContent>
             <div class="toolbar d-flex justify-content-between align-items-center">
                 <control-panel-ui-quick-filter (filterChange)="applyFilter($event)"></control-panel-ui-quick-filter>
-                <button mat-flat-button color="primary" *ngIf="selection.hasValue()" (click)="changePriceForSelectedHandler()">{{translation.instant('CHANGE_PRICE_FOR_SELECTED')}}</button>
+                <button mat-flat-button color="primary" *ngIf="selection.hasValue()"
+                        (click)="changePriceForSelectedHandler()">{{translation.instant('CHANGE_PRICE_FOR_SELECTED')}}</button>
             </div>
 
             <table mat-table [dataSource]="dataSource" class=" w-100">
@@ -28,7 +29,8 @@
                         <div class="name mt-3">{{game.name}}</div>
                         <div class="sub_text mb-3">
                             <span>id:</span><span class="info">{{game.id}}</span>
-                        </div></td>
+                        </div>
+                    </td>
                 </ng-container>
                 <ng-container matColumnDef="source">
                     <th mat-header-cell *matHeaderCellDef> {{translation.instant('SOURCE')}} </th>
@@ -43,7 +45,8 @@
                 <ng-container matColumnDef="active">
                     <th mat-header-cell *matHeaderCellDef> {{translation.instant('ENABLED')}} </th>
                     <td mat-cell *matCellDef="let game">
-                        <mat-icon color="{{game.active ? 'success' : 'warn'}}">{{game.active ? 'check' : 'clear'}}</mat-icon>
+                        <mat-icon
+                                color="{{game.active ? 'success' : 'warn'}}">{{game.active ? 'check' : 'clear'}}</mat-icon>
                     </td>
                 </ng-container>
 
@@ -51,41 +54,46 @@
                     <th mat-header-cell *matHeaderCellDef> {{translation.instant('PRICE')}} </th>
                     <td mat-cell *matCellDef="let game" (click)="$event.stopPropagation()">
                         <div class="d-flex align-items-center justify-content-between">
-                            <ng-container *ngIf="game.id !== _editRowId">
+                            <ng-container>
                                 <ng-container *ngIf="!game.price">-</ng-container>
                                 <ng-container *ngIf="game.price">
                                     <span>{{game.price.amount}} {{game.price.currency}}</span>
                                 </ng-container>
-                                <button mat-icon-button color="accent" (click)="_editRowId ? revertPrice(game.id) : _editRowId = game.id; game.price = game.price || {amount: 0, currency: 'TLPVR'}; _editRowPrice = {amount: game.price.amount, currency: game.price.currency}">
+                                <button mat-icon-button color="accent"
+                                        (click)="inlineChangePriceHandler(game)">
                                     <mat-icon>edit</mat-icon>
                                 </button>
+<!--                                <button mat-icon-button color="accent"-->
+<!--                                        (click)="_editRowId ? revertPrice(game.id) : _editRowId = game.id; game.price = game.price || {amount: 0, currency: 'TLPVR'}; _editRowPrice = {amount: game.price.amount, currency: game.price.currency}">-->
+<!--                                    <mat-icon>edit</mat-icon>-->
+<!--                                </button>-->
                             </ng-container>
-                            <ng-container *ngIf="game.id === _editRowId">
-                                <div class="d-flex align-items-center justify-content-between w-100">
-                                    <div class="d-flex align-items-center">
-                                        <mat-form-field class="amount-field">
-                                            <input matInput amount-format value="{{game?.price?.amount}}" [(ngModel)]="game.price.amount">
-                                        </mat-form-field>
-                                        <div>{{game?.price?.currency}}</div>
+                            <!--                            <ng-container *ngIf="game.id === _editRowId">-->
+                            <!--                                <div class="d-flex align-items-center justify-content-between w-100">-->
+                            <!--                                    <div class="d-flex align-items-center">-->
+                            <!--                                        <mat-form-field class="amount-field">-->
+                            <!--                                            <input matInput amount-format value="{{game?.price?.amount}}" [(ngModel)]="game.price.amount">-->
+                            <!--                                        </mat-form-field>-->
+                            <!--                                        <div>{{game?.price?.currency}}</div>-->
 
-                                        <!--                                <mat-form-field class="currency-field">-->
-                                        <!--                                    <mat-select [(ngModel)]="game.price.currency">-->
-                                        <!--                                        <mat-option value="TLPVR">TLPVR</mat-option>-->
-                                        <!--                                        <mat-option value="COIN">COIN</mat-option>-->
-                                        <!--                                        <mat-option value="BYN">BYN</mat-option>-->
-                                        <!--                                    </mat-select>-->
-                                        <!--                                </mat-form-field>-->
-                                    </div>
-                                    <div class="d-flex">
-                                        <button mat-icon-button color="primary" (click)="inlineChangePriceHandler(game)" [disabled]="!game.price.currency">
-                                            <mat-icon>check</mat-icon>
-                                        </button>
-                                        <button mat-icon-button color="warn" (click)="game.price = _editRowPrice; _editRowId = null; _editRowPrice = null">
-                                            <mat-icon>close</mat-icon>
-                                        </button>
-                                    </div>
-                                </div>
-                            </ng-container>
+                            <!--                                        &lt;!&ndash;                                <mat-form-field class="currency-field">&ndash;&gt;-->
+                            <!--                                        &lt;!&ndash;                                    <mat-select [(ngModel)]="game.price.currency">&ndash;&gt;-->
+                            <!--                                        &lt;!&ndash;                                        <mat-option value="TLPVR">TLPVR</mat-option>&ndash;&gt;-->
+                            <!--                                        &lt;!&ndash;                                        <mat-option value="COIN">COIN</mat-option>&ndash;&gt;-->
+                            <!--                                        &lt;!&ndash;                                        <mat-option value="BYN">BYN</mat-option>&ndash;&gt;-->
+                            <!--                                        &lt;!&ndash;                                    </mat-select>&ndash;&gt;-->
+                            <!--                                        &lt;!&ndash;                                </mat-form-field>&ndash;&gt;-->
+                            <!--                                    </div>-->
+                            <!--                                    <div class="d-flex">-->
+                            <!--                                        <button mat-icon-button color="primary" (click)="inlineChangePriceHandler(game)" [disabled]="!game.price.currency">-->
+                            <!--                                            <mat-icon>check</mat-icon>-->
+                            <!--                                        </button>-->
+                            <!--                                        <button mat-icon-button color="warn" (click)="game.price = _editRowPrice; _editRowId = null; _editRowPrice = null">-->
+                            <!--                                            <mat-icon>close</mat-icon>-->
+                            <!--                                        </button>-->
+                            <!--                                    </div>-->
+                            <!--                                </div>-->
+                            <!--                            </ng-container>-->
                         </div>
 
                     </td>
@@ -97,7 +105,7 @@
                 </tr>
             </table>
             <div [hidden]="dataSource.data.length < 50">
-                <mat-paginator  [pageSizeOptions]="[50]" showFirstLastButtons></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[50]" showFirstLastButtons></mat-paginator>
             </div>
         </div>
     </control-panel-ui-card>
@@ -115,15 +123,20 @@
         <h3 mat-dialog-title>{{translation.instant('APPLY_PRICE_TITLE')}}</h3>
         <p>{{translation.instant('FOR_NEXT_GAMES_LABEL')}}</p>
         <div class="games-list mb-4">
-            <ul>
+            <ul *ngIf="selection.selected.length">
                 <li *ngFor="let game of selection.selected">{{game.name}}</li>
+            </ul>
+            <ul *ngIf="!selection.selected.length">
+                <li *ngFor="let game of _editRow">{{game.name}}</li>
             </ul>
         </div>
         <div class="d-flex align-items-center light-theme mb-4">
             <mat-form-field class="amount-field mr-4">
                 <input [formControl]="priceControl" amount-format matInput [placeholder]="translation.instant('PRICE')">
-                <mat-error *ngIf="priceControl?.errors?.required">{{translation.instant('REQUIRED_FIELD', [translation.instant('PRICE')])}}</mat-error>
-                <mat-error *ngIf="priceControl?.errors?.pattern">{{translation.instant('ONLY_NUMBER', [translation.instant('PRICE')])}}</mat-error>
+                <mat-error
+                        *ngIf="priceControl?.errors?.required">{{translation.instant('REQUIRED_FIELD', [translation.instant('PRICE')])}}</mat-error>
+                <mat-error
+                        *ngIf="priceControl?.errors?.pattern">{{translation.instant('ONLY_NUMBER', [translation.instant('PRICE')])}}</mat-error>
             </mat-form-field>
             <div>TLPVR</div>
             <!--        <mat-form-field class="currency-field">-->
@@ -138,8 +151,11 @@
     </div>
 
     <div class="actions d-flex align-items-center justify-content-end">
-        <button mat-flat-button color="warn" class="ml-2" mat-dialog-close>{{translation.instant('DIALOG_CANCEL_BUTTON_LABEL')}}</button>
-        <button mat-flat-button color="accent" class="ml-2" (click)="applyPrice()">{{translation.instant('DIALOG_CONFIRM_BUTTON_LABEL')}}</button>
+        <button mat-flat-button color="warn" class="ml-2"
+                (click)="reset()"
+                mat-dialog-close>{{translation.instant('DIALOG_CANCEL_BUTTON_LABEL')}}</button>
+        <button mat-flat-button color="accent" class="ml-2"
+                (click)="applyPrice()">{{translation.instant('DIALOG_CONFIRM_BUTTON_LABEL')}}</button>
     </div>
 </ng-template>
 

@@ -9,8 +9,13 @@
     padding: .5rem;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
   }
-  .mat-column-price {
-    width: 25rem;
+  .mat-column {
+    &-price {
+      width: 15rem;
+    }
+    &-select {
+      width: 5rem;
+    }
   }
   .mat-row {
     height: 4.5rem;
