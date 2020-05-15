@@ -75,6 +75,7 @@
                                theme="light"
                                (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
             <button mat-button *ngIf="(point?.handset | async)"
+                    class="mb-3"
                     routerLink="/login">{{translateService.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
         </div>
     </mat-sidenav>

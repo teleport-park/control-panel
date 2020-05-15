@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-between;
     max-width: 300px;
+    flex-wrap: wrap;
     .data {
       max-width: 100px;
       &:not(:last-child) {
