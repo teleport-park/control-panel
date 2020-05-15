@@ -221,9 +221,9 @@ $control-panel-light-theme: create-theme($control-panel-primary, $control-panel-
 }
 
 @mixin custom-scroll() {
-  position: relative;
-  height: 100%;
-  overflow: auto;
+  //position: relative;
+  //height: 100%;
+  //overflow: auto;
   &::-webkit-scrollbar {
     background-color: rgba(0, 0, 0, 0);
     width: 5px
