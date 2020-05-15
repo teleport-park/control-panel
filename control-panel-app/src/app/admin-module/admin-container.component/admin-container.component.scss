@@ -24,7 +24,7 @@
       }
 
       .sidenav-title {
-        flex: 0 0 auto;
+        flex: 0 0 40px;
         height: 40px;
         text-align: center;
         line-height: 40px;
@@ -45,14 +45,14 @@
       }
 
       .mat-divider {
-        flex: 0 0;
+        flex: 0 0 1px;
         margin: 0 15px;
         border-top-color: rgba(251, 251, 251, 0.12);
       }
 
       .nav-list-container {
         padding: 10px 15px 15px;
-        flex: 1 1 100%;
+        flex: 1 1 auto;
         overflow-y: auto;
         overflow-x: hidden;
 
@@ -67,11 +67,12 @@
           user-select: none;
 
           .expand-icon {
-            position: absolute;
-            right: 0;
+            //position: absolute;
+            //right: 0;
+            //justify-self: flex-end;
           }
 
-          .mat-icon {
+          .mat-icon:not(.expand-icon) {
             margin-right: 15px;
           }
 
@@ -101,6 +102,7 @@
         display: flex;
         flex-direction: column;
         align-self: center;
+        flex: 0 0 100px;
       }
     }
 
