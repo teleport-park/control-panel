@@ -14,7 +14,8 @@ export class PromoService {
     }
 
     getPromo() {
-        this.http.get(this.url.getPromo('GET')).subscribe(
+        // this.http.get(this.url.getPromo('GET')).subscribe(
+        this.http.get('./assets/data/promo.json').subscribe(
             (res: any[]) => this.promo$.next(res)
         );
     }

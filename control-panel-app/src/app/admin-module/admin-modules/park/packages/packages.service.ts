@@ -7,6 +7,7 @@ import { LoaderService } from '../../../../services/loader.service';
 import { PackageHistory } from '../../../../models';
 import { ToasterService } from '../../../../services/toaster.service';
 import { Package } from './package.model';
+import { PROMOS } from '../../../../utils/utils';
 
 @Injectable()
 
@@ -17,6 +18,8 @@ export class PackagesService {
     packagesHistory$: BehaviorSubject<PackageHistory[]> = new BehaviorSubject([]);
 
     lastSyncTime$: BehaviorSubject<Date> = new BehaviorSubject(new Date());
+
+    promo$: BehaviorSubject<string[]> = new BehaviorSubject(PROMOS);
 
     public packageForEdit: Package;
 

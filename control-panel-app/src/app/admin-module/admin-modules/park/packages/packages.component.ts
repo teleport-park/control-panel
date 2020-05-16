@@ -33,7 +33,7 @@ export class PackagesComponent implements OnInit {
     //
     // simplePackagesColumns: string[] = ['name', 'players', 'cloudId', 'description', 'games', 'note', 'syncId', 'type', 'unlim'];
 
-    displayedColumns: string[] = ['name', 'enabled', 'submenu'];
+    displayedColumns: string[] = ['name', 'promo', 'enabled', 'submenu'];
 
     _sliderValue: string = '00:00';
 
@@ -94,5 +94,9 @@ export class PackagesComponent implements OnInit {
         this.cd.markForCheck();
         this.service.togglePackage(pack.id, payload);
         event.source.checked = pack.enabled;
+    }
+
+    getPlansPromo(plans: Partial<{promo: string | null}>[]) {
+        return plans.map(plan => plan.promo).join(' | ');
     }
 }

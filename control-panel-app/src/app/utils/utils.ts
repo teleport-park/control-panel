@@ -9,5 +9,12 @@ export const toggleGender = (gender: string) => {
 export const urlPattern: string = '(http|https):\\/\\/(([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])\\.)*([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])(:[0-9]+)?$';
 
 export function transformToken(token: string = '') {
-        return token.length > 15 ? `${token.substr(0, 4)}...${token.substr(-4, 4)}` : token;
-    }
+    return token.length > 15 ? `${token.substr(0, 4)}...${token.substr(-4, 4)}` : token;
+}
+
+export const PROMOS = [
+    'PROMO_1',
+    'PROMO_2',
+    'PROMO_3',
+    'PROMO_4',
+];

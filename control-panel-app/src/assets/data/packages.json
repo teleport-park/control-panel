@@ -2,185 +2,307 @@
   {
     "id": "ewflvwev65ervlhwipwfe456+465sds2465495",
     "name": "package 1",
-    "players": 1,
     "note": "sdfdaflkghdFLKGH|DFLKGhvADLFKG",
     "enabled": true,
-    "payments": [
-      {
-        "amount": {
-          "currency": "BYN",
-          "amount": "100",
-          "inPercentage": false
+    "plans": [{
+      "promo": "PROMO1",
+      "payments": [
+        {
+          "amount": {
+            "currency": "BYN",
+            "amount": "100",
+            "inPercentage": false
+          },
+          "note": "desc amount1"
         },
-        "note": "desc amount1"
-      },
-      {
-        "amount": {
-          "currency": "BYN",
-          "amount": "90",
-          "inPercentage": true
+        {
+          "amount": {
+            "currency": "BYN",
+            "amount": "90",
+            "inPercentage": true
+          },
+          "note": "in percent"
+        }
+      ],
+      "charges": [
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "100",
+            "inPercentage": false
+          },
+          "note": "",
+          "players": [
+            1
+          ]
         },
-        "note": "in percent"
-      }
-    ],
-    "charges": [
-      {
-        "amount": {
-          "currency": "TLPVR",
-          "amount": "100",
-          "inPercentage": false
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "50",
+            "inPercentage": false
+          },
+          "note": "",
+          "players": [
+            0,
+            1,
+            2
+          ]
         },
-        "note": "",
-        "players": [
-          1
-        ]
-      },
-      {
-        "amount": {
-          "currency": "TLPVR",
-          "amount": "50",
-          "inPercentage": false
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "50",
+            "inPercentage": true
+          },
+          "note": "",
+          "players": [
+            0
+          ]
+        }
+      ]
+    }, {
+      "promo": "PROMO1",
+      "payments": [
+        {
+          "amount": {
+            "currency": "BYN",
+            "amount": "100",
+            "inPercentage": false
+          },
+          "note": "desc amount1"
         },
-        "note": "",
-        "players": [
-          0,
-          1,
-          2
-        ]
-      },
-      {
-        "amount": {
-          "currency": "TLPVR",
-          "amount": "50",
-          "inPercentage": true
+        {
+          "amount": {
+            "currency": "BYN",
+            "amount": "90",
+            "inPercentage": true
+          },
+          "note": "in percent"
+        }
+      ],
+      "charges": [
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "100",
+            "inPercentage": false
+          },
+          "note": "",
+          "players": [
+            1
+          ]
         },
-        "note": "",
-        "players": [
-          0
-        ]
-      }
-    ]
-  }, {
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "50",
+            "inPercentage": false
+          },
+          "note": "",
+          "players": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "50",
+            "inPercentage": true
+          },
+          "note": "",
+          "players": [
+            0
+          ]
+        }
+      ]
+    }, {
+      "promo": "PROMO1",
+      "payments": [
+        {
+          "amount": {
+            "currency": "BYN",
+            "amount": "100",
+            "inPercentage": false
+          },
+          "note": "desc amount1"
+        },
+        {
+          "amount": {
+            "currency": "BYN",
+            "amount": "90",
+            "inPercentage": true
+          },
+          "note": "in percent"
+        }
+      ],
+      "charges": [
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "100",
+            "inPercentage": false
+          },
+          "note": "",
+          "players": [
+            1
+          ]
+        },
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "50",
+            "inPercentage": false
+          },
+          "note": "",
+          "players": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "50",
+            "inPercentage": true
+          },
+          "note": "",
+          "players": [
+            0
+          ]
+        }
+      ]
+    }]
+  },
+  {
     "id": "ewflvwev65ervlhwidfgdfgwfe456+46532465495",
     "name": "package 2",
-    "players": 2,
     "note": "lorem",
     "enabled": true,
-    "payments": [
-      {
-        "amount": {
-          "currency": "BYN",
-          "amount": "100",
-          "inPercentage": false
+    "plans": [{
+      "promo": "PROMO2",
+      "payments": [
+        {
+          "amount": {
+            "currency": "BYN",
+            "amount": "100",
+            "inPercentage": false
+          },
+          "note": "desc amount1"
         },
-        "note": "desc amount1"
-      },
-      {
-        "amount": {
-          "currency": "BYN",
-          "amount": "90",
-          "inPercentage": true
+        {
+          "amount": {
+            "currency": "BYN",
+            "amount": "90",
+            "inPercentage": true
+          },
+          "note": "in percent"
+        }
+      ],
+      "charges": [
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "100",
+            "inPercentage": false
+          },
+          "note": "",
+          "players": [
+            1
+          ]
         },
-        "note": "in percent"
-      }
-    ],
-    "charges": [
-      {
-        "amount": {
-          "currency": "TLPVR",
-          "amount": "100",
-          "inPercentage": false
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "50",
+            "inPercentage": false
+          },
+          "note": "",
+          "players": [
+            0,
+            1,
+            2
+          ]
         },
-        "note": "",
-        "players": [
-          1
-        ]
-      },
-      {
-        "amount": {
-          "currency": "TLPVR",
-          "amount": "50",
-          "inPercentage": false
-        },
-        "note": "",
-        "players": [
-          0,
-          1,
-          2
-        ]
-      },
-      {
-        "amount": {
-          "currency": "TLPVR",
-          "amount": "50",
-          "inPercentage": true
-        },
-        "note": "",
-        "players": [
-          0
-        ]
-      }
-    ]
-  }, {
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "50",
+            "inPercentage": true
+          },
+          "note": "",
+          "players": [
+            0
+          ]
+        }
+      ]
+    }]
+  },
+  {
     "id": "ewflvwev65ervlhwipwffsdfsdfsfsdf56+46532465495",
     "name": "TEST",
-    "players": 3,
     "note": "lore",
     "enabled": true,
-    "payments": [
-      {
-        "amount": {
-          "currency": "BYN",
-          "amount": "100",
-          "inPercentage": false
+    "plans": [{
+      "promo": "PROMO3",
+      "payments": [
+        {
+          "amount": {
+            "currency": "BYN",
+            "amount": "100",
+            "inPercentage": false
+          },
+          "note": "desc amount1"
         },
-        "note": "desc amount1"
-      },
-      {
-        "amount": {
-          "currency": "BYN",
-          "amount": "90",
-          "inPercentage": true
+        {
+          "amount": {
+            "currency": "BYN",
+            "amount": "90",
+            "inPercentage": true
+          },
+          "note": "in percent"
+        }
+      ],
+      "charges": [
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "100",
+            "inPercentage": false
+          },
+          "note": "",
+          "players": [
+            1
+          ]
         },
-        "note": "in percent"
-      }
-    ],
-    "charges": [
-      {
-        "amount": {
-          "currency": "TLPVR",
-          "amount": "100",
-          "inPercentage": false
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "50",
+            "inPercentage": false
+          },
+          "note": "",
+          "players": [
+            0,
+            1,
+            2
+          ]
         },
-        "note": "",
-        "players": [
-          1
-        ]
-      },
-      {
-        "amount": {
-          "currency": "TLPVR",
-          "amount": "50",
-          "inPercentage": false
-        },
-        "note": "",
-        "players": [
-          0,
-          1,
-          2
-        ]
-      },
-      {
-        "amount": {
-          "currency": "TLPVR",
-          "amount": "50",
-          "inPercentage": true
-        },
-        "note": "",
-        "players": [
-          0
-        ]
-      }
-    ]
+        {
+          "amount": {
+            "currency": "TLPVR",
+            "amount": "50",
+            "inPercentage": true
+          },
+          "note": "",
+          "players": [
+            0
+          ]
+        }
+      ]
+    }]
   }
 ]

@@ -286,5 +286,7 @@
   "SATURDAY": "Saturday",
   "SUNDAY":"Sunday",
   "EVERY": "Every",
-  "ORDER": "Order"
+  "ORDER": "Order",
+  "PLANS": "Plans",
+  "PLANS_ADD": "Add plan"
 }

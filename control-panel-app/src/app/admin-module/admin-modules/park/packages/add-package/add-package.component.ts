@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '../../../../../common/translations-module';
 import { Currencies } from '../../../../utils/utils';
 import { Router } from '@angular/router';
@@ -7,7 +7,7 @@ import { PackagesService } from '../packages.service';
 import { MatDialog } from '@angular/material';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../../common/shared-module';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Charge, Payment } from '../package.model';
+import { Charge, Package, Payment } from '../package.model';
 
 @Component({
     selector: 'add-package',
@@ -24,6 +24,10 @@ export class AddPackageComponent implements OnInit {
 
     charges: FormArray;
 
+    plans: FormArray;
+
+    promos: string[];
+
     constructor(public fb: FormBuilder,
                 public translationService: TranslateService,
                 public service: PackagesService,
@@ -36,28 +40,45 @@ export class AddPackageComponent implements OnInit {
         this.initForm();
         if (this.service.packageForEdit) {
             this.form.patchValue(this.service.packageForEdit);
-            this.service.packageForEdit.payments.forEach((payment: Payment) => {
-                const control = this.getPayment();
-                control.patchValue(payment);
-                this.payments.push(control);
-            });
-            this.service.packageForEdit.charges.forEach((charge: Charge) => {
-                const control = this.getCharge();
-                control.patchValue(charge);
-                this.charges.push(control);
+            // this.service.packageForEdit.plans.payments.forEach((payment: Payment) => {
+            //     const control = this.getPayment();
+            //     control.patchValue(payment);
+            //     this.payments.push(control);
+            // });
+            // this.service.packageForEdit.plans.charges.forEach((charge: Charge) => {
+            //     const control = this.getCharge();
+            //     control.patchValue(charge);
+            //     this.charges.push(control);
+            // });
+            this.service.packageForEdit.plans.forEach((plan: {promo: string, charges: Charge[], payments: Payment[]}) => {
+                const planControl = this.getPlan();
+                planControl.patchValue(plan);
+                const charges = planControl.get('charges') as FormArray;
+                plan.charges.forEach((charge: Charge) => {
+                    const control = this.getCharge();
+                    control.patchValue(charge);
+                    charges.push(control);
+                });
+                const payments = planControl.get('payments') as FormArray;
+                plan.payments.forEach((payment: Payment) => {
+                    const control = this.getPayment();
+                    control.patchValue(payment);
+                    payments.push(control);
+                });
+                this.plans.push(planControl);
             });
         }
+        this.promos = this.service.promo$.getValue();
+        console.log(this.form);
     }
 
     initForm() {
-        this.payments = this.fb.array([]);
-        this.charges = this.fb.array([]);
+        this.plans = this.fb.array([]);
         this.form = this.fb.group({
             name: ['', Validators.required],
-            players: [1, [Validators.required, Validators.pattern('[0-9]+'), Validators.min(1), Validators.max(15)]],
+            // players: [1, [Validators.required, Validators.pattern('[0-9]+'), Validators.min(1), Validators.max(15)]],
             note: '',
-            payments: this.payments,
-            charges: this.charges
+            plans: this.plans
         });
     }
 
@@ -84,21 +105,32 @@ export class AddPackageComponent implements OnInit {
         });
     }
 
-    addPayment() {
-        this.payments.push(this.getPayment());
+    getPlan() {
+        return this.fb.group({
+            promo: null,
+            payments: this.fb.array([]),
+            charges: this.fb.array([])
+        });
     }
 
-    addCharge() {
-        this.charges.push(this.getCharge());
+    addPlan() {
+        this.plans.push(this.getPlan());
     }
 
-    removePayment(index) {
-        this.payments.removeAt(index);
-
+    addPayment(index: number) {
+        (this.plans.at(index).get('payments') as FormArray).push(this.getPayment());
     }
 
-    removeCharge(index) {
-        this.charges.removeAt(index);
+    addCharge(index: number) {
+        (this.plans.at(index).get('charges') as FormArray).push(this.getCharge());
+    }
+
+    removePayment(parentIndex, index) {
+        (this.plans.at(parentIndex).get('payments') as FormArray).removeAt(index);
+    }
+
+    removeCharge(parentIndex, index) {
+        (this.plans.at(parentIndex).get('charges') as FormArray).removeAt(index);
     }
 
     submit() {
@@ -106,17 +138,18 @@ export class AddPackageComponent implements OnInit {
         if (this.form.invalid) {
             return;
         }
-        console.log(this.form.getRawValue());
+        const payload = new Package(this.form.getRawValue());
+        console.log(payload);
         if (this.service.packageForEdit) {
-            this.service.editPackage(this.form.getRawValue());
+            this.service.editPackage(payload);
         } else {
-            this.service.addPackage(this.form.getRawValue());
+            this.service.addPackage(payload);
         }
     }
 
     getPlayersArray() {
         const array = [];
-        for (let i = 0; i < +this.form.get('players').value && i < 15; i++) {
+        for (let i = 0; i < 5; i++) {
             array.push(i);
         }
         return array;
@@ -137,7 +170,7 @@ export class AddPackageComponent implements OnInit {
     /**
      * show confirm dialog
      */
-    private showConfirmDialog(index: number, payments?: boolean) {
+    private showConfirmDialog(parentIndex: number, index: number, payments?: boolean) {
         this.dialog.open(ConfirmDialogComponent, {
             data: {
                 title: 'DIALOG_CONFIRM_TITLE',
@@ -151,9 +184,9 @@ export class AddPackageComponent implements OnInit {
                 return;
             }
             if (payments) {
-                this.removePayment(index);
+                this.removePayment(parentIndex, index);
             } else {
-                this.removeCharge(index);
+                this.removeCharge(parentIndex, index);
             }
             this.cd.markForCheck();
         });
