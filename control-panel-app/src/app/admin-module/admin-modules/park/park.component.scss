@@ -3,4 +3,5 @@
 :host {
   @include d-block();
   @include custom-scroll();
+  overflow: auto;
 }

@@ -277,5 +277,14 @@
   "CHIP_ID_COPY_SUCCESSFUL": "Chip id copied to clip board",
   "PROMO_LIST": "Promos list",
   "ARCHIVED": "Archived",
-  "TABLE_SHOW": "Show"
+  "TABLE_SHOW": "Show",
+  "MONDAY": "Monday",
+  "TUESDAY": "Tuesday",
+  "WEDNESDAY":"Wednesday",
+  "THURSDAY": "Thursday",
+  "FRIDAY":"Friday",
+  "SATURDAY": "Saturday",
+  "SUNDAY":"Sunday",
+  "EVERY": "Every",
+  "ORDER": "Order"
 }

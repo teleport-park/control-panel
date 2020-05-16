@@ -3,13 +3,32 @@
     width: 100%;
     table-layout: fixed;
 
+    .mat-row {
+      &.moved {
+        background-color: rgba(17, 255, 83, 0.2);
+        transition: transform 250ms cubic-bezier(0, 0, 0.2, 1), background-color .1s ease-in-out;
+      }
+      &.moved-from {
+        background-color: rgba(0, 189, 255, 0.2);
+        transition:  transform 250ms cubic-bezier(0, 0, 0.2, 1), background-color .1s ease-in-out;
+      }
+      background-color: white;
+      transition: transform 250ms cubic-bezier(0, 0, 0.2, 1), background-color 2s ease-in-out;
+    }
+
     .mat-column {
-      &-enabled {
-        width: 5rem;
+      &-enabled, &-archived {
+        max-width: 5rem;
       }
-      &-archived {
-        width: 5rem;
+
+      &-order {
+        max-width: 5rem;
+        padding-left: .5rem;
       }
+    }
+
+    .drag-icon {
+      cursor: move;
     }
   }
 }

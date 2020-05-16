@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MaterialModule } from '../../material.module';
+import { TranslationModule } from '../translations-module/translation.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { MaterialModule } from '../../material.module';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        MaterialModule
+        MaterialModule,
+        TranslationModule
     ],
     exports: [TimePickerComponent, CronGenComponent],
     declarations: [TimePickerComponent, CronGenComponent],

@@ -279,5 +279,14 @@
   "CHIP_ID_COPY_SUCCESSFUL": "ID карты скопированно в буфер",
   "PROMO_LIST": "Список промо",
   "ARCHIVED": "Архивный",
-  "TABLE_SHOW": "Открыть"
+  "TABLE_SHOW": "Открыть",
+  "MONDAY": "Понедельник",
+  "TUESDAY": "Вторник",
+  "WEDNESDAY":"Среда",
+  "THURSDAY": "Четверг",
+  "FRIDAY":"Пятница",
+  "SATURDAY": "Суббота",
+  "SUNDAY":"Воскресенье",
+  "EVERY": "Каждый",
+  "ORDER": "Порядок"
 }

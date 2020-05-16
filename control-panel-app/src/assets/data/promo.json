@@ -1,0 +1,142 @@
+[
+  {
+    "id": "779778f0-39c1-437c-bdc7-1d6d6ef7e362",
+    "active": true,
+    "enabled": false,
+    "archived": false,
+    "display_name": "Bomb U!"
+  },
+  {
+    "id": "7ef21ccd-552f-4e56-b72d-61fadd5caac1",
+    "active": true,
+    "enabled": true,
+    "archived": true,
+    "display_name": "Vacation Simulator Licensed"
+  },
+  {
+    "id": "44127250-ed8a-49d9-b60f-114f456a0c6e",
+    "active": false,
+    "enabled": false,
+    "archived": false,
+    "display_name": "Virtual Classroom"
+  },
+  {
+    "id": "fe108199-f6fd-4e2b-be89-0605d56e5b85",
+    "active": false,
+    "enabled": false,
+    "archived": false,
+    "display_name": "Virtual Classroom"
+  },
+  {
+    "id": "2f040304-f180-4368-8333-3e0c5de50d84",
+    "active": true,
+    "enabled": false,
+    "archived": true,
+    "display_name": "Arizona"
+  },
+  {
+    "id": "4cf7a97e-01be-4f2d-9950-513692822929",
+    "active": false,
+    "enabled": true,
+    "archived": false,
+    "display_name": "Jumanji: The VR Adventure"
+  },
+  {
+    "id": "b1c22265-89d3-4e00-9cbf-728bc5df8c9f",
+    "active": true,
+    "enabled": false,
+    "archived": false,
+    "display_name": "Pirates"
+  },
+  {
+    "id": "c8a9574b-53dd-4c13-8f49-3790cb70ac5f",
+    "active": false,
+    "enabled": false,
+    "archived": false,
+    "display_name": "GRP"
+  },
+  {
+    "id": "96f1b49d-edfe-4d1c-bdc0-1cd6b3cc44a5",
+    "active": false,
+    "enabled": true,
+    "archived": false,
+    "display_name": "Shishkin"
+  },
+  {
+    "id": "6c175d4c-9ec4-4893-b1ef-a525737448f4",
+    "active": false,
+    "enabled": false,
+    "archived": true,
+    "display_name": "Ural Repair"
+  },
+  {
+    "id": "88417b23-ad18-4240-9cdd-7a5351de96cb",
+    "active": true,
+    "enabled": false,
+    "archived": false,
+    "display_name": "Paint Workshop"
+  },
+  {
+    "id": "d73a3ce2-54d3-4a7e-b951-09ca48aeca70",
+    "active": false,
+    "enabled": true,
+    "archived": true,
+    "display_name": "Elven Assassin"
+  },
+  {
+    "id": "1dd05a28-ba17-47d5-9998-325bdeed7c5b",
+    "active": false,
+    "enabled": true,
+    "archived": true,
+    "display_name": "Malevich"
+  },
+  {
+    "id": "7a29445c-a977-4ec7-877c-11c491d579a4",
+    "active": false,
+    "enabled": true,
+    "archived": true,
+    "display_name": "SmashBox Arena"
+  },
+  {
+    "id": "02ea281e-2254-4505-84b4-fcbf309e6910",
+    "active": false,
+    "enabled": true,
+    "archived": true,
+    "display_name": "Tilt Brush"
+  },
+  {
+    "id": "42b50a52-0d4c-4139-a1d1-154bb062203b",
+    "active": false,
+    "enabled": false,
+    "archived": true,
+    "display_name": "Vacation Simulator Licensed"
+  },
+  {
+    "id": "a076aff7-ca10-4ad4-8870-3f0e92a52a06",
+    "active": true,
+    "enabled": true,
+    "archived": false,
+    "display_name": "The Controller RUS"
+  },
+  {
+    "id": "eccc9bf1-2b91-4581-8d77-b72e942cce8b",
+    "active": true,
+    "enabled": true,
+    "archived": false,
+    "display_name": "Goncharova"
+  },
+  {
+    "id": "53116e0d-85e6-4a63-bb56-83bddf1aee56",
+    "active": false,
+    "enabled": false,
+    "archived": true,
+    "display_name": ""
+  },
+  {
+    "id": "d9d1f528-70df-42d6-9454-2b1470960ceb",
+    "active": false,
+    "enabled": true,
+    "archived": false,
+    "display_name": "A-Tech Cybernetic VR"
+  }
+]

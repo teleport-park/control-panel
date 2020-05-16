@@ -1,5 +1,5 @@
 <section class="cron-editor-main">
-    <mat-tab-group class="cron-editor-container" (selectedIndexChange)="onTabFocus($event)" [backgroundColor]="backgroundColor" [color]="color">
+    <mat-tab-group class="cron-editor-container" (selectedIndexChange)="onTabFocus($event)" [backgroundColor]="backgroundColor" [color]="color" animationDuration="0ms">
 
       <!-- Minute -->
       <mat-tab class="cron-editor-tab" label="Minutes" *ngIf="!options.hideMinutesTab">
@@ -76,16 +76,16 @@
       <mat-tab  class="cron-editor-tab" label="Weekly" *ngIf="!options.hideWeeklyTab">
         <div class="cron-editor-tab-content">
 
-          <span class="cron-form-label">Every </span>
+          <span class="cron-form-label">{{'EVERY' | translate}}</span>
 
           <div [formGroup]="weeklyForm">
-            <mat-checkbox class="checkbox-margin" formControlName="MON">Monday</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="TUE">Tuesday</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="WED">Wednesday</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="THU">Thursday</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="FRI">Friday</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="SAT">Saturday</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="SUN">Sunday</mat-checkbox>
+            <mat-checkbox class="checkbox-margin" formControlName="MON">{{'MONDAY' | translate}}</mat-checkbox>
+            <mat-checkbox class="checkbox-margin" formControlName="TUE">{{'TUESDAY' | translate}}</mat-checkbox>
+            <mat-checkbox class="checkbox-margin" formControlName="WED">{{'WEDNESDAY' | translate}}</mat-checkbox>
+            <mat-checkbox class="checkbox-margin" formControlName="THU">{{'THURSDAY' | translate}}</mat-checkbox>
+            <mat-checkbox class="checkbox-margin" formControlName="FRI">{{'FRIDAY' | translate}}</mat-checkbox>
+            <mat-checkbox class="checkbox-margin" formControlName="SAT">{{'SATURDAY' | translate}}</mat-checkbox>
+            <mat-checkbox class="checkbox-margin" formControlName="SUN">{{'SUNDAY' | translate}}</mat-checkbox>
           </div>
 
 
