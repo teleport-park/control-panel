@@ -235,6 +235,10 @@ html, body {
     }
   }
 
+  .small {
+    font-size: .9rem;
+  }
+
   .italic {
     font-style: italic;
   }
@@ -301,9 +305,26 @@ html, body {
       }
     }
 
+    .mat-accent {
+      .mat-icon {
+        color: map-get($accent-color, 500);
+      }
+      color: map-get($accent-color, 500);
+    }
+    .mat-warn {
+      .mat-icon {
+        color: $warn;
+      }
+      color: $warn;
+    }
+
     .mat-column {
-      &-enabled, &-archived {
+      &-enabled, &-action {
         max-width: 5rem;
+      }
+
+      &-archived, &-removed {
+        max-width: 6rem;
       }
 
       &-order {

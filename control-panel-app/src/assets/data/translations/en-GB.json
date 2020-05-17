@@ -288,5 +288,10 @@
   "EVERY": "Every",
   "ORDER": "Order",
   "PLANS": "Plans",
-  "PLANS_ADD": "Add plan"
+  "PLANS_ADD": "Add plan",
+  "DIALOG_PROMO_DELETE_MESSAGE": "Remove {0} from list?",
+  "REMOVED": "Удален",
+  "FIRST_FILL": "First fill",
+  "SCHEDULE": "Schedule",
+  "CONDITIONS": "Conditions"
 }

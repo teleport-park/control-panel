@@ -2,6 +2,9 @@
     <control-panel-ui-card class="primary">
         <div panelUICardHeaderTitle>{{translationService.instant('PROMO_LIST')}}</div>
         <div panelUICardContent>
+            <div class="d-flex">
+                <button mat-flat-button color="primary" (click)="add()" class="pl-2 mt-3 mb-3"><mat-icon>add</mat-icon>{{translationService.instant('TABLE_ADD')}}</button>
+            </div>
             <mat-table
                     cdkDropList
                     #table
@@ -25,17 +28,34 @@
                     <mat-header-cell *matHeaderCellDef>{{translationService.instant('PACKAGES')}}</mat-header-cell>
                     <mat-cell *matCellDef="let promo"> {{promo.packages}} </mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="active">
-                    <mat-header-cell *matHeaderCellDef> {{translationService.instant('ARCHIVED')}} </mat-header-cell>
+                <ng-container matColumnDef="games">
+                    <mat-header-cell *matHeaderCellDef>{{translationService.instant('ADMIN_MENU_GAMES')}}</mat-header-cell>
+                    <mat-cell *matCellDef="let promo"> {{promo.games}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="conditions">
+                    <mat-header-cell *matHeaderCellDef>{{translationService.instant('CONDITIONS')}}</mat-header-cell>
+                    <mat-cell *matCellDef="let promo">
+                        <div class="d-flex flex-column">
+                            <span class="d-flex align-items-center small label mb-1">{{translationService.instant('FIRST_FILL')}}:
+                                <mat-icon class="first-fill_icon" color="{{promo.first_fill ? 'success' : 'warn'}}">
+                                    {{promo.first_fill ? 'check' : 'clear'}}
+                                </mat-icon>
+                            </span>
+                            <span class="small label mb-1">{{translationService.instant('SCHEDULE')}}: {{promo.conditions.schedule || '-'}}</span>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="removed">
+                    <mat-header-cell *matHeaderCellDef> {{translationService.instant('REMOVED')}} </mat-header-cell>
                     <mat-cell *matCellDef="let promo">
                         <mat-icon
-                                color="{{promo.active ? 'success' : 'warn'}}">{{promo.active ? 'check' : 'clear'}}</mat-icon>
+                                color="{{promo.removed ? 'success' : 'warn'}}">{{promo.removed ? 'check' : 'clear'}}</mat-icon>
                     </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="enabled">
                     <mat-header-cell *matHeaderCellDef></mat-header-cell>
                     <mat-cell *matCellDef="let promo">
-                        <mat-slide-toggle color="success" [checked]="promo.enabled"></mat-slide-toggle>
+                        <mat-slide-toggle color="success" [checked]="promo.enabled" (toggleChange)="toggle(promo)"></mat-slide-toggle>
                     </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="archived">
@@ -45,6 +65,21 @@
                                 color="{{promo.archived ? 'success' : 'warn'}}">{{promo.archived ? 'check' : 'clear'}}</mat-icon>
                     </mat-cell>
                 </ng-container>
+
+                <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let promo">
+                        <button mat-icon-button color="accent" (click)="edit(promo)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="delete(promo)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+
+
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns; let index = index;" cdkDrag
                          (cdkDragStarted)="reset($event, index)"
@@ -59,3 +94,31 @@
         </div>
     </control-panel-ui-card>
 </div>
+
+<ng-template #formTeml>
+    <form [formGroup]="form" class="promo-form">
+        <mat-form-field>
+            <input matInput placeholder="{{'NAME' | translate}}" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+        <textarea matInput [maxLength]="255"
+                  placeholder="{{translationService.instant('NOTE')}}"
+                  formControlName="notes"
+                  style="box-sizing: content-box"
+                  autocomplete="off"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="2"></textarea>
+        </mat-form-field>
+        <mat-checkbox formControlName="enabled">{{'ENABLED_ALT' | translate}}</mat-checkbox>
+        <div formGroupName="conditions" class="d-flex flex-column pt-2 conditions">
+            <h5 class="mb-2">{{'CONDITIONS' | translate}}</h5>
+            <mat-checkbox formControlName="first_fill">{{'FIRST_FILL' | translate}}</mat-checkbox>
+            <mat-form-field>
+                <input matInput formControlName="schedule" placeholder="{{'SCHEDULE' | translate}}">
+            </mat-form-field>
+        </div>
+        <control-panel-ui-action-toolbar (cancel)="_dialog.close(); _dialog = null" (confirm)="submit()"></control-panel-ui-action-toolbar>
+    </form>
+
+</ng-template>

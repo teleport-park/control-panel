@@ -237,6 +237,7 @@
   "EDIT_PACKAGE_TITLE": "Редактировать пакет",
   "DIALOG_PACKAGE_TOGGLE_CONFIRM_MESSAGE": "{0} пакет {1}?",
   "DIALOG_CONFIRM_DELETE_STAFF_MESSAGE": "Вы хотите удалить сотрудника {0} из списка?",
+  "DIALOG_PROMO_DELETE_MESSAGE": "Удалить {0} из списка?",
   "TOGGLE_GENDER_TOOLTIP": "Изменить пол",
   "CLOSE": "Закрыть",
   "CLEAR": "Очистить",
@@ -290,5 +291,9 @@
   "EVERY": "Каждый",
   "ORDER": "Порядок",
   "PLANS": "Планы",
-  "PLANS_ADD": "Добавить план"
+  "PLANS_ADD": "Добавить план",
+  "REMOVED": "Удален",
+  "FIRST_FILL": "Первое пополнение",
+  "SCHEDULE": "Расписание",
+  "CONDITIONS": "Условия"
 }
