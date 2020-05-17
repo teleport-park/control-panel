@@ -60,14 +60,16 @@ export class PackagesService {
         this.http.post(this.urlService.getPackages('POST'), data).subscribe(
             _ => {
                 this.toaster.success('PACKAGE_ADDED_SUCCESSFUL', true);
+                this.getPackages();
             });
     }
 
-    public editPackage(data: Package) {
-        this.http.put(this.urlService.getPackages('PUT', data.id), data).subscribe(
+    public editPackage(data: Package, id: string) {
+        this.http.put(this.urlService.getPackages('PUT', id), data).subscribe(
             _ => {
                 this.toaster.success('PACKAGE_ADDED_SUCCESSFUL', true);
                 this.packageIdForEdit = null;
+                this.getPackages();
             }
         );
     }

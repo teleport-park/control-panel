@@ -75,28 +75,25 @@ export class AddPackageComponent implements OnInit {
             name: ['', Validators.required],
             players: [1, [Validators.required, Validators.pattern('[0-9]+'), Validators.min(1), Validators.max(15)]],
             note: '',
+            enabled: false,
             plans: this.plans
         });
     }
 
     getPayment() {
         return this.fb.group({
-            amount: this.fb.group({
-                currency: Currencies[1],
-                amount: ['', Validators.required],
-                inPercentage: false
-            }),
+            currency: Currencies[1],
+            amount: ['', Validators.required],
+            inPercentage: false,
             note: ''
         });
     }
 
     getCharge() {
         return this.fb.group({
-            amount: this.fb.group({
-                currency: Currencies[0],
-                amount: ['', Validators.required],
-                inPercentage: false
-            }),
+            currency: Currencies[0],
+            amount: ['', Validators.required],
+            inPercentage: false,
             note: '',
             players: []
         });
@@ -104,7 +101,7 @@ export class AddPackageComponent implements OnInit {
 
     getPlan() {
         return this.fb.group({
-            promo: null,
+            promo_id: null,
             payments: this.fb.array([]),
             charges: this.fb.array([])
         });
@@ -135,13 +132,13 @@ export class AddPackageComponent implements OnInit {
         if (this.form.invalid) {
             return;
         }
-        const payload = new Package(this.form.getRawValue());
-        console.log(payload);
+        console.log(this.form.getRawValue());
         if (this.service.packageIdForEdit) {
-            this.service.editPackage(payload);
+            this.service.editPackage(this.form.getRawValue(), this._packageId);
         } else {
-            this.service.addPackage(payload);
+            this.service.addPackage(this.form.getRawValue());
         }
+        this.router.navigate(['admin', 'park', 'packages']);
     }
 
     getPlayersArray() {
