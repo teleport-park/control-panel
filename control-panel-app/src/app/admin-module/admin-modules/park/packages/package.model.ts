@@ -19,27 +19,39 @@ export class Package {
         this.name = name;
         this.note = note;
         this.enabled = enabled;
-        // this.plans.promo = promo;
-        // this.plans.payments = payments;
-        // this.plans.charges = charges;
     }
+}
+
+export class PackageResponse {
+    id: string;
+    enabled: boolean;
+    removed: boolean;
+    name: string;
+    note: string;
+    players: number;
+    display_name: string;
+    totals:
+        {
+            payments: Payment;
+            charges: Charge
+        }[];
 }
 
 export class Payment {
     amount: {
         currency: string;
         amount: number;
-        inPercentage: boolean;
+        inPercentage?: boolean;
     };
-    note: string;
+    note?: string;
 }
 
 export class Charge {
     amount: {
         currency: string;
         amount: number;
-        inPercentage: boolean;
+        inPercentage?: boolean;
     };
-    note: string;
-    players: number[];
+    note?: string;
+    players?: number[];
 }

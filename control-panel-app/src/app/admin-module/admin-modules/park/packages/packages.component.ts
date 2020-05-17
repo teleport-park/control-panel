@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatSlideToggleChange, MatTableDataSource } from '@angular/material';
-import { Package } from './package.model';
+import { Package, PackageResponse } from './package.model';
 import { PackagesService } from './packages.service';
 import { TranslateService } from '../../../../common/translations-module';
 import { Router } from '@angular/router';
@@ -14,30 +14,11 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/sh
 export class PackagesComponent implements OnInit {
     @ViewChild('formTemplate', {static: false}) formTemplate: TemplateRef<any>;
 
-    // displayedColumns: string[] = ['timestamp', 'status'];
-
-    // packagesColumns: string[] = [
-    //     'name',
-    //     'players',
-    //     'cloudId',
-    //     'description',
-    //     'expiresAt',
-    //     'games',
-    //     'note',
-    //     'syncId',
-    //     'type',
-    //     'unlim',
-    //     'active',
-    //     'toggle',
-    //     'submenu'];
-    //
-    // simplePackagesColumns: string[] = ['name', 'players', 'cloudId', 'description', 'games', 'note', 'syncId', 'type', 'unlim'];
-
-    displayedColumns: string[] = ['name', 'promo', 'enabled', 'submenu'];
+    displayedColumns: string[] = ['name', 'players', 'totals', 'removed', 'enabled', 'submenu'];
 
     _sliderValue: string = '00:00';
 
-    dataSource: MatTableDataSource<Package>;
+    dataSource: MatTableDataSource<PackageResponse>;
 
 
     constructor(public service: PackagesService,
@@ -48,15 +29,16 @@ export class PackagesComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.service.getPackages();
         this.service.packages$.subscribe(res => {
             this.dataSource = new MatTableDataSource(res);
+            this.cd.markForCheck();
         });
+        this.service.getPackages();
     }
 
     edit(item: Package) {
-        this.service.packageForEdit = item;
-        this.router.navigate(['admin', 'park', 'packages', 'add']);
+        this.service.packageIdForEdit = item.id;
+        this.router.navigate(['admin', 'park', 'packages', 'add', item.id]);
     }
 
     applyFilter(value) {

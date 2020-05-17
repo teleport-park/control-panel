@@ -1,7 +1,7 @@
 <div class="light-theme mb-2">
     <control-panel-ui-card>
         <div panelUICardHeaderTitle>
-            {{translationService.instant(service.packageForEdit ? 'EDIT_PACKAGE_TITLE' : 'ADD_PACKAGE_TITLE')}}
+            {{translationService.instant(_packageId ? 'EDIT_PACKAGE_TITLE' : 'ADD_PACKAGE_TITLE')}}
         </div>
         <div panelUICardContent>
             <form [formGroup]="form" class="container-fluid">
@@ -13,17 +13,17 @@
                             <mat-error
                                     *ngIf="form.get('name')?.errors?.required">{{translationService.instant('REQUIRED_FIELD', [translationService.instant('AMUSEMENTS_NAME_LABEL')])}}</mat-error>
                         </mat-form-field>
-<!--                        <mat-form-field>-->
-<!--                            <input type="number" matInput-->
-<!--                                   [max]="15"-->
-<!--                                   [min]="1"-->
-<!--                                   placeholder="{{translationService.instant('PLAYERS_COUNT')}}"-->
-<!--                                   formControlName="players">-->
-<!--                            <mat-error *ngIf="form.get('players')?.errors?.required">{{translationService.instant('REQUIRED_FIELD', [translationService.instant('PLAYERS_COUNT')])}}</mat-error>-->
-<!--                            <mat-error *ngIf="form.get('players')?.errors?.pattern">{{translationService.instant('ONLY_INTEGER_ERROR')}}</mat-error>-->
-<!--                            <mat-error *ngIf="form.get('players')?.errors?.min">{{translationService.instant('PLAYERS_MIN_ERROR')}} {{form.get('players')?.errors?.min.min}}</mat-error>-->
-<!--                            <mat-error *ngIf="form.get('players')?.errors?.max">{{translationService.instant('PLAYERS_MAX_ERROR')}} {{form.get('players')?.errors?.max.max}}</mat-error>-->
-<!--                        </mat-form-field>-->
+                        <mat-form-field>
+                            <input type="number" matInput
+                                   [max]="15"
+                                   [min]="1"
+                                   placeholder="{{translationService.instant('PLAYERS_COUNT')}}"
+                                   formControlName="players">
+                            <mat-error *ngIf="form.get('players')?.errors?.required">{{translationService.instant('REQUIRED_FIELD', [translationService.instant('PLAYERS_COUNT')])}}</mat-error>
+                            <mat-error *ngIf="form.get('players')?.errors?.pattern">{{translationService.instant('ONLY_INTEGER_ERROR')}}</mat-error>
+                            <mat-error *ngIf="form.get('players')?.errors?.min">{{translationService.instant('PLAYERS_MIN_ERROR')}} {{form.get('players')?.errors?.min.min}}</mat-error>
+                            <mat-error *ngIf="form.get('players')?.errors?.max">{{translationService.instant('PLAYERS_MAX_ERROR')}} {{form.get('players')?.errors?.max.max}}</mat-error>
+                        </mat-form-field>
                         <mat-form-field>
             <textarea matInput [maxLength]="255"
                       placeholder="{{translationService.instant('NOTE')}}"
@@ -194,7 +194,7 @@
                     {{translationService.instant('BACK')}}</button>
                 <button type="button" mat-flat-button color="accent" (click)="submit()" class="pl-3">
                     <mat-icon>check</mat-icon>
-                    {{translationService.instant(service.packageForEdit ? 'USER_FORM_EDIT_BUTTON_LABEL' : 'TABLE_ADD')}}</button>
+                    {{translationService.instant(_packageId ? 'USER_FORM_EDIT_BUTTON_LABEL' : 'TABLE_ADD')}}</button>
             </div>
         </div>
     </control-panel-ui-card>

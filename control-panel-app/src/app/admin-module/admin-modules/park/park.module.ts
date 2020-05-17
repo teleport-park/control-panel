@@ -51,6 +51,11 @@ const routes: Routes = [{
             data: {title: 'ADMIN_MENU_PACKAGES'},
             canActivate: [PermissionGuard]
         }, {
+            path: 'packages/add/:id',
+            component: AddPackageComponent,
+            data: {title: 'ADMIN_MENU_PACKAGES'},
+            canActivate: [PermissionGuard]
+        }, {
             path: 'promo',
             component: PromoComponent,
             data: {title: 'ADMIN_MENU_PROMO'},

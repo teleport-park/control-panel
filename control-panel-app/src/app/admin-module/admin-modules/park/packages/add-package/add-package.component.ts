@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '../../../../../common/translations-module';
 import { Currencies } from '../../../../utils/utils';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PackagesService } from '../packages.service';
 import { MatDialog } from '@angular/material';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../../common/shared-module';
@@ -28,44 +28,41 @@ export class AddPackageComponent implements OnInit {
 
     promos: string[];
 
+    _packageId: string = null;
+
     constructor(public fb: FormBuilder,
                 public translationService: TranslateService,
                 public service: PackagesService,
                 private router: Router,
+                private activatedRoute: ActivatedRoute,
                 private cd: ChangeDetectorRef,
                 private dialog: MatDialog) {
     }
 
     ngOnInit() {
         this.initForm();
-        if (this.service.packageForEdit) {
-            this.form.patchValue(this.service.packageForEdit);
-            // this.service.packageForEdit.plans.payments.forEach((payment: Payment) => {
-            //     const control = this.getPayment();
-            //     control.patchValue(payment);
-            //     this.payments.push(control);
-            // });
-            // this.service.packageForEdit.plans.charges.forEach((charge: Charge) => {
-            //     const control = this.getCharge();
-            //     control.patchValue(charge);
-            //     this.charges.push(control);
-            // });
-            this.service.packageForEdit.plans.forEach((plan: {promo: string, charges: Charge[], payments: Payment[]}) => {
-                const planControl = this.getPlan();
-                planControl.patchValue(plan);
-                const charges = planControl.get('charges') as FormArray;
-                plan.charges.forEach((charge: Charge) => {
-                    const control = this.getCharge();
-                    control.patchValue(charge);
-                    charges.push(control);
+        this._packageId = this.activatedRoute.snapshot.params['id'];
+        if (this._packageId) {
+            this.service.getPackage(this._packageId)
+            .subscribe((res: Package) => {
+                this.form.patchValue(res);
+                res.plans.forEach((plan: { promo: string, charges: Charge[], payments: Payment[] }) => {
+                    const planControl = this.getPlan();
+                    planControl.patchValue(plan);
+                    const charges = planControl.get('charges') as FormArray;
+                    plan.charges.forEach((charge: Charge) => {
+                        const control = this.getCharge();
+                        control.patchValue(charge);
+                        charges.push(control);
+                    });
+                    const payments = planControl.get('payments') as FormArray;
+                    plan.payments.forEach((payment: Payment) => {
+                        const control = this.getPayment();
+                        control.patchValue(payment);
+                        payments.push(control);
+                    });
+                    this.plans.push(planControl);
                 });
-                const payments = planControl.get('payments') as FormArray;
-                plan.payments.forEach((payment: Payment) => {
-                    const control = this.getPayment();
-                    control.patchValue(payment);
-                    payments.push(control);
-                });
-                this.plans.push(planControl);
             });
         }
         this.promos = this.service.promo$.getValue();
@@ -76,7 +73,7 @@ export class AddPackageComponent implements OnInit {
         this.plans = this.fb.array([]);
         this.form = this.fb.group({
             name: ['', Validators.required],
-            // players: [1, [Validators.required, Validators.pattern('[0-9]+'), Validators.min(1), Validators.max(15)]],
+            players: [1, [Validators.required, Validators.pattern('[0-9]+'), Validators.min(1), Validators.max(15)]],
             note: '',
             plans: this.plans
         });
@@ -140,7 +137,7 @@ export class AddPackageComponent implements OnInit {
         }
         const payload = new Package(this.form.getRawValue());
         console.log(payload);
-        if (this.service.packageForEdit) {
+        if (this.service.packageIdForEdit) {
             this.service.editPackage(payload);
         } else {
             this.service.addPackage(payload);

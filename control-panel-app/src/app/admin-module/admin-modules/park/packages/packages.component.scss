@@ -2,6 +2,7 @@
 
 :host {
   @include d-block();
+  @include custom-scroll();
   position: relative;
   .packages_wrapper {
     margin: 0;

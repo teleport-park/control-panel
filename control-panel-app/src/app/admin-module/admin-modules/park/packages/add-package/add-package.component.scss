@@ -1,8 +1,8 @@
+
 :host {
   display: block;
   height: 100%;
   overflow-y: auto;
-  //@include custom-scroll();
   .payments_wrapper, .charges_wrapper {
     background-color: rgba(0, 0, 0, 0.05);
   }

@@ -6,14 +6,14 @@ import { filter } from 'rxjs/operators';
 import { LoaderService } from '../../../../services/loader.service';
 import { PackageHistory } from '../../../../models';
 import { ToasterService } from '../../../../services/toaster.service';
-import { Package } from './package.model';
+import { Package, PackageResponse } from './package.model';
 import { PROMOS } from '../../../../utils/utils';
 
 @Injectable()
 
 export class PackagesService {
 
-    packages$: BehaviorSubject<Package[]> = new BehaviorSubject([]);
+    packages$: BehaviorSubject<PackageResponse[]> = new BehaviorSubject([]);
 
     packagesHistory$: BehaviorSubject<PackageHistory[]> = new BehaviorSubject([]);
 
@@ -21,26 +21,25 @@ export class PackagesService {
 
     promo$: BehaviorSubject<string[]> = new BehaviorSubject(PROMOS);
 
-    public packageForEdit: Package;
+    public packageIdForEdit: string;
 
     constructor(private http: HttpClient,
                 private urlService: ApiUrlsService,
                 private toaster: ToasterService,
                 private loaderService: LoaderService) {
-        this.getPackages();
-        this.getPackagesHistory();
     }
 
     public getPackages() {
         this.loaderService.dispatchShowLoader(true);
         this.http.get(this.urlService.getPackages('GET'))
-        // this.http.get('./assets/data/packages.json')
-        .pipe(
-            filter(data => !!data))
-        .subscribe((result: Package[]) => {
+        .subscribe((result: PackageResponse[]) => {
             this.packages$.next(result);
             this.loaderService.dispatchShowLoader(false);
         });
+    }
+
+    public getPackage(id: string) {
+        return this.http.get(this.urlService.getPackages('GET', id));
     }
 
     public getPackagesHistory() {
@@ -59,35 +58,35 @@ export class PackagesService {
     public addPackage(data: Package) {
         this.loaderService.dispatchShowLoader(true);
         this.http.post(this.urlService.getPackages('POST'), data).subscribe(
-            res => {
+            _ => {
                 this.toaster.success('PACKAGE_ADDED_SUCCESSFUL', true);
             });
     }
 
     public editPackage(data: Package) {
-        this.http.put(this.urlService.getPackages('PUT', this.packageForEdit.id), data).subscribe(
-            res => {
+        this.http.put(this.urlService.getPackages('PUT', data.id), data).subscribe(
+            _ => {
                 this.toaster.success('PACKAGE_ADDED_SUCCESSFUL', true);
-                this.packageForEdit = null;
+                this.packageIdForEdit = null;
             }
         );
     }
 
     public togglePackage(id: string, body: any) {
         this.http.patch(this.urlService.getPackages('PATCH', id), body).subscribe(
-            res => {
+            _ => {
                 this.toaster.success('PACKAGE_ADDED_SUCCESSFUL', true);
             }
         );
     }
 
-    synchronize() {
-        this.http.put(this.urlService.getPackages('GET'), {})
-        .pipe(
-            filter(data => !!data))
-        .subscribe((result: any[]) => {
-            this.getPackages();
-            this.getPackagesHistory();
-        });
-    }
+    // synchronize() {
+    //     this.http.put(this.urlService.getPackages('GET'), {})
+    //     .pipe(
+    //         filter(data => !!data))
+    //     .subscribe((result: any[]) => {
+    //         this.getPackages();
+    //         this.getPackagesHistory();
+    //     });
+    // }
 }

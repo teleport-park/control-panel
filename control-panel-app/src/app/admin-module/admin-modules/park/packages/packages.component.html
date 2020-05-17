@@ -12,14 +12,30 @@
                         <table mat-table [dataSource]="dataSource" class="package-table">
                             <ng-container matColumnDef="name">
                                 <th mat-header-cell *matHeaderCellDef>{{translationService.instant('AMUSEMENTS_NAME_LABEL')}}</th>
-                                <td mat-cell *matCellDef="let pack"> {{pack.name}} </td>
+                                <td mat-cell *matCellDef="let pack"> {{pack.display_name || pack.name}} </td>
                             </ng-container>
-                            <ng-container matColumnDef="promo">
-                                <th mat-header-cell *matHeaderCellDef>{{translationService.instant('PROMO')}}</th>
-                                <td mat-cell *matCellDef="let pack"> {{getPlansPromo(pack.plans)}} </td>
+                            <ng-container matColumnDef="players">
+                                <th mat-header-cell *matHeaderCellDef>{{translationService.instant('PLAYERS')}}</th>
+                                <td mat-cell *matCellDef="let pack"> {{pack.players}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="totals">
+                                <th mat-header-cell *matHeaderCellDef>{{translationService.instant('TOTALS')}}</th>
+                                <td mat-cell *matCellDef="let pack">
+                                    <p *ngFor="let total of pack.totals" class="d-flex flex-column">
+                                        <span>{{translationService.instant('PAYMENTS')}}: {{total.payments.amount}} {{total.payments.currency}}</span>
+                                        <span>{{translationService.instant('CHARGES')}}: {{total.payments.amount}} {{total.charges.currency}}</span>
+                                    </p>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="removed">
+                                <th mat-header-cell *matHeaderCellDef> {{translationService.instant('REMOVED')}} </th>
+                                <td mat-cell *matCellDef="let promo">
+                                    <mat-icon
+                                            color="{{promo.removed ? 'success' : 'warn'}}">{{promo.removed ? 'check' : 'clear'}}</mat-icon>
+                                </td>
                             </ng-container>
                             <ng-container matColumnDef="enabled">
-                                <th mat-header-cell *matHeaderCellDef></th>
+                                <th mat-header-cell *matHeaderCellDef>{{translationService.instant('EXTENDED_FILTER_STAFF_ACTIVE')}}</th>
                                 <td mat-cell *matCellDef="let pack">
                                     <mat-slide-toggle color="success" [checked]="pack.enabled"
                                                       (change)="showConfirmDialog($event, pack)"></mat-slide-toggle>
