@@ -83,7 +83,7 @@ export class GamesComponent implements OnInit {
         //         this.cd.markForCheck();
         //     }
         // );
-        this.priceControl.setValue(game.price.amount);
+        this.priceControl.setValue(game && game.price ? game.price.amount : 0);
         this._editRow = [game];
         this.changePriceForSelectedHandler();
     }
