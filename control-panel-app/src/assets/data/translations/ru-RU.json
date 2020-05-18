@@ -295,5 +295,9 @@
   "REMOVED": "Удален",
   "FIRST_FILL": "Первое пополнение",
   "SCHEDULE": "Расписание",
-  "CONDITIONS": "Условия"
+  "CONDITIONS": "Условия",
+  "PACKAGE_EDITED_SUCCESSFUL": "Пакет отредактирован",
+  "PACKAGE_ADDED_SUCCESSFUL": "Пакет добавлен",
+  "PACKAGE_REMOVED_SUCCESSFUL": "Пакет удален",
+  "PACKAGE_SWITCHED_SUCCESSFUL": "Пакет переключен"
 }

@@ -293,5 +293,9 @@
   "REMOVED": "Удален",
   "FIRST_FILL": "First fill",
   "SCHEDULE": "Schedule",
-  "CONDITIONS": "Conditions"
+  "CONDITIONS": "Conditions",
+  "PACKAGE_EDITED_SUCCESSFUL": "Package edited",
+  "PACKAGE_ADDED_SUCCESSFUL": "Package added",
+  "PACKAGE_REMOVED_SUCCESSFUL": "Package removed",
+  "PACKAGE_SWITCHED_SUCCESSFUL": "Package switched"
 }

@@ -42,18 +42,18 @@ export class PackagesService {
         return this.http.get(this.urlService.getPackages('GET', id));
     }
 
-    public getPackagesHistory() {
-        this.loaderService.dispatchShowLoader(true);
-        // this.http.get(this.urlService.getPackagesHistory('GET'))
-        this.http.get('./assets/data/packages.json')
-        .pipe(
-            filter(data => !!data))
-        .subscribe((result: PackageHistory[]) => {
-            this.packagesHistory$.next(result);
-            this.lastSyncTime$.next(result[0].timestamp);
-            this.loaderService.dispatchShowLoader(false);
-        });
-    }
+    // public getPackagesHistory() {
+    //     this.loaderService.dispatchShowLoader(true);
+    //     // this.http.get(this.urlService.getPackagesHistory('GET'))
+    //     this.http.get('./assets/data/packages.json')
+    //     .pipe(
+    //         filter(data => !!data))
+    //     .subscribe((result: PackageHistory[]) => {
+    //         this.packagesHistory$.next(result);
+    //         this.lastSyncTime$.next(result[0].timestamp);
+    //         this.loaderService.dispatchShowLoader(false);
+    //     });
+    // }
 
     public addPackage(data: Package) {
         this.loaderService.dispatchShowLoader(true);
@@ -67,7 +67,7 @@ export class PackagesService {
     public editPackage(data: Package, id: string) {
         this.http.put(this.urlService.getPackages('PUT', id), data).subscribe(
             _ => {
-                this.toaster.success('PACKAGE_ADDED_SUCCESSFUL', true);
+                this.toaster.success('PACKAGE_EDITED_SUCCESSFUL', true);
                 this.packageIdForEdit = null;
                 this.getPackages();
             }
@@ -77,7 +77,7 @@ export class PackagesService {
     public togglePackage(id: string, body: any) {
         this.http.patch(this.urlService.getPackages('PATCH', id), body).subscribe(
             _ => {
-                this.toaster.success('PACKAGE_ADDED_SUCCESSFUL', true);
+                this.toaster.success('PACKAGE_SWITCHED_SUCCESSFUL', true);
             }
         );
     }
