@@ -5,6 +5,10 @@ import { PackagesService } from './packages.service';
 import { TranslateService } from '../../../../common/translations-module';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
+import { PromoService } from '../promo/services/promo.service';
+import { Promo } from '../promo/promo.model';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'packages',
@@ -12,6 +16,9 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/sh
   styleUrls: ['./packages.component.scss']
 })
 export class PackagesComponent implements OnInit {
+
+    private destroyed$: Subject<boolean> = new Subject();
+
     @ViewChild('formTemplate', {static: false}) formTemplate: TemplateRef<any>;
 
     displayedColumns: string[] = ['name', 'players', 'totals', 'removed', 'enabled', 'submenu'];
@@ -29,15 +36,15 @@ export class PackagesComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.service.packages$.subscribe(res => {
+        this.service.packages$.pipe(takeUntil(this.destroyed$)).subscribe(res => {
             this.dataSource = new MatTableDataSource(res);
             this.cd.markForCheck();
         });
+
         this.service.getPackages();
     }
 
     edit(item: Package) {
-        this.service.packageIdForEdit = item.id;
         this.router.navigate(['admin', 'park', 'packages', 'add', item.id]);
     }
 

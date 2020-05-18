@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '../../../../../common/translations-module';
 import { Currencies } from '../../../../utils/utils';
@@ -8,13 +8,19 @@ import { MatDialog } from '@angular/material';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../../common/shared-module';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Charge, Package, Payment } from '../package.model';
+import { Promo } from '../../promo/promo.model';
+import { PromoService } from '../../promo/services/promo.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'add-package',
     templateUrl: './add-package.component.html',
     styleUrls: ['./add-package.component.scss']
 })
-export class AddPackageComponent implements OnInit {
+export class AddPackageComponent implements OnInit, OnDestroy {
+
+    destroyed$: Subject<boolean> = new Subject();
 
     _currencies = Currencies;
 
@@ -26,13 +32,14 @@ export class AddPackageComponent implements OnInit {
 
     plans: FormArray;
 
-    promos: string[];
+    promos: Promo[];
 
     _packageId: string = null;
 
     constructor(public fb: FormBuilder,
                 public translationService: TranslateService,
                 public service: PackagesService,
+                private promoService: PromoService,
                 private router: Router,
                 private activatedRoute: ActivatedRoute,
                 private cd: ChangeDetectorRef,
@@ -40,13 +47,27 @@ export class AddPackageComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.initForm();
-        this._packageId = this.activatedRoute.snapshot.params['id'];
+        if (this.service.packages$.getValue().length) {
+            this.promos = this.service.promo$.getValue();
+            this.initPackage();
+        } else {
+            this.service.promo$.pipe(takeUntil(this.destroyed$))
+                .subscribe((promos: Promo[]) => {
+                    this.promos = promos;
+                    this.initPackage();
+                });
+            this.service.getPackages();
+        }
+    }
+
+    private initPackage() {
+        this._packageId = this.activatedRoute.snapshot.params.id;
         if (this._packageId) {
             this.service.getPackage(this._packageId)
-            .subscribe((res: Package) => {
-                this.form.patchValue(res);
-                res.plans.forEach((plan: { promo: string, charges: Charge[], payments: Payment[] }) => {
+            .subscribe((pack: Package) => {
+                this.initForm();
+                this.form.patchValue(pack);
+                pack.plans.forEach((plan: { promo: string, charges: Charge[], payments: Payment[] }) => {
                     const planControl = this.getPlan();
                     planControl.patchValue(plan);
                     const charges = planControl.get('charges') as FormArray;
@@ -63,10 +84,12 @@ export class AddPackageComponent implements OnInit {
                     });
                     this.plans.push(planControl);
                 });
+                this.cd.markForCheck();
             });
+        } else {
+            this.initForm();
         }
-        this.promos = this.service.promo$.getValue();
-        console.log(this.form);
+        this.cd.markForCheck();
     }
 
     initForm() {
@@ -83,9 +106,7 @@ export class AddPackageComponent implements OnInit {
     getPayment() {
         return this.fb.group({
             currency: Currencies[1],
-            amount: ['', Validators.required],
-            inPercentage: false,
-            note: ''
+            amount: ['', Validators.required]
         });
     }
 
@@ -93,8 +114,6 @@ export class AddPackageComponent implements OnInit {
         return this.fb.group({
             currency: Currencies[0],
             amount: ['', Validators.required],
-            inPercentage: false,
-            note: '',
             players: []
         });
     }
@@ -185,4 +204,11 @@ export class AddPackageComponent implements OnInit {
             this.cd.markForCheck();
         });
     }
+
+    ngOnDestroy(): void {
+        this.destroyed$.next(true);
+        this.destroyed$.complete();
+    }
 }
+
+

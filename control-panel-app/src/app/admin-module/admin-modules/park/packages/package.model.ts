@@ -41,17 +41,12 @@ export class Payment {
     amount: {
         currency: string;
         amount: number;
-        inPercentage?: boolean;
     };
-    note?: string;
 }
 
 export class Charge {
     amount: {
         currency: string;
         amount: number;
-        inPercentage?: boolean;
     };
-    note?: string;
-    players?: number[];
 }

@@ -60,7 +60,7 @@ export class PromoComponent implements OnInit {
                 this.dataSource.data = res;
             }
         );
-        this.service.getPromo();
+        // this.service.getPromo();
         this.cronControl = new FormControl('0 0 1/1 * *');
     }
 

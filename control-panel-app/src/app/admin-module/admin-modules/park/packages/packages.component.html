@@ -22,6 +22,7 @@
                                 <th mat-header-cell *matHeaderCellDef>{{translationService.instant('TOTALS')}}</th>
                                 <td mat-cell *matCellDef="let pack">
                                     <p *ngFor="let total of pack.totals" class="d-flex flex-column">
+                                        <span>{{translationService.instant('PROMO')}}: {{total.name || '-'}}</span>
                                         <span>{{translationService.instant('PAYMENTS')}}: {{total.payments.amount}} {{total.payments.currency}}</span>
                                         <span>{{translationService.instant('CHARGES')}}: {{total.payments.amount}} {{total.charges.currency}}</span>
                                     </p>

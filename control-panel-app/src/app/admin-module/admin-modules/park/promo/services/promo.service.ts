@@ -11,13 +11,22 @@ export class PromoService {
 
     promo$: BehaviorSubject<Promo[]> = new BehaviorSubject([]);
 
+    private _promo: Promo[];
+
+    get promo() {
+        return {...{}, ...this._promo};
+    }
+
     constructor(private http: HttpClient, private url: ApiUrlsService) {
+        this.getPromo();
     }
 
     getPromo() {
         this.http.get(this.url.getPromo('GET')).subscribe(
-            // this.http.get('./assets/data/promo.json').subscribe(
-            (res: any[]) => this.promo$.next(res)
+            (res: Promo[]) => {
+                this._promo = res;
+                this.promo$.next(res);
+            }
         );
     }
 
@@ -44,8 +53,8 @@ export class PromoService {
 
     deletePromo(promoId: string) {
         this.http.delete(this.url.getPromo('DELETE', promoId), {responseType: 'text'})
-            .subscribe(_ => {
-                this.getPromo();
-            });
+        .subscribe(_ => {
+            this.getPromo();
+        });
     }
 }
