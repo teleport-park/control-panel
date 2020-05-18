@@ -133,7 +133,7 @@ export class AddPackageComponent implements OnInit {
             return;
         }
         console.log(this.form.getRawValue());
-        if (this.service.packageIdForEdit) {
+        if (this._packageId) {
             this.service.editPackage(this.form.getRawValue(), this._packageId);
         } else {
             this.service.addPackage(this.form.getRawValue());
