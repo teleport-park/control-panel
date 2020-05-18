@@ -5,7 +5,7 @@
                 <control-panel-ui-card class="primary">
                     <div panelUICardHeaderTitle>{{translationService.instant('PACKAGES_LIST_TITLE')}}</div>
                     <div panelUICardContent>
-                        <a mat-flat-button color="primary" routerLink="add" class=" mt-3 mb-3"><mat-icon>add</mat-icon>{{'ADD_PACKAGE_TITLE' | translate}}</a>
+                        <a mat-flat-button color="primary" routerLink="add" class="pl-3 mt-3 mb-3"><mat-icon class="mr-2">add</mat-icon>{{'ADD_PACKAGE_TITLE' | translate}}</a>
                         <div>
                             <control-panel-ui-quick-filter (filterChange)="applyFilter($event)"></control-panel-ui-quick-filter>
                         </div>
@@ -48,7 +48,7 @@
                                         <mat-icon>more_vert</mat-icon>
                                     </button>
                                     <mat-menu #subMenu="matMenu">
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="delete(pack)">
                                             <mat-icon color="warn">delete</mat-icon>
                                             {{translationService.instant('TABLE_DELETE')}}
                                         </button>

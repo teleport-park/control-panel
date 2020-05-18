@@ -78,7 +78,7 @@ export class PackagesComponent implements OnInit {
         event.source.checked = pack.enabled;
     }
 
-    getPlansPromo(plans: Partial<{promo: string | null}>[]) {
-        return plans.map(plan => plan.promo).join(' | ');
+    delete(item: Package) {
+        this.service.deletePackage(item.id);
     }
 }

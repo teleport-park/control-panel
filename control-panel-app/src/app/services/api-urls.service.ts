@@ -88,7 +88,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
 
     // packages
 
-    public getPackages(requestMethod: 'GET' | 'PUT' | 'POST' | 'PATCH', id?: string) {
+    public getPackages(requestMethod: 'GET' | 'PUT' | 'POST' | 'PATCH' | 'DELETE',  id?: string) {
         return ApiUrlsService.getPagedUrl(API.PACKAGES, requestMethod, id);
     }
 

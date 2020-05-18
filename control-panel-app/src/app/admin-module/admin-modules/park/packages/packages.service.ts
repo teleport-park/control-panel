@@ -82,13 +82,12 @@ export class PackagesService {
         );
     }
 
-    // synchronize() {
-    //     this.http.put(this.urlService.getPackages('GET'), {})
-    //     .pipe(
-    //         filter(data => !!data))
-    //     .subscribe((result: any[]) => {
-    //         this.getPackages();
-    //         this.getPackagesHistory();
-    //     });
-    // }
+
+    public deletePackage(id: string) {
+        this.http.delete(this.urlService.getPackages('DELETE', id), {responseType: 'text'})
+            .subscribe(_ => {
+                this.toaster.success('PACKAGE_REMOVED_SUCCESSFUL', true);
+                this.getPackages();
+            });
+    }
 }
