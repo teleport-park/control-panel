@@ -31,7 +31,7 @@
 .games-list {
   border: 1px solid rgba(0, 0, 0, .05);
   border-radius: .5rem;
-  max-height: 300px;
+  max-height: 100px;
   overflow-y: auto;
   @include custom-scroll();
   ul {
@@ -51,6 +51,28 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: .5rem;
+  border: 1px solid rgba(0, 0, 0, .3);
+  border-radius: .3rem;
+  margin-bottom: .5rem;
+  .promo {
+    width: 13rem;
+    margin-right: 1rem;
+  }
+  .amount {
+    width: 8rem;
+    margin-right: 1rem;
+  }
+  .currency {
+    width: 6rem;
   }
 }
 

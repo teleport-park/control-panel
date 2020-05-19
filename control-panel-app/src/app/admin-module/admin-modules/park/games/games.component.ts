@@ -1,12 +1,15 @@
 import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
-import { Game } from './games.model';
+import { Game, Price } from './games.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { GamesService } from './services/games.service';
 import { TranslateService } from '../../../../common/translations-module';
-import { FormControl, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoaderService } from '../../../../services/loader.service';
 import { Router } from '@angular/router';
+import { Currencies } from '../../../utils/utils';
+import { Promo } from '../promo/promo.model';
+import { PromoService } from '../promo/services/promo.service';
 
 @Component({
     selector: 'games',
@@ -19,26 +22,36 @@ export class GamesComponent implements OnInit {
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
+    _currencies = Currencies;
+
+    _excludedPromo: string[] = [];
+
     displayedColumns: string[] = ['select', 'name', 'source', 'active', 'price'];
 
     dataSource: MatTableDataSource<Game>;
 
     selection = new SelectionModel<Game>(true, []);
 
-    _editRow: Game[] = null;
-
-    _editRowPrice: { amount: number, currency: string } = null;
+    _editRow: Game = null;
 
     priceControl: FormControl = new FormControl(0, [Validators.required, Validators.pattern('[0-9\.]+')]);
 
     currencyControl: FormControl = new FormControl('TLPVR', Validators.required);
 
+    prices: FormArray;
+
+    form: FormGroup;
+
+    promos: Promo[];
+
     constructor(private service: GamesService,
+                private promoService: PromoService,
                 private cd: ChangeDetectorRef,
                 private dialog: MatDialog,
                 private router: Router,
+                private fb: FormBuilder,
                 public loaderService: LoaderService,
-                public translation: TranslateService) {
+                public translations: TranslateService) {
     }
 
     ngOnInit(): void {
@@ -66,14 +79,12 @@ export class GamesComponent implements OnInit {
     }
 
     inlineChangePriceHandler(game: Game) {
-        this.router.navigate(['admin', 'park', 'games', 'edit', game.id]);
-        // this.priceControl.setValue(game && game.price ? game.price.amount : 0);
-        // this._editRow = [game];
-        // this.changePriceForSelectedHandler();
+        this._editRow = game;
+        this.changePriceForSelectedHandler(game);
     }
 
-    changePriceForSelectedHandler() {
-        this.selection.selected.length === 1 && this.priceControl.setValue(this.selection.selected[0].price.amount);
+    changePriceForSelectedHandler(game?: Game) {
+        this.selection.selected.length === 1 || game ? this.initForm(this.selection.selected[0] || game) : this.initForm();
         this.dialog.open(this.priceDialog, {
             width: '500px'
         });
@@ -83,46 +94,31 @@ export class GamesComponent implements OnInit {
         this.dataSource.filter = value;
     }
 
-    // revertPrice(id: string) {
-    //     this.dataSource.data.find(i => i.id === this._editRow).price = this._editRowPrice;
-    //     this._editRow = id;
-    //     this.cd.markForCheck();
-    // }
-
     applyPrice() {
-        this.currencyControl.markAsTouched();
-        this.priceControl.markAsTouched();
-        if (this.currencyControl.invalid || this.priceControl.invalid) {
-            return;
-        }
+
         const requests = [];
+        const prices = this.form.getRawValue();
+        prices.prices.forEach(price => {
+            price.promo_id = price.promo_id === 'null' ? null : price.promo_id;
+        });
         this.selection.selected.forEach((item: Game) => {
             const payload = {
                 id: item.id,
-                price: {
-                    amount: +this.priceControl.value,
-                    currency: this.currencyControl.value
-                }
+                ...prices
             };
             requests.push(payload as Game);
         });
-        this._editRow && this._editRow.forEach((item: Game) => {
+        if (this._editRow) {
             const payload = {
-                id: item.id,
-                price: {
-                    amount: +this.priceControl.value,
-                    currency: this.currencyControl.value
-                }
+                id: this._editRow.id,
+                ...prices
             };
             requests.push(payload as Game);
-        });
+        }
         this.loaderService.dispatchShowLoader(true, 10);
         this.service.updatePrice(requests).subscribe(
             (res: Game[]) => {
-                const result = res;
-                this.dataSource.data.forEach(item => {
-                    item.price = (result.find(i => i.id === item.id) || {price: null}).price || item.price;
-                });
+                this.service.getGames();
                 this.cd.markForCheck();
                 this.loaderService.dispatchShowLoader(false);
                 this.dialog.closeAll();
@@ -132,7 +128,63 @@ export class GamesComponent implements OnInit {
     }
 
     reset() {
-        this.priceControl.setValue(0);
-        this._editRow = [];
+        this._editRow = null;
+    }
+
+    private initForm(game?: Game) {
+        this.promos = [{
+            id: 'null',
+            display_name: this.translations.instant('DEFAULT_PROMO'),
+            enabled: true
+        } as Promo, ...this.promoService.promo$.getValue()].filter(i => !i.removed);
+        if (game) {
+            this.prices = this.fb.array([]);
+            game.prices.forEach((price: Price) => {
+                const control = this.fb.group({
+                    promo_id: 'null',
+                    currency: '',
+                    amount: ''
+                });
+                control.patchValue({...price, ...{promo_id: price.promo_id ? price.promo_id : 'null'}});
+                this.prices.push(control);
+            });
+        } else {
+            this.prices = this.fb.array([this.fb.group(
+                {
+                    promo_id: 'null',
+                    currency: '',
+                    amount: ''
+                }
+            )]);
+        }
+        this.form = this.fb.group({
+            prices: this.prices
+        });
+    }
+
+    addPrice() {
+        this.prices.push(this.fb.group({
+            promo_id: 'null',
+            currency: '',
+            amount: ''
+        }));
+    }
+
+    deletePrice(index: number) {
+        this.prices.removeAt(index);
+    }
+
+    excludePromo(value: string, index: number) {
+        if (value === 'null') {
+            return true;
+        }
+        if (this.prices.at(index).get('promo_id').value === value) {
+            return true;
+        }
+        return !this._excludedPromo.includes(value);
+    }
+
+    updateExcludedPromo() {
+        this._excludedPromo = this.prices.getRawValue().map(i => i.promo_id).filter(i => i !== 'null');
     }
 }

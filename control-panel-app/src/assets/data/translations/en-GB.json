@@ -305,5 +305,6 @@
   "ADD_PAYMENT": "Add payment",
   "ADD_CHARGE": "Add charge",
   "REMOVE_PLAN": "Remove plan",
-  "EDIT_GAME_PRICES": "Edit game prices"
+  "EDIT_GAME_PRICES": "Edit game prices",
+  "PRICES": "Prices"
 }
