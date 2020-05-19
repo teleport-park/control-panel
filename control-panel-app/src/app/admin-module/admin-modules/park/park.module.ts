@@ -21,6 +21,7 @@ import { PackagesComponent } from './packages/packages.component';
 import { PromoComponent } from './promo/promo.component';
 import { AddPackageComponent } from './packages/add-package/add-package.component';
 import { CronEditorModule } from '../../../common/control-panel-cron-generator/cron-editor.module';
+import { EditGamesComponent } from './games/edit-game/edit-games.component';
 
 const routes: Routes = [{
     path: '',
@@ -63,6 +64,10 @@ const routes: Routes = [{
         }, {
             path: 'games', component: GamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]
         }, {
+            path: 'games/edit', component: EditGamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]
+        }, {
+            path: 'games/edit/:id', component: EditGamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]
+        }, {
             path: 'pricing', component: PricingComponent, data: {title: 'ADMIN_MENU_PRICING'}, canActivate: [PermissionGuard]
         }, {
             path: 'sessions', component: SessionsComponent, data: {title: 'ADMIN_MENU_SESSIONS'}, canActivate: [PermissionGuard]
@@ -90,7 +95,7 @@ export const COMPONENTS = [
 ];
 
 @NgModule({
-    declarations: [...COMPONENTS],
+    declarations: [...COMPONENTS, EditGamesComponent],
     imports: [
         CommonModule,
         ParkRouterModule,

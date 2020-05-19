@@ -5,8 +5,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { GamesService } from './services/games.service';
 import { TranslateService } from '../../../../common/translations-module';
 import { FormControl, Validators } from '@angular/forms';
-import { forkJoin } from 'rxjs';
 import { LoaderService } from '../../../../services/loader.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'games',
@@ -36,6 +36,7 @@ export class GamesComponent implements OnInit {
     constructor(private service: GamesService,
                 private cd: ChangeDetectorRef,
                 private dialog: MatDialog,
+                private router: Router,
                 public loaderService: LoaderService,
                 public translation: TranslateService) {
     }
@@ -49,7 +50,6 @@ export class GamesComponent implements OnInit {
             this._editRow = null;
             this.cd.markForCheck();
         });
-        this.service.getGames();
     }
 
     isAllSelected() {
@@ -66,26 +66,10 @@ export class GamesComponent implements OnInit {
     }
 
     inlineChangePriceHandler(game: Game) {
-        // const payload = {
-        //     id: game.id,
-        //     price: {
-        //         amount: +game.price.amount,
-        //         currency: game.price.currency
-        //     }
-        // };
-        // this.service.updatePrice([payload as Game]).subscribe(
-        //     (res: Game[]) => {
-        //         this.dataSource = new MatTableDataSource<Game>(res);
-        //         if (res.length > 10) {
-        //             this.dataSource.paginator = this.paginator;
-        //         }
-        //         this._editRowId = null;
-        //         this.cd.markForCheck();
-        //     }
-        // );
-        this.priceControl.setValue(game && game.price ? game.price.amount : 0);
-        this._editRow = [game];
-        this.changePriceForSelectedHandler();
+        this.router.navigate(['admin', 'park', 'games', 'edit', game.id]);
+        // this.priceControl.setValue(game && game.price ? game.price.amount : 0);
+        // this._editRow = [game];
+        // this.changePriceForSelectedHandler();
     }
 
     changePriceForSelectedHandler() {
@@ -120,9 +104,9 @@ export class GamesComponent implements OnInit {
                     currency: this.currencyControl.value
                 }
             };
-            requests.push(this.service.updatePrice([payload as Game]));
+            requests.push(payload as Game);
         });
-        this._editRow.forEach((item: Game) => {
+        this._editRow && this._editRow.forEach((item: Game) => {
             const payload = {
                 id: item.id,
                 price: {
@@ -130,29 +114,21 @@ export class GamesComponent implements OnInit {
                     currency: this.currencyControl.value
                 }
             };
-            requests.push(this.service.updatePrice([payload as Game]));
+            requests.push(payload as Game);
         });
-        // const payload = this.selection.selected.map((item: Game) => {
-        //    return {
-        //       id: item.id,
-        //       price: {
-        //          amount: +this.priceControl.value,
-        //          currency: this.currencyControl.value
-        //       }
-        //    };
-        // });
-        // this.service.updatePrice(payload as Game[]);
         this.loaderService.dispatchShowLoader(true, 10);
-        forkJoin(requests).subscribe((res: Game[][]) => {
-            const result = res[res.length - 1];
-            this.dataSource.data.forEach(item => {
-                item.price = (result.find(i => i.id === item.id) || {price: null}).price || item.price;
-            });
-            this.cd.markForCheck();
-            this.loaderService.dispatchShowLoader(false);
-            this.dialog.closeAll();
-            this.reset();
-        });
+        this.service.updatePrice(requests).subscribe(
+            (res: Game[]) => {
+                const result = res;
+                this.dataSource.data.forEach(item => {
+                    item.price = (result.find(i => i.id === item.id) || {price: null}).price || item.price;
+                });
+                this.cd.markForCheck();
+                this.loaderService.dispatchShowLoader(false);
+                this.dialog.closeAll();
+                this.reset();
+            }
+        );
     }
 
     reset() {

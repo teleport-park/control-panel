@@ -11,6 +11,7 @@ export class GamesService {
    games$: BehaviorSubject<Game[]> = new BehaviorSubject<Game[]>([]);
 
    constructor(private http: HttpClient, private apiUrl: ApiUrlsService) {
+       this.getGames();
    }
 
    getGames() {

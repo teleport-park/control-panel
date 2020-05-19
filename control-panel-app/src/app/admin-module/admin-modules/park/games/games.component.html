@@ -63,37 +63,7 @@
                                         (click)="inlineChangePriceHandler(game)">
                                     <mat-icon>edit</mat-icon>
                                 </button>
-<!--                                <button mat-icon-button color="accent"-->
-<!--                                        (click)="_editRowId ? revertPrice(game.id) : _editRowId = game.id; game.price = game.price || {amount: 0, currency: 'TLPVR'}; _editRowPrice = {amount: game.price.amount, currency: game.price.currency}">-->
-<!--                                    <mat-icon>edit</mat-icon>-->
-<!--                                </button>-->
                             </ng-container>
-                            <!--                            <ng-container *ngIf="game.id === _editRowId">-->
-                            <!--                                <div class="d-flex align-items-center justify-content-between w-100">-->
-                            <!--                                    <div class="d-flex align-items-center">-->
-                            <!--                                        <mat-form-field class="amount-field">-->
-                            <!--                                            <input matInput amount-format value="{{game?.price?.amount}}" [(ngModel)]="game.price.amount">-->
-                            <!--                                        </mat-form-field>-->
-                            <!--                                        <div>{{game?.price?.currency}}</div>-->
-
-                            <!--                                        &lt;!&ndash;                                <mat-form-field class="currency-field">&ndash;&gt;-->
-                            <!--                                        &lt;!&ndash;                                    <mat-select [(ngModel)]="game.price.currency">&ndash;&gt;-->
-                            <!--                                        &lt;!&ndash;                                        <mat-option value="TLPVR">TLPVR</mat-option>&ndash;&gt;-->
-                            <!--                                        &lt;!&ndash;                                        <mat-option value="COIN">COIN</mat-option>&ndash;&gt;-->
-                            <!--                                        &lt;!&ndash;                                        <mat-option value="BYN">BYN</mat-option>&ndash;&gt;-->
-                            <!--                                        &lt;!&ndash;                                    </mat-select>&ndash;&gt;-->
-                            <!--                                        &lt;!&ndash;                                </mat-form-field>&ndash;&gt;-->
-                            <!--                                    </div>-->
-                            <!--                                    <div class="d-flex">-->
-                            <!--                                        <button mat-icon-button color="primary" (click)="inlineChangePriceHandler(game)" [disabled]="!game.price.currency">-->
-                            <!--                                            <mat-icon>check</mat-icon>-->
-                            <!--                                        </button>-->
-                            <!--                                        <button mat-icon-button color="warn" (click)="game.price = _editRowPrice; _editRowId = null; _editRowPrice = null">-->
-                            <!--                                            <mat-icon>close</mat-icon>-->
-                            <!--                                        </button>-->
-                            <!--                                    </div>-->
-                            <!--                                </div>-->
-                            <!--                            </ng-container>-->
                         </div>
 
                     </td>
@@ -139,14 +109,6 @@
                         *ngIf="priceControl?.errors?.pattern">{{translation.instant('ONLY_NUMBER', [translation.instant('PRICE')])}}</mat-error>
             </mat-form-field>
             <div>TLPVR</div>
-            <!--        <mat-form-field class="currency-field">-->
-            <!--            <mat-select [placeholder]="translation.instant('TRANSACTION_CURRENCY')" [formControl]="currencyControl">-->
-            <!--                <mat-option value="TLPVR">TLPVR</mat-option>-->
-            <!--                <mat-option value="COIN">COIN</mat-option>-->
-            <!--                <mat-option value="BYN">BYN</mat-option>-->
-            <!--            </mat-select>-->
-            <!--            <mat-error *ngIf="currencyControl?.errors?.required">{{translation.instant('REQUIRED_FIELD', [translation.instant('PRICE')])}}</mat-error>-->
-            <!--        </mat-form-field>-->
         </div>
     </div>
 

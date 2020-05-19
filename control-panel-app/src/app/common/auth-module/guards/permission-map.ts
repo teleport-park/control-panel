@@ -31,11 +31,14 @@ export const MenuPermissionMap: PermissionMap = {
     'packages/add': ['admin'],
     'packages/add/:id': ['admin'],
     'add/:id': ['admin'],
+    games: ['admin'],
+    'games/edit': ['admin'],
+    'games/edit/:id': ['admin'],
+    'edit/:id': ['admin'],
     promo: ['admin'],
     pricing: null,
     billing: ['admin'],
     transactions: ['admin'],
     invoices: ['admin'],
-    accounts: ['admin'],
-    games: ['admin']
+    accounts: ['admin']
 };
