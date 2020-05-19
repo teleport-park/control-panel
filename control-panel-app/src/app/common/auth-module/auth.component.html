@@ -7,21 +7,21 @@
         <p class="wrapper">
             <mat-form-field class="login-field" color="accent">
                 <input matInput
-                       placeholder="{{translateService.instant('CARD_LABEL')}}"
+                       placeholder="{{translations.instant('CARD_LABEL')}}"
                        [formControl]="cardControl">
                 <mat-error *ngIf="cardControl.errors?.required">
-                    {{'REQUIRED_FIELD' | translate:[translateService.instant('CARD_LABEL')]}}
+                    {{'REQUIRED_FIELD' | translate:[translations.instant('CARD_LABEL')]}}
                 </mat-error>
                 <mat-error *ngIf="cardControl?.errors?.max">{{'MAX_VALUE_ERROR' | translate}} {{cardControl?.errors?.max.max}}</mat-error>
                 <mat-error *ngIf="cardControl?.errors?.incorrect">{{'INVALID_PATTERN' | translate}}</mat-error>
             </mat-form-field>
-                <language-switcher [placeholder]="translateService.instant('LANGUAGE_SWITCHER_LABEL')"
+                <language-switcher [placeholder]="translations.instant('LANGUAGE_SWITCHER_LABEL')"
                                    (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
             <button mat-raised-button
                     color="primary"
                     class="mb-3"
                     (click)="onSubmit()"
-                    type="submit">{{translateService.instant('LOGIN_PAGE_LOGIN_BUTTON_LABEL')}}</button>
+                    type="submit">{{translations.instant('LOGIN_PAGE_LOGIN_BUTTON_LABEL')}}</button>
             <button *ngIf="wsAvailable" mat-button color="accent" (click)="enterCard = !enterCard">{{'ENTER_CARD' | translate}}</button>
         </p>
 

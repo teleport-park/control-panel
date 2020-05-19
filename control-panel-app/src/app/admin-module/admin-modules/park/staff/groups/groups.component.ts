@@ -38,11 +38,11 @@ export class GroupsComponent implements OnInit, OnDestroy {
   /**
    * @param service
    * @param dialog
-   * @param translateService
+   * @param translations
    */
   constructor(public service: GroupsService,
               public dialog: MatDialog,
-              public translateService: TranslateService) {
+              public translations: TranslateService) {
   }
 
   ngOnInit() {

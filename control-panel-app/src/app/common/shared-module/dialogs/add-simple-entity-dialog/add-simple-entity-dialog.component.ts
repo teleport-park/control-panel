@@ -23,7 +23,7 @@ export class AddSimpleEntityDialogComponent {
     this.dialogSubmit();
   }
 
-  constructor(public translateService: TranslateService,
+  constructor(public translations: TranslateService,
               public dialogRef: MatDialogRef<AddSimpleEntityDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { permission: Permission, mode: 'add' | 'edit' }) {
     dialogRef._containerInstance._config.width = '500px';

@@ -87,7 +87,7 @@ export class StaffComponent implements OnInit, OnDestroy {
 
     constructor(
         public cd: ChangeDetectorRef,
-        public translateService: TranslateService,
+        public translations: TranslateService,
         public point: BreakpointService,
         public dialog: MatDialog,
         private fb: FormBuilder,

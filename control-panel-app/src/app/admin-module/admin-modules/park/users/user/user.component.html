@@ -3,36 +3,36 @@
         <div panelUICardHeaderTitle>{{_user.display_name || _user.name}}</div>
         <div panelUICardContent>
             <p class="mt-4">
-                <span class="bold">{{translateService.instant('USER_NAME')}}:</span>
+                <span class="bold">{{translations.instant('USER_NAME')}}:</span>
                 {{_user.name}}
             </p>
             <p>
-                <span class="bold">{{translateService.instant('USER_GENDER_LABEL')}}:</span>
-                {{translateService.instant(_user.gender.toUpperCase())}}
+                <span class="bold">{{translations.instant('USER_GENDER_LABEL')}}:</span>
+                {{translations.instant(_user.gender.toUpperCase())}}
             </p>
             <p>
-                <span class="bold">{{translateService.instant('USER_AGE')}}:</span>
+                <span class="bold">{{translations.instant('USER_AGE')}}:</span>
                 {{_user.age}}
             </p>
             <p>
-                <span class="bold">{{translateService.instant('PHONE')}}:</span>
+                <span class="bold">{{translations.instant('PHONE')}}:</span>
                 {{_user.phone}}
             </p>
             <p>
-                <span class="bold">{{translateService.instant('USER_DATE_OF_BIRTH_DAY')}}:</span>
+                <span class="bold">{{translations.instant('USER_DATE_OF_BIRTH_DAY')}}:</span>
                 {{getUserDOB(_user.birthday)}}
             </p>
             <p>
-                <span class="bold">{{translateService.instant('EMAIL')}}:</span>
+                <span class="bold">{{translations.instant('EMAIL')}}:</span>
                 {{_user.email}}
             </p>
             <p>
-                <span class="bold">{{translateService.instant('BALANCE')}}:</span>
+                <span class="bold">{{translations.instant('BALANCE')}}:</span>
                 {{getBalance(_user.balance) + (_user.balance?.length ? _user.balance[0]?.currency : '')}}
             </p>
             <div class="d-flex mt-4">
-                <button mat-flat-button color="warn" (click)="back()" class="mr-3"><mat-icon>arrow_back</mat-icon>{{translateService.instant('CLOSE')}}</button>
-                <button mat-flat-button color="primary" (click)="openModalDialog(_user)"><mat-icon>edit</mat-icon>{{translateService.instant('TABLE_EDIT')}}</button>
+                <button mat-flat-button color="warn" (click)="back()" class="mr-3"><mat-icon>arrow_back</mat-icon>{{translations.instant('CLOSE')}}</button>
+                <button mat-flat-button color="primary" (click)="openModalDialog(_user)"><mat-icon>edit</mat-icon>{{translations.instant('TABLE_EDIT')}}</button>
             </div>
 
         </div>

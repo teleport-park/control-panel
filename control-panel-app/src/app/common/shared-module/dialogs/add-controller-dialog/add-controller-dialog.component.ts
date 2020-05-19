@@ -21,7 +21,7 @@ export class AddControllerDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<AddControllerDialogComponent>,
               private fb: FormBuilder,
-              public translateService: TranslateService,
+              public translations: TranslateService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     dialogRef._containerInstance._config.width = '500px';
   }

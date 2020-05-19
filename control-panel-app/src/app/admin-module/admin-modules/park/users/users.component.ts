@@ -90,7 +90,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
     constructor(
         public cd: ChangeDetectorRef,
-        public translateService: TranslateService,
+        public translations: TranslateService,
         private loaderService: LoaderService,
         public dialog: MatDialog,
         public point: BreakpointService,

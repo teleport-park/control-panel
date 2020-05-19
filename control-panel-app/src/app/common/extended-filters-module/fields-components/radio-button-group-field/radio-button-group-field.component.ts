@@ -14,7 +14,7 @@ export class RadioButtonGroupFieldComponent {
 
     group: FormGroup;
 
-    constructor(public translateService: TranslateService) {
+    constructor(public translations: TranslateService) {
     }
 
     init() {

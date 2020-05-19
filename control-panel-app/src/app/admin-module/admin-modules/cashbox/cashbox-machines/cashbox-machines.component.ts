@@ -23,7 +23,7 @@ export function ControllerServiceFactory(http: HttpClient, apiUrlService: ApiUrl
 export class CashboxMachinesComponent {
 
     constructor(@Inject(CONTROLLER_SERVICE) public service: IControllerService<CashBoxController>,
-                public translateService: TranslateService) {
+                public translations: TranslateService) {
     }
 
     toggle(item: CashBoxController) {
@@ -31,7 +31,7 @@ export class CashboxMachinesComponent {
     }
 
     getSecondsAgo(date: string | Date) {
-        return Math.abs(moment(date).diff(Date.now(), 'seconds')) + ' ' + this.translateService.instant('SECONDS_AGO');
+        return Math.abs(moment(date).diff(Date.now(), 'seconds')) + ' ' + this.translations.instant('SECONDS_AGO');
     }
 
     _transformToken(token: string) {

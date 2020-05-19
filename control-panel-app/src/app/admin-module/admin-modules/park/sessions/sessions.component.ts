@@ -19,7 +19,7 @@ export class SessionsComponent implements OnInit {
    ];
 
    constructor(public service: SessionsService,
-               public translateService: TranslateService,
+               public translations: TranslateService,
                public cd: ChangeDetectorRef) {
    }
 

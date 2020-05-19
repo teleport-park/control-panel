@@ -26,7 +26,7 @@ export class DatePeriodFieldComponent implements OnInit {
    */
   maxDate: Moment = moment();
 
-  constructor(public translateService: TranslateService) {
+  constructor(public translations: TranslateService) {
   }
 
   ngOnInit() {

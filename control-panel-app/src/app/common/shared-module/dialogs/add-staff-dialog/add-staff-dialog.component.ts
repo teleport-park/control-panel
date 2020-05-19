@@ -43,13 +43,13 @@ export class AddStaffDialogComponent implements OnInit {
 
     /**
      * constructor
-     * @param translateService
+     * @param translations
      * @param fb
      * @param dialogRef
      * @param data
      * @param cd
      */
-    constructor(public translateService: TranslateService,
+    constructor(public translations: TranslateService,
                 private cd: ChangeDetectorRef,
                 private fb: FormBuilder,
                 public dialogRef: MatDialogRef<AddStaffDialogComponent>,
@@ -62,7 +62,7 @@ export class AddStaffDialogComponent implements OnInit {
         this.form = this.getStaffMemberForm();
         this.form.patchValue(this.entityModel);
         this.form.get('hired_at').setValue(moment());
-        moment.locale(this.translateService.locale.getValue());
+        moment.locale(this.translations.locale.getValue());
         this.entityModel.roles.forEach(role => {
             this.roles = this.roles.filter(r => r !== role);
         });

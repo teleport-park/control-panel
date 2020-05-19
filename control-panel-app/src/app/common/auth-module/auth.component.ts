@@ -38,7 +38,7 @@ export class AuthComponent implements OnInit, OnDestroy {
                 private service: AuthService,
                 public wsService: WebSocketService,
                 private cd: ChangeDetectorRef,
-                public translateService: TranslateService) {
+                public translations: TranslateService) {
     }
 
     ngOnInit() {

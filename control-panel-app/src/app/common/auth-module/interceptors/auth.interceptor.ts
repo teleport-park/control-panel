@@ -11,7 +11,7 @@ import { ToasterService } from '../../../services/toaster.service';
 
 export class AuthInterceptor implements HttpInterceptor {
    constructor(private loginService: AuthService,
-               private translateService: TranslateService,
+               private translations: TranslateService,
                private loader: LoaderService,
                private toaster: ToasterService) {
    }
@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
          req = req.clone({
             setHeaders: {
                Authorization: `Bearer ${user.token}`,
-               'Accept-Language': this.translateService.locale.getValue()
+               'Accept-Language': this.translations.locale.getValue()
             }
          });
       }

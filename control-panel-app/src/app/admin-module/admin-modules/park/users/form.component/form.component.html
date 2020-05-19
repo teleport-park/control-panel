@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col">
-        <h4>{{translateService.instant('USER')}}</h4>
+        <h4>{{translations.instant('USER')}}</h4>
         <form [formGroup]="userForm" class="user-form light-theme">
             <mat-form-field class="mb-2">
                 <input matInput placeholder="{{'USER_NAME' | translate}} ({{'NICK_NAME' | translate}})"
@@ -11,7 +11,7 @@
                           class="gender-icon mr-2"
                           matTooltip="{{'TOGGLE_GENDER_TOOLTIP' | translate}}" [matTooltipShowDelay]="300"></mat-icon>
                 <mat-error>
-                    {{'REQUIRED_FIELD' | translate:[translateService.instant('USER_NAME') + '(' + translateService.instant('NICK_NAME') + ')']}}
+                    {{'REQUIRED_FIELD' | translate:[translations.instant('USER_NAME') + '(' + translations.instant('NICK_NAME') + ')']}}
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="mb-2">
@@ -45,14 +45,14 @@
                     {{'USER_FORM_VALIDATION_EMAIL' | translate}}
                 </mat-error>
                 <mat-error *ngIf="userForm.get('email')?.hasError('required')">
-                    {{'REQUIRED_FIELD' | translate:[translateService.instant('EMAIL')]}}
+                    {{'REQUIRED_FIELD' | translate:[translations.instant('EMAIL')]}}
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <input matInput #phoneInput placeholder="{{'PHONE' | translate}}" formControlName="phone"
                        mask="000000000000000" [validation]="false">
                 <mat-error>
-                    {{'REQUIRED_FIELD' | translate:[translateService.instant('PHONE')]}}
+                    {{'REQUIRED_FIELD' | translate:[translations.instant('PHONE')]}}
                 </mat-error>
             </mat-form-field>
         </form>
@@ -69,7 +69,7 @@
                     [disabled]="adding"
                     type="submit"
                     (click)="onSubmitHandler()">
-                {{mode === 'edit' ? translateService.instant('USER_FORM_EDIT_BUTTON_LABEL') : translateService.instant('USER_FORM_ADD_BUTTON_LABEL')}}
+                {{mode === 'edit' ? translations.instant('USER_FORM_EDIT_BUTTON_LABEL') : translations.instant('USER_FORM_ADD_BUTTON_LABEL')}}
             </button>
         </div>
     </div>

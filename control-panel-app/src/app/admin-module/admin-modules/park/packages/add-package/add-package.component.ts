@@ -39,7 +39,7 @@ export class AddPackageComponent implements OnInit, OnDestroy {
     _packageId: string = null;
 
     constructor(public fb: FormBuilder,
-                public translationService: TranslateService,
+                public translations: TranslateService,
                 public service: PackagesService,
                 private promoService: PromoService,
                 private router: Router,
@@ -50,12 +50,12 @@ export class AddPackageComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         if (this.service.packages$.getValue().length) {
-            this.promos = [{id: 'null', display_name: this.translationService.instant('DEFAULT_PROMO'), enabled: true} as Promo, ...this.service.promo$.getValue()].filter(i => !i.removed );
+            this.promos = [{id: 'null', display_name: this.translations.instant('DEFAULT_PROMO'), enabled: true} as Promo, ...this.service.promo$.getValue()].filter(i => !i.removed );
             this.initPackage();
         } else {
             this.service.promo$.pipe(takeUntil(this.destroyed$))
                 .subscribe((promos: Promo[]) => {
-                    this.promos = [{id: 'null', display_name: this.translationService.instant('DEFAULT_PROMO'), enabled: true} as Promo, ...promos].filter(i => !i.removed);
+                    this.promos = [{id: 'null', display_name: this.translations.instant('DEFAULT_PROMO'), enabled: true} as Promo, ...promos].filter(i => !i.removed);
                     this.initPackage();
                 });
             this.service.getPackages();

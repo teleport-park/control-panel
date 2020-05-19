@@ -47,7 +47,7 @@ export class PromoComponent implements OnInit {
     _dialog: MatDialogRef<any>;
 
     constructor(public service: PromoService,
-                public translationService: TranslateService,
+                public translations: TranslateService,
                 private fb: FormBuilder,
                 private dialog: MatDialog,
                 private cd: ChangeDetectorRef) {

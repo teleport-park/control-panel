@@ -1,7 +1,7 @@
 <div class="add-entity-wrapper">
   <mat-form-field class="input-name">
-    <input matInput [placeholder]="translateService.instant('NAME')" [formControl]="name">
-    <mat-error>{{'REQUIRED_FIELD' | translate:[translateService.instant('NAME')]}}</mat-error>
+    <input matInput [placeholder]="translations.instant('NAME')" [formControl]="name">
+    <mat-error>{{'REQUIRED_FIELD' | translate:[translations.instant('NAME')]}}</mat-error>
   </mat-form-field>
   <p>{{'GROUP_PERMISSIONS' | translate}}</p>
   <control-panel-ui-selection-table

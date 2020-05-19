@@ -3,7 +3,7 @@
             color="primary"
             (click)="addEntity()">
         <mat-icon>{{iconSet}}</mat-icon>
-        {{translateService.instant('TABLE_ADD')}}
+        {{translations.instant('TABLE_ADD')}}
     </button>
     <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
                    *ngIf="(itemCount && dataSource.data.length > 10) && itemCount > 25"
@@ -16,7 +16,7 @@
         <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn(column)"
                              [ngClass]="{'sort-column': !isSortedColumn(column)}" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap[column] || column)}}</span></mat-header-cell>
+                <span>{{translations.instant(propertyMap[column] || column)}}</span></mat-header-cell>
             <mat-cell *matCellDef="let row" class="simple-data">
                 <ng-container *ngIf="!isBoolean(row[column]) && !column.includes('_at')">
                     <span matTooltip="{{row[column]}}" [matTooltipShowDelay]="1000"
@@ -37,7 +37,7 @@
 
         <ng-container matColumnDef="expiresAt">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('expiresAt')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['expiresAt'] || 'expiresAt')}}</span></mat-header-cell>
+                <span>{{translations.instant(propertyMap['expiresAt'] || 'expiresAt')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <span class="table_cell-inner">{{item.expiresAt | date: "dd.MM.yyyy HH:mm"}}</span>
             </mat-cell>
@@ -45,7 +45,7 @@
 
         <ng-container matColumnDef="deletedAt">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('deletedAt')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['deletedAt'] || 'deletedAt')}}</span></mat-header-cell>
+                <span>{{translations.instant(propertyMap['deletedAt'] || 'deletedAt')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <span class="table_cell-inner">{{item.deletedAt | date: "dd.MM.yyyy HH:mm"}}</span>
             </mat-cell>
@@ -53,7 +53,7 @@
 
         <ng-container matColumnDef="timestamp">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('timestamp')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['timestamp'] || 'timestamp')}}</span></mat-header-cell>
+                <span>{{translations.instant(propertyMap['timestamp'] || 'timestamp')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <span class="table_cell-inner">{{item.timestamp | date: "dd.MM.yyyy HH:mm:ss"}}</span>
             </mat-cell>
@@ -61,7 +61,7 @@
 
         <ng-container matColumnDef="coins">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('coins')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['coins'] || 'coins')}}</span></mat-header-cell>
+                <span>{{translations.instant(propertyMap['coins'] || 'coins')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div class="amount d-flex align-items-center justify-content-between">
                     <div class="table_cell-inner">{{item.coins.amount}}</div>
@@ -74,7 +74,7 @@
 
         <ng-container matColumnDef="price">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('price')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['price'] || 'price')}}</span></mat-header-cell>
+                <span>{{translations.instant(propertyMap['price'] || 'price')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div class="amount d-flex align-items-center justify-content-between">
                     <div class="table_cell-inner">{{item.price.amount}}</div>
@@ -85,7 +85,7 @@
 
         <ng-container matColumnDef="amount">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('amount')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['amount'] || 'amount')}}</span></mat-header-cell>
+                <span>{{translations.instant(propertyMap['amount'] || 'amount')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div class="amount d-flex align-items-center justify-content-between">
                     <div class="table_cell-inner">{{item.amount.amount}}</div>
@@ -96,7 +96,7 @@
 
         <ng-container matColumnDef="total">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('total')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['amount'] || 'amount')}}</span></mat-header-cell>
+                <span>{{translations.instant(propertyMap['amount'] || 'amount')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div class="amount d-flex align-items-center justify-content-between">
                     <div class="table_cell-inner">{{item.total.amount}}</div>
@@ -107,7 +107,7 @@
 
         <ng-container matColumnDef="charges">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('charges')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['charges'] || 'charges')}}</span></mat-header-cell>
+                <span>{{translations.instant(propertyMap['charges'] || 'charges')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div>
                     <ng-container *ngFor="let charge of item.charges">
@@ -121,7 +121,7 @@
 
         <ng-container matColumnDef="user">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('user')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['user'] || 'user')}}</span></mat-header-cell>
+                <span>{{translations.instant(propertyMap['user'] || 'user')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div class="d-flex flex-column">
                     <div class="mt-1 mb-1">
@@ -139,7 +139,7 @@
 
         <ng-container matColumnDef="balance">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('balance')" *matHeaderCellDef>
-                <span>{{translateService.instant(propertyMap['balance'] || 'balance')}}</span></mat-header-cell>
+                <span>{{translations.instant(propertyMap['balance'] || 'balance')}}</span></mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div class="table_cell-inner"
                      [ngClass]="'control-panel-ui-table-amount_' + (getBalance(item.balance) > 0 ? 'positive' : getBalance(item.balance) < 0 ? 'negative' : 'null')">
@@ -151,7 +151,7 @@
         <!--statuses cell-->
         <ng-container matColumnDef="statuses" class="table_cell-inner">
             <mat-header-cell mat-sort-header [disabled]="isSortedColumn('statuses')" *matHeaderCellDef>
-                {{translateService.instant(propertyMap['statuses'])}}
+                {{translations.instant(propertyMap['statuses'])}}
             </mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <div class="table_cell-inner">
@@ -174,15 +174,15 @@
                 <mat-menu #staffMemberMenu="matMenu">
                     <button *ngIf="!deleteDisable" mat-menu-item (click)="delete.emit(item)">
                         <mat-icon color="warn">delete</mat-icon>
-                        {{translateService.instant('TABLE_DELETE')}}
+                        {{translations.instant('TABLE_DELETE')}}
                     </button>
                     <button mat-menu-item (click)="edit.emit(item)">
                         <mat-icon color="primary">edit</mat-icon>
-                        {{translateService.instant('TABLE_EDIT')}}
+                        {{translations.instant('TABLE_EDIT')}}
                     </button>
                     <button *ngIf="card" mat-menu-item (click)="boundCard.emit(item)">
                         <mat-icon color="accent">credit_card</mat-icon>
-                        {{translateService.instant('TABLE_BOUND_CARD')}}
+                        {{translations.instant('TABLE_BOUND_CARD')}}
                     </button>
                 </mat-menu>
             </mat-cell>
@@ -190,7 +190,7 @@
 
         <ng-container matColumnDef="roles" class="table_cell-inner">
             <mat-header-cell
-                    *matHeaderCellDef>{{translateService.instant(propertyMap['roles']) || 'roles'}}</mat-header-cell>
+                    *matHeaderCellDef>{{translations.instant(propertyMap['roles']) || 'roles'}}</mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <span class="table_cell-inner">
                     <span>{{row.roles.map(mapRoles).join(', ')}}</span>
@@ -199,7 +199,7 @@
         </ng-container>
 
         <ng-container matColumnDef="enabled">
-            <mat-header-cell *matHeaderCellDef> {{translateService.instant('ENABLED')}} </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> {{translations.instant('ENABLED')}} </mat-header-cell>
             <mat-cell mat-cell *matCellDef="let item">
                 <button *ngIf="item.enabled"
                         mat-icon-button color="success"

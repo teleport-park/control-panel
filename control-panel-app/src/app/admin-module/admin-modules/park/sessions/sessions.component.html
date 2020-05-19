@@ -1,6 +1,6 @@
 <div class="light-theme">
     <control-panel-ui-card panelClass="primary">
-        <div panelUICardHeaderTitle>{{translateService.instant('SESSIONS_TABLE_TITLE')}}</div>
+        <div panelUICardHeaderTitle>{{translations.instant('SESSIONS_TABLE_TITLE')}}</div>
         <div panelUICardContent>
             <control-panel-ui-table
                     [data]="(service.sessions$ | async)"

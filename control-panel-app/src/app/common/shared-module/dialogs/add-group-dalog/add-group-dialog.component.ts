@@ -31,13 +31,13 @@ export class AddGroupDialogComponent implements OnInit {
 
   /**
    * constructor
-   * @param translateService
+   * @param translations
    * @param dialogRef
    * @param data
    * @param service
    */
   constructor(
-    public translateService: TranslateService,
+    public translations: TranslateService,
     public dialogRef: MatDialogRef<AddGroupDialogComponent>,
     // public service: DataService,
     @Inject(MAT_DIALOG_DATA) public data: { group: Group, mode: 'add' | 'edit' }) {

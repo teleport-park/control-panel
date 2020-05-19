@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '../../../../../common/translations-module';
 
 @Component({
   selector: 'edit-game',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditGamesComponent implements OnInit {
 
-  constructor() { }
+  constructor(public translations: TranslateService) { }
 
   ngOnInit() {
   }

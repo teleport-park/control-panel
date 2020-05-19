@@ -31,14 +31,14 @@ export class PermissionsService {
    * @param http
    * @param loader
    * @param toaster
-   * @param translateService
+   * @param translations
    * @param storage
    * @param apiBuilder
    */
   constructor(private http: HttpClient,
               private loader: LoaderService,
               private toaster: MatSnackBar,
-              private translateService: TranslateService,
+              private translations: TranslateService,
               @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
               private apiBuilder: ApiUrlsService) {
     this.getPermissions();
@@ -97,7 +97,7 @@ export class PermissionsService {
           this.getPermissions();
           return;
         }
-        this.showErrorMessage(this.translateService.instant('ADMIN_MENU_GROUPS'));
+        this.showErrorMessage(this.translations.instant('ADMIN_MENU_GROUPS'));
       });
   }
 
@@ -107,7 +107,7 @@ export class PermissionsService {
    */
   private showErrorMessage(param: string) {
     this.toaster.open(
-      this.translateService.instant('CANNOT_DELETE_DEPENDED_FIELD_ERROR_MESSAGE', [param]),
+      this.translations.instant('CANNOT_DELETE_DEPENDED_FIELD_ERROR_MESSAGE', [param]),
       null,
       {
         duration: 5000,

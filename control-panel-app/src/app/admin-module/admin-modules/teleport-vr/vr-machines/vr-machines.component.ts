@@ -42,7 +42,7 @@ export class VrMachinesComponent implements OnInit, OnDestroy {
     private destroyed$: Subject<boolean> = new Subject();
 
     constructor(@Inject(INSTANCE_SERVICE) public service: InstanceService<TVRController>,
-                private translateService: TranslateService,
+                private translations: TranslateService,
                 private fb: FormBuilder,
                 private dialog: MatDialog) {
     }
@@ -84,7 +84,7 @@ export class VrMachinesComponent implements OnInit, OnDestroy {
         this.dialog.open(ConfirmDialogComponent, {
             data: {
                 title: 'DIALOG_CONFIRM_TITLE',
-                message: this.translateService.instant('DIALOG_CONFIRM_SERVER_MESSAGE', [item.display_name])
+                message: this.translations.instant('DIALOG_CONFIRM_SERVER_MESSAGE', [item.display_name])
             } as ConfirmDialogData
         }).afterClosed().subscribe(res => {
             if (res) {

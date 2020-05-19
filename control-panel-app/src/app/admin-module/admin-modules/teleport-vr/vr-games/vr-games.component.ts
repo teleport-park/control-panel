@@ -21,7 +21,7 @@ export class VrGamesComponent implements OnInit {
 
 
     constructor(public service: ControllerGamesService,
-                public translateService: TranslateService,
+                public translations: TranslateService,
                 private urlService: ApiUrlsService,
                 public cd: ChangeDetectorRef) {
     }

@@ -45,14 +45,14 @@ export class StaffMemberComponent implements OnInit, OnDestroy {
    * @param route
    * @param router
    * @param service
-   * @param translateService
+   * @param translations
    * @param cd
    * @param dialog
    */
   constructor(private route: ActivatedRoute,
               private router: Router,
               private service: StaffService,
-              public translateService: TranslateService,
+              public translations: TranslateService,
               private cd: ChangeDetectorRef,
               private dialog: MatDialog) {
   }

@@ -51,7 +51,7 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
 
     /**
      * constructor
-     * @param translateService
+     * @param translations
      * @param authService
      * @param loaderService
      * @param point
@@ -62,7 +62,7 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
      * @param dialog
      */
     constructor(
-        public translateService: TranslateService,
+        public translations: TranslateService,
         public authService: AuthService,
         public loaderService: LoaderService,
         public point: BreakpointService,

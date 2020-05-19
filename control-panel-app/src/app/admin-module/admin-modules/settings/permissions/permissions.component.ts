@@ -32,7 +32,7 @@ export class PermissionsComponent implements OnInit {
   sortedColumn: string[] = [];
 
   constructor(public service: PermissionsService,
-              public translateService: TranslateService,
+              public translations: TranslateService,
               private dialog: MatDialog) {
   }
 

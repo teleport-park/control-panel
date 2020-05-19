@@ -1,9 +1,9 @@
 <div class="light-theme">
     <control-panel-ui-card class="primary">
-        <div panelUICardHeaderTitle>{{translationService.instant('PROMO_LIST')}}</div>
+        <div panelUICardHeaderTitle>{{translations.instant('PROMO_LIST')}}</div>
         <div panelUICardContent>
             <div class="d-flex">
-                <button mat-flat-button color="primary" (click)="add()" class="pl-2 mt-3 mb-3"><mat-icon>add</mat-icon>{{translationService.instant('TABLE_ADD')}}</button>
+                <button mat-flat-button color="primary" (click)="add()" class="pl-2 mt-3 mb-3"><mat-icon>add</mat-icon>{{translations.instant('TABLE_ADD')}}</button>
             </div>
             <mat-table
                     cdkDropList
@@ -21,32 +21,32 @@
                 </ng-container>
                 <ng-container matColumnDef="display_name">
                     <mat-header-cell
-                            *matHeaderCellDef>{{translationService.instant('AMUSEMENTS_NAME_LABEL')}}</mat-header-cell>
+                            *matHeaderCellDef>{{translations.instant('AMUSEMENTS_NAME_LABEL')}}</mat-header-cell>
                     <mat-cell *matCellDef="let promo"> {{promo.display_name || promo.name}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="packages">
-                    <mat-header-cell *matHeaderCellDef>{{translationService.instant('PACKAGES')}}</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef>{{translations.instant('PACKAGES')}}</mat-header-cell>
                     <mat-cell *matCellDef="let promo"> {{promo.packages}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="games">
-                    <mat-header-cell *matHeaderCellDef>{{translationService.instant('ADMIN_MENU_GAMES')}}</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef>{{translations.instant('ADMIN_MENU_GAMES')}}</mat-header-cell>
                     <mat-cell *matCellDef="let promo"> {{promo.games}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="conditions">
-                    <mat-header-cell *matHeaderCellDef>{{translationService.instant('CONDITIONS')}}</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef>{{translations.instant('CONDITIONS')}}</mat-header-cell>
                     <mat-cell *matCellDef="let promo">
                         <div class="d-flex flex-column">
-                            <span class="d-flex align-items-center small label mb-1">{{translationService.instant('FIRST_FILL')}}:
+                            <span class="d-flex align-items-center small label mb-1">{{translations.instant('FIRST_FILL')}}:
                                 <mat-icon class="first-fill_icon" color="{{promo.first_fill ? 'success' : 'warn'}}">
                                     {{promo.first_fill ? 'check' : 'clear'}}
                                 </mat-icon>
                             </span>
-                            <span class="small label mb-1">{{translationService.instant('SCHEDULE')}}: {{promo.conditions.schedule || '-'}}</span>
+                            <span class="small label mb-1">{{translations.instant('SCHEDULE')}}: {{promo.conditions.schedule || '-'}}</span>
                         </div>
                     </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="removed">
-                    <mat-header-cell *matHeaderCellDef> {{translationService.instant('REMOVED')}} </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef> {{translations.instant('REMOVED')}} </mat-header-cell>
                     <mat-cell *matCellDef="let promo">
                         <mat-icon
                                 color="{{promo.removed ? 'success' : 'warn'}}">{{promo.removed ? 'check' : 'clear'}}</mat-icon>
@@ -59,7 +59,7 @@
                     </mat-cell>
                 </ng-container>
 <!--                <ng-container matColumnDef="archived">-->
-<!--                    <mat-header-cell *matHeaderCellDef> {{translationService.instant('ARCHIVED')}} </mat-header-cell>-->
+<!--                    <mat-header-cell *matHeaderCellDef> {{translations.instant('ARCHIVED')}} </mat-header-cell>-->
 <!--                    <mat-cell *matCellDef="let promo">-->
 <!--                        <mat-icon-->
 <!--                                color="{{promo.archived ? 'success' : 'warn'}}">{{promo.archived ? 'check' : 'clear'}}</mat-icon>-->
@@ -102,7 +102,7 @@
         </mat-form-field>
         <mat-form-field>
         <textarea matInput [maxLength]="255"
-                  placeholder="{{translationService.instant('NOTE')}}"
+                  placeholder="{{translations.instant('NOTE')}}"
                   formControlName="notes"
                   style="box-sizing: content-box"
                   autocomplete="off"

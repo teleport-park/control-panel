@@ -1,5 +1,5 @@
 <div class="extended-filter_wrapper">
-    <h5 class="mb-2">{{translateService.instant('EXTENDED_FILTER_TITLE')}}</h5>
+    <h5 class="mb-2">{{translations.instant('EXTENDED_FILTER_TITLE')}}</h5>
     <ng-container *ngIf="form">
         <form class="extended-filters-form" [formGroup]="form">
             <div *ngFor="let field of config;" class="field">
@@ -7,7 +7,7 @@
             </div>
         </form>
         <div class="submit d-flex justify-content-end mt-2">
-            <button mat-flat-button color="warn" type="button" (click)="clearFilter()">{{translateService.instant('CLEAR')}}</button>
+            <button mat-flat-button color="warn" type="button" (click)="clearFilter()">{{translations.instant('CLEAR')}}</button>
         </div>
     </ng-container>
 </div>

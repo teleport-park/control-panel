@@ -2,19 +2,19 @@
     <mat-tab label="{{'ADMIN_MENU_CARDS' | translate}}" >
         <div class="card_wrapper light-theme">
             <control-panel-ui-card class="primary">
-                <div panelUICardHeaderTitle>{{translateService.instant('CARD_LIST')}}</div>
+                <div panelUICardHeaderTitle>{{translations.instant('CARD_LIST')}}</div>
                 <div panelUICardContent>
                     <table mat-table [dataSource]="dataSource" class="table">
                         <ng-container matColumnDef="index">
                             <th mat-header-cell *matHeaderCellDef>
-                                <span>{{translateService.instant(propertyMap['index'])}}</span></th>
+                                <span>{{translations.instant(propertyMap['index'])}}</span></th>
                             <td mat-cell *matCellDef="let row; let i = index">
                                 <span class="table_cell-inner">{{i + 1}}</span>
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="chip_id">
                             <th mat-header-cell *matHeaderCellDef>
-                                <span>{{translateService.instant(propertyMap['chip_id'])}}</span></th>
+                                <span>{{translations.instant(propertyMap['chip_id'])}}</span></th>
                             <td mat-cell *matCellDef="let row">
                                 <div class="chip_id d-flex align-items-center" (click)="copyClipboard(row.chip_id)">
                                     <span class="table_cell-inner">{{row.chip_id}}</span>
@@ -23,7 +23,7 @@
                         </ng-container>
                         <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">
                             <th mat-header-cell *matHeaderCellDef>
-                                <span>{{translateService.instant(propertyMap[column])}}</span></th>
+                                <span>{{translations.instant(propertyMap[column])}}</span></th>
                             <td mat-cell *matCellDef="let row">
                                 <span class="table_cell-inner">{{row[column]}}</span>
                             </td>
@@ -31,14 +31,14 @@
 
                         <ng-container matColumnDef="created_at">
                             <th mat-header-cell *matHeaderCellDef>
-                                <span>{{translateService.instant(propertyMap['created_at'])}}</span></th>
+                                <span>{{translations.instant(propertyMap['created_at'])}}</span></th>
                             <td mat-cell *matCellDef="let row">
                                 <span class="table_cell-inner">{{row.created_at | date: 'dd.MM.yyyy hh.mm'}}</span>
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="binding">
                             <th mat-header-cell *matHeaderCellDef>
-                                <span>{{translateService.instant(propertyMap['binding'])}}</span></th>
+                                <span>{{translations.instant(propertyMap['binding'])}}</span></th>
                             <td mat-cell *matCellDef="let row">
                                 <ng-container *ngIf="row.binding">
                                     <div class="mb-1 mt-1">
@@ -51,7 +51,7 @@
                                 <ng-container *ngIf="!row.binding">
                                     <div class="d-flex align-items-center">
                                         <mat-icon color="warn" class="mr-2">cancel</mat-icon>
-                                        <span>{{translateService.instant('CARD_UNBOUND')}}</span>
+                                        <span>{{translations.instant('CARD_UNBOUND')}}</span>
                                     </div>
                                 </ng-container>
                             </td>
@@ -60,11 +60,11 @@
                         <!--action cell-->
                         <ng-container matColumnDef="action">
                             <th mat-header-cell *matHeaderCellDef>
-                                {{translateService.instant(propertyMap['action'])}}
+                                {{translations.instant(propertyMap['action'])}}
                             </th>
                             <td mat-cell *matCellDef="let row" class="light-theme">
                                 <button mat-button color="warn" *ngIf="row.binding" (click)="service.unboundCard(row.chip_id)">
-                                    {{translateService.instant('UNBOUND')}}
+                                    {{translations.instant('UNBOUND')}}
                                 </button>
                             </td>
                         </ng-container>

@@ -11,33 +11,33 @@
                 <p matTooltip="{{item.machine_token}}"
                    [matTooltipShowDelay]="1000"
                    matTooltipPosition="below">
-                    <span class="bold">{{translateService.instant('TOKEN')}}:</span>
+                    <span class="bold">{{translations.instant('TOKEN')}}:</span>
                     {{_transformToken(item.access_token)}}
                 </p>
                 <p>
-                    <span class="bold">{{translateService.instant('SERVER_ENABLED')}}:</span>
+                    <span class="bold">{{translations.instant('SERVER_ENABLED')}}:</span>
                     <mat-icon [ngClass]="{'offline': !item.enabled, 'online': item.enabled}">
                         {{item.enabled ? 'desktop_windows' : 'desktop_access_disabled'}}
                     </mat-icon>
                 </p>
                 <p>
-                    <span class="bold">{{translateService.instant('REGISTERED')}}:</span>
+                    <span class="bold">{{translations.instant('REGISTERED')}}:</span>
                     <mat-icon [ngClass]="{'offline': !item.registered, 'online': item.registered}">
                         {{item.registered ? 'check' : 'clear'}}
                     </mat-icon>
                 </p>
                 <p>
-                    <span class="bold">{{translateService.instant('CONTROLLER_CONNECTED')}}:</span>
+                    <span class="bold">{{translations.instant('CONTROLLER_CONNECTED')}}:</span>
                     <mat-icon [ngClass]="{'offline': !item.connected, 'online': item.connected}">
                         {{item.connected ? 'check' : 'clear'}}
                     </mat-icon>
                 </p>
                 <p>
-                    <span class="bold">{{translateService.instant('IP')}}:</span>
+                    <span class="bold">{{translations.instant('IP')}}:</span>
                     {{item.ip_address || 'N/A' | translate}}
                 </p>
                 <p>
-                    <span class="bold">{{translateService.instant('GAME')}}:</span>
+                    <span class="bold">{{translations.instant('GAME')}}:</span>
                     <span *ngIf="item.game" class="d-inline-flex flex-column">
                         <span class="bold">{{item.game?.name || 'N/A' | translate}}</span>
                         <span class="sub_text">id:{{item.game?.id || 'N/A' | translate}}</span>
@@ -45,7 +45,7 @@
                     <span *ngIf="!item.game">{{'N/A' | translate}}</span>
                 </p>
                 <p>
-                    <span class="bold">{{translateService.instant('STATUS')}}:</span>
+                    <span class="bold">{{translations.instant('STATUS')}}:</span>
                     {{item.status ? (item.status.toUpperCase() | translate) : 'N/A' | translate}}
                 </p>
                 <div *ngIf="item.registered"

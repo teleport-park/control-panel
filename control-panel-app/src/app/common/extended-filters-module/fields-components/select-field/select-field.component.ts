@@ -14,7 +14,7 @@ export class SelectFieldComponent implements OnInit {
 
   group: FormGroup;
 
-  constructor(public translateService: TranslateService) {
+  constructor(public translations: TranslateService) {
   }
 
   ngOnInit() {

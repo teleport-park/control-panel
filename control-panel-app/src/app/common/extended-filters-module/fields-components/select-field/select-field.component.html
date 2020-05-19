@@ -1,6 +1,6 @@
 <mat-form-field [formGroup]="group" class="select-field">
-  <mat-label>{{translateService.instant(config.label)}}</mat-label>
+  <mat-label>{{translations.instant(config.label)}}</mat-label>
   <mat-select [formControlName]="config.property">
-    <mat-option *ngFor="let option of config.options" [value]="option.value">{{translateService.instant(option.label)}}</mat-option>
+    <mat-option *ngFor="let option of config.options" [value]="option.value">{{translations.instant(option.label)}}</mat-option>
   </mat-select>
 </mat-form-field>

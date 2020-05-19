@@ -44,13 +44,13 @@ export class CardsComponent implements OnInit {
 
     /**
      * constructor
-     * @param translateService
+     * @param translations
      * @param service
      * @param storage
      * @param toaster
      * @param cd
      */
-   constructor(public translateService: TranslateService,
+   constructor(public translations: TranslateService,
                public service: CardsService,
                public storage: StorageService,
                private toaster: ToasterService,
@@ -95,7 +95,7 @@ export class CardsComponent implements OnInit {
       this.storage.setValue(this.service.STORAGE_KEY, event);
    }
 
-    mapRoles = (role) => this.translateService.instant(role);
+    mapRoles = (role) => this.translations.instant(role);
 
     async copyClipboard(value: string) {
         if (navigator.clipboard && navigator.clipboard.writeText) {

@@ -304,5 +304,6 @@
   "DIALOG_REMOVE_CONFIRM_MESSAGE": "Remove package {0} from list?",
   "ADD_PAYMENT": "Add payment",
   "ADD_CHARGE": "Add charge",
-  "REMOVE_PLAN": "Remove plan"
+  "REMOVE_PLAN": "Remove plan",
+  "EDIT_GAME_PRICES": "Edit game prices"
 }

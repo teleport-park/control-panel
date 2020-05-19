@@ -27,7 +27,7 @@ export class NgGamesComponent implements OnInit {
 
 
     constructor(public service: ControllerGamesService,
-                public translateService: TranslateService,
+                public translations: TranslateService,
                 public cd: ChangeDetectorRef) {
     }
 

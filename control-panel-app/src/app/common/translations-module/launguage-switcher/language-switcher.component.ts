@@ -29,7 +29,7 @@ export class LanguageSwitcherComponent implements OnDestroy, OnInit {
         .map(key => Locales[key])
         .filter(value => !isNaN(Number(Locales[value])))
         .map(value => {
-            return {value, label: this.translateService.instant(value)};
+            return {value, label: this.translations.instant(value)};
         });
 
     /**
@@ -76,14 +76,14 @@ export class LanguageSwitcherComponent implements OnDestroy, OnInit {
 
     /**
      * Constructor
-     * @param translateService
+     * @param translations
      * @param cd
      */
-    constructor(private translateService: TranslateService, private cd: ChangeDetectorRef) {
+    constructor(private translations: TranslateService, private cd: ChangeDetectorRef) {
     }
 
     ngOnInit(): void {
-        this.translateService.locale
+        this.translations.locale
             .pipe(takeUntil(this.destroyed$))
             .subscribe((locale: string) => {
                 this.locale = locale;
@@ -96,8 +96,8 @@ export class LanguageSwitcherComponent implements OnDestroy, OnInit {
      */
     changeLanguage(event: MatSelectChange) {
         this.changeLocaleStart.emit({oldLocale: this.locale, newValue: event.value} as ChangeLanguageEvent);
-        if (event.value !== this.translateService.locale) {
-            this.translateService.getTranslations(event.value);
+        if (event.value !== this.translations.locale) {
+            this.translations.getTranslations(event.value);
         }
         this.cd.markForCheck();
         this.cd.detectChanges();

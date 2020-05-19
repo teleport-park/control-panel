@@ -9,16 +9,16 @@
                     <h4>{{item.display_name}}</h4>
                 </div>
                 <p>
-                    <span class="bold" [ngClass]="{'offline': item.locked, 'online': !item.locked}">{{translateService.instant(item.locked ? 'CONTROLLER_LOCKED' : 'CONTROLLER_UNLOCKED')}}</span>
+                    <span class="bold" [ngClass]="{'offline': item.locked, 'online': !item.locked}">{{translations.instant(item.locked ? 'CONTROLLER_LOCKED' : 'CONTROLLER_UNLOCKED')}}</span>
                 </p>
                 <p>
-                    <span class="bold">{{translateService.instant('SERVER_ENABLED')}}:</span>
+                    <span class="bold">{{translations.instant('SERVER_ENABLED')}}:</span>
                     <mat-icon [ngClass]="{'offline': !item.enabled, 'online': item.enabled}">
                         {{item.enabled ? 'desktop_windows' : 'desktop_access_disabled'}}
                     </mat-icon>
                 </p>
                 <p>
-                    <span class="bold">{{translateService.instant('CONTROLLER_CONNECTED')}}:</span>
+                    <span class="bold">{{translations.instant('CONTROLLER_CONNECTED')}}:</span>
                     {{getSecondsAgo(item.connected_at)}}
                 </p>
                 <div class="action justify-content-between d-flex align-items-center mt-4">

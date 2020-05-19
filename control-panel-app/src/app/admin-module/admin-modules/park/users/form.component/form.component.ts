@@ -87,16 +87,16 @@ export class FormComponent {
 
     /**
      * constructor
-     * @param translateService
+     * @param translations
      * @param initService
      * @param fb
      * @param dateAdapter
      */
-    constructor(public translateService: TranslateService,
+    constructor(public translations: TranslateService,
                 public initService: InitService,
                 private fb: FormBuilder,
                 private dateAdapter: DateAdapter<Date>) {
-        dateAdapter.setLocale(translateService.locale.getValue());
+        dateAdapter.setLocale(translations.locale.getValue());
         this.minDOBDate = moment().subtract(initService.config.visitor_min_age, 'years');
     }
 

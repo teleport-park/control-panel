@@ -1,33 +1,33 @@
-<div class="mr-3 bold">{{translateService.instant(config.label)}}:</div>
+<div class="mr-3 bold">{{translations.instant(config.label)}}:</div>
 <div class="dates" [formGroup]="group">
     <mat-form-field class="data" color="primary">
-        <input matInput [matDatepicker]="from" placeholder="{{translateService.instant('EXTENDED_FILTER_FROM_ALT')}}"
+        <input matInput [matDatepicker]="from" placeholder="{{translations.instant('EXTENDED_FILTER_FROM_ALT')}}"
                [max]="group.get(config.group[1].property).value || maxDate"
                [formControlName]="config.group[0].property">
         <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
         <mat-datepicker #from></mat-datepicker>
         <mat-error *ngIf="group.get(config.group[0].property)?.hasError('matDatepickerParse')">
-            {{translateService.instant('EXTENDED_FILTER_WRONG_DATE_FORMAT')}}
+            {{translations.instant('EXTENDED_FILTER_WRONG_DATE_FORMAT')}}
         </mat-error>
         <mat-error *ngIf="group.get(config.group[0].property)?.hasError('matDatepickerMax')">
-            {{translateService.instant('EXTENDED_FILTER_DATE_MAX_ERROR', [group.get(config.group[1].property).value.format('L') || maxDate.locale(translateService.locale.getValue()).format('L')])}}
+            {{translations.instant('EXTENDED_FILTER_DATE_MAX_ERROR', [group.get(config.group[1].property).value.format('L') || maxDate.locale(translations.locale.getValue()).format('L')])}}
         </mat-error>
     </mat-form-field>
     <mat-form-field class="data" color="primary">
-        <input matInput [matDatepicker]="to" placeholder="{{translateService.instant('EXTENDED_FILTER_TO_ALT')}}"
+        <input matInput [matDatepicker]="to" placeholder="{{translations.instant('EXTENDED_FILTER_TO_ALT')}}"
                [max]="maxDate" [min]="group.get(config.group[0].property).value"
                [formControlName]="config.group[1].property">
         <mat-datepicker-toggle matSuffix [for]="to">
         </mat-datepicker-toggle>
         <mat-datepicker #to></mat-datepicker>
         <mat-error *ngIf="group.get(config.group[1].property)?.hasError('matDatepickerParse')">
-            {{translateService.instant('EXTENDED_FILTER_WRONG_DATE_FORMAT')}}
+            {{translations.instant('EXTENDED_FILTER_WRONG_DATE_FORMAT')}}
         </mat-error>
         <mat-error *ngIf="group.get(config.group[1].property)?.hasError('matDatepickerMax')">
-            {{translateService.instant('EXTENDED_FILTER_DATE_MAX_ERROR', [maxDate.locale(translateService.locale.getValue()).format('L')])}}
+            {{translations.instant('EXTENDED_FILTER_DATE_MAX_ERROR', [maxDate.locale(translations.locale.getValue()).format('L')])}}
         </mat-error>
         <mat-error *ngIf="group.get(config.group[1].property)?.hasError('matDatepickerMin')">
-            {{translateService.instant('EXTENDED_FILTER_DATE_MIN_ERROR', [group.get(config.group[0].property).value.format('L')])}}
+            {{translations.instant('EXTENDED_FILTER_DATE_MIN_ERROR', [group.get(config.group[0].property).value.format('L')])}}
         </mat-error>
     </mat-form-field>
 </div>

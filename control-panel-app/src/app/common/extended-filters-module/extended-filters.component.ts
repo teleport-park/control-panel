@@ -67,7 +67,7 @@ export class ExtendedFiltersComponent<T> implements OnInit, OnDestroy {
 
     private destroyed$: Subject<boolean> = new Subject<boolean>();
 
-    constructor(private fb: FormBuilder, public translateService: TranslateService, private cd: ChangeDetectorRef) {
+    constructor(private fb: FormBuilder, public translations: TranslateService, private cd: ChangeDetectorRef) {
     }
 
     ngOnInit() {

@@ -16,7 +16,7 @@ export class AuthService {
 
     constructor(
         private toaster: ToasterService,
-        public translateService: TranslateService) {
+        public translations: TranslateService) {
         this.currentUser = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('USER')));
     }
 

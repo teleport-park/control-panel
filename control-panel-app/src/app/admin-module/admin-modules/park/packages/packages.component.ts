@@ -28,7 +28,7 @@ export class PackagesComponent implements OnInit {
 
     constructor(public service: PackagesService,
                 public cd: ChangeDetectorRef,
-                public translationService: TranslateService,
+                public translations: TranslateService,
                 private router: Router,
                 private dialog: MatDialog) {
     }
@@ -59,7 +59,7 @@ export class PackagesComponent implements OnInit {
                 title: 'DIALOG_CONFIRM_TITLE',
                 message: 'DIALOG_PACKAGE_TOGGLE_CONFIRM_MESSAGE',
                 messageParams: [
-                    pack.enabled ? this.translationService.instant('DISABLE') : this.translationService.instant('ENABLE'),
+                    pack.enabled ? this.translations.instant('DISABLE') : this.translations.instant('ENABLE'),
                     pack.name
                 ]
             } as ConfirmDialogData,

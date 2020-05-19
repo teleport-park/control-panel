@@ -11,26 +11,26 @@
                         matTooltipPosition="below">{{_transformToken(item.token)}}</h4>
                 </div>
                 <p>
-                    <span class="bold">{{translateService.instant('TOKEN')}}:</span>
+                    <span class="bold">{{translations.instant('TOKEN')}}:</span>
                     {{item.token}}
                 </p>
                 <p>
-                    <span class="bold">{{translateService.instant('TYPE')}}:</span>
+                    <span class="bold">{{translations.instant('TYPE')}}:</span>
                     {{item.type.toUpperCase()}}
                 </p>
                 <p>
-                    <span class="bold">{{translateService.instant('CONTROLLER_AUTHORIZED')}}:</span>
+                    <span class="bold">{{translations.instant('CONTROLLER_AUTHORIZED')}}:</span>
                     <mat-icon [ngClass]="{'offline': !item.authorized, 'online': item.authorized}">
                         {{item.authorized ? 'check' : 'clear'}}
                     </mat-icon>
                 </p>
                 <p>
-                    <span class="bold">{{translateService.instant('CONTROLLER_CONNECTED')}}:</span>
+                    <span class="bold">{{translations.instant('CONTROLLER_CONNECTED')}}:</span>
                     {{getSecondsAgo(item.connected)}}
                 </p>
                 <div class="actions">
-                    <button mat-flat-button color="warn" *ngIf="item.authorized" (click)="revoke(item)">{{translateService.instant('REVOKE')}}</button>
-                    <button mat-flat-button color="primary" *ngIf="!item.authorized" (click)="grant(item)">{{translateService.instant('GRANT')}}</button>
+                    <button mat-flat-button color="warn" *ngIf="item.authorized" (click)="revoke(item)">{{translations.instant('REVOKE')}}</button>
+                    <button mat-flat-button color="primary" *ngIf="!item.authorized" (click)="grant(item)">{{translations.instant('GRANT')}}</button>
                 </div>
             </control-panel-ui-item-card>
         </div>

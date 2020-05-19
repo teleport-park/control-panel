@@ -25,10 +25,10 @@ export function ControllerServiceFactory(http: HttpClient, apiUrlService: ApiUrl
 export class NgControllersComponent {
 
     constructor(@Inject(CONTROLLER_SERVICE) public service: IControllerService<BaseController>,
-                private translateService: TranslateService) {
+                private translations: TranslateService) {
     }
     getSecondsAgo(date: string | Date) {
-        return Math.abs(moment(date).diff(Date.now(), 'seconds')) + ' ' + this.translateService.instant('SECONDS_AGO');
+        return Math.abs(moment(date).diff(Date.now(), 'seconds')) + ' ' + this.translations.instant('SECONDS_AGO');
     }
 
     grant(item: BaseController) {

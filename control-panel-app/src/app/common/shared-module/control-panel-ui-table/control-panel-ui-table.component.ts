@@ -1,14 +1,14 @@
 import {
-    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     EventEmitter,
     Inject,
-    Injector,
     Input,
     OnInit,
-    Output, QueryList,
-    ViewChild, ViewChildren
+    Output,
+    QueryList,
+    ViewChild,
+    ViewChildren
 } from '@angular/core';
 import { TranslateService } from '../../translations-module';
 import { MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort } from '@angular/material';
@@ -154,7 +154,7 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
     /**
      * constructor
      */
-    constructor(public translateService: TranslateService,
+    constructor(public translations: TranslateService,
                 private cd: ChangeDetectorRef,
                 public point: BreakpointService,
                 public icon: IconService,
@@ -234,7 +234,7 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
      * @param data
      */
     getFormattedData(data: Moment): string {
-        data.locale(this.translateService.locale.value);
+        data.locale(this.translations.locale.value);
         return data.format('L');
     }
 
@@ -254,5 +254,5 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
         return +amount.toFixed(2);
     }
 
-    mapRoles = (role) => this.translateService.instant(role);
+    mapRoles = (role) => this.translations.instant(role);
 }

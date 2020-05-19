@@ -14,7 +14,7 @@ import { Locales } from './common/translations-module/locales.enum';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    constructor(public translateService: TranslateService,
+    constructor(public translations: TranslateService,
                 public loaderService: LoaderService,
                 @Inject('IAppStorageInterface') private appStorage: IAppStorageInterface,
                 @Inject('IApiUrlsInterface') private apiUrls: IApiUrlsInterface
@@ -29,7 +29,7 @@ export class AppComponent {
 
         const locale = appStorage.getValue(AppStorageKey.Locale, Locales[0]);
         // todo: refactor 'locale' variable to be invariant to uppercase
-        this.translateService.getTranslations(locale);
+        this.translations.getTranslations(locale);
         // const testUrl = apiUrls.getPermissionsUrl('PUT', 1);
         // appStorage.setValue(AppStorageKey.Test, testUrl);
         // test example of URL builder

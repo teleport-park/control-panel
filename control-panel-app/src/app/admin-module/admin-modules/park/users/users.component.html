@@ -7,10 +7,10 @@
     <mat-sidenav-content #scrollContainer>
         <div class="light-theme">
             <control-panel-ui-card class="primary">
-                <div panelUICardHeaderTitle>{{translateService.instant('USERS_TABLE_TITLE')}}</div>
+                <div panelUICardHeaderTitle>{{translations.instant('USERS_TABLE_TITLE')}}</div>
                 <div panelUICardContent>
                     <control-panel-ui-card class="no-margin" [hideHeader]="true">
-                        <div panelUICardHeaderTitle>{{translateService.instant('USERS_TABLE_TITLE')}}</div>
+                        <div panelUICardHeaderTitle>{{translations.instant('USERS_TABLE_TITLE')}}</div>
                         <div panelUICardContent>
                             <extended-filters [config]="extendedFiltersConfig.config"
                                               [state]="service.requestHelper.filterData"

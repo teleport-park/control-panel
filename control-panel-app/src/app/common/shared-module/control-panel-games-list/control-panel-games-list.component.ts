@@ -17,7 +17,7 @@ export class ControlPanelGamesListComponent implements OnInit {
 
     @Output() toggle: EventEmitter<{game: NGGame, event: MatSlideToggleChange}> = new EventEmitter();
 
-    constructor(private translateService: TranslateService, public loaderService: LoaderService) {
+    constructor(private translations: TranslateService, public loaderService: LoaderService) {
     }
 
     ngOnInit() {

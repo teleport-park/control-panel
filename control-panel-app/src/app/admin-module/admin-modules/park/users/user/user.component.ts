@@ -35,14 +35,14 @@ export class UserComponent implements OnInit, OnDestroy {
      * @param service
      * @param route
      * @param router
-     * @param translateService
+     * @param translations
      * @param cd
      * @param dialog
      */
     constructor(@Inject(ENTITY_SERVICE) private service: EntityService<Visitor>,
                 private route: ActivatedRoute,
                 private router: Router,
-                public translateService: TranslateService,
+                public translations: TranslateService,
                 private cd: ChangeDetectorRef,
                 private dialog: MatDialog) {
     }

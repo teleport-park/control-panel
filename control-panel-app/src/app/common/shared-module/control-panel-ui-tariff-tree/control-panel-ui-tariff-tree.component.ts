@@ -50,7 +50,7 @@ export class ControlPanelUiTariffTreeComponent implements OnInit {
      */
     hasChild = (_: number, node: TariffNode) => !!node.children && node.children.length > 0;
 
-    constructor(public translateService: TranslateService) {
+    constructor(public translations: TranslateService) {
     }
 
     ngOnInit() {

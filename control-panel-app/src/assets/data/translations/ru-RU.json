@@ -306,5 +306,6 @@
   "DIALOG_REMOVE_CONFIRM_MESSAGE": "Удалить пакет {0} из списка?",
   "ADD_PAYMENT": "Добавить платеж",
   "ADD_CHARGE": "Добавить начисление",
-  "REMOVE_PLAN": "Удалить план"
+  "REMOVE_PLAN": "Удалить план",
+  "EDIT_GAME_PRICES": "Редактировать цены для игр"
 }
