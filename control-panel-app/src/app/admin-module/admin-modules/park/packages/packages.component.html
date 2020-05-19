@@ -12,7 +12,14 @@
                         <table mat-table [dataSource]="dataSource" class="package-table">
                             <ng-container matColumnDef="name">
                                 <th mat-header-cell *matHeaderCellDef>{{translationService.instant('AMUSEMENTS_NAME_LABEL')}}</th>
-                                <td mat-cell *matCellDef="let pack"> {{pack.display_name || pack.name}} </td>
+                                <td mat-cell *matCellDef="let pack">
+                                    <div class="name" (click)="edit(pack)">
+                                        {{pack.display_name || pack.name}}
+                                    </div>
+                                    <div class="sub_text mb-3" *ngIf="pack.removed">
+                                        <span class="info">{{translationService.instant('REMOVED').toLowerCase()}}</span>
+                                    </div>
+                                </td>
                             </ng-container>
                             <ng-container matColumnDef="players">
                                 <th mat-header-cell *matHeaderCellDef>{{translationService.instant('PLAYERS')}}</th>
@@ -21,18 +28,12 @@
                             <ng-container matColumnDef="totals">
                                 <th mat-header-cell *matHeaderCellDef>{{translationService.instant('TOTALS')}}</th>
                                 <td mat-cell *matCellDef="let pack">
-                                    <p *ngFor="let total of pack.totals" class="d-flex flex-column">
-                                        <span>{{translationService.instant('PROMO')}}: {{total.name || '-'}}</span>
-                                        <span>{{translationService.instant('PAYMENTS')}}: {{total.payments.amount}} {{total.payments.currency}}</span>
-                                        <span>{{translationService.instant('CHARGES')}}: {{total.payments.amount}} {{total.charges.currency}}</span>
+                                    <p *ngFor="let total of pack.totals" class="d-flex">
+                                        <span class="mr-2">{{total.name || translationService.instant('DEFAULT_PROMO')}}:</span>
+                                        <span class="mr-2 label">{{total.payments.amount}} {{total.payments.currency}}</span>
+                                        <span class="mr-2 label">-</span>
+                                        <span class="mr-2 label">{{total.payments.amount}} {{total.charges.currency}}</span>
                                     </p>
-                                </td>
-                            </ng-container>
-                            <ng-container matColumnDef="removed">
-                                <th mat-header-cell *matHeaderCellDef> {{translationService.instant('REMOVED')}} </th>
-                                <td mat-cell *matCellDef="let promo">
-                                    <mat-icon
-                                            color="{{promo.removed ? 'success' : 'warn'}}">{{promo.removed ? 'check' : 'clear'}}</mat-icon>
                                 </td>
                             </ng-container>
                             <ng-container matColumnDef="enabled">
@@ -49,13 +50,13 @@
                                         <mat-icon>more_vert</mat-icon>
                                     </button>
                                     <mat-menu #subMenu="matMenu">
-                                        <button mat-menu-item (click)="delete(pack)">
-                                            <mat-icon color="warn">delete</mat-icon>
-                                            {{translationService.instant('TABLE_DELETE')}}
-                                        </button>
                                         <button mat-menu-item (click)="edit(pack)">
                                             <mat-icon color="primary">edit</mat-icon>
                                             {{translationService.instant('TABLE_EDIT')}}
+                                        </button>
+                                        <button mat-menu-item (click)="delete(pack)">
+                                            <mat-icon color="warn">delete</mat-icon>
+                                            {{translationService.instant('TABLE_DELETE')}}
                                         </button>
                                     </mat-menu>
                                 </td>

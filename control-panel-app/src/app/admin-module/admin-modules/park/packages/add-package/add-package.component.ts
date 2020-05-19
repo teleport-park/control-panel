@@ -34,6 +34,8 @@ export class AddPackageComponent implements OnInit, OnDestroy {
 
     promos: Promo[];
 
+    _excludedPromo: string[] = [];
+
     _packageId: string = null;
 
     constructor(public fb: FormBuilder,
@@ -48,12 +50,12 @@ export class AddPackageComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         if (this.service.packages$.getValue().length) {
-            this.promos = this.service.promo$.getValue();
+            this.promos = [{id: 'null', display_name: this.translationService.instant('DEFAULT_PROMO'), enabled: true} as Promo, ...this.service.promo$.getValue()].filter(i => !i.removed );
             this.initPackage();
         } else {
             this.service.promo$.pipe(takeUntil(this.destroyed$))
                 .subscribe((promos: Promo[]) => {
-                    this.promos = promos;
+                    this.promos = [{id: 'null', display_name: this.translationService.instant('DEFAULT_PROMO'), enabled: true} as Promo, ...promos].filter(i => !i.removed);
                     this.initPackage();
                 });
             this.service.getPackages();
@@ -67,9 +69,12 @@ export class AddPackageComponent implements OnInit, OnDestroy {
             .subscribe((pack: Package) => {
                 this.initForm();
                 this.form.patchValue(pack);
-                pack.plans.forEach((plan: { promo: string, charges: Charge[], payments: Payment[] }) => {
+                pack.plans.forEach((plan: { promo_id: string, charges: Charge[], payments: Payment[] }) => {
                     const planControl = this.getPlan();
-                    planControl.patchValue(plan);
+                    planControl.patchValue({...plan, ...{promo_id: plan.promo_id ? plan.promo_id : 'null'}});
+                    if (plan.promo_id) {
+                        this._excludedPromo.push(plan.promo_id);
+                    }
                     const charges = planControl.get('charges') as FormArray;
                     plan.charges.forEach((charge: Charge) => {
                         const control = this.getCharge();
@@ -114,13 +119,13 @@ export class AddPackageComponent implements OnInit, OnDestroy {
         return this.fb.group({
             currency: Currencies[0],
             amount: ['', Validators.required],
-            players: []
+            players: [[]]
         });
     }
 
     getPlan() {
         return this.fb.group({
-            promo_id: null,
+            promo_id: 'null',
             payments: this.fb.array([]),
             charges: this.fb.array([])
         });
@@ -138,12 +143,17 @@ export class AddPackageComponent implements OnInit, OnDestroy {
         (this.plans.at(index).get('charges') as FormArray).push(this.getCharge());
     }
 
-    removePayment(parentIndex, index) {
+    removePayment(parentIndex: number, index: number) {
         (this.plans.at(parentIndex).get('payments') as FormArray).removeAt(index);
     }
 
-    removeCharge(parentIndex, index) {
+    removeCharge(parentIndex: number, index: number) {
         (this.plans.at(parentIndex).get('charges') as FormArray).removeAt(index);
+    }
+
+    removePlan(index: number) {
+        this.plans.removeAt(index);
+        this.updateExcludedPromo();
     }
 
     submit() {
@@ -151,11 +161,14 @@ export class AddPackageComponent implements OnInit, OnDestroy {
         if (this.form.invalid) {
             return;
         }
-        console.log(this.form.getRawValue());
+        const payload = this.form.getRawValue() as Package;
+        payload.plans.forEach(plan => {
+            plan.promo_id = plan.promo_id === 'null' ? null : plan.promo_id;
+        });
         if (this._packageId) {
-            this.service.editPackage(this.form.getRawValue(), this._packageId);
+            this.service.editPackage(payload, this._packageId);
         } else {
-            this.service.addPackage(this.form.getRawValue());
+            this.service.addPackage(payload);
         }
         this.router.navigate(['admin', 'park', 'packages']);
     }
@@ -180,15 +193,29 @@ export class AddPackageComponent implements OnInit, OnDestroy {
         moveItemInArray(this.charges.controls, event.previousIndex, event.currentIndex);
     }
 
+    excludePromo(value: string, index: number) {
+        if (value === 'null') {
+            return true;
+        }
+        if (this.plans.at(index).get('promo_id').value === value) {
+            return true;
+        }
+        return !this._excludedPromo.includes(value);
+    }
+
+    updateExcludedPromo() {
+        this._excludedPromo = this.plans.getRawValue().map(i => i.promo_id).filter(i => i !== 'null');
+    }
+
     /**
      * show confirm dialog
      */
-    private showConfirmDialog(parentIndex: number, index: number, payments?: boolean) {
+    private showConfirmDialog(parentIndex: number, index?: number, payments?: boolean) {
         this.dialog.open(ConfirmDialogComponent, {
             data: {
                 title: 'DIALOG_CONFIRM_TITLE',
-                message: payments ? 'REMOVE_PAYMENT_CONFIRM_MASSAGE' : 'REMOVE_CHARGE_CONFIRM_MESSAGE',
-                messageParams: [(index + 1).toString()]
+                message: !index ? 'REMOVE_PLAN_CONFIRM_MASSAGE' :  payments ? 'REMOVE_PAYMENT_CONFIRM_MASSAGE' : 'REMOVE_CHARGE_CONFIRM_MESSAGE',
+                messageParams: [!index ? (parentIndex + 1).toString() : (index + 1).toString()]
             } as ConfirmDialogData,
             autoFocus: false
         }).afterClosed()
@@ -196,10 +223,14 @@ export class AddPackageComponent implements OnInit, OnDestroy {
             if (!res) {
                 return;
             }
-            if (payments) {
-                this.removePayment(parentIndex, index);
+            if (!index) {
+                this.removePlan(parentIndex);
             } else {
-                this.removeCharge(parentIndex, index);
+                if (payments) {
+                    this.removePayment(parentIndex, index);
+                } else {
+                    this.removeCharge(parentIndex, index);
+                }
             }
             this.cd.markForCheck();
         });

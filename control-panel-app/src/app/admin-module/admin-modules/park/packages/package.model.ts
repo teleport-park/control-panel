@@ -5,11 +5,11 @@ export class Package {
     note: string = '';
     enabled: boolean = false;
     plans: Array<{
-        promo: string | null,
+        promo_id: string | null,
         payments: Payment[];
         charges: Charge[];
     }> = [{
-        promo: null,
+        promo_id: null,
         payments: [],
         charges: []
     }];

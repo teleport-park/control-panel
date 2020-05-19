@@ -5,15 +5,13 @@ import { PackagesService } from './packages.service';
 import { TranslateService } from '../../../../common/translations-module';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
-import { PromoService } from '../promo/services/promo.service';
-import { Promo } from '../promo/promo.model';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'packages',
-  templateUrl: './packages.component.html',
-  styleUrls: ['./packages.component.scss']
+    selector: 'packages',
+    templateUrl: './packages.component.html',
+    styleUrls: ['./packages.component.scss']
 })
 export class PackagesComponent implements OnInit {
 
@@ -21,7 +19,7 @@ export class PackagesComponent implements OnInit {
 
     @ViewChild('formTemplate', {static: false}) formTemplate: TemplateRef<any>;
 
-    displayedColumns: string[] = ['name', 'players', 'totals', 'removed', 'enabled', 'submenu'];
+    displayedColumns: string[] = ['name', 'players', 'totals', 'enabled', 'submenu'];
 
     _sliderValue: string = '00:00';
 
@@ -85,7 +83,20 @@ export class PackagesComponent implements OnInit {
         event.source.checked = pack.enabled;
     }
 
-    delete(item: Package) {
-        this.service.deletePackage(item.id);
+    delete(pack: Package) {
+        this.dialog.open(ConfirmDialogComponent, {
+            data: {
+                title: 'DIALOG_CONFIRM_TITLE',
+                message: 'DIALOG_REMOVE_CONFIRM_MESSAGE',
+                messageParams: [pack.name]
+            } as ConfirmDialogData,
+            autoFocus: false
+        }).afterClosed()
+        .subscribe((res) => {
+            if (!res) {
+                return;
+            }
+            this.service.deletePackage(pack.id);
+        });
     }
 }

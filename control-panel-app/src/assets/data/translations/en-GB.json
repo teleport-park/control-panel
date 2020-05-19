@@ -216,6 +216,7 @@
   "ONLY_INTEGER_ERROR": "enter positive integer number",
   "REMOVE_PAYMENT_CONFIRM_MASSAGE": "Remove payment №{0} from list?",
   "REMOVE_CHARGE_CONFIRM_MESSAGE": "Remove charge №{0} from list?",
+  "REMOVE_PLAN_CONFIRM_MASSAGE": "Remove plan №{0} from list?",
   "IN_PERCENTAGE": "in percentage",
   "PLAYER": "Player",
   "SELECT_ALL": "select all",
@@ -297,5 +298,11 @@
   "PACKAGE_EDITED_SUCCESSFUL": "Package edited",
   "PACKAGE_ADDED_SUCCESSFUL": "Package added",
   "PACKAGE_REMOVED_SUCCESSFUL": "Package removed",
-  "PACKAGE_SWITCHED_SUCCESSFUL": "Package switched"
+  "PACKAGE_SWITCHED_SUCCESSFUL": "Package switched",
+  "DEFAULT_PROMO": "Default",
+  "PROMO": "Promo",
+  "DIALOG_REMOVE_CONFIRM_MESSAGE": "Remove package {0} from list?",
+  "ADD_PAYMENT": "Add payment",
+  "ADD_CHARGE": "Add charge",
+  "REMOVE_PLAN": "Remove plan"
 }

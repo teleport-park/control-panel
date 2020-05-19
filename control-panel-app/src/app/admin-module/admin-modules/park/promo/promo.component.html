@@ -58,13 +58,13 @@
                         <mat-slide-toggle color="success" [checked]="promo.enabled" (toggleChange)="toggle(promo)"></mat-slide-toggle>
                     </mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="archived">
-                    <mat-header-cell *matHeaderCellDef> {{translationService.instant('ARCHIVED')}} </mat-header-cell>
-                    <mat-cell *matCellDef="let promo">
-                        <mat-icon
-                                color="{{promo.archived ? 'success' : 'warn'}}">{{promo.archived ? 'check' : 'clear'}}</mat-icon>
-                    </mat-cell>
-                </ng-container>
+<!--                <ng-container matColumnDef="archived">-->
+<!--                    <mat-header-cell *matHeaderCellDef> {{translationService.instant('ARCHIVED')}} </mat-header-cell>-->
+<!--                    <mat-cell *matCellDef="let promo">-->
+<!--                        <mat-icon-->
+<!--                                color="{{promo.archived ? 'success' : 'warn'}}">{{promo.archived ? 'check' : 'clear'}}</mat-icon>-->
+<!--                    </mat-cell>-->
+<!--                </ng-container>-->
 
                 <ng-container matColumnDef="action">
                     <mat-header-cell *matHeaderCellDef></mat-header-cell>

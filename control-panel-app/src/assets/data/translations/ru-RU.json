@@ -217,10 +217,11 @@
   "ONLY_INTEGER_ERROR": "введите целое положительное число",
   "REMOVE_PAYMENT_CONFIRM_MASSAGE": "Удалить платеж №{0} из списка?",
   "REMOVE_CHARGE_CONFIRM_MESSAGE": "Удалить списание №{0} из списка?",
+  "REMOVE_PLAN_CONFIRM_MASSAGE": "Удалить длан №{0} из списка?",
   "IN_PERCENTAGE": "в процентах",
   "PLAYER": "Игрок",
-  "SELECT_ALL": "выбрать все",
-  "DESELECT_ALL": "отменить все",
+  "SELECT_ALL": "выбрать всех",
+  "DESELECT_ALL": "отменить всех",
   "PLAYERS_MIN_ERROR": "минимальное число игроков",
   "PLAYERS_MAX_ERROR": "максимальное число игроков",
   "cashier": "кассир",
@@ -299,5 +300,11 @@
   "PACKAGE_EDITED_SUCCESSFUL": "Пакет отредактирован",
   "PACKAGE_ADDED_SUCCESSFUL": "Пакет добавлен",
   "PACKAGE_REMOVED_SUCCESSFUL": "Пакет удален",
-  "PACKAGE_SWITCHED_SUCCESSFUL": "Пакет переключен"
+  "PACKAGE_SWITCHED_SUCCESSFUL": "Пакет переключен",
+  "DEFAULT_PROMO": "По умолчанию",
+  "PROMO": "Акция",
+  "DIALOG_REMOVE_CONFIRM_MESSAGE": "Удалить пакет {0} из списка?",
+  "ADD_PAYMENT": "Добавить платеж",
+  "ADD_CHARGE": "Добавить начисление",
+  "REMOVE_PLAN": "Удалить план"
 }

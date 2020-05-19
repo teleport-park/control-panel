@@ -47,13 +47,25 @@
                         <h3>{{translationService.instant('PLANS')}}</h3>
                     </div>
                     <ng-container *ngFor="let plan of this.plans.controls; let idx = index">
-                        <div [formGroupName]="idx" class="plan-wrapper container-fluid">
-                            <mat-form-field>
-                                <mat-select formControlName="promo_id"
-                                            [placeholder]="translationService.instant('PROMO')">
-                                    <mat-option *ngFor="let promo of promos" [value]="promo.id">{{promo.display_name || promo.name}}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                        <div [formGroupName]="idx + ''" class="plan-wrapper container-fluid">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <mat-form-field>
+                                    <mat-select formControlName="promo_id"
+                                                (selectionChange)="updateExcludedPromo()"
+                                                [placeholder]="translationService.instant('PROMO')">
+                                        <ng-container *ngFor="let promo of promos">
+                                            <mat-option *ngIf="excludePromo(promo.id, idx)"
+                                                        value="{{promo.id}}">{{promo.display_name || promo.name}}</mat-option>
+                                        </ng-container>
+                                    </mat-select>
+                                </mat-form-field>
+                                <button type="button" mat-button color="warn"
+                                        (click)="showConfirmDialog(idx)"
+                                        class="pl-2 delete-button">
+                                    <mat-icon>clear</mat-icon>
+                                    {{translationService.instant('REMOVE_PLAN')}}
+                                </button>
+                            </div>
                             <div class="row">
                                 <div class="payments_wrapper col-xl-6 pb-2 pt-3">
                                     <div class="d-flex align-items-center justify-content-between">
@@ -97,10 +109,10 @@
                                             </div>
                                         </ng-container>
                                         <div class="d-flex align-items-center justify-content-end mt-2">
-                                            <button type="button" mat-flat-button color="primary"
+                                            <button type="button" mat-button color="primary"
                                                     (click)="addPayment(idx)" class="ml-5 pl-2">
                                                 <mat-icon>add</mat-icon>
-                                                {{translationService.instant('TABLE_ADD')}}
+                                                {{translationService.instant('ADD_PAYMENT')}}
                                             </button>
                                         </div>
                                     </div>
@@ -143,13 +155,13 @@
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
-                                                <p class="d-flex justify-content-end"
+                                                <div class="d-flex justify-content-end"
                                                    *ngIf="getPlayersArray().length > 0">
                                 <span (click)="list.selectAll()"
                                       class="select">{{translationService.instant('SELECT_ALL')}}</span>
                                                     <span (click)="list.deselectAll()"
                                                           class="select">{{translationService.instant('DESELECT_ALL')}}</span>
-                                                </p>
+                                                </div>
                                                 <mat-selection-list #list formControlName="players">
                                                     <mat-list-option checkboxPosition="before"
                                                                      *ngFor="let player of getPlayersArray()"
@@ -160,10 +172,10 @@
                                             </div>
                                         </ng-container>
                                         <div class="d-flex align-items-center justify-content-end mt-2">
-                                            <button type="button" mat-flat-button color="primary"
+                                            <button type="button" mat-button color="primary"
                                                     (click)="addCharge(idx)" class="ml-5 pl-2">
                                                 <mat-icon>add</mat-icon>
-                                                {{translationService.instant('TABLE_ADD')}}
+                                                {{translationService.instant('ADD_CHARGE')}}
                                             </button>
                                         </div>
                                     </div>
@@ -177,7 +189,7 @@
                     </button>
                 </div>
             </form>
-            <div class="toolbar mb-2 mt-4">
+            <div class="d-flex justify-content-end align-items-center mb-2 mt-4 ml-3">
                 <button type="button" mat-flat-button color="warn" (click)="back()" class="mr-4 pl-3">
                     <mat-icon>keyboard_backspace</mat-icon>
                     {{translationService.instant('BACK')}}</button>
