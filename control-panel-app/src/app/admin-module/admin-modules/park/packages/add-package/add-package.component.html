@@ -72,7 +72,7 @@
                                         <h4 class="mb-0">{{translations.instant('PAYMENTS')}}</h4>
                                     </div>
                                     <div formArrayName="payments" class="drop-list" cdkDropList
-                                         (cdkDropListDropped)="dropPayment($event)">
+                                         (cdkDropListDropped)="dropPayment($event, idx)">
                                         <ng-container
                                                 *ngFor="let payment of plan.get('payments').controls; let index = index">
                                             <div [formGroupName]="index + ''" class="payment drop-box light-theme"
@@ -122,7 +122,7 @@
                                         <h4 class="mb-0">{{translations.instant('CHARGES')}}</h4>
                                     </div>
                                     <div formArrayName="charges" class="drop-list" cdkDropList
-                                         (cdkDropListDropped)="dropCharge($event)">
+                                         (cdkDropListDropped)="dropCharge($event, idx)">
                                         <ng-container
                                                 *ngFor="let charge of plan.get('charges').controls; let index = index">
                                             <div [formGroupName]="index +''" class="charge drop-box light-theme"

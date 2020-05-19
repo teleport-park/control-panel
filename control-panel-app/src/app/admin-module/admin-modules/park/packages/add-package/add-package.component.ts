@@ -26,9 +26,9 @@ export class AddPackageComponent implements OnInit, OnDestroy {
 
     form: FormGroup;
 
-    payments: FormArray;
+    // payments: FormArray;
 
-    charges: FormArray;
+    // charges: FormArray;
 
     plans: FormArray;
 
@@ -185,12 +185,14 @@ export class AddPackageComponent implements OnInit, OnDestroy {
         this.router.navigate(['admin', 'park', 'packages']);
     }
 
-    dropPayment(event: CdkDragDrop<AbstractControl[]>) {
-        moveItemInArray(this.payments.controls, event.previousIndex, event.currentIndex);
+    dropPayment(event: CdkDragDrop<AbstractControl[]>, index: number) {
+        const payments = this.plans.at(index).get('payments') as FormArray;
+        moveItemInArray(payments.controls, event.previousIndex, event.currentIndex);
     }
 
-    dropCharge(event: CdkDragDrop<AbstractControl[]>) {
-        moveItemInArray(this.charges.controls, event.previousIndex, event.currentIndex);
+    dropCharge(event: CdkDragDrop<AbstractControl[]>, index: number) {
+        const charges = this.plans.at(index).get('charges') as FormArray;
+        moveItemInArray(charges.controls, event.previousIndex, event.currentIndex);
     }
 
     excludePromo(value: string, index: number) {
