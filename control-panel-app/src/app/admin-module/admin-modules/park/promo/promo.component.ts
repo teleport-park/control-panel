@@ -94,7 +94,7 @@ export class PromoComponent implements OnInit {
     add() {
         this.initForm();
         this._dialog = this.dialog.open(this.formTeml, {
-            width: '500px'
+            width: '800px'
         });
     }
 
@@ -107,7 +107,7 @@ export class PromoComponent implements OnInit {
         this.initForm();
         this.form.patchValue(promo);
         this._dialog = this.dialog.open(this.formTeml, {
-            width: '500px'
+            width: '800px'
         });
     }
 

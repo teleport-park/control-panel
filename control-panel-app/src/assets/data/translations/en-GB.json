@@ -307,5 +307,10 @@
   "REMOVE_PLAN": "Remove plan",
   "EDIT_GAME_PRICES": "Edit game prices",
   "PRICES": "Prices",
-  "GAME_PRICES_WILL_OVERWRITTEN_NOTE": "Attention! Prices for selected games will be overwritten"
+  "GAME_PRICES_WILL_OVERWRITTEN_NOTE": "Attention! Prices for selected games will be overwritten",
+  "START_TIME": "starting at",
+  "END_TIME": "ending at",
+  "HOUR_S": "Hour(s)",
+  "MINUTE_S": "Minute(s)",
+  "SECOND_S": "Second(s)"
 }

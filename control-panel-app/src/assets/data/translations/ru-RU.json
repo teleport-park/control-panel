@@ -309,5 +309,13 @@
   "REMOVE_PLAN": "Удалить план",
   "EDIT_GAME_PRICES": "Редактировать цены для игр",
   "PRICES": "Цены",
-  "GAME_PRICES_WILL_OVERWRITTEN_NOTE": "Внимание! Цены для всех выбранных игр будут перезаписаны"
+  "GAME_PRICES_WILL_OVERWRITTEN_NOTE": "Внимание! Цены для всех выбранных игр будут перезаписаны",
+  "DAILY": "ЕЖЕДНЕВНО",
+  "WEEKLY": "ЕЖЕНЕДЕЛЬНО",
+  "MONTHLY": "ЕЖЕМЕСЯЧНО",
+  "START_TIME": "начало",
+  "END_TIME": "конец",
+  "HOUR_S": "Час(ов)",
+  "MINUTE_S": "Минут(у)",
+  "SECOND_S": "Секунд(у)"
 }

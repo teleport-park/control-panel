@@ -58,14 +58,6 @@
                         <mat-slide-toggle color="success" [checked]="promo.enabled" (toggleChange)="toggle(promo)"></mat-slide-toggle>
                     </mat-cell>
                 </ng-container>
-<!--                <ng-container matColumnDef="archived">-->
-<!--                    <mat-header-cell *matHeaderCellDef> {{translations.instant('ARCHIVED')}} </mat-header-cell>-->
-<!--                    <mat-cell *matCellDef="let promo">-->
-<!--                        <mat-icon-->
-<!--                                color="{{promo.archived ? 'success' : 'warn'}}">{{promo.archived ? 'check' : 'clear'}}</mat-icon>-->
-<!--                    </mat-cell>-->
-<!--                </ng-container>-->
-
                 <ng-container matColumnDef="action">
                     <mat-header-cell *matHeaderCellDef></mat-header-cell>
                     <mat-cell *matCellDef="let promo">
@@ -88,9 +80,6 @@
                 </mat-row>
             </mat-table>
             <control-panel-ui-empty class="black" *ngIf="!(service.promo$ | async)?.length"></control-panel-ui-empty>
-            <!--            <p>TEST cron editor</p>-->
-            <!--            <cron-editor [formControl]="cronControl" [options]="cronOptions"></cron-editor>-->
-            <!--            <p>{{cronControl.valueChanges | async}}</p>-->
         </div>
     </control-panel-ui-card>
 </div>
@@ -114,10 +103,14 @@
         <div formGroupName="conditions" class="d-flex flex-column pt-2 conditions">
             <h5 class="mb-2">{{'CONDITIONS' | translate}}</h5>
             <mat-checkbox formControlName="first_fill">{{'FIRST_FILL' | translate}}</mat-checkbox>
-            <mat-form-field>
-                <input matInput formControlName="schedule" placeholder="{{'SCHEDULE' | translate}}">
-            </mat-form-field>
+<!--            <mat-form-field>-->
+<!--                <input matInput formControlName="schedule" placeholder="{{'SCHEDULE' | translate}}">-->
+<!--            </mat-form-field>-->
+<!--            <p>TEST cron editor</p>-->
+            <cron-editor formControlName="schedule" [options]="cronOptions"></cron-editor>
+<!--            <p>{{form.get('conditions').get('schedule').valueChanges | async}}</p>-->
         </div>
+
         <control-panel-ui-action-toolbar (cancel)="_dialog.close(); _dialog = null" (confirm)="submit()"></control-panel-ui-action-toolbar>
     </form>
 

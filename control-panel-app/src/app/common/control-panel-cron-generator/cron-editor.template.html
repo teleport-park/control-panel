@@ -1,116 +1,122 @@
 <section class="cron-editor-main">
-    <mat-tab-group class="cron-editor-container" (selectedIndexChange)="onTabFocus($event)" [backgroundColor]="backgroundColor" [color]="color" animationDuration="0ms">
+    <mat-tab-group class="cron-editor-container" (selectedIndexChange)="onTabFocus($event)"
+                   [backgroundColor]="backgroundColor" [color]="color" animationDuration="0ms">
 
-      <!-- Minute -->
-      <mat-tab class="cron-editor-tab" label="Minutes" *ngIf="!options.hideMinutesTab">
-        <div class="cron-editor-tab-content">
+        <!-- Minute -->
+        <mat-tab class="cron-editor-tab" label="Minutes" *ngIf="!options.hideMinutesTab">
+            <div class="cron-editor-tab-content">
 
-          <span class="cron-form-label">Every </span>
+                <span class="cron-form-label">Every </span>
 
-            <cron-time-picker
-              [formGroup]="minutesForm"
-              [use24HourTime]="options.use24HourTime"
-              [hideHours]="true"
-              [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
-            </cron-time-picker>
-        </div>
-      </mat-tab>
+                <cron-time-picker
+                        [formGroup]="minutesForm"
+                        [use24HourTime]="options.use24HourTime"
+                        [hideHours]="true"
+                        [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
+                </cron-time-picker>
+            </div>
+        </mat-tab>
 
-      <!-- Hourly -->
-      <mat-tab class="cron-editor-tab" label="Hourly" *ngIf="!options.hideHourlyTab">
-        <div class="cron-editor-tab-content">
-          <span class="cron-form-label">Every </span>
+        <!-- Hourly -->
+        <mat-tab class="cron-editor-tab" label="Hourly" *ngIf="!options.hideHourlyTab">
+            <div class="cron-editor-tab-content">
+                <span class="cron-form-label">Every </span>
 
-          <cron-time-picker [formGroup]="hourlyForm"
-                              [use24HourTime]="options.use24HourTime"
-                              [hideSeconds]="options.hideSeconds ||  !isCronFlavorQuartz">
-          </cron-time-picker>
-        </div>
-      </mat-tab>
-
-
-      <!-- Daily-->
-      <mat-tab class="cron-editor-tab" label="Daily" *ngIf="!options.hideDailyTab">
-        <div class="cron-editor-tab-content" [formGroup]="dailyForm">
-
-          <mat-radio-group class="cron-editor-radio-group" formControlName="subTab">
-            <mat-radio-button name="subTab" class="cron-editor-radio-button" value="everyDays" checked="checked">
-
-              <span class="cron-form-label">Every </span>
-
-              <mat-form-field formGroupName="everyDays">
-                <mat-label>Day(s)</mat-label>
-                <mat-select formControlName="days">
-                  <mat-option *ngFor="let monthDay of selectOptions.monthDays" [value]="monthDay">
-                    {{monthDay}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-
-               at
-
-              <cron-time-picker
-                formGroupName="everyDays"
-                [use24HourTime]="options.use24HourTime"
-                [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
-              </cron-time-picker>
-
-            </mat-radio-button>
-
-            <mat-radio-button name="subTab" class="cron-editor-radio-button" value="everyWeekDay">
-
-              <span>Week Day (MON-FRI) at </span>
-
-              <cron-time-picker
-                formGroupName="everyWeekDay"
-                [use24HourTime]="options.use24HourTime"
-                [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
-              </cron-time-picker>
-
-            </mat-radio-button>
-          </mat-radio-group>
-          </div>
-      </mat-tab>
-
-      <!-- Weekly-->
-      <mat-tab  class="cron-editor-tab" label="Weekly" *ngIf="!options.hideWeeklyTab">
-        <div class="cron-editor-tab-content">
-
-          <span class="cron-form-label">{{'EVERY' | translate}}</span>
-
-          <div [formGroup]="weeklyForm">
-            <mat-checkbox class="checkbox-margin" formControlName="MON">{{'MONDAY' | translate}}</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="TUE">{{'TUESDAY' | translate}}</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="WED">{{'WEDNESDAY' | translate}}</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="THU">{{'THURSDAY' | translate}}</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="FRI">{{'FRIDAY' | translate}}</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="SAT">{{'SATURDAY' | translate}}</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="SUN">{{'SUNDAY' | translate}}</mat-checkbox>
-          </div>
+                <cron-time-picker [formGroup]="hourlyForm"
+                                  [use24HourTime]="options.use24HourTime"
+                                  [hideSeconds]="options.hideSeconds ||  !isCronFlavorQuartz">
+                </cron-time-picker>
+            </div>
+        </mat-tab>
 
 
-          <span class="cron-form-label">at time </span>
+        <!-- Daily-->
+        <mat-tab class="cron-editor-tab" label="{{'DAILY' | translate}}" *ngIf="!options.hideDailyTab">
+            <div class="cron-editor-tab-content" [formGroup]="dailyForm">
 
-          <cron-time-picker [formGroup]="weeklyForm"
-                            [use24HourTime]="options.use24HourTime"
-                            [hideSeconds]="options.hideSeconds|| !isCronFlavorQuartz">
-          </cron-time-picker>
-        </div>
+                <mat-radio-group class="cron-editor-radio-group" formControlName="subTab">
+                    <mat-radio-button name="subTab" class="cron-editor-radio-button" value="everyDays"
+                                      checked="checked">
 
-    </mat-tab>
+                        <span class="cron-form-label">Every </span>
 
-      <!-- Monthly-->
-      <mat-tab class="cron-editor-tab" label="Monthly" *ngIf="!options.hideMonthlyTab">
+                        <mat-form-field formGroupName="everyDays">
+                            <mat-label>Day(s)</mat-label>
+                            <mat-select formControlName="days">
+                                <mat-option *ngFor="let monthDay of selectOptions.monthDays" [value]="monthDay">
+                                    {{monthDay}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
-        <div class="cron-editor-tab-content" [formGroup]="monthlyForm">
+                        at
+
+                        <cron-time-picker
+                                formGroupName="everyDays"
+                                [use24HourTime]="options.use24HourTime"
+                                [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
+                        </cron-time-picker>
+
+                    </mat-radio-button>
+
+                    <mat-radio-button name="subTab" class="cron-editor-radio-button" value="everyWeekDay">
+
+                        <span>Week Day (MON-FRI) at </span>
+
+                        <cron-time-picker
+                                formGroupName="everyWeekDay"
+                                [use24HourTime]="options.use24HourTime"
+                                [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
+                        </cron-time-picker>
+
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </mat-tab>
+
+        <!-- Weekly-->
+        <mat-tab class="cron-editor-tab" label="{{'WEEKLY' | translate}}" *ngIf="!options.hideWeeklyTab">
+            <div class="cron-editor-tab-content">
+
+                <div class="mb-2">{{'EVERY' | translate}}</div>
+
+                <div class="d-flex align-items-center mb-2" [formGroup]="weeklyForm">
+                    <mat-checkbox class="mr-2" formControlName="MON">{{'MONDAY' | translate}}</mat-checkbox>
+                    <mat-checkbox class="mr-2" formControlName="TUE">{{'TUESDAY' | translate}}</mat-checkbox>
+                    <mat-checkbox class="mr-2" formControlName="WED">{{'WEDNESDAY' | translate}}</mat-checkbox>
+                    <mat-checkbox class="mr-2" formControlName="THU">{{'THURSDAY' | translate}}</mat-checkbox>
+                    <mat-checkbox class="mr-2" formControlName="FRI">{{'FRIDAY' | translate}}</mat-checkbox>
+                    <mat-checkbox class="mr-2" formControlName="SAT">{{'SATURDAY' | translate}}</mat-checkbox>
+                    <mat-checkbox class="mr-2" formControlName="SUN">{{'SUNDAY' | translate}}</mat-checkbox>
+                </div>
 
 
-          <mat-radio-group formControlName="subTab">
+                <div class="mb-2">{{'START_TIME' | translate}}</div>
+                <cron-time-picker [formGroup]="weeklyForm.controls.start_at"
+                                  [use24HourTime]="options.use24HourTime"
+                                  [hideSeconds]="options.hideSeconds|| !isCronFlavorQuartz">
+                </cron-time-picker>
+                <div class="mb-2">{{'END_TIME' | translate}}</div>
+                <cron-time-picker [formGroup]="weeklyForm.controls.end_at"
+                                  [use24HourTime]="options.use24HourTime"
+                                  [hideSeconds]="options.hideSeconds|| !isCronFlavorQuartz">
+                </cron-time-picker>
+            </div>
 
-            <mat-radio-button  name="monthly-radio" value="specificDay" >
+        </mat-tab>
 
-              <!-- Spesific day -->
-              <span formGroupName="specificDay">
+        <!-- Monthly-->
+        <mat-tab class="cron-editor-tab" label="{{'MONTHLY' | translate}}" *ngIf="!options.hideMonthlyTab">
+
+            <div class="cron-editor-tab-content" [formGroup]="monthlyForm">
+
+
+                <mat-radio-group formControlName="subTab">
+
+                    <mat-radio-button name="monthly-radio" value="specificDay">
+
+                        <!-- Spesific day -->
+                        <span formGroupName="specificDay">
 
                 On the
 
@@ -118,7 +124,8 @@
                   <mat-form-field>
                     <mat-label>Day</mat-label>
                     <mat-select class="month-days" formControlName="day">
-                      <option *ngFor="let monthDaysWithLast of selectOptions.monthDaysWithLasts" [value]="monthDaysWithLast">
+                      <option *ngFor="let monthDaysWithLast of selectOptions.monthDaysWithLasts"
+                              [value]="monthDaysWithLast">
                         {{monthDayDisplay(monthDaysWithLast)}}
                       </option>
                     </mat-select>
@@ -128,8 +135,9 @@
                 <ng-container *ngIf="options.cronFlavor === 'standard'">
                   <mat-form-field>
                     <mat-label>Day</mat-label>
-                    <mat-select class="month-days"  formControlName="day">
-                      <mat-option *ngFor="let monthDaysWithOutLast of selectOptions.monthDaysWithOutLasts" [value]="monthDaysWithOutLast">
+                    <mat-select class="month-days" formControlName="day">
+                      <mat-option *ngFor="let monthDaysWithOutLast of selectOptions.monthDaysWithOutLasts"
+                                  [value]="monthDaysWithOutLast">
                         {{monthDayDisplay(monthDaysWithOutLast)}}
                       </mat-option>
                     </mat-select>
@@ -158,18 +166,19 @@
               </span>
 
 
-            </mat-radio-button>
+                    </mat-radio-button>
 
-            <mat-radio-button  name="monthly-radio" value="specificWeekDay">
+                    <mat-radio-button name="monthly-radio" value="specificWeekDay">
 
-              <!-- Spesific Week day -->
-              <span formGroupName="specificWeekDay">
+                        <!-- Spesific Week day -->
+                        <span formGroupName="specificWeekDay">
 
                 On the
 
                 <mat-form-field>
                   <mat-label>Week</mat-label>
-                  <mat-select class="day-order-in-month" formControlName="monthWeek" [ngClass]="options.formSelectClass">
+                  <mat-select class="day-order-in-month" formControlName="monthWeek"
+                              [ngClass]="options.formSelectClass">
                     <mat-option *ngFor="let monthWeek of selectOptions.monthWeeks" [value]="monthWeek">
                       {{monthWeekDisplay(monthWeek)}}
                     </mat-option>
@@ -206,116 +215,118 @@
 
 
               </span>
-            </mat-radio-button>
+                    </mat-radio-button>
 
-          </mat-radio-group>
+                </mat-radio-group>
 
-        </div>
-      </mat-tab>
+            </div>
+        </mat-tab>
 
-      <!-- Yearly-->
-      <mat-tab class="cron-editor-tab"  label="Yearly" *ngIf="!options.hideYearlyTab">
+        <!-- Yearly-->
+        <mat-tab class="cron-editor-tab" label="Yearly" *ngIf="!options.hideYearlyTab">
 
-        <div class="cron-editor-tab-content" [formGroup]="yearlyForm">
+            <div class="cron-editor-tab-content" [formGroup]="yearlyForm">
 
-          <mat-radio-group formControlName="subTab">
+                <mat-radio-group formControlName="subTab">
 
-            <mat-radio-button name="yearly-radio" value="specificMonthDay">
+                    <mat-radio-button name="yearly-radio" value="specificMonthDay">
 
-              On the
+                        On the
 
-              <mat-form-field formGroupName="specificMonthDay" *ngIf="options.cronFlavor === 'quartz'">
-                <mat-label>Day</mat-label>
-                <mat-select class="month-days" formControlName="day">
-                  <mat-option *ngFor="let monthDaysWithLast of selectOptions.monthDaysWithLasts" [value]="monthDaysWithLast">
-                    {{monthDayDisplay(monthDaysWithLast)}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+                        <mat-form-field formGroupName="specificMonthDay" *ngIf="options.cronFlavor === 'quartz'">
+                            <mat-label>Day</mat-label>
+                            <mat-select class="month-days" formControlName="day">
+                                <mat-option *ngFor="let monthDaysWithLast of selectOptions.monthDaysWithLasts"
+                                            [value]="monthDaysWithLast">
+                                    {{monthDayDisplay(monthDaysWithLast)}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
-              <mat-form-field formGroupName="specificMonthDay" *ngIf="options.cronFlavor === 'standard'">
-                <mat-label>Day</mat-label>
-                <mat-select class="month-days" formControlName="day" >
-                  <mat-option *ngFor="let monthDaysWithOutLast of selectOptions.monthDaysWithOutLasts" [value]="monthDaysWithOutLast">
-                    {{monthDayDisplay(monthDaysWithOutLast)}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+                        <mat-form-field formGroupName="specificMonthDay" *ngIf="options.cronFlavor === 'standard'">
+                            <mat-label>Day</mat-label>
+                            <mat-select class="month-days" formControlName="day">
+                                <mat-option *ngFor="let monthDaysWithOutLast of selectOptions.monthDaysWithOutLasts"
+                                            [value]="monthDaysWithOutLast">
+                                    {{monthDayDisplay(monthDaysWithOutLast)}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
-              of
+                        of
 
-              <mat-form-field formGroupName="specificMonthDay">
-                <mat-label>Month</mat-label>
-                <mat-select class="months" formControlName="month">
-                  <mat-option *ngFor="let month of selectOptions.months" [value]="month">
-                    {{monthDisplay(month)}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+                        <mat-form-field formGroupName="specificMonthDay">
+                            <mat-label>Month</mat-label>
+                            <mat-select class="months" formControlName="month">
+                                <mat-option *ngFor="let month of selectOptions.months" [value]="month">
+                                    {{monthDisplay(month)}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
-              at time
+                        at time
 
-              <cron-time-picker [disabled]="disabled"
-                                [formGroup]="yearlyForm.controls.specificMonthDay"
-                                [use24HourTime]="options.use24HourTime"
-                                [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
-              </cron-time-picker>
-            </mat-radio-button>
+                        <cron-time-picker [disabled]="disabled"
+                                          [formGroup]="yearlyForm.controls.specificMonthDay"
+                                          [use24HourTime]="options.use24HourTime"
+                                          [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
+                        </cron-time-picker>
+                    </mat-radio-button>
 
-            <mat-radio-button name="yearly-radio" value="specificMonthWeek" [ngClass]="state.formRadioClass">
+                    <mat-radio-button name="yearly-radio" value="specificMonthWeek" [ngClass]="state.formRadioClass">
 
-              On the
+                        On the
 
-              <mat-form-field formGroupName="specificMonthWeek">
-                <mat-label>Week</mat-label>
-                <mat-select class="day-order-in-month" formControlName="monthWeek" >
-                  <mat-option *ngFor="let monthWeek of selectOptions.monthWeeks" [value]="monthWeek">
-                    {{monthWeekDisplay(monthWeek)}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+                        <mat-form-field formGroupName="specificMonthWeek">
+                            <mat-label>Week</mat-label>
+                            <mat-select class="day-order-in-month" formControlName="monthWeek">
+                                <mat-option *ngFor="let monthWeek of selectOptions.monthWeeks" [value]="monthWeek">
+                                    {{monthWeekDisplay(monthWeek)}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
-              <mat-form-field formGroupName="specificMonthWeek">
-                <mat-label>Day</mat-label>
-                <mat-select class="week-days"  formControlName="day" >
-                  <mat-option *ngFor="let day of selectOptions.days" [value]="day">
-                    {{dayDisplay(day)}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+                        <mat-form-field formGroupName="specificMonthWeek">
+                            <mat-label>Day</mat-label>
+                            <mat-select class="week-days" formControlName="day">
+                                <mat-option *ngFor="let day of selectOptions.days" [value]="day">
+                                    {{dayDisplay(day)}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
-              of
+                        of
 
-              <mat-form-field formGroupName="specificMonthWeek">
-                <mat-label>Month</mat-label>
-                <mat-select class="months" formControlName="month">
-                  <mat-option *ngFor="let month of selectOptions.months" [value]="month">
-                    {{monthDisplay(month)}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+                        <mat-form-field formGroupName="specificMonthWeek">
+                            <mat-label>Month</mat-label>
+                            <mat-select class="months" formControlName="month">
+                                <mat-option *ngFor="let month of selectOptions.months" [value]="month">
+                                    {{monthDisplay(month)}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
-              at time
+                        at time
 
-              <cron-time-picker [disabled]="disabled"
-                                [formGroup]="yearlyForm.controls.specificMonthWeek"
-                                [use24HourTime]="options.use24HourTime"
-                                [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
-              </cron-time-picker>
-            </mat-radio-button>
-          </mat-radio-group>
-        </div>
-      </mat-tab>
+                        <cron-time-picker [disabled]="disabled"
+                                          [formGroup]="yearlyForm.controls.specificMonthWeek"
+                                          [use24HourTime]="options.use24HourTime"
+                                          [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
+                        </cron-time-picker>
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </mat-tab>
 
-      <!-- Advanced-->
-      <mat-tab class="cron-editor-tab" label="Advanced" *ngIf="!options.hideAdvancedTab">
-        <div class="cron-editor-tab-content" [formGroup]="advancedForm">
+        <!-- Advanced-->
+        <mat-tab class="cron-editor-tab" label="Advanced" *ngIf="!options.hideAdvancedTab">
+            <div class="cron-editor-tab-content" [formGroup]="advancedForm">
 
-          <mat-form-field>
-            <mat-label>Expression</mat-label>
-            <input matInput type="text" class="advanced-cron-editor-input" formControlName="expression">
-          </mat-form-field>
-        </div>
-      </mat-tab>
+                <mat-form-field>
+                    <mat-label>Expression</mat-label>
+                    <input matInput type="text" class="advanced-cron-editor-input" formControlName="expression">
+                </mat-form-field>
+            </div>
+        </mat-tab>
     </mat-tab-group>
 </section>

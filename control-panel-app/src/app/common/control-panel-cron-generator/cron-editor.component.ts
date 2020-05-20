@@ -162,10 +162,18 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
             FRI: [false],
             SAT: [false],
             SUN: [false],
-            hours: [this.getAmPmHour(defaultHours)],
-            minutes: [defaultMinutes],
-            seconds: [defaultSeconds],
-            hourType: [this.getHourType(defaultHours)]
+            start_at: this.fb.group({
+                hours: [this.getAmPmHour(defaultHours)],
+                minutes: [defaultMinutes],
+                seconds: [defaultSeconds],
+                hourType: [this.getHourType(defaultHours)]
+            }),
+            end_at: this.fb.group({
+                hours: [this.getAmPmHour(defaultHours)],
+                minutes: [defaultMinutes],
+                seconds: [defaultSeconds],
+                hourType: [this.getHourType(defaultHours)]
+            })
         });
         this.weeklyForm.valueChanges.subscribe(next => this.computeWeeklyCron(next));
 
@@ -250,7 +258,8 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
         .reduce((acc, day) => state[day] ? acc.concat([day]) : acc, [])
         .join(',');
         // tslint:disable-next-line:max-line-length
-        this.cron = `${this.isCronFlavorQuartz ? state.seconds : ''} ${state.minutes} ${this.hourToCron(state.hours, state.hourType)} ${this.monthDayDefaultChar} * ${days} ${this.yearDefaultChar}`.trim();
+        // this.cron = `${this.isCronFlavorQuartz ? state.seconds : ''} ${state.minutes} ${this.hourToCron(state.hours, state.hourType)} ${this.monthDayDefaultChar} * ${days} ${this.yearDefaultChar}`.trim();
+        this.cron = `${this.isCronFlavorQuartz ? state.seconds : ''} ${this.setMinutePeriod(state)} ${this.setHourPeriod(state)} ${this.monthDayDefaultChar} * ${days} ${this.yearDefaultChar}`.trim();
         this.cronForm.setValue(this.cron);
     }
 
@@ -587,6 +596,36 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
     private getRange(start: number, end: number): number[] {
         const length = end - start + 1;
         return Array.apply(null, Array(length)).map((_, i) => i + start);
+    }
+
+    setMinutePeriod(state: {start_at: {minutes: number}, end_at: {minutes: number}}) {
+        if (!state.start_at.minutes && !state.end_at.minutes) {
+            return '*';
+        }
+        if (state.start_at.minutes && !state.end_at.minutes) {
+            return `${state.start_at.minutes}-59`;
+        }
+        if (state.start_at.minutes && state.end_at.minutes) {
+            return `${state.start_at.minutes}-${state.end_at.minutes}`;
+        }
+        if (!state.start_at.minutes && state.end_at.minutes) {
+            return `0-${state.end_at.minutes}`;
+        }
+    }
+
+    setHourPeriod(state: {start_at: {hours: number}, end_at: {hours: number}}) {
+        if (!state.start_at.hours && !state.end_at.hours) {
+            return '*';
+        }
+        if (state.start_at.hours && !state.end_at.hours) {
+            return state.start_at.hours;
+        }
+        if (state.start_at.hours && state.end_at.hours) {
+            return `${state.start_at.hours}-${state.end_at.hours}`;
+        }
+        if (!state.start_at.hours && state.end_at.hours) {
+            return `0-${state.end_at.hours}`;
+        }
     }
 
 
