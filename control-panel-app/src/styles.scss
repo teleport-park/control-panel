@@ -135,6 +135,10 @@ html, body {
     display: none;
   }
 
+  .name {
+    font-size: 1.2rem;
+  }
+
   .light-theme {
     @include angular-material-theme($control-panel-light-theme);
     color: map-get($dark-color, 500);

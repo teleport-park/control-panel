@@ -38,7 +38,7 @@ export class PromoComponent implements OnInit {
 
     cronControl: FormControl;
 
-    displayedColumns: string[] = ['order', 'display_name', 'packages', 'games', 'conditions', 'removed', 'enabled', 'action'];
+    displayedColumns: string[] = ['order', 'display_name', 'packages', 'games', 'conditions', 'enabled', 'action'];
 
     dataSource: MatTableDataSource<Promo> = new MatTableDataSource<Promo>();
 
