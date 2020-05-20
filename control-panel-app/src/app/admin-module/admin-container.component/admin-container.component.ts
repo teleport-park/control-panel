@@ -38,7 +38,7 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
      */
     @ViewChild('sidenav', {static: true}) sidenav: MatSidenav;
 
-    @ViewChild('apiUrlForm', {static: false}) apiUrlForm: TemplateRef<any>;
+    @ViewChild('apiUrlForm') apiUrlForm: TemplateRef<any>;
 
     apiUrlControl: FormControl = new FormControl(this.initService.config.api_url, Validators.required);
 

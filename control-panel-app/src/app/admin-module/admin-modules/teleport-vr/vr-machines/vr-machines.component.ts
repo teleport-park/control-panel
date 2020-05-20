@@ -27,9 +27,9 @@ const modalConfig: MatDialogConfig = {
 })
 export class VrMachinesComponent implements OnInit, OnDestroy {
 
-    @ViewChild('registerForm', {static: false}) registerForm: TemplateRef<any>;
+    @ViewChild('registerForm') registerForm: TemplateRef<any>;
 
-    @ViewChild('editForm', {static: false}) editForm: TemplateRef<any>;
+    @ViewChild('editForm') editForm: TemplateRef<any>;
 
     @ViewChild('games', {static: true}) games: TemplateRef<any>;
 

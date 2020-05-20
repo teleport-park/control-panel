@@ -42,7 +42,7 @@ export class StaffComponent implements OnInit, OnDestroy {
 
     _dialog: MatDialogRef<AddStaffDialogComponent>;
 
-    @ViewChild('quickFilter', {static: false}) quickFilter: ControlPanelUiQuickFilterComponent;
+    @ViewChild('quickFilter') quickFilter: ControlPanelUiQuickFilterComponent;
 
     /**
      * displayed columns

@@ -1,6 +1,8 @@
 import {IAppStorageInterface} from '../interfaces/app-storage-interface';
 import {AppStorageKey} from '../models/app-storage-key';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class AppStorageService implements IAppStorageInterface {
 
   constructor() { }

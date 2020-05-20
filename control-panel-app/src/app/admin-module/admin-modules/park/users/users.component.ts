@@ -44,14 +44,14 @@ export class UsersComponent implements OnInit, OnDestroy {
      * view scroll container for set and store scroll position
      * @param element
      */
-    @ViewChild('scrollContainer', {static: false}) set scrollContainer(element: MatSidenavContent) {
+    @ViewChild('scrollContainer') set scrollContainer(element: MatSidenavContent) {
         if (element) {
             element.elementScrolled().pipe(debounceTime(1000)).subscribe((event: any) => {
             });
         }
     }
 
-    @ViewChild('quickFilter', {static: false}) quickFilter: ControlPanelUiQuickFilterComponent;
+    @ViewChild('quickFilter') quickFilter: ControlPanelUiQuickFilterComponent;
 
     @ViewChild('form', {static: true}) form: TemplateRef<any>;
 

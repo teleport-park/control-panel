@@ -13,7 +13,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 })
 export class AddStaffDialogComponent implements OnInit {
 
-    @ViewChild('rolesRef', {static: false}) rolesRef: MatFormField;
+    @ViewChild('rolesRef') rolesRef: MatFormField;
 
     @Output() save: EventEmitter<StaffMember> = new EventEmitter();
 

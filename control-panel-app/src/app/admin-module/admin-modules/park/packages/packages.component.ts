@@ -17,7 +17,7 @@ export class PackagesComponent implements OnInit {
 
     private destroyed$: Subject<boolean> = new Subject();
 
-    @ViewChild('formTemplate', {static: false}) formTemplate: TemplateRef<any>;
+    @ViewChild('formTemplate') formTemplate: TemplateRef<any>;
 
     displayedColumns: string[] = ['name', 'players', 'totals', 'enabled', 'submenu'];
 

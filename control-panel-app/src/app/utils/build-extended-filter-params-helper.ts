@@ -1,6 +1,8 @@
 import moment, { Moment } from 'moment';
 import { ExtendedFilterUrlParamsInterface } from '../interfaces/extended-filter-url-params.interface';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class BuildExtendedFilterParamsHelper implements ExtendedFilterUrlParamsInterface {
    /**
     * @inheritDoc

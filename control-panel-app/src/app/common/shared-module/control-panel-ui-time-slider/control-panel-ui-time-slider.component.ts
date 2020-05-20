@@ -10,7 +10,7 @@ import { EMPTY } from 'rxjs';
 })
 export class ControlPanelUiTimeSliderComponent implements OnInit, AfterViewInit {
 
-    @ViewChild('slider', {static: false}) slider: MatSlider;
+    @ViewChild('slider') slider: MatSlider;
 
     @Output() sliderChange: EventEmitter<string> = new EventEmitter();
 

@@ -19,7 +19,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class GamesComponent implements OnInit {
 
-    @ViewChild('priceDialogTemplate', {static: false}) priceDialog: TemplateRef<any>;
+    @ViewChild('priceDialogTemplate') priceDialog: TemplateRef<any>;
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
