@@ -4,7 +4,7 @@ import { TranslateService } from '../../../../../common/translations-module';
 import { Currencies } from '../../../../utils/utils';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PackagesService } from '../packages.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../../common/shared-module';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Charge, Package, Payment } from '../package.model';

@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TranslateService } from '../../../../common/translations-module';
-import { MatDialog, PageEvent, Sort } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
 import {
   AddSimpleEntityDialogComponent,
   ConfirmDialogComponent,

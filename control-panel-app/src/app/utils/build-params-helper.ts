@@ -2,7 +2,7 @@ import { environment } from '../../environments/environment';
 import { DefaultPagination } from '../models/default-pagination';
 import { DefaultSort } from '../models/default-sort';
 import { HttpParams } from '@angular/common/http';
-import { SortDirection } from '@angular/material';
+import { SortDirection } from '@angular/material/sort';
 import { StorageService } from '../services/storage.service';
 import { AppStorageKey } from '../models/app-storage-key';
 import { AppStorageService } from '../services/app-storage.service';

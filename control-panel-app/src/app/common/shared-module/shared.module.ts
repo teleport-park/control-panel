@@ -21,7 +21,7 @@ import { ControlPanelTriggerComponent } from './control-panel-trigger/control-pa
 import { ControlPanelUiQuickFilterComponent } from './control-panel-ui-quick-filter/control-panel-ui-quick-filter.component';
 import { ControlPanelUiTimeFilterComponent } from './control-panel-ui-time-filter/control-panel-ui-time-filter.component';
 import { ControlPanelUiPeriodSelectorComponent } from './control-panel-ui-period-selector/control-panel-ui-period-selector.component';
-import { MatRippleModule } from '@angular/material';
+import { MatRippleModule } from '@angular/material/core';
 import { BoundCardDialogComponent } from './dialogs/bound-card-dialog/bound-card-dialog.component';
 import { ControlPanelUiTimeSliderComponent } from './control-panel-ui-time-slider/control-panel-ui-time-slider.component';
 import { ControlPanelGamesListComponent } from './control-panel-games-list/control-panel-games-list.component';

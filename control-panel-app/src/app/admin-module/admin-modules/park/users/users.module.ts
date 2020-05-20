@@ -16,7 +16,7 @@ import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { CommonEntityService } from '../../../../services/common-services/common-entity.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppStorageKey } from '../../../../models/app-storage-key';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 import { LoaderService } from '../../../../services/loader.service';
 import { NgxMaskModule } from 'ngx-mask';
 import { FormComponent } from './form.component/form.component';

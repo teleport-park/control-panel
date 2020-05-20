@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '../../translations-module';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle/typings/slide-toggle';
 import { LoaderService } from '../../../services/loader.service';
 import { NGGame } from '../../../models/game.model';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
     selector: 'control-panel-games-list',

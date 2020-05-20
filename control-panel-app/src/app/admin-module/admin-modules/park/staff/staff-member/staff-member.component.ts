@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '../../../../../common/translations-module';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { StaffService } from '../services/staff.service';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';

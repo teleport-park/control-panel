@@ -4,7 +4,7 @@ import { TVRController } from '../../../../models/controller';
 import { TranslateService } from '../../../../common/translations-module';
 import { transformToken } from '../../../../utils/utils';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../common/shared-module';
 import { Subject } from 'rxjs';
 import { NGGame } from '../../../../models/game.model';

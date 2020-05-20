@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { TranslateService } from '../translate.service';
-import { MatSelectChange } from '@angular/material';
+import { MatSelectChange } from '@angular/material/select';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Locales } from '../locales.enum';

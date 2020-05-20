@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SelectionTableModelItem } from './control-panel-ui-selection-table.model';
-import { MatCheckboxChange, MatTableDataSource, PageEvent } from '@angular/material';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({

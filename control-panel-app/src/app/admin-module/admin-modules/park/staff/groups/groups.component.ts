@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Group } from '../../../../../models';
 import { Subject } from 'rxjs';
-import { MatDialog, PageEvent, Sort } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
   AddGroupDialogComponent,

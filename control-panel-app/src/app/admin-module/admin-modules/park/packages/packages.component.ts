@@ -1,5 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { MatDialog, MatSlideToggleChange, MatTableDataSource } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatTableDataSource } from '@angular/material/table';
 import { Package, PackageResponse } from './package.model';
 import { PackagesService } from './packages.service';
 import { TranslateService } from '../../../../common/translations-module';

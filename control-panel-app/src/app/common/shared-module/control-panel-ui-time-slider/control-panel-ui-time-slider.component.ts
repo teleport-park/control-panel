@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { MatSlider } from '@angular/material';
+import { MatSlider } from '@angular/material/slider';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 

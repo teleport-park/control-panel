@@ -2,9 +2,12 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '../../../../common/translations-module';
 import { ControllerGamesService } from '../../../../services/common-services/controller-games.service';
 import { NGGame, NGGameRequest } from '../../../../models/game.model';
-import { MatRadioChange, MatSort, MatSortable, MatTableDataSource } from '@angular/material';
+import { MatRadioChange } from '@angular/material/radio';
+import { MatSort, MatSortable } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle/typings/slide-toggle';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+
 
 @Component({
     selector: 'ng-games',

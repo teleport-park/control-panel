@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { TranslateService } from '../../../../common/translations-module';
 import { Card } from '../../../../models/card.model';
 import { StaffMember, Visitor } from '../../../../models';
-import { MatTableDataSource, PageEvent } from '@angular/material';
+import { PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { PropertyMap } from '../../../utils/property-map';
 import { CardsService } from './services/cards.service';
 import { DefaultPagination } from '../../../../models/default-pagination';

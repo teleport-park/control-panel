@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, TemplateRef, V
 import { ActivatedRoute, Router } from '@angular/router';
 import { Visitor } from '../../../../../models';
 import { TranslateService } from '../../../../../common/translations-module';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { ENTITY_SERVICE, EntityService } from '../../../../../models/intefaces';
 import moment from 'moment';

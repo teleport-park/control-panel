@@ -10,7 +10,8 @@ import {
     ConfirmDialogData,
     ControlPanelUiQuickFilterComponent
 } from '../../../../common/shared-module';
-import { MatDialog, MatDialogRef, Sort } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Sort } from '@angular/material/sort';
 
 import { default as config } from '../../../../../config/app-config.json';
 import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';

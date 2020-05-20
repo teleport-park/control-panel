@@ -1,5 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { MatSlideToggleChange, MatSort, MatSortable, MatTableDataSource } from '@angular/material';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatSort, MatSortable } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { ControllerGamesService } from '../../../../services/common-services/controller-games.service';
 import { TranslateService } from '../../../../common/translations-module';
 import { ApiUrlsService } from '../../../../services/api-urls.service';

@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Permission } from '../../../../models';
 import { FormControl, Validators } from '@angular/forms';
 import { TranslateService } from '../../../translations-module';

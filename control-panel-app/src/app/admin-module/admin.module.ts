@@ -4,7 +4,7 @@ import { AdminContainerComponent } from './admin-container.component/admin-conta
 import { MaterialModule } from '../material.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { TranslationModule } from '../common/translations-module/translation.module';
-import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { SharedModule } from '../common/shared-module/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';

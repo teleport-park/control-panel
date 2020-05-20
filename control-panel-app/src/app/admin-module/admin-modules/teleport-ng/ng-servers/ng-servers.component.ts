@@ -1,7 +1,8 @@
 import { Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { INSTANCE_SERVICE, InstanceService } from '../../../../models';
 import { TNGController } from '../../../../models/controller';
-import { MatDialog, MatDialogRef, MatRadioChange } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatRadioChange } from '@angular/material/radio';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -53,7 +54,7 @@ export class NgServersComponent implements OnInit, OnDestroy {
         this.service.operationSuccess$
         .pipe(takeUntil(this.destroyed$))
         .subscribe(_ => {
-            this._dialog && this._dialog.close();
+            this._dialog?.close();
             this._editInstanceId = null;
         });
     }

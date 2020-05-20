@@ -4,7 +4,7 @@ import { BehaviorSubject, EMPTY } from 'rxjs';
 import { TariffsTree } from '../../../../common/shared-module';
 import { catchError, filter } from 'rxjs/operators';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoaderService } from '../../../../services/loader.service';
 
 @Injectable()

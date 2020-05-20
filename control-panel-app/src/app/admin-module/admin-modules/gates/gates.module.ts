@@ -9,7 +9,7 @@ import { MaterialModule } from '../../../material.module';
 import { ZonesComponent } from './zones/zones.component';
 import { INSTANCE_SERVICE } from '../../../models';
 import { HttpClient } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoaderService } from '../../../services/loader.service';
 import { ApiUrlsService } from '../../../services/api-urls.service';
 import { CommonInstanceService } from '../../../services';

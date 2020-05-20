@@ -2,7 +2,6 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CardsService } from '../../services/cards.service';
 import { WhoIsResponse } from './who-is.model';
 import { FormControl, Validators } from '@angular/forms';
-import { MatRadioChange } from '@angular/material/radio/typings/radio';
 import { to4Hex } from '../../../../../utils/utils';
 
 @Component({

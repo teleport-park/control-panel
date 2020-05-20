@@ -3,7 +3,7 @@ import { StaffMember, Visitor } from '../../../../../models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import moment, { Moment } from 'moment';
 import { TranslateService } from '../../../../../common/translations-module';
-import { DateAdapter } from '@angular/material';
+import { DateAdapter } from '@angular/material/core';
 import { Avatar } from '../../../../../models/user-management/avatar.model';
 import { genders, toggleGender } from '../../../../../utils/utils';
 import { InitService } from '../../../../../services/init.service';

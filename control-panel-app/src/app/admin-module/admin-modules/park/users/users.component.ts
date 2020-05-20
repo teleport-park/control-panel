@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { Visitor } from '../../../../models';
-import { MatDialog, MatDialogRef, MatSidenavContent, Sort } from '@angular/material';
+
 import { TranslateService } from '../../../../common/translations-module';
 import { Subject } from 'rxjs';
 import { LoaderService } from '../../../../services/loader.service';
@@ -20,6 +20,8 @@ import { BoundCardDialogComponent } from '../../../../common/shared-module/dialo
 import { CardsService } from '../cards/services/cards.service';
 import moment, { Moment } from 'moment';
 import { InitService } from '../../../../services/init.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Sort } from '@angular/material/sort';
 
 @Component({
     selector: 'app-users',
@@ -44,12 +46,13 @@ export class UsersComponent implements OnInit, OnDestroy {
      * view scroll container for set and store scroll position
      * @param element
      */
-    @ViewChild('scrollContainer') set scrollContainer(element: MatSidenavContent) {
-        if (element) {
-            element.elementScrolled().pipe(debounceTime(1000)).subscribe((event: any) => {
-            });
-        }
-    }
+    // @ViewChild('scrollContainer') set scrollContainer(element: MatSidenavContent) {
+    //     if (!element) {
+    //         return;
+    //     }
+    //     element.elementScrolled().pipe(debounceTime(1000)).subscribe((event: any) => {
+    //     });
+    // }
 
     @ViewChild('quickFilter') quickFilter: ControlPanelUiQuickFilterComponent;
 
@@ -187,7 +190,7 @@ export class UsersComponent implements OnInit, OnDestroy {
             } as ConfirmDialogData,
             autoFocus: false
         }).afterClosed()
-        .pipe(filter(data => data), takeUntil(this.destroyed$))
+        .pipe(takeUntil(this.destroyed$))
         .subscribe(() => {
             this.service.deleteEntity(visitor.id);
         });

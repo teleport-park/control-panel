@@ -23,7 +23,7 @@ import { CommonEntityService } from '../../../../services/common-services/common
 import { HttpClient } from '@angular/common/http';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 import { AppStorageKey } from '../../../../models/app-storage-key';
 import { LoaderService } from '../../../../services/loader.service';
 

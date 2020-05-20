@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { StaffMember, Visitor } from '../../../../models';
 import { FormControl, Validators } from '@angular/forms';
 import { to4Hex } from '../../../../admin-module/utils/utils';

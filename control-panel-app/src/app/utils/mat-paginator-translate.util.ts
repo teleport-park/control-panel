@@ -1,4 +1,4 @@
-import { MatPaginatorIntl } from '@angular/material';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { TranslateService } from '../common/translations-module';
 import { Injectable } from '@angular/core';
 

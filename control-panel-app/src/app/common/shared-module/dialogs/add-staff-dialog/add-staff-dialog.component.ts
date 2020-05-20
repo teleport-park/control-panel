@@ -2,7 +2,8 @@ import { ChangeDetectorRef, Component, EventEmitter, HostListener, Inject, OnIni
 import { TranslateService } from '../../../translations-module';
 import { StaffMember } from '../../../../models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef, MatFormField } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatFormField } from '@angular/material/form-field';
 import moment from 'moment';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
