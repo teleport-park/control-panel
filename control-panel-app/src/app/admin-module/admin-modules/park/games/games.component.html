@@ -50,7 +50,6 @@
                         </p>
                     </td>
                 </ng-container>
-
                 <ng-container matColumnDef="active">
                     <th mat-header-cell *matHeaderCellDef> {{translations.instant('ENABLED')}} </th>
                     <td mat-cell *matCellDef="let game">
@@ -58,7 +57,6 @@
                                 color="{{game.active ? 'success' : 'warn'}}">{{game.active ? 'check' : 'clear'}}</mat-icon>
                     </td>
                 </ng-container>
-
                 <ng-container matColumnDef="edit">
                     <th mat-header-cell *matHeaderCellDef></th>
                     <td mat-cell *matCellDef="let game" (click)="$event.stopPropagation()">
@@ -97,14 +95,15 @@
                 <li>{{_editRow.name}}</li>
             </ul>
         </div>
-        <mat-error class="mb-2" *ngIf="selection.selected.length > 1">{{'GAME_PRICES_WILL_OVERWRITTEN_NOTE' | translate}}</mat-error>
+        <mat-error class="mb-2"
+                   *ngIf="selection.selected.length > 1">{{'GAME_PRICES_WILL_OVERWRITTEN_NOTE' | translate}}</mat-error>
         <form [formGroup]="form">
             <div formArrayName="prices" cdkDropList (cdkDropListDropped)="dropPrice($event)">
                 <h5>{{'PRICES' | translate}}</h5>
                 <ng-container *ngFor="let price of prices.controls; let index = index">
                     <div [formGroupName]="index + ''" class="price" cdkDrag>
-                        <div class="d-flex justify-content-end align-items-center flex-grow-1" cdkDragHandle>
-                            <mat-icon class="mr-2 drag-icon">drag_indicator</mat-icon>
+                        <div class="d-flex justify-content-end align-items-center flex-grow-1">
+                            <mat-icon class="mr-2 drag-icon" cdkDragHandle>drag_indicator</mat-icon>
                             <span class="flex-grow-1">{{translations.instant('TRANSACTION_NUMBER')}} {{index + 1}}</span>
                             <button type="button" mat-icon-button color="warn"
                                     class="mr-n2"
@@ -124,7 +123,8 @@
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field class="amount">
-                                <input formControlName="amount" type="number" matInput placeholder="{{'TRANSACTION_AMOUNT' | translate}}">
+                                <input formControlName="amount" type="number" matInput
+                                       placeholder="{{'TRANSACTION_AMOUNT' | translate}}">
                                 <mat-error *ngIf="prices.at(index).get('amount').errors?.required">
                                     {{'REQUIRED_FIELD' | translate:[translations.instant('TRANSACTION_AMOUNT')]}}
                                 </mat-error>
@@ -139,7 +139,7 @@
                         </div>
                     </div>
                 </ng-container>
-                <div class="d-flex justify-content-end mb-2">
+                <div *ngIf="prices.controls.length !== promos.length" class="d-flex justify-content-end mb-2">
                     <button type="button" mat-button color="primary"
                             (click)="addPrice()" class="pl-2">
                         <mat-icon>add</mat-icon>

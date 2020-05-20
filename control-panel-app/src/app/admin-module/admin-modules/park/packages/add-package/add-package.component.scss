@@ -1,13 +1,18 @@
 :host {
   display: block;
   height: 100%;
-  overflow-y: auto;
+  .package-form {
+    padding: .5rem;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: .3rem;
+  }
 
   .plan-wrapper {
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: .3rem;
     padding-top: 0.3rem;
     margin-bottom: 1rem;
+    overflow: auto;
   }
 
   .payments_wrapper, .charges_wrapper {
@@ -42,8 +47,5 @@
   ::ng-deep.mat-list-option {
     width: auto;
     display: inline-block;
-  }
-  .drop-handler {
-    cursor: move;
   }
 }

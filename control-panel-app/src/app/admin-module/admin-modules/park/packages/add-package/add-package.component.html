@@ -4,7 +4,7 @@
             {{translations.instant(_packageId ? 'EDIT_PACKAGE_TITLE' : 'ADD_PACKAGE_TITLE')}}
         </div>
         <div panelUICardContent>
-            <form [formGroup]="form" class="container-fluid">
+            <form [formGroup]="form" class="container-fluid package-form">
                 <div class="row">
                     <div class="col-xl-3 d-flex flex-column">
                         <mat-form-field>
@@ -43,6 +43,7 @@
                 <mat-checkbox formControlName="enabled">{{'ENABLED_ALT' | translate}}</mat-checkbox>
 
                 <div formArrayName="plans" cdkDropList
+                     class="plan_wrapper"
                      (cdkDropListDropped)="dropPlan($event)" >
                     <div class="d-flex align-items-center justify-content-between mt-3 mb-2">
                         <h3>{{translations.instant('PLANS')}}</h3>
@@ -197,7 +198,7 @@
                     </button>
                 </div>
             </form>
-            <div class="d-flex justify-content-end align-items-center mb-2 mt-4 ml-3">
+            <div class="d-flex justify-content-end align-items-center mt-4 ml-3">
                 <button type="button" mat-flat-button color="warn" (click)="back()" class="mr-4 pl-3">
                     <mat-icon>keyboard_backspace</mat-icon>
                     {{translations.instant('BACK')}}</button>

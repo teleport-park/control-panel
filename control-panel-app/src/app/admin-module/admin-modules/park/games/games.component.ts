@@ -4,7 +4,7 @@ import { Game, Price } from './games.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { GamesService } from './services/games.service';
 import { TranslateService } from '../../../../common/translations-module';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoaderService } from '../../../../services/loader.service';
 import { Router } from '@angular/router';
 import { Currencies } from '../../../utils/utils';
@@ -34,10 +34,6 @@ export class GamesComponent implements OnInit {
     selection = new SelectionModel<Game>(true, []);
 
     _editRow: Game = null;
-
-    priceControl: FormControl = new FormControl(0, [Validators.required, Validators.pattern('[0-9\.]+')]);
-
-    currencyControl: FormControl = new FormControl('TLPVR', Validators.required);
 
     prices: FormArray;
 
@@ -75,7 +71,6 @@ export class GamesComponent implements OnInit {
     masterToggle() {
         this.isAllSelected() ?
             this.selection.clear() :
-            // this.dataSource.data.forEach(row => this.selection.select(row));
             this.dataSource.filteredData.forEach(row => this.selection.select(row));
     }
 
@@ -174,6 +169,7 @@ export class GamesComponent implements OnInit {
             currency: this._currencies[0],
             amount: ['', Validators.required]
         }));
+        this.updateExcludedPromo();
     }
 
     deletePrice(index: number) {

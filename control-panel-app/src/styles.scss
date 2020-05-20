@@ -160,14 +160,6 @@ html, body {
 
     .mat-success {
       color: $success;
-      //.mat-slide-toggle-label {
-      //  .mat-slide-toggle-bar {
-      //    background-color: rgba($warn, .54);
-      //    .mat-slide-toggle-thumb {
-      //      background-color: $warn;
-      //    }
-      //  }
-      //}
       &.mat-checked {
         .mat-slide-toggle-label {
           .mat-slide-toggle-bar {
@@ -249,6 +241,10 @@ html, body {
 
   .word-break {
     word-break: break-word;
+  }
+
+  .drag-icon {
+    cursor: move;
   }
 
   button:not(.mat-icon-button) {
