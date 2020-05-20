@@ -4,12 +4,13 @@ import { Game, Price } from './games.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { GamesService } from './services/games.service';
 import { TranslateService } from '../../../../common/translations-module';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoaderService } from '../../../../services/loader.service';
 import { Router } from '@angular/router';
 import { Currencies } from '../../../utils/utils';
 import { Promo } from '../promo/promo.model';
 import { PromoService } from '../promo/services/promo.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'games',
@@ -26,7 +27,7 @@ export class GamesComponent implements OnInit {
 
     _excludedPromo: string[] = [];
 
-    displayedColumns: string[] = ['select', 'name', 'source', 'active', 'price'];
+    displayedColumns: string[] = ['select', 'name', 'source', 'prices', 'active', 'edit'];
 
     dataSource: MatTableDataSource<Game>;
 
@@ -85,6 +86,7 @@ export class GamesComponent implements OnInit {
 
     changePriceForSelectedHandler(game?: Game) {
         this.selection.selected.length === 1 || game ? this.initForm(this.selection.selected[0] || game) : this.initForm();
+        this.updateExcludedPromo();
         this.dialog.open(this.priceDialog, {
             width: '500px'
         });
@@ -95,6 +97,10 @@ export class GamesComponent implements OnInit {
     }
 
     applyPrice() {
+        this.form.markAllAsTouched();
+        if (this.form.invalid) {
+            return;
+        }
 
         const requests = [];
         const prices = this.form.getRawValue();
@@ -117,7 +123,7 @@ export class GamesComponent implements OnInit {
         }
         this.loaderService.dispatchShowLoader(true, 10);
         this.service.updatePrice(requests).subscribe(
-            (res: Game[]) => {
+            (_: Game[]) => {
                 this.service.getGames();
                 this.cd.markForCheck();
                 this.loaderService.dispatchShowLoader(false);
@@ -142,8 +148,8 @@ export class GamesComponent implements OnInit {
             game.prices.forEach((price: Price) => {
                 const control = this.fb.group({
                     promo_id: 'null',
-                    currency: '',
-                    amount: ''
+                    currency: this._currencies[0],
+                    amount: ['', Validators.required]
                 });
                 control.patchValue({...price, ...{promo_id: price.promo_id ? price.promo_id : 'null'}});
                 this.prices.push(control);
@@ -152,8 +158,8 @@ export class GamesComponent implements OnInit {
             this.prices = this.fb.array([this.fb.group(
                 {
                     promo_id: 'null',
-                    currency: '',
-                    amount: ''
+                    currency: this._currencies[0],
+                    amount: ['', Validators.required]
                 }
             )]);
         }
@@ -165,8 +171,8 @@ export class GamesComponent implements OnInit {
     addPrice() {
         this.prices.push(this.fb.group({
             promo_id: 'null',
-            currency: '',
-            amount: ''
+            currency: this._currencies[0],
+            amount: ['', Validators.required]
         }));
     }
 
@@ -186,5 +192,9 @@ export class GamesComponent implements OnInit {
 
     updateExcludedPromo() {
         this._excludedPromo = this.prices.getRawValue().map(i => i.promo_id).filter(i => i !== 'null');
+    }
+
+    dropPrice(event: CdkDragDrop<AbstractControl[]>) {
+        moveItemInArray(this.prices.controls, event.previousIndex, event.currentIndex);
     }
 }

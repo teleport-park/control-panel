@@ -41,6 +41,15 @@
                         </div>
                     </td>
                 </ng-container>
+                <ng-container matColumnDef="prices">
+                    <th mat-header-cell *matHeaderCellDef> {{translations.instant('PRICES')}} </th>
+                    <td mat-cell *matCellDef="let game">
+                        <p *ngFor="let price of game.prices" class="d-flex">
+                            <span class="mr-2">{{price.display_name || translations.instant('DEFAULT_PROMO')}}:</span>
+                            <span class="mr-2 label">{{price.amount}} {{price.currency}}</span>
+                        </p>
+                    </td>
+                </ng-container>
 
                 <ng-container matColumnDef="active">
                     <th mat-header-cell *matHeaderCellDef> {{translations.instant('ENABLED')}} </th>
@@ -50,20 +59,14 @@
                     </td>
                 </ng-container>
 
-                <ng-container matColumnDef="price">
-                    <th mat-header-cell *matHeaderCellDef> {{translations.instant('PRICE')}} </th>
+                <ng-container matColumnDef="edit">
+                    <th mat-header-cell *matHeaderCellDef></th>
                     <td mat-cell *matCellDef="let game" (click)="$event.stopPropagation()">
                         <div class="d-flex align-items-center justify-content-between">
-                            <ng-container>
-                                <ng-container *ngIf="!game.price">-</ng-container>
-                                <ng-container *ngIf="game.price">
-                                    <span>{{game.price.amount}} {{game.price.currency}}</span>
-                                </ng-container>
-                                <button mat-icon-button color="accent"
-                                        (click)="inlineChangePriceHandler(game)">
-                                    <mat-icon>edit</mat-icon>
-                                </button>
-                            </ng-container>
+                            <button mat-icon-button color="accent"
+                                    (click)="inlineChangePriceHandler(game)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
                         </div>
 
                     </td>
@@ -86,36 +89,30 @@
     <div class="price-dialog_wrapper" mat-dialog-content>
         <h3 mat-dialog-title>{{translations.instant('APPLY_PRICE_TITLE')}}</h3>
         <p>{{translations.instant('FOR_NEXT_GAMES_LABEL')}}</p>
-        <div class="games-list mb-4">
+        <div class="games-list mb-2">
             <ul *ngIf="selection.selected.length">
                 <li *ngFor="let game of selection.selected">{{game.name}}</li>
             </ul>
-            <ul *ngIf="!selection.selected.length">
+            <ul *ngIf="!selection.selected.length && _editRow">
                 <li>{{_editRow.name}}</li>
             </ul>
         </div>
-<!--        <div class="d-flex align-items-center light-theme mb-4">-->
-<!--            <mat-form-field class="amount-field mr-4">-->
-<!--                <input [formControl]="priceControl" amount-format matInput [placeholder]="translation.instant('PRICE')">-->
-<!--                <mat-error-->
-<!--                        *ngIf="priceControl?.errors?.required">{{translation.instant('REQUIRED_FIELD', [translation.instant('PRICE')])}}</mat-error>-->
-<!--                <mat-error-->
-<!--                        *ngIf="priceControl?.errors?.pattern">{{translation.instant('ONLY_NUMBER', [translation.instant('PRICE')])}}</mat-error>-->
-<!--            </mat-form-field>-->
-<!--            <div>TLPVR</div>-->
-<!--        </div>-->
+        <mat-error class="mb-2" *ngIf="selection.selected.length > 1">{{'GAME_PRICES_WILL_OVERWRITTEN_NOTE' | translate}}</mat-error>
         <form [formGroup]="form">
-            <div formArrayName="prices">
+            <div formArrayName="prices" cdkDropList (cdkDropListDropped)="dropPrice($event)">
                 <h5>{{'PRICES' | translate}}</h5>
                 <ng-container *ngFor="let price of prices.controls; let index = index">
-                    <div [formGroupName]="index + ''" class="price">
-                        <div class="d-flex justify-content-end flex-grow-1">
+                    <div [formGroupName]="index + ''" class="price" cdkDrag>
+                        <div class="d-flex justify-content-end align-items-center flex-grow-1" cdkDragHandle>
+                            <mat-icon class="mr-2 drag-icon">drag_indicator</mat-icon>
+                            <span class="flex-grow-1">{{translations.instant('TRANSACTION_NUMBER')}} {{index + 1}}</span>
                             <button type="button" mat-icon-button color="warn"
+                                    class="mr-n2"
                                     (click)="deletePrice(index)">
                                 <mat-icon>clear</mat-icon>
                             </button>
                         </div>
-                        <div class="fields d-flex">
+                        <div class="fields d-flex justify-content-between">
                             <mat-form-field class="promo">
                                 <mat-select formControlName="promo_id"
                                             (selectionChange)="updateExcludedPromo()"
@@ -128,6 +125,9 @@
                             </mat-form-field>
                             <mat-form-field class="amount">
                                 <input formControlName="amount" type="number" matInput placeholder="{{'TRANSACTION_AMOUNT' | translate}}">
+                                <mat-error *ngIf="prices.at(index).get('amount').errors?.required">
+                                    {{'REQUIRED_FIELD' | translate:[translations.instant('TRANSACTION_AMOUNT')]}}
+                                </mat-error>
                             </mat-form-field>
                             <mat-form-field class="currency">
                                 <mat-select formControlName="currency"

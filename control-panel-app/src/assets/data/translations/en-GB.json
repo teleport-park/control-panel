@@ -306,5 +306,6 @@
   "ADD_CHARGE": "Add charge",
   "REMOVE_PLAN": "Remove plan",
   "EDIT_GAME_PRICES": "Edit game prices",
-  "PRICES": "Prices"
+  "PRICES": "Prices",
+  "GAME_PRICES_WILL_OVERWRITTEN_NOTE": "Attention! Prices for selected games will be overwritten"
 }

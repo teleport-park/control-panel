@@ -308,5 +308,6 @@
   "ADD_CHARGE": "Добавить начисление",
   "REMOVE_PLAN": "Удалить план",
   "EDIT_GAME_PRICES": "Редактировать цены для игр",
-  "PRICES": "Цены"
+  "PRICES": "Цены",
+  "GAME_PRICES_WILL_OVERWRITTEN_NOTE": "Внимание! Цены для всех выбранных игр будут перезаписаны"
 }

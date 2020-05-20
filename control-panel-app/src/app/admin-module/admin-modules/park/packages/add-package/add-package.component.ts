@@ -195,6 +195,10 @@ export class AddPackageComponent implements OnInit, OnDestroy {
         moveItemInArray(charges.controls, event.previousIndex, event.currentIndex);
     }
 
+    dropPlan(event: CdkDragDrop<AbstractControl[]>) {
+        moveItemInArray(this.plans.controls, event.previousIndex, event.currentIndex);
+    }
+
     excludePromo(value: string, index: number) {
         if (value === 'null') {
             return true;
