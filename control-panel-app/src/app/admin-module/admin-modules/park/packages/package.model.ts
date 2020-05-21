@@ -13,13 +13,6 @@ export class Package {
         payments: [],
         charges: []
     }];
-
-    constructor({id = null, name, note, enabled = false, promo, payments, charges}) {
-        this.id = id;
-        this.name = name;
-        this.note = note;
-        this.enabled = enabled;
-    }
 }
 
 export class PackageResponse {
@@ -38,15 +31,11 @@ export class PackageResponse {
 }
 
 export class Payment {
-    amount: {
-        currency: string;
-        amount: number;
-    };
+    currency: string;
+    amount: number;
 }
 
 export class Charge {
-    amount: {
-        currency: string;
-        amount: number;
-    };
+    currency: string;
+    amount: number;
 }

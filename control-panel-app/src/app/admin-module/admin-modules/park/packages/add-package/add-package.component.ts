@@ -164,6 +164,12 @@ export class AddPackageComponent implements OnInit, OnDestroy {
         const payload = this.form.getRawValue() as Package;
         payload.plans.forEach(plan => {
             plan.promo_id = plan.promo_id === 'null' ? null : plan.promo_id;
+            plan.payments.forEach(payment => {
+                payment.amount = Number(payment.amount);
+            });
+            plan.charges.forEach(charge => {
+                charge.amount = Number(charge.amount);
+            });
         });
         if (this._packageId) {
             this.service.editPackage(payload, this._packageId);
