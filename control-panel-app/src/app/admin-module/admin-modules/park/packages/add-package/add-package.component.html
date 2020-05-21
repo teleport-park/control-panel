@@ -9,13 +9,14 @@
                     <div class="col-xl-3 d-flex flex-column">
                         <mat-form-field>
                             <input matInput placeholder="{{translations.instant('AMUSEMENTS_NAME_LABEL')}}"
+                                   [maxLength]="255"
                                    formControlName="name" required>
                             <mat-error
                                     *ngIf="form.get('name')?.errors?.required">{{translations.instant('REQUIRED_FIELD', [translations.instant('AMUSEMENTS_NAME_LABEL')])}}</mat-error>
                         </mat-form-field>
                         <mat-form-field>
                             <input type="number" matInput
-                                   [max]="15"
+                                   [max]="10"
                                    [min]="1"
                                    placeholder="{{translations.instant('PLAYERS_COUNT')}}"
                                    formControlName="players">

@@ -94,11 +94,13 @@
                 <div class="mb-2">{{'START_TIME' | translate}}</div>
                 <cron-time-picker [formGroup]="weeklyForm.controls.start_at"
                                   [use24HourTime]="options.use24HourTime"
+                                  [hideMinutes]="true"
                                   [hideSeconds]="options.hideSeconds|| !isCronFlavorQuartz">
                 </cron-time-picker>
                 <div class="mb-2">{{'END_TIME' | translate}}</div>
                 <cron-time-picker [formGroup]="weeklyForm.controls.end_at"
                                   [use24HourTime]="options.use24HourTime"
+                                  [hideMinutes]="true"
                                   [hideSeconds]="options.hideSeconds|| !isCronFlavorQuartz">
                 </cron-time-picker>
             </div>

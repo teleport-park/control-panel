@@ -100,8 +100,8 @@ export class AddPackageComponent implements OnInit, OnDestroy {
     initForm() {
         this.plans = this.fb.array([]);
         this.form = this.fb.group({
-            name: ['', Validators.required],
-            players: [1, [Validators.required, Validators.pattern('[0-9]+'), Validators.min(1), Validators.max(15)]],
+            name: ['', [Validators.required, Validators.maxLength(255)]],
+            players: [1, [Validators.required, Validators.pattern('[0-9]+'), Validators.min(1), Validators.max(10)]],
             note: '',
             enabled: false,
             plans: this.plans

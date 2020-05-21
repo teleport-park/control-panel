@@ -92,7 +92,7 @@
 <ng-template #formTeml>
     <form [formGroup]="form" class="promo-form">
         <mat-form-field>
-            <input matInput placeholder="{{'NAME' | translate}}" formControlName="name">
+            <input matInput placeholder="{{'NAME' | translate}}" formControlName="name" [maxLength]="255">
         </mat-form-field>
         <mat-form-field>
         <textarea matInput [maxLength]="255"
