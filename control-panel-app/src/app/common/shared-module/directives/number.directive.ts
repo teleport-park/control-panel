@@ -40,7 +40,7 @@ export class NumberDirective {
 
 export class AmountFormatDirective {
 
-    @Input() max: number = 100000;
+    @Input() max: number = 10000;
 
     private _allowedKey: number[] = [8, 46, 37, 39];
 
@@ -101,7 +101,7 @@ export class AmountFormatDirective {
     }
 
     private formatValue(value: string) {
-        return Number(value).toFixed(2);
+        return Number(value).toFixed(2).replace(',', '.');
     }
 
     /**
@@ -180,7 +180,7 @@ export class AlphanumericLatinDirective {
      */
     @HostListener('paste', ['$event'])
     onPaste(event: PasteEvent) {
-        const clipboardData = event.clipboardData || (<any>window).clipboardData;
+        const clipboardData = event.clipboardData || (window as any).clipboardData;
         const pastedText = clipboardData.getData('text');
         if (!this.pattern.test(pastedText)) {
             this.toaster.error('PASTED_VALUE_INVALID');
@@ -249,7 +249,7 @@ export class Hex4ByteDirective {
      */
     @HostListener('paste', ['$event'])
     onPaste(event: PasteEvent) {
-        const clipboardData = event.clipboardData || (<any>window).clipboardData;
+        const clipboardData = event.clipboardData || (window as any).clipboardData;
         const pastedText = clipboardData.getData('text').trim();
         if (!this.fullPattern.test(pastedText)) {
             this.toaster.error('PASTED_VALUE_INVALID');

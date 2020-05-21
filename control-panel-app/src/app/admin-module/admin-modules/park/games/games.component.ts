@@ -103,6 +103,7 @@ export class GamesComponent implements OnInit {
         const prices = this.form.getRawValue();
         prices.prices.forEach(price => {
             price.promo_id = price.promo_id === 'null' ? null : price.promo_id;
+            price.amount = Number(price.amount);
         });
         this.selection.selected.forEach((item: Game) => {
             const payload = {

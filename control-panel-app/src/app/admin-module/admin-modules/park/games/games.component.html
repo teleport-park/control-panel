@@ -123,7 +123,7 @@
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field class="amount">
-                                <input formControlName="amount" type="number" matInput
+                                <input formControlName="amount" amount-format matInput
                                        placeholder="{{'TRANSACTION_AMOUNT' | translate}}">
                                 <mat-error *ngIf="prices.at(index).get('amount').errors?.required">
                                     {{'REQUIRED_FIELD' | translate:[translations.instant('TRANSACTION_AMOUNT')]}}
