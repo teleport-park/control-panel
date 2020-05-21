@@ -32,8 +32,8 @@ export class PromoComponent implements OnInit {
         hideMonthlyTab: false,
         hideYearlyTab: true,
         hideAdvancedTab: true,
-        hideSpecificWeekDayTab : false,
-        hideSpecificMonthWeekTab : false,
+        hideSpecificWeekDayTab: false,
+        hideSpecificMonthWeekTab: false,
         use24HourTime: true,
         hideSeconds: false,
         cronFlavor: 'standard' // standard or quartz
@@ -70,26 +70,25 @@ export class PromoComponent implements OnInit {
     onListDrop(event: CdkDragDrop<Promo[]>) {
         moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
         this.dataSource.data = cloneDeep(this.dataSource.data);
-        setTimeout(() => {
-            this.dataSource.data[event.currentIndex].moved = true;
+        this.dataSource.data[event.currentIndex].moved = true;
 
-            this.dataSource.data[event.previousIndex].movedFrom = true;
-            // this.dataSource.data[event.previousIndex].priority = this.dataSource.data[event.currentIndex].priority;
-            this.dataSource.data[event.currentIndex].priority = this.dataSource.data[event.currentIndex + 1] ? this.dataSource.data[event.currentIndex + 1].priority :
-                this.dataSource.data[event.currentIndex - 1].priority - 1;
+        this.dataSource.data[event.previousIndex].movedFrom = true;
+        // this.dataSource.data[event.previousIndex].priority = this.dataSource.data[event.currentIndex].priority;
+        this.dataSource.data[event.currentIndex].priority = this.dataSource.data[event.currentIndex + 1] ? this.dataSource.data[event.currentIndex + 1].priority :
+            this.dataSource.data[event.currentIndex - 1].priority - 1;
+        this.cd.markForCheck();
+
+        setTimeout(() => {
+            this.reset();
             this.changePriority(this.dataSource.data[event.currentIndex]);
-            this.cd.markForCheck();
-            setTimeout(() => {
-                this.reset();
-            }, 100);
-        }, 1);
+        }, 10);
 
     }
 
     reset(e?: CdkDragStart, index?: number) {
         this.dataSource.data.forEach(i => {
-           delete i.moved;
-           delete i.movedFrom;
+            delete i.moved;
+            delete i.movedFrom;
         });
         this.cd.markForCheck();
     }
@@ -137,8 +136,10 @@ export class PromoComponent implements OnInit {
     }
 
     changePriority({id, enabled, priority}: Promo) {
-        const payload = {enabled, priority};
-        this.service.patchPromo(id, payload);
+        setTimeout(() => {
+            const payload = {enabled, priority};
+            this.service.patchPromo(id, payload);
+        }, 1000);
     }
 
     submit() {
