@@ -108,12 +108,10 @@
         <div formGroupName="conditions" class="d-flex flex-column pt-2 conditions">
             <h5 class="mb-2">{{'CONDITIONS' | translate}}</h5>
             <mat-checkbox formControlName="first_fill">{{'FIRST_FILL' | translate}}</mat-checkbox>
-<!--            <mat-form-field>-->
-<!--                <input matInput formControlName="schedule" placeholder="{{'SCHEDULE' | translate}}">-->
-<!--            </mat-form-field>-->
-<!--            <p>TEST cron editor</p>-->
-            <cron-editor formControlName="schedule" [options]="cronOptions"></cron-editor>
-<!--            <p>{{form.get('conditions').get('schedule').valueChanges | async}}</p>-->
+            <mat-checkbox [checked]="_schedule" (change)="_schedule = !_schedule">{{'SET_SCHEDULE' | translate}}</mat-checkbox>
+            <ng-container *ngIf="_schedule">
+                <cron-editor formControlName="schedule" [options]="cronOptions"></cron-editor>
+            </ng-container>
         </div>
 
         <control-panel-ui-action-toolbar (cancel)="_dialog.close(); _dialog = null" (confirm)="submit()"></control-panel-ui-action-toolbar>

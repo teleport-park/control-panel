@@ -21,6 +21,8 @@ export class PromoComponent implements OnInit {
 
     @ViewChild('formTeml', {static: true}) formTeml: TemplateRef<any>;
 
+    _schedule = false;
+
     cronOptions: CronOptions = {
         defaultTime: '00:00:00',
         hideMinutesTab: true,
@@ -107,6 +109,7 @@ export class PromoComponent implements OnInit {
     edit(promo: Promo) {
         this.initForm();
         this.form.patchValue(promo);
+        this._schedule = !!promo.conditions.schedule;
         this._dialog = this.dialog.open(this.formTeml, {
             width: '800px'
         });
@@ -144,6 +147,7 @@ export class PromoComponent implements OnInit {
             return;
         }
         const payload = this.form.getRawValue() as Promo;
+        payload.conditions.schedule = !this._schedule || payload.conditions.schedule === '' ? null : payload.conditions.schedule;
         if (!payload.id) {
             delete payload.id;
             this.service.addPromo(payload);

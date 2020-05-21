@@ -21,7 +21,6 @@ import { PackagesComponent } from './packages/packages.component';
 import { PromoComponent } from './promo/promo.component';
 import { AddPackageComponent } from './packages/add-package/add-package.component';
 import { CronEditorModule } from '../../../common/control-panel-cron-generator/cron-editor.module';
-import { EditGamesComponent } from './games/edit-game/edit-games.component';
 
 const routes: Routes = [{
     path: '',
@@ -40,7 +39,10 @@ const routes: Routes = [{
             data: {title: 'ADMIN_MENU_STAFF'},
             canActivate: [PermissionGuard]
         }, {
-            path: 'cards', component: CardsComponent, data: {title: 'ADMIN_MENU_CARDS'}, canActivate: [PermissionGuard]
+            path: 'cards',
+            component: CardsComponent,
+            data: {title: 'ADMIN_MENU_CARDS'},
+            canActivate: [PermissionGuard]
         }, {
             path: 'packages',
             component: PackagesComponent,
@@ -62,15 +64,20 @@ const routes: Routes = [{
             data: {title: 'ADMIN_MENU_PROMO'},
             canActivate: [PermissionGuard]
         }, {
-            path: 'games', component: GamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]
+            path: 'games',
+            component: GamesComponent,
+            data: {title: 'ADMIN_MENU_GAMES'},
+            canActivate: [PermissionGuard]
         }, {
-            path: 'games/edit', component: EditGamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]
+            path: 'pricing',
+            component: PricingComponent,
+            data: {title: 'ADMIN_MENU_PRICING'},
+            canActivate: [PermissionGuard]
         }, {
-            path: 'games/edit/:id', component: EditGamesComponent, data: {title: 'ADMIN_MENU_GAMES'}, canActivate: [PermissionGuard]
-        }, {
-            path: 'pricing', component: PricingComponent, data: {title: 'ADMIN_MENU_PRICING'}, canActivate: [PermissionGuard]
-        }, {
-            path: 'sessions', component: SessionsComponent, data: {title: 'ADMIN_MENU_SESSIONS'}, canActivate: [PermissionGuard]
+            path: 'sessions',
+            component: SessionsComponent,
+            data: {title: 'ADMIN_MENU_SESSIONS'},
+            canActivate: [PermissionGuard]
         }, {
             path: 'billing',
             loadChildren: () => import('./billing/billing.module').then(m => m.BillingModule),
@@ -95,7 +102,7 @@ export const COMPONENTS = [
 ];
 
 @NgModule({
-    declarations: [...COMPONENTS, EditGamesComponent],
+    declarations: [...COMPONENTS],
     imports: [
         CommonModule,
         ParkRouterModule,

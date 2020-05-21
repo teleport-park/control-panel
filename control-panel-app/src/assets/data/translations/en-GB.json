@@ -312,5 +312,6 @@
   "END_TIME": "ending at",
   "HOUR_S": "Hour(s)",
   "MINUTE_S": "Minute(s)",
-  "SECOND_S": "Second(s)"
+  "SECOND_S": "Second(s)",
+  "SET_SCHEDULE": "Set schedule"
 }
