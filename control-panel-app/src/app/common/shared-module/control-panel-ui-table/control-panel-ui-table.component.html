@@ -125,13 +125,10 @@
             <mat-cell *matCellDef="let item">
                 <div class="d-flex flex-column">
                     <div class="mt-1 mb-1">
-                        name: {{item.user.display_name}}
+                        name: {{item?.user?.display_name}}
                     </div>
                     <div class="mt-1 mb-1">
-                        nickname: {{item.user.nickname}}
-                    </div>
-                    <div class="mt-1 mb-1">
-                        email: {{item.user.email}}
+                        id: {{item?.user?.id}}
                     </div>
                 </div>
             </mat-cell>
