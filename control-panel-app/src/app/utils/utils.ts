@@ -1,3 +1,5 @@
+import { SchemaValidationItem } from '../models/intefaces';
+
 export const genders: string[] = ['male', 'female'];
 
 export const toggleGender = (gender: string) => {
@@ -18,3 +20,7 @@ export const PROMOS = [
     'PROMO_3',
     'PROMO_4',
 ];
+
+export function validateSchema(data: string[], schema: SchemaValidationItem[]): string[] {
+    return schema.filter(item => data.indexOf(item.key) < 0 && item.required).map(item => item.key);
+}

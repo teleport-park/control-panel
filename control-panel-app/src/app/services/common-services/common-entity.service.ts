@@ -1,10 +1,11 @@
-import { EntityService } from '../../models/intefaces';
+import { EntityService, SchemaValidation } from '../../models/intefaces';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { RequestHelper } from '../../models/helpers/request-helper';
 import { UserType } from '../../models/types';
 import { LoaderService } from '../loader.service';
+import { environment } from '../../../environments/environment';
 
 interface T {
     id?: string;
@@ -27,14 +28,23 @@ export class CommonEntityService implements EntityService<T> {
                          sortingParams?: { [key: string]: string },
                          filtersQuery?: string) => string,
         private sortingInitState: { [key: string]: string },
-        private loader: LoaderService) {
+        private loader: LoaderService,
+        private instance?: Partial<SchemaValidation>) {
         this.requestHelper = new RequestHelper(this.getPagedEntity.bind(this), {limit: 25, offset: 0}, sortingInitState);
     }
 
     getEntities(query?: string): void {
         this.loader.dispatchShowLoader(true);
         this.requestHelper.getData(query)
-        .pipe(filter(data => !!data))
+        .pipe(filter(data => !!data),
+            map((result: UserType[]) => {
+                if (environment.dev && this.instance && result?.length) {
+                    const missing = this.instance.validate(result[0]);
+                    missing?.length &&
+                    console.error(`In response from ${this.getUrl('GET')} for instance ${this.instance.INSTANCE_NAME} is missing next properties: ${missing}`);
+                }
+                return result;
+            }))
         .subscribe((result: UserType[]) => {
                 this.entities$.next(result);
             }, _ => {

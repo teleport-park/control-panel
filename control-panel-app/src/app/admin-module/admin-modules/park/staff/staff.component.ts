@@ -12,8 +12,8 @@ import {
 } from '../../../../common/shared-module';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
-
-import { default as config } from '../../../../../config/app-config.json';
+// @ts-ignore
+import config from '../../../../../config/app-config.json';
 import { IAppStorageInterface } from '../../../../interfaces/app-storage-interface';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -65,7 +65,6 @@ export class StaffComponent implements OnInit, OnDestroy {
      */
     simpleDataColumn: string[] = [
         'name',
-        // 'display_name',
         'passport',
         'hired_at',
         'fired_at',
@@ -78,11 +77,6 @@ export class StaffComponent implements OnInit, OnDestroy {
      * list sorted column
      */
     sortedColumn: string[] = [];
-
-    /**
-     * available groups
-     */
-    groups: Group[];
 
     private destroyed$: Subject<boolean> = new Subject();
 

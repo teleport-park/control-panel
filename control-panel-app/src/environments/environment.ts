@@ -5,9 +5,10 @@
 import { API } from '../app/api';
 
 export const environment = {
-  production: false,
-  api: API,
-  VERSION: require('../../package.json').version
+    production: false,
+    dev: true,
+    api: API,
+    VERSION: require('../../package.json').version
 };
 
 /*

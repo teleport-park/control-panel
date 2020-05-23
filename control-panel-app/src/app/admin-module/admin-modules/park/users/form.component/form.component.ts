@@ -171,7 +171,7 @@ export class FormComponent {
             if (indexEnd < 0) {
                 indexEnd = user.name.length;
             }
-            this.user.nickname = user.name.slice(indexStart + 1, indexEnd).trim().substring(0, 100);
+            this.user.display_name = user.name.slice(indexStart + 1, indexEnd).trim().substring(0, 100);
             this.user.name = user.name.slice(0, indexStart).trim();
         }
     }

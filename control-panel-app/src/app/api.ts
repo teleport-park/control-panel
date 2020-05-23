@@ -57,5 +57,7 @@ export const API = {
     sorting: {
         column: 'orderByColumn',
         direction: 'orderDirection'
-    }
+    },
+
+    WHO_IS: 'tng/ctl/whois'
 };

@@ -1,0 +1,33 @@
+[
+  {
+    "key": "id",
+    "required": true
+  },{
+    "key": "name",
+    "required": true
+  },{
+    "key": "display_name",
+    "required": true
+  },{
+    "key": "created_at",
+    "required": true
+  },{
+    "key": "updated_at",
+    "required": true
+  },{
+    "key": "hired_at",
+    "required": true
+  },{
+    "key": "hired_at",
+    "required": false
+  },{
+    "key": "passport",
+    "required": false
+  },{
+    "key": "high_education",
+    "required": false
+  },{
+    "key": "roles",
+    "required": true
+  }
+]

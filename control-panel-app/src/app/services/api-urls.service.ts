@@ -155,6 +155,10 @@ export class ApiUrlsService implements IApiUrlsInterface {
         return ApiUrlsService.getPagedUrl(API.BILLING_INVOICES, requestMethod);
     }
 
+    public whoIs(requestMethod: 'GET', card: string | number) {
+        return ApiUrlsService.getPagedUrl(API.WHO_IS, requestMethod) + `?c=${card}`;
+    }
+
     public getVisitors(requestMethod: 'GET' | 'PUT' | 'POST' | 'DELETE',
                        id?: string,
                        query?: string,

@@ -1,49 +1,58 @@
 import moment, { Moment } from 'moment';
-import { InitService } from '../../services/init.service';
+import { InitService } from '../../../services/init.service';
+import { SchemaValidation } from '../../intefaces';
+import { validateSchema } from '../../../utils/utils';
+import VisitorSchema from './visitor-schema.json';
 
-export class Visitor {
+export class Visitor implements SchemaValidation {
+
+    INSTANCE_NAME: string = 'Visitor';
     /**
      * user id
      */
-    id: string;
+    id: string = null;
     /**
      * name
      */
-    name: string;
+    name: string = null;
 
     /**
      * gender
      */
-    gender: 'male' | 'female' | 'other';
+    gender: 'male' | 'female' | 'other' = null;
 
     /**
      * email
      */
-    email: string;
+    email: string = null;
 
     /**
      * phone
      */
-    phone: string;
+    phone: string = null;
 
     /**
      * age
      */
-    age: number;
+    age: number = null;
 
     /**
      * display name
      */
-    display_name: string;
+    display_name: string = null;
 
-    nickname: string;
+    /**
+     * birthday
+     */
+    birthday: any = null;
 
-    birthday: any;
-
+    /**
+     * balance
+     */
     balance: {
         amount: number,
         currency: string
-    }[] | null;
+    }[] | null = null;
 
     constructor(private init?: InitService) {
         if (init) {
@@ -74,5 +83,9 @@ export class Visitor {
     setDOB(age: number): Moment {
         this.birthday = moment().subtract(age, 'years');
         return this.birthday;
+    }
+
+    public validate(data: object) {
+        return validateSchema(Object.keys(data), VisitorSchema);
     }
 }

@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StaffComponent } from './staff.component';
 import { RouterModule, Routes } from '@angular/router';
-import { GroupsComponent } from './groups/groups.component';
-import { StaffService } from './services/staff.service';
+import { StaffService } from './staff-member/services/staff.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../../../material.module';
 import { TranslationModule } from '../../../../common/translations-module/translation.module';
@@ -14,7 +13,6 @@ import {
     AddStaffDialogComponent,
     ConfirmDialogComponent
 } from '../../../../common/shared-module';
-import { GroupsService } from './groups/services/groups.service';
 import { PermissionGuard } from '../../../../common/auth-module/guards/permission-guard';
 import { StaffMemberComponent } from './staff-member/staff-member.component';
 import { ExtendedFiltersModule } from '../../../../common/extended-filters-module/extended-filters.module';
@@ -26,6 +24,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { Sort } from '@angular/material/sort';
 import { AppStorageKey } from '../../../../models/app-storage-key';
 import { LoaderService } from '../../../../services/loader.service';
+import { StaffMember } from '../../../../models';
 
 const storageKey: string = 'STAFF';
 
@@ -33,11 +32,6 @@ const routes: Routes = [{
     path: '',
     component: StaffComponent,
     children: [{
-        path: 'groups',
-        component: GroupsComponent,
-        data: {title: 'ADMIN_MENU_GROUPS'},
-        canActivate: [PermissionGuard]
-    }, {
         path: ':id',
         component: StaffMemberComponent,
         data: {title: 'ADMIN_MENU_STAFF'},
@@ -48,7 +42,7 @@ const routes: Routes = [{
 export const StaffRoutingModule = RouterModule.forChild(routes);
 
 export function StaffServiceFactory(http: HttpClient, urlService: ApiUrlsService, loader: LoaderService) {
-    return new CommonEntityService(http, urlService.getStaff, sortStorageSet(), loader);
+    return new CommonEntityService(http, urlService.getStaff, sortStorageSet(), loader, new StaffMember());
 }
 
 const sortStorageSet = () => {
@@ -61,7 +55,7 @@ const sortStorageSet = () => {
 };
 
 @NgModule({
-    declarations: [StaffComponent, GroupsComponent, StaffMemberComponent],
+    declarations: [StaffComponent, StaffMemberComponent],
     imports: [
         CommonModule,
         StaffRoutingModule,
@@ -71,7 +65,7 @@ const sortStorageSet = () => {
         SharedModule,
         ExtendedFiltersModule
     ],
-    providers: [StaffService, GroupsService,
+    providers: [StaffService,
         {provide: ENTITY_SERVICE, useFactory: StaffServiceFactory, deps: [HttpClient, ApiUrlsService, LoaderService]}
     ],
     entryComponents: [

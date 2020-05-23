@@ -58,7 +58,8 @@ export class CardsService {
     * who im request
     */
    whoIs(cardNumber: string | number) {
-       this.http.get(`./assets/data/who-im.json?test=${cardNumber}`).subscribe((result: any) => {
+       // this.http.get(`./assets/data/who-im.json?test=${cardNumber}`).subscribe((result: any) => {
+       this.http.get(this.apiUrl.whoIs('GET', cardNumber)).subscribe((result: any) => {
          if (result) {
             this.whoIsResult$.next(result);
          }
