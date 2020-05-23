@@ -1,19 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { BillingService } from './services/billing.service';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'biling',
-  templateUrl: './billing.component.html',
-  styleUrls: ['./billing.component.scss']
+    selector: 'biling',
+    templateUrl: './billing.component.html',
+    styleUrls: ['./billing.component.scss']
 })
-export class BillingComponent implements OnInit {
+export class BillingComponent {
 
-  constructor(public service: BillingService) { }
-
-  ngOnInit() {
-  }
-
-   applyFilter(value: string) {
-     this.service.getTransactions(value);
-   }
+    constructor() {
+    }
 }

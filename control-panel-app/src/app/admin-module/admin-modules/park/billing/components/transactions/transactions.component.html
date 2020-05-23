@@ -15,8 +15,9 @@
                                     [displayedColumns]="['timestamp', 'owner', 'status', 'amount']"
                                     [simpleDataColumn]="['status', 'owner']"
                                     [data]="service.transactions$ | async"
-                                    [itemCount]="(service.transactions$ | async)?.length"></control-panel-ui-table>
-            <control-panel-ui-empty *ngIf="!(service.invoices$ | async)?.length"></control-panel-ui-empty>
+                                    [itemCount]="(service.transactions$ | async)?.length"
+                                    (pageChanges)="paginationChangeHandler($event)"></control-panel-ui-table>
+            <control-panel-ui-empty *ngIf="!(service.transactions$ | async)?.length" class="black"></control-panel-ui-empty>
         </div>
     </control-panel-ui-card>
 </div>

@@ -16,8 +16,9 @@
                                     [displayedColumns]="['summary', 'type','charges', 'status', 'total', 'created_at', 'updated_at']"
                                     [simpleDataColumn]="['summary', 'type', 'status', 'created_at', 'updated_at']"
                                     [data]="service.invoices$ | async"
-                                    [itemCount]="(service.invoices$ | async)?.length"></control-panel-ui-table>
-            <control-panel-ui-empty *ngIf="!(service.invoices$ | async)?.length"></control-panel-ui-empty>
+                                    [itemCount]="(service.invoices$ | async)?.length"
+                                    (pageChanges)="paginationChangeHandler($event)"></control-panel-ui-table>
+            <control-panel-ui-empty *ngIf="!(service.invoices$ | async)?.length" class="black"></control-panel-ui-empty>
         </div>
     </control-panel-ui-card>
 </div>
