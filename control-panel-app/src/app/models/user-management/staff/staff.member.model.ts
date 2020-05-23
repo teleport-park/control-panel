@@ -3,7 +3,7 @@ import { validateSchema } from '../../../utils/utils';
 import StaffSchema from './staff-schema.json';
 
 export class StaffMember implements SchemaValidation {
-    readonly INSTANCE_NAME: string = 'StaffMember';
+    INSTANCE_NAME: string = 'StaffMember';
     id: string = null;
     name: string = null;
     display_name: string = null;
