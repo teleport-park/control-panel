@@ -143,16 +143,34 @@ export class ApiUrlsService implements IApiUrlsInterface {
     }
 
     // Billing
-    public getBillingAccounts(requestMethod: 'GET') {
-        return ApiUrlsService.getPagedUrl(API.BILLING_ACCOUNTS, requestMethod);
+    public getBillingAccounts(requestMethod: 'GET',
+                              id?: string,
+                              query?: string,
+                              limit?: number,
+                              offset?: number,
+                              sortingParams?: { [key: string]: string },
+                              filterRequest?: string) {
+        return ApiUrlsService.getPagedUrl(API.BILLING_ACCOUNTS, requestMethod, id, query, limit, offset, sortingParams, filterRequest);
     }
 
-    public getBillingTransactions(requestMethod: 'GET') {
-        return ApiUrlsService.getPagedUrl(API.BILLING_TRANSACTIONS, requestMethod);
+    public getBillingTransactions(requestMethod: 'GET',
+                                  id?: string,
+                                  query?: string,
+                                  limit?: number,
+                                  offset?: number,
+                                  sortingParams?: { [key: string]: string },
+                                  filterRequest?: string) {
+        return ApiUrlsService.getPagedUrl(API.BILLING_TRANSACTIONS, requestMethod, id, query, limit, offset, sortingParams, filterRequest);
     }
 
-    public getBillingInvoices(requestMethod: 'GET') {
-        return ApiUrlsService.getPagedUrl(API.BILLING_INVOICES, requestMethod);
+    public getBillingInvoices(requestMethod: 'GET',
+                              id?: string,
+                              query?: string,
+                              limit?: number,
+                              offset?: number,
+                              sortingParams?: { [key: string]: string },
+                              filterRequest?: string) {
+        return ApiUrlsService.getPagedUrl(API.BILLING_INVOICES, requestMethod, id, query, limit, offset, sortingParams, filterRequest);
     }
 
     public whoIs(requestMethod: 'GET', card: string | number) {
