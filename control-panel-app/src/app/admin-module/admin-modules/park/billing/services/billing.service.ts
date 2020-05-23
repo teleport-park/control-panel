@@ -98,10 +98,6 @@ export class BillingService {
       }]);
    }
 
-   public synchronize() {
-      this.lastSyncTime$.next(new Date());
-   }
-
    private getBalanceAmount(balance: { currency: string, amount: number }[]): number {
       return balance.map((item: { currency: string, amount: number }) => item.amount).reduce((prev, curr) => prev + curr);
    }

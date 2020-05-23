@@ -1,9 +1,4 @@
-import { SchemaValidation } from '../../../../../models/intefaces';
-import { validateSchema } from '../../../../../utils/utils';
-import GameSchema from './game-schema.json';
-
-export class Game implements SchemaValidation {
-    INSTANCE_NAME: string = 'Game';
+export class Game {
     id: string;
     name: string;
     type: string;
@@ -11,10 +6,8 @@ export class Game implements SchemaValidation {
     image_url: string;
     active: boolean;
     prices: Price[];
+
     constructor() {
-    }
-    validate(data: object): string[] {
-        return validateSchema(Object.keys(data), GameSchema);
     }
 }
 

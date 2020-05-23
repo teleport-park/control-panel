@@ -3,6 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { InstanceService } from '../../models';
 import { ControllerType } from '../../models/types';
+import { SchemaValidationItem } from '../../models/intefaces';
+import { map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+import { validateSchema } from '../../utils/utils';
 
 
 export class CommonInstanceService implements InstanceService<ControllerType>, OnDestroy {
@@ -22,19 +26,17 @@ export class CommonInstanceService implements InstanceService<ControllerType>, O
     constructor(private http: HttpClient,
                 private getUrl: (method: string, ref?: string) => string,
                 private getControllerInstance: (item: ControllerType) => ControllerType,
-                private mockData?: any) {
+                private schema?: SchemaValidationItem[]) {
     }
 
     getInstances(): void {
-        if (this.mockData) {
-            setTimeout(() => {
-                this._instances = this.mockData;
-                this.filterInstanceByType(this._filterType);
-                this.refreshInstances$.next(true);
-            }, 300);
-            return;
-        }
         this.http.get<ControllerType[]>(this.getUrl('GET'))
+        .pipe(map((result: ControllerType[]) => {
+            if (environment.dev && result?.length && this.schema) {
+                validateSchema(result[0], this.schema, this.getUrl('GET'));
+            }
+            return result;
+        }))
         .subscribe((result: ControllerType[]) => {
             this._instances = result.map((item: ControllerType) => this.getControllerInstance(item));
             this.filterInstanceByType(this._filterType);

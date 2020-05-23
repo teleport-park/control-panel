@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TranslationModule } from '../../../common/translations-module/translation.module';
 import { NgControllersComponent } from './ng-controllers/ng-controllers.component';
 import { ControllerGamesService } from '../../../services/common-services/controller-games.service';
+import { TNGServersSchema } from '../../../utils/schemas';
 
 const routes: Routes = [{
     path: '',
@@ -46,7 +47,7 @@ const routes: Routes = [{
 export const TeleportVrRouteModule = RouterModule.forChild(routes);
 
 export function TeleportNgFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
-    return new CommonInstanceService(http, apiUrlService.getTNGUrl, (item) => new TNGController(item));
+    return new CommonInstanceService(http, apiUrlService.getTNGUrl, (item) => new TNGController(item), TNGServersSchema);
 }
 
 @NgModule({

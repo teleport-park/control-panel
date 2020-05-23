@@ -1,12 +1,7 @@
 import moment, { Moment } from 'moment';
-import { InitService } from '../../../services/init.service';
-import { SchemaValidation } from '../../intefaces';
-import { validateSchema } from '../../../utils/utils';
-import VisitorSchema from './visitor-schema.json';
+import { InitService } from '../../services/init.service';
 
-export class Visitor implements SchemaValidation {
-
-    INSTANCE_NAME: string = 'Visitor';
+export class Visitor {
     /**
      * user id
      */
@@ -83,9 +78,5 @@ export class Visitor implements SchemaValidation {
     setDOB(age: number): Moment {
         this.birthday = moment().subtract(age, 'years');
         return this.birthday;
-    }
-
-    public validate(data: object) {
-        return validateSchema(Object.keys(data), VisitorSchema);
     }
 }

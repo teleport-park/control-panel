@@ -21,6 +21,7 @@ export const PROMOS = [
     'PROMO_4',
 ];
 
-export function validateSchema(data: string[], schema: SchemaValidationItem[]): string[] {
-    return schema.filter(item => data.indexOf(item.key) < 0 && item.required).map(item => item.key);
+export function validateSchema(data: object, schema: SchemaValidationItem[], api: string): void {
+    const missing = schema.filter(item => Object.keys(data).indexOf(item.key) < 0 && item.required).map(item => item.key);
+    missing?.length && console.error(`In response from ${api} is missing next properties: ${missing}`);
 }

@@ -1,9 +1,4 @@
-import { SchemaValidation } from '../../intefaces';
-import { validateSchema } from '../../../utils/utils';
-import StaffSchema from './staff-schema.json';
-
-export class StaffMember implements SchemaValidation {
-    INSTANCE_NAME: string = 'StaffMember';
+export class StaffMember {
     id: string = null;
     name: string = null;
     display_name: string = null;
@@ -16,10 +11,6 @@ export class StaffMember implements SchemaValidation {
     roles: string[] = [];
 
     constructor() {
-    }
-
-    public validate(data: object): string[] {
-        return validateSchema(Object.keys(data), StaffSchema);
     }
 }
 

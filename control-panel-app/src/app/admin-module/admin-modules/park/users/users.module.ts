@@ -21,6 +21,7 @@ import { LoaderService } from '../../../../services/loader.service';
 import { NgxMaskModule } from 'ngx-mask';
 import { FormComponent } from './form.component/form.component';
 import { Visitor } from '../../../../models';
+import { VisitorSchema } from '../../../../utils/schemas';
 
 const storageKey: string = 'VISITORS';
 
@@ -40,7 +41,7 @@ const routes: Routes = [{
 export const UserRoutingModule = RouterModule.forChild(routes);
 
 export function UserServiceFactory(http: HttpClient, apiUrlService: ApiUrlsService, loader: LoaderService) {
-    return new CommonEntityService(http, apiUrlService.getVisitors, sortStorageSet(), loader, new Visitor());
+    return new CommonEntityService(http, apiUrlService.getVisitors, sortStorageSet(), loader, VisitorSchema);
 }
 
 const sortStorageSet = () => {

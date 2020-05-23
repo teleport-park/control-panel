@@ -5,6 +5,8 @@ import { Game } from '../model/games.model';
 import { ApiUrlsService } from '../../../../../services/api-urls.service';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../../../../environments/environment';
+import { validateSchema } from '../../../../../utils/utils';
+import { GameSchema } from '../../../../../utils/schemas';
 
 @Injectable()
 
@@ -20,10 +22,7 @@ export class GamesService {
       this.http.request('GET', this.apiUrl.getGames('GET'))
       .pipe(map((res: Game[]) => {
           if (environment.dev && res?.length) {
-              const instance = new Game();
-              const missing = instance.validate(res[0]);
-              missing?.length &&
-              console.error(`In response from ${this.apiUrl.getGames('GET')} for instance ${instance.INSTANCE_NAME} is missing next properties: ${missing}`);
+              validateSchema(res[0], GameSchema, this.apiUrl.getGames('GET'));
           }
           return res;
       }))
