@@ -1,9 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { ApiUrlsService } from '../../../../../services/api-urls.service';
-import { filter, map } from 'rxjs/operators';
-import { TimeFilterState } from '../../../../../common/shared-module';
+import { Observable, Subject } from 'rxjs';
 import { RequestHelper } from '../../../../../models/helpers/request-helper';
 
 // @Injectable()
@@ -106,7 +103,9 @@ import { RequestHelper } from '../../../../../models/helpers/request-helper';
 
 @Injectable()
 
-export abstract class PagedDataService {
+export abstract class PagedDataService implements OnDestroy {
+
+    refreshInstances$: Subject<boolean> = new Subject();
 
     requestHelper: RequestHelper = new RequestHelper(this.getPagedItems.bind(this));
 
@@ -127,5 +126,9 @@ export abstract class PagedDataService {
                           filtersQuery: string = ''
     ): Observable<HttpResponse<any>> {
         return this.http.get(this.getUrl('GET', null, query, limit, offset, sortingParams, filtersQuery), {observe: 'response'});
+    }
+
+    ngOnDestroy(): void {
+        this.refreshInstances$.complete();
     }
 }
