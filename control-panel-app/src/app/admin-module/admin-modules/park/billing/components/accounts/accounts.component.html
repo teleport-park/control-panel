@@ -20,7 +20,7 @@
             <control-panel-ui-table [displayedColumns]="['id', 'user', 'balance']"
                                     [simpleDataColumn]="['id']"
                                     [data]="service.accounts$ | async"
-                                    [itemCount]="(service.accounts$ | async)?.length"
+                                    [itemCount]="service.requestHelper.Count"
                                     (pageChanges)="paginationChangeHandler($event)"></control-panel-ui-table>
             <control-panel-ui-empty *ngIf="!(service.accounts$ | async)?.length" class="black"></control-panel-ui-empty>
         </div>

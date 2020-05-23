@@ -15,7 +15,8 @@
                                     [displayedColumns]="['id', 'ref_id', 'account_id', 'created_at']"
                                     [simpleDataColumn]="['id', 'ref_id', 'account_id', 'created_at']"
                                     [data]="service.transactions$ | async"
-                                    [itemCount]="(service.transactions$ | async)?.length"
+                                    [itemCount]="service.requestHelper.Count"
+                                    [pageSize]="service.requestHelper.PageSize"
                                     (pageChanges)="paginationChangeHandler($event)"></control-panel-ui-table>
             <control-panel-ui-empty *ngIf="!(service.transactions$ | async)?.length" class="black"></control-panel-ui-empty>
         </div>

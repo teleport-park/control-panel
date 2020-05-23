@@ -1,13 +1,17 @@
 <div class="d-flex align-items-center justify-content-between" [class.table-toolbar-wrapper]="iconSet">
-    <button mat-raised-button *ngIf="iconSet"
-            color="primary"
-            (click)="addEntity()">
-        <mat-icon>{{iconSet}}</mat-icon>
-        {{translations.instant('TABLE_ADD')}}
-    </button>
+   <div class="flex-grow-1">
+       <button mat-raised-button *ngIf="iconSet"
+               color="primary"
+               (click)="addEntity()">
+           <mat-icon>{{iconSet}}</mat-icon>
+           {{translations.instant('TABLE_ADD')}}
+       </button>
+   </div>
     <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
+                   class="align-self-end"
                    *ngIf="(itemCount && dataSource.data.length > 10) && itemCount > 25"
                    [length]="itemCount" showFirstLastButtons
+                   [pageSize]="pageSize"
                    (page)="changePageHandler($event)"></mat-paginator>
 </div>
 <div class="table-wrapper">
@@ -125,10 +129,10 @@
             <mat-cell *matCellDef="let item">
                 <div class="d-flex flex-column">
                     <div class="mt-1 mb-1">
-                        name: {{item?.user?.display_name}}
+                        name: {{item.user?.display_name}}
                     </div>
                     <div class="mt-1 mb-1">
-                        id: {{item?.user?.id}}
+                        id: {{item.user?.id}}
                     </div>
                 </div>
             </mat-cell>
@@ -221,6 +225,7 @@
                  (click)="selectRow(row)"></mat-row>
     </mat-table>
 </div>
-<mat-paginator #paginator [pageSizeOptions]="[25, 50]" *ngIf="itemCount && itemCount > 25"
+<mat-paginator #paginator [pageSizeOptions]="[25, 50]"
                [length]="itemCount" showFirstLastButtons
+               [pageSize]="pageSize"
                (page)="changePageHandler($event)"></mat-paginator>

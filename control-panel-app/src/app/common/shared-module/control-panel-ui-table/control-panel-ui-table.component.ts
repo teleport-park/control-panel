@@ -50,6 +50,8 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
      */
     @Input() itemCount: number;
 
+    @Input() pageSize: number = 25;
+
     /**
      * icon set
      */

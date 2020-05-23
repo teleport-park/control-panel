@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiUrlsService } from '../../../../../../services/api-urls.service';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { TransactionModel } from './transaction.model';
+import { RequestHelper } from '../../../../../../models/helpers/request-helper';
 
 @Injectable()
 
@@ -13,6 +14,7 @@ export class TransactionsService extends PagedDataService {
 
     constructor(http: HttpClient, private apiUrl: ApiUrlsService) {
         super(http, apiUrl.getBillingTransactions);
+        this.requestHelper = new RequestHelper(this.getPagedItems.bind(this), {limit: 50, offset: 0});
     }
 
     getTransactions() {

@@ -16,7 +16,7 @@
                                     [displayedColumns]="['type', 'status']"
                                     [simpleDataColumn]="['type', 'status']"
                                     [data]="service.invoices$ | async"
-                                    [itemCount]="(service.invoices$ | async)?.length"
+                                    [itemCount]="service.requestHelper.Count"
                                     (pageChanges)="paginationChangeHandler($event)"></control-panel-ui-table>
             <control-panel-ui-empty *ngIf="!(service.invoices$ | async)?.length" class="black"></control-panel-ui-empty>
         </div>

@@ -119,7 +119,7 @@ export abstract class PagedDataService implements OnDestroy {
                                  filtersQuery?: string) => string) {
     }
 
-    private getPagedItems(query: string = null,
+    protected getPagedItems(query: string = null,
                           limit: number = 50,
                           offset: number = 0,
                           sortingParams: { [key: string]: string } = {},

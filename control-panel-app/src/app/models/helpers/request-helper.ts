@@ -21,6 +21,10 @@ export class RequestHelper implements IRequestHelper {
         return this._count;
     }
 
+    get PageSize() {
+        return this._pagination.limit;
+    }
+
     constructor(
         private _request: (query?: string,
                            limit?: number,

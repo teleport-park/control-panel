@@ -14,13 +14,6 @@ export function transformToken(token: string = '') {
     return token.length > 15 ? `${token.substr(0, 4)}...${token.substr(-4, 4)}` : token;
 }
 
-export const PROMOS = [
-    'PROMO_1',
-    'PROMO_2',
-    'PROMO_3',
-    'PROMO_4',
-];
-
 export function validateSchema(data: object, schema: SchemaValidationItem[], api: string): void {
     const missing = schema.filter(item => Object.keys(data).indexOf(item.key) < 0 && item.required).map(item => item.key);
     missing?.length && console.error(`In response from ${api} is missing next properties: ${missing}`);
