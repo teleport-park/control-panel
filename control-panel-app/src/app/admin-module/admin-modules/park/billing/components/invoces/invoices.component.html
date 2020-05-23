@@ -13,8 +13,8 @@
                 </div>
             </control-panel-ui-card>
             <control-panel-ui-table class="light-theme"
-                                    [displayedColumns]="['summary', 'type','charges', 'status', 'total', 'created_at', 'updated_at']"
-                                    [simpleDataColumn]="['summary', 'type', 'status', 'created_at', 'updated_at']"
+                                    [displayedColumns]="['type', 'status']"
+                                    [simpleDataColumn]="['type', 'status']"
                                     [data]="service.invoices$ | async"
                                     [itemCount]="(service.invoices$ | async)?.length"
                                     (pageChanges)="paginationChangeHandler($event)"></control-panel-ui-table>

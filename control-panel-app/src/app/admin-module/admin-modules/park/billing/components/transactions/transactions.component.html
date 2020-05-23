@@ -12,8 +12,8 @@
                 </div>
             </control-panel-ui-card>
             <control-panel-ui-table class="light-theme"
-                                    [displayedColumns]="['timestamp', 'owner', 'status', 'amount']"
-                                    [simpleDataColumn]="['status', 'owner']"
+                                    [displayedColumns]="['id', 'ref_id', 'account_id', 'created_at']"
+                                    [simpleDataColumn]="['id', 'ref_id', 'account_id', 'created_at']"
                                     [data]="service.transactions$ | async"
                                     [itemCount]="(service.transactions$ | async)?.length"
                                     (pageChanges)="paginationChangeHandler($event)"></control-panel-ui-table>

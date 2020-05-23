@@ -3,12 +3,13 @@ import { PagedDataService } from '../../services/paged-data.service';
 import { HttpClient } from '@angular/common/http';
 import { ApiUrlsService } from '../../../../../../services/api-urls.service';
 import { BehaviorSubject } from 'rxjs';
+import { TransactionModel } from './transaction.model';
 
 @Injectable()
 
 export class TransactionsService extends PagedDataService {
 
-    transactions$: BehaviorSubject<any[]> = new BehaviorSubject([]);
+    transactions$: BehaviorSubject<TransactionModel[]> = new BehaviorSubject([]);
 
     constructor(http: HttpClient, private apiUrl: ApiUrlsService) {
         super(http, apiUrl.getBillingTransactions);
@@ -16,7 +17,7 @@ export class TransactionsService extends PagedDataService {
 
     getTransactions() {
         this.requestHelper.getData()
-        .subscribe((result: any[]) => {
+        .subscribe((result: TransactionModel[]) => {
                 this.transactions$.next(result);
             }, _ => {
 
