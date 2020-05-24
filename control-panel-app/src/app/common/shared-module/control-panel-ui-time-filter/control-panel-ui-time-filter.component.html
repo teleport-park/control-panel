@@ -4,6 +4,7 @@
             fromLabel="{{'EXTENDED_FILTER_FROM' | translate}}"
             toLabel="{{'EXTENDED_FILTER_TO' | translate}}"
             submitLabel="{{'SEARCH_BY_PERIOD' | translate}}"
+            (selectPeriod)="applyFilter($event)"
     ></control-panel-ui-period-selector>
 </div>
 <ng-container *ngIf="statusFilter">
