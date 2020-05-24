@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TranslateService } from '../../translations-module';
 const moment = require('moment');
 
 export interface TimeFilterState {
@@ -33,7 +34,7 @@ export class ControlPanelUiTimeFilterComponent implements OnInit {
       lastMonth: false
    };
 
-   constructor() {
+   constructor(public translations: TranslateService) {
    }
 
    ngOnInit() {

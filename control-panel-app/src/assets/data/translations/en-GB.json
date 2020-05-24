@@ -313,5 +313,15 @@
   "HOUR_S": "Hour(s)",
   "MINUTE_S": "Minute(s)",
   "SECOND_S": "Second(s)",
-  "SET_SCHEDULE": "Set schedule"
+  "SET_SCHEDULE": "Set schedule",
+  "OPERATIONS": "Operations",
+  "INCOME": "income",
+  "OUTCOME": "outcome",
+  "EXCHANGE": "exchange",
+  "PAYMENT": "payment",
+  "CHARGE": "charge",
+  "FAILED": "failed",
+  "CLOSED": "closed",
+  "PENDING": "pending",
+  "PROCESSING": "processing"
 }

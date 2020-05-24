@@ -1,0 +1,26 @@
+@import "control-panel-theme";
+
+:host {
+  .invoices-table {
+    width: 100%;
+    .operation {
+      &-name {
+        min-width: 15rem;
+      }
+      &-income, &-outcome {
+        min-width: 10rem;
+      }
+    }
+    .status {
+      &-failed {
+        color: $warn;
+      }
+      &-closed {
+        color: green;
+      }
+      &-pending, &-processing {
+        color: map-get($accent-color, 500);
+      }
+    }
+  }
+}

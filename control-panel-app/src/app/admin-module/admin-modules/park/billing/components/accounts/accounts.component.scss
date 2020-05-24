@@ -4,4 +4,18 @@
   .filter_wrapper {
     background-color: $white;
   }
+  .account-table {
+    width: 100%;
+    .control-panel-ui-table-amount {
+      &_positive {
+        color: $success;
+      }
+      &_negative {
+        color: $warn;
+      }
+      &_null {
+        color: $inactive;
+      }
+    }
+  }
 }

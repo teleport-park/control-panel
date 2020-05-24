@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { TimeFilterState } from '../../../../../../common/shared-module';
 import { InvoicesService } from './invoices.service';
 import { PaginationSetting } from '../../../../../../models/helpers/request-helper.interface';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { TranslateService } from '../../../../../../common/translations-module';
 
 @Component({
     selector: 'invoces',
@@ -10,7 +12,14 @@ import { PaginationSetting } from '../../../../../../models/helpers/request-help
 })
 export class InvoicesComponent implements OnInit {
 
-    constructor(public service: InvoicesService) {
+    /**
+     * mat paginator instance
+     */
+    @ViewChildren('paginator') paginator: QueryList<MatPaginator>;
+
+    displayedColumns: string[] = ['created_at', 'type', 'status', 'operations', 'error'];
+
+    constructor(public service: InvoicesService, public translations: TranslateService) {
     }
 
     ngOnInit() {
@@ -23,11 +32,15 @@ export class InvoicesComponent implements OnInit {
     }
 
     /**
-     * change page handler
+     * pagination handler
      * @param event
      */
-    paginationChangeHandler(event: PaginationSetting): void {
-        this.service.requestHelper.setPagination(event);
+    paginationChangeHandler(event: PageEvent): void {
+        this.paginator.toArray().forEach(p => {
+            p.pageSize = event.pageSize;
+            p.pageIndex = event.pageIndex;
+        });
+        this.service.requestHelper.setPagination({limit: event.pageSize, offset: event.pageSize * event.pageIndex} as PaginationSetting);
         this.service.getInvoices();
     }
 

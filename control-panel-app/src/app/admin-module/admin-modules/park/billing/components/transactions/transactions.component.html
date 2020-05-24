@@ -11,16 +11,41 @@
                     <control-panel-ui-time-filter class="light-theme"></control-panel-ui-time-filter>
                 </div>
             </control-panel-ui-card>
-            <control-panel-ui-table class="light-theme"
-                                    [displayedColumns]="['id', 'ref_id', 'account_id', 'created_at']"
-                                    [simpleDataColumn]="['id', 'ref_id', 'account_id', 'created_at']"
-                                    [data]="service.transactions$ | async"
-                                    [itemCount]="service.requestHelper.Count"
-                                    [pageSize]="service.requestHelper.PageSize"
-                                    (pageChanges)="paginationChangeHandler($event)"></control-panel-ui-table>
+            <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
+                           *ngIf="(service.requestHelper.Count && (service.transactions$ | async)?.length > 10) && service.requestHelper.Count > 25"
+                           [length]="service.requestHelper.Count" showFirstLastButtons
+                           [pageSize]="service.requestHelper.PageSize"
+                           (page)="paginationChangeHandler($event)"></mat-paginator>
+
+            <table mat-table [dataSource]="service.transactions$ | async" class="transactions-table">
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('ID')}}</th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.id}}</td>
+                </ng-container>
+                <ng-container matColumnDef="account_id">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('ACCOUNT_ID')}}</th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.account_id}}</td>
+                </ng-container>
+                <ng-container matColumnDef="amount">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('TRANSACTION_AMOUNT')}}</th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.amount?.amount}} {{transaction.amount?.currency}}</td>
+                </ng-container>
+                <ng-container matColumnDef="created_at">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('CREATED_AT')}}</th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.created_at | date:'dd.MM.yyyy HH:mm'}}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
+                           [length]="service.requestHelper.Count" showFirstLastButtons
+                           [pageSize]="service.requestHelper.PageSize"
+                           (page)="paginationChangeHandler($event)"></mat-paginator>
             <control-panel-ui-empty *ngIf="!(service.transactions$ | async)?.length" class="black"></control-panel-ui-empty>
+            <div class="d-flex justify-content-end">
+                <control-panel-trigger [callBack]="service.refresh.bind(service)" class="absolute"></control-panel-trigger>
+            </div>
         </div>
     </control-panel-ui-card>
 </div>
 
-<control-panel-trigger [callBack]="service.refresh.bind(service)"></control-panel-trigger>

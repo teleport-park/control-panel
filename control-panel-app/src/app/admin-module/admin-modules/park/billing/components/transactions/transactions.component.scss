@@ -1,4 +1,6 @@
 @import "control-panel-theme";
 :host {
-
+  .transactions-table {
+    width: 100%;
+  }
 }

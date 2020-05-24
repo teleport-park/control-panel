@@ -11,7 +11,7 @@
         <h4 class="mb-4">Фильтр по статусу</h4>
         <div class="status-filter_wrapper d-flex flex-column pl-1">
             <mat-checkbox *ngFor="let status of statusFilter.statuses" [(ngModel)]="statusFilterState[status]"
-                          (ngModelChange)="applyFilter()">{{status}}</mat-checkbox>
+                          (ngModelChange)="applyFilter()">{{translations.instant(status.toUpperCase())}}</mat-checkbox>
         </div>
     </div>
 </ng-container>
