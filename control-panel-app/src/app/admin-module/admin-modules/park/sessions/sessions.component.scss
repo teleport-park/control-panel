@@ -1,0 +1,19 @@
+@import "control-panel-theme";
+
+:host {
+  .session-table {
+    width: 100%;
+    .mat-row {
+      &.error {
+        background-color: rgba($warn, .05);
+      }
+    }
+    .mat-cell {
+      &.status {
+        &-error {
+          color: $warn;
+        }
+      }
+    }
+  }
+}

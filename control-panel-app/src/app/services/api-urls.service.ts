@@ -96,8 +96,14 @@ export class ApiUrlsService implements IApiUrlsInterface {
         return ApiUrlsService.getPagedUrl(API.PROMO, requestMethod, id);
     }
 
-    public getSessions(requestMethod: 'GET' | 'PUT', id?: string, query?: string, limit?: number, offset?: number) {
-        return ApiUrlsService.getPagedUrl(API.SESSIONS, requestMethod, id, query, limit, offset);
+    public getSessions(requestMethod: 'GET',
+                       id?: string,
+                       query?: string,
+                       limit?: number,
+                       offset?: number,
+                       sortingParams?: { [key: string]: string },
+                       filterRequest?: string) {
+        return ApiUrlsService.getPagedUrl(API.SESSIONS, requestMethod, id, query, limit, offset, sortingParams, filterRequest);
     }
 
     public getPackagesHistory(requestMethod: 'GET' | 'PUT') {

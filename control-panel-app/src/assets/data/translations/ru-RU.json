@@ -328,5 +328,10 @@
   "FAILED": "неудачно",
   "CLOSED": "закрыто",
   "PENDING": "ожидание",
-  "PROCESSING": "обработка"
+  "PROCESSING": "обработка",
+  "ERROR": "Ошибка",
+  "EVENTS": "События",
+  "CREATED": "создана",
+  "STARTED": "запущена",
+  "STOPPED": "остановлена"
 }

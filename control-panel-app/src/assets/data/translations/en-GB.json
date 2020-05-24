@@ -323,5 +323,10 @@
   "FAILED": "failed",
   "CLOSED": "closed",
   "PENDING": "pending",
-  "PROCESSING": "processing"
+  "PROCESSING": "processing",
+  "ERROR": "Error",
+  "EVENTS": "Events",
+  "CREATED": "created",
+  "STARTED": "started",
+  "STOPPED": "stopped"
 }

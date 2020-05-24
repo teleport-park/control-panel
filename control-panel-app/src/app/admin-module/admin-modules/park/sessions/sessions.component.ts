@@ -1,35 +1,70 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { SessionsService } from './services/sessions.service';
 import { TranslateService } from '../../../../common/translations-module';
 import { PaginationSetting } from '../../../../models/intefaces';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { SessionPlayer } from './session.model';
+import { ExtendedFilterUrlParamsInterface } from '../../../../interfaces/extended-filter-url-params.interface';
 
 @Component({
-   selector: 'sessions',
-   templateUrl: './sessions.component.html',
-   styleUrls: ['./sessions.component.scss']
+    selector: 'sessions',
+    templateUrl: './sessions.component.html',
+    styleUrls: ['./sessions.component.scss']
 })
 export class SessionsComponent implements OnInit {
-   displayedColumns: string[] = ['created_at', 'status', 'restarts', 'restartMessage'];
+    /**
+     * mat paginator instance
+     */
+    @ViewChildren('paginator') paginator: QueryList<MatPaginator>;
 
-   sessionColumns: string[] = [
-      'created_at',
-      'status',
-      'restarts',
-      'restartMessage'
-   ];
+    displayedColumns: string[] = ['game', 'status', 'players', 'events', 'error'];
 
-   constructor(public service: SessionsService,
-               public translations: TranslateService,
-               public cd: ChangeDetectorRef) {
-   }
+    constructor(public service: SessionsService,
+                public translations: TranslateService,
+                public cd: ChangeDetectorRef,
+                @Inject('ExtendedFilterUrlParamsInterface') private extendedFilterUrlBuilder: ExtendedFilterUrlParamsInterface) {
+    }
 
-   ngOnInit() {
-      this.service.getSessions();
-   }
+    ngOnInit() {
+        this.service.getSessions();
+    }
 
-   paginationChangeHandler(event: PaginationSetting) {
-      this.service.pagination.setPagination(event);
-      this.service.getSessions();
-   }
+    /**
+     * pagination handler
+     * @param event
+     */
+    paginationChangeHandler(event: PageEvent): void {
+        this.paginator.toArray().forEach(p => {
+            p.pageSize = event.pageSize;
+            p.pageIndex = event.pageIndex;
+        });
+        this.service.requestHelper.setPagination({limit: event.pageSize, offset: event.pageSize * event.pageIndex} as PaginationSetting);
+        this.service.getSessions();
+    }
+
+    applyFilter(event: Partial<{time: {t: string, f: string} | null}>) {
+        if (event.time) {
+            this.service.requestHelper.setExtendedFilterRequest(this.extendedFilterUrlBuilder.getExtendedFilterParams(event.time));
+            this.service.requestHelper.filterData = event.time;
+            this.service.requestHelper.resetPagination();
+            this.resetPagination();
+            this.service.getSessions();
+        } else {
+            this.service.requestHelper.resetFilterRequest();
+            this.service.requestHelper.resetPagination();
+            this.resetPagination();
+            this.service.getSessions();
+        }
+    }
+
+    getPlayersNames(players: SessionPlayer[]) {
+        return players.map(player => player.display_name || player.name).join(', ');
+    }
+
+    resetPagination() {
+        this.paginator && this.paginator.toArray().forEach(p => {
+            p.pageIndex = 0;
+        });
+    }
 
 }
