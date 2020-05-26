@@ -1,6 +1,6 @@
 <div class="row packages_wrapper">
-    <mat-tab-group class="w-100" [@.disabled]="true" color="accent">
-        <mat-tab label="{{'PACKAGES' | translate}}">
+<!--    <mat-tab-group class="w-100" [@.disabled]="true" color="accent">-->
+<!--        <mat-tab label="{{'PACKAGES' | translate}}">-->
             <div class="light-theme">
                 <control-panel-ui-card class="primary">
                     <div panelUICardHeaderTitle>{{translations.instant('PACKAGES_LIST_TITLE')}}</div>
@@ -67,12 +67,12 @@
                     </div>
                 </control-panel-ui-card>
             </div>
-        </mat-tab>
-        <mat-tab label="Overview">
-            <div class="slider-wrapper light-theme pt-5">
-                <control-panel-ui-time-slider (sliderChange)="_sliderValue = $event"></control-panel-ui-time-slider>
-                <p class="pl-4"><span class="bold">{{'TIME' | translate}}: </span>{{_sliderValue}}</p>
-            </div>
-        </mat-tab>
-    </mat-tab-group>
+<!--        </mat-tab>-->
+<!--        <mat-tab label="Overview">-->
+<!--            <div class="slider-wrapper light-theme pt-5">-->
+<!--                <control-panel-ui-time-slider (sliderChange)="_sliderValue = $event"></control-panel-ui-time-slider>-->
+<!--                <p class="pl-4"><span class="bold">{{'TIME' | translate}}: </span>{{_sliderValue}}</p>-->
+<!--            </div>-->
+<!--        </mat-tab>-->
+<!--    </mat-tab-group>-->
 </div>
