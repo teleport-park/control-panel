@@ -15,7 +15,7 @@ export interface BoundCardDialogData {
 })
 export class BoundCardDialogComponent {
 
-   cardNumber: FormControl = new FormControl('', [Validators.required, Validators.pattern('[0-9A-Fa-f]+'), Validators.max(4294967295)]);
+   cardNumber: FormControl = new FormControl('', [Validators.required, Validators.pattern('[0-9A-Fa-f]+')]);
 
    constructor(
       public dialogRef: MatDialogRef<BoundCardDialogComponent>,
