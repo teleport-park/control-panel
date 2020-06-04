@@ -20,12 +20,10 @@
                    [formControl]="_fromDateControl">
             <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
             <mat-datepicker #from></mat-datepicker>
-            <mat-error *ngIf="_fromDateControl?.errors?.matDatepickerParse">Введите дату в формате дд.мм.гггг</mat-error>
-            <mat-error *ngIf="_fromDateControl?.errors?.required">Введите дату начала периода</mat-error>
-            <mat-error *ngIf="_fromDateControl?.errors?.matDatepickerMax">Максимальная
-                дата: {{_fromDateControl?.errors?.matDatepickerMax.max | date:'dd.MM.yyyy'}}</mat-error>
-            <mat-error *ngIf="_fromDateControl?.errors?.matDatepickerMax && _toDateControl?.errors?.matDatepickerMin">Дата начала
-                периода позже даты конца периода
+            <mat-error *ngIf="_fromDateControl?.errors?.matDatepickerParse">{{'DATE_PARSE_ERROR' | translate}}</mat-error>
+            <mat-error *ngIf="_fromDateControl?.errors?.required">{{'DATE_PERIOD_END_REQUIRED' | translate}}</mat-error>
+            <mat-error *ngIf="_fromDateControl?.errors?.matDatepickerMax">{{'MAX_DATE_ERROR' | translate}} {{_fromDateControl?.errors?.matDatepickerMax.max | date:'dd.MM.yyyy'}}</mat-error>
+            <mat-error *ngIf="_fromDateControl?.errors?.matDatepickerMax && _toDateControl?.errors?.matDatepickerMin">{{'MIN_MAX_ERROR' | translate}}
             </mat-error>
             <mat-hint>{{'TRANSACTION_DATE' | translate}}</mat-hint>
         </mat-form-field>
@@ -44,12 +42,10 @@
                    [formControl]="_toDateControl">
             <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
             <mat-datepicker #to></mat-datepicker>
-            <mat-error *ngIf="_toDateControl?.errors?.matDatepickerParse">Введите дату в формате дд.мм.гггг</mat-error>
-            <mat-error *ngIf="_toDateControl?.errors?.required">Введите дату конца периода</mat-error>
-            <mat-error *ngIf="_toDateControl?.errors?.matDatepickerMin">Минимальная
-                дата: {{_toDateControl.errors.matDatepickerMin.min | date: 'dd.MM.yyyy'}}</mat-error>
-            <mat-error *ngIf="_toDateControl?.errors?.matDatepickerMin && _fromDateControl?.errors?.matDatepickerMax">Дата конца
-                периода раньше начала периода
+            <mat-error *ngIf="_toDateControl?.errors?.matDatepickerParse">{{'DATE_PARSE_ERROR' | translate}}</mat-error>
+            <mat-error *ngIf="_toDateControl?.errors?.required">{{'DATE_PERIOD_END_REQUIRED' | translate}}</mat-error>
+            <mat-error *ngIf="_toDateControl?.errors?.matDatepickerMin">{{'MIN_DATE_ERROR' | translate}} {{_toDateControl.errors.matDatepickerMin.min | date: 'dd.MM.yyyy'}}</mat-error>
+            <mat-error *ngIf="_toDateControl?.errors?.matDatepickerMin && _fromDateControl?.errors?.matDatepickerMax">{{'MAX_MIN_ERROR' | translate}}
             </mat-error>
             <mat-hint>{{'TRANSACTION_DATE' | translate}}</mat-hint>
         </mat-form-field>
