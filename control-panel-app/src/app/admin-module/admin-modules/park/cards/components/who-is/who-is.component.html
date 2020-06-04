@@ -1,8 +1,9 @@
 <div class="who-is_wrapper light-theme">
-    <div class="d-flex flex-column justify-content-center align-items-center">
-        <mat-form-field class="mb-3">
+    <div class="d-flex align-items-center justify-content-center mb-4 mt-3">
+        <mat-form-field class="mr-4">
             <input matInput [formControl]="_control" placeholder="{{'WHO_IM_LABEL' | translate}}">
-            <mat-error *ngIf="_control?.errors?.max">{{'MAX_VALUE_ERROR' | translate}} {{_control?.errors?.max?.max}}</mat-error>
+            <mat-error *ngIf="_control?.errors?.pattern">{{'INVALID_PATTERN' | translate}}</mat-error>
+            <mat-error *ngIf="_control?.errors?.invalid">{{'INVALID_PATTERN' | translate}}</mat-error>
             <mat-icon matPrefix class="search-filter-icon">search</mat-icon>
             <mat-icon *ngIf="_control.value"
                       matSuffix
@@ -15,32 +16,17 @@
     </div>
     <ng-container *ngIf="_result">
         <control-panel-ui-card class="primary">
-            <div panelUICardHeaderTitle>{{_result?.roles[0]}}</div>
+            <div panelUICardHeaderTitle>{{translations.instant('PROFILE')}}</div>
             <div panelUICardContent>
-                <h4>Profile</h4>
-                <ng-container *ngFor="let key of getKeys(_result.profile)">
-                    <p>
-                        <span class="bold">{{key}}: </span>
-                        <span class="italic">{{_result.profile[key]}}</span>
-                    </p>
-                </ng-container>
-                <h4>Card</h4>
-                <ng-container *ngFor="let key of getKeys(_result.card)">
-                    <p>
-                        <span class="bold">{{key}}: </span>
-                        <span *ngIf="key.includes('_at')"
-                              class="italic">{{_result.card[key] | date:'dd.MM.yyyy hh:mm'}}</span>
-                        <span *ngIf="!key.includes('_at')" class="italic">{{_result.card[key]}}</span>
-                    </p>
-                </ng-container>
-                <h4>Account</h4>
-                <p>
-                    <span class="bold">id: </span>
-                    <span class="italic">{{_result.account.id}}</span>
+                <p class="mt-4">
+                    <span class="bold">{{_result.display_name}}</span>
                 </p>
                 <p>
-                    <span class="bold">balance: </span>
-                    <span class="italic">{{_result.account.balance[0].amount}} {{_result.account.balance[0].currency}}</span>
+                    <span class="italic">{{getRoles(_result?.roles)}}</span>
+                </p>
+                <p>
+                    <span class="bold">{{translations.instant('BALANCE')}}:</span>
+                    <span class="italic">{{_result?.account?.balance[0].amount}} {{_result?.account?.balance[0].currency}}</span>
                 </p>
             </div>
         </control-panel-ui-card>

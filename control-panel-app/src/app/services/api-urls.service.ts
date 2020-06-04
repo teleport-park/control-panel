@@ -63,14 +63,6 @@ export class ApiUrlsService implements IApiUrlsInterface {
         return null;
     }
 
-    // public getStaffUrl(requestMethod: string, id?: number, pageSize?: number, pageNumber?: number): string | null {
-    //     return ApiUrlsService.getPagedUrl('api/staff', requestMethod, id, null, pageSize, pageNumber);
-    // }
-    //
-    // public getStaffGroupsUrl(requestMethod: string, id?: number, pageSize?: number, pageNumber?: number): string | null {
-    //     return ApiUrlsService.getPagedUrl('api/staffGroups', requestMethod, id, null, pageSize, pageNumber);
-    // }
-
     public getPermissionsUrl(requestMethod: string, id?: number, pageSize?: number, pageNumber?: number): string | null {
         return ApiUrlsService.getPagedUrl('api/permissions', requestMethod, id, null, pageSize, pageNumber);
     }

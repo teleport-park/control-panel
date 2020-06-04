@@ -14,7 +14,7 @@
                     (cdkDropListDropped)="onListDrop($event)"
                     class="promo-table">
                 <ng-container matColumnDef="order">
-                    <mat-header-cell *matHeaderCellDef>{{'ORDER' | translate}}</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef>{{translations.instant('ORDER')}}</mat-header-cell>
                     <mat-cell *matCellDef="let promo" cdkDragHandle class="drag-icon">
                         <mat-icon>drag_indicator</mat-icon>
                     </mat-cell>
@@ -50,13 +50,6 @@
                         </div>
                     </mat-cell>
                 </ng-container>
-<!--                <ng-container matColumnDef="removed">-->
-<!--                    <mat-header-cell *matHeaderCellDef> {{translations.instant('REMOVED')}} </mat-header-cell>-->
-<!--                    <mat-cell *matCellDef="let promo">-->
-<!--                        <mat-icon-->
-<!--                                color="{{promo.removed ? 'success' : 'warn'}}">{{promo.removed ? 'check' : 'clear'}}</mat-icon>-->
-<!--                    </mat-cell>-->
-<!--                </ng-container>-->
                 <ng-container matColumnDef="enabled">
                     <mat-header-cell *matHeaderCellDef></mat-header-cell>
                     <mat-cell *matCellDef="let promo">

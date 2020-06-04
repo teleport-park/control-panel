@@ -20,7 +20,6 @@ export class BuildMenuHelper {
      * full menu
      */
     menu: MenuItem[] = [
-        //  new sections
         {
             icon: 'local_parking',
             label: 'ADMIN_MENU_PARK',
@@ -184,20 +183,6 @@ export class BuildMenuHelper {
                 path: '/admin/teleport-poly/poly-controllers',
                 active: false
             }]
-        }, {
-            icon: 'settings',
-            label: 'ADMIN_MENU_SETTINGS',
-            path: '/admin/settings',
-            active: false,
-            root: true,
-            children: [
-                {
-                    icon: 'code',
-                    label: 'GROUP_PERMISSIONS',
-                    path: '/admin/settings/permissions',
-                    active: false
-                }
-            ]
         }
     ];
 

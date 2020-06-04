@@ -2,10 +2,6 @@
     <control-panel-ui-card class="primary">
         <div panelUICardHeaderTitle>{{'ACCOUNTS_LIST_TITLE' | translate}}</div>
         <div panelUICardContent>
-<!--            <div class="d-flex align-items-center justify-content-end">-->
-<!--                <span class="mr-4">Last synchronization was at {{(service.lastSyncTime$ | async) | date:'dd.MM.yyyy HH:mm:ss'}}</span>-->
-<!--                <button mat-raised-button color="primary" (click)="service.synchronize()">Sync</button>-->
-<!--            </div>-->
             <control-panel-ui-card [hideHeader]="true" class="no-margin">
                 <div panelUICardContent>
                     <h4>{{'BALANCE' | translate}}: </h4>

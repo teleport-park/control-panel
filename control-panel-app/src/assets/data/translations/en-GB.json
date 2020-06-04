@@ -328,5 +328,6 @@
   "EVENTS": "Events",
   "CREATED": "created",
   "STARTED": "started",
-  "STOPPED": "stopped"
+  "STOPPED": "stopped",
+  "PROFILE": "Profile"
 }

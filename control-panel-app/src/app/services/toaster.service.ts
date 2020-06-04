@@ -12,20 +12,20 @@ export class ToasterService {
 
    public error(message) {
       this.toaster.open(this.translations.instant(message), null, {
-         duration: 5000,
+         duration: 3000,
          panelClass: 'toaster-error'
       });
    }
 
    public success(message, translate?: boolean) {
       this.toaster.open(translate ? this.translations.instant(message) : message, null, {
-         duration: 5000,
+         duration: 3000,
          panelClass: 'toaster-success'
       });
    }
    public info(message, translate?: boolean) {
       this.toaster.open(translate ? this.translations.instant(message) : message, null, {
-         duration: 5000,
+         duration: 3000,
          panelClass: 'toaster-info'
       });
    }

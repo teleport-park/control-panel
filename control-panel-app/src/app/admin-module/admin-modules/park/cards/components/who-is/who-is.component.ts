@@ -3,6 +3,7 @@ import { CardsService } from '../../services/cards.service';
 import { WhoIsResponse } from './who-is.model';
 import { FormControl, Validators } from '@angular/forms';
 import { to4Hex } from '../../../../../utils/utils';
+import { TranslateService } from '../../../../../../common/translations-module';
 
 @Component({
     selector: 'who-is',
@@ -13,9 +14,9 @@ export class WhoIsComponent implements OnInit {
 
     _result: WhoIsResponse;
 
-    _control: FormControl = new FormControl('',  [Validators.pattern('[0-9A-Fa-f]+'), Validators.max(4294967295)]);
+    _control: FormControl = new FormControl('',  [Validators.pattern('[0-9A-Fa-f]+')]);
 
-    constructor(private service: CardsService, private cd: ChangeDetectorRef) {
+    constructor(private service: CardsService, private cd: ChangeDetectorRef, private translations: TranslateService) {
     }
 
     ngOnInit() {
@@ -31,13 +32,15 @@ export class WhoIsComponent implements OnInit {
             const req = to4Hex(value);
             if (req) {
                 this.service.whoIs(req);
+            } else {
+                this._control.setErrors({invalid: true});
             }
             return;
         }
         this.service.resetWhoIsResult();
     }
 
-    getKeys(obj: object) {
-        return Object.keys(obj);
+    getRoles(roles: string[]): string {
+        return roles.map(role => this.translations.instant(role)).join(', ');
     }
 }

@@ -9,8 +9,6 @@ import { SharedModule } from '../../../common/shared-module/shared.module';
 import { CardsService } from './cards/services/cards.service';
 import { GamesService } from './games/services/games.service';
 import { GamesComponent } from './games/games.component';
-import { PricingComponent } from './pricing/pricing.component';
-import { PricingService } from './pricing/pricing.service';
 import { PackagesService } from './packages/packages.service';
 import { SessionsComponent } from './sessions/sessions.component';
 import { TranslationModule } from '../../../common/translations-module/translation.module';
@@ -68,11 +66,6 @@ const routes: Routes = [{
             data: {title: 'ADMIN_MENU_GAMES'},
             canActivate: [PermissionGuard]
         }, {
-            path: 'pricing',
-            component: PricingComponent,
-            data: {title: 'ADMIN_MENU_PRICING'},
-            canActivate: [PermissionGuard]
-        }, {
             path: 'sessions',
             component: SessionsComponent,
             data: {title: 'ADMIN_MENU_SESSIONS'},
@@ -91,7 +84,6 @@ export const ParkRouterModule = RouterModule.forChild(routes);
 export const COMPONENTS = [
     ParkComponent,
     GamesComponent,
-    PricingComponent,
     CardsComponent,
     SessionsComponent,
     WhoIsComponent,
@@ -112,7 +104,7 @@ export const COMPONENTS = [
         FormsModule,
         CronEditorModule
     ],
-    providers: [CardsService, GamesService, PricingService, PackagesService]
+    providers: [CardsService, GamesService, PackagesService]
 })
 export class ParkModule {
 }
