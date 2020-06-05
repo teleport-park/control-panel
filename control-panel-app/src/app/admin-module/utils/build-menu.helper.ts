@@ -149,6 +149,11 @@ export class BuildMenuHelper {
                 active: false,
             }]
         }, {
+            icon: 'report',
+            label: 'ADMIN_MENU_REPORTS',
+            path: '/admin/reports',
+            active: false
+        }, {
             icon: 'accessibility',
             label: 'ADMIN_MENU_GATES',
             path: '/admin/gate',

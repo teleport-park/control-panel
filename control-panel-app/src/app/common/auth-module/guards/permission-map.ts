@@ -37,5 +37,6 @@ export const MenuPermissionMap: PermissionMap = {
     billing: ['admin'],
     transactions: ['admin'],
     invoices: ['admin'],
-    accounts: ['admin']
+    accounts: ['admin'],
+    reports: ['admin']
 };

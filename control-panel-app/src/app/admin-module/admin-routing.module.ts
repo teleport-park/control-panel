@@ -32,6 +32,11 @@ const routes: Routes = [
                 loadChildren: () => import('./admin-modules/cashbox/cashbox.module').then(m => m.CashboxModule),
                 data: {title: 'ADMIN_MENU_CASHBOX'},
                 canActivate: [PermissionGuard]
+            }, {
+                path: 'reports',
+                loadChildren: () => import('./admin-modules/reports/reports.module').then(m => m.ReportsModule),
+                data: {title: 'ADMIN_MENU_REPORTS'},
+                canActivate: [PermissionGuard]
             }
         ]
     }
