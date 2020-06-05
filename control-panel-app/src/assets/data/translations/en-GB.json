@@ -336,5 +336,6 @@
   "MIN_DATE_ERROR": "Min date:",
   "MAX_DATE_ERROR": "Max date:",
   "MIN_MAX_ERROR": "Period start date is later than period end date",
-  "MAX_MIN_ERROR": "End date of period before start of period"
+  "MAX_MIN_ERROR": "End date of period before start of period",
+  "REPORT": "Report"
 }
