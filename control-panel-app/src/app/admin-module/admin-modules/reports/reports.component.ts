@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '../../../common/translations-module';
+import { Router } from '@angular/router';
+import { ReportsService } from './reports.service';
 
 @Component({
     selector: 'reports',
@@ -9,13 +11,15 @@ import { TranslateService } from '../../../common/translations-module';
 
 export class ReportsComponent implements OnInit {
 
-    constructor(public translations: TranslateService) {
+    constructor(public translations: TranslateService,
+                public service: ReportsService,
+                private router: Router) {
     }
 
     ngOnInit(): void {
     }
 
-    clickHandler(event: string) {
-        console.log(event);
+    clickHandler(type: string) {
+        this.router.navigate(['admin', 'reports', type]);
     }
 }

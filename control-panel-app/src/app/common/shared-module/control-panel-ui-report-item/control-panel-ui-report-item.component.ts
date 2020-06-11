@@ -9,11 +9,13 @@ export class ControlPanelUiReportItemComponent {
 
     @Input() title: string;
 
-    @Output() onClick: EventEmitter<any> = new EventEmitter();
+    @Input() type: string;
+
+    @Output() typeSelect: EventEmitter<any> = new EventEmitter();
 
     @HostListener('click', ['$event'])
     clickHandler(event) {
-        this.onClick.emit(this.title);
+        this.type && this.typeSelect.emit(this.type);
     }
 
     constructor() {

@@ -1,0 +1,35 @@
+<button mat-flat-button color="warn" [routerLink]="['/admin/reports']" class="ml-4 mt-4 pl-3"><mat-icon>keyboard_backspace</mat-icon>{{translations.instant('BACK')}}</button>
+
+<div class="light-theme w-100">
+    <control-panel-ui-card class="primary">
+        <div panelUICardHeaderTitle>{{title | translate}}</div>
+        <div panelUICardContent>
+            <control-panel-ui-card [hideHeader]="true" class="no-margin">
+                <div panelUICardContent>
+                    <control-panel-ui-time-filter class="light-theme"></control-panel-ui-time-filter>
+                </div>
+            </control-panel-ui-card>
+            <h5 class="mb-5 mt-5">{{translations.instant('REPORT_PREVIEW')}}</h5>
+            <table mat-table  class="w-100">
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('ID')}}</th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.id}}</td>
+                </ng-container>
+                <ng-container matColumnDef="account_id">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('ACCOUNT_ID')}}</th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.account_id}}</td>
+                </ng-container>
+                <ng-container matColumnDef="amount">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('TRANSACTION_AMOUNT')}}</th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.amount?.amount}} {{transaction.amount?.currency}}</td>
+                </ng-container>
+                <ng-container matColumnDef="created_at">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('CREATED_AT')}}</th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.created_at | date:'dd.MM.yyyy HH:mm'}}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="['id', 'account_id', 'amount', 'created_at']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['id', 'account_id', 'amount', 'created_at'];"></tr>
+            </table>
+        </div>
+    </control-panel-ui-card>
+</div>

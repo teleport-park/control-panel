@@ -2,7 +2,6 @@
 
 :host {
   display: inline-flex;
-  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   width: 10rem;
@@ -16,11 +15,16 @@
   //min-height: 10rem;
   background-color: $white;
   @include gradient-border(#EB00FF, #0087b0);
+  font-size: 1.3rem;
   ::ng-deep .icon {
     margin: 1rem 0 .5rem;
-    width: 5rem;
-    height: 5rem;
-    font-size: 5rem;
+    width: 4rem;
+    height: 4rem;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  .title {
+    text-align: center;
   }
   &:hover {
     background-color: rgba($white, .9);

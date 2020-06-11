@@ -4,7 +4,7 @@ module.exports = {
   plugins: [
     new webpack.ContextReplacementPlugin(
       /moment[/\\]locale$/,
-      /ru|en/
+      /ru|en-gb/
     )
   ]
 };
