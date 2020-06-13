@@ -7,12 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../../../material.module';
 import { TranslationModule } from '../../../../common/translations-module/translation.module';
 import { SharedModule } from '../../../../common/shared-module/shared.module';
-import {
-    AddGroupDialogComponent,
-    AddSimpleEntityDialogComponent,
-    AddStaffDialogComponent,
-    ConfirmDialogComponent
-} from '../../../../common/shared-module';
+import { AddStaffDialogComponent, ConfirmDialogComponent } from '../../../../common/shared-module';
 import { PermissionGuard } from '../../../../common/auth-module/guards/permission-guard';
 import { StaffMemberComponent } from './staff-member/staff-member.component';
 import { ExtendedFiltersModule } from '../../../../common/extended-filters-module/extended-filters.module';
@@ -24,7 +19,6 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { Sort } from '@angular/material/sort';
 import { AppStorageKey } from '../../../../models/app-storage-key';
 import { LoaderService } from '../../../../services/loader.service';
-import { StaffMember } from '../../../../models';
 import { StaffSchema } from '../../../../utils/schemas';
 
 const storageKey: string = 'STAFF';
@@ -71,8 +65,6 @@ const sortStorageSet = () => {
     ],
     entryComponents: [
         ConfirmDialogComponent,
-        AddGroupDialogComponent,
-        AddSimpleEntityDialogComponent,
         AddStaffDialogComponent
     ]
 })

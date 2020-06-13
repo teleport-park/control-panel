@@ -2,7 +2,7 @@
     <div class="col">
         <h4>{{translations.instant('USER')}}</h4>
         <form [formGroup]="userForm" class="user-form light-theme">
-            <mat-form-field class="mb-2">
+            <mat-form-field class="mb-3">
                 <input matInput placeholder="{{'USER_NAME' | translate}} ({{'NICK_NAME' | translate}})"
                        formControlName="name">
                 <mat-icon matPrefix
@@ -14,7 +14,7 @@
                     {{'REQUIRED_FIELD' | translate:[translations.instant('USER_NAME') + '(' + translations.instant('NICK_NAME') + ')']}}
                 </mat-error>
             </mat-form-field>
-            <mat-form-field class="mb-2">
+            <mat-form-field class="mb-3">
                 <input matInput [matDatepicker]="picker" placeholder="{{'USER_DATE_OF_BIRTH_DAY' | translate}}"
                        formControlName="birthday" (dateChange)="dayOfBirthChange($event.value)"
                        [max]="minDOBDate">
@@ -24,21 +24,21 @@
                     {{'MAX_DATE_VALIDATION_ERROR' | translate:[initService.config.visitor_min_age + '', userForm.get('birthday')?.errors.matDatepickerMax.max | date: 'dd.MM.yyyy']}}
                 </mat-error>
             </mat-form-field>
-            <div class="age-gender_wrapper mb-2">
+            <div class="age-gender_wrapper mb-3">
                 <mat-form-field class="age-field">
                     <mat-label>{{'USER_AGE' | translate}}</mat-label>
                     <input matInput formControlName="age" number type="number" max="99" min="{{initService.config.visitor_min_age}}" (change)="ageChange()">
                     <mat-error
-                            *ngIf="userForm.get('age')?.errors?.min">{{'MIN_AGE_VALIDATION_ERROR' | translate:[userForm.get('age')?.errors?.min.min]}}</mat-error>
+                            *ngIf="userForm.get('age')?.errors?.min">{{'MIN_AGE_VALIDATION_ERROR' | translate:[userForm.get('age')?.errors?.min?.min]}}</mat-error>
                     <mat-error
-                            *ngIf="userForm.get('age')?.errors?.max">{{'MAX_AGE_VALIDATION_ERROR' | translate:[userForm.get('age')?.errors?.max.max]}}</mat-error>
+                            *ngIf="userForm.get('age')?.errors?.max">{{'MAX_AGE_VALIDATION_ERROR' | translate:[userForm.get('age')?.errors?.max?.max]}}</mat-error>
                 </mat-form-field>
                 <mat-radio-group formControlName="gender">
                     <mat-radio-button *ngFor="let gender of _genders" [value]="gender"
                                       class="ml-3">{{gender.toUpperCase() | translate}}</mat-radio-button>
                 </mat-radio-group>
             </div>
-            <mat-form-field class="mb-2">
+            <mat-form-field class="mb-3">
                 <input matInput placeholder="{{'EMAIL' | translate}}" formControlName="email">
                 <mat-error
                         *ngIf="userForm.get('email')?.hasError('pattern') && !userForm.get('email')?.hasError('required')">

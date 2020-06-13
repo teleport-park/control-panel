@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { StaffMember, Visitor } from '../../../../../models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import moment, { Moment } from 'moment';
@@ -11,7 +11,8 @@ import { InitService } from '../../../../../services/init.service';
 @Component({
     selector: 'control-panel-ui-form',
     templateUrl: './form.component.html',
-    styleUrls: ['./form.component.scss']
+    styleUrls: ['./form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormComponent {
     /**
@@ -32,11 +33,6 @@ export class FormComponent {
      */
     displayedColumns: string[] = [...Object.keys(new Avatar()).filter(item => item !== 'userId' && item !== 'id'), 'submenu'];
 
-    /**
-     * simple data column
-     */
-    simpleDataColumn: string[] = this.displayedColumns
-    .filter(item => item !== 'birthday' && item !== 'gender' && item !== 'submenu');
 
     minDOBDate: Moment;
 

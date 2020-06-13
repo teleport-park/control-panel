@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -26,7 +25,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatTreeModule } from '@angular/material/tree';
 import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatPaginatorTranslateUtil } from './utils/mat-paginator-translate.util';
 import { TranslateService } from './common/translations-module';
@@ -69,12 +67,10 @@ export const MATERIAL_MODULES = [
     MatIconModule,
     MatMenuModule,
     MatTooltipModule,
-    MatTreeModule,
     DragDropModule,
     MatRadioModule,
     MatTabsModule,
     MatChipsModule,
-    MatAutocompleteModule,
     MatSliderModule
 ];
 

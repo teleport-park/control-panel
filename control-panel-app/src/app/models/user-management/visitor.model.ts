@@ -14,7 +14,7 @@ export class Visitor {
     /**
      * gender
      */
-    gender: 'male' | 'female' | 'other' = null;
+    gender: 'male' | 'female' | 'other' = 'male';
 
     /**
      * email

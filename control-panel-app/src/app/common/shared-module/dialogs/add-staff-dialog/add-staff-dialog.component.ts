@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormField } from '@angular/material/form-field';
 import moment from 'moment';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 @Component({
     selector: 'control-panel-add-staff-dialog',
@@ -17,8 +16,6 @@ export class AddStaffDialogComponent implements OnInit {
     @ViewChild('rolesRef') rolesRef: MatFormField;
 
     @Output() save: EventEmitter<StaffMember> = new EventEmitter();
-
-    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
     roles: string[] = ['operator', 'admin', 'super', 'cashier'];
 

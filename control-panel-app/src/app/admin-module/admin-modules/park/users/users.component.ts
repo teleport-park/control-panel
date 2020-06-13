@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { debounceTime, filter, takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { Visitor } from '../../../../models';
 
 import { TranslateService } from '../../../../common/translations-module';
@@ -46,13 +46,13 @@ export class UsersComponent implements OnInit, OnDestroy {
      * view scroll container for set and store scroll position
      * @param element
      */
-    // @ViewChild('scrollContainer') set scrollContainer(element: MatSidenavContent) {
-    //     if (!element) {
-    //         return;
-    //     }
-    //     element.elementScrolled().pipe(debounceTime(1000)).subscribe((event: any) => {
-    //     });
-    // }
+        // @ViewChild('scrollContainer') set scrollContainer(element: MatSidenavContent) {
+        //     if (!element) {
+        //         return;
+        //     }
+        //     element.elementScrolled().pipe(debounceTime(1000)).subscribe((event: any) => {
+        //     });
+        // }
 
     @ViewChild('quickFilter') quickFilter: ControlPanelUiQuickFilterComponent;
 
@@ -80,7 +80,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     /**
      * column with data
      */
-    columnWithData: string[] = ['name', 'nickname', 'display_name', 'phone', 'age', 'email', 'gender', 'birthyear', 'comment', ];
+    columnWithData: string[] = ['name', 'nickname', 'display_name', 'phone', 'age', 'email', 'gender', 'birthyear', 'comment',];
 
     /**
      * available to sort column
@@ -112,7 +112,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.service.entities$
         .pipe(takeUntil(this.destroyed$))
-        .subscribe(res => {
+        .subscribe(_ => {
             this._dialog && this._dialog.close();
             this._mode = null;
         });
@@ -164,7 +164,7 @@ export class UsersComponent implements OnInit, OnDestroy {
             });
             return;
         }
-        this.openModalDialog(new Visitor());
+        this.openModalDialog(new Visitor(this.initService));
     }
 
     /**
