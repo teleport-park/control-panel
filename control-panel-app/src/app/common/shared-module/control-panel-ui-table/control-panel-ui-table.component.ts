@@ -133,7 +133,7 @@ export class ControlPanelUiTableComponent<T> implements OnInit {
      */
     @Output() add: EventEmitter<void> = new EventEmitter();
 
-    @Output() boundCard: EventEmitter<T> = new EventEmitter();
+    @Output() bindCard: EventEmitter<T> = new EventEmitter();
 
     /**
      * Emit pagination changes

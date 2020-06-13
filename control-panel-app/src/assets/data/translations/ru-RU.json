@@ -200,12 +200,12 @@
   "COMMENT": "Комментарий",
   "BINDING": "Принадлежность",
   "BOUND_AT": "Првязана",
-  "BOUND": "Привязать",
-  "UNBOUND": "Отвязать",
-  "CARD_UNBOUND": "Карта не привязана",
-  "TABLE_BOUND_CARD": "Привязать карту",
-  "BOUND_CARD_SUCCESS": "Карта успешно привязана",
-  "UNBOUND_CARD_SUCCESS": "Карта успешно отвязана",
+  "BIND": "Привязать",
+  "UNBIND": "Отвязать",
+  "CARD_UNBIND": "Карта не привязана",
+  "TABLE_BIND_CARD": "Привязать карту",
+  "BIND_CARD_SUCCESS": "Карта успешно привязана",
+  "UNBIND_CARD_SUCCESS": "Карта успешно отвязана",
   "ENTER_CARD_NUMBER": "Введите номер карты",
   "FOR_USER": "для пользователя",
   "PLAYERS_COUNT": "Количество игроков",
@@ -347,5 +347,7 @@
   "REPORT_TIMES": "Отчет по времени",
   "REPORT_STARTS": "Отчет по запускам",
   "REPORT_BILLS": "Отчет по счетам",
-  "REPORT_PREVIEW": "Предпросмотр отчета"
+  "REPORT_PREVIEW": "Предпросмотр отчета",
+  "REPORT_CONDITION": "Отчет по условию",
+  "REPORT_PERIOD": "Отчет за период"
 }

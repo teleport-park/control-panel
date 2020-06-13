@@ -38,18 +38,18 @@ export class CardsService {
       });
    }
 
-   unboundCard(id: string) {
+   unbindCard(id: string) {
       this.http.delete(this.apiUrl.getCards('DELETE', id), {responseType: 'text'})
       .subscribe(res => {
-         this.toaster.info('UNBOUND_CARD_SUCCESS', true);
+         this.toaster.info('UNBIND_CARD_SUCCESS', true);
          this.getCards();
       });
    }
 
-   boundCard(id: string, user: {id: string, type: 'visitor' | 'staff'}) {
+   bindCard(id: string, user: {id: string, type: 'visitor' | 'staff'}) {
       this.http.put(this.apiUrl.getCards('PUT', id), user, {responseType: 'text'})
       .subscribe(res => {
-         this.toaster.success('BOUND_CARD_SUCCESS', true);
+         this.toaster.success('BIND_CARD_SUCCESS', true);
       });
    }
 

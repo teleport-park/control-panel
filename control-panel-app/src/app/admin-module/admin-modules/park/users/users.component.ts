@@ -232,14 +232,14 @@ export class UsersComponent implements OnInit, OnDestroy {
         this.service.getEntities(this.quickFilter.quickFilterValue);
     }
 
-    boundCard(user: Visitor) {
+    bindCard(user: Visitor) {
         this.dialog.open(BoundCardDialogComponent, {
             data: {
                 user
             }
         }).afterClosed().subscribe(cardId => {
             if (cardId) {
-                this.cardService.boundCard(cardId, {id: user.id, type: 'visitor'});
+                this.cardService.bindCard(cardId, {id: user.id, type: 'visitor'});
             }
         });
     }

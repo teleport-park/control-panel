@@ -4,4 +4,26 @@
   @include d-block();
   @include custom-scroll();
   overflow: auto;
+  .grid_wrapper {
+    height: 100%;
+    padding: 2rem;
+    .grid {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto;
+      min-height: 500px;
+      grid-gap: 2rem;
+    }
+    .grid-4-to-4 {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      min-height: 500px;
+      grid-gap: 2rem;
+    }
+  }
 }

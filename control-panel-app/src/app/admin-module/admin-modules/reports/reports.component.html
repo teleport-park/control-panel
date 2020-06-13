@@ -1,10 +1,15 @@
-<div class="light-theme d-flex flex-wrap">
-    <control-panel-ui-report-item *ngFor="let type of service.reportTypes"
-                                  [type]="type.value"
-                                  [title]="translations.instant(type.title)"
-                                  (typeSelect)="clickHandler($event)">
-        <mat-icon class="icon" icon>{{type.icon}}</mat-icon>
-    </control-panel-ui-report-item>
+<div class="light-theme grid_wrapper">
+    <div [class.grid]="service.reportTypes.length !== 4" [class.grid-4-to-4]="service.reportTypes.length === 4">
+        <div *ngFor="let type of service.reportTypes">
+            <control-panel-ui-report-item
+                    [type]="type.value"
+                    [title]="translations.instant(type.title)"
+                    (typeSelect)="clickHandler($event)">
+                <mat-icon class="icon" icon>{{type.icon}}</mat-icon>
+            </control-panel-ui-report-item>
+        </div>
+    </div>
+
 </div>
 
 
