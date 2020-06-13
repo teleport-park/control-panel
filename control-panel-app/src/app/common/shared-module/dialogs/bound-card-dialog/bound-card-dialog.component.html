@@ -9,6 +9,6 @@
     <mat-error *ngIf="cardNumber?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
 </mat-form-field>
 <control-panel-ui-action-toolbar
-        confirmLabel="BOUND"
+        confirmLabel="BIND"
         (confirm)="dialogSubmit()"
         (cancel)="dialogRef.close()"></control-panel-ui-action-toolbar>

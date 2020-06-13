@@ -1,5 +1,5 @@
 <mat-tab-group [@.disabled]="true" color="accent">
-    <mat-tab label="{{'ADMIN_MENU_CARDS' | translate}}" >
+    <mat-tab label="{{translations.instant('ADMIN_MENU_CARDS')}}" >
         <div class="card_wrapper light-theme">
             <control-panel-ui-card class="primary">
                 <div panelUICardHeaderTitle>{{translations.instant('CARD_LIST')}}</div>
@@ -83,7 +83,7 @@
             </control-panel-ui-card>
         </div>
     </mat-tab>
-    <mat-tab label="{{'ADMIN_WHO_IS' | translate}}" class="who-is_tab">
+    <mat-tab label="{{translations.instant('ADMIN_WHO_IS')}}" class="who-is_tab">
         <div class="who-is">
             <who-is></who-is>
         </div>

@@ -12,7 +12,7 @@
 }
 
 .material-icons {
-  font-family: 'Material Icons';
+  font-family: 'Material Icons', sans-serif;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -68,6 +68,12 @@ html, body {
 
   h6 {
     font-size: 1rem;
+  }
+
+  button {
+    .mat-icon {
+      margin-bottom: .25rem;
+    }
   }
 
   .toaster-error {
@@ -164,6 +170,7 @@ html, body {
 
     .mat-success {
       color: $success;
+
       &.mat-checked {
         .mat-slide-toggle-label {
           .mat-slide-toggle-bar {
@@ -191,6 +198,7 @@ html, body {
     .mat-tab-labels {
       background-color: #fff;
     }
+
     .cdk-drag-preview {
       box-sizing: border-box;
       border-radius: 4px;
@@ -290,12 +298,14 @@ html, body {
     border: solid 1px rgba(0, 0, 0, .2);
     padding: .5rem;
     cursor: move;
+
     & * {
       color: #000;
     }
 
     .mat-success {
       color: $success;
+
       &.mat-checked {
         .mat-slide-toggle-label {
           .mat-slide-toggle-bar {
@@ -313,12 +323,15 @@ html, body {
       .mat-icon {
         color: map-get($accent-color, 500);
       }
+
       color: map-get($accent-color, 500);
     }
+
     .mat-warn {
       .mat-icon {
         color: $warn;
       }
+
       color: $warn;
     }
 
@@ -344,9 +357,9 @@ html, body {
   }
 
 
-
   .cdk-drag-placeholder {
     opacity: .5;
+
     &:after {
       content: '';
       position: absolute;

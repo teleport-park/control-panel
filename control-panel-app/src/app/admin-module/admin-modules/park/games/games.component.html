@@ -8,7 +8,7 @@
                         (click)="changePriceForSelectedHandler()">{{translations.instant('CHANGE_PRICE_FOR_SELECTED')}}</button>
             </div>
 
-            <table mat-table [dataSource]="dataSource" class=" w-100">
+            <table mat-table [dataSource]="dataSource" class="games-table">
                 <ng-container matColumnDef="select">
                     <th mat-header-cell *matHeaderCellDef>
                         <mat-checkbox (change)="$event ? masterToggle() : null"

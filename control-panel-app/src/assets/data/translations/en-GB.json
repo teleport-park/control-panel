@@ -200,9 +200,9 @@
   "BINDING": "Belong",
   "BOUND_AT": "Bound at",
   "BIND": "Bind",
-  "UNBIND": "To unbind",
-  "CARD_UNBOUND": "Card unbound",
-  "TABLE_BIND_CARD": "To bind card",
+  "UNBIND": "Unbind card",
+  "CARD_UNBIND": "Card is unbound",
+  "TABLE_BIND_CARD": "Bind card",
   "BIND_CARD_SUCCESS": "Card bounded successfully",
   "UNBIND_CARD_SUCCESS": "Card unbounded successfully",
   "ENTER_CARD_NUMBER": "Enter card number",
@@ -344,5 +344,6 @@
   "REPORT_BILLS": "Report by bills",
   "REPORT_PREVIEW": "Report preview",
   "REPORT_CONDITION": "Report by condition",
-  "REPORT_PERIOD": "Report by period"
+  "REPORT_PERIOD": "Report by period",
+  "TOTALS": "Totals"
 }

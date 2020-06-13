@@ -2,8 +2,9 @@
    <div class="flex-grow-1">
        <button mat-raised-button *ngIf="iconSet"
                color="primary"
+               class="pl-3"
                (click)="addEntity()">
-           <mat-icon>{{iconSet}}</mat-icon>
+           <mat-icon class="mb-1 mr-2">{{iconSet}}</mat-icon>
            {{translations.instant('TABLE_ADD')}}
        </button>
    </div>

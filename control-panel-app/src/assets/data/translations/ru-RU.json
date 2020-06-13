@@ -349,5 +349,6 @@
   "REPORT_BILLS": "Отчет по счетам",
   "REPORT_PREVIEW": "Предпросмотр отчета",
   "REPORT_CONDITION": "Отчет по условию",
-  "REPORT_PERIOD": "Отчет за период"
+  "REPORT_PERIOD": "Отчет за период",
+  "TOTALS": "Суммарно"
 }
