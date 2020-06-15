@@ -345,5 +345,6 @@
   "REPORT_PREVIEW": "Report preview",
   "REPORT_CONDITION": "Report by condition",
   "REPORT_PERIOD": "Report by period",
-  "TOTALS": "Totals"
+  "TOTALS": "Totals",
+  "ACCOUNT_ID": "Account"
 }

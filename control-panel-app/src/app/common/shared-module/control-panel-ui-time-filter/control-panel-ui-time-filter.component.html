@@ -1,9 +1,9 @@
 <div class="time-filter mb-3">
-    <h4 class="mb-4">{{'TIME_PERIOD_FILTER_TITLE' | translate}}</h4>
+    <h4 class="mb-4">{{translations.instant('TIME_PERIOD_FILTER_TITLE')}}</h4>
     <control-panel-ui-period-selector
-            fromLabel="{{'EXTENDED_FILTER_FROM' | translate}}"
-            toLabel="{{'EXTENDED_FILTER_TO' | translate}}"
-            submitLabel="{{'SEARCH_BY_PERIOD' | translate}}"
+            fromLabel="{{translations.instant('EXTENDED_FILTER_FROM')}}"
+            toLabel="{{translations.instant('EXTENDED_FILTER_TO')}}"
+            submitLabel="{{translations.instant('SEARCH_BY_PERIOD')}}"
             (selectPeriod)="applyFilter($event)"
     ></control-panel-ui-period-selector>
 </div>

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { TranslateService } from '../../translations-module';
 
 @Component({
    selector: 'control-panel-ui-quick-filter',
@@ -23,7 +24,7 @@ export class ControlPanelUiQuickFilterComponent implements OnDestroy {
 
    @Output() filterChange: EventEmitter<string> = new EventEmitter();
 
-   constructor() {
+   constructor(public translations: TranslateService) {
       this._control.valueChanges.pipe(
          debounceTime(500),
          distinctUntilChanged(),

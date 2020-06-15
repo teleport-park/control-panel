@@ -1,7 +1,7 @@
 <mat-form-field class="filter-input">
     <input matInput [formControl]="_control"
            autocomplete="off"
-           placeholder="{{label | translate}}">
+           placeholder="{{translations.instant(label)}}">
     <mat-icon matPrefix class="search-filter-icon">search</mat-icon>
     <mat-icon *ngIf="_control.value"
               matSuffix

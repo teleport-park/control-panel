@@ -45,8 +45,7 @@ export interface Options {
 @Component({
     selector: 'extended-filters',
     templateUrl: './extended-filters.component.html',
-    styleUrls: ['./extended-filters.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls: ['./extended-filters.component.scss']
 })
 
 export class ExtendedFiltersComponent<T> implements OnInit, OnDestroy {

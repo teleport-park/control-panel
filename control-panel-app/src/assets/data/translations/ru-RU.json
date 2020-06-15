@@ -350,5 +350,6 @@
   "REPORT_PREVIEW": "Предпросмотр отчета",
   "REPORT_CONDITION": "Отчет по условию",
   "REPORT_PERIOD": "Отчет за период",
-  "TOTALS": "Суммарно"
+  "TOTALS": "Суммарно",
+  "ACCOUNT_ID": "Аккаунт"
 }

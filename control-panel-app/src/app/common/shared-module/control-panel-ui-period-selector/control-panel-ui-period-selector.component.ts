@@ -1,6 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, Output, QueryList, Renderer2, ViewChildren } from '@angular/core';
 import { Moment } from 'moment';
 import { FormControl } from '@angular/forms';
+import { TranslateService } from '../../translations-module';
 
 const moment = require('moment');
 
@@ -74,7 +75,7 @@ export class ControlPanelUiPeriodSelectorComponent {
     _toTimeControl = new FormControl(this.timeStamp.format('HH:mm'));
 
 
-    constructor(private renderer: Renderer2) {
+    constructor(private renderer: Renderer2, public translations: TranslateService) {
     }
 
     public setPeriod(unit: string, value: number, index: number) {
