@@ -87,6 +87,8 @@ export class LanguageSwitcherComponent implements OnDestroy, OnInit {
             .pipe(takeUntil(this.destroyed$))
             .subscribe((locale: string) => {
                 this.locale = locale;
+                this.cd.markForCheck();
+                this.cd.detectChanges();
             });
     }
 
@@ -99,8 +101,6 @@ export class LanguageSwitcherComponent implements OnDestroy, OnInit {
         if (event.value !== this.translations.locale) {
             this.translations.getTranslations(event.value);
         }
-        this.cd.markForCheck();
-        this.cd.detectChanges();
     }
 
     ngOnDestroy(): void {

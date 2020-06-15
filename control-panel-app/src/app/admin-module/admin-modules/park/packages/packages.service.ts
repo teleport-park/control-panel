@@ -16,8 +16,6 @@ export class PackagesService {
 
     promo$: BehaviorSubject<Promo[]> = new BehaviorSubject([]);
 
-    public packageIdForEdit: string;
-
     constructor(private http: HttpClient,
                 private urlService: ApiUrlsService,
                 private toaster: ToasterService,

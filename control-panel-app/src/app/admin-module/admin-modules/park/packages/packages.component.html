@@ -5,7 +5,7 @@
                 <control-panel-ui-card class="primary">
                     <div panelUICardHeaderTitle>{{translations.instant('PACKAGES_LIST_TITLE')}}</div>
                     <div panelUICardContent>
-                        <a mat-flat-button color="primary" routerLink="add" class="pl-2 mt-3 mb-3"><mat-icon class="mr-2">add</mat-icon>{{'ADD_PACKAGE_TITLE' | translate}}</a>
+                        <a mat-flat-button color="primary" routerLink="add" class="pl-2 mt-3 mb-3"><mat-icon class="mr-2">add</mat-icon>{{translations.instant('ADD_PACKAGE_TITLE')}}</a>
                         <div>
                             <control-panel-ui-quick-filter (filterChange)="applyFilter($event)"></control-panel-ui-quick-filter>
                         </div>
