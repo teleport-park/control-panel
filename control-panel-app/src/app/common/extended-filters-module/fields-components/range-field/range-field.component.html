@@ -4,11 +4,12 @@
         <mat-label>{{translations.instant('EXTENDED_FILTER_FROM')}}</mat-label>
         <input matInput type="number" [min]="checkMin()" [formControlName]="config.group[0].property">
         <mat-error *ngIf="group.get(config.group[0].property)?.errors?.min">{{('MIN_VALUE_ERROR' | translate) + ' ' + group.get(config.group[0].property)?.errors?.min.min}}</mat-error>
+        <mat-error *ngIf="group.get(config.group[0].property)?.errors?.max">{{('MAX_VALUE_ERROR' | translate) + ' ' + group.get(config.group[0].property)?.errors?.max.max}}</mat-error>
     </mat-form-field>
     <mat-form-field class="range-field" color="primary">
         <mat-label>{{translations.instant('EXTENDED_FILTER_TO')}}</mat-label>
         <input matInput type="number" [max]="checkMax()" [min]="checkMin()" [formControlName]="config.group[1].property">
         <mat-error *ngIf="group.get(config.group[1].property)?.errors?.max">{{('MAX_VALUE_ERROR' | translate) + ' ' + group.get(config.group[1].property)?.errors?.max.max}}</mat-error>
-        <mat-error *ngIf="group.get(config.group[1].property)?.errors?.min">{{('MIN_VALUE_ERROR' | translate) + ' ' + group.get(config.group[0].property)?.errors?.min.min}}</mat-error>
+        <mat-error *ngIf="group.get(config.group[1].property)?.errors?.min">{{('MIN_VALUE_ERROR' | translate) + ' ' + group.get(config.group[1].property)?.errors?.min.min}}</mat-error>
     </mat-form-field>
 </div>

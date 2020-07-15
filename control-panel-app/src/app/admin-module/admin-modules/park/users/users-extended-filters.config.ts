@@ -10,9 +10,9 @@ export const UserExtendedFilterConfig: ExtendedFilterFieldGroup[] = [
         to: 99,
         group: [
             {
-                property: 'age_min', initialValue: null, validators: [{key: 'min', value: 1}]
+                property: 'age_min', initialValue: null, validators: [{key: 'min', value: 1}, {key: 'max', value: 99}]
             },
-            {property: 'age_max', validators: [{key: 'max', value: 99}]}
+            {property: 'age_max', validators: [{key: 'min', value: 1}, {key: 'max', value: 99}]}
         ],
     }, {
         property: 'genders[]',
@@ -34,8 +34,16 @@ export const UserExtendedFilterConfig: ExtendedFilterFieldGroup[] = [
 
 export class ExtendedConfigBuilder {
     constructor(private initService: InitService) {
-        const prop = UserExtendedFilterConfig[0].group[0];
-        prop.initialValue = prop.validators[0].value = initService.config.visitor_min_age || 1;
+        const prop = UserExtendedFilterConfig[0].group;
+        prop[0].initialValue = initService.config.visitor_min_age;
+        prop.map(p => {
+            p.validators.forEach(v => {
+               if (v.key === 'min') {
+                   v.value = initService.config.visitor_min_age;
+               }
+            });
+        });
+        console.log(prop);
     }
 
     get config() {

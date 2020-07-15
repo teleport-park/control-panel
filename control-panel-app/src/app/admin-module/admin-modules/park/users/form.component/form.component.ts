@@ -148,7 +148,11 @@ export class FormComponent {
             Object.assign(this.user, user);
             // need to add masked value to user phone
             this.user.phone = this.phoneInput.nativeElement.value;
-            this.user.age = +this.userForm.get('age').value;
+            if (!+this.userForm.get('age').value) {
+                delete this.user.age;
+            } else {
+                this.user.age = +this.userForm.get('age').value || null;
+            }
             this.extractNickName(user);
             if (!user.email) {
                 delete this.user.email;

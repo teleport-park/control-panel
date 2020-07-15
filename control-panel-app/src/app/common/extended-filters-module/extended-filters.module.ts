@@ -10,6 +10,7 @@ import { CheckBoxGroupFieldComponent } from './fields-components/check-box-group
 import { RangeFieldComponent } from './fields-components/range-field/range-field.component';
 import { RadioButtonGroupFieldComponent } from './fields-components/radio-button-group-field/radio-button-group-field.component';
 import { TranslationModule } from '../translations-module/translation.module';
+import { SharedModule } from '../shared-module/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { TranslationModule } from '../translations-module/translation.module';
     RangeFieldComponent,
     RadioButtonGroupFieldComponent],
     imports: [
-        CommonModule, MaterialModule, ReactiveFormsModule, TranslationModule
+        CommonModule, MaterialModule, ReactiveFormsModule, TranslationModule, SharedModule
     ],
   exports: [ExtendedFiltersComponent, ExtendedFiltersDirective],
   entryComponents: [

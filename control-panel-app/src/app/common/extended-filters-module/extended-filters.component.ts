@@ -1,15 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    EventEmitter,
-    Input,
-    OnDestroy,
-    OnInit,
-    Output,
-    QueryList,
-    ViewChildren
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '../translations-module';
 import { EMPTY, Subject, Subscription } from 'rxjs';
@@ -29,7 +18,7 @@ export interface ExtendedFilterFieldGroup {
     from?: number;
     to?: number;
     initialValue?: any;
-    validators?: [{ key: string, value: any }];
+    validators?: Array<{ key: string, value: any }>;
 }
 
 /**
@@ -66,7 +55,7 @@ export class ExtendedFiltersComponent<T> implements OnInit, OnDestroy {
 
     private destroyed$: Subject<boolean> = new Subject<boolean>();
 
-    constructor(private fb: FormBuilder, public translations: TranslateService, private cd: ChangeDetectorRef) {
+    constructor(private fb: FormBuilder, public translations: TranslateService) {
     }
 
     ngOnInit() {
@@ -84,9 +73,7 @@ export class ExtendedFiltersComponent<T> implements OnInit, OnDestroy {
                 control.group.forEach(childControl => {
                     const c = this.fb.control(childControl.value);
                     if (childControl.validators && childControl.validators.length) {
-                        childControl.validators.forEach(validator => {
-                            c.setValidators(Validators[validator.key](validator.value));
-                        });
+                        c.setValidators(childControl.validators.map(validator => Validators[validator.key](validator.value)));
                     }
                     if (childControl.initialValue) {
                         c.setValue(childControl.initialValue);
@@ -123,6 +110,7 @@ export class ExtendedFiltersComponent<T> implements OnInit, OnDestroy {
                     invalid.forEach(name => {
                         delete values[name];
                     });
+                    return EMPTY;
                 }
                 this.applyFilter.emit(values);
                 return EMPTY;

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Visitor } from '../../../../models';
 
@@ -26,8 +26,7 @@ import { Sort } from '@angular/material/sort';
 @Component({
     selector: 'app-users',
     templateUrl: './users.component.html',
-    styleUrls: ['./users.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls: ['./users.component.scss']
 })
 
 export class UsersComponent implements OnInit, OnDestroy {
@@ -80,7 +79,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     /**
      * column with data
      */
-    columnWithData: string[] = ['name', 'nickname', 'display_name', 'phone', 'age', 'email', 'gender', 'birthyear', 'comment',];
+    columnWithData: string[] = ['name', 'nickname', 'display_name', 'phone', 'age', 'email', 'gender', 'birthyear', 'comment'];
 
     /**
      * available to sort column

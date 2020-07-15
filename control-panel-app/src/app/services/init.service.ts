@@ -44,6 +44,8 @@ export class InitService {
                 if (config && config.api_url) {
                     console.log('[API_URL]:', config.api_url);
                     this.config = {...this.config, ...config};
+                    this.config.visitor_min_age =
+                        this.config.visitor_min_age > 0 && this.config.visitor_min_age <= 99 && parseInt(this.config.visitor_min_age + '', 10) ? this.config.visitor_min_age : 1;
                     const apiUrlFromStorage = JSON.parse(localStorage.getItem(this.API_URL));
                     this._defaultApiUrl = config.api_url;
                     if (apiUrlFromStorage) {

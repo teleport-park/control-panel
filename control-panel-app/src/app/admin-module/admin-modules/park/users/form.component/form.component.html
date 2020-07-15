@@ -3,7 +3,7 @@
         <h4>{{translations.instant('USER')}}</h4>
         <form [formGroup]="userForm" class="user-form light-theme">
             <mat-form-field class="mb-3">
-                <input matInput placeholder="{{'USER_NAME' | translate}} ({{'NICK_NAME' | translate}})"
+                <input matInput placeholder="{{'USER_NAME' | translate}} ({{'NICK_NAME' | translate}})" maxlength="100"
                        formControlName="name">
                 <mat-icon matPrefix
                           (click)="$event.stopPropagation(); toggleGender()"
@@ -27,7 +27,7 @@
             <div class="age-gender_wrapper mb-3">
                 <mat-form-field class="age-field">
                     <mat-label>{{'USER_AGE' | translate}}</mat-label>
-                    <input matInput formControlName="age" number type="number" max="99" min="{{initService.config.visitor_min_age}}" (change)="ageChange()">
+                    <input matInput formControlName="age" number (change)="ageChange()">
                     <mat-error
                             *ngIf="userForm.get('age')?.errors?.min">{{'MIN_AGE_VALIDATION_ERROR' | translate:[userForm.get('age')?.errors?.min?.min]}}</mat-error>
                     <mat-error
@@ -39,7 +39,7 @@
                 </mat-radio-group>
             </div>
             <mat-form-field class="mb-3">
-                <input matInput placeholder="{{'EMAIL' | translate}}" formControlName="email">
+                <input matInput placeholder="{{'EMAIL' | translate}}" formControlName="email" maxlength="255">
                 <mat-error
                         *ngIf="userForm.get('email')?.hasError('pattern') && !userForm.get('email')?.hasError('required')">
                     {{'USER_FORM_VALIDATION_EMAIL' | translate}}
