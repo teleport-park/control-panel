@@ -84,6 +84,14 @@
               "buildOptimizer": true,
               "vendorChunk": false,
               "progress": true
+            },
+            "localhost": {
+              "fileReplacements": [
+                {
+                  "replace": "src/config/app-init-config.json",
+                  "with": "src/config/app-init-config.localhost.json"
+                }
+              ]
             }
           }
         },
@@ -95,6 +103,9 @@
           "configurations": {
             "production": {
               "browserTarget": "control-panel-app:build:production"
+            },
+            "localhost": {
+              "browserTarget": "control-panel-app:build:localhost"
             }
           }
         },

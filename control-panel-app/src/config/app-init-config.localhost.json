@@ -1,0 +1,6 @@
+{
+  "api_url": "https://demo2.teleport-park.com/",
+  "refresh_interval": 200,
+  "ws_url": "ws://localhost:4444",
+  "visitor_min_age": 7
+}
