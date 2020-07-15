@@ -1,7 +1,7 @@
 {
   "users": {
     "sortedColumns": [
-      "name", "registered", "gender", "phone"
+      "name", "registered", "gender", "age"
     ]
   },
   "staff": {
