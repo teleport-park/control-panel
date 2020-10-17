@@ -45,7 +45,7 @@ export class PackagesComponent implements OnInit {
     }
 
     edit(item: Package) {
-        this.router.navigate(['admin', 'park', 'packages', 'add', item.id]);
+        // this.router.navigate(['admin', 'park', 'packages', 'add', item.id]);
     }
 
     applyFilter(value) {
@@ -100,5 +100,9 @@ export class PackagesComponent implements OnInit {
             }
             this.service.deletePackage(pack.id);
         });
+    }
+
+    addPackage() {
+
     }
 }

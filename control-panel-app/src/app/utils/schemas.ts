@@ -8,19 +8,16 @@ export const GameSchema: SchemaValidationItem[] = [
         key: 'name',
         required: true
     }, {
-        key: 'type',
+        key: 'category',
         required: true
     }, {
-        key: 'source',
+        key: 'maxPlayers',
         required: true
     }, {
-        key: 'image_url',
+        key: 'maxDuration',
         required: true
     }, {
-        key: 'active',
-        required: true
-    }, {
-        key: 'prices',
+        key: 'price',
         required: true
     }
 ];

@@ -9,60 +9,45 @@
             </div>
 
             <table mat-table [dataSource]="dataSource" class="games-table">
-                <ng-container matColumnDef="select">
-                    <th mat-header-cell *matHeaderCellDef>
-                        <mat-checkbox (change)="$event ? masterToggle() : null"
-                                      [checked]="selection.hasValue() && isAllSelected()"
-                                      [indeterminate]="selection.hasValue() && !isAllSelected()">
-                        </mat-checkbox>
-                    </th>
-                    <td mat-cell *matCellDef="let row">
-                        <mat-checkbox (click)="$event.stopPropagation()"
-                                      (change)="$event ? selection.toggle(row) : null"
-                                      [checked]="selection.isSelected(row)">
-                        </mat-checkbox>
-                    </td>
-                </ng-container>
                 <ng-container matColumnDef="name">
                     <th mat-header-cell *matHeaderCellDef> {{translations.instant('AMUSEMENTS_NAME_LABEL')}} </th>
-                    <td mat-cell *matCellDef="let game">
-                        <div class="name mt-3">{{game.name}}</div>
+                    <td mat-cell *matCellDef="let price">
+                        <div class="name mt-3">{{price.name}}</div>
                         <div class="sub_text mb-3">
-                            <span>{{translations.instant('ID')}}:</span><span class="info">{{game.id}}</span>
+                            <span>{{translations.instant('ID')}}:</span><span class="info">{{price.id}}</span>
                         </div>
                     </td>
                 </ng-container>
-                <ng-container matColumnDef="source">
-                    <th mat-header-cell *matHeaderCellDef> {{translations.instant('SOURCE')}} </th>
-                    <td mat-cell *matCellDef="let game">
-                        <div class="name mt-3">{{game.source}}</div>
-                        <div class="sub_text mb-3" *ngIf="game.type">
-                            <span>{{'TYPE' | translate}}:</span><span class="info">{{game.type}}</span>
-                        </div>
+                <ng-container matColumnDef="category">
+                    <th mat-header-cell *matHeaderCellDef> {{translations.instant('PACKAGE_CATEGORY')}} </th>
+                    <td mat-cell *matCellDef="let price">
+                        <div>{{price.category}}</div>
                     </td>
                 </ng-container>
-                <ng-container matColumnDef="prices">
-                    <th mat-header-cell *matHeaderCellDef> {{translations.instant('PRICES')}} </th>
-                    <td mat-cell *matCellDef="let game">
-                        <p *ngFor="let price of game.prices" class="d-flex">
-                            <span class="mr-2">{{price.display_name || translations.instant('DEFAULT_PROMO')}}:</span>
-                            <span class="mr-2 label">{{price.amount}} {{price.currency}}</span>
-                        </p>
+                <ng-container matColumnDef="maxPlayers">
+                    <th mat-header-cell *matHeaderCellDef> {{translations.instant('MAX_PLAYERS')}} </th>
+                    <td mat-cell *matCellDef="let price">
+                        <div>{{price.maxPlayers}}</div>
                     </td>
                 </ng-container>
-                <ng-container matColumnDef="active">
-                    <th mat-header-cell *matHeaderCellDef> {{translations.instant('ENABLED')}} </th>
-                    <td mat-cell *matCellDef="let game">
-                        <mat-icon
-                                color="{{game.active ? 'success' : 'warn'}}">{{game.active ? 'check' : 'clear'}}</mat-icon>
+                <ng-container matColumnDef="maxDuration">
+                    <th mat-header-cell *matHeaderCellDef> {{translations.instant('MAX_DURATION')}} </th>
+                    <td mat-cell *matCellDef="let price">
+                        <div>{{price.maxDuration}}</div>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef> {{translations.instant('PRICE')}} </th>
+                    <td mat-cell *matCellDef="let price">
+                        <span class="mr-2 label">{{price.price.amount}} {{price.price.currency}}</span>
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="edit">
                     <th mat-header-cell *matHeaderCellDef></th>
-                    <td mat-cell *matCellDef="let game" (click)="$event.stopPropagation()">
+                    <td mat-cell *matCellDef="let price" (click)="$event.stopPropagation()">
                         <div class="d-flex align-items-center justify-content-between">
                             <button mat-icon-button color="accent"
-                                    (click)="inlineChangePriceHandler(game)">
+                                    (click)="inlineChangePriceHandler(price)">
                                 <mat-icon>edit</mat-icon>
                             </button>
                         </div>

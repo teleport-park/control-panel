@@ -1,3 +1,5 @@
+import {IAmount} from '../../../../interfaces';
+
 export class Package {
     id: string = null;
     name: string = '';
@@ -47,9 +49,4 @@ export interface IPackage<I = string> {
     players: number;
     cost: IAmount;
     charge: IAmount;
-}
-
-export interface IAmount {
-    currency: string;
-    amount: number;
 }

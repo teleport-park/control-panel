@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@a
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Game, Price } from './model/games.model';
+import {Game, IPrice, Price} from './model/games.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { GamesService } from './services/games.service';
 import { TranslateService } from '../../../../common/translations-module';
@@ -29,13 +29,13 @@ export class GamesComponent implements OnInit {
 
     _excludedPromo: string[] = [];
 
-    displayedColumns: string[] = ['select', 'name', 'source', 'prices', 'active', 'edit'];
+    displayedColumns: string[] = ['name', 'category', 'maxPlayers', 'maxDuration', 'price', 'edit'];
 
-    dataSource: MatTableDataSource<Game>;
+    dataSource: MatTableDataSource<IPrice>;
 
-    selection = new SelectionModel<Game>(true, []);
+    selection = new SelectionModel<IPrice>(true, []);
 
-    _editRow: Game = null;
+    _editRow: IPrice = null;
 
     prices: FormArray;
 
@@ -54,8 +54,8 @@ export class GamesComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.service.games$.subscribe((res: Game[]) => {
-            this.dataSource = new MatTableDataSource<Game>(res);
+        this.service.games$.subscribe((res: IPrice[]) => {
+            this.dataSource = new MatTableDataSource<IPrice>(res);
             if (res.length > 10) {
                 this.dataSource.paginator = this.paginator;
             }
@@ -76,12 +76,12 @@ export class GamesComponent implements OnInit {
             this.dataSource.filteredData.forEach(row => this.selection.select(row));
     }
 
-    inlineChangePriceHandler(game: Game) {
+    inlineChangePriceHandler(game: IPrice) {
         this._editRow = game;
         this.changePriceForSelectedHandler(game);
     }
 
-    changePriceForSelectedHandler(game?: Game) {
+    changePriceForSelectedHandler(game?: IPrice) {
         this.selection.selected.length === 1 || game ? this.initForm(this.selection.selected[0] || game) : this.initForm();
         this.updateExcludedPromo();
         this.dialog.open(this.priceDialog, {
@@ -105,7 +105,7 @@ export class GamesComponent implements OnInit {
             price.promo_id = price.promo_id === 'null' ? null : price.promo_id;
             price.amount = Number(price.amount);
         });
-        this.selection.selected.forEach((item: Game) => {
+        this.selection.selected.forEach((item: IPrice) => {
             const payload = {
                 id: item.id,
                 ...prices
@@ -135,23 +135,23 @@ export class GamesComponent implements OnInit {
         this._editRow = null;
     }
 
-    private initForm(game?: Game) {
+    private initForm(game?: IPrice) {
         this.promos = [{
             id: 'null',
             display_name: this.translations.instant('DEFAULT_PROMO'),
             enabled: true
         } as Promo, ...this.promoService.promo$.getValue()].filter(i => !i.removed);
         if (game) {
-            this.prices = this.fb.array([]);
-            game.prices.forEach((price: Price) => {
-                const control = this.fb.group({
-                    promo_id: 'null',
-                    currency: this._currencies[0],
-                    amount: ['', Validators.required]
-                });
-                control.patchValue({...price, ...{promo_id: price.promo_id ? price.promo_id : 'null'}});
-                this.prices.push(control);
-            });
+            // this.prices = this.fb.array([]);
+            // game.prices.forEach((price: Price) => {
+            //     const control = this.fb.group({
+            //         promo_id: 'null',
+            //         currency: this._currencies[0],
+            //         amount: ['', Validators.required]
+            //     });
+            //     control.patchValue({...price, ...{promo_id: price.promo_id ? price.promo_id : 'null'}});
+            //     this.prices.push(control);
+            // });
         } else {
             this.prices = this.fb.array([this.fb.group(
                 {
