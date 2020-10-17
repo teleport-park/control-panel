@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 //@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-@import "control-panel-theme";
+@import 'control-panel-theme';
 @import 'pallete';
 
 @font-face {
@@ -419,5 +419,12 @@ html, body {
         font-size: 1.2rem;
       }
     }
+  }
+  .accent {
+    color: map-get($control-panel-accent, 500);
+  }
+  .semi-bold {
+    font-weight: 600;
+    font-size: 1.1rem;
   }
 }

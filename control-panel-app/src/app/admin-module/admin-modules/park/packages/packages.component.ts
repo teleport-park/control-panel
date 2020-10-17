@@ -134,6 +134,7 @@ export class PackagesComponent implements OnInit {
     }
 
     save() {
+        this._form.markAllAsTouched();
         if (this._form.valid) {
             let data;
             const request = this._form.getRawValue() as IPackage;

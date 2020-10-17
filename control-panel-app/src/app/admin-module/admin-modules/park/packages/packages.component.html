@@ -61,12 +61,14 @@
                                 <span>{{pack.cost.currency}}</span>
                             </ng-container>
                             <ng-container *ngIf="_editPackage?.id === pack.id">
-                                <mat-form-field class="amount">
-                                    <input type="number" matInput
-                                           [formControl]="_form.controls?.cost?.controls?.amount">
-                                    <mat-error *ngIf="_form.controls?.cost?.controls?.amount?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
-                                </mat-form-field>
-                                <span>{{pack.cost.currency}}</span>
+                                <div class="d-flex align-items-center">
+                                    <mat-form-field class="amount">
+                                        <input type="number" matInput
+                                               [formControl]="_form.controls?.cost?.controls?.amount">
+                                        <mat-error *ngIf="_form.controls?.cost?.controls?.amount?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
+                                    </mat-form-field>
+                                    <span class="semi-bold">{{pack.cost.currency}}</span>
+                                </div>
                             </ng-container>
                         </td>
                     </ng-container>
@@ -79,12 +81,14 @@
                                 <span>{{pack.charge.currency}}</span>
                             </ng-container>
                             <ng-container *ngIf="_editPackage?.id === pack.id">
-                                <mat-form-field class="amount">
-                                    <input type="number" matInput
-                                           [formControl]="_form.controls?.charge?.controls?.amount">
-                                    <mat-error *ngIf="_form.controls?.charge?.controls?.amount?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
-                                </mat-form-field>
-                                <span>{{pack.charge.currency}}</span>
+                                <div class="d-flex align-items-center">
+                                    <mat-form-field class="amount">
+                                        <input type="number" matInput
+                                               [formControl]="_form.controls?.charge?.controls?.amount">
+                                        <mat-error *ngIf="_form.controls?.charge?.controls?.amount?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
+                                    </mat-form-field>
+                                    <span class="semi-bold">{{pack.charge.currency}}</span>
+                                </div>
                             </ng-container>
                         </td>
                     </ng-container>

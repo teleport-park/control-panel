@@ -35,7 +35,7 @@ export class PackagesService {
             },
             charge: {
                 amount: 50,
-                currency: 'TPL'
+                currency: 'TPLVR'
             }
         }, {
             id: '2',
@@ -48,7 +48,7 @@ export class PackagesService {
             },
             charge: {
                 amount: 100,
-                currency: 'TPL'
+                currency: 'TPLVR'
             }
         },{
             id: '3',
@@ -61,7 +61,7 @@ export class PackagesService {
             },
             charge: {
                 amount: 25,
-                currency: 'TPL'
+                currency: 'TPLVR'
             }
         }]
         this.loaderService.dispatchShowLoader(true);
