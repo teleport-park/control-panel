@@ -1,6 +1,6 @@
 import {IAmount} from '../../../../interfaces';
 
-export class Package {
+export class PackageRequest {
     id: string = null;
     name: string = '';
     players?: number = null;
@@ -43,10 +43,27 @@ export class Charge {
 }
 
 export interface IPackage<I = string> {
-    id: I;
+    id?: I;
     name: string;
     note: string | null;
     players: number;
     cost: IAmount;
     charge: IAmount;
+}
+
+export class Package implements IPackage<string> {
+    constructor() {
+    }
+    id: string = '-1';
+    name: string = '';
+    note: string | null = '';
+    players: number = 1;
+    cost: IAmount = {
+        amount: 0,
+        currency: 'BYN'
+    };
+    charge: IAmount = {
+        amount: 0,
+        currency: 'TPLVR'
+    };
 }

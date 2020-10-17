@@ -7,7 +7,7 @@ import { PackagesService } from '../packages.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../../common/shared-module';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Charge, Package, Payment } from '../package.model';
+import { Charge, PackageRequest, Payment } from '../package.model';
 import { Promo } from '../../promo/promo.model';
 import { PromoService } from '../../promo/services/promo.service';
 import { Subject } from 'rxjs';
@@ -66,7 +66,7 @@ export class AddPackageComponent implements OnInit, OnDestroy {
         this._packageId = this.activatedRoute.snapshot.params.id;
         if (this._packageId) {
             this.service.getPackage(this._packageId)
-            .subscribe((pack: Package) => {
+            .subscribe((pack: PackageRequest) => {
                 this.initForm();
                 this.form.patchValue(pack);
                 pack.plans.forEach((plan: { promo_id: string, charges: Charge[], payments: Payment[] }) => {
@@ -161,7 +161,7 @@ export class AddPackageComponent implements OnInit, OnDestroy {
         if (this.form.invalid) {
             return;
         }
-        const payload = this.form.getRawValue() as Package;
+        const payload = this.form.getRawValue() as PackageRequest;
         payload.plans.forEach(plan => {
             plan.promo_id = plan.promo_id === 'null' ? null : plan.promo_id;
             plan.payments.forEach(payment => {

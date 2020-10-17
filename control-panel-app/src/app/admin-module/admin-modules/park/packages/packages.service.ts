@@ -4,7 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { LoaderService } from '../../../../services/loader.service';
 import { ToasterService } from '../../../../services/toaster.service';
-import {IPackage, Package, PackageResponse} from './package.model';
+import {IPackage, PackageRequest, PackageResponse} from './package.model';
 import { Promo } from '../promo/promo.model';
 import { PromoService } from '../promo/services/promo.service';
 
@@ -77,7 +77,7 @@ export class PackagesService {
         return this.http.get(this.urlService.getPackages('GET', id));
     }
 
-    public addPackage(data: Package) {
+    public addPackage(data: PackageRequest) {
         this.loaderService.dispatchShowLoader(true);
         this.http.post(this.urlService.getPackages('POST'), data).subscribe(
             _ => {
@@ -86,7 +86,7 @@ export class PackagesService {
             });
     }
 
-    public editPackage(data: Package, id: string) {
+    public editPackage(data: PackageRequest, id: string) {
         this.http.put(this.urlService.getPackages('PUT', id), data).subscribe(
             _ => {
                 this.toaster.success('PACKAGE_EDITED_SUCCESSFUL', true);

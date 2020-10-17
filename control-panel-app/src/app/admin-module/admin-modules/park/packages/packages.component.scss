@@ -47,6 +47,11 @@
         width: 25rem;
       }
     }
+    .mat-cell {
+      &.disabled {
+        opacity: .3;
+      }
+    }
     .name {
       word-break: break-all;
       color: rgba(0, 0, 0, 0.7);
@@ -57,6 +62,10 @@
       &:hover {
         color: rgba(0, 0, 0, 1);
       }
+    }
+    .amount {
+      max-width: 7rem;
+      margin-right: 1rem;
     }
   }
 }
