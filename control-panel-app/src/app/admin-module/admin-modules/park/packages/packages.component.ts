@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@a
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatTableDataSource } from '@angular/material/table';
-import { Package, PackageResponse } from './package.model';
+import {IPackage, Package, PackageResponse} from './package.model';
 import { PackagesService } from './packages.service';
 import { TranslateService } from '../../../../common/translations-module';
 import { Router } from '@angular/router';
@@ -21,11 +21,11 @@ export class PackagesComponent implements OnInit {
 
     @ViewChild('formTemplate') formTemplate: TemplateRef<any>;
 
-    displayedColumns: string[] = ['name', 'players', 'totals', 'enabled', 'submenu'];
+    displayedColumns: string[] = ['name', 'players', 'cost', 'charge', 'actions'];
 
-    _sliderValue: string = '00:00';
+    // _sliderValue: string = '00:00';
 
-    dataSource: MatTableDataSource<PackageResponse>;
+    dataSource: MatTableDataSource<IPackage>;
 
 
     constructor(public service: PackagesService,

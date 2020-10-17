@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { LoaderService } from '../../../../services/loader.service';
 import { ToasterService } from '../../../../services/toaster.service';
-import { Package, PackageResponse } from './package.model';
+import {IPackage, Package, PackageResponse} from './package.model';
 import { Promo } from '../promo/promo.model';
 import { PromoService } from '../promo/services/promo.service';
 
@@ -12,7 +12,7 @@ import { PromoService } from '../promo/services/promo.service';
 
 export class PackagesService {
 
-    packages$: BehaviorSubject<PackageResponse[]> = new BehaviorSubject([]);
+    packages$: BehaviorSubject<IPackage[]> = new BehaviorSubject([]);
 
     promo$: BehaviorSubject<Promo[]> = new BehaviorSubject([]);
 
@@ -24,13 +24,53 @@ export class PackagesService {
     }
 
     public getPackages() {
+        const result: IPackage[] = [{
+            id: '1',
+            name: 'TEST',
+            note: 'TEST_NOTE',
+            players: 2,
+            cost: {
+                amount: 100,
+                currency: 'BYN'
+            },
+            charge: {
+                amount: 50,
+                currency: 'TPL'
+            }
+        }, {
+            id: '2',
+            name: 'TEST',
+            note: 'TEST_NOTE',
+            players: 5,
+            cost: {
+                amount: 200,
+                currency: 'BYN'
+            },
+            charge: {
+                amount: 100,
+                currency: 'TPL'
+            }
+        },{
+            id: '3',
+            name: 'TEST',
+            note: 'TEST_NOTE',
+            players: 1,
+            cost: {
+                amount: 50,
+                currency: 'BYN'
+            },
+            charge: {
+                amount: 25,
+                currency: 'TPL'
+            }
+        }]
         this.loaderService.dispatchShowLoader(true);
-        this.http.get(this.urlService.getPackages('GET'))
-        .subscribe((result: PackageResponse[]) => {
+        // this.http.get(this.urlService.getPackages('GET'))
+        // .subscribe((result: IPackage[]) => {
             this.packages$.next(result);
-            this.setFilteredPromo(result);
+            // this.setFilteredPromo(result);
             this.loaderService.dispatchShowLoader(false);
-        });
+        // });
     }
 
     public getPackage(id: string) {
@@ -72,7 +112,7 @@ export class PackagesService {
         });
     }
 
-    public setFilteredPromo(pack: PackageResponse[]) {
+    public setFilteredPromo(pack: IPackage[]) {
         const promo = this.promoService.promo$.getValue();
         this.promo$.next(promo);
     }

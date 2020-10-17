@@ -18,7 +18,7 @@ export class PromoService {
     }
 
     constructor(private http: HttpClient, private url: ApiUrlsService) {
-        this.getPromo();
+        // this.getPromo();
     }
 
     getPromo() {

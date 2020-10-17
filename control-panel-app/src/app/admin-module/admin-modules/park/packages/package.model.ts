@@ -39,3 +39,17 @@ export class Charge {
     currency: string;
     amount: number;
 }
+
+export interface IPackage<I = string> {
+    id: I;
+    name: string;
+    note: string | null;
+    players: number;
+    cost: IAmount;
+    charge: IAmount;
+}
+
+export interface IAmount {
+    currency: string;
+    amount: number;
+}
