@@ -24,75 +24,26 @@ export class PackagesService {
     }
 
     public getPackages() {
-        const result: IPackage[] = [{
-            id: '1',
-            name: 'TEST',
-            note: 'TEST_NOTE',
-            players: 2,
-            cost: {
-                amount: 100,
-                currency: 'BYN'
-            },
-            charge: {
-                amount: 50,
-                currency: 'TPLVR'
-            }
-        }, {
-            id: '2',
-            name: 'TEST',
-            note: 'TEST_NOTE',
-            players: 5,
-            cost: {
-                amount: 200,
-                currency: 'BYN'
-            },
-            charge: {
-                amount: 100,
-                currency: 'TPLVR'
-            }
-        },{
-            id: '3',
-            name: 'TEST',
-            note: 'TEST_NOTE',
-            players: 1,
-            cost: {
-                amount: 50,
-                currency: 'BYN'
-            },
-            charge: {
-                amount: 25,
-                currency: 'TPLVR'
-            }
-        }]
         this.loaderService.dispatchShowLoader(true);
-        // this.http.get(this.urlService.getPackages('GET'))
-        // .subscribe((result: IPackage[]) => {
+        this.http.get(this.urlService.getPackages('GET'))
+        .subscribe((result: IPackage[]) => {
             this.packages$.next(result);
             // this.setFilteredPromo(result);
             this.loaderService.dispatchShowLoader(false);
-        // });
+        });
     }
 
     public getPackage(id: string) {
         return this.http.get(this.urlService.getPackages('GET', id));
     }
 
-    public addPackage(data: PackageRequest) {
+    public addPackage(data: IPackage, id?: string) {
         this.loaderService.dispatchShowLoader(true);
-        this.http.post(this.urlService.getPackages('POST'), data).subscribe(
+        this.http.post(this.urlService.getPackages('POST', id), data).subscribe(
             _ => {
                 this.toaster.success('PACKAGE_ADDED_SUCCESSFUL', true);
                 this.getPackages();
             });
-    }
-
-    public editPackage(data: PackageRequest, id: string) {
-        this.http.put(this.urlService.getPackages('PUT', id), data).subscribe(
-            _ => {
-                this.toaster.success('PACKAGE_EDITED_SUCCESSFUL', true);
-                this.getPackages();
-            }
-        );
     }
 
     public togglePackage(id: string, body: any) {
@@ -110,10 +61,5 @@ export class PackagesService {
             this.toaster.success('PACKAGE_REMOVED_SUCCESSFUL', true);
             this.getPackages();
         });
-    }
-
-    public setFilteredPromo(pack: IPackage[]) {
-        const promo = this.promoService.promo$.getValue();
-        this.promo$.next(promo);
     }
 }

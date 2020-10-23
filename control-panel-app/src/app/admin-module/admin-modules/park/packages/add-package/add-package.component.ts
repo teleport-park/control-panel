@@ -171,11 +171,11 @@ export class AddPackageComponent implements OnInit, OnDestroy {
                 charge.amount = Number(charge.amount);
             });
         });
-        if (this._packageId) {
-            this.service.editPackage(payload, this._packageId);
-        } else {
-            this.service.addPackage(payload);
-        }
+        // if (this._packageId) {
+        //     this.service.editPackage(payload, this._packageId);
+        // } else {
+        //     this.service.addPackage(payload);
+        // }
         this.router.navigate(['admin', 'park', 'packages']);
     }
 

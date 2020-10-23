@@ -26,7 +26,7 @@ export class PackagesComponent implements OnInit {
 
     @ViewChild('formTemplate') formTemplate: TemplateRef<any>;
 
-    displayedColumns: string[] = ['name', 'players', 'cost', 'charge', 'actions'];
+    displayedColumns: string[] = ['name', 'players', 'cost', 'charge', 'enabled', 'actions'];
 
     dataSource: MatTableDataSource<IPackage>;
 
@@ -136,20 +136,11 @@ export class PackagesComponent implements OnInit {
     save() {
         this._form.markAllAsTouched();
         if (this._form.valid) {
-            let data;
             const request = this._form.getRawValue() as IPackage;
-            // TODO API implementation here
-            if (request.id !== '-1') {
-                data = this.dataSource.data.map((pack: IPackage) => {
-                    return pack.id === request.id ? request : pack
-                })
-            } else {
-                data = this.dataSource.data.map((pack: IPackage) => {
-                    return pack.id === request.id ? request : pack
-                })
+            if (request.id === '-1') {
+                delete request.id
             }
-
-            this.dataSource = new MatTableDataSource(data);
+            this.service.addPackage(request, request.id)
             this._form = null;
             this._editPackage = null;
         }
@@ -168,7 +159,8 @@ export class PackagesComponent implements OnInit {
             charge: this.fb.group({
                 amount: [null, Validators.required],
                 currency: 'TPLVR'
-            })
+            }),
+            enabled: true
         })
     }
 }

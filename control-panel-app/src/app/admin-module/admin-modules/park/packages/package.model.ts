@@ -49,6 +49,7 @@ export interface IPackage<I = string> {
     players: number;
     cost: IAmount;
     charge: IAmount;
+    enabled: boolean;
 }
 
 export class Package implements IPackage<string> {
@@ -66,4 +67,5 @@ export class Package implements IPackage<string> {
         amount: 0,
         currency: 'TPLVR'
     };
+    enabled: boolean
 }
