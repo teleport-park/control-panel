@@ -4,6 +4,7 @@
   "ru-RU": "Русский",
   "en-GB": "English",
   "SELECT_LANGUAGE_PLACEHOLDER": "Выберите язык",
+  "ADD_PRICE_TITLE": "Добавить тариф",
   "MINUTE": "мин.",
   "COST": "Стоимость",
   "ADMIN_MENU_PARK": "Парк",
@@ -220,7 +221,7 @@
   "ONLY_INTEGER_ERROR": "введите целое положительное число",
   "REMOVE_PAYMENT_CONFIRM_MASSAGE": "Удалить платеж №{0} из списка?",
   "REMOVE_CHARGE_CONFIRM_MESSAGE": "Удалить списание №{0} из списка?",
-  "REMOVE_PLAN_CONFIRM_MASSAGE": "Удалить длан №{0} из списка?",
+  "REMOVE_PLAN_CONFIRM_MASSAGE": "Удалить план №{0} из списка?",
   "IN_PERCENTAGE": "в процентах",
   "PLAYER": "Игрок",
   "SELECT_ALL": "выбрать всех",
@@ -308,7 +309,7 @@
   "PACKAGE_SWITCHED_SUCCESSFUL": "Пакет переключен",
   "DEFAULT_PROMO": "По умолчанию",
   "PROMO": "Акция",
-  "DIALOG_REMOVE_CONFIRM_MESSAGE": "Удалить пакет {0} из списка?",
+  "DIALOG_REMOVE_CONFIRM_MESSAGE": "Удалить <span>{0}</span> из списка?",
   "ADD_PAYMENT": "Добавить платеж",
   "ADD_CHARGE": "Добавить начисление",
   "REMOVE_PLAN": "Удалить план",
@@ -355,5 +356,6 @@
   "REPORT_CONDITION": "Отчет по условию",
   "REPORT_PERIOD": "Отчет за период",
   "TOTALS": "Суммарно",
-  "ACCOUNT_ID": "Аккаунт"
+  "ACCOUNT_ID": "Аккаунт",
+  "SUCCESSFULLY": "Успешно"
 }

@@ -1,19 +1,19 @@
-import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import {Game, IPrice, Price} from './model/games.model';
-import { SelectionModel } from '@angular/cdk/collections';
-import { GamesService } from './services/games.service';
-import { TranslateService } from '../../../../common/translations-module';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoaderService } from '../../../../services/loader.service';
-import { Router } from '@angular/router';
-import { Currencies } from '../../../utils/utils';
-import { Promo } from '../promo/promo.model';
-import { PromoService } from '../promo/services/promo.service';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import {IPackage} from '../packages/package.model';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import {IPrice, Price} from './model/games.model';
+import {SelectionModel} from '@angular/cdk/collections';
+import {GamesService} from './services/games.service';
+import {TranslateService} from '../../../../common/translations-module';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {LoaderService} from '../../../../services/loader.service';
+import {Promo} from '../promo/promo.model';
+import {PromoService} from '../promo/services/promo.service';
+import {ConfirmDialogComponent, ConfirmDialogData} from '../../../../common/shared-module';
+import {filter} from 'rxjs/operators';
+import {PriceCategory} from '../../../../utils/utils';
+import {Package} from '../packages/package.model';
 
 @Component({
     selector: 'games',
@@ -26,13 +26,9 @@ export class GamesComponent implements OnInit {
 
     _durations: number[] = [15, 30, 45, 60];
 
-    // @ViewChild('priceDialogTemplate') priceDialog: TemplateRef<any>;
+    _categories: string[] = Object.keys(PriceCategory).map(key => PriceCategory[key]);
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-
-    // _currencies = Currencies;
-    //
-    // _excludedPromo: string[] = [];
 
     displayedColumns: string[] = ['name', 'category', 'maxPlayers', 'maxDuration', 'price', 'enabled', 'edit'];
 
@@ -40,7 +36,7 @@ export class GamesComponent implements OnInit {
 
     selection = new SelectionModel<IPrice>(true, []);
 
-    _editRow: IPrice = null;
+    _editPrice: IPrice = null;
 
     prices: FormArray;
 
@@ -54,6 +50,7 @@ export class GamesComponent implements OnInit {
                 private promoService: PromoService,
                 private cd: ChangeDetectorRef,
                 private fb: FormBuilder,
+                private dialog: MatDialog,
                 public loaderService: LoaderService,
                 public translations: TranslateService) {
     }
@@ -64,7 +61,7 @@ export class GamesComponent implements OnInit {
             if (res.length > 10) {
                 this.dataSource.paginator = this.paginator;
             }
-            this._editRow = null;
+            this._editPrice = null;
             this.cd.markForCheck();
         });
 
@@ -77,26 +74,30 @@ export class GamesComponent implements OnInit {
         this.dataSource.filter = value;
     }
 
-    reset() {
-        this._editRow = null;
+    edit(price: IPrice) {
+        this._editPrice = price;
+        this._form = this.initForm(price)
     }
 
-    edit(price: IPrice) {
-        this._editRow = price;
-        this._form = this.initForm(price)
+    add() {
+        const newPrice = new Price();
+        const data = this.dataSource.data;
+        data.push(newPrice);
+        this.dataSource = new MatTableDataSource(data);
+        this._form = this.initForm();
+        this._form.patchValue(newPrice);
+        this._editPrice = newPrice;
     }
 
     save() {
         if (this._form.valid) {
-            let data;
             const request = this._form.getRawValue() as IPrice;
-            this.service.updatePrice(request);
-            // data = this.dataSource.data.map((pack: IPrice) => {
-            //     return pack.id === request.id ? request : pack
-            // })
-            // this.dataSource = new MatTableDataSource(data);
+            if(request.id === '-1') {
+                delete request.id
+            }
+            this.service.updatePrice(request, request.id);
             this._form = null;
-            this._editRow = null;
+            this._editPrice = null;
         }
     }
 
@@ -117,128 +118,18 @@ export class GamesComponent implements OnInit {
         return form
     }
 
-    // isAllSelected() {
-    //     const numSelected = this.selection.selected.length;
-    //     const numRows = this.dataSource.data.length;
-    //     return numSelected === numRows;
-    // }
-
-    // masterToggle() {
-    //     this.isAllSelected() ?
-    //         this.selection.clear() :
-    //         this.dataSource.filteredData.forEach(row => this.selection.select(row));
-    // }
-
-    // inlineChangePriceHandler(game: IPrice) {
-    //     this._editRow = game;
-    //     this.changePriceForSelectedHandler(game);
-    // }
-
-    // changePriceForSelectedHandler(game?: IPrice) {
-    //     this.selection.selected.length === 1 || game ? this.initForm(this.selection.selected[0] || game) : this.initForm();
-    //     this.updateExcludedPromo();
-    //     this.dialog.open(this.priceDialog, {
-    //         width: '500px'
-    //     });
-    // }
-
-    // applyPrice() {
-    //     this.form.markAllAsTouched();
-    //     if (this.form.invalid) {
-    //         return;
-    //     }
-    //
-    //     const requests = [];
-    //     const prices = this.form.getRawValue();
-    //     prices.prices.forEach(price => {
-    //         price.promo_id = price.promo_id === 'null' ? null : price.promo_id;
-    //         price.amount = Number(price.amount);
-    //     });
-    //     this.selection.selected.forEach((item: IPrice) => {
-    //         const payload = {
-    //             id: item.id,
-    //             ...prices
-    //         };
-    //         requests.push(payload as Game);
-    //     });
-    //     if (this._editRow) {
-    //         const payload = {
-    //             id: this._editRow.id,
-    //             ...prices
-    //         };
-    //         requests.push(payload as Game);
-    //     }
-    //     this.loaderService.dispatchShowLoader(true, 10);
-    //     this.service.updatePrice(requests).subscribe(
-    //         (_: Game[]) => {
-    //             this.service.getGames();
-    //             this.cd.markForCheck();
-    //             this.loaderService.dispatchShowLoader(false);
-    //             this.dialog.closeAll();
-    //             this.reset();
-    //         }
-    //     );
-    // }
-
-    // private initForm(game?: IPrice) {
-    //     this.promos = [{
-    //         id: 'null',
-    //         display_name: this.translations.instant('DEFAULT_PROMO'),
-    //         enabled: true
-    //     } as Promo, ...this.promoService.promo$.getValue()].filter(i => !i.removed);
-    //     if (game) {
-    //         // this.prices = this.fb.array([]);
-    //         // game.prices.forEach((price: Price) => {
-    //         //     const control = this.fb.group({
-    //         //         promo_id: 'null',
-    //         //         currency: this._currencies[0],
-    //         //         amount: ['', Validators.required]
-    //         //     });
-    //         //     control.patchValue({...price, ...{promo_id: price.promo_id ? price.promo_id : 'null'}});
-    //         //     this.prices.push(control);
-    //         // });
-    //     } else {
-    //         this.prices = this.fb.array([this.fb.group(
-    //             {
-    //                 promo_id: 'null',
-    //                 currency: this._currencies[0],
-    //                 amount: ['', Validators.required]
-    //             }
-    //         )]);
-    //     }
-    //     this.form = this.fb.group({
-    //         prices: this.prices
-    //     });
-    // }
-
-    // addPrice() {
-    //     this.prices.push(this.fb.group({
-    //         promo_id: 'null',
-    //         currency: this._currencies[0],
-    //         amount: ['', Validators.required]
-    //     }));
-    //     this.updateExcludedPromo();
-    // }
-    //
-    // deletePrice(index: number) {
-    //     this.prices.removeAt(index);
-    // }
-    //
-    // excludePromo(value: string, index: number) {
-    //     if (value === 'null') {
-    //         return true;
-    //     }
-    //     if (this.prices.at(index).get('promo_id').value === value) {
-    //         return true;
-    //     }
-    //     return !this._excludedPromo.includes(value);
-    // }
-    //
-    // updateExcludedPromo() {
-    //     this._excludedPromo = this.prices.getRawValue().map(i => i.promo_id).filter(i => i !== 'null');
-    // }
-
-    // dropPrice(event: CdkDragDrop<AbstractControl[]>) {
-    //     moveItemInArray(this.prices.controls, event.previousIndex, event.currentIndex);
-    // }
+    delete(price: IPrice) {
+        this.dialog.open(ConfirmDialogComponent, {
+            data: {
+                title: 'DIALOG_CONFIRM_TITLE',
+                message: 'DIALOG_REMOVE_CONFIRM_MESSAGE',
+                messageParams: [price.name]
+            } as ConfirmDialogData,
+            autoFocus: false
+        }).afterClosed()
+            .pipe(filter(res => !!res))
+            .subscribe(_ => {
+                this.service.deletePrice(price.id);
+            });
+    }
 }

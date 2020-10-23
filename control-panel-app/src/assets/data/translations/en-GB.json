@@ -139,6 +139,7 @@
   "STAFF_FIRED_DATE": "Fired date",
   "STAFF_FIRED_STATE": "Fired",
   "STAFF_ENABLED": "Enabled",
+  "ADD_PRICE_TITLE": "Add price",
   "OTHERS": "Others...",
   "ADMIN_MENU_CASHBOX": "Cashbox",
   "ADMIN_MENU_GATES": "Gates",
@@ -348,5 +349,6 @@
   "REPORT_CONDITION": "Report by condition",
   "REPORT_PERIOD": "Report by period",
   "TOTALS": "Totals",
-  "ACCOUNT_ID": "Account"
+  "ACCOUNT_ID": "Account",
+  "SUCCESSFULLY": "Successfully"
 }

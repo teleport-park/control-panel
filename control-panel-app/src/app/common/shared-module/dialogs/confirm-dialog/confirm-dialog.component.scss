@@ -6,4 +6,9 @@
       margin-left: 10px;
     }
   }
+  .message {
+    ::ng-deep span {
+      font-weight: 700;
+    }
+  }
 }

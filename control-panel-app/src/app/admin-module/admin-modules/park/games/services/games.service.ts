@@ -17,16 +17,16 @@ export class GamesService {
 
    games$: BehaviorSubject<IPrice[]> = new BehaviorSubject<IPrice[]>([]);
 
-   constructor(private http: HttpClient, private apiUrl: ApiUrlsService, private loaderService: LoaderService, private toaster: ToasterService) {
+   constructor(private http: HttpClient, private urlService: ApiUrlsService, private loaderService: LoaderService, private toaster: ToasterService) {
        this.getPrices();
    }
 
    getPrices() {
        this.loaderService.dispatchShowLoader(true);
-      this.http.request('GET', this.apiUrl.getPrices('GET'))
+      this.http.request('GET', this.urlService.getPrices('GET'))
       .pipe(map((res: IPrice[]) => {
           if (environment.dev && res?.length) {
-              validateSchema(res[0], GameSchema, this.apiUrl.getPrices('GET'));
+              validateSchema(res[0], GameSchema, this.urlService.getPrices('GET'));
           }
           return res;
       }))
@@ -42,18 +42,19 @@ export class GamesService {
 
     public updatePrice(data: IPrice, id?: string) {
         this.loaderService.dispatchShowLoader(true);
-        this.http.post(this.apiUrl.getPrices('POST', id), data).subscribe(
+        this.http.post(this.urlService.getPrices('POST', id), data).subscribe(
             _ => {
-                this.toaster.success('SUCCESSFUL', true);
+                this.toaster.success('SUCCESSFULLY', true);
                 this.getPrices();
             });
     }
 
-   // updatePrice(game: Game[]) {
-   //    return this.http.request('PATCH', this.apiUrl.getPrices('PATCH'), {body: game});
-   //    // this.http.request('PATCH', this.apiUrl.getGames('PATCH'), {body: game}).subscribe(
-   //    //    (res: Game[]) =>  this.games$.next(res)
-   //    // );
-   // }
+    public deletePrice(id: string) {
+        this.http.delete(this.urlService.getPackages('DELETE', id), {responseType: 'text'})
+            .subscribe(_ => {
+                this.toaster.success('SUCCESSFULLY', true);
+                this.getPrices();
+            });
+    }
 
 }

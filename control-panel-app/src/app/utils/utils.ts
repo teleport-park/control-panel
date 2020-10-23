@@ -18,3 +18,11 @@ export function validateSchema(data: object, schema: SchemaValidationItem[], api
     const missing = schema.filter(item => Object.keys(data).indexOf(item.key) < 0 && item.required).map(item => item.key);
     missing?.length && console.warn(`In response from ${api} is missing next properties: ${missing}`);
 }
+
+export enum PriceCategory {
+    TVR = 'tvr',
+    PLAYVR = 'playvr',
+    POLYGON = 'polygon',
+    QUEST = 'quest',
+    VRCINEMA = 'vrcinema'
+}

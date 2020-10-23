@@ -43,7 +43,6 @@ export class ExtendedConfigBuilder {
                }
             });
         });
-        console.log(prop);
     }
 
     get config() {

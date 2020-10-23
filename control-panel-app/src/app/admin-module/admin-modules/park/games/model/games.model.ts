@@ -13,11 +13,17 @@ export class Game {
     }
 }
 
-export class Price {
-    promo_id: string | null;
-    display_name: string | null;
-    currency: string;
-    amount: number;
+export class Price implements IPrice<string> {
+    id: string = '-1';
+    category: string = '';
+    name: string = '';
+    maxPlayers: number = 1;
+    maxDuration: number = 15;
+    price = {
+        currency: 'TVPLR',
+        amount: 0
+    };
+    enabled: true;
 }
 
 export interface IPrice<I = string> {
