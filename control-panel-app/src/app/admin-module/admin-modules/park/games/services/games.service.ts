@@ -50,7 +50,7 @@ export class GamesService {
     }
 
     public deletePrice(id: string) {
-        this.http.delete(this.urlService.getPackages('DELETE', id), {responseType: 'text'})
+        this.http.delete(this.urlService.getPrices('DELETE', id), {responseType: 'text'})
             .subscribe(_ => {
                 this.toaster.success('SUCCESSFULLY', true);
                 this.getPrices();
