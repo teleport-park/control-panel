@@ -102,8 +102,8 @@ export class ApiUrlsService implements IApiUrlsInterface {
         return ApiUrlsService.getPagedUrl(API.PACKAGES_HISTORY, requestMethod);
     }
 
-    public getPrices(requestMethod: 'GET' | 'PUT') {
-        return ApiUrlsService.getPagedUrl(API.PRICES, requestMethod);
+    public getPrices(requestMethod: 'GET' | 'POST', id?: string) {
+        return ApiUrlsService.getPagedUrl(API.PRICES, requestMethod, id);
     }
 
     // TNG section

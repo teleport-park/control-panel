@@ -53,7 +53,7 @@ export class BuildMenuHelper {
                 active: false,
             }, {
                 icon: 'videogame_asset',
-                label: 'ADMIN_MENU_GAMES',
+                label: 'ADMIN_MENU_GAMES_TARIFFS',
                 path: '/admin/park/games',
                 active: false
             }, {

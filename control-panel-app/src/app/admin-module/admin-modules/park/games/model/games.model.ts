@@ -27,4 +27,5 @@ export interface IPrice<I = string> {
     maxPlayers: number;
     maxDuration: number;
     price: IAmount;
+    enabled: boolean;
 }

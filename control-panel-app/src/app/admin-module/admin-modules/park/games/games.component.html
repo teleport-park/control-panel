@@ -87,6 +87,18 @@
                         </ng-container>
                     </td>
                 </ng-container>
+                <ng-container matColumnDef="enabled">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('ENABLED_ALT')}}</th>
+                    <td mat-cell *matCellDef="let price"
+                        [class.disabled]="_editRow && _editRow.id !== price.id">
+                        <ng-container *ngIf="_editRow?.id !== price.id">
+                            <mat-icon [class.positive]="price.enabled" [class.negative]="!price.enabled">{{price.enabled ? 'check' : 'clear'}} </mat-icon>
+                        </ng-container>
+                        <ng-container *ngIf="_editRow?.id === price.id">
+                            <mat-checkbox [formControl]="_form.controls?.enabled"></mat-checkbox>
+                        </ng-container>
+                    </td>
+                </ng-container>
                 <ng-container matColumnDef="edit">
                     <th mat-header-cell *matHeaderCellDef></th>
                     <td mat-cell *matCellDef="let price"

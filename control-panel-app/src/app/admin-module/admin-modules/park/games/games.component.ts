@@ -34,7 +34,7 @@ export class GamesComponent implements OnInit {
     //
     // _excludedPromo: string[] = [];
 
-    displayedColumns: string[] = ['name', 'category', 'maxPlayers', 'maxDuration', 'price', 'edit'];
+    displayedColumns: string[] = ['name', 'category', 'maxPlayers', 'maxDuration', 'price', 'enabled', 'edit'];
 
     dataSource: MatTableDataSource<IPrice>;
 
@@ -90,11 +90,11 @@ export class GamesComponent implements OnInit {
         if (this._form.valid) {
             let data;
             const request = this._form.getRawValue() as IPrice;
-            // TODO API implementation here
-            data = this.dataSource.data.map((pack: IPrice) => {
-                return pack.id === request.id ? request : pack
-            })
-            this.dataSource = new MatTableDataSource(data);
+            this.service.updatePrice(request);
+            // data = this.dataSource.data.map((pack: IPrice) => {
+            //     return pack.id === request.id ? request : pack
+            // })
+            // this.dataSource = new MatTableDataSource(data);
             this._form = null;
             this._editRow = null;
         }
@@ -110,7 +110,8 @@ export class GamesComponent implements OnInit {
             price: this.fb.group({
                 amount: [null, Validators.required],
                 currency: 'TPLVR'
-            })
+            }),
+            enabled: true
         })
         initData && form.patchValue(initData);
         return form

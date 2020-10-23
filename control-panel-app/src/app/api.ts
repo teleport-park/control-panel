@@ -15,7 +15,7 @@ export const API = {
     CASH_BOX_INSTANCES: 'cashbox/mgmt/machines',
 
 
-    GAMES: 'cpanel/games',
+    GAMES: 'cpanel/prices',
     CARDS: 'cpanel/users/cards',
     // visitors
     VISITORS: 'cpanel/users/visitors',
