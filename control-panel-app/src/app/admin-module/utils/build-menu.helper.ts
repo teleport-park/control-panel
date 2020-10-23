@@ -54,7 +54,7 @@ export class BuildMenuHelper {
             }, {
                 icon: 'videogame_asset',
                 label: 'ADMIN_MENU_GAMES_TARIFFS',
-                path: '/admin/park/games',
+                path: '/admin/park/prices',
                 active: false
             }, {
                 icon: 'local_atm',

@@ -61,7 +61,7 @@ const routes: Routes = [{
             data: {title: 'ADMIN_MENU_PROMO'},
             canActivate: [PermissionGuard]
         }, {
-            path: 'games',
+            path: 'prices',
             component: GamesComponent,
             data: {title: 'ADMIN_MENU_GAMES'},
             canActivate: [PermissionGuard]
