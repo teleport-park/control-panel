@@ -33,7 +33,7 @@ export const MenuPermissionMap: PermissionMap = {
     'games/edit': null,
     'games/edit/:id': null,
     'edit/:id': null,
-    promo: ['admin'],
+    promo: null,
     billing: ['admin'],
     transactions: ['admin'],
     invoices: ['admin'],
