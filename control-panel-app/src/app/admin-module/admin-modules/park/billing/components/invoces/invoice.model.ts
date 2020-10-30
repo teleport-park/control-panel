@@ -1,26 +1,21 @@
-import { Price } from '../../../../../../models/common';
+import {AccountModel} from "../accounts/account.model";
+import {IAmount} from "../../../../../../interfaces";
 
 export class InvoiceModel {
-    id: string;
-    created_at: string;
-    type: string;
-    status: string;
-    comment: string;
-    operations: Operation[];
-    error: {
-        code: string;
-        message: string;
-    };
+  id: string;
+  created_at: string;
+  status: string;
+  comment: string;
+  operations: Operation[];
+  error?: {
+    code: string;
+    message: string;
+  };
 }
 
 export class Operation {
-    id: string;
-    type: string;
-    user: {
-        id: string;
-        display_name: string;
-    };
-    comment: string;
-    income: Price;
-    outcome: Price;
+  id: string;
+  account: AccountModel
+  comment: string;
+  amount: IAmount
 }

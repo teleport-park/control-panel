@@ -2,5 +2,7 @@
 :host {
   .transactions-table {
     width: 100%;
+    table-layout: fixed;
+    margin-bottom: 2rem;
   }
 }

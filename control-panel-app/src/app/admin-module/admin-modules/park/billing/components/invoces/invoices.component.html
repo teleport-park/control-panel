@@ -1,76 +1,68 @@
 <div class="light-theme">
-    <control-panel-ui-card class="primary">
-        <div panelUICardHeaderTitle>{{'INVOICES_LIST_TITLE' | translate}}</div>
+  <control-panel-ui-card class="primary">
+    <div panelUICardHeaderTitle>{{'INVOICES_LIST_TITLE' | translate}}</div>
+    <div panelUICardContent>
+      <control-panel-ui-card [hideHeader]="true" class="no-margin">
         <div panelUICardContent>
-            <control-panel-ui-card [hideHeader]="true" class="no-margin">
-                <div panelUICardContent>
-                    <control-panel-ui-time-filter [statusFilter]="{statuses: ['processing', 'closed', 'failed', 'pending']}"
-                                                  (apply)="applyFilterHandler($event)"></control-panel-ui-time-filter>
-                </div>
-            </control-panel-ui-card>
-            <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
-                           *ngIf="(service.requestHelper.count && (service.invoices$ | async)?.length > 10) && service.requestHelper.count > 25"
-                           [length]="service.requestHelper.count" showFirstLastButtons
-                           [pageSize]="service.requestHelper.pageSize"
-                           (page)="paginationChangeHandler($event)"></mat-paginator>
-
-            <table mat-table [dataSource]="service.invoices$ | async" class="invoices-table">
-                <ng-container matColumnDef="created_at">
-                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('CREATED_AT')}}</th>
-                    <td mat-cell *matCellDef="let invoice"> {{invoice.created_at | date: 'dd.MM.yyyy HH:mm'}}</td>
-                </ng-container>
-                <ng-container matColumnDef="type">
-                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('TYPE')}}</th>
-                    <td mat-cell *matCellDef="let invoice"> {{invoice.type}}</td>
-                </ng-container>
-                <ng-container matColumnDef="status">
-                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('STATUS')}}</th>
-                    <td mat-cell *matCellDef="let invoice" [ngClass]="'status-' + invoice.status">
-                        {{translations.instant(invoice.status.toUpperCase())}}
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="operations">
-                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('OPERATIONS')}}</th>
-                    <td mat-cell *matCellDef="let invoice">
-                        <ng-container *ngFor="let operation of invoice.operations">
-                            <div class="d-flex mt-2 mb-2">
-                                <div class="operation-name">
-                                    <div>{{operation.user?.display_name}}</div>
-                                    <div class="sub_text">{{translations.instant('TYPE')}}: {{translations.instant(operation.type.toUpperCase())}}</div>
-                                </div>
-                                <div class="operation-income">
-                                    <div class="sub_text">{{translations.instant('INCOME')}}</div>
-                                    <div>
-                                        <span>{{operation.income?.amount}}</span>
-                                        <span class="ml-2">{{operation.income?.currency || '-'}}</span>
-                                    </div>
-                                </div>
-                                <div class="operation_outcome">
-                                    <div class="sub_text">{{translations.instant('OUTCOME')}}</div>
-                                    <div>
-                                        <span>{{operation.outcome?.amount}}</span>
-                                        <span class="ml-2">{{operation.outcome?.currency || '-'}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-container>
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="error">
-                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('ERROR')}}</th>
-                    <td mat-cell *matCellDef="let invoice"> {{invoice.error ? (invoice.error | json) : 'N/A'}}</td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-            <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
-                           [length]="service.requestHelper.count" showFirstLastButtons
-                           [pageSize]="service.requestHelper.pageSize"
-                           (page)="paginationChangeHandler($event)"></mat-paginator>
-            <control-panel-ui-empty *ngIf="!(service.invoices$ | async)?.length" class="black"></control-panel-ui-empty>
-            <div class="d-flex justify-content-end">
-                <control-panel-trigger [callBack]="service.refresh.bind(service)" class="absolute"></control-panel-trigger>
-            </div>
+          <control-panel-ui-time-filter [statusFilter]="{statuses: ['processing', 'closed', 'failed', 'pending']}"
+                                        (apply)="applyFilterHandler($event)"></control-panel-ui-time-filter>
         </div>
-    </control-panel-ui-card>
+      </control-panel-ui-card>
+      <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
+                     *ngIf="(service.requestHelper.count && (service.invoices$ | async)?.length > 10) && service.requestHelper.count > 25"
+                     [length]="service.requestHelper.count" showFirstLastButtons
+                     [pageSize]="service.requestHelper.pageSize"
+                     (page)="paginationChangeHandler($event)"></mat-paginator>
+
+      <table mat-table [dataSource]="service.invoices$ | async" class="invoices-table">
+        <ng-container matColumnDef="created_at">
+          <th mat-header-cell *matHeaderCellDef>{{translations.instant('CREATED_AT')}}</th>
+          <td mat-cell *matCellDef="let invoice">
+            <p>{{invoice.created_at | date: 'dd.MM.yyyy HH:mm'}}</p>
+            <p class="sub_text">{{invoice.comment}}</p>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>{{translations.instant('STATUS')}}</th>
+          <td mat-cell *matCellDef="let invoice" [ngClass]="'status-' + invoice.status">
+            {{translations.instant(invoice.status?.toUpperCase())}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="operations">
+          <th mat-header-cell *matHeaderCellDef>{{translations.instant('OPERATIONS')}}</th>
+          <td mat-cell *matCellDef="let invoice">
+            <ng-container *ngFor="let operation of invoice.operations">
+              <div class="d-flex mt-2 mb-2 align-items-end">
+                <div class="operation-name">
+                  <div>{{operation.account.user?.display_name || 'N/A'}}:</div>
+                </div>
+                <div class="operation-income">
+                  <div class="sub_text">{{translations.instant(operation.amount.amount > 0 ? 'INCOME' : 'OUTCOME')}}</div>
+                  <div
+                    [ngClass]="'control-panel-ui-table-amount_' + (operation.amount.amount > 0 ? 'positive' : operation.amount.amount < 0 ? 'negative' : 'null')">
+                    <span>{{operation.amount.amount}}</span>
+                    <span class="ml-2">{{operation.amount.currency || '-'}}</span>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="error">
+          <th mat-header-cell *matHeaderCellDef>{{translations.instant('ERROR')}}</th>
+          <td mat-cell *matCellDef="let invoice"> {{invoice.error ? (invoice.error | json) : '-'}}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator #paginator [pageSizeOptions]="[25, 50]" *ngIf="service.requestHelper.count > 25"
+                     [length]="service.requestHelper.count" showFirstLastButtons
+                     [pageSize]="service.requestHelper.pageSize"
+                     (page)="paginationChangeHandler($event)"></mat-paginator>
+      <control-panel-ui-empty *ngIf="!(service.invoices$ | async)?.length" class="black"></control-panel-ui-empty>
+      <div class="d-flex justify-content-end">
+        <control-panel-trigger [callBack]="service.refresh.bind(service)" class="absolute"></control-panel-trigger>
+      </div>
+    </div>
+  </control-panel-ui-card>
 </div>

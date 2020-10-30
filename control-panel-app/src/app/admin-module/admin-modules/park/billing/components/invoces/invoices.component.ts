@@ -17,7 +17,7 @@ export class InvoicesComponent implements OnInit {
      */
     @ViewChildren('paginator') paginator: QueryList<MatPaginator>;
 
-    displayedColumns: string[] = ['created_at', 'type', 'status', 'operations', 'error'];
+    displayedColumns: string[] = ['created_at', 'status', 'operations', 'error'];
 
     constructor(public service: InvoicesService, public translations: TranslateService) {
     }

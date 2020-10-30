@@ -3,9 +3,11 @@
 :host {
   .invoices-table {
     width: 100%;
+    table-layout: fixed;
+    margin-bottom: 2rem;
     .operation {
       &-name {
-        min-width: 15rem;
+        margin-right: 2rem;
       }
       &-income, &-outcome {
         min-width: 10rem;

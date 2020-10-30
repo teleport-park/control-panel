@@ -7,7 +7,7 @@ import { MenuPermissionMap } from '../../common/auth-module/guards/permission-ma
 export interface MenuItem {
     icon: string;
     label: string;
-    path: string;
+    path?: string;
     active: boolean;
     root?: boolean;
     ready?: boolean;

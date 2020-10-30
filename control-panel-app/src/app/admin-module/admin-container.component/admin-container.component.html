@@ -17,7 +17,7 @@
                  class="sidenav-title__link">{{translations.instant('ADMIN_MENU_TITLE')}}</div>
         </div>
         <mat-divider></mat-divider>
-        <mat-nav-list class="nav-list-container" color="primary">
+        <mat-nav-list class="nav-list-container">
             <div class="nav-list-container_parent-container" *ngFor="let menuItem of MENU_ITEMS">
                 <a mat-list-item *ngIf="!menuItem.root" [ngClass]="{'italic': !menuItem.ready}"
                    class="d-flex justify-content-between align-items-center w-100"
@@ -51,12 +51,26 @@
                 <div class="nav-list-container_children-container"
                      *ngIf="menuItem.children && menuItem.children.length && menuItem.active">
                     <ng-container *ngFor="let children of menuItem.children">
-                        <a mat-list-item
+                        <a mat-list-item *ngIf="!children.children"
                            [ngClass]="{'italic': !children.ready}"
                            [routerLink]="children.path"
                            (click)="children.active = !children.active"
                            routerLinkActive="active"
                            [routerLinkActiveOptions]="{exact: true}">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                                <div class="d-flex align-items-center">
+                                    <mat-icon svgIcon="{{children.icon}}"></mat-icon>
+                                    {{translations.instant(children.label)}}
+                                </div>
+                                <mat-icon svgIcon="{{children.active ? 'expand_more' : 'chevron_right'}}"
+                                          class="mat-icon-rtl-mirror expand-icon"
+                                          *ngIf="children.children && children.children.length">
+                                </mat-icon>
+                            </div>
+                        </a>
+                        <a mat-list-item *ngIf="children.children"
+                           [ngClass]="{'italic': !children.ready}"
+                           (click)="children.active = !children.active">
                             <div class="d-flex justify-content-between align-items-center w-100">
                                 <div class="d-flex align-items-center">
                                     <mat-icon svgIcon="{{children.icon}}"></mat-icon>

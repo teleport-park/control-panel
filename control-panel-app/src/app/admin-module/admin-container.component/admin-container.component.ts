@@ -81,8 +81,11 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
         this.MENU_ITEMS = this.menuBuilder.getMenu();
         this.MENU_ITEMS.forEach((item: MenuItem) => {
             item.active = item.path.indexOf(currentPath) > -1;
+            item.children && item.children.length && item.children.forEach(child => {
+                child.active = child.path.indexOf(this.activatedRoute.snapshot.firstChild?.firstChild?.firstChild?.url[0]?.path) > -1;
+            })
         });
-        this.router.events.pipe(filter((event) => event instanceof NavigationEnd),
+        this.router.events.pipe(filter((event: NavigationEnd) => event instanceof NavigationEnd),
             map(() => this.activatedRoute),
             map((route) => {
                 while (route.firstChild) {
