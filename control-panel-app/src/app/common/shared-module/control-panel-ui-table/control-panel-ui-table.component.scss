@@ -32,6 +32,8 @@
       .table_cell-inner {
         word-break: break-word;
         padding-right: .5rem;
+        display: inline-flex;
+        align-items: center;
         .status-list {
           padding: 0;
           .mat-icon {

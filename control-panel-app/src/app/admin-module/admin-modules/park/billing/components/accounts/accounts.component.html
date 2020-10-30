@@ -1,49 +1,49 @@
 <div class="light-theme">
-    <control-panel-ui-card class="primary">
-        <div panelUICardHeaderTitle>{{'ACCOUNTS_LIST_TITLE' | translate}}</div>
+  <control-panel-ui-card class="primary">
+    <div panelUICardHeaderTitle>{{'ACCOUNTS_LIST_TITLE' | translate}}</div>
+    <div panelUICardContent>
+      <control-panel-ui-card [hideHeader]="true" class="no-margin">
         <div panelUICardContent>
-            <control-panel-ui-card [hideHeader]="true" class="no-margin">
-                <div panelUICardContent>
-                    <h4>{{'BALANCE' | translate}}: </h4>
-                    <div class="filter_wrapper d-flex align-items-center">
-                        <mat-checkbox [(ngModel)]="filterState.positive" class="mr-3"
-                                      (ngModelChange)="getFilteredResult()">{{'POSITIVE' | translate}}</mat-checkbox>
-                        <mat-checkbox [(ngModel)]="filterState.negative"
-                                      (ngModelChange)="getFilteredResult()">{{'NEGATIVE' | translate}}</mat-checkbox>
-                    </div>
-                </div>
-            </control-panel-ui-card>
-            <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
-                           *ngIf="(service.requestHelper.Count && (service.accounts$ | async)?.length > 10) && service.requestHelper.Count > 25"
-                           [length]="service.requestHelper.Count" showFirstLastButtons
-                           [pageSize]="service.requestHelper.PageSize"
-                           (page)="paginationChangeHandler($event)"></mat-paginator>
-
-            <table mat-table [dataSource]="service.accounts$ | async" class="account-table">
-                <ng-container matColumnDef="user">
-                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('USER')}}</th>
-                    <td mat-cell *matCellDef="let account"> {{account.user?.display_name || '-'}}</td>
-                </ng-container>
-                <ng-container matColumnDef="balance">
-                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('BALANCE')}}</th>
-                    <td mat-cell *matCellDef="let account">
-                        <div class="table_cell-inner"
-                             [ngClass]="'control-panel-ui-table-amount_' + (getBalance(account.balance) > 0 ? 'positive' : getBalance(account.balance) < 0 ? 'negative' : 'null')">
-                            {{getBalance(account.balance)}} {{account.balance ? account.balance[0]?.currency : ''}}
-                        </div>
-                    </td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-            <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
-                           [length]="service.requestHelper.Count" showFirstLastButtons
-                           [pageSize]="service.requestHelper.PageSize"
-                           (page)="paginationChangeHandler($event)"></mat-paginator>
-            <control-panel-ui-empty *ngIf="!(service.accounts$ | async)?.length" class="black"></control-panel-ui-empty>
-            <div class="d-flex justify-content-end">
-                <control-panel-trigger [callBack]="service.refresh.bind(service)" class="absolute"></control-panel-trigger>
-            </div>
+          <h4>{{'BALANCE' | translate}}: </h4>
+          <div class="filter_wrapper d-flex align-items-center">
+            <mat-checkbox [(ngModel)]="filterState.positive" class="mr-3"
+                          (ngModelChange)="getFilteredResult()">{{'POSITIVE' | translate}}</mat-checkbox>
+            <mat-checkbox [(ngModel)]="filterState.negative"
+                          (ngModelChange)="getFilteredResult()">{{'NEGATIVE' | translate}}</mat-checkbox>
+          </div>
         </div>
-    </control-panel-ui-card>
+      </control-panel-ui-card>
+      <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
+                     *ngIf="(service.requestHelper.count && (service.accounts$ | async)?.length > 10) && service.requestHelper.count > 25"
+                     [length]="service.requestHelper.count" showFirstLastButtons
+                     [pageSize]="service.requestHelper.pageSize"
+                     (page)="paginationChangeHandler($event)"></mat-paginator>
+
+      <table mat-table [dataSource]="service.accounts$ | async" class="account-table">
+        <ng-container matColumnDef="user">
+          <th mat-header-cell *matHeaderCellDef>{{translations.instant('USER')}}</th>
+          <td mat-cell *matCellDef="let account"> {{account.user?.display_name || '-'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="balance">
+          <th mat-header-cell *matHeaderCellDef>{{translations.instant('BALANCE')}}</th>
+          <td mat-cell *matCellDef="let account">
+            <div class="table_cell-inner"
+                 [ngClass]="'control-panel-ui-table-amount_' + (getBalance(account.balance) > 0 ? 'positive' : getBalance(account.balance) < 0 ? 'negative' : 'null')">
+              {{getBalance(account.balance)}} {{account.balance ? account.balance[0]?.currency : ''}}
+            </div>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <control-panel-ui-empty *ngIf="!(service.accounts$ | async)?.length" class="black"></control-panel-ui-empty>
+      <mat-paginator #paginator [pageSizeOptions]="[25, 50]" *ngIf="service.requestHelper.count < 25"
+                     [length]="service.requestHelper.count" showFirstLastButtons
+                     [pageSize]="service.requestHelper.pageSize"
+                     (page)="paginationChangeHandler($event)"></mat-paginator>
+      <div class="d-flex justify-content-end">
+        <control-panel-trigger [callBack]="service.refresh.bind(service)" class="absolute"></control-panel-trigger>
+      </div>
+    </div>
+  </control-panel-ui-card>
 </div>

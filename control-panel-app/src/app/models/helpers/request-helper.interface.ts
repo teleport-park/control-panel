@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 export interface IRequestHelper {
 
-   Count: number;
+   count: number;
 
    filterData: any;
 

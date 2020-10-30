@@ -17,11 +17,11 @@ export class RequestHelper implements IRequestHelper {
 
     public _query: string;
 
-    get Count() {
+    get count() {
         return this._count;
     }
 
-    get PageSize() {
+    get pageSize() {
         return this._pagination.limit;
     }
 

@@ -9,9 +9,9 @@
                 </div>
             </control-panel-ui-card>
             <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
-                           *ngIf="(service.requestHelper.Count && (service.invoices$ | async)?.length > 10) && service.requestHelper.Count > 25"
-                           [length]="service.requestHelper.Count" showFirstLastButtons
-                           [pageSize]="service.requestHelper.PageSize"
+                           *ngIf="(service.requestHelper.count && (service.invoices$ | async)?.length > 10) && service.requestHelper.count > 25"
+                           [length]="service.requestHelper.count" showFirstLastButtons
+                           [pageSize]="service.requestHelper.pageSize"
                            (page)="paginationChangeHandler($event)"></mat-paginator>
 
             <table mat-table [dataSource]="service.invoices$ | async" class="invoices-table">
@@ -64,8 +64,8 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
             <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
-                           [length]="service.requestHelper.Count" showFirstLastButtons
-                           [pageSize]="service.requestHelper.PageSize"
+                           [length]="service.requestHelper.count" showFirstLastButtons
+                           [pageSize]="service.requestHelper.pageSize"
                            (page)="paginationChangeHandler($event)"></mat-paginator>
             <control-panel-ui-empty *ngIf="!(service.invoices$ | async)?.length" class="black"></control-panel-ui-empty>
             <div class="d-flex justify-content-end">

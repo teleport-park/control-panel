@@ -1,5 +1,5 @@
 <div class="light-theme">
-    <control-panel-ui-card panelClass="primary">
+    <control-panel-ui-card>
         <div panelUICardHeaderTitle>{{translations.instant('SESSIONS_TABLE_TITLE')}}</div>
         <div panelUICardContent>
 
@@ -10,9 +10,9 @@
             </control-panel-ui-card>
 
             <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
-                           *ngIf="(service.requestHelper.Count && (service.sessions$ | async)?.length > 10) && service.requestHelper.Count > 25"
-                           [length]="service.requestHelper.Count" showFirstLastButtons
-                           [pageSize]="service.requestHelper.PageSize"
+                           *ngIf="(service.requestHelper.count && (service.sessions$ | async)?.length > 10) && service.requestHelper.count > 25"
+                           [length]="service.requestHelper.count" showFirstLastButtons
+                           [pageSize]="service.requestHelper.pageSize"
                            (page)="paginationChangeHandler($event)"></mat-paginator>
 
             <table mat-table [dataSource]="service.sessions$ | async" class="session-table">
@@ -64,8 +64,8 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.error]="row.error"></tr>
             </table>
             <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
-                           [length]="service.requestHelper.Count" showFirstLastButtons
-                           [pageSize]="service.requestHelper.PageSize"
+                           [length]="service.requestHelper.count" showFirstLastButtons
+                           [pageSize]="service.requestHelper.pageSize"
                            (page)="paginationChangeHandler($event)"></mat-paginator>
             <control-panel-ui-empty *ngIf="!(service.sessions$ | async)?.length" class="black"></control-panel-ui-empty>
             <div class="d-flex justify-content-end">

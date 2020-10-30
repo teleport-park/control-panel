@@ -100,7 +100,7 @@ export class UsersComponent implements OnInit, OnDestroy {
         private fb: FormBuilder,
         private cardService: CardsService,
         private initService: InitService,
-        @Inject(ENTITY_SERVICE) private service: EntityService<Visitor>,
+        @Inject(ENTITY_SERVICE) public service: EntityService<Visitor>,
         @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
         @Inject('ExtendedFilterUrlParamsInterface') private extendedFilterUrlBuilder: ExtendedFilterUrlParamsInterface) {
     }
