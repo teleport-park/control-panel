@@ -22,14 +22,20 @@
       <table mat-table [dataSource]="service.accounts$ | async" class="account-table">
         <ng-container matColumnDef="user">
           <th mat-header-cell *matHeaderCellDef>{{translations.instant('USER')}}</th>
-          <td mat-cell *matCellDef="let account"> {{account.user?.display_name || '-'}}</td>
+          <td mat-cell *matCellDef="let account">
+            <p>{{account.user?.display_name || '-'}}</p>
+            <p class="sub_text">{{account.comment}}</p>
+          </td>
         </ng-container>
         <ng-container matColumnDef="balance">
           <th mat-header-cell *matHeaderCellDef>{{translations.instant('BALANCE')}}</th>
           <td mat-cell *matCellDef="let account">
-            <div class="table_cell-inner"
-                 [ngClass]="'control-panel-ui-table-amount_' + (getBalance(account.balance) > 0 ? 'positive' : getBalance(account.balance) < 0 ? 'negative' : 'null')">
-              {{getBalance(account.balance)}} {{account.balance ? account.balance[0]?.currency : ''}}
+            <div class="table_cell-inner">
+              <ng-container *ngFor="let balance of account.balance">
+                <p
+                  [ngClass]="'control-panel-ui-table-amount_' + (balance.amount > 0 ? 'positive' : balance.amount < 0 ? 'negative' : 'null')">
+                  {{balance.amount}} <span>{{balance.currency}}</span></p>
+              </ng-container>
             </div>
           </td>
         </ng-container>
@@ -37,7 +43,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       <control-panel-ui-empty *ngIf="!(service.accounts$ | async)?.length" class="black"></control-panel-ui-empty>
-      <mat-paginator #paginator [pageSizeOptions]="[25, 50]" *ngIf="service.requestHelper.count < 25"
+      <mat-paginator #paginator [pageSizeOptions]="[25, 50]" *ngIf="service.requestHelper.count > 25"
                      [length]="service.requestHelper.count" showFirstLastButtons
                      [pageSize]="service.requestHelper.pageSize"
                      (page)="paginationChangeHandler($event)"></mat-paginator>
