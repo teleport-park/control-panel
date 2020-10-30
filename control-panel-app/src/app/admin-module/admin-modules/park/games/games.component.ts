@@ -13,7 +13,6 @@ import {PromoService} from '../promo/services/promo.service';
 import {ConfirmDialogComponent, ConfirmDialogData} from '../../../../common/shared-module';
 import {filter} from 'rxjs/operators';
 import {PriceCategory} from '../../../../utils/utils';
-import {Package} from '../packages/package.model';
 
 @Component({
     selector: 'games',
@@ -75,8 +74,8 @@ export class GamesComponent implements OnInit {
     }
 
     edit(price: IPrice) {
-        this._editPrice = price;
         this._form = this.initForm(price)
+        this._editPrice = price;
     }
 
     add() {
@@ -99,6 +98,14 @@ export class GamesComponent implements OnInit {
             this._form = null;
             this._editPrice = null;
         }
+    }
+
+    cancel() {
+        if (this._editPrice.id === '-1') {
+            const data = this.dataSource.data.filter((i: IPrice) => i.id !== '-1')
+            this.dataSource = new MatTableDataSource(data);
+        }
+        this._editPrice = null;
     }
 
     private initForm(initData?: IPrice) {

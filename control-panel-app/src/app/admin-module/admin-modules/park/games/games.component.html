@@ -4,8 +4,6 @@
         <div panelUICardContent>
             <div class="toolbar d-flex justify-content-between align-items-center">
                 <control-panel-ui-quick-filter (filterChange)="applyFilter($event)"></control-panel-ui-quick-filter>
-                <!--                <button mat-flat-button color="primary" *ngIf="selection.hasValue()"-->
-                <!--                        (click)="changePriceForSelectedHandler()">{{translations.instant('CHANGE_PRICE_FOR_SELECTED')}}</button>-->
             </div>
 
             <table mat-table [dataSource]="dataSource" class="games-table">
@@ -21,8 +19,7 @@
                         <ng-container *ngIf="_editPrice?.id === price.id">
                             <mat-form-field>
                                 <input type="text" matInput [formControl]="_form.controls?.name">
-                                <mat-error
-                                        *ngIf="_form.controls?.name?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
+                                <mat-error *ngIf="_form.controls?.name?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
                             </mat-form-field>
                         </ng-container>
                     </td>
@@ -85,8 +82,8 @@
                                 <mat-form-field class="amount">
                                     <input type="number" matInput
                                            [formControl]="_form.controls?.price?.controls?.amount">
-                                    <mat-error
-                                            *ngIf="_form.controls?.price?.controls?.amount?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
+                                    <mat-error *ngIf="_form.controls?.price?.controls?.amount?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
+
                                 </mat-form-field>
                                 <span class="semi-bold">{{price.price.currency}}</span>
                             </div>
@@ -129,7 +126,7 @@
                                     matTooltipPosition="above">
                                 <mat-icon color="primary">check</mat-icon>
                             </button>
-                            <button mat-icon-button (click)="_editPrice = null"
+                            <button mat-icon-button (click)="cancel()"
                                     matTooltip="{{translations.instant('DIALOG_CANCEL_BUTTON_LABEL')}}"
                                     matTooltipPosition="above">
                                 <mat-icon color="warn">close</mat-icon>
