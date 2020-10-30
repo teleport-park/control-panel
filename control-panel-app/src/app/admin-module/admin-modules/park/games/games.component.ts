@@ -22,8 +22,13 @@ import {PriceCategory} from '../../../../utils/utils';
 export class GamesComponent implements OnInit {
 
     static readonly MAX_PLAYERS: number = 5;
+    static readonly MAX_DURATION: number = 60;
 
-    _durations: number[] = [15, 30, 45, 60];
+    readonly MIN: number = 0;
+
+    readonly MAX: number = 100000
+
+    _durations: number[] = [];
 
     _categories: string[] = Object.keys(PriceCategory).map(key => PriceCategory[key]);
 
@@ -66,6 +71,10 @@ export class GamesComponent implements OnInit {
 
         for (let i = 1; i <= GamesComponent.MAX_PLAYERS; i++) {
             this._players.push(i);
+        }
+        for (let i = 5; i <= GamesComponent.MAX_DURATION;) {
+            this._durations.push(i)
+            i = i + 5;
         }
     }
 
@@ -116,7 +125,7 @@ export class GamesComponent implements OnInit {
             maxPlayers: null,
             maxDuration: null,
             price: this.fb.group({
-                amount: [null, Validators.required],
+                amount: [null, [Validators.required, Validators.min(this.MIN), Validators.max(this.MAX)]],
                 currency: 'TPLVR'
             }),
             enabled: true

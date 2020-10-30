@@ -80,10 +80,11 @@
                         <ng-container *ngIf="_editPrice?.id === price.id">
                             <div class="d-flex align-items-center">
                                 <mat-form-field class="amount">
-                                    <input type="number" matInput
+                                    <input type="number" matInput [min]="0" [max]="100000"
                                            [formControl]="_form.controls?.price?.controls?.amount">
                                     <mat-error *ngIf="_form.controls?.price?.controls?.amount?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
-
+                                    <mat-error *ngIf="_form.controls?.price?.controls?.amount?.errors?.max as max">{{'MAX_VALUE_ERROR_SHORT' | translate}} {{max.max}}</mat-error>
+                                    <mat-error *ngIf="_form.controls?.price?.controls?.amount?.errors?.min as min">{{'MIN_VALUE_ERROR_SHORT' | translate}} {{min.min}}</mat-error>
                                 </mat-form-field>
                                 <span class="semi-bold">{{price.price.currency}}</span>
                             </div>
