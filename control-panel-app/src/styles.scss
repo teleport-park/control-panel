@@ -433,4 +433,16 @@ html, body {
   .positive {
     color: $success;
   }
+
+  .control-panel-ui-table-amount {
+    &_positive {
+      color: $success;
+    }
+    &_negative {
+      color: $warn;
+    }
+    &_null {
+      color: $inactive;
+    }
+  }
 }

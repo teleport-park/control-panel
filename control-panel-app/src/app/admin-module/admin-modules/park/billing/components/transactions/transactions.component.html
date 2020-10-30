@@ -16,15 +16,22 @@
             <table mat-table [dataSource]="service.transactions$ | async" class="transactions-table">
                 <ng-container matColumnDef="id">
                     <th mat-header-cell *matHeaderCellDef>{{translations.instant('ID')}}</th>
-                    <td mat-cell *matCellDef="let transaction"> {{transaction.id}}</td>
+                    <td mat-cell *matCellDef="let transaction">
+                        <p>{{transaction.id || '-'}}</p>
+                        <p class="sub_text">{{transaction.comment}}</p>
+                    </td>
                 </ng-container>
                 <ng-container matColumnDef="account_id">
                     <th mat-header-cell *matHeaderCellDef>{{translations.instant('ACCOUNT_ID')}}</th>
-                    <td mat-cell *matCellDef="let transaction"> {{transaction.account_id}}</td>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.account.user?.display_name}}</td>
                 </ng-container>
                 <ng-container matColumnDef="amount">
                     <th mat-header-cell *matHeaderCellDef>{{translations.instant('TRANSACTION_AMOUNT')}}</th>
-                    <td mat-cell *matCellDef="let transaction"> {{transaction.amount?.amount}} {{transaction.amount?.currency}}</td>
+                    <td mat-cell *matCellDef="let transaction">
+                        <p [ngClass]="'control-panel-ui-table-amount_' + (transaction.amount?.amount > 0 ? 'positive' : transaction.amount?.amount < 0 ? 'negative' : 'null')">
+                            {{transaction.amount?.amount}} {{transaction.amount?.currency}}
+                        </p>
+                    </td>
                 </ng-container>
                 <ng-container matColumnDef="created_at">
                     <th mat-header-cell *matHeaderCellDef>{{translations.instant('CREATED_AT')}}</th>

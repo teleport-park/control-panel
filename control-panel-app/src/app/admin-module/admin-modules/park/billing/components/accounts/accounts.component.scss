@@ -7,16 +7,5 @@
   .account-table {
     width: 100%;
     margin-bottom: 2rem;
-    .control-panel-ui-table-amount {
-      &_positive {
-        color: $success;
-      }
-      &_negative {
-        color: $warn;
-      }
-      &_null {
-        color: $inactive;
-      }
-    }
   }
 }

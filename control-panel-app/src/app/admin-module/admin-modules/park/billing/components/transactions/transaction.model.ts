@@ -1,6 +1,8 @@
 import { Price } from '../../../../../../models/common';
+import {AccountModel} from "../accounts/account.model";
 
 export class TransactionModel {
+    account: AccountModel;
     id: string;
     ref_id: string;
     account_id: string;
