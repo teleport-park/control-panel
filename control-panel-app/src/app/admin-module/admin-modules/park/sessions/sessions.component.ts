@@ -17,7 +17,7 @@ export class SessionsComponent implements OnInit {
      */
     @ViewChildren('paginator') paginator: QueryList<MatPaginator>;
 
-    displayedColumns: string[] = ['game', 'status', 'players', 'events', 'error'];
+    displayedColumns: string[] = ['game', 'created_at', 'started_at', 'status', 'expires_at', 'completed_at', 'players', 'events', 'error'];
 
     constructor(public service: SessionsService,
                 public translations: TranslateService,

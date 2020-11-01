@@ -3,6 +3,7 @@
 :host {
   .session-table {
     width: 100%;
+    table-layout: fixed;
     .mat-row {
       &.error {
         background-color: rgba($warn, .05);
@@ -12,6 +13,12 @@
       &.status {
         &-error {
           color: $warn;
+        }
+        &-stopped {
+          color: #999999
+        }
+        &-started {
+          color: $success;
         }
       }
     }
