@@ -79,7 +79,7 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.error]="row.error"></tr>
             </table>
-            <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
+            <mat-paginator #paginator [pageSizeOptions]="[25, 50]" *ngIf="service.requestHelper.count > 25"
                            [length]="service.requestHelper.count" showFirstLastButtons
                            [pageSize]="service.requestHelper.pageSize"
                            (page)="paginationChangeHandler($event)"></mat-paginator>

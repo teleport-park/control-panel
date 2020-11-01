@@ -4,6 +4,7 @@
   .session-table {
     width: 100%;
     table-layout: fixed;
+    margin-bottom: 2rem;
     .mat-row {
       &.error {
         background-color: rgba($warn, .05);
