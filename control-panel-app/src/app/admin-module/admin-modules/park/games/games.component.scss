@@ -16,6 +16,7 @@
     //&-name {
     //  width: 17rem;
     //}
+    padding-right: 1rem;
     &-edit {
       width: 7rem;
       padding-right: .5rem;
@@ -23,13 +24,15 @@
   }
 
   .mat-cell {
+    padding-right: 1rem;
     &.disabled {
       opacity: .3;
     }
   }
 
-  .amount {
-    max-width: 10rem;
+  .field {
+    width: 100%;
+    max-width: 7rem;
     margin-right: 1rem;
   }
 
@@ -61,7 +64,7 @@
 
   .games-table {
     width: 100%;
-    table-layout: fixed;
+    //table-layout: fixed;
   }
 }
 

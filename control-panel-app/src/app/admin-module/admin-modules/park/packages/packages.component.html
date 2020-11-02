@@ -1,4 +1,4 @@
-<div class="row packages_wrapper">
+<div class="packages_wrapper">
     <div class="light-theme">
         <control-panel-ui-card class="primary">
             <div panelUICardHeaderTitle>{{translations.instant('PACKAGES_LIST_TITLE')}}</div>
@@ -20,12 +20,12 @@
                                 </div>
                             </ng-container>
                             <ng-container *ngIf="_editPackage?.id === pack.id">
-                                <mat-form-field class="mt-2">
+                                <mat-form-field class="mt-2 w-100">
                                     <input matInput [formControl]="_form.controls?.name"
                                            placeholder="{{'AMUSEMENTS_NAME_LABEL' | translate}}">
                                     <mat-error *ngIf="_form.controls?.name?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
                                 </mat-form-field>
-                                <mat-form-field>
+                                <mat-form-field class="w-100">
                                     <textarea matInput [formControl]="_form.controls?.note"
                                               placeholder="{{'NOTE' | translate}}"
                                               cdkTextareaAutosize
@@ -44,7 +44,7 @@
                                 {{pack.players}}
                             </ng-container>
                             <ng-container *ngIf="_editPackage?.id === pack.id">
-                                <mat-form-field>
+                                <mat-form-field class="field">
                                     <mat-select [formControl]="_form.controls?.players">
                                         <mat-option *ngFor="let count of _players" [value]="count">{{count}}</mat-option>
                                     </mat-select>
@@ -62,7 +62,7 @@
                             </ng-container>
                             <ng-container *ngIf="_editPackage?.id === pack.id">
                                 <div class="d-flex align-items-center">
-                                    <mat-form-field class="amount">
+                                    <mat-form-field class="field">
                                         <input type="number" matInput [min]="0" [max]="100000"
                                                [formControl]="_form.controls?.cost?.controls?.amount">
                                         <mat-error *ngIf="_form.controls?.cost?.controls?.amount?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
@@ -84,7 +84,7 @@
                             </ng-container>
                             <ng-container *ngIf="_editPackage?.id === pack.id">
                                 <div class="d-flex align-items-center">
-                                    <mat-form-field class="amount">
+                                    <mat-form-field class="field">
                                         <input type="number" matInput [min]="0" [max]="100000"
                                                [formControl]="_form.controls?.charge?.controls?.amount">
                                         <mat-error *ngIf="_form.controls?.charge?.controls?.amount?.errors?.required">{{'REQUIRED' | translate}}</mat-error>

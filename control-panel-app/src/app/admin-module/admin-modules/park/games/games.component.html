@@ -17,7 +17,7 @@
                             </div>
                         </ng-container>
                         <ng-container *ngIf="_editPrice?.id === price.id">
-                            <mat-form-field>
+                            <mat-form-field class="w-100 mr-2">
                                 <input type="text" matInput [formControl]="_form.controls?.name">
                                 <mat-error *ngIf="_form.controls?.name?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
                             </mat-form-field>
@@ -31,7 +31,7 @@
                             <div>{{price.category}}</div>
                         </ng-container>
                         <ng-container *ngIf="_editPrice?.id === price.id">
-                            <mat-form-field>
+                            <mat-form-field class="field">
                                 <mat-select [formControl]="_form.controls?.category">
                                     <mat-option *ngFor="let category of _categories"
                                                 [value]="category">{{category}}</mat-option>
@@ -47,7 +47,7 @@
                             <div>{{price.maxPlayers}}</div>
                         </ng-container>
                         <ng-container *ngIf="_editPrice?.id === price.id">
-                            <mat-form-field>
+                            <mat-form-field class="field">
                                 <mat-select [formControl]="_form.controls?.maxPlayers">
                                     <mat-option *ngFor="let count of _players" [value]="count">{{count}}</mat-option>
                                 </mat-select>
@@ -62,7 +62,7 @@
                             <div>{{price.maxDuration || '-'}} <span *ngIf="price.maxDuration">{{'MINUTE' | translate}}</span></div>
                         </ng-container>
                         <ng-container *ngIf="_editPrice?.id === price.id">
-                            <mat-form-field>
+                            <mat-form-field class="field">
                                 <mat-select [formControl]="_form.controls?.maxDuration">
                                     <mat-option *ngFor="let duration of _durations"
                                                 [value]="duration">{{duration}} {{'MINUTE' | translate}}</mat-option>
@@ -79,7 +79,7 @@
                         </ng-container>
                         <ng-container *ngIf="_editPrice?.id === price.id">
                             <div class="d-flex align-items-center">
-                                <mat-form-field class="amount">
+                                <mat-form-field class="field">
                                     <input type="number" matInput [min]="0" [max]="100000"
                                            [formControl]="_form.controls?.price?.controls?.amount">
                                     <mat-error *ngIf="_form.controls?.price?.controls?.amount?.errors?.required">{{'REQUIRED' | translate}}</mat-error>

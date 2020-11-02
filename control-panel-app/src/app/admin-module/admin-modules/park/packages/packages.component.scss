@@ -35,7 +35,6 @@
 
   .package-table {
     width: 100%;
-    table-layout: fixed;
     .mat-column {
       &-actions {
         width: 6rem;
@@ -48,6 +47,7 @@
       }
     }
     .mat-cell {
+      padding-right: 1rem;
       &.disabled {
         opacity: .3;
       }
@@ -64,7 +64,8 @@
         text-decoration: underline;
       }
     }
-    .amount {
+    .field {
+      width: 100%;
       max-width: 7rem;
       margin-right: 1rem;
     }
