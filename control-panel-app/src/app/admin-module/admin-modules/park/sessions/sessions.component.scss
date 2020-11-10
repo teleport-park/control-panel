@@ -5,6 +5,16 @@
     width: 100%;
     table-layout: fixed;
     margin-bottom: 2rem;
+    .mat-column {
+      &-action {
+        width: 5rem;
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+        }
+      }
+    }
     .mat-row {
       &.error {
         background-color: rgba($warn, .05);

@@ -309,6 +309,7 @@
   "DEFAULT_PROMO": "Default",
   "PROMO": "Promo",
   "DIALOG_REMOVE_CONFIRM_MESSAGE": "Remove package {0} from list?",
+  "DIALOG_REJECT_CONFIRM_MESSAGE": "Reject {0}?",
   "ADD_PAYMENT": "Add payment",
   "ADD_CHARGE": "Add charge",
   "REMOVE_PLAN": "Remove plan",

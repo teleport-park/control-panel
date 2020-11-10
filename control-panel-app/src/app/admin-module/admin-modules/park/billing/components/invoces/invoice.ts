@@ -1,7 +1,7 @@
 import {AccountModel} from "../accounts/account.model";
 import {IAmount} from "../../../../../../interfaces";
 
-export class InvoiceModel {
+export class Invoice {
   id: string;
   created_at: string;
   status: string;

@@ -14,6 +14,16 @@
         min-width: 10rem;
       }
     }
+    .mat-column {
+      &-action {
+        width: 5rem;
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+        }
+      }
+    }
     .status {
       &-failed {
         color: $warn;

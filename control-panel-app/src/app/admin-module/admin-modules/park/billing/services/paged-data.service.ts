@@ -11,7 +11,7 @@ export abstract class PagedDataService implements OnDestroy {
 
     requestHelper: RequestHelper = new RequestHelper(this.getPagedItems.bind(this));
 
-    constructor(private http: HttpClient,
+    constructor(public http: HttpClient,
                 private getUrl: (method: string,
                                  id?: string,
                                  query?: string,

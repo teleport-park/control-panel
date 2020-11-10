@@ -315,6 +315,7 @@
   "DEFAULT_PROMO": "По умолчанию",
   "PROMO": "Акция",
   "DIALOG_REMOVE_CONFIRM_MESSAGE": "Удалить <span>{0}</span> из списка?",
+  "DIALOG_REJECT_CONFIRM_MESSAGE": "Отклонить <span>{0}</span>?",
   "ADD_PAYMENT": "Добавить платеж",
   "ADD_CHARGE": "Добавить начисление",
   "REMOVE_PLAN": "Удалить план",

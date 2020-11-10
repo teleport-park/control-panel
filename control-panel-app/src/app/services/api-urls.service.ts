@@ -88,7 +88,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
         return ApiUrlsService.getPagedUrl(API.PROMO, requestMethod, id);
     }
 
-    public getSessions(requestMethod: 'GET',
+    public getSessions(requestMethod: 'GET' | 'PUT',
                        id?: string,
                        query?: string,
                        limit?: number,
@@ -161,7 +161,7 @@ export class ApiUrlsService implements IApiUrlsInterface {
         return ApiUrlsService.getPagedUrl(API.BILLING_TRANSACTIONS, requestMethod, id, query, limit, offset, sortingParams, filterRequest);
     }
 
-    public getBillingInvoices(requestMethod: 'GET',
+    public getBillingInvoices(requestMethod: 'GET' | 'PUT',
                               id?: string,
                               query?: string,
                               limit?: number,
