@@ -78,8 +78,7 @@ export class SessionsComponent implements OnInit {
     this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'DIALOG_CONFIRM_TITLE',
-        message: 'DIALOG_REJECT_CONFIRM_MESSAGE',
-        messageParams: [session.comment + ' ' + session.id]
+        message: 'DIALOG_REJECT_SESSION_CONFIRM_MESSAGE'
       } as ConfirmDialogData,
       autoFocus: false
     }).afterClosed()
