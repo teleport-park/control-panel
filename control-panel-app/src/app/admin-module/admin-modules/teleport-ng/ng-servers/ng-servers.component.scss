@@ -8,9 +8,13 @@
   .instances_wrapper {
     margin: 0;
     height: 100%;
+    display: flex;
+    flex-wrap: wrap;
     .instance {
       margin-bottom: 10px;
-      min-width: 300px;
+      min-width: 370px;
+      max-width: 400px;
+      flex: 1 1 20%;
     }
   }
   .actions {

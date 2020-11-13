@@ -144,6 +144,7 @@ export class UsersComponent implements OnInit, OnDestroy {
         if (this._mode === 'edit') {
             this.service.editEntity(visitor);
         } else {
+            delete visitor.id;
             this.service.addEntity(visitor);
         }
     }

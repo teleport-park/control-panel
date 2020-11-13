@@ -6,7 +6,7 @@ export class StaffMember {
     updated_at: string = null;
     hired_at: string = null;
     fired_at: string = null;
-    passport: string = null;
+    passport: string = '';
     high_education: boolean = false;
     roles: string[] = [];
 
@@ -19,7 +19,7 @@ export class StaffMemberRequest {
     name: string = '';
     hired_at: string = null;
     fired_at: string = null;
-    passport: string = null;
+    passport: string = '';
     high_education: boolean = false;
     roles: string[] = [];
 

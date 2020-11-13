@@ -173,6 +173,7 @@ export class StaffComponent implements OnInit, OnDestroy {
       if (mode === 'edit') {
         this.service.editEntity(staff);
       } else {
+        delete staff.id;
         this.service.addEntity(staff);
       }
     });

@@ -11,8 +11,8 @@
         {{translations.instant('ADD_SERVER_TITLE')}}
     </button>
 </div>
-<div class="row instances_wrapper">
-    <div *ngFor="let item of service.instances$ | async" class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 instance">
+<div class="instances_wrapper">
+    <div *ngFor="let item of service.instances$ | async" class="instance">
         <control-panel-ui-item-card [item]="item" class="light-theme">
             <div class="hardware-item_title">
                 <h4>{{item.display_name}}</h4>
