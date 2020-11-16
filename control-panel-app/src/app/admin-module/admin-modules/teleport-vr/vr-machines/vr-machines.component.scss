@@ -1,0 +1,11 @@
+@import 'control-panel-theme';
+
+:host {
+  .copy {
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+      color: #370ed8;
+    }
+  }
+}

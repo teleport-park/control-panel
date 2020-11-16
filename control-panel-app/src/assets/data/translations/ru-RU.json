@@ -134,7 +134,7 @@
   "NOT_AUTH_MESSAGE": "У вас нет прав для просмотра этого раздела",
   "STAFF_MEMBER": "Сотрудник",
   "STAFF_MEMBER_GROUP": "Группа сотрудника",
-  "STAFF_PASSPORT": "Пасспорт №",
+  "STAFF_PASSPORT": "Паспорт №",
   "STAFF_EMPLOYMENT_DATE": "Дата приема на работу",
   "STAFF_HIGHER_EDUCATION": "Высшее образование",
   "STAFF_FIRED_DATE": "Дата увольнения",
@@ -364,5 +364,6 @@
   "REPORT_PERIOD": "Отчет за период",
   "TOTALS": "Суммарно",
   "ACCOUNT_ID": "Аккаунт",
-  "SUCCESSFULLY": "Успешно"
+  "SUCCESSFULLY": "Успешно",
+  "DATA_COPY_TO_CLIPBOARD": "Данные скопированы в буфер обмена"
 }

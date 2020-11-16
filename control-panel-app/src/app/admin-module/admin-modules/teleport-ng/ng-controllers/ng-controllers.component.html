@@ -3,7 +3,7 @@
 <ng-template #instances>
     <div class="row m-0">
         <div *ngFor="let item of (service.controllers$ | async)"
-             class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 instance">
+             class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 instance">
             <control-panel-ui-item-card [item]="item">
                 <div class="hardware-item_title">
                     <h4 matTooltip="{{item.token}}"
@@ -12,7 +12,7 @@
                 </div>
                 <p>
                     <span class="bold">{{translations.instant('TOKEN')}}:</span>
-                    {{item.token}}
+                    <span class="copy" (click)="copy(item.token)">{{item.token}}</span>
                 </p>
                 <p>
                     <span class="bold">{{translations.instant('TYPE')}}:</span>

@@ -15,6 +15,7 @@ import { CommonInstanceService } from '../../../services';
 import { TVRController } from '../../../models/controller';
 import { INSTANCE_SERVICE } from '../../../models/intefaces';
 import { ControllerGamesService } from '../../../services/common-services/controller-games.service';
+import {ClipboardModule} from "@angular/cdk/clipboard";
 
 const routes: Routes = [{
     path: '', component: TeleportVrComponent,
@@ -43,14 +44,15 @@ export function VrMachinesFactory(http: HttpClient, apiUrlService: ApiUrlsServic
 
 @NgModule({
     declarations: [VrMachinesComponent, VrGamesComponent, TeleportVrComponent],
-    imports: [
-        CommonModule,
-        TeleportNGRouterModule,
-        SharedModule,
-        MaterialModule,
-        TranslationModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    CommonModule,
+    TeleportNGRouterModule,
+    SharedModule,
+    MaterialModule,
+    TranslationModule,
+    ReactiveFormsModule,
+    ClipboardModule
+  ],
     providers: [
         {provide: INSTANCE_SERVICE, useFactory: VrMachinesFactory, deps: [HttpClient, ApiUrlsService]},
         ControllerGamesService

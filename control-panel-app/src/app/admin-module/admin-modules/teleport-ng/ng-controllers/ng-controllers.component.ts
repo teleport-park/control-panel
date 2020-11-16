@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { BaseController } from '../../../../models/controller';
 import { transformToken } from '../../../../utils/utils';
+import {Clipboard} from "@angular/cdk/clipboard";
+import {ToasterService} from "../../../../services/toaster.service";
 
 export function ControllerServiceFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
     return new ControllersService(http, apiUrlService.getTNGControllers);
@@ -25,7 +27,9 @@ export function ControllerServiceFactory(http: HttpClient, apiUrlService: ApiUrl
 export class NgControllersComponent {
 
     constructor(@Inject(CONTROLLER_SERVICE) public service: IControllerService<BaseController>,
-                private translations: TranslateService) {
+                public translations: TranslateService,
+                private clipboard: Clipboard,
+                private toaster: ToasterService) {
     }
     getSecondsAgo(date: string | Date) {
         return Math.abs(moment(date).diff(Date.now(), 'seconds')) + ' ' + this.translations.instant('SECONDS_AGO');
@@ -41,5 +45,10 @@ export class NgControllersComponent {
 
     _transformToken(token: string) {
         return transformToken(token);
+    }
+
+    copy(token: string) {
+        const res = this.clipboard.copy(token);
+        res && this.toaster.info(this.translations.instant('DATA_COPY_TO_CLIPBOARD'))
     }
 }

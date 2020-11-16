@@ -3,16 +3,15 @@
 <ng-template #instances>
     <div class="row m-0">
         <div *ngFor="let item of (service.instances$ | async)"
-             class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 instance">
+             class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 instance">
             <control-panel-ui-item-card [item]="item" [class.unregistered]="!item.registered" class="light-theme">
                 <div class="hardware-item_title">
                     <h4>{{item.display_name || item.name}}</h4>
                 </div>
-                <p matTooltip="{{item.machine_token}}"
-                   [matTooltipShowDelay]="1000"
-                   matTooltipPosition="below">
+                <p>
                     <span class="bold">{{translations.instant('TOKEN')}}:</span>
-                    {{_transformToken(item.access_token)}}
+                    <span class="copy" [cdkCopyToClipboard]="item.access_token"
+                          (cdkCopyToClipboardCopied)="dataCopied($event)" (tap)="copy(item.access_token)">{{item.access_token}}</span>
                 </p>
                 <p>
                     <span class="bold">{{translations.instant('SERVER_ENABLED')}}:</span>

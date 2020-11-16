@@ -355,5 +355,6 @@
   "REPORT_PERIOD": "Report by period",
   "TOTALS": "Totals",
   "ACCOUNT_ID": "Account",
-  "SUCCESSFULLY": "Successfully"
+  "SUCCESSFULLY": "Successfully",
+  "DATA_COPY_TO_CLIPBOARD": "Data copied to clipboard"
 }
