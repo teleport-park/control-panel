@@ -16,7 +16,7 @@ export class WhoIsComponent implements OnInit {
 
     _control: FormControl = new FormControl('',  [Validators.pattern('[0-9A-Fa-f]+')]);
 
-    constructor(private service: CardsService, private cd: ChangeDetectorRef, private translations: TranslateService) {
+    constructor(private service: CardsService, private cd: ChangeDetectorRef, public translations: TranslateService) {
     }
 
     ngOnInit() {

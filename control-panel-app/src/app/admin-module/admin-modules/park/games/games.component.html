@@ -75,7 +75,7 @@
                     <th mat-header-cell *matHeaderCellDef> {{translations.instant('PRICE')}} </th>
                     <td mat-cell *matCellDef="let price" [class.disabled]="_editPrice && _editPrice.id !== price.id">
                         <ng-container *ngIf="_editPrice?.id !== price.id">
-                            <span class="mr-2 label">{{price.price.amount}} {{price.price.currency}}</span>
+                            <span class="mr-2 label">{{price.price.amount}}</span>
                         </ng-container>
                         <ng-container *ngIf="_editPrice?.id === price.id">
                             <div class="d-flex align-items-center">
@@ -88,6 +88,22 @@
                                 </mat-form-field>
                                 <span class="semi-bold">{{price.price.currency}}</span>
                             </div>
+                        </ng-container>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="currency">
+                    <th mat-header-cell *matHeaderCellDef> {{translations.instant('TRANSACTION_CURRENCY')}} </th>
+                    <td mat-cell *matCellDef="let price" [class.disabled]="_editPrice && _editPrice.id !== price.id">
+                        <ng-container *ngIf="_editPrice?.id !== price.id">
+                            <span class="mr-2 label semi-bold">{{price.price.currency}}</span>
+                        </ng-container>
+                        <ng-container *ngIf="_editPrice?.id === price.id">
+                            <mat-form-field class="field">
+                                <mat-select [formControl]="_form.controls?.price?.controls?.currency">
+                                    <mat-option *ngFor="let currency of _currencies"
+                                                [value]="currency">{{currency}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
                         </ng-container>
                     </td>
                 </ng-container>

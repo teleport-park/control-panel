@@ -13,6 +13,7 @@ import {PromoService} from '../promo/services/promo.service';
 import {ConfirmDialogComponent, ConfirmDialogData} from '../../../../common/shared-module';
 import {filter} from 'rxjs/operators';
 import {PriceCategory} from '../../../../utils/utils';
+import {Currencies} from "../../../utils/utils";
 
 @Component({
     selector: 'games',
@@ -32,9 +33,11 @@ export class GamesComponent implements OnInit {
 
     _categories: string[] = Object.keys(PriceCategory).map(key => PriceCategory[key]);
 
+    _currencies = Currencies;
+
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-    displayedColumns: string[] = ['name', 'category', 'maxPlayers', 'maxDuration', 'price', 'enabled', 'edit'];
+    displayedColumns: string[] = ['name', 'category', 'maxPlayers', 'maxDuration', 'price','currency', 'enabled', 'edit'];
 
     dataSource: MatTableDataSource<IPrice>;
 
