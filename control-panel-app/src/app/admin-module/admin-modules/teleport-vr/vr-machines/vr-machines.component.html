@@ -53,8 +53,6 @@
                             class="label">{{(item.enabled ? 'DISABLE_SERVER' : 'ENABLE_SERVER') | translate}}</span>
                     </mat-slide-toggle>
                     <div>
-                        <a *ngIf="item.enabled" class="game-link mr-3" href="#"
-                           (click)="$event.preventDefault(); getServerGames(item)">{{'ADMIN_MENU_GAMES' | translate}}</a>
                         <button mat-icon-button
                                 matTooltip="{{'TABLE_EDIT' | translate}}"
                                 [matTooltipShowDelay]="500"
