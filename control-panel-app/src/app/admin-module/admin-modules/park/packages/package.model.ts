@@ -1,4 +1,5 @@
 import {IAmount} from '../../../../interfaces';
+import {Currency} from "../../../utils/utils";
 
 export class PackageRequest {
     id: string = null;
@@ -65,7 +66,7 @@ export class Package implements IPackage<string> {
     };
     charge: IAmount = {
         amount: 0,
-        currency: 'TLPVR'
+        currency: Currency.TLPVR
     };
     enabled: boolean
 }

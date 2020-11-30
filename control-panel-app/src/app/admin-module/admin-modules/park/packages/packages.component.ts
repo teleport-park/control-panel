@@ -9,6 +9,7 @@ import {ConfirmDialogComponent, ConfirmDialogData} from '../../../../common/shar
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Currency} from "../../../utils/utils";
 
 @Component({
   selector: 'packages',
@@ -124,11 +125,11 @@ export class PackagesComponent implements OnInit {
       players: null,
       cost: this.fb.group({
         amount: [null, [Validators.required, Validators.min(this.MIN), Validators.max(this.MAX)]],
-        currency: 'BYN',
+        currency: Currency.BYN,
       }),
       charge: this.fb.group({
         amount: [null, [Validators.required, Validators.min(this.MIN), Validators.max(this.MAX)]],
-        currency: 'TLPVR'
+        currency: Currency.TLPVR
       }),
       enabled: true
     })
