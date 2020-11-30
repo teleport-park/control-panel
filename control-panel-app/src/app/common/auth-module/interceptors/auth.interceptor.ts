@@ -3,7 +3,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } fr
 import { Observable, throwError } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { TranslateService } from '../../translations-module';
-import { LoaderService } from '../../../services/loader.service';
+import { LoaderService } from '../../../services/loader/loader.service';
 import { catchError, tap } from 'rxjs/operators';
 import { ToasterService } from '../../../services/toaster.service';
 

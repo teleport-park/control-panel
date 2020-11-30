@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '../translations-module';
-import { LoaderService } from '../../services/loader.service';
+import { LoaderService } from '../../services/loader/loader.service';
 import { AuthService } from './auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WebSocketService } from '../../services/web-socket.service';

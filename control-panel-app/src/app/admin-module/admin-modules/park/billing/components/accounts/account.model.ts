@@ -1,4 +1,4 @@
-import {IAmount} from "../../../../../../interfaces";
+import {IAmount} from '../../../../../../interfaces';
 
 export class AccountModel {
   id: string;

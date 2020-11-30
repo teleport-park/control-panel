@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ApiUrlsService } from '../api-urls.service';
-import { LoaderService } from '../loader.service';
+import { LoaderService } from '../loader/loader.service';
 import { NGGame, NGGameRequest, VRGameRequest } from '../../models/game.model';
 import { ToasterService } from '../toaster.service';
 import { TranslateService } from '../../common/translations-module';

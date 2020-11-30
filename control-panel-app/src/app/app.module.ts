@@ -19,6 +19,7 @@ import {BuildExtendedFilterParamsHelper} from './utils/build-extended-filter-par
 import {IconService} from './services/icon.service';
 import {InitService} from './services/init.service';
 import {OverlayContainer} from '@angular/cdk/overlay';
+import {LoaderModule} from './services/loader/loader.module';
 
 export function initializeApp(initService: InitService) {
   return (): Promise<any> => {
@@ -39,6 +40,7 @@ export function initializeApp(initService: InitService) {
     FormsModule,
     ReactiveFormsModule,
     AuthModule,
+    LoaderModule,
     NgxMaskModule.forRoot()
   ],
   providers: [{

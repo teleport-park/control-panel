@@ -34,7 +34,7 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
         this.onChange(value);
     }
 
-    // the name is an Angular convention, @Input variable name + "Change" suffix
+    // the name is an Angular convention, @Input variable name + 'Change" suffix
     // @Output() cronChange = new EventEmitter();
 
     public activeTab: string;

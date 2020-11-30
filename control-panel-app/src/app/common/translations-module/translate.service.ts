@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { LoaderService } from '../../services/loader.service';
+import { LoaderService } from '../../services/loader/loader.service';
 import { StorageService } from '../../services/storage.service';
 import { AppStorageKey } from '../../models/app-storage-key';
 import { Locales } from './locales.enum';
@@ -46,7 +46,7 @@ export class TranslateService {
    * get translations
    * @param locale
    */
-  getTranslations(locale: string = Locales[0]) {
+  getTranslations(locale: string = Locales['0']) {
     this.http.get(`./assets/data/translations/${locale}.json`).subscribe(
       (result: StringTMap<string>) => {
         this._translations = result;

@@ -15,7 +15,7 @@ import { CommonInstanceService } from '../../../services';
 import { TVRController } from '../../../models/controller';
 import { INSTANCE_SERVICE } from '../../../models/intefaces';
 import { ControllerGamesService } from '../../../services/common-services/controller-games.service';
-import {ClipboardModule} from "@angular/cdk/clipboard";
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 const routes: Routes = [{
     path: '', component: TeleportVrComponent,

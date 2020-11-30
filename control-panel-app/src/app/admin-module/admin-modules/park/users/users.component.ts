@@ -4,7 +4,7 @@ import { Visitor } from '../../../../models';
 
 import { TranslateService } from '../../../../common/translations-module';
 import { Subject } from 'rxjs';
-import { LoaderService } from '../../../../services/loader.service';
+import { LoaderService } from '../../../../services/loader/loader.service';
 import { ConfirmDialogComponent, ConfirmDialogData, ControlPanelUiQuickFilterComponent } from '../../../../common/shared-module';
 import { FormBuilder } from '@angular/forms';
 import { BreakpointService } from '../../../../services/breakpoint.service';

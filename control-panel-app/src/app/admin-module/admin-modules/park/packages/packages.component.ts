@@ -9,7 +9,7 @@ import {ConfirmDialogComponent, ConfirmDialogData} from '../../../../common/shar
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Currency} from "../../../utils/utils";
+import {Currency} from '../../../utils/utils';
 
 @Component({
   selector: 'packages',

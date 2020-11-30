@@ -5,9 +5,9 @@ import {PaginationSetting} from '../../../../models/intefaces';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {Session, SessionPlayer} from './session.model';
 import {ExtendedFilterUrlParamsInterface} from '../../../../interfaces/extended-filter-url-params.interface';
-import {ConfirmDialogComponent, ConfirmDialogData} from "../../../../common/shared-module";
-import {filter} from "rxjs/operators";
-import {MatDialog} from "@angular/material/dialog";
+import {ConfirmDialogComponent, ConfirmDialogData} from '../../../../common/shared-module';
+import {filter} from 'rxjs/operators';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'sessions',

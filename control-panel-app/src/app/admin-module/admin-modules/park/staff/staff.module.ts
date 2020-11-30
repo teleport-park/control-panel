@@ -18,7 +18,7 @@ import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Sort } from '@angular/material/sort';
 import { AppStorageKey } from '../../../../models/app-storage-key';
-import { LoaderService } from '../../../../services/loader.service';
+import { LoaderService } from '../../../../services/loader/loader.service';
 import { StaffSchema } from '../../../../utils/schemas';
 
 const storageKey: string = 'STAFF';

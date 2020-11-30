@@ -1,5 +1,5 @@
 import {IAmount} from '../../../../interfaces';
-import {Currency} from "../../../utils/utils";
+import {Currency} from '../../../utils/utils';
 
 export class PackageRequest {
     id: string = null;

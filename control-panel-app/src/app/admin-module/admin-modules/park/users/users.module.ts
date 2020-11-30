@@ -17,10 +17,9 @@ import { CommonEntityService } from '../../../../services/common-services/common
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppStorageKey } from '../../../../models/app-storage-key';
 import { Sort } from '@angular/material/sort';
-import { LoaderService } from '../../../../services/loader.service';
+import { LoaderService } from '../../../../services/loader/loader.service';
 import { NgxMaskModule } from 'ngx-mask';
 import { FormComponent } from './form.component/form.component';
-import { Visitor } from '../../../../models';
 import { VisitorSchema } from '../../../../utils/schemas';
 
 const storageKey: string = 'VISITORS';

@@ -1,5 +1,5 @@
 import { Price } from '../../../../../../models/common';
-import {AccountModel} from "../accounts/account.model";
+import {AccountModel} from '../accounts/account.model';
 
 export class TransactionModel {
     account: AccountModel;

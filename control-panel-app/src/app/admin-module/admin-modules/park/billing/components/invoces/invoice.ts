@@ -1,5 +1,5 @@
-import {AccountModel} from "../accounts/account.model";
-import {IAmount} from "../../../../../../interfaces";
+import {AccountModel} from '../accounts/account.model';
+import {IAmount} from '../../../../../../interfaces';
 
 export class Invoice {
   id: string;

@@ -4,9 +4,9 @@ import { InvoicesService } from './invoices.service';
 import { PaginationSetting } from '../../../../../../models/helpers/request-helper.interface';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { TranslateService } from '../../../../../../common/translations-module';
-import {Invoice} from "./invoice";
-import {filter} from "rxjs/operators";
-import {MatDialog} from "@angular/material/dialog";
+import {Invoice} from './invoice';
+import {filter} from 'rxjs/operators';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'invoces',

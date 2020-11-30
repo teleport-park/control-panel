@@ -8,8 +8,8 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog
 import {ConfirmDialogComponent, ConfirmDialogData} from '../../../../common/shared-module';
 import {Subject} from 'rxjs';
 import {NGGame} from '../../../../models/game.model';
-import {ToasterService} from "../../../../services/toaster.service";
-import {Clipboard} from "@angular/cdk/clipboard";
+import {ToasterService} from '../../../../services/toaster.service';
+import {Clipboard} from '@angular/cdk/clipboard';
 
 
 const modalConfig: MatDialogConfig = {

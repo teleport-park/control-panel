@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { ApiUrlsService } from '../../../../services/api-urls.service';
 import { BaseController } from '../../../../models/controller';
 import { transformToken } from '../../../../utils/utils';
-import {Clipboard} from "@angular/cdk/clipboard";
-import {ToasterService} from "../../../../services/toaster.service";
+import {Clipboard} from '@angular/cdk/clipboard';
+import {ToasterService} from '../../../../services/toaster.service';
 
 export function ControllerServiceFactory(http: HttpClient, apiUrlService: ApiUrlsService) {
     return new ControllersService(http, apiUrlService.getTNGControllers);
