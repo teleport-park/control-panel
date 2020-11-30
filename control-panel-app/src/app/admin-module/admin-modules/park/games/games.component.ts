@@ -13,7 +13,7 @@ import {PromoService} from '../promo/services/promo.service';
 import {ConfirmDialogComponent, ConfirmDialogData} from '../../../../common/shared-module';
 import {filter} from 'rxjs/operators';
 import {PriceCategory} from '../../../../utils/utils';
-import {Currencies} from "../../../utils/utils";
+import {Currencies, Currency} from "../../../utils/utils";
 
 @Component({
     selector: 'games',
@@ -129,7 +129,7 @@ export class GamesComponent implements OnInit {
             maxDuration: null,
             price: this.fb.group({
                 amount: [null, [Validators.required, Validators.min(this.MIN), Validators.max(this.MAX)]],
-                currency: 'TLPVR'
+                currency: Currency.TLPVR
             }),
             enabled: true
         })
