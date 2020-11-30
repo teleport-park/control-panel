@@ -65,7 +65,7 @@ export class Package implements IPackage<string> {
     };
     charge: IAmount = {
         amount: 0,
-        currency: 'TPLVR'
+        currency: 'TLPVR'
     };
     enabled: boolean
 }

@@ -128,7 +128,7 @@ export class PackagesComponent implements OnInit {
       }),
       charge: this.fb.group({
         amount: [null, [Validators.required, Validators.min(this.MIN), Validators.max(this.MAX)]],
-        currency: 'TPLVR'
+        currency: 'TLPVR'
       }),
       enabled: true
     })
