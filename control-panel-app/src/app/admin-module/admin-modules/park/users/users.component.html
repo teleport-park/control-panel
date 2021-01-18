@@ -36,7 +36,7 @@
                             (edit)="operationWithUser('edit', $event)"
                             (delete)="operationWithUser('delete', $event)"
                             (add)="operationWithUser('add')"
-                            (bindCard)="bindCard($event)"
+                            (bindCard)="bindCard($event, 'visitor')"
                             (sortChanges)="sortChangeHandler($event)"
                             (selected)="selectUser($event)"
                             (pageChanges)="paginationChangeHandler($event)"></control-panel-ui-table>

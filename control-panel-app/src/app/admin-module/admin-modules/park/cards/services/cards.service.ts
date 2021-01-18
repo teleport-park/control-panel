@@ -6,6 +6,9 @@ import { StorageService } from '../../../../../services/storage.service';
 import { WhoIsResponse } from '../components/who-is/who-is.model';
 import { ApiUrlsService } from '../../../../../services/api-urls.service';
 import { ToasterService } from '../../../../../services/toaster.service';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../../common/shared-module';
+import { MatDialog } from '@angular/material/dialog';
+import { filter, mergeMap } from 'rxjs/operators';
 
 @Injectable()
 export class CardsService {
@@ -25,7 +28,8 @@ export class CardsService {
    constructor(private http: HttpClient,
                private storage: StorageService,
                private toaster: ToasterService,
-               private apiUrl: ApiUrlsService) {
+               private apiUrl: ApiUrlsService,
+               private dialog: MatDialog) {
    }
 
    /**
@@ -38,9 +42,20 @@ export class CardsService {
       });
    }
 
-   unbindCard(id: string) {
-      this.http.delete(this.apiUrl.getCards('DELETE', id), {responseType: 'text'})
-      .subscribe(res => {
+   unbindCard(card: Card) {
+      this.dialog.open(ConfirmDialogComponent, {
+         data: {
+            title: 'DIALOG_CONFIRM_TITLE',
+            message: 'DIALOG_UNBIND_CARD_CONFIRM_MESSAGE',
+            messageParams: [card.chip_id]
+         } as ConfirmDialogData,
+         autoFocus: false
+      }).afterClosed().pipe(
+        filter(data => !!data),
+        mergeMap(_ => {
+           return this.http.delete(this.apiUrl.getCards('DELETE', card.chip_id), {responseType: 'text'})
+        })
+      ).subscribe(res => {
          this.toaster.info('UNBIND_CARD_SUCCESS', true);
          this.getCards();
       });
@@ -61,7 +76,9 @@ export class CardsService {
          if (result) {
             this.whoIsResult$.next(result);
          }
-      });
+      }, err => {
+          debugger;
+       });
    }
 
 

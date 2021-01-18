@@ -108,6 +108,7 @@ export class PackagesComponent implements OnInit {
     this._form.markAllAsTouched();
     if (this._form.valid) {
       const request = this._form.getRawValue() as IPackage;
+      request.charge.currency = Currency.TLPVR;
       if (request.id === '-1') {
         delete request.id
       }

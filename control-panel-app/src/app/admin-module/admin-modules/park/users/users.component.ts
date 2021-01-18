@@ -22,6 +22,7 @@ import moment, { Moment } from 'moment';
 import { InitService } from '../../../../services/init.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
+import { Bind } from '../common/bind.class';
 
 @Component({
     selector: 'app-users',
@@ -29,7 +30,7 @@ import { Sort } from '@angular/material/sort';
     styleUrls: ['./users.component.scss']
 })
 
-export class UsersComponent implements OnInit, OnDestroy {
+export class UsersComponent extends Bind implements OnInit, OnDestroy {
 
     /**
      * extended filters config
@@ -40,18 +41,6 @@ export class UsersComponent implements OnInit, OnDestroy {
      * reset pagination
      */
     resetPagination: { reset: boolean };
-
-    /**
-     * view scroll container for set and store scroll position
-     * @param element
-     */
-        // @ViewChild('scrollContainer') set scrollContainer(element: MatSidenavContent) {
-        //     if (!element) {
-        //         return;
-        //     }
-        //     element.elementScrolled().pipe(debounceTime(1000)).subscribe((event: any) => {
-        //     });
-        // }
 
     @ViewChild('quickFilter') quickFilter: ControlPanelUiQuickFilterComponent;
 
@@ -98,11 +87,12 @@ export class UsersComponent implements OnInit, OnDestroy {
         public point: BreakpointService,
         private router: Router,
         private fb: FormBuilder,
-        private cardService: CardsService,
+        public cardService: CardsService,
         private initService: InitService,
         @Inject(ENTITY_SERVICE) public service: EntityService<Visitor>,
         @Inject('IAppStorageInterface') private storage: IAppStorageInterface,
         @Inject('ExtendedFilterUrlParamsInterface') private extendedFilterUrlBuilder: ExtendedFilterUrlParamsInterface) {
+        super(dialog, cardService)
     }
 
     /**
@@ -230,18 +220,6 @@ export class UsersComponent implements OnInit, OnDestroy {
         this.resetPagination = {reset: true};
         this.service.requestHelper.resetPagination();
         this.service.getEntities(this.quickFilter.quickFilterValue);
-    }
-
-    bindCard(user: Visitor) {
-        this.dialog.open(BoundCardDialogComponent, {
-            data: {
-                user
-            }
-        }).afterClosed().subscribe(cardId => {
-            if (cardId) {
-                this.cardService.bindCard(cardId, {id: user.id, type: 'visitor'});
-            }
-        });
     }
 
     ngOnDestroy(): void {

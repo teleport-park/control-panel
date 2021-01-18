@@ -356,5 +356,7 @@
   "TOTALS": "Totals",
   "ACCOUNT_ID": "Account",
   "SUCCESSFULLY": "Successfully",
-  "DATA_COPY_TO_CLIPBOARD": "Data copied to clipboard"
+  "DATA_COPY_TO_CLIPBOARD": "Data copied to clipboard",
+  "DIALOG_UNBIND_CARD_CONFIRM_MESSAGE": "Unbind card number {0}?",
+  "DIALOG_BIND_CARD_CONFIRM_MESSAGE": "Bind card number {0} to {1}?"
 }

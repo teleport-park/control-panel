@@ -365,5 +365,7 @@
   "TOTALS": "Суммарно",
   "ACCOUNT_ID": "Аккаунт",
   "SUCCESSFULLY": "Успешно",
-  "DATA_COPY_TO_CLIPBOARD": "Данные скопированы в буфер обмена"
+  "DATA_COPY_TO_CLIPBOARD": "Данные скопированы в буфер обмена",
+  "DIALOG_UNBIND_CARD_CONFIRM_MESSAGE": "Отвязать карту номер {0}?",
+  "DIALOG_BIND_CARD_CONFIRM_MESSAGE": "Привязать карту номер {0} к {1}?"
 }
