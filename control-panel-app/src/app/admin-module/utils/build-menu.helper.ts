@@ -137,6 +137,11 @@ export class BuildMenuHelper {
                     active: false
                 }]
         }, {
+            icon: 'memory',
+            label: 'ADMIN_MENU_CARD_READER',
+            path: '/admin/card-reader',
+            active: false
+        }, {
             icon: 'markunread_mailbox',
             label: 'ADMIN_MENU_CASHBOX',
             path: '/admin/cashbox',

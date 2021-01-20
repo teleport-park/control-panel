@@ -32,6 +32,7 @@
   "ADMIN_MENU_ACCOUNTS": "Аккаунты",
   "ADMIN_MENU_PROMO": "Промо",
   "ADMIN_MENU_REPORTS": "Отчеты",
+  "ADMIN_MENU_CARD_READER": "Картридеры",
   "ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL": "Выйти",
   "LOGIN_PAGE_LOGIN_LABEL": "Логин",
   "LOGIN_PAGE_PASSWORD_LABEL": "Пароль",

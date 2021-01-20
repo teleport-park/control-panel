@@ -37,6 +37,11 @@ const routes: Routes = [
                 loadChildren: () => import('./admin-modules/reports/reports.module').then(m => m.ReportsModule),
                 data: {title: 'ADMIN_MENU_REPORTS'},
                 canActivate: [PermissionGuard]
+            }, {
+                path: 'card-reader',
+                loadChildren: () => import('./admin-modules/card-reader/card-reader.module').then(m => m.CardReaderModule),
+                data: {title: 'ADMIN_MENU_CARD_READER'},
+                canActivate: [PermissionGuard]
             }
         ]
     }
