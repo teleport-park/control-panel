@@ -1,4 +1,5 @@
 import {IAmount} from '../../../../../interfaces';
+import { Currency } from '../../../../utils/utils';
 
 export class Game {
     id: string;
@@ -20,7 +21,7 @@ export class Price implements IPrice<string> {
     maxPlayers: number = 1;
     maxDuration: number = 15;
     price = {
-        currency: 'TLPVR',
+        currency: Currency.TLPVR,
         amount: 0
     };
     enabled: true;
