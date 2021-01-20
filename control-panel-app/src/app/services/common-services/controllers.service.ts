@@ -10,16 +10,22 @@ export class ControllersService implements IControllerService<ControllerType> {
     controllers$: BehaviorSubject<any> = new BehaviorSubject<any>([]);
 
     constructor(private http: HttpClient,
-                private getUrl: (method: string, ref?: string) => string) {
+                private getUrl: (method: string, ref?: string) => string,
+                readonly mock?: any) {
         this.getControllers();
     }
 
     getControllers() {
+        if (this.mock) {
+            this.controllers$.next(this.mock);
+            this.refreshControllers$.next(true);
+            return;
+        }
         this.http.get(this.getUrl('GET'))
         .subscribe(res => {
             this.controllers$.next(res);
             this.refreshControllers$.next(true);
-        }, error => {
+        }, _ => {
             this.refreshControllers$.next(false);
         });
     }

@@ -3,7 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
 import { TranslationModule } from '../translations-module/translation.module';
 import { MaterialModule } from '../../material.module';
-import { AlphanumericLatinDirective, AmountFormatDirective, Hex4ByteDirective, NumberDirective } from './directives/number.directive';
+import {
+    AlphanumericLatinDirective,
+    AmountFormatDirective,
+    Hex4ByteDirective,
+    NumberDirective
+} from './directives/number.directive';
 import { ControlPanelUiCardComponent } from './control-panel-ui-card/control-panel-ui-card.component';
 import { ControlPanelUiTableComponent } from './control-panel-ui-table/control-panel-ui-table.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,45 +29,47 @@ import { ControlPanelGamesListComponent } from './control-panel-games-list/contr
 import { ControlPanelUiItemCardComponent } from './control-panel-ui-item-card/control-panel-ui-item-card.component';
 import { ControlPanelUiEmptyComponent } from './control-panel-ui-empty/control-panel-ui-empty.component';
 import { ControlPanelUiReportItemComponent } from './control-panel-ui-report-item/control-panel-ui-report-item.component';
+import { MockComponent } from './mock/mock.component';
 
 const MODULES = [
-    ConfirmDialogComponent,
-    BoundCardDialogComponent,
-    NumberDirective,
-    AmountFormatDirective,
-    AlphanumericLatinDirective,
-    Hex4ByteDirective,
-    ControlPanelUiCardComponent,
-    ControlPanelUiTableComponent,
-    ControlPanelUiActionToolbarComponent,
-    ControlPanelUiWidgetComponent,
-    ControlPanelUiSelectionTableComponent,
-    AddStaffDialogComponent,
-    ControlPanelUiImagePreviewComponent,
-    ControlPanelTriggerComponent,
-    ControlPanelUiQuickFilterComponent,
-    ControlPanelUiTimeFilterComponent,
-    ControlPanelUiPeriodSelectorComponent,
-    ControlPanelUiTimeSliderComponent,
-    ControlPanelGamesListComponent,
-    ControlPanelUiItemCardComponent,
-    ControlPanelUiEmptyComponent,
-    ControlPanelUiReportItemComponent
+  ConfirmDialogComponent,
+  BoundCardDialogComponent,
+  NumberDirective,
+  AmountFormatDirective,
+  AlphanumericLatinDirective,
+  Hex4ByteDirective,
+  ControlPanelUiCardComponent,
+  ControlPanelUiTableComponent,
+  ControlPanelUiActionToolbarComponent,
+  ControlPanelUiWidgetComponent,
+  ControlPanelUiSelectionTableComponent,
+  AddStaffDialogComponent,
+  ControlPanelUiImagePreviewComponent,
+  ControlPanelTriggerComponent,
+  ControlPanelUiQuickFilterComponent,
+  ControlPanelUiTimeFilterComponent,
+  ControlPanelUiPeriodSelectorComponent,
+  ControlPanelUiTimeSliderComponent,
+  ControlPanelGamesListComponent,
+  ControlPanelUiItemCardComponent,
+  ControlPanelUiEmptyComponent,
+  ControlPanelUiReportItemComponent,
+  MockComponent
 ];
 
 @NgModule({
-    declarations: [...MODULES],
-    exports: [...MODULES],
-    imports: [
-        CommonModule,
-        TranslationModule,
-        MaterialModule,
-        ReactiveFormsModule,
-        FormsModule,
-        ChartistModule,
-        MatRippleModule
-    ],
-    entryComponents: [ConfirmDialogComponent, BoundCardDialogComponent]
+  declarations: [...MODULES],
+  exports: [...MODULES],
+  imports: [
+    CommonModule,
+    TranslationModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ChartistModule,
+    MatRippleModule
+  ],
+  entryComponents: [ConfirmDialogComponent, BoundCardDialogComponent]
 })
 export class SharedModule {
 }

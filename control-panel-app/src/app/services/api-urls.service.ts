@@ -78,6 +78,10 @@ export class ApiUrlsService implements IApiUrlsInterface {
         return ApiUrlsService.getPagedUrl(API.CASH_BOX_INSTANCES, requestMethod, id);
     }
 
+    public getCardReaders(requestMethod: 'GET' | 'PATCH', id?: string): string | null {
+        return ApiUrlsService.getPagedUrl(API.GET_CARD_READERS, requestMethod, id)
+    }
+
     // packages
 
     public getPackages(requestMethod: 'GET' | 'PUT' | 'POST' | 'PATCH' | 'DELETE',  id?: string) {

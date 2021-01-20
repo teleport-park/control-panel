@@ -59,5 +59,6 @@ export const API = {
         direction: 'orderDirection'
     },
 
-    WHO_IS: 'tng/ctl/whois'
+    WHO_IS: 'tng/ctl/whois',
+    GET_CARD_READERS: 'cpanel/readers'
 };
