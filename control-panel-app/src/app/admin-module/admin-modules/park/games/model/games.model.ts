@@ -20,7 +20,7 @@ export class Price implements IPrice<string> {
     maxPlayers: number = 1;
     maxDuration: number = 15;
     price = {
-        currency: 'TVPLR',
+        currency: 'TLPVR',
         amount: 0
     };
     enabled: true;
