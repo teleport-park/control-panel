@@ -1,0 +1,502 @@
+[
+  {
+    "packageInfo": {
+      "id": "72858254-29ab-4ddf-831d-f8a4987e3acd",
+      "name": 0,
+      "amount": 104,
+      "currency": "BYN"
+    },
+    "payments": [
+      {
+        "id": "f4eb54a2-51da-4071-9e25-6ae0801daea4",
+        "index": 0,
+        "amount": 26,
+        "currency": "BYN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 7,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 1",
+            "amount": 8,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 2",
+            "amount": 9,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 3",
+            "amount": 6,
+            "currency": "COIN"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageInfo": {
+      "id": "95256ecc-a1bd-4710-9e34-fb94fbb4e536",
+      "name": 1,
+      "amount": 115,
+      "currency": "BYN"
+    },
+    "payments": [
+      {
+        "id": "a5d94cae-513c-49dc-b619-65e0b48125c3",
+        "index": 0,
+        "amount": 14,
+        "currency": "BYN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 7,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 1",
+            "amount": 9,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 2",
+            "amount": 1,
+            "currency": "COIN"
+          }
+        ]
+      },
+      {
+        "id": "40c1a6f5-6b94-4cb3-803d-bdcb63786c87",
+        "index": 1,
+        "amount": 25,
+        "currency": "COIN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 10,
+            "currency": "COIN"
+          }
+        ]
+      },
+      {
+        "id": "3f0f943c-3b2c-44bb-a55f-075cbb1a9ec6",
+        "index": 2,
+        "amount": 34,
+        "currency": "BYN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 6,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 1",
+            "amount": 7,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 2",
+            "amount": 1,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 3",
+            "amount": 7,
+            "currency": "COIN"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageInfo": {
+      "id": "c1ce2291-dd9b-4530-b74d-cae5fd673ddc",
+      "name": 2,
+      "amount": 344,
+      "currency": "BYN"
+    },
+    "payments": [
+      {
+        "id": "e4fb4ed4-357b-4d3a-9880-3943edc73a5f",
+        "index": 0,
+        "amount": 21,
+        "currency": "COIN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 5,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 1",
+            "amount": 4,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 2",
+            "amount": 9,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 3",
+            "amount": 1,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 4",
+            "amount": 10,
+            "currency": "COIN"
+          }
+        ]
+      },
+      {
+        "id": "e891c622-f8a6-4561-b828-41515276070a",
+        "index": 1,
+        "amount": 28,
+        "currency": "BYN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 8,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 1",
+            "amount": 8,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 2",
+            "amount": 9,
+            "currency": "COIN"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageInfo": {
+      "id": "ce51c6c2-5a9b-40ce-9f71-9d9d0de7af1b",
+      "name": 3,
+      "amount": 477,
+      "currency": "BYN"
+    },
+    "payments": [
+      {
+        "id": "461d499b-0f70-4d7f-a482-4c55e0dab021",
+        "index": 0,
+        "amount": 22,
+        "currency": "COIN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 5,
+            "currency": "COIN"
+          }
+        ]
+      },
+      {
+        "id": "6c0af2aa-b6f9-450a-ae88-6130f99f9a3f",
+        "index": 1,
+        "amount": 35,
+        "currency": "BYN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 6,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 1",
+            "amount": 9,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 2",
+            "amount": 3,
+            "currency": "COIN"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageInfo": {
+      "id": "770ff935-d40b-4efb-aa8d-42a889f0a8bc",
+      "name": 4,
+      "amount": 310,
+      "currency": "BYN"
+    },
+    "payments": [
+      {
+        "id": "e0152008-3cea-412b-bfb2-cac88e98dde7",
+        "index": 0,
+        "amount": 15,
+        "currency": "BYN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 6,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 1",
+            "amount": 5,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 2",
+            "amount": 2,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 3",
+            "amount": 2,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 4",
+            "amount": 7,
+            "currency": "COIN"
+          }
+        ]
+      },
+      {
+        "id": "acf25914-5e09-46ad-86f3-31d88c6ab572",
+        "index": 1,
+        "amount": 28,
+        "currency": "COIN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 10,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 1",
+            "amount": 2,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 2",
+            "amount": 6,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 3",
+            "amount": 6,
+            "currency": "COIN"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageInfo": {
+      "id": "95252f8a-ded7-4ebe-b115-f5419431429b",
+      "name": 5,
+      "amount": 263,
+      "currency": "BYN"
+    },
+    "payments": [
+      {
+        "id": "89251fb3-7788-4344-8e29-f2c5edcd784e",
+        "index": 0,
+        "amount": 41,
+        "currency": "COIN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 6,
+            "currency": "COIN"
+          }
+        ]
+      },
+      {
+        "id": "1a5717f1-6619-4559-9bc7-376599ab88f6",
+        "index": 1,
+        "amount": 33,
+        "currency": "COIN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 2,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 1",
+            "amount": 2,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 2",
+            "amount": 8,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 3",
+            "amount": 4,
+            "currency": "COIN"
+          }
+        ]
+      },
+      {
+        "id": "5e44aa4c-e6c7-4787-bde5-64fcc6f6f97c",
+        "index": 2,
+        "amount": 46,
+        "currency": "BYN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 3,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 1",
+            "amount": 10,
+            "currency": "COIN"
+          }
+        ]
+      },
+      {
+        "id": "8e972038-9df2-4864-b8b7-ccffd55bb142",
+        "index": 3,
+        "amount": 15,
+        "currency": "BYN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 5,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 1",
+            "amount": 4,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 2",
+            "amount": 10,
+            "currency": "COIN"
+          }
+        ]
+      },
+      {
+        "id": "dd4dbe6b-56ca-4913-9632-b701afca7e74",
+        "index": 4,
+        "amount": 46,
+        "currency": "BYN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 7,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 1",
+            "amount": 8,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 2",
+            "amount": 2,
+            "currency": "COIN"
+          }
+        ]
+      },
+      {
+        "id": "5b96d4cd-4a3e-4941-97b4-dc28685ac459",
+        "index": 5,
+        "amount": 38,
+        "currency": "COIN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 10,
+            "currency": "COIN"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "packageInfo": {
+      "id": "190da18b-a852-4f9d-a5f5-df84e3ee2c12",
+      "name": 6,
+      "amount": 358,
+      "currency": "BYN"
+    },
+    "payments": [
+      {
+        "id": "b99da8cd-c313-48e0-841e-54812090ef6c",
+        "index": 0,
+        "amount": 43,
+        "currency": "COIN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 3,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 1",
+            "amount": 9,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 2",
+            "amount": 10,
+            "currency": "COIN"
+          },
+          {
+            "name": "test 3",
+            "amount": 2,
+            "currency": "COIN"
+          }
+        ]
+      },
+      {
+        "id": "0f34f286-4abd-4fb0-aa9d-ff6a9aec8afb",
+        "index": 1,
+        "amount": 15,
+        "currency": "BYN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 5,
+            "currency": "COIN"
+          }
+        ]
+      },
+      {
+        "id": "e6156b79-82f4-464e-b727-0f5e2860c941",
+        "index": 2,
+        "amount": 40,
+        "currency": "BYN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 10,
+            "currency": "COIN"
+          }
+        ]
+      },
+      {
+        "id": "ce082711-2a08-42f6-942b-75ee1c264a94",
+        "index": 3,
+        "amount": 49,
+        "currency": "BYN",
+        "children": [
+          {
+            "name": "test 0",
+            "amount": 5,
+            "currency": "COIN"
+          }
+        ]
+      }
+    ]
+  }
+]

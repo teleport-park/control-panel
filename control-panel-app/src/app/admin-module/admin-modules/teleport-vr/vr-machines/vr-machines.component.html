@@ -1,0 +1,126 @@
+<ng-container *ngTemplateOutlet="(service.instances$ | async)?.length ? instances : empty"></ng-container>
+
+<ng-template #instances>
+    <div class="row m-0">
+        <div *ngFor="let item of (service.instances$ | async)"
+             class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 instance">
+            <control-panel-ui-item-card [item]="item" [class.unregistered]="!item.registered" class="light-theme">
+                <div class="hardware-item_title">
+                    <h4>{{item.display_name || item.name}}</h4>
+                </div>
+                <p>
+                    <span class="bold">{{translations.instant('TOKEN')}}:</span>
+                    <span class="copy" [cdkCopyToClipboard]="item.access_token"
+                          (cdkCopyToClipboardCopied)="dataCopied($event)" (tap)="copy(item.access_token)">{{item.access_token}}</span>
+                </p>
+                <p>
+                    <span class="bold">{{translations.instant('SERVER_ENABLED')}}:</span>
+                    <mat-icon [ngClass]="{'offline': !item.enabled, 'online': item.enabled}">
+                        {{item.enabled ? 'desktop_windows' : 'desktop_access_disabled'}}
+                    </mat-icon>
+                </p>
+                <p>
+                    <span class="bold">{{translations.instant('REGISTERED')}}:</span>
+                    <mat-icon [ngClass]="{'offline': !item.registered, 'online': item.registered}">
+                        {{item.registered ? 'check' : 'clear'}}
+                    </mat-icon>
+                </p>
+                <p>
+                    <span class="bold">{{translations.instant('CONTROLLER_CONNECTED')}}:</span>
+                    <mat-icon [ngClass]="{'offline': !item.connected, 'online': item.connected}">
+                        {{item.connected ? 'check' : 'clear'}}
+                    </mat-icon>
+                </p>
+                <p>
+                    <span class="bold">{{translations.instant('IP')}}:</span>
+                    {{item.ip_address || 'N/A' | translate}}
+                </p>
+                <p>
+                    <span class="bold">{{translations.instant('GAME')}}:</span>
+                    <span *ngIf="item.game" class="d-inline-flex flex-column">
+                        <span class="bold">{{item.game?.name || 'N/A' | translate}}</span>
+                        <span class="sub_text">id:{{item.game?.id || 'N/A' | translate}}</span>
+                    </span>
+                    <span *ngIf="!item.game">{{'N/A' | translate}}</span>
+                </p>
+                <p>
+                    <span class="bold">{{translations.instant('STATUS')}}:</span>
+                    {{item.status ? (item.status.toUpperCase() | translate) : 'N/A' | translate}}
+                </p>
+                <div *ngIf="item.registered"
+                     class="action-button justify-content-between d-flex align-items-center mt-2">
+                    <mat-slide-toggle color="success" (change)="toggle(item)" [checked]="item.enabled"><span
+                            class="label">{{(item.enabled ? 'DISABLE_SERVER' : 'ENABLE_SERVER') | translate}}</span>
+                    </mat-slide-toggle>
+                    <div>
+                        <button mat-icon-button
+                                matTooltip="{{'TABLE_EDIT' | translate}}"
+                                [matTooltipShowDelay]="500"
+                                matTooltipPosition="above"
+                                color="primary" (click)="edit(item)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button
+                                matTooltip="{{'TABLE_DELETE' | translate}}"
+                                [matTooltipShowDelay]="500"
+                                matTooltipPosition="above"
+                                color="warn" (click)="remove(item)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="!item.registered" class="actions">
+                    <button mat-flat-button color="primary" *ngIf="!item.registered"
+                            (click)="registerHandler(item)">{{'REGISTER' | translate}}</button>
+                </div>
+            </control-panel-ui-item-card>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #empty>
+    <control-panel-ui-empty></control-panel-ui-empty>
+</ng-template>
+
+<ng-template #registerForm let-data>
+    <h4 class="mt-n2 mb-2">{{'REGISTER' | translate}}</h4>
+    <ng-container *ngTemplateOutlet="form"></ng-container>
+    <div class="d-flex justify-content-end mb-n2 mt-2">
+        <button mat-flat-button color="warn" mat-dialog-close>{{'DIALOG_CANCEL_BUTTON_LABEL' | translate}}</button>
+        <button mat-flat-button color="primary" class="ml-2"
+                (click)="register(data)">{{'REGISTER' | translate}}</button>
+    </div>
+</ng-template>
+
+<ng-template #editForm let-data>
+    <h4 class="mt-n2 mb-2">{{'TABLE_EDIT' | translate}}</h4>
+    <ng-container *ngTemplateOutlet="form"></ng-container>
+    <div class="d-flex justify-content-end mb-n2 mt-2">
+        <button mat-flat-button color="warn" mat-dialog-close>{{'DIALOG_CANCEL_BUTTON_LABEL' | translate}}</button>
+        <button mat-flat-button color="primary" class="ml-2"
+                (click)="submit(data)">{{'USER_FORM_EDIT_BUTTON_LABEL' | translate}}</button>
+    </div>
+</ng-template>
+
+<ng-template #form>
+    <form [formGroup]="_form" class="d-flex flex-column">
+        <mat-form-field>
+            <label>
+                <input matInput placeholder="{{'NAME' | translate}}" formControlName="name" [maxLength]="50">
+            </label>
+        </mat-form-field>
+        <mat-checkbox formControlName="enabled">{{'EXTENDED_FILTER_STAFF_ACTIVE' | translate}}</mat-checkbox>
+    </form>
+</ng-template>
+
+<ng-template #games>
+    <div mat-dialog-title>{{'ADMIN_MENU_GAMES' | translate}} | {{_games.server}}</div>
+    <div mat-dialog-content>
+        <control-panel-games-list [games]="_games.games"></control-panel-games-list>
+    </div>
+    <div mat-dialog-actions class="d-flex justify-content-end">
+        <button mat-button color="warn" [mat-dialog-close]>{{'CLOSE' | translate}}</button>
+    </div>
+</ng-template>
+
+<control-panel-trigger [callBack]="service.refresh.bind(service)"></control-panel-trigger>

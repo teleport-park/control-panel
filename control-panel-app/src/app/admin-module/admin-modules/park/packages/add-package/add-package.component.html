@@ -1,0 +1,212 @@
+<div class="light-theme mb-2" *ngIf="form">
+    <control-panel-ui-card>
+        <div panelUICardHeaderTitle>
+            {{translations.instant(_packageId ? 'EDIT_PACKAGE_TITLE' : 'ADD_PACKAGE_TITLE')}}
+        </div>
+        <div panelUICardContent>
+            <form [formGroup]="form" class="container-fluid package-form">
+                <div class="row">
+                    <div class="col-xl-3 d-flex flex-column">
+                        <mat-form-field>
+                            <input matInput placeholder="{{translations.instant('AMUSEMENTS_NAME_LABEL')}}"
+                                   [maxLength]="255"
+                                   formControlName="name" required>
+                            <mat-error
+                                    *ngIf="form.get('name')?.errors?.required">{{translations.instant('REQUIRED_FIELD', [translations.instant('AMUSEMENTS_NAME_LABEL')])}}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input type="number" matInput
+                                   [max]="10"
+                                   [min]="1"
+                                   placeholder="{{translations.instant('PLAYERS_COUNT')}}"
+                                   formControlName="players">
+                            <mat-error
+                                    *ngIf="form.get('players')?.errors?.required">{{translations.instant('REQUIRED_FIELD', [translations.instant('PLAYERS_COUNT')])}}</mat-error>
+                            <mat-error
+                                    *ngIf="form.get('players')?.errors?.pattern">{{translations.instant('ONLY_INTEGER_ERROR')}}</mat-error>
+                            <mat-error
+                                    *ngIf="form.get('players')?.errors?.min">{{translations.instant('PLAYERS_MIN_ERROR')}} {{form.get('players')?.errors?.min.min}}</mat-error>
+                            <mat-error
+                                    *ngIf="form.get('players')?.errors?.max">{{translations.instant('PLAYERS_MAX_ERROR')}} {{form.get('players')?.errors?.max.max}}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <textarea matInput [maxLength]="255"
+                                      placeholder="{{translations.instant('NOTE')}}"
+                                      formControlName="note"
+                                      style="box-sizing: content-box"
+                                      autocomplete="off"
+                                      cdkTextareaAutosize
+                                      cdkAutosizeMinRows="1"
+                                      cdkAutosizeMaxRows="5"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <mat-checkbox formControlName="enabled">{{'ENABLED_ALT' | translate}}</mat-checkbox>
+
+                <div formArrayName="plans" cdkDropList
+                     class="plan_wrapper"
+                     (cdkDropListDropped)="dropPlan($event)" >
+                    <div class="d-flex align-items-center justify-content-between mt-3 mb-2">
+                        <h3>{{translations.instant('PLANS')}}</h3>
+                    </div>
+                    <ng-container *ngFor="let plan of this.plans.controls; let idx = index">
+                        <div [formGroupName]="idx + ''" class="plan-wrapper container-fluid" cdkDrag>
+                            <div class="d-flex flex-column">
+                                <div class="mt-0 d-flex justify-content-between align-items-center drop-handler"
+                                     cdkDragHandle>
+                                    <mat-icon class="mr-2 drag-icon">drag_indicator</mat-icon>
+                                    <span class="flex-grow-1">{{translations.instant('TRANSACTION_NUMBER')}} {{idx + 1}}</span>
+                                    <button type="button" mat-button color="warn"
+                                            (click)="showConfirmDialog(idx)"
+                                            class="pl-2 delete-button">
+                                        <mat-icon>clear</mat-icon>
+                                        {{translations.instant('REMOVE_PLAN')}}
+                                    </button>
+                                </div>
+                                <div>
+                                    <mat-form-field>
+                                        <mat-select formControlName="promo_id"
+                                                    (selectionChange)="updateExcludedPromo()"
+                                                    [placeholder]="translations.instant('PROMO')">
+                                            <ng-container *ngFor="let promo of promos">
+                                                <mat-option *ngIf="excludePromo(promo.id, idx)"
+                                                            value="{{promo.id}}">{{promo.display_name || promo.name}}</mat-option>
+                                            </ng-container>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="payments_wrapper col-xl-6 pb-2 pt-3">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h4 class="mb-0">{{translations.instant('PAYMENTS')}}</h4>
+                                    </div>
+                                    <div formArrayName="payments" class="drop-list" cdkDropList
+                                         (cdkDropListDropped)="dropPayment($event, idx)">
+                                        <ng-container
+                                                *ngFor="let payment of plan.get('payments').controls; let index = index">
+                                            <div [formGroupName]="index + ''" class="payment drop-box light-theme"
+                                                 cdkDrag>
+                                                <div class="mt-0 d-flex justify-content-between align-items-center drop-handler"
+                                                     cdkDragHandle>
+                                                    <mat-icon class="mr-2 drag-icon">drag_indicator</mat-icon>
+                                                    <span class="flex-grow-1">{{translations.instant('TRANSACTION_NUMBER')}} {{index + 1}}</span>
+                                                    <button type="button" mat-button color="warn"
+                                                            (click)="showConfirmDialog(idx, index, true)"
+                                                            class="pl-2 delete-button">
+                                                        <mat-icon>clear</mat-icon>
+                                                        {{translations.instant('TABLE_DELETE')}}
+                                                    </button>
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-between w-100">
+                                                    <div class="flex-grow-1">
+                                                        <mat-form-field class="mr-2">
+                                                            <input matInput amount-format formControlName="amount"
+                                                                   placeholder="{{translations.instant('TRANSACTION_AMOUNT')}}">
+                                                            <mat-error
+                                                                    *ngIf="plan.get('payments').at(index).get('amount')?.errors?.required">{{translations.instant('REQUIRED_FIELD', [translations.instant('TRANSACTION_AMOUNT')])}}</mat-error>
+                                                        </mat-form-field>
+                                                        <mat-form-field class="currency">
+                                                            <mat-select formControlName="currency"
+                                                                        placeholder="{{translations.instant('TRANSACTION_CURRENCY')}}">
+                                                                <mat-option *ngFor="let currency of _currencies"
+                                                                            [value]="currency">{{currency}}</mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </ng-container>
+                                        <div class="d-flex align-items-center justify-content-end mt-2">
+                                            <button type="button" mat-button color="primary"
+                                                    (click)="addPayment(idx)" class="ml-5 pl-3">
+                                                <mat-icon>add</mat-icon>
+                                                {{translations.instant('ADD_PAYMENT')}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="charges_wrapper col-xl-6 pb-2 pt-3">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h4 class="mb-0">{{translations.instant('CHARGES')}}</h4>
+                                    </div>
+                                    <div formArrayName="charges" class="drop-list" cdkDropList
+                                         (cdkDropListDropped)="dropCharge($event, idx)">
+                                        <ng-container
+                                                *ngFor="let charge of plan.get('charges')?.controls; let index = index">
+                                            <div [formGroupName]="index +''" class="charge drop-box light-theme"
+                                                 cdkDrag>
+                                                <div class="mt-0 d-flex justify-content-between align-items-center drop-handler"
+                                                     cdkDragHandle>
+                                                    <mat-icon class="mr-2 drag-icon">drag_indicator</mat-icon>
+                                                    <span class="flex-grow-1">{{translations.instant('TRANSACTION_NUMBER')}} {{index + 1}}</span>
+                                                    <button type="button" mat-button color="warn"
+                                                            (click)="showConfirmDialog(idx, index)"
+                                                            class="pl-2 delete-button">
+                                                        <mat-icon>clear</mat-icon>
+                                                        {{translations.instant('TABLE_DELETE')}}
+                                                    </button>
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-between w-100">
+                                                    <div class="flex-grow-1">
+                                                        <mat-form-field class="mr-2">
+                                                            <input matInput amount-format formControlName="amount"
+                                                                   placeholder="{{translations.instant('TRANSACTION_AMOUNT')}}">
+                                                            <mat-error
+                                                                    *ngIf="plan.get('charges').at(index).get('amount')?.errors?.required">{{translations.instant('REQUIRED_FIELD', [translations.instant('TRANSACTION_AMOUNT')])}}</mat-error>
+                                                        </mat-form-field>
+                                                        <mat-form-field class="currency">
+                                                            <mat-select formControlName="currency"
+                                                                        placeholder="{{translations.instant('TRANSACTION_CURRENCY')}}">
+                                                                <mat-option *ngFor="let currency of _currencies"
+                                                                            [value]="currency">{{currency}}</mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-end"
+                                                   *ngIf="getPlayersArray().length > 0">
+                                <span (click)="list.selectAll()"
+                                      class="select">{{translations.instant('SELECT_ALL')}}</span>
+                                                    <span (click)="list.deselectAll()"
+                                                          class="select">{{translations.instant('DESELECT_ALL')}}</span>
+                                                </div>
+                                                <mat-selection-list #list formControlName="players">
+                                                    <mat-list-option checkboxPosition="before"
+                                                                     *ngFor="let player of getPlayersArray()"
+                                                                     [value]="player">
+                                                        {{translations.instant('PLAYER')}} {{player + 1}}
+                                                    </mat-list-option>
+                                                </mat-selection-list>
+                                            </div>
+                                        </ng-container>
+                                        <div class="d-flex align-items-center justify-content-end mt-2">
+                                            <button type="button" mat-button color="primary"
+                                                    (click)="addCharge(idx)" class="ml-5 pl-3">
+                                                <mat-icon>add</mat-icon>
+                                                {{translations.instant('ADD_CHARGE')}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <button type="button" mat-flat-button color="primary" (click)="addPlan()" class="pl-3">
+                        <mat-icon>add</mat-icon>
+                        {{translations.instant('PLANS_ADD')}}
+                    </button>
+                </div>
+            </form>
+            <div class="d-flex justify-content-end align-items-center mt-4 ml-3">
+                <button type="button" mat-flat-button color="warn" (click)="back()" class="mr-4 pl-3">
+                    <mat-icon>keyboard_backspace</mat-icon>
+                    {{translations.instant('BACK')}}</button>
+                <button type="button" mat-flat-button color="accent" (click)="submit()" class="pl-3">
+                    <mat-icon>check</mat-icon>
+                    {{translations.instant(_packageId ? 'USER_FORM_EDIT_BUTTON_LABEL' : 'TABLE_ADD')}}</button>
+            </div>
+        </div>
+    </control-panel-ui-card>
+</div>

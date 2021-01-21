@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  .instances_wrapper {
+    margin: 0;
+    .instance {
+      margin-bottom: 10px;
+    }
+  }
+}

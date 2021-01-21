@@ -1,0 +1,51 @@
+:host {
+  display: block;
+  height: 100%;
+  .package-form {
+    padding: .5rem;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: .3rem;
+  }
+
+  .plan-wrapper {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: .3rem;
+    padding-top: 0.3rem;
+    margin-bottom: 1rem;
+    overflow: auto;
+  }
+
+  .payments_wrapper, .charges_wrapper {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .payment, .charge {
+    padding: 1rem;
+    border: solid 1px rgba(0, 0, 0, .2);
+    border-radius: .3rem;
+    margin-top: .5rem;
+    background-color: #FFF;
+    .currency {
+      width: 6rem;
+    }
+
+    .drag-icon {
+      color: rgba(0, 0, 0, .6);
+    }
+  }
+
+  .select {
+    margin-right: 1rem;
+    text-decoration: underline;
+    cursor: pointer;
+    user-select: none;
+    color: #6f2cff;
+    &:hover {
+      color: #4828a8;
+    }
+  }
+  ::ng-deep.mat-list-option {
+    width: auto;
+    display: inline-block;
+  }
+}

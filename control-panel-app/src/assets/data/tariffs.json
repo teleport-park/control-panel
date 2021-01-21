@@ -1,0 +1,200 @@
+[
+  {
+    "root": {
+      "name": "Serious Sam"
+    },
+    "children": [
+      {
+        "name": "",
+        "amount": 30.72
+      },
+      {
+        "name": "",
+        "amount": 36.58
+      },
+      {
+        "name": "",
+        "amount": 13.71
+      },
+      {
+        "name": "",
+        "amount": 20.94
+      },
+      {
+        "name": "",
+        "amount": 37.45
+      },
+      {
+        "name": "",
+        "amount": 13.09
+      },
+      {
+        "name": "",
+        "amount": 23.35
+      },
+      {
+        "name": "",
+        "amount": 39.84
+      }
+    ]
+  },
+  {
+    "root": {
+      "name": "World of Tanks VR"
+    },
+    "children": [
+      {
+        "name": "",
+        "amount": 18.53
+      },
+      {
+        "name": "",
+        "amount": 36.4
+      },
+      {
+        "name": "",
+        "amount": 26.43
+      },
+      {
+        "name": "",
+        "amount": 27.4
+      }
+    ]
+  },
+  {
+    "root": {
+      "name": "Beat Saber"
+    },
+    "children": [
+      {
+        "name": "",
+        "amount": 31.17
+      },
+      {
+        "name": "",
+        "amount": 39.23
+      },
+      {
+        "name": "",
+        "amount": 26.86
+      },
+      {
+        "name": "",
+        "amount": 10.4
+      },
+      {
+        "name": "",
+        "amount": 21.07
+      },
+      {
+        "name": "",
+        "amount": 28.37
+      },
+      {
+        "name": "",
+        "amount": 25.1
+      },
+      {
+        "name": "",
+        "amount": 13.16
+      },
+      {
+        "name": "",
+        "amount": 38.3
+      },
+      {
+        "name": "",
+        "amount": 39.19
+      }
+    ]
+  },
+  {
+    "root": {
+      "name": "Fruit Ninja"
+    },
+    "children": [
+      {
+        "name": "",
+        "amount": 39.49
+      },
+      {
+        "name": "",
+        "amount": 26.06
+      },
+      {
+        "name": "",
+        "amount": 34.71
+      },
+      {
+        "name": "",
+        "amount": 21.78
+      },
+      {
+        "name": "",
+        "amount": 11.98
+      }
+    ]
+  },
+  {
+    "root": {
+      "name": "Super HOT"
+    },
+    "children": [
+      {
+        "name": "",
+        "amount": 36.73
+      },
+      {
+        "name": "",
+        "amount": 22.27
+      },
+      {
+        "name": "",
+        "amount": 26.17
+      }
+    ]
+  },
+  {
+    "root": {
+      "name": "Karts Sprint"
+    },
+    "children": [
+      {
+        "name": "",
+        "amount": 10.33
+      },
+      {
+        "name": "",
+        "amount": 25.41
+      },
+      {
+        "name": "",
+        "amount": 31.31
+      },
+      {
+        "name": "",
+        "amount": 27.05
+      },
+      {
+        "name": "",
+        "amount": 34.88
+      },
+      {
+        "name": "",
+        "amount": 29.71
+      },
+      {
+        "name": "",
+        "amount": 23.38
+      },
+      {
+        "name": "",
+        "amount": 14.53
+      },
+      {
+        "name": "",
+        "amount": 25.21
+      }
+    ]
+  }
+]

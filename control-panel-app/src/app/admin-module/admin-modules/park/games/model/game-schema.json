@@ -1,0 +1,24 @@
+[
+  {
+    "key": "id",
+    "required": true
+  }, {
+    "key": "name",
+    "required": true
+  }, {
+    "key": "type",
+    "required": true
+  }, {
+    "key": "source",
+    "required": true
+  }, {
+    "key": "image_url",
+    "required": true
+  }, {
+    "key": "active",
+    "required": true
+  }, {
+    "key": "prices",
+    "required": true
+  }
+]

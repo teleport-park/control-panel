@@ -1,0 +1,57 @@
+<div class="period-selector_wrapper">
+    <div class="quick-time-filter_wrapper mb-4 flex-wrap">
+        <div #fast_link class="period-fast-link mr-4" (click)="setPeriod('hour', 1, 0)"><span>{{translations.instant('QUICK_FILTER_LAST_HOUR')}}</span></div>
+        <div #fast_link class="period-fast-link mr-4" (click)="setPeriod('hour', 6,1)"><span>{{translations.instant('QUICK_FILTER_LAST_6_HOURS')}}</span></div>
+        <div #fast_link class="period-fast-link mr-4" (click)="setPeriod('day', 1,2)"><span>{{translations.instant('QUICK_FILTER_LAST_DAY')}}</span></div>
+        <div #fast_link class="period-fast-link mr-4" (click)="setPeriod('week', 1,3)"><span>{{translations.instant('QUICK_FILTER_LAST_WEEK')}}</span></div>
+        <div #fast_link class="period-fast-link mr-4" (click)="setPeriod('month', 1,4)"><span>{{translations.instant('QUICK_FILTER_LAST_MONTH')}}</span></div>
+    </div>
+    <div class="d-flex align-items-center flex-wrap">
+        <mat-form-field class="time">
+            <input matInput type="time" [formControl]="_fromTimeControl" placeholder="{{fromLabel}}">
+            <mat-hint>{{translations.instant('TIME')}}</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="from">
+            <input matInput
+                   class="date-picker-input"
+                   [matDatepicker]="from"
+                   [max]="_toDateControl.value || maxDate"
+                   [min]="minDate"
+                   [formControl]="_fromDateControl">
+            <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+            <mat-datepicker #from></mat-datepicker>
+            <mat-error *ngIf="_fromDateControl?.errors?.matDatepickerParse">{{'DATE_PARSE_ERROR' | translate}}</mat-error>
+            <mat-error *ngIf="_fromDateControl?.errors?.required">{{'DATE_PERIOD_END_REQUIRED' | translate}}</mat-error>
+            <mat-error *ngIf="_fromDateControl?.errors?.matDatepickerMax">{{'MAX_DATE_ERROR' | translate}} {{_fromDateControl?.errors?.matDatepickerMax.max | date:'dd.MM.yyyy'}}</mat-error>
+            <mat-error *ngIf="_fromDateControl?.errors?.matDatepickerMax && _toDateControl?.errors?.matDatepickerMin">{{'MIN_MAX_ERROR' | translate}}
+            </mat-error>
+            <mat-hint>{{'TRANSACTION_DATE' | translate}}</mat-hint>
+        </mat-form-field>
+
+        <mat-icon class="arrow">keyboard_arrow_right</mat-icon>
+        <mat-form-field class="time">
+            <input matInput type="time" [formControl]="_toTimeControl" placeholder="{{toLabel}}">
+            <mat-hint>{{'TIME' | translate}}</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="to">
+            <input matInput
+                   class="date-picker-input"
+                   [matDatepicker]="to"
+                   [max]="maxDate"
+                   [min]="_fromDateControl.value"
+                   [formControl]="_toDateControl">
+            <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+            <mat-datepicker #to></mat-datepicker>
+            <mat-error *ngIf="_toDateControl?.errors?.matDatepickerParse">{{'DATE_PARSE_ERROR' | translate}}</mat-error>
+            <mat-error *ngIf="_toDateControl?.errors?.required">{{'DATE_PERIOD_END_REQUIRED' | translate}}</mat-error>
+            <mat-error *ngIf="_toDateControl?.errors?.matDatepickerMin">{{'MIN_DATE_ERROR' | translate}} {{_toDateControl.errors.matDatepickerMin.min | date: 'dd.MM.yyyy'}}</mat-error>
+            <mat-error *ngIf="_toDateControl?.errors?.matDatepickerMin && _fromDateControl?.errors?.matDatepickerMax">{{'MAX_MIN_ERROR' | translate}}
+            </mat-error>
+            <mat-hint>{{'TRANSACTION_DATE' | translate}}</mat-hint>
+        </mat-form-field>
+        <div class="actions">
+            <button mat-flat-button color="primary" (click)="submit()" style="color: #fff">{{submitLabel}}</button>
+            <button mat-flat-button color="warn" class="ml-2" (click)="reset()">{{translations.instant('CLEAR')}}</button>
+        </div>
+    </div>
+</div>

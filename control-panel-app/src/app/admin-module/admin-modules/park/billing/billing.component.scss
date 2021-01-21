@@ -1,0 +1,27 @@
+@import "control-panel-theme";
+
+:host {
+  @include d-block();
+  position: relative;
+  @include custom-scroll();
+  overflow: auto;
+  height: 100%;
+  .quick-filter_wrapper {
+    background-color: $white;
+    padding: .5rem 1rem;
+    ::ng-deep.mat-icon {
+       color: map-get($dark-color, 900);
+    }
+  }
+
+  .sync-action {
+    position: absolute;
+    display: inline-block;
+    right: 10px;
+    top: 5px;
+    z-index: 2;
+    padding: .1rem .1rem .1rem 1rem;
+    border-radius: 5px;
+    background-color: rgba(map-get($dark-color, 500), .7);
+  }
+}

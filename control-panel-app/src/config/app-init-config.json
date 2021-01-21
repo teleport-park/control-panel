@@ -1,0 +1,6 @@
+{
+  "api_url": "/",
+  "refresh_interval": 5,
+  "ws_url": "",
+  "visitor_min_age": 7
+}

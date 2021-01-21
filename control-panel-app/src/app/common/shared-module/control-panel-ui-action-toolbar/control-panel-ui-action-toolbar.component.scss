@@ -1,0 +1,10 @@
+:host {
+  .control-panel-action-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    button {
+      margin-left: 10px;
+    }
+  }
+}

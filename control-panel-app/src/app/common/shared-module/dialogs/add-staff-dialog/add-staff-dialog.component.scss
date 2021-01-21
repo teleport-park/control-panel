@@ -1,0 +1,46 @@
+:host {
+  .staff-member_form {
+    display: flex;
+    flex-direction: column;
+    .mat-form-field {
+      width: 100%;
+    }
+    .table-selection_wrapper {
+      overflow-y: auto;
+      margin-bottom: 15px;
+    }
+    .action-button-group {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1rem;
+      button {
+        margin-left: 10px;
+      }
+    }
+    .check-control {
+      margin-bottom: 15px;
+      &.fired-date {
+        display: flex;
+        justify-content: space-between;
+        div {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+    .group-section {
+      display: flex;
+      justify-content: space-between;
+    }
+    .add-roles_trigger {
+      cursor: pointer;
+    }
+    .roles-error {
+      font-size: 75%;
+      margin-top: -15px;
+    }
+  }
+  .bold {
+    font-weight: 700;
+  }
+}

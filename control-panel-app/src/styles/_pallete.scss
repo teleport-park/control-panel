@@ -1,0 +1,39 @@
+// primary color
+//$primary: #AB47BC;
+// back drop color
+$backdrop: rgba(0,0,0,.2);
+// dark
+$dark: #000;
+// warning
+$warn: #cf0000;
+// info
+$info: #0000ff;
+// success
+$success: #007a00;
+
+$inactive: rgba(0, 0, 0, .5);
+
+$info: #0000ff;
+
+$white: #FFFFFF;
+
+@mixin gradient-border($color1, $color2) {
+  $border: 2px;
+  background-clip: padding-box;
+  border: solid $border transparent;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 10px;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -$border;
+    border-radius: inherit;
+    background: linear-gradient(90deg, $color1 0%, $color2 100%);
+  }
+}

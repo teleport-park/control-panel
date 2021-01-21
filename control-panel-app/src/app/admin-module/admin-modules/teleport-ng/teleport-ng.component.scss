@@ -1,0 +1,6 @@
+@import "control-panel-theme";
+:host {
+  @include d-block();
+  @include custom-scroll();
+  overflow: auto;
+}

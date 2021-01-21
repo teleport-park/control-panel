@@ -1,0 +1,8 @@
+<div class="check-box-group-filter d-flex align-items-center justify-content-between flex-grow-1" [formGroup]="group">
+  <div class="bold">{{translations.instant(config.label)}}:</div>
+  <mat-selection-list [formControlName]="config.property" [disableRipple]="true" color="primary">
+    <mat-list-option *ngFor="let value of config.options" [checkboxPosition]="'before'" [value]="value.value">
+      {{translations.instant(value.label)}}
+    </mat-list-option>
+  </mat-selection-list>
+</div>

@@ -1,0 +1,54 @@
+<mat-sidenav-container class="staff_wrapper" *ngIf="!groupOutlet.isActivated">
+    <mat-sidenav #extendedFilter
+                 mode="{{(point?.handset | async) ? 'over' : 'side'}}"
+                 [opened]="false"
+                 position="end">
+        <div class="extended-filters_wrapper">
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content #scrollContainer>
+        <div class="light-theme">
+            <control-panel-ui-card>
+                <div panelUICardHeaderTitle>
+                    {{translations.instant('STAFF_TABLE_LABEL')}}
+                </div>
+                <div panelUICardContent>
+                    <control-panel-ui-card [hideHeader]="true" class="no-margin">
+                        <div panelUICardContent>
+                            <div class="extended-filters_wrapper">
+                                <extended-filters [config]="extendedFiltersConfig"
+                                                  [state]="service.requestHelper.filterData"
+                                                  (close)="extendedFilter.close()"
+                                                  (applyFilter)="applyFilter($event)"></extended-filters>
+                            </div>
+                        </div>
+                    </control-panel-ui-card>
+                    <div class="users-table-filter">
+                        <control-panel-ui-quick-filter #quickFilter
+                                                       (filterChange)="applyQuickFilter($event)"></control-panel-ui-quick-filter>
+                    </div>
+                    <div class="staff-table-wrapper">
+                        <control-panel-ui-table
+                                [data]="(service.entities$ | async)"
+                                [displayedColumns]="displayedColumns"
+                                [simpleDataColumn]="simpleDataColumn"
+                                [listSortedColumn]="sortedColumn"
+                                [itemCount]="service.requestHelper.count"
+                                [resetPagination]="resetPagination"
+                                [card]="true"
+                                storageKey="STAFF"
+                                iconSet="person_add"
+                                (edit)="openDialog('edit', $event)"
+                                (delete)="openDialog('delete', $event)"
+                                (add)="openDialog('add')"
+                                (bindCard)="bindCard($event, 'staff')"
+                                (sortChanges)="sortChangeHandler($event)"
+                                (pageChanges)="pageChangeHandler($event)">
+                        </control-panel-ui-table>
+                    </div>
+                </div>
+            </control-panel-ui-card>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+<router-outlet #groupOutlet="outlet" (deactivate)="cd.markForCheck()"></router-outlet>

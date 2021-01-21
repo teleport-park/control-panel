@@ -1,0 +1,33 @@
+@import "control-panel-theme";
+
+:host {
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  //margin: 1rem 0 .5rem;
+  cursor: pointer;
+  user-select: none;
+  //max-width: 15rem;
+  //max-height: 15rem;
+  //min-width: 10rem;
+  //min-height: 10rem;
+  background-color: $white;
+  @include gradient-border(#EB00FF, #0087b0);
+  font-size: 1.3rem;
+  ::ng-deep .icon {
+    margin: 1rem 0 .5rem;
+    width: 4rem;
+    height: 4rem;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  .title {
+    text-align: center;
+  }
+  &:hover {
+    background-color: rgba($white, .9);
+  }
+}

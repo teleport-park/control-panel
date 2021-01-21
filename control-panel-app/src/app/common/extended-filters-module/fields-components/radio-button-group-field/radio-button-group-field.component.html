@@ -1,0 +1,8 @@
+<div class="radio-button-group-filter" [formGroup]="group">
+    <p>{{translations.instant(config.label)}}:</p>
+    <mat-radio-group [formControlName]="config.property" color="primary">
+        <mat-radio-button *ngFor="let value of config.options" labelPosition="after" [value]="value.value">
+            {{translations.instant(value.label)}}
+        </mat-radio-button>
+    </mat-radio-group>
+</div>

@@ -1,0 +1,7 @@
+<mat-form-field class="language-select" [ngClass]="{'light': theme}">
+  <mat-select [(value)]="locale" [placeholder]="placeholder" (selectionChange)="changeLanguage($event)">
+    <mat-option *ngFor="let language of languageItems" [value]="language.value">
+      {{language.label}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

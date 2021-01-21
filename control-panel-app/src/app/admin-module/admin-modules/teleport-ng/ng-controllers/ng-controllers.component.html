@@ -1,0 +1,45 @@
+<ng-container *ngTemplateOutlet="(service.controllers$ | async)?.length ? instances : empty"></ng-container>
+
+<ng-template #instances>
+    <div class="row m-0">
+        <div *ngFor="let item of (service.controllers$ | async)"
+             class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 instance">
+            <control-panel-ui-item-card [item]="item">
+                <div class="hardware-item_title">
+                    <h4 matTooltip="{{item.token}}"
+                        [matTooltipShowDelay]="1000"
+                        matTooltipPosition="below">{{_transformToken(item.token)}}</h4>
+                </div>
+                <p>
+                    <span class="bold">{{translations.instant('TOKEN')}}:</span>
+                    <span class="copy" (click)="copy(item.token)">{{item.token}}</span>
+                </p>
+                <p>
+                    <span class="bold">{{translations.instant('TYPE')}}:</span>
+                    {{item.type.toUpperCase()}}
+                </p>
+                <p>
+                    <span class="bold">{{translations.instant('CONTROLLER_AUTHORIZED')}}:</span>
+                    <mat-icon [ngClass]="{'offline': !item.authorized, 'online': item.authorized}">
+                        {{item.authorized ? 'check' : 'clear'}}
+                    </mat-icon>
+                </p>
+                <p>
+                    <span class="bold">{{translations.instant('CONTROLLER_CONNECTED')}}:</span>
+                    {{getSecondsAgo(item.connected)}}
+                </p>
+                <div class="actions">
+                    <button mat-flat-button color="warn" *ngIf="item.authorized" (click)="revoke(item)">{{translations.instant('REVOKE')}}</button>
+                    <button mat-flat-button color="primary" *ngIf="!item.authorized" (click)="grant(item)">{{translations.instant('GRANT')}}</button>
+                </div>
+            </control-panel-ui-item-card>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #empty>
+    <control-panel-ui-empty></control-panel-ui-empty>
+</ng-template>
+
+<control-panel-trigger [callBack]="service.refresh.bind(service)"></control-panel-trigger>
+

@@ -1,0 +1,14 @@
+:host {
+  .copy {
+    word-break: break-word;
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+      color: #370ed8;
+    }
+  }
+  .instance {
+    margin-bottom: 10px;
+    min-width: 300px;
+  }
+}

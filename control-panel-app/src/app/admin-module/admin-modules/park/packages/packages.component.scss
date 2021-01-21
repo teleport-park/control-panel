@@ -1,0 +1,73 @@
+@import "../../../../../styles/control-panel-theme";
+
+:host {
+  @include d-block();
+  @include custom-scroll();
+  position: relative;
+  .packages_wrapper {
+    margin: 0;
+    .packages__history {
+      .mat-table {
+        width: 100%;
+      }
+    }
+    .packages {
+      .package {
+        margin: 0 -10px;
+      }
+    }
+  }
+  .slider-wrapper {
+    background-color: $white;
+    overflow: hidden;
+  }
+
+  .sync-action {
+    position: absolute;
+    display: inline-block;
+    right: 10px;
+    top: 5px;
+    z-index: 2;
+    padding: .1rem .1rem .1rem 1rem;
+    border-radius: 5px;
+    background-color: rgba(map-get($dark-color, 500), .7);
+  }
+
+  .package-table {
+    width: 100%;
+    .mat-column {
+      &-actions {
+        width: 6rem;
+      }
+      &-enabled {
+        width: 7rem;
+      }
+      &-name {
+        width: 25rem;
+      }
+    }
+    .mat-cell {
+      padding-right: 1rem;
+      &.disabled {
+        opacity: .3;
+      }
+    }
+    .name {
+      word-break: break-all;
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: inline-block;
+      padding: .5rem 1rem .5rem 0;
+      &:hover {
+        color: rgba(0, 0, 0, 1);
+        text-decoration: underline;
+      }
+    }
+    .field {
+      width: 100%;
+      max-width: 7rem;
+      margin-right: 1rem;
+    }
+  }
+}

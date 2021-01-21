@@ -1,0 +1,69 @@
+<form [formGroup]="form" class="staff-member_form">
+    <div class="row">
+        <div class="col">
+            <h4>{{'STAFF_MEMBER' | translate}}</h4>
+            <mat-form-field>
+                <input matInput placeholder="{{'FIRST_NAME' | translate}}" formControlName="name" required>
+                <mat-error>
+                    {{'REQUIRED_FIELD' | translate:[translations.instant('FIRST_NAME')]}}
+                </mat-error>
+            </mat-form-field>
+            <div class="check-control">
+                <mat-checkbox formControlName="high_education">{{'STAFF_HIGHER_EDUCATION' | translate}}</mat-checkbox>
+            </div>
+            <mat-form-field>
+                <input matInput alphanumeric-latin placeholder="{{'STAFF_PASSPORT' | translate}}" formControlName="passport">
+                <mat-error>
+                    {{'REQUIRED_FIELD' | translate:[translations.instant('STAFF_PASSPORT')]}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput [matDatepicker]="hired_date" placeholder="{{'STAFF_HIRED_AT' | translate}}"
+                       formControlName="hired_at">
+                <mat-datepicker-toggle matSuffix [for]="hired_date"></mat-datepicker-toggle>
+                <mat-datepicker #hired_date></mat-datepicker>
+                <mat-error>
+                    {{'REQUIRED_FIELD' | translate:[translations.instant('STAFF_HIRED_AT')]}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput [matDatepicker]="fired_date" placeholder="{{'STAFF_FIRED_AT' | translate}}"
+                       [min]="form.get('hired_at').value"
+                       formControlName="fired_at">
+                <mat-datepicker-toggle matSuffix [for]="fired_date"></mat-datepicker-toggle>
+                <mat-datepicker #fired_date></mat-datepicker>
+                <mat-error *ngIf="form.get('fired_at')?.errors?.matDatepickerMin">
+                    {{'MIN_DATE_VALIDATION_ERROR' | translate:[form.get('fired_at')?.errors?.matDatepickerMin.min | date: 'dd.MM.yyyy']}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{'STAFF_ROLES' | translate}}</mat-label>
+                <mat-chip-list style="min-height: 20px; display: block">
+                    <mat-chip *ngFor="let role of entityModel.roles" color="accent"
+                              [removable]="true" (removed)="remove(role)">
+                        {{role}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    &nbsp;
+                </mat-chip-list>
+                <mat-icon matSuffix *ngIf="roles.length" class="ml-1 add-roles_trigger" color="primary" [matMenuTriggerFor]="rolesMenu" (click)="$event.stopPropagation()">add</mat-icon>
+            </mat-form-field>
+            <mat-error class="roles-error" *ngIf="rolesEmpty">{{'REQUIRED_FIELD' | translate:[translations.instant('STAFF_ROLES')]}}</mat-error>
+            <mat-menu #rolesMenu="matMenu">
+                <button mat-menu-item (click)="add(role)" *ngFor="let role of roles">
+                    {{role}}
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+    <div class="action-button-group">
+        <button mat-raised-button
+                color="warn"
+                type="button"
+                (click)="onCancelHandler()">{{'DIALOG_CANCEL_BUTTON_LABEL' | translate }}</button>
+        <button mat-raised-button
+                color="primary"
+                type="submit"
+                (click)="onSubmitHandler()">{{(data.mode === 'edit' ? 'USER_FORM_EDIT_BUTTON_LABEL' : 'USER_FORM_ADD_BUTTON_LABEL') | translate }}</button>
+    </div>
+</form>

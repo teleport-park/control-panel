@@ -1,0 +1,13 @@
+:host {
+  display: inline-block;
+  position: fixed;
+  left: 300px;
+  bottom: 5px;
+  .watermark {
+    font-size: 1.5rem;
+    opacity: .2;
+    user-select: none;
+    z-index: 99999;
+    color: #999999;
+  }
+}

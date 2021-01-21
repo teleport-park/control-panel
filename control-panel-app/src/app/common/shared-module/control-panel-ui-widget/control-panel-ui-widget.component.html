@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-header>
+    <div class="card-header-wrapper">
+      <ng-content select="[widgetHeader]"></ng-content>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <ng-content select="[widgetContent]"></ng-content>
+      <div class="footer-divider" *ngIf="footerContent.innerHTML.trim()">
+        <mat-divider></mat-divider>
+      </div>
+      <span #footerContent><ng-content select="[widgetFooter]"></ng-content></span>
+  </mat-card-content>
+</mat-card>

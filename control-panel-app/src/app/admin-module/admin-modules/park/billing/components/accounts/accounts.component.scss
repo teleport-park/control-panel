@@ -1,0 +1,12 @@
+@import "control-panel-theme";
+
+:host {
+  .filter_wrapper {
+    background-color: $white;
+  }
+  .account-table {
+    width: 100%;
+    margin-bottom: 2rem;
+    table-layout: fixed;
+  }
+}

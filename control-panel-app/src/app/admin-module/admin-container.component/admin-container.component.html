@@ -1,0 +1,155 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav
+                 mode="{{(point?.handset | async) ? 'over' : 'side'}}"
+                 [opened]="!(point?.handset | async)"
+                 [position]="(point?.handset | async) ? 'end' : 'start'"
+                 class="sidenav-inner-container">
+        <div class="sidenav-title">
+            <span>
+                <button
+                        *ngIf="(point.handset | async)"
+                        mat-icon-button
+                        (click)="sidenav.toggle()">
+              <mat-icon>menu</mat-icon>
+            </button>
+            </span>
+            <div (click)="openUrlForm()"
+                 class="sidenav-title__link">{{translations.instant('ADMIN_MENU_TITLE')}}</div>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-nav-list class="nav-list-container">
+            <div class="nav-list-container_parent-container" *ngFor="let menuItem of MENU_ITEMS">
+                <a mat-list-item *ngIf="!menuItem.root" [ngClass]="{'italic': !menuItem.ready}"
+                   class="d-flex justify-content-between align-items-center w-100"
+                   [routerLink]="menuItem.path"
+                   routerLinkActive="active"
+                   (click)="menuItem.active = !menuItem.active">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <div class="d-flex align-items-center">
+                            <mat-icon svgIcon="{{menuItem.icon}}"></mat-icon>
+                            {{translations.instant(menuItem.label)}}
+                        </div>
+                        <mat-icon class="mat-icon-rtl-mirror expand-icon"
+                                  svgIcon="{{menuItem.active ? 'expand_more' : 'chevron_right'}}"
+                                  *ngIf="menuItem.children && menuItem.children.length">
+                        </mat-icon>
+                    </div>
+                </a>
+                <a mat-list-item class="" *ngIf="menuItem.root" [ngClass]="{'italic': !menuItem.ready}"
+                   (click)="menuItem.active = !menuItem.active">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <div class="d-flex align-items-center">
+                            <mat-icon svgIcon="{{menuItem.icon}}"></mat-icon>
+                            {{translations.instant(menuItem.label)}}
+                        </div>
+                        <mat-icon svgIcon="{{menuItem.active ? 'expand_more' : 'chevron_right'}}"
+                                  class="mat-icon-rtl-mirror expand-icon"
+                                  *ngIf="menuItem.children && menuItem.children.length">
+                        </mat-icon>
+                    </div>
+                </a>
+                <div class="nav-list-container_children-container"
+                     *ngIf="menuItem.children && menuItem.children.length && menuItem.active">
+                    <ng-container *ngFor="let children of menuItem.children">
+                        <a mat-list-item *ngIf="!children.children"
+                           [ngClass]="{'italic': !children.ready}"
+                           [routerLink]="children.path"
+                           (click)="children.active = !children.active"
+                           routerLinkActive="active"
+                           [routerLinkActiveOptions]="{exact: true}">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                                <div class="d-flex align-items-center">
+                                    <mat-icon svgIcon="{{children.icon}}"></mat-icon>
+                                    {{translations.instant(children.label)}}
+                                </div>
+                                <mat-icon svgIcon="{{children.active ? 'expand_more' : 'chevron_right'}}"
+                                          class="mat-icon-rtl-mirror expand-icon"
+                                          *ngIf="children.children && children.children.length">
+                                </mat-icon>
+                            </div>
+                        </a>
+                        <a mat-list-item *ngIf="children.children"
+                           [ngClass]="{'italic': !children.ready}"
+                           (click)="children.active = !children.active">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                                <div class="d-flex align-items-center">
+                                    <mat-icon svgIcon="{{children.icon}}"></mat-icon>
+                                    {{translations.instant(children.label)}}
+                                </div>
+                                <mat-icon svgIcon="{{children.active ? 'expand_more' : 'chevron_right'}}"
+                                          class="mat-icon-rtl-mirror expand-icon"
+                                          *ngIf="children.children && children.children.length">
+                                </mat-icon>
+                            </div>
+                        </a>
+                        <ng-container *ngIf="children.children && children.children.length && children.active">
+                            <div class="nav-list-container_sub-children-container">
+                                <ng-container *ngFor="let sub_children of children.children">
+                                    <a mat-list-item
+                                       [ngClass]="{'italic': !sub_children.ready}"
+                                       [routerLink]="sub_children.path"
+                                       routerLinkActive="active"
+                                       [routerLinkActiveOptions]="{exact: true}">
+                                        {{translations.instant(sub_children.label)}}
+                                    </a>
+                                </ng-container>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+        </mat-nav-list>
+        <mat-divider *ngIf="(point?.handset | async)"></mat-divider>
+        <div *ngIf="(point?.handset | async)" class="side-nav_action-button">
+            <language-switcher
+                    theme="light"
+                    (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
+            <button mat-button
+                    class="mb-3"
+                    routerLink="/login">{{translations.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
+        </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <div class="toolbar-title-container">
+                <a><span>{{translations.instant(activeView)}}</span></a>
+            </div>
+            <language-switcher *ngIf="!(point?.handset | async)"
+                               (changeLocaleStart)="loaderService.dispatchShowLoader(true)"></language-switcher>
+            <button mat-button *ngIf="!(point?.handset | async)"
+                    routerLink="/login">{{translations.instant('ADMIN_TOOLBAR_LOGOUT_BUTTON_LABEL')}}</button>
+            <button mat-icon-button
+                    (click)="sidenav.toggle()"
+                    *ngIf="(point?.handset | async)">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar>
+        <div class="content-container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<ng-template #apiUrlForm>
+    <h5 class="mb-4">{{'CHANGE_URL_TITLE' | translate}}</h5>
+    <mat-form-field class="mb-2 w-100">
+        <label>
+            <input matInput placeholder="URL" [formControl]="apiUrlControl">
+        </label>
+        <mat-error *ngIf="apiUrlControl.errors?.required">
+            {{'REQUIRED_FIELD' | translate:[translations.instant('URL')]}}
+        </mat-error>
+        <mat-error
+                *ngIf="apiUrlControl?.errors?.pattern">{{translations.instant('SERVER_IP_INVALID_ERROR')}}</mat-error>
+        <mat-icon
+                matSuffix
+                (click)="apiUrlControl.setValue(initService.DefaultApi)"
+                class="reset">autorenew
+        </mat-icon>
+    </mat-form-field>
+    <control-panel-ui-action-toolbar (confirm)="changeApiUrl()"
+                                     (cancel)="_dialog.close()"
+                                     [mode]="'edit'"></control-panel-ui-action-toolbar>
+</ng-template>
+

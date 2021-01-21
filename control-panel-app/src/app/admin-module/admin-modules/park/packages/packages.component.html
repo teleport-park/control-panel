@@ -1,0 +1,155 @@
+<div class="packages_wrapper">
+    <div class="light-theme">
+        <control-panel-ui-card class="primary">
+            <div panelUICardHeaderTitle>{{translations.instant('PACKAGES_LIST_TITLE')}}</div>
+            <div panelUICardContent>
+                <div>
+                    <control-panel-ui-quick-filter (filterChange)="applyFilter($event)"></control-panel-ui-quick-filter>
+                </div>
+                <table mat-table [dataSource]="dataSource" class="package-table">
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>{{translations.instant('AMUSEMENTS_NAME_LABEL')}}</th>
+                        <td mat-cell *matCellDef="let pack"
+                            [class.disabled]="_editPackage && _editPackage.id !== pack.id">
+                            <ng-container *ngIf="_editPackage?.id !== pack.id">
+                                <div class="name" (click)="edit(pack)">
+                                    {{pack.display_name || pack.name}}
+                                </div>
+                                <div class="sub_text mb-2" *ngIf="pack.note">
+                                    <span class="info">{{pack.note}}</span>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="_editPackage?.id === pack.id">
+                                <mat-form-field class="mt-2 w-100">
+                                    <input matInput [formControl]="_form.controls?.name"
+                                           placeholder="{{'AMUSEMENTS_NAME_LABEL' | translate}}">
+                                    <mat-error *ngIf="_form.controls?.name?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="w-100">
+                                    <textarea matInput [formControl]="_form.controls?.note"
+                                              placeholder="{{'NOTE' | translate}}"
+                                              cdkTextareaAutosize
+                                              cdkAutosizeMinRows="1"
+                                              cdkAutosizeMaxRows="5"
+                                              style="box-sizing: content-box"></textarea>
+                                </mat-form-field>
+                            </ng-container>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="players">
+                        <th mat-header-cell *matHeaderCellDef>{{translations.instant('PLAYERS')}}</th>
+                        <td mat-cell *matCellDef="let pack"
+                            [class.disabled]="_editPackage && _editPackage.id !== pack.id">
+                            <ng-container *ngIf="_editPackage?.id !== pack.id">
+                                {{pack.players}}
+                            </ng-container>
+                            <ng-container *ngIf="_editPackage?.id === pack.id">
+                                <mat-form-field class="field">
+                                    <mat-select [formControl]="_form.controls?.players">
+                                        <mat-option *ngFor="let count of _players" [value]="count">{{count}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </ng-container>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="cost">
+                        <th mat-header-cell *matHeaderCellDef>{{translations.instant('COST')}}</th>
+                        <td mat-cell *matCellDef="let pack"
+                            [class.disabled]="_editPackage && _editPackage.id !== pack.id">
+                            <ng-container *ngIf="_editPackage?.id !== pack.id">
+                                <span>{{pack.cost.amount}} </span>
+                                <span>{{pack.cost.currency}}</span>
+                            </ng-container>
+                            <ng-container *ngIf="_editPackage?.id === pack.id">
+                                <div class="d-flex align-items-center">
+                                    <mat-form-field class="field">
+                                        <input type="number" matInput [min]="0" [max]="100000"
+                                               [formControl]="_form.controls?.cost?.controls?.amount">
+                                        <mat-error *ngIf="_form.controls?.cost?.controls?.amount?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
+                                        <mat-error *ngIf="_form.controls?.cost?.controls?.amount?.errors?.max as max">{{'MAX_VALUE_ERROR_SHORT' | translate}} {{max.max}}</mat-error>
+                                        <mat-error *ngIf="_form.controls?.cost?.controls?.amount?.errors?.min as min">{{'MIN_VALUE_ERROR_SHORT' | translate}} {{min.min}}</mat-error>
+                                    </mat-form-field>
+                                    <span class="semi-bold">{{pack.cost.currency}}</span>
+                                </div>
+                            </ng-container>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="charge">
+                        <th mat-header-cell *matHeaderCellDef>{{translations.instant('CHARGE')}}</th>
+                        <td mat-cell *matCellDef="let pack"
+                            [class.disabled]="_editPackage && _editPackage.id !== pack.id">
+                            <ng-container *ngIf="_editPackage?.id !== pack.id">
+                                <span>{{pack.charge.amount}} </span>
+                                <span>{{pack.charge.currency}}</span>
+                            </ng-container>
+                            <ng-container *ngIf="_editPackage?.id === pack.id">
+                                <div class="d-flex align-items-center">
+                                    <mat-form-field class="field">
+                                        <input type="number" matInput [min]="0" [max]="100000"
+                                               [formControl]="_form.controls?.charge?.controls?.amount">
+                                        <mat-error *ngIf="_form.controls?.charge?.controls?.amount?.errors?.required">{{'REQUIRED' | translate}}</mat-error>
+                                        <mat-error *ngIf="_form.controls?.charge?.controls?.amount?.errors?.max as max">{{'MAX_VALUE_ERROR_SHORT' | translate}} {{max.max}}</mat-error>
+                                        <mat-error *ngIf="_form.controls?.charge?.controls?.amount?.errors?.min as min">{{'MIN_VALUE_ERROR_SHORT' | translate}} {{min.min}}</mat-error>
+                                    </mat-form-field>
+                                    <span class="semi-bold">{{pack.charge.currency}}</span>
+                                </div>
+                            </ng-container>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="enabled">
+                        <th mat-header-cell *matHeaderCellDef>{{translations.instant('ENABLED_ALT')}}</th>
+                        <td mat-cell *matCellDef="let pack"
+                            [class.disabled]="_editPackage && _editPackage.id !== pack.id">
+                            <ng-container *ngIf="_editPackage?.id !== pack.id">
+                                <mat-icon [class.positive]="pack.enabled" [class.negative]="!pack.enabled">{{pack.enabled ? 'check' : 'clear'}} </mat-icon>
+                            </ng-container>
+                            <ng-container *ngIf="_editPackage?.id === pack.id">
+                                <mat-checkbox [formControl]="_form.controls?.enabled"></mat-checkbox>
+                            </ng-container>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef class="submenu_header"></th>
+                        <td mat-cell *matCellDef="let pack" class="submenu_cell"
+                            [class.disabled]="_editPackage && _editPackage.id !== pack.id">
+                            <div class="d-flex" *ngIf="_editPackage?.id !== pack.id">
+                                <button mat-icon-button (click)="edit(pack)"
+                                        [disabled]="_editPackage && _editPackage.id !== pack.id"
+                                        matTooltip="{{translations.instant('TABLE_EDIT')}}" matTooltipPosition="above">
+                                    <mat-icon color="primary">edit</mat-icon>
+                                </button>
+                                <button mat-icon-button (click)="delete(pack)"
+                                        [disabled]="_editPackage && _editPackage.id !== pack.id"
+                                        matTooltip="{{translations.instant('TABLE_DELETE')}}"
+                                        matTooltipPosition="above">
+                                    <mat-icon color="warn">delete</mat-icon>
+                                </button>
+                            </div>
+                            <div class="d-flex" *ngIf="_editPackage?.id === pack.id">
+                                <button mat-icon-button
+                                        (click)="save()"
+                                        matTooltip="{{translations.instant('USER_FORM_EDIT_BUTTON_LABEL')}}"
+                                        matTooltipPosition="above">
+                                    <mat-icon color="primary">check</mat-icon>
+
+                                </button>
+                                <button mat-icon-button (click)="cancel()"
+                                        matTooltip="{{translations.instant('DIALOG_CANCEL_BUTTON_LABEL')}}"
+                                        matTooltipPosition="above">
+                                    <mat-icon color="warn">close</mat-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <div class="d-flex justify-content-end mt-4">
+                    <button mat-flat-button color="primary" [disabled]="!!_editPackage" (click)="addPackage()" class="pl-2 mt-3 mb-3">
+                        <mat-icon class="mr-2">add</mat-icon>
+                        {{translations.instant('ADD_PACKAGE_TITLE')}}</button>
+                </div>
+            </div>
+        </control-panel-ui-card>
+    </div>
+</div>

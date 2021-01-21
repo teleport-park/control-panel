@@ -1,0 +1,15 @@
+:host {
+  .action-button-group {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    button {
+      margin-left: 10px;
+    }
+  }
+  .message {
+    ::ng-deep span {
+      font-weight: 700;
+    }
+  }
+}

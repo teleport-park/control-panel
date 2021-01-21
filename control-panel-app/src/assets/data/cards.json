@@ -1,0 +1,206 @@
+[
+  {
+    "id": "57953b28-91bc-415f-9613-5263cf58abb9",
+    "currentOwner": {
+      "address": "Kremko st",
+      "age": 35,
+      "dateOfBirth": "1984-09-30T00:00:00",
+      "desc": "test",
+      "email": "sonny1@tut.by",
+      "firstName": "Nikolay",
+      "gender": "male",
+      "id": 1,
+      "lastName": "Kavaliou",
+      "phone": "+375 (29) 882 81 56",
+      "registered": "2019-03-20T17:08:44.5373399",
+      "statuses": [
+        {
+          "id": 1,
+          "name": "Playing"
+        },
+        {
+          "id": 3,
+          "name": "Vip"
+        }
+      ]
+    },
+    "ownerId": 1,
+    "ownerType": "user",
+    "inventoryNumber": "966417c8-2be9-4c51-9353-bc93133d0122",
+    "enabled": true
+  },
+  {
+    "id": "966417c8-2be9-4c51-9353-bc93133d0122",
+    "currentOwner": {
+      "firstName": "Bob",
+      "group": {
+        "id": 1,
+        "name": "Administrator",
+        "permissions": [
+          {
+            "id": 7,
+            "name": "ACCESS_GOD_MODE_ON"
+          },
+          {
+            "id": 1,
+            "name": "ACCESS_CASH"
+          }
+        ]
+      },
+      "id": 12,
+      "isEnabled": false,
+      "lastName": "Spanch"
+    },
+    "ownerId": 12,
+    "ownerType": "staff",
+    "inventoryNumber": "57953b28-91bc-415f-9613-5263cf58abb9",
+    "enabled": false
+  },
+  {
+    "id": "6332b6dc-0437-4bd0-9f2a-eacd41df9043",
+    "currentOwner": {
+      "firstName": "Patrik",
+      "group": {
+        "id": 1,
+        "name": "Administrator",
+        "permissions": [
+          {
+            "id": 7,
+            "name": "ACCESS_ROOT"
+          },
+          {
+            "id": 1,
+            "name": "ACCESS_CASH"
+          }
+        ]
+      },
+      "id": 12,
+      "isEnabled": false,
+      "lastName": "Star"
+    },
+    "ownerId": 12,
+    "ownerType": "staff",
+    "inventoryNumber": "6332b6dc-0437-4bd0-9f2a-eacd41df9043",
+    "enabled": true
+  },
+  {
+    "id": "5025f941-2e87-49e1-bb62-e671a43c9319",
+    "currentOwner": {
+      "address": "Kremko st",
+      "age": 35,
+      "dateOfBirth": "1984-09-30T00:00:00",
+      "desc": "test",
+      "email": "sonny1@tut.by",
+      "firstName": "Crystal",
+      "gender": "male",
+      "id": 1,
+      "lastName": "Method",
+      "phone": "+375 (29) 882 81 56",
+      "registered": "2019-03-20T17:08:44.5373399",
+      "statuses": [
+        {
+          "id": 1,
+          "name": "Playing"
+        },
+        {
+          "id": 3,
+          "name": "Vip"
+        }
+      ]
+    },
+    "ownerId": 1,
+    "ownerType": "user",
+    "inventoryNumber": "5025f941-2e87-49e1-bb62-e671a43c9319",
+    "enabled": true
+  },
+  {
+    "id": "1cf867be-affd-4cec-bde8-a4f705aebe1d",
+    "currentOwner": {
+      "address": "Kremko st",
+      "age": 35,
+      "dateOfBirth": "1984-09-30T00:00:00",
+      "desc": "test",
+      "email": "sonny1@tut.by",
+      "firstName": "Benny",
+      "gender": "male",
+      "id": 1,
+      "lastName": "Benassi",
+      "phone": "+375 (29) 882 81 56",
+      "registered": "2019-03-20T17:08:44.5373399",
+      "statuses": [
+        {
+          "id": 1,
+          "name": "Playing"
+        },
+        {
+          "id": 3,
+          "name": "Vip"
+        }
+      ]
+    },
+    "ownerId": 1,
+    "ownerType": "user",
+    "inventoryNumber": "1cf867be-affd-4cec-bde8-a4f705aebe1d",
+    "enabled": true
+  },
+  {
+    "id": "78a7d49b-a3e3-4e0a-9544-91f7eed43218",
+    "currentOwner": {
+      "address": "Kremko st",
+      "age": 35,
+      "dateOfBirth": "1984-09-30T00:00:00",
+      "desc": "test",
+      "email": "sonny1@tut.by",
+      "firstName": "Dianne",
+      "gender": "male",
+      "id": 1,
+      "lastName": "Wisw",
+      "phone": "+375 (29) 882 81 56",
+      "registered": "2019-03-20T17:08:44.5373399",
+      "statuses": [
+        {
+          "id": 1,
+          "name": "Playing"
+        },
+        {
+          "id": 3,
+          "name": "Vip"
+        }
+      ]
+    },
+    "ownerId": 1,
+    "ownerType": "user",
+    "inventoryNumber": "78a7d49b-a3e3-4e0a-9544-91f7eed43218",
+    "enabled": false
+  },
+  {
+    "id": "57953b28-91bc-415f-9613-5263cf58abb9",
+    "currentOwner": {
+      "address": "Kremko st",
+      "age": 35,
+      "dateOfBirth": "1984-09-30T00:00:00",
+      "desc": "test",
+      "email": "sonny1@tut.by",
+      "firstName": "Tomas",
+      "gender": "male",
+      "id": 1,
+      "lastName": "Jeferson",
+      "phone": "+375 (29) 882 81 56",
+      "registered": "2019-03-20T17:08:44.5373399",
+      "statuses": [
+        {
+          "id": 1,
+          "name": "Playing"
+        },
+        {
+          "id": 3,
+          "name": "Vip"
+        }
+      ]
+    },
+    "ownerId": 1,
+    "ownerType": "user",
+    "inventoryNumber": "23e90bf0-1a32-4292-86e3-e583aac2e960",
+    "enabled": true
+  }
+]

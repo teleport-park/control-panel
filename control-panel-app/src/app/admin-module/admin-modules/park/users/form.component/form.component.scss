@@ -1,0 +1,86 @@
+:host {
+  .user-form {
+    display: flex;
+    flex-direction: column;
+
+    .gender-select {
+      margin-bottom: 10px;
+      .mat-radio-button {
+        margin-right: 10px;
+      }
+    }
+    .gender-icon {
+      cursor: pointer;
+      color: #00aeff;
+    }
+    textarea {
+      resize: none;
+    }
+  }
+
+  .action-button-group {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin-left: 10px;
+    }
+  }
+
+  .avatars_toolbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .avatars-body {
+    max-height: 450px;
+    overflow-y: auto;
+  }
+
+  .avatars-table {
+    width: 100%;
+    margin-bottom: 10px;
+    th.mat-header-cell:first-of-type, td.mat-cell:first-of-type {
+      padding-left: 10px;
+    }
+    .table-submenu {
+      padding-right: 5px;
+      text-align: right;
+    }
+  }
+
+  .avatar-form {
+    display: flex;
+    flex-direction: column;
+    .gender-select {
+      margin-bottom: 10px;
+      .mat-radio-button {
+        margin-right: 10px;
+      }
+    }
+
+    .avatar-form-action {
+      display: flex;
+      justify-content: flex-end;
+      button {
+        margin-left: 10px;
+      }
+    }
+  }
+  .age-gender_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    .age-field {
+      max-width: 8rem;
+    }
+    .gender-field {
+      p {
+        margin-right: 15px;
+      }
+      display: flex;
+      align-items: baseline;
+    }
+  }
+}

@@ -1,0 +1,258 @@
+@import '~@angular/material/theming';
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import "pallete";
+
+$control-panel-typography: mat-typography-config(
+        $font-family: 'Roboto, sans-serif'
+);
+@include mat-core($control-panel-typography);
+
+$accent-color: (
+        50 : #e0f8ff,
+        100 : #b3edff,
+        200 : #80e1ff,
+        300 : #4dd5ff,
+        400 : #26ccff,
+        500 : #00c3ff,
+        600 : #00bdff,
+        700 : #00b5ff,
+        800 : #00aeff,
+        900 : #00a1ff,
+        A100 : #ffffff,
+        A200 : #f2faff,
+        A400 : #bfe4ff,
+        A700 : #a6daff,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #000000,
+                400 : #000000,
+                500 : #000000,
+                600 : #000000,
+                700 : #000000,
+                800 : #000000,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #000000,
+                A700 : #000000,
+        )
+);
+
+$primary-color: (
+        50 : #ede5fc,
+        100 : #d1bef8,
+        200 : #b293f4,
+        300 : #9368ef,
+        400 : #7c47eb,
+        500 : #6527e8,
+        600 : #5d23e5,
+        700 : #531de2,
+        800 : #4917de,
+        900 : #370ed8,
+        A100 : #ffffff,
+        A200 : #d9d1ff,
+        A400 : #af9eff,
+        A700 : #9985ff,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #000000,
+                400 : #ffffff,
+                500 : #ffffff,
+                600 : #ffffff,
+                700 : #ffffff,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #000000,
+                A700 : #000000,
+        )
+);
+
+$dark-color: (
+        50 : #e0e1e2,
+        100 : #b3b4b7,
+        200 : #808388,
+        300 : #4d5158,
+        400 : #262b34,
+        500 : #000610,
+        600 : #00050e,
+        700 : #00040c,
+        800 : #000309,
+        900 : #000205,
+        A100 : #4d4dff,
+        A200 : #1a1aff,
+        A400 : #0000e6,
+        A700 : #0000cd,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #ffffff,
+                400 : #ffffff,
+                500 : #ffffff,
+                600 : #ffffff,
+                700 : #ffffff,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #ffffff,
+                A200 : #ffffff,
+                A400 : #ffffff,
+                A700 : #ffffff,
+        )
+);
+
+
+$control-panel-primary: mat-palette($primary-color);
+$control-panel-accent: mat-palette($accent-color);
+$control-panel-warn: mat-palette($mat-red);
+
+$primary: mat-color($primary-color, 500);
+$accent: mat-color($accent-color, 500);
+$main-bg-color: mat-color($dark-color, 500);
+$white: #FFFFFF;
+
+
+@function control-panel-theme-foreground($color) {
+  @return (
+          base: $color,
+          divider: rgba($color, 0.2),
+          dividers: rgba($color, 0.54),
+          disabled: rgba($color, 0.38),
+          disabled-button: rgba($color, 0.38),
+          disabled-text: rgba($color, 0.2),
+          hint-text: rgba($color, 0.38),
+          secondary-text: rgba($color, 0.7),
+          icon: rgba($color, 0.54),
+          icons: rgba($color, 0.54),
+          text: rgba($color, .9),
+          slider-off: rgba($color, 0.26),
+          slider-off-active: rgba($color, 0.38),
+  );
+}
+
+;
+
+$background: (
+        status-bar: green,
+        app-bar: rgba(map-get($dark-color, 500), 0.7),
+        background: rgba($white, 0.04),
+        hover: rgba($white, 0.2),
+        card: rgba(map-get($dark-color, 500), 1),
+        dialog: rgba(map-get($dark-color, 500), .7),
+        disabled-button: $white-12-opacity,
+        raised-button: map-get($mat-grey, 800),
+        focused-button: $white-6-opacity,
+        selected-button: map_get($mat-grey, 900),
+        selected-disabled-button: map_get($mat-grey, 800),
+        disabled-button-toggle: black,
+        unselected-chip: map_get($mat-grey, 700),
+        disabled-list-option: black,
+        tooltip: map_get($mat-grey, 700)
+);
+
+$foreground: control-panel-theme-foreground($white);
+
+
+@function create-theme($primary, $accent, $foreground, $background, $warn: mat-palette($mat-red)) {
+  @return (
+          primary: $primary,
+          accent: $accent,
+          warn: $warn,
+          is-dark: true,
+          foreground: $foreground,
+          background: $background,
+  );
+}
+
+$control-panel-theme: create-theme($control-panel-primary, $control-panel-accent, $foreground, $background, $control-panel-warn);
+
+@include angular-material-theme($control-panel-theme);
+
+
+$background-light: (
+        status-bar: green,
+        app-bar: $white,
+        background: $white,
+        hover: rgba(mat-color($dark-color, 500), 0.05),
+        card: $white,
+        dialog: $white,
+        disabled-button: $white-12-opacity,
+        raised-button: map-get($mat-grey, 800),
+        focused-button: $white-6-opacity,
+        selected-button: map_get($mat-grey, 900),
+        selected-disabled-button: map_get($mat-grey, 800),
+        disabled-button-toggle: black,
+        unselected-chip: map_get($mat-grey, 400),
+        disabled-list-option: black,
+);
+
+$foreground-light: control-panel-theme-foreground(mat-color($dark-color, 500));
+
+$control-panel-light-theme: create-theme($control-panel-primary, $control-panel-accent, $foreground-light, $background-light, $control-panel-warn);
+
+@mixin d-block() {
+  display: block;
+  width: 100%;
+}
+
+@mixin gradient-border($color1, $color2) {
+  $border: 2px;
+  background-clip: padding-box;
+  border: solid $border transparent;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 10px;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -$border;
+    border-radius: inherit;
+    background: linear-gradient(90deg, $color1 0%, $color2 100%);
+  }
+}
+
+@mixin custom-scroll() {
+  //position: relative;
+  //height: 100%;
+  //overflow: auto;
+  &::-webkit-scrollbar {
+    background-color: rgba(0, 0, 0, 0);
+    width: 5px
+  }
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(map-get($dark-color, 100), .8);
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-button {
+    display: none
+  }
+}
+
+.mat-tab-labels {
+  background-color: rgba(map-get($dark-color, 500), .5);
+}
+
+.mat-pseudo-checkbox {
+
+  &::after {
+    color: rgba($white, .8);
+  }
+}
+
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent {
+  color: $white;
+}
+

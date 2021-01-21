@@ -1,0 +1,100 @@
+<div class="light-theme">
+    <control-panel-ui-card>
+        <div panelUICardHeaderTitle>{{translations.instant('SESSIONS_TABLE_TITLE')}}</div>
+        <div panelUICardContent>
+
+            <control-panel-ui-card [hideHeader]="true" class="no-margin">
+                <div panelUICardContent>
+                    <control-panel-ui-time-filter class="light-theme" (apply)="applyFilter($event)"></control-panel-ui-time-filter>
+                </div>
+            </control-panel-ui-card>
+
+            <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
+                           *ngIf="(service.requestHelper.count && (service.sessions$ | async)?.length > 10) && service.requestHelper.count > 25"
+                           [length]="service.requestHelper.count" showFirstLastButtons
+                           [pageSize]="service.requestHelper.pageSize"
+                           (page)="paginationChangeHandler($event)"></mat-paginator>
+
+            <table mat-table [dataSource]="service.sessions$ | async" class="session-table">
+                <ng-container matColumnDef="game">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('GAME')}}</th>
+                    <td mat-cell *matCellDef="let session">
+                        <div>{{session.game?.name || 'N/A'}}</div>
+                        <div class="sub_text">{{session.comment}}</div>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="players">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('PLAYERS')}}</th>
+                    <td mat-cell *matCellDef="let session">
+                        <div>{{getPlayersNames(session.players)}}</div>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('STATUS')}}</th>
+                    <td mat-cell *matCellDef="let session" [ngClass]="'status-' + session.status"> {{translations.instant(session.status.toUpperCase())}}</td>
+                </ng-container>
+                <ng-container matColumnDef="created_at">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('CREATED_AT')}}</th>
+                    <td mat-cell *matCellDef="let session"> {{(session.created_at | date: 'dd.MM.yyyy HH:mm') || '-'}}</td>
+                </ng-container>
+                <ng-container matColumnDef="completed_at">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('COMPLETED_AT')}}</th>
+                    <td mat-cell *matCellDef="let session"> {{(session.completed_at | date: 'dd.MM.yyyy HH:mm') || '-'}}</td>
+                </ng-container>
+                <ng-container matColumnDef="expires_at">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('EXPIRES_AT')}}</th>
+                    <td mat-cell *matCellDef="let session"> {{(session.expires_at | date: 'dd.MM.yyyy HH:mm') || '-'}}</td>
+                </ng-container>
+                <ng-container matColumnDef="started_at">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('STARTED_AT')}}</th>
+                    <td mat-cell *matCellDef="let session"> {{(session.started_at | date: 'dd.MM.yyyy HH:mm') || '-'}}</td>
+                </ng-container>
+                <ng-container matColumnDef="events">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('EVENTS')}}</th>
+                    <td mat-cell *matCellDef="let session">
+                        <ng-container *ngIf="session.events?.length">
+                            <div *ngFor="let event of session.events">
+                                <span>{{translations.instant('COMMENT')}}: {{event.comment}}</span>
+                                <span>{{translations.instant('STATUS')}}: {{event.status}}</span>
+                                <span *ngIf="event.error">{{translations.instant('ERROR')}}: {{event.error?.message}}</span>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="!session.events?.length">
+                            <span>-</span>
+                        </ng-container>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="error">
+                    <th mat-header-cell *matHeaderCellDef>{{translations.instant('ERROR')}}</th>
+                    <td mat-cell *matCellDef="let session">
+                        <ng-container *ngIf="session.error">
+                            <div>{{session.error?.message}}</div>
+                            <div class="sub_text">{{translations.instant('CODE')}}: {{session.error?.code}}</div>
+                        </ng-container>
+                        <ng-container *ngIf="!session.error">
+                            <span>-</span>
+                        </ng-container>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let session">
+                        <div>
+                            <button mat-icon-button color="warn" (click)="reject(session)"><mat-icon>block</mat-icon></button>
+                        </div>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.error]="row.error"></tr>
+            </table>
+            <mat-paginator #paginator [pageSizeOptions]="[25, 50]" *ngIf="service.requestHelper.count > 25"
+                           [length]="service.requestHelper.count" showFirstLastButtons
+                           [pageSize]="service.requestHelper.pageSize"
+                           (page)="paginationChangeHandler($event)"></mat-paginator>
+            <control-panel-ui-empty *ngIf="!(service.sessions$ | async)?.length" class="black"></control-panel-ui-empty>
+            <div class="d-flex justify-content-end">
+                <control-panel-trigger [callBack]="service.refresh.bind(service)" class="absolute"></control-panel-trigger>
+            </div>
+        </div>
+    </control-panel-ui-card>
+</div>

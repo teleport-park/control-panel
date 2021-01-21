@@ -1,0 +1,22 @@
+{
+  "users": {
+    "sortedColumns": [
+      "name", "registered", "gender", "age"
+    ]
+  },
+  "staff": {
+    "sortedColumns": [
+      "name",
+      "hired_at",
+      "fired_at"
+    ]
+  },
+  "permissions": {
+    "sortedColumns": [
+    ]
+  },
+  "groups": {
+    "sortedColumns": [
+    ]
+  }
+}

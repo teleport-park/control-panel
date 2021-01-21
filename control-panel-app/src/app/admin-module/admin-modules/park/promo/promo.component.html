@@ -1,0 +1,113 @@
+<div class="light-theme">
+    <control-panel-ui-card class="primary">
+        <div panelUICardHeaderTitle>{{translations.instant('PROMO_LIST')}}</div>
+        <div panelUICardContent>
+            <div class="d-flex">
+                <button mat-flat-button color="primary" (click)="add()" class="pl-2 mt-3 mb-3"><mat-icon>add</mat-icon>{{translations.instant('TABLE_ADD')}}</button>
+            </div>
+            <mat-table
+                    cdkDropList
+                    #table
+                    #list="cdkDropList"
+                    [dataSource]="dataSource"
+                    [cdkDropListData]="dataSource.data"
+                    (cdkDropListDropped)="onListDrop($event)"
+                    class="promo-table">
+                <ng-container matColumnDef="order">
+                    <mat-header-cell *matHeaderCellDef>{{translations.instant('ORDER')}}</mat-header-cell>
+                    <mat-cell *matCellDef="let promo" cdkDragHandle class="drag-icon">
+                        <mat-icon>drag_indicator</mat-icon>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="display_name">
+                    <mat-header-cell
+                            *matHeaderCellDef>{{translations.instant('AMUSEMENTS_NAME_LABEL')}}</mat-header-cell>
+                    <mat-cell *matCellDef="let promo">
+                        <div class="name">{{promo.display_name || promo.name}}</div>
+                        <div class="sub_text mb-3" *ngIf="promo.removed">
+                            <span class="info">{{translations.instant('REMOVED')}}</span>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="packages">
+                    <mat-header-cell *matHeaderCellDef>{{translations.instant('PACKAGES')}}</mat-header-cell>
+                    <mat-cell *matCellDef="let promo"> {{promo.packages}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="games">
+                    <mat-header-cell *matHeaderCellDef>{{translations.instant('ADMIN_MENU_GAMES')}}</mat-header-cell>
+                    <mat-cell *matCellDef="let promo"> {{promo.games}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="conditions">
+                    <mat-header-cell *matHeaderCellDef>{{translations.instant('CONDITIONS')}}</mat-header-cell>
+                    <mat-cell *matCellDef="let promo">
+                        <div class="d-flex flex-column">
+                            <span class="d-flex align-items-center small label mb-1">{{translations.instant('FIRST_FILL')}}:
+                                <mat-icon class="first-fill_icon" color="{{promo.conditions.first_fill ? 'success' : 'warn'}}">
+                                    {{promo.conditions.first_fill ? 'check' : 'clear'}}
+                                </mat-icon>
+                            </span>
+                            <span class="small label mb-1">{{translations.instant('SCHEDULE')}}: {{promo.conditions.schedule || '-'}}</span>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="enabled">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let promo">
+                        <mat-slide-toggle color="success" [checked]="promo.enabled" (toggleChange)="toggle(promo)"></mat-slide-toggle>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let promo">
+                        <button mat-icon-button color="accent" (click)="edit(promo)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="delete(promo)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns; let index = index;" cdkDrag
+                         (cdkDragStarted)="reset($event, index)"
+                         [class.moved]="row.moved"
+                         [class.moved-from]="row.movedFrom">
+                </mat-row>
+            </mat-table>
+            <control-panel-ui-empty class="black" *ngIf="!(service.promo$ | async)?.length"></control-panel-ui-empty>
+        </div>
+    </control-panel-ui-card>
+</div>
+
+<ng-template #formTeml>
+    <form [formGroup]="form" class="promo-form">
+        <mat-form-field>
+            <input matInput placeholder="{{'NAME' | translate}}" formControlName="name" [maxLength]="255">
+        </mat-form-field>
+        <mat-form-field>
+        <textarea matInput [maxLength]="255"
+                  placeholder="{{translations.instant('NOTE')}}"
+                  formControlName="notes"
+                  style="box-sizing: content-box"
+                  autocomplete="off"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="2"></textarea>
+        </mat-form-field>
+        <mat-checkbox formControlName="enabled">{{'ENABLED_ALT' | translate}}</mat-checkbox>
+        <div formGroupName="conditions" class="d-flex flex-column pt-2 conditions">
+            <h5 class="mb-2">{{'CONDITIONS' | translate}}</h5>
+            <mat-checkbox formControlName="first_fill">{{'FIRST_FILL' | translate}}</mat-checkbox>
+            <mat-checkbox [checked]="_schedule" (change)="_schedule = !_schedule">{{'SET_SCHEDULE' | translate}}</mat-checkbox>
+            <ng-container *ngIf="_schedule">
+                <cron-editor formControlName="schedule" [options]="cronOptions"></cron-editor>
+            </ng-container>
+        </div>
+
+        <control-panel-ui-action-toolbar (cancel)="_dialog.close(); _dialog = null" (confirm)="submit()"></control-panel-ui-action-toolbar>
+    </form>
+
+</ng-template>

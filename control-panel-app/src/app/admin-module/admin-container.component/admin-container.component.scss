@@ -1,0 +1,145 @@
+@import "control-panel-theme";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .mat-drawer-side {
+    border: 0;
+  }
+
+  .sidenav-container {
+    flex: 1 1 100%;
+
+    .sidenav-inner-container {
+      width: 280px;
+      color: $white;
+      background-color: rgba($main_bg_color, .7);
+
+      ::ng-deep .mat-drawer-inner-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .sidenav-title {
+        flex: 0 0 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        margin: 15px 0;
+        padding: 0 15px;
+        position: relative;
+
+        span {
+          position: absolute;
+          left: 15px;
+        }
+
+        .sidenav-title__link {
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .mat-divider {
+        flex: 0 0 1px;
+        margin: 0 15px;
+        border-top-color: rgba(251, 251, 251, 0.12);
+      }
+
+      .nav-list-container {
+        padding: 10px 15px 15px;
+        flex: 1 1 auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        .mat-list-item {
+          margin: 10px 0 0;
+          border-radius: 3px;
+          line-height: 24px;
+          height: 50px;
+          color: $white;
+          font-size: 14px;
+          font-weight: 300;
+          user-select: none;
+
+          .expand-icon {
+            margin-right: -.5rem;
+          }
+
+          .mat-icon:not(.expand-icon) {
+            margin-right: 15px;
+          }
+
+          &.active {
+            background-color: $primary;
+          }
+        }
+
+        .nav-list-container_children-container {
+          padding-left: 35px;
+
+          .nav-list-container_sub-children-container {
+            padding-left: 35px;
+          }
+
+          .mat-list-item {
+            &.active {
+              background-color: $primary;
+            }
+          }
+        }
+
+        @include custom-scroll();
+      }
+
+      .side-nav_action-button {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        flex: 0 0 100px;
+      }
+    }
+
+    .mat-sidenav-content {
+      display: flex;
+      flex-direction: column;
+
+      .mat-toolbar {
+        display: flex;
+        flex: 0 0 auto;
+        height: 70px;
+
+        .toolbar-title-container {
+          flex: 1 1;
+
+          a {
+            padding: 12px 30px;
+
+            span {
+              font-size: 18px;
+              font-weight: 300;
+            }
+          }
+        }
+      }
+
+      .content-container {
+        display: flex;
+        flex: 1 1 100%;
+        overflow: hidden;
+      }
+    }
+  }
+
+}
+
+.reset {
+  cursor: pointer;
+  font-size: 16px;
+}

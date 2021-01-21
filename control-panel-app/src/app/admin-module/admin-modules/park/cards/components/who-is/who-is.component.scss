@@ -1,0 +1,18 @@
+@import "control-panel-theme";
+:host {
+  .who-is_wrapper {
+    padding: 1rem;
+    .clear-filter-icon {
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    ::ng-deep.mat-form-field-prefix {
+      top: 5px;
+    }
+
+    .search-filter-icon {
+      margin-right: 5px;
+    }
+  }
+}

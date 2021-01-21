@@ -1,0 +1,14 @@
+<mat-card class="mat-elevation-z0">
+  <mat-card-header *ngIf="!hideHeader">
+    <div class="card-header-wrapper">
+      <mat-card-title><ng-content select="[panelUICardHeaderTitle]"></ng-content></mat-card-title>
+      <mat-card-subtitle><ng-content select="[panelUICardHeaderSubtitle]"></ng-content></mat-card-subtitle>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <ng-content select="[panelUICardContent]"></ng-content>
+  </mat-card-content>
+  <mat-card-actions>
+    <ng-content select="[panelUICardAction]"></ng-content>
+  </mat-card-actions>
+</mat-card>

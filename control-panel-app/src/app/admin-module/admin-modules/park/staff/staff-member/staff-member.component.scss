@@ -1,0 +1,14 @@
+:host {
+  padding: 15px;
+  display: block;
+  .staff-member_wrapper {
+    padding: 20px;
+    background-color: white;
+    .staff-property {
+      font-weight: 700;
+    }
+  }
+  .staff-member-toolbar {
+    margin: 15px 0;
+  }
+}

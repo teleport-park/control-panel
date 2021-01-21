@@ -1,0 +1,1490 @@
+[
+  {
+    "id": "5e032ca30c339b70e6484c5e",
+    "summary": "Package Vip purchase",
+    "type": "tariff",
+    "reference": {
+      "id": "5e032ca39d237d887b0d903a",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 20.26
+          },
+          "note": "Dolore consectetur nisi adipisicing aliqua cillum sunt culpa cupidatat tempor aliquip. Ut laboris laboris id cupidatat eu consequat ad occaecat. Culpa quis non ex velit nulla aliqua aliqua amet anim aliqua consequat.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 81.57
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 43.61
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 68.37
+    },
+    "status": "paid",
+    "payments": [
+      {
+        "id": "5e032ca307f21730a7ed78e8",
+        "type": "card",
+        "amount": {
+          "currency": "BYN",
+          "amount": 84
+        },
+        "note": "Duis elit tempor adipisicing ea ea qui nostrud consequat nulla eu commodo. Sit aliqua qui in exercitation consequat ad ipsum amet amet labore consectetur. Minim ea nostrud laboris duis. Aute laboris laborum incididunt veniam aute enim elit. Ea laboris consequat in sunt duis incididunt ipsum Lorem adipisicing. Voluptate dolore aute et sit amet aliquip nostrud aliquip.\r\n",
+        "created_at": "2019-11-19T02:46:44"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca38c96e992a5d36c14",
+            "account": {
+              "id": "5e032ca3318e6a5d93578088",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 22.42
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 90.09
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca38aae69001ea24537",
+              "display_name": "Olivia Kent",
+              "fullname": "Hurst Holden",
+              "nickname": "Moody",
+              "gender": "male",
+              "phone": "+375 (920) 593-3864",
+              "email": "moodyholden@digirang.com",
+              "age": 36,
+              "comment": "Pariatur ex sunt ut eiusmod officia excepteur amet excepteur id pariatur non in. Ipsum Lorem proident veniam sint anim ex voluptate aliqua enim ullamco eu. Sit voluptate occaecat labore laborum nostrud ipsum. Cupidatat nostrud veniam commodo ipsum cupidatat non quis. Laboris velit mollit anim commodo laborum. Laborum occaecat occaecat sint reprehenderit voluptate nisi aliqua. Proident adipisicing occaecat ipsum eiusmod irure adipisicing ut sunt.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 17.74
+        }
+      }
+    ],
+    "created_at": "2019-10-09T03:12:26",
+    "updated_at": "2019-10-03T12:00:43"
+  },
+  {
+    "id": "5e032ca36e2cf33a3ef2c956",
+    "summary": "Package Семейный purchase",
+    "type": "tariff",
+    "reference": {
+      "id": "5e032ca3f6a2025ecfb21227",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 78.72
+          },
+          "note": "Nisi laboris est ut velit culpa commodo. Consectetur reprehenderit id qui consectetur non deserunt veniam incididunt tempor. Labore sit pariatur deserunt consequat proident quis id enim sit sunt ut commodo. Quis ut magna minim est veniam proident nostrud aliqua laborum eu laboris. Eu dolore excepteur eu anim duis ex adipisicing cupidatat laboris. Mollit cillum aliquip reprehenderit voluptate enim amet dolore velit sit et proident aliquip.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 52.19
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 68.8
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 31.25
+    },
+    "status": "canceled",
+    "payments": [
+      {
+        "id": "5e032ca35e8549c7b82fe386",
+        "type": "cash",
+        "amount": {
+          "currency": "BYN",
+          "amount": 40.16
+        },
+        "note": "Commodo sint ipsum do et ut elit eiusmod nulla minim quis sint fugiat. Exercitation incididunt nisi pariatur amet sint ipsum incididunt deserunt velit laboris est pariatur. Irure eiusmod laboris consequat do quis nostrud esse magna. Voluptate officia deserunt ut consectetur consequat commodo sit. Dolore deserunt magna occaecat pariatur cillum dolore minim non ex ex adipisicing. Dolor deserunt qui labore amet eiusmod sit qui dolor est.\r\n",
+        "created_at": "2019-11-14T02:00:22"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca3a64f22f5fd16257c",
+            "account": {
+              "id": "5e032ca34c6e18e61ef73795",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 11.99
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 52.65
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca3563bb843ef55c582",
+              "display_name": "Kidd Burgess",
+              "fullname": "Polly Copeland",
+              "nickname": "Rojas",
+              "gender": "male",
+              "phone": "+375 (943) 571-3762",
+              "email": "rojascopeland@digirang.com",
+              "age": 29,
+              "comment": "Nisi eu laboris elit proident aliqua. Do cillum cillum occaecat dolore tempor. Elit deserunt cillum ipsum ad quis dolor labore irure excepteur magna voluptate voluptate cillum voluptate. Laborum est consectetur dolor culpa nisi commodo culpa. Eu aute proident voluptate cillum elit dolor irure voluptate ex aliqua eiusmod nulla ut culpa. Enim amet qui in ea irure excepteur labore dolor occaecat ipsum cupidatat deserunt.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 35.17
+        }
+      }
+    ],
+    "created_at": "2019-11-19T01:26:54",
+    "updated_at": "2019-10-31T10:54:05"
+  },
+  {
+    "id": "5e032ca31af3715e3c2db6d9",
+    "summary": "Package Безлимитный purchase",
+    "type": "tariff",
+    "reference": {
+      "id": "5e032ca302a5230c12727fb5",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 99.53
+          },
+          "note": "Nulla commodo ipsum proident minim esse. Lorem proident qui dolor magna ad non adipisicing occaecat nulla eu. Laboris id consequat sit do incididunt reprehenderit aliquip id nisi in. Anim ipsum do aute enim incididunt consequat qui incididunt adipisicing pariatur. Deserunt et ex ullamco do elit ad aliquip nostrud consequat occaecat. Proident et irure esse minim dolor commodo eiusmod fugiat esse incididunt dolore et minim duis.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 22.4
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 94.6
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 56.84
+    },
+    "status": "paid",
+    "payments": [
+      {
+        "id": "5e032ca37a23aebc09fd0b74",
+        "type": "card",
+        "amount": {
+          "currency": "BYN",
+          "amount": 99.33
+        },
+        "note": "Ea fugiat do culpa voluptate quis reprehenderit consequat eu qui cupidatat incididunt esse laborum do. Officia sit nisi elit non. Veniam ex sint est deserunt tempor quis aliquip id cillum.\r\n",
+        "created_at": "2019-10-20T04:51:16"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca3fa1ff7db9aaf47b8",
+            "account": {
+              "id": "5e032ca3360f581fbf1aea9e",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 81.52
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 76.19
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca3b1ce85df366a1fef",
+              "display_name": "Vicki Lowe",
+              "fullname": "Janna Skinner",
+              "nickname": "Michael",
+              "gender": "male",
+              "phone": "+375 (906) 507-3192",
+              "email": "michaelskinner@digirang.com",
+              "age": 38,
+              "comment": "Non est amet consequat cillum ad reprehenderit qui labore pariatur exercitation ut adipisicing. Id esse sint dolore ipsum ea dolore magna sit sunt enim. Excepteur dolor et id tempor adipisicing consectetur dolor ea. Labore magna dolore pariatur anim ullamco.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 70.77
+        }
+      }
+    ],
+    "created_at": "2019-12-24T01:45:58",
+    "updated_at": "2019-11-07T10:40:52"
+  },
+  {
+    "id": "5e032ca32645701dd633f688",
+    "summary": "Package Индивидуальный purchase",
+    "type": "package",
+    "reference": {
+      "id": "5e032ca36766918d33dfa552",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 43.49
+          },
+          "note": "Sint nostrud incididunt fugiat culpa culpa. Est ipsum sunt pariatur adipisicing proident laboris sunt eiusmod exercitation qui. Nulla aliquip do eiusmod sunt. Qui aliquip amet laborum non. Est do do mollit minim esse officia adipisicing proident minim duis.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 41.98
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 48.74
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 28.92
+    },
+    "status": "unpaid",
+    "payments": [
+      {
+        "id": "5e032ca3d06d8ee31fe9f07d",
+        "type": "cash",
+        "amount": {
+          "currency": "BYN",
+          "amount": 16.43
+        },
+        "note": "Amet labore esse esse laborum sunt commodo adipisicing irure deserunt qui exercitation ex. Ut sunt adipisicing quis ullamco sit irure sint anim consequat occaecat magna magna. Lorem ad eiusmod laborum quis dolore cillum sint magna non. Sint in excepteur ad in est excepteur in nulla exercitation qui proident proident sit. Sunt tempor incididunt dolore labore nostrud ut exercitation in sit ipsum cupidatat minim excepteur dolor.\r\n",
+        "created_at": "2019-11-29T09:52:03"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca326116f65e78e8cc7",
+            "account": {
+              "id": "5e032ca32dbbbe31a117b81a",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 99.45
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 62.17
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca38cb30434cfd2eca7",
+              "display_name": "Lidia Hartman",
+              "fullname": "Joy Jackson",
+              "nickname": "Harding",
+              "gender": "male",
+              "phone": "+375 (890) 555-2736",
+              "email": "hardingjackson@digirang.com",
+              "age": 27,
+              "comment": "Dolor irure velit dolor irure pariatur anim ipsum exercitation minim. Aute cillum nostrud consectetur deserunt ipsum esse do proident ullamco cupidatat dolore est non. Labore eiusmod ipsum irure sunt nostrud dolor in. Commodo exercitation anim sit laborum consequat qui aliquip quis cillum culpa aliqua exercitation mollit. In eiusmod proident ut duis velit cillum eu Lorem amet. Elit irure culpa veniam nisi occaecat ullamco tempor.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 59.33
+        }
+      }
+    ],
+    "created_at": "2019-12-02T12:05:50",
+    "updated_at": "2019-10-29T05:44:20"
+  },
+  {
+    "id": "5e032ca3d9171613585b2116",
+    "summary": "Package Семейный purchase",
+    "type": "tariff",
+    "reference": {
+      "id": "5e032ca3fe58c8f4cef4acaa",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 92.24
+          },
+          "note": "Aute deserunt laboris exercitation dolor officia sunt ea incididunt irure sunt adipisicing. Dolor nisi id tempor cupidatat et sunt fugiat id cillum officia exercitation. Consectetur sit pariatur occaecat ad magna sunt elit officia do sit ut.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 28.19
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 66.87
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 46.08
+    },
+    "status": "progress",
+    "payments": [
+      {
+        "id": "5e032ca3e7d9b3afce4e62bc",
+        "type": "card",
+        "amount": {
+          "currency": "BYN",
+          "amount": 12.76
+        },
+        "note": "Occaecat consectetur ullamco anim nulla ea. Eu laborum fugiat elit velit et ea id labore deserunt eu fugiat culpa veniam nisi. Cupidatat adipisicing ullamco aute nisi sunt commodo amet minim nostrud aute nisi. Lorem consectetur nostrud sit veniam do culpa pariatur pariatur eu aliquip et. Velit est cupidatat aliquip id laborum aliqua ea id do.\r\n",
+        "created_at": "2019-11-06T07:59:52"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca3f2a8fbea2e95a664",
+            "account": {
+              "id": "5e032ca383734e0e5e33ec20",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 85.73
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 47.01
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca3642d15b1779910c3",
+              "display_name": "Hester Cotton",
+              "fullname": "Spears Ramirez",
+              "nickname": "Fitzgerald",
+              "gender": "male",
+              "phone": "+375 (917) 403-3772",
+              "email": "fitzgeraldramirez@digirang.com",
+              "age": 38,
+              "comment": "Sunt est veniam aliquip enim consequat. Sunt deserunt id quis sit aliqua ad nisi qui duis est aliqua eiusmod nulla eiusmod. Enim voluptate ut sit laboris cupidatat reprehenderit sint duis excepteur laboris deserunt exercitation mollit voluptate. Eu dolor laboris eu consectetur amet eiusmod id reprehenderit dolore. Officia fugiat non aliquip qui aliquip culpa.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 96.21
+        }
+      }
+    ],
+    "created_at": "2019-12-02T04:27:56",
+    "updated_at": "2019-10-06T03:02:36"
+  },
+  {
+    "id": "5e032ca3de26cd0482f00302",
+    "summary": "Package Семейный purchase",
+    "type": "package",
+    "reference": {
+      "id": "5e032ca37eb00be4fcaf8228",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 99.54
+          },
+          "note": "Nisi cupidatat ipsum fugiat excepteur occaecat cillum. Duis cillum cillum ex sunt commodo enim aliquip id. Officia ea elit cillum adipisicing. Sint consequat velit aliqua irure dolore nostrud fugiat amet Lorem est in et magna aute. Sunt est et ex velit non voluptate laborum ad ea Lorem enim commodo culpa laborum. Officia sit fugiat aliquip reprehenderit sit ad voluptate proident laborum labore proident enim. Nostrud esse elit officia id cupidatat fugiat culpa exercitation sit ea est et dolore.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 86.74
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 37.68
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 77.88
+    },
+    "status": "unpaid",
+    "payments": [
+      {
+        "id": "5e032ca365847d90f053f632",
+        "type": "card",
+        "amount": {
+          "currency": "BYN",
+          "amount": 57.7
+        },
+        "note": "Dolor exercitation in enim eu magna in adipisicing nostrud cillum. Nostrud mollit non exercitation excepteur dolor cupidatat amet ex non. Deserunt enim ut consequat aliqua proident sint consectetur dolor. Deserunt incididunt exercitation eiusmod pariatur sit eu Lorem fugiat. Amet minim sunt exercitation ea nulla qui in est sit nisi. Lorem laboris minim qui duis reprehenderit in amet.\r\n",
+        "created_at": "2019-10-11T02:05:42"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca34f196fb0b857f5fc",
+            "account": {
+              "id": "5e032ca38453d4e63f11e5fd",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 94.13
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 62.87
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca3bb09e0a6dde96026",
+              "display_name": "Small Carey",
+              "fullname": "Webster Wilder",
+              "nickname": "Gould",
+              "gender": "male",
+              "phone": "+375 (837) 600-2613",
+              "email": "gouldwilder@digirang.com",
+              "age": 39,
+              "comment": "Occaecat ullamco ipsum tempor dolore nostrud magna cupidatat. Adipisicing ex pariatur excepteur aliqua dolor amet elit velit do quis. Consectetur aliqua consequat consectetur nostrud mollit dolore. Ut reprehenderit reprehenderit do do proident cillum. Quis cillum sunt reprehenderit non fugiat qui aliqua do. Sunt mollit aute irure sit enim ut in sunt ipsum sunt nisi deserunt aute. Reprehenderit ad ex ad aliqua labore occaecat velit pariatur.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 94.32
+        }
+      }
+    ],
+    "created_at": "2019-10-21T07:43:29",
+    "updated_at": "2019-10-08T02:53:23"
+  },
+  {
+    "id": "5e032ca34f6cd5a58aebdeda",
+    "summary": "Package Индивидуальный purchase",
+    "type": "tariff",
+    "reference": {
+      "id": "5e032ca32eecba4c8bb4abbd",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 19.95
+          },
+          "note": "Est incididunt mollit Lorem sunt commodo nisi magna irure enim amet proident. Deserunt veniam fugiat ea id veniam cupidatat nulla magna anim ullamco laboris duis. Cupidatat velit occaecat non nisi pariatur ullamco incididunt laboris. Esse sit qui veniam sint ullamco amet deserunt duis dolor. Aute ex ipsum magna eiusmod nisi et veniam labore eiusmod officia reprehenderit.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 53.01
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 47.98
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 19.31
+    },
+    "status": "canceled",
+    "payments": [
+      {
+        "id": "5e032ca342f22f6c550cdb4a",
+        "type": "card",
+        "amount": {
+          "currency": "BYN",
+          "amount": 51.17
+        },
+        "note": "Aliqua nostrud sunt in ad et exercitation qui. Laboris do est consectetur exercitation voluptate sint tempor. Proident culpa aliquip eu occaecat minim elit adipisicing aliqua magna sint minim commodo. Officia nulla enim et nisi consequat nisi adipisicing consectetur. Commodo occaecat duis dolor in anim non nisi fugiat amet sunt enim ullamco cillum.\r\n",
+        "created_at": "2019-11-25T04:41:46"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca3398027c9006dfc6e",
+            "account": {
+              "id": "5e032ca33e10936f5980a1d5",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 88.79
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 59.99
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca3ba133fadd19d984c",
+              "display_name": "Bell Murphy",
+              "fullname": "Cecilia Aguilar",
+              "nickname": "Leanne",
+              "gender": "female",
+              "phone": "+375 (882) 596-3282",
+              "email": "leanneaguilar@digirang.com",
+              "age": 21,
+              "comment": "Ipsum laboris consectetur labore ipsum aliqua pariatur voluptate nisi aliqua quis do aliquip. Est aute cillum ullamco eu dolor dolore excepteur magna Lorem dolore ea Lorem incididunt. Et laboris voluptate tempor veniam aute consequat qui cupidatat in incididunt elit esse cupidatat. Cupidatat aute duis deserunt culpa ad voluptate velit ex cillum nisi labore incididunt aliqua elit. Est et occaecat sit quis cupidatat quis. Excepteur est exercitation incididunt excepteur in adipisicing.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 36.33
+        }
+      }
+    ],
+    "created_at": "2019-10-26T02:33:37",
+    "updated_at": "2019-11-14T09:56:47"
+  },
+  {
+    "id": "5e032ca38dba2afb155382bf",
+    "summary": "Package Индивидуальный purchase",
+    "type": "package",
+    "reference": {
+      "id": "5e032ca36b392051fd397977",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 99.79
+          },
+          "note": "Adipisicing Lorem exercitation amet velit enim sit laborum laboris tempor proident fugiat nostrud ad sunt. Mollit elit irure aute labore. Magna ipsum pariatur exercitation non laborum laborum est veniam fugiat ullamco cillum. Fugiat quis do ea et quis dolore. Proident consectetur officia ullamco ullamco cupidatat sunt sunt quis aliqua duis voluptate.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 10.93
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 73.43
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 18.22
+    },
+    "status": "paid",
+    "payments": [
+      {
+        "id": "5e032ca304b9a1ec30378fb9",
+        "type": "cash",
+        "amount": {
+          "currency": "BYN",
+          "amount": 23.18
+        },
+        "note": "Laborum nostrud esse nulla est. Non fugiat deserunt non commodo exercitation non pariatur sunt aute minim laboris consequat consequat. Proident exercitation tempor dolore aute voluptate labore amet aliquip do ad reprehenderit ea amet commodo. Fugiat ad sint excepteur esse non anim reprehenderit non dolor officia irure fugiat consectetur. Veniam in ad veniam duis proident velit.\r\n",
+        "created_at": "2019-12-21T05:49:54"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca30bc757e145afe931",
+            "account": {
+              "id": "5e032ca3ba2a10e6a2a1ecbf",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 63.52
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 78.13
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca3df191a498eb0fee0",
+              "display_name": "Frankie Harmon",
+              "fullname": "Alexander Kelly",
+              "nickname": "Olga",
+              "gender": "female",
+              "phone": "+375 (915) 443-2095",
+              "email": "olgakelly@digirang.com",
+              "age": 36,
+              "comment": "Do ut proident adipisicing aliqua id officia occaecat proident aliqua labore elit. Eiusmod in occaecat deserunt cillum labore irure occaecat enim labore. Cupidatat qui eiusmod aliquip anim est voluptate aliquip.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 66.5
+        }
+      }
+    ],
+    "created_at": "2019-11-03T10:12:51",
+    "updated_at": "2019-10-29T01:03:01"
+  },
+  {
+    "id": "5e032ca32e8f42b00201d9f9",
+    "summary": "Package Vip purchase",
+    "type": "package",
+    "reference": {
+      "id": "5e032ca39e89c50de39a9539",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 38.55
+          },
+          "note": "Ad id est amet nulla ullamco tempor eu sint. Dolor adipisicing nostrud excepteur nulla ad irure id ea. Esse sit amet pariatur consectetur Lorem est est. Cillum Lorem ullamco labore velit culpa ipsum quis. Fugiat id id aliqua id Lorem magna reprehenderit ea.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 34.07
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 83.05
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 94.85
+    },
+    "status": "unpaid",
+    "payments": [
+      {
+        "id": "5e032ca30bfebec9dc5d36d4",
+        "type": "card",
+        "amount": {
+          "currency": "BYN",
+          "amount": 75.88
+        },
+        "note": "Ex aliquip duis sunt commodo. Voluptate laborum dolor pariatur quis incididunt deserunt occaecat sint ea mollit et. Voluptate deserunt esse nisi non laborum elit exercitation dolore officia. Aliquip laborum qui ipsum occaecat ut elit velit. Labore nostrud mollit ullamco labore elit consectetur labore aliqua id adipisicing consequat nulla cillum in.\r\n",
+        "created_at": "2019-11-26T09:46:19"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca30f4f67d0b4895cd6",
+            "account": {
+              "id": "5e032ca3778b1cfc9109b746",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 27.79
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 46.44
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca35565129cf83c095e",
+              "display_name": "Helga George",
+              "fullname": "Hines Stone",
+              "nickname": "Stark",
+              "gender": "male",
+              "phone": "+375 (825) 408-2340",
+              "email": "starkstone@digirang.com",
+              "age": 20,
+              "comment": "Dolor deserunt sint duis eu. Laborum sit laborum officia laboris aliquip id sit fugiat amet voluptate laboris non fugiat nostrud. Aliqua laborum consectetur elit ad magna ut qui aute nisi officia non. Laborum exercitation sit in fugiat ipsum enim incididunt officia. Officia labore ipsum sint aliqua ad commodo cillum proident laborum enim.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 54.14
+        }
+      }
+    ],
+    "created_at": "2019-10-27T06:06:15",
+    "updated_at": "2019-10-31T07:40:18"
+  },
+  {
+    "id": "5e032ca3ea42be3bc1e06fbd",
+    "summary": "Package Семейный purchase",
+    "type": "tariff",
+    "reference": {
+      "id": "5e032ca399b0bdd4f3a3cd38",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 72.09
+          },
+          "note": "Proident enim Lorem quis nulla esse quis eu reprehenderit excepteur adipisicing proident adipisicing anim enim. Labore non id tempor excepteur ipsum commodo magna deserunt cupidatat culpa est eiusmod ullamco labore. Ipsum officia dolor dolore Lorem fugiat et. Ut esse veniam ea commodo cillum in amet reprehenderit incididunt veniam dolore sit adipisicing id.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 25.21
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 71.79
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 31.49
+    },
+    "status": "unpaid",
+    "payments": [
+      {
+        "id": "5e032ca308cce5a3f3de8bc4",
+        "type": "card",
+        "amount": {
+          "currency": "BYN",
+          "amount": 18.41
+        },
+        "note": "Eiusmod incididunt enim amet cillum enim irure nostrud nulla. Et duis quis duis ut. Commodo officia minim culpa amet occaecat ipsum adipisicing proident ex ad magna duis tempor. Excepteur reprehenderit fugiat ex consectetur eiusmod magna nostrud ea amet cillum duis. Officia quis occaecat ullamco ut consectetur voluptate magna laboris eu commodo cillum. Ipsum culpa excepteur ut ea cillum consectetur incididunt consequat officia.\r\n",
+        "created_at": "2019-12-07T01:46:15"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca3af69935b639907b3",
+            "account": {
+              "id": "5e032ca336d1540552b1b0c6",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 91.78
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 88.64
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca3d5557db3a9a9d228",
+              "display_name": "Anderson Odonnell",
+              "fullname": "Marguerite Mclean",
+              "nickname": "Munoz",
+              "gender": "male",
+              "phone": "+375 (922) 452-3628",
+              "email": "munozmclean@digirang.com",
+              "age": 23,
+              "comment": "Voluptate dolor ipsum velit labore reprehenderit incididunt aliquip. Sit est exercitation eiusmod nulla laborum in veniam. Laboris nulla ipsum fugiat dolore. Proident nisi aute velit aliqua in et aliqua irure ipsum ea proident voluptate. Consectetur consequat ullamco dolore velit consectetur quis ex excepteur do exercitation.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 47.65
+        }
+      }
+    ],
+    "created_at": "2019-11-09T04:08:33",
+    "updated_at": "2019-11-12T04:33:07"
+  },
+  {
+    "id": "5e032ca37d9a1dc046716c74",
+    "summary": "Package Семейный purchase",
+    "type": "tariff",
+    "reference": {
+      "id": "5e032ca3afd978e7922346a1",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 31.7
+          },
+          "note": "Minim aliqua culpa magna consequat veniam. Cillum cupidatat minim proident nulla officia nostrud incididunt cupidatat mollit in. Ex cillum incididunt non adipisicing.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 99.2
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 57.64
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 85.79
+    },
+    "status": "progress",
+    "payments": [
+      {
+        "id": "5e032ca3496544b048799525",
+        "type": "card",
+        "amount": {
+          "currency": "BYN",
+          "amount": 19.52
+        },
+        "note": "Esse incididunt magna qui anim et. Cillum cupidatat reprehenderit labore quis ad est mollit duis consequat sit culpa minim. Ad excepteur aliqua laboris in. Sit ex labore do magna irure sunt cupidatat dolor fugiat culpa nostrud excepteur dolor. Velit adipisicing consequat minim esse eu fugiat minim minim esse non duis voluptate qui.\r\n",
+        "created_at": "2019-12-23T01:59:47"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca37cd5d4f9d5963aa6",
+            "account": {
+              "id": "5e032ca31c2ca754dad393fe",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 68.63
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 88.21
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca34bfea8045b679b1c",
+              "display_name": "Juana Rowland",
+              "fullname": "Krista Powell",
+              "nickname": "Arlene",
+              "gender": "female",
+              "phone": "+375 (934) 586-2898",
+              "email": "arlenepowell@digirang.com",
+              "age": 31,
+              "comment": "Ipsum anim esse cillum cupidatat dolor mollit incididunt aliqua nisi labore ex. In dolor reprehenderit culpa dolor. Minim consectetur aute est id eiusmod officia voluptate. Non laborum cupidatat Lorem elit pariatur enim aliquip ullamco. Duis ea sit duis excepteur dolore tempor ut esse culpa do.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 12.52
+        }
+      }
+    ],
+    "created_at": "2019-10-08T10:26:30",
+    "updated_at": "2019-10-28T08:29:01"
+  },
+  {
+    "id": "5e032ca3d2fbc651e98cd421",
+    "summary": "Package Безлимитный purchase",
+    "type": "tariff",
+    "reference": {
+      "id": "5e032ca3819c90d45295b78a",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 99.52
+          },
+          "note": "Exercitation minim enim officia ut non dolore ea cillum. Fugiat nostrud aute qui voluptate enim voluptate pariatur velit. Proident amet mollit do in veniam minim proident. Exercitation ullamco ad sit consequat anim sunt ut proident amet ut do excepteur consectetur laboris.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 34.61
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 72.09
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 21.05
+    },
+    "status": "unpaid",
+    "payments": [
+      {
+        "id": "5e032ca301baf1088ff959c5",
+        "type": "cash",
+        "amount": {
+          "currency": "BYN",
+          "amount": 94.9
+        },
+        "note": "Sint culpa reprehenderit nisi amet sunt excepteur id ipsum sint nisi sunt do. Lorem id nisi velit sit reprehenderit pariatur est sint proident commodo ea reprehenderit. Id cupidatat commodo officia non eu esse amet et dolor non. Ut adipisicing ipsum eiusmod cupidatat eu id dolor. Enim minim consectetur cillum exercitation dolor consectetur non amet.\r\n",
+        "created_at": "2019-10-17T11:09:51"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca36c1fe6356a884ab3",
+            "account": {
+              "id": "5e032ca386f0a3cf126f14a1",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 69.88
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 49.27
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca3ba9a75f868ca2b31",
+              "display_name": "Kristine Merrill",
+              "fullname": "Alissa Chan",
+              "nickname": "Beverley",
+              "gender": "female",
+              "phone": "+375 (914) 505-3962",
+              "email": "beverleychan@digirang.com",
+              "age": 23,
+              "comment": "Culpa ad et tempor ex magna. Nostrud id eiusmod consectetur ea sunt minim deserunt fugiat mollit veniam quis commodo occaecat. Cupidatat cillum ullamco amet sit proident do amet nostrud dolore eiusmod veniam aliqua officia. Laborum commodo ea ea commodo id commodo. Aliquip adipisicing culpa ad esse ea ea officia voluptate elit officia cillum. Exercitation sit eu incididunt sunt pariatur nostrud enim ullamco commodo eiusmod magna tempor.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 20.4
+        }
+      }
+    ],
+    "created_at": "2019-11-11T04:37:40",
+    "updated_at": "2019-11-25T12:34:36"
+  },
+  {
+    "id": "5e032ca35b1fdd24aacf5bcc",
+    "summary": "Package Индивидуальный purchase",
+    "type": "package",
+    "reference": {
+      "id": "5e032ca31c243520486c88d2",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 72.84
+          },
+          "note": "Consequat enim eiusmod duis in proident eu cillum pariatur. Sunt ea mollit sit duis. Esse cillum voluptate non dolor ipsum est culpa reprehenderit voluptate nisi in.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 59.3
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 98.6
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 69.42
+    },
+    "status": "paid",
+    "payments": [
+      {
+        "id": "5e032ca3181d1d6b5ead0861",
+        "type": "card",
+        "amount": {
+          "currency": "BYN",
+          "amount": 42.81
+        },
+        "note": "Qui et do mollit cillum eiusmod velit. Mollit voluptate fugiat Lorem consectetur et aute aliquip est voluptate. Sunt quis ipsum commodo commodo nulla Lorem eu. Veniam ex esse laboris dolore ipsum ex eiusmod aliquip in. Ea dolore amet sunt occaecat non ipsum esse. Excepteur ut nisi dolor officia incididunt et aute exercitation elit reprehenderit cillum ad magna velit. Ut sunt do esse est.\r\n",
+        "created_at": "2019-12-16T03:50:03"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca3dfc3e46262ce574b",
+            "account": {
+              "id": "5e032ca301982bea140b64c1",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 72.72
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 27.1
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca325e1625efaf8b9f3",
+              "display_name": "Duran Delgado",
+              "fullname": "Lacey Ward",
+              "nickname": "Rita",
+              "gender": "female",
+              "phone": "+375 (832) 424-3930",
+              "email": "ritaward@digirang.com",
+              "age": 39,
+              "comment": "Enim incididunt est velit non sit Lorem culpa. Excepteur nostrud duis pariatur aute enim exercitation eiusmod sit esse mollit mollit sunt sint. Veniam sint id ad est incididunt quis. Sunt ipsum Lorem ipsum nulla. Consectetur adipisicing nisi ea reprehenderit et nisi amet nulla eu sint dolor. Aute officia eu amet ex excepteur laboris nisi commodo ipsum minim magna et.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 60.95
+        }
+      }
+    ],
+    "created_at": "2019-12-19T06:23:19",
+    "updated_at": "2019-11-29T05:00:21"
+  },
+  {
+    "id": "5e032ca3da854eb35c20dff6",
+    "summary": "Package Семейный purchase",
+    "type": "package",
+    "reference": {
+      "id": "5e032ca32d15e4cc873623e2",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 27.85
+          },
+          "note": "Ex dolor enim laborum amet elit nisi nostrud esse sunt culpa sunt sint. Fugiat deserunt sint Lorem adipisicing eu cupidatat qui sit nisi labore. Quis in dolor est quis cillum. Velit sit velit anim laborum irure ea cupidatat ad eiusmod. Amet occaecat amet est officia. Laboris amet irure sunt ut mollit eiusmod ea aute magna fugiat magna cillum. Ipsum laboris sunt duis cillum adipisicing consequat exercitation dolor velit tempor dolore velit.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 39.14
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 31.01
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 48.98
+    },
+    "status": "paid",
+    "payments": [
+      {
+        "id": "5e032ca37964f13da3edfc03",
+        "type": "card",
+        "amount": {
+          "currency": "BYN",
+          "amount": 62.89
+        },
+        "note": "Velit irure ipsum esse labore occaecat. Incididunt eiusmod eu sunt deserunt pariatur reprehenderit ex duis magna ipsum esse. Cillum enim aute non commodo reprehenderit. Nostrud ad esse amet qui amet amet deserunt magna aliquip dolore enim ea aliqua et. Est nulla proident est incididunt. In excepteur nulla duis exercitation.\r\n",
+        "created_at": "2019-11-19T05:50:43"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca33105e13a5386752f",
+            "account": {
+              "id": "5e032ca363b9cf4ab088358f",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 44.36
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 87.85
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca3c251c15dceb1f1fe",
+              "display_name": "Mai Franklin",
+              "fullname": "Estela Larsen",
+              "nickname": "Chan",
+              "gender": "male",
+              "phone": "+375 (991) 553-2489",
+              "email": "chanlarsen@digirang.com",
+              "age": 25,
+              "comment": "Sunt voluptate eiusmod veniam anim laborum anim veniam non esse. Excepteur sit excepteur laboris amet ut sit eu. Officia in sit aliquip sit do dolor aliqua. Ex officia laboris consequat aliqua occaecat sit nisi. Dolor cupidatat ipsum et enim cillum id Lorem excepteur. Exercitation consequat duis Lorem exercitation reprehenderit incididunt aute laborum.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 61.32
+        }
+      }
+    ],
+    "created_at": "2019-12-12T11:53:41",
+    "updated_at": "2019-10-22T10:51:24"
+  },
+  {
+    "id": "5e032ca3f9b6b8cedb582131",
+    "summary": "Package Безлимитный purchase",
+    "type": "tariff",
+    "reference": {
+      "id": "5e032ca3af17f47c686578a3",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 13.59
+          },
+          "note": "Esse consectetur nostrud voluptate in. Anim aute culpa id fugiat nulla voluptate nostrud amet nulla laborum nostrud commodo amet. Mollit Lorem incididunt sint dolor aute esse. Non quis veniam proident dolore nostrud voluptate esse. Ut proident laborum cillum eiusmod. Officia sunt est id non mollit laboris ut aliqua eu pariatur veniam pariatur culpa laborum.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 80.89
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 33.54
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 64.42
+    },
+    "status": "unpaid",
+    "payments": [
+      {
+        "id": "5e032ca3bbfe8cb065c3b07f",
+        "type": "card",
+        "amount": {
+          "currency": "BYN",
+          "amount": 47.48
+        },
+        "note": "Qui reprehenderit sunt officia do nisi id consectetur excepteur magna laborum proident in. Culpa deserunt anim reprehenderit id proident eu. Enim minim do consequat excepteur dolor quis fugiat.\r\n",
+        "created_at": "2019-11-13T04:26:46"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca3a675c978142cd1f5",
+            "account": {
+              "id": "5e032ca3ac29374568df76a9",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 63.61
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 89.66
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca3c85cad17d0124f58",
+              "display_name": "Newman Harris",
+              "fullname": "Eddie Norton",
+              "nickname": "Elvia",
+              "gender": "female",
+              "phone": "+375 (885) 415-2464",
+              "email": "elvianorton@digirang.com",
+              "age": 36,
+              "comment": "Aliquip magna duis excepteur commodo do proident. Eiusmod cillum non tempor consequat ipsum excepteur nisi ex et duis sit ullamco aliquip. In quis commodo dolor ipsum reprehenderit consequat cupidatat incididunt mollit nostrud enim. Proident quis aute cillum mollit voluptate velit officia pariatur mollit sunt ex consectetur. Sint reprehenderit incididunt labore officia aliquip commodo ea sunt mollit.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 72.79
+        }
+      }
+    ],
+    "created_at": "2019-10-19T11:08:19",
+    "updated_at": "2019-12-15T07:28:05"
+  },
+  {
+    "id": "5e032ca3864bfd8e97da9c57",
+    "summary": "Package Индивидуальный purchase",
+    "type": "tariff",
+    "reference": {
+      "id": "5e032ca3dd4a5057157ffde2",
+      "name": "Семейный 500",
+      "note": "string",
+      "players": 1,
+      "payments": [
+        {
+          "type": "payment",
+          "amount": {
+            "currency": "BYN",
+            "amount": 51.14
+          },
+          "note": "Incididunt veniam dolore consectetur ex id aliquip in non magna ipsum minim laborum labore labore. Minim sit minim labore sit esse. Consectetur minim voluptate duis laboris nostrud. Consectetur voluptate ad enim exercitation et amet ut reprehenderit velit. Tempor consectetur reprehenderit laboris ex sint anim nisi magna amet nostrud qui adipisicing labore.\r\n"
+        }
+      ],
+      "charges": [
+        {
+          "players": [
+            0
+          ],
+          "type": "charge",
+          "amount": {
+            "currency": "BYN",
+            "amount": 88.37
+          }
+        }
+      ],
+      "price": {
+        "currency": "BYN",
+        "amount": 30.96
+      }
+    },
+    "total": {
+      "currency": "BYN",
+      "amount": 13.52
+    },
+    "status": "paid",
+    "payments": [
+      {
+        "id": "5e032ca39d49dff4ad28fe89",
+        "type": "card",
+        "amount": {
+          "currency": "BYN",
+          "amount": 68.56
+        },
+        "note": "Sint anim elit excepteur aute in eiusmod exercitation minim irure minim nisi pariatur. Ex aliqua enim non sit id nostrud veniam anim ullamco proident incididunt. Excepteur dolor non dolore aute dolor deserunt aliquip cupidatat elit pariatur velit eu tempor. Nostrud aute dolore culpa exercitation incididunt minim exercitation nostrud minim officia laboris tempor. Eiusmod proident sint anim dolor duis cupidatat mollit in duis excepteur occaecat. In pariatur non ad qui ex cupidatat enim minim est aliqua.\r\n",
+        "created_at": "2019-12-10T09:24:15"
+      }
+    ],
+    "charges": [
+      {
+        "recipients": [
+          {
+            "id": "5e032ca37da2de3fb9ede067",
+            "account": {
+              "id": "5e032ca3d7dc1e13daf5a58c",
+              "balance": [
+                {
+                  "currency": "BYN",
+                  "amount": 62.85
+                },
+                {
+                  "currency": "BYN",
+                  "amount": 14.24
+                }
+              ]
+            },
+            "profile": {
+              "id": "5e032ca351eae756c4b9cd0b",
+              "display_name": "Beth Adkins",
+              "fullname": "Amie Walton",
+              "nickname": "Wright",
+              "gender": "male",
+              "phone": "+375 (927) 443-2035",
+              "email": "wrightwalton@digirang.com",
+              "age": 30,
+              "comment": "Voluptate nisi dolore minim minim fugiat id reprehenderit laborum consectetur quis eiusmod nisi voluptate. Non nostrud qui dolore ex deserunt proident deserunt do proident nisi sint do pariatur dolore. Lorem ipsum exercitation non esse anim culpa duis minim exercitation minim esse ullamco Lorem eu. Laborum cillum esse mollit est Lorem duis adipisicing sunt id elit ad magna aute.\r\n"
+            }
+          }
+        ],
+        "amount": {
+          "currency": "BYN",
+          "amount": 44.92
+        }
+      }
+    ],
+    "created_at": "2019-10-15T11:05:34",
+    "updated_at": "2019-11-23T04:40:58"
+  }
+]

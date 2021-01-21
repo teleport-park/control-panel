@@ -1,0 +1,11 @@
+:host {
+  padding: 15px;
+  display: block;
+  width: 100%;
+  .instances_wrapper {
+    margin: 0;
+    .instance {
+      margin-bottom: 10px;
+    }
+  }
+}

@@ -1,0 +1,128 @@
+@import "src/styles/control-panel-theme";
+
+:host {
+  .toolbar {
+    padding: .5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+  }
+//.games-table {
+//  table-layout: fixed;
+//}
+  .mat-column {
+    //&-price {
+    //  width: 15rem;
+    //}
+    //&-select {
+    //  width: 5rem;
+    //}
+    //&-name {
+    //  width: 17rem;
+    //}
+    padding-right: 1rem;
+    &-edit {
+      width: 7rem;
+      padding-right: .5rem;
+    }
+  }
+
+  .mat-cell {
+    padding-right: 1rem;
+    &.disabled {
+      opacity: .3;
+    }
+  }
+
+  .field {
+    width: 100%;
+    max-width: 7rem;
+    margin-right: 1rem;
+  }
+
+  .mat-row {
+    height: 4.5rem;
+  }
+
+  .amount-field {
+    width: 10rem;
+    margin-right: 1rem;
+  }
+
+  .currency-field {
+    width: 6rem;
+  }
+
+  .name {
+    font-size: 1.1rem;
+    word-break: break-all;
+    color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    display: inline-block;
+
+    &:hover {
+      color: rgba(0, 0, 0, 1);
+      text-decoration: underline;
+    }
+  }
+
+  .games-table {
+    width: 100%;
+    //table-layout: fixed;
+  }
+}
+
+.games-list {
+  border: 1px solid rgba(0, 0, 0, .05);
+  border-radius: .5rem;
+  max-height: 100px;
+  overflow-y: auto;
+  @include custom-scroll();
+
+  ul {
+    padding-left: 2rem;
+    margin: .5rem 0;
+  }
+}
+
+.price-dialog_wrapper {
+  position: relative;
+
+  .loader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 .5rem;
+  border: 1px solid rgba(0, 0, 0, .3);
+  border-radius: .3rem;
+  margin-bottom: .5rem;
+
+  .promo {
+    width: 13rem;
+    margin-right: 1rem;
+  }
+
+  .amount {
+    width: 10rem;
+    margin-right: 1rem;
+  }
+
+  .currency {
+    width: 6rem;
+  }
+}
+
+
+

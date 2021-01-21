@@ -1,0 +1,232 @@
+<div class="d-flex align-items-center justify-content-between" [class.table-toolbar-wrapper]="iconSet">
+   <div class="flex-grow-1">
+       <button mat-raised-button *ngIf="iconSet"
+               color="primary"
+               class="pl-3"
+               (click)="addEntity()">
+           <mat-icon class="mb-1 mr-2">{{iconSet}}</mat-icon>
+           {{translations.instant('TABLE_ADD')}}
+       </button>
+   </div>
+    <mat-paginator #paginator [pageSizeOptions]="[25, 50]"
+                   class="align-self-end"
+                   *ngIf="(itemCount && dataSource.data.length > 10) && itemCount > 25"
+                   [length]="itemCount" showFirstLastButtons
+                   [pageSize]="pageSize"
+                   (page)="changePageHandler($event)"></mat-paginator>
+</div>
+<div class="table-wrapper">
+    <mat-table matSort [dataSource]="dataSource" class="table" (matSortChange)="sortChange($event)">
+        <!--data cells-->
+        <ng-container [matColumnDef]="column" *ngFor="let column of simpleDataColumn;">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn(column)"
+                             [ngClass]="{'sort-column': !isSortedColumn(column)}" *matHeaderCellDef>
+                <span>{{translations.instant(propertyMap[column] || column)}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let row" class="simple-data">
+                <ng-container *ngIf="!isBoolean(row[column]) && !column.includes('_at')">
+                    <span matTooltip="{{row[column]}}" [matTooltipShowDelay]="1000"
+                          class="table_cell-inner"
+                          [ngClass]="'control-panel-ui-table_' + row[column]">{{propertyMap[row[column]] ? (propertyMap[row[column]] | translate) : row[column]}}</span>
+                </ng-container>
+                <ng-container *ngIf="isBoolean(row[column]) && !column.includes('_at')">
+                    <span class="table_cell-inner"><mat-icon
+                            color="{{row[column] ? 'success' : 'warn'}}">{{row[column] ? 'check_circle' : 'cancel_circle'}}</mat-icon></span>
+                </ng-container>
+
+                <ng-container *ngIf="column.includes('_at')">
+                    <span class="table_cell-inner">{{row[column] | date: "dd.MM.yyyy HH:mm"}}</span>
+                </ng-container>
+
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="expiresAt">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('expiresAt')" *matHeaderCellDef>
+                <span>{{translations.instant(propertyMap['expiresAt'] || 'expiresAt')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <span class="table_cell-inner">{{item.expiresAt | date: "dd.MM.yyyy HH:mm"}}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="deletedAt">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('deletedAt')" *matHeaderCellDef>
+                <span>{{translations.instant(propertyMap['deletedAt'] || 'deletedAt')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <span class="table_cell-inner">{{item.deletedAt | date: "dd.MM.yyyy HH:mm"}}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="timestamp">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('timestamp')" *matHeaderCellDef>
+                <span>{{translations.instant(propertyMap['timestamp'] || 'timestamp')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <span class="table_cell-inner">{{item.timestamp | date: "dd.MM.yyyy HH:mm:ss"}}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="coins">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('coins')" *matHeaderCellDef>
+                <span>{{translations.instant(propertyMap['coins'] || 'coins')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div class="amount d-flex align-items-center justify-content-between">
+                    <div class="table_cell-inner">{{item.coins.amount}}</div>
+                    <div>
+                        <mat-icon svgIcon="coin"></mat-icon>
+                    </div>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('price')" *matHeaderCellDef>
+                <span>{{translations.instant(propertyMap['price'] || 'price')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div class="amount d-flex align-items-center justify-content-between">
+                    <div class="table_cell-inner">{{item.price.amount}}</div>
+                    <div>BYN</div>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('amount')" *matHeaderCellDef>
+                <span>{{translations.instant(propertyMap['amount'] || 'amount')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div class="amount d-flex align-items-center justify-content-between">
+                    <div class="table_cell-inner">{{item.amount.amount}}</div>
+                    <div>{{item.amount.currency}}</div>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('total')" *matHeaderCellDef>
+                <span>{{translations.instant(propertyMap['amount'] || 'amount')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div class="amount d-flex align-items-center justify-content-between">
+                    <div class="table_cell-inner">{{item.total.amount}}</div>
+                    <div>{{item.total.currency}}</div>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="charges">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('charges')" *matHeaderCellDef>
+                <span>{{translations.instant(propertyMap['charges'] || 'charges')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div>
+                    <ng-container *ngFor="let charge of item.charges">
+                        <ng-container *ngFor="let recipient of charge.recipients">
+                            <div class="table_cell-inner">{{recipient.profile.display_name}}</div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="user">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('user')" *matHeaderCellDef>
+                <span>{{translations.instant(propertyMap['user'] || 'user')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div class="d-flex flex-column">
+                    <div class="mt-1 mb-1">
+                        name: {{item.user?.display_name}}
+                    </div>
+                    <div class="mt-1 mb-1">
+                        id: {{item.user?.id}}
+                    </div>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="balance">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('balance')" *matHeaderCellDef>
+                <span>{{translations.instant(propertyMap['balance'] || 'balance')}}</span></mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div class="table_cell-inner"
+                     [ngClass]="'control-panel-ui-table-amount_' + (getBalance(item.balance) > 0 ? 'positive' : getBalance(item.balance) < 0 ? 'negative' : 'null')">
+                    {{getBalance(item.balance)}} {{item.balance ? item.balance[0]?.currency : ''}}
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <!--statuses cell-->
+        <ng-container matColumnDef="statuses" class="table_cell-inner">
+            <mat-header-cell mat-sort-header [disabled]="isSortedColumn('statuses')" *matHeaderCellDef>
+                {{translations.instant(propertyMap['statuses'])}}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <div class="table_cell-inner">
+                    <div class="status-list">
+                        <mat-icon *ngFor="let status of item.statuses"
+                                  [ngClass]="status.name.split(' ').join('').toLowerCase()"
+                                  [svgIcon]="status.name.split(' ').join('').toLowerCase()"
+                                  matTooltip="{{status.name}}"></mat-icon>
+                    </div>
+                </div>
+            </mat-cell>
+        </ng-container>
+        <!--submenu cell-->
+        <ng-container matColumnDef="submenu" [stickyEnd]="(point.handset | async)">
+            <mat-header-cell *matHeaderCellDef class="submenu_header"></mat-header-cell>
+            <mat-cell *matCellDef="let item" class="submenu_cell">
+                <button mat-icon-button [matMenuTriggerFor]="staffMemberMenu" (click)="$event.stopPropagation()">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #staffMemberMenu="matMenu">
+                    <button *ngIf="!deleteDisable" mat-menu-item (click)="delete.emit(item)">
+                        <mat-icon color="warn">delete</mat-icon>
+                        {{translations.instant('TABLE_DELETE')}}
+                    </button>
+                    <button mat-menu-item (click)="edit.emit(item)">
+                        <mat-icon color="primary">edit</mat-icon>
+                        {{translations.instant('TABLE_EDIT')}}
+                    </button>
+                    <button *ngIf="card" mat-menu-item (click)="bindCard.emit(item)">
+                        <mat-icon color="accent">credit_card</mat-icon>
+                        {{translations.instant('TABLE_BIND_CARD')}}
+                    </button>
+                </mat-menu>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="roles" class="table_cell-inner">
+            <mat-header-cell
+                    *matHeaderCellDef>{{translations.instant(propertyMap['roles']) || 'roles'}}</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <span class="table_cell-inner">
+                    <span>{{row.roles.map(mapRoles).join(', ')}}</span>
+                </span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="enabled">
+            <mat-header-cell *matHeaderCellDef> {{translations.instant('ENABLED')}} </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let item">
+                <button *ngIf="item.enabled"
+                        mat-icon-button color="success"
+                        matTooltip="{{'DISABLE' | translate}}"
+                        matTooltipPosition="left"
+                        (click)="toggle.emit(item)">
+                    <mat-icon>check</mat-icon>
+                </button>
+                <button *ngIf="!item.enabled"
+                        mat-icon-button
+                        matTooltip="{{'ENABLE' | translate}}"
+                        matTooltipPosition="left"
+                        color="warn"
+                        (click)="toggle.emit(item)">
+                    <mat-icon>clear</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" [style.min-height]="minRowHeight + 'px'"
+                 [ngClass]="{'selected': selection.isSelected(row)}"
+                 (click)="selectRow(row)"></mat-row>
+    </mat-table>
+</div>
+<mat-paginator #paginator [pageSizeOptions]="[25, 50]"
+               [length]="itemCount" showFirstLastButtons
+               [pageSize]="pageSize"
+               (page)="changePageHandler($event)"></mat-paginator>

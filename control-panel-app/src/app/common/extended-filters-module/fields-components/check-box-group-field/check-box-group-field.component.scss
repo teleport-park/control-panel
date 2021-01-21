@@ -1,0 +1,37 @@
+:host {
+  display: block;
+  //margin: 0 1rem;
+  .check-box-group-filter {
+    p {
+      margin: 0;
+    }
+
+    .mat-selection-list {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex: auto;
+      padding-top: 0;
+      .mat-list-option {
+        width: initial;
+        margin-left: 1.2rem;
+      }
+      .mat-list-item {
+        ::ng-deep.mat-list-item-content {
+          padding: 0;
+          font-size: 1rem;
+        }
+
+        &:hover, &:focus {
+          background: rgba(0, 0, 0, 0);
+        }
+
+        height: 30px;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<div class="time-filter mb-3">
+    <h4 class="mb-4">{{translations.instant('TIME_PERIOD_FILTER_TITLE')}}</h4>
+    <control-panel-ui-period-selector
+            fromLabel="{{translations.instant('EXTENDED_FILTER_FROM')}}"
+            toLabel="{{translations.instant('EXTENDED_FILTER_TO')}}"
+            submitLabel="{{translations.instant('SEARCH_BY_PERIOD')}}"
+            (selectPeriod)="applyFilter($event)"
+    ></control-panel-ui-period-selector>
+</div>
+<ng-container *ngIf="statusFilter">
+    <div class="status-filter">
+        <h4 class="mb-4">Фильтр по статусу</h4>
+        <div class="status-filter_wrapper d-flex flex-column pl-1">
+            <mat-checkbox *ngFor="let status of statusFilter.statuses" [(ngModel)]="statusFilterState[status]"
+                          (ngModelChange)="applyFilter()">{{translations.instant(status.toUpperCase())}}</mat-checkbox>
+        </div>
+    </div>
+</ng-container>
+

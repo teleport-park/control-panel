@@ -1,0 +1,31 @@
+<ng-container *ngTemplateOutlet="(service.controllers$ | async)?.length ? instances : empty"></ng-container>
+<ng-template #instances>
+  <div class="row m-0">
+    <div *ngFor="let item of (service.controllers$ | async)"
+         class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 instance">
+      <control-panel-ui-item-card [item]="item" class="light-theme">
+        <div class="hardware-item_title">
+          <h4>{{item.display_name || item.name}}</h4>
+        </div>
+        <p>
+          <span class="bold">{{translations.instant('SERVER_ENABLED')}}:</span>
+          <mat-icon [ngClass]="{'offline': !item.enabled, 'online': item.enabled}">
+            {{item.enabled ? 'desktop_windows' : 'desktop_access_disabled'}}
+          </mat-icon>
+        </p>
+        <div class="action justify-content-between d-flex align-items-center mt-4">
+          <mat-slide-toggle color="success" (change)="toggle(item)" [checked]="item.enabled"><span
+            class="label">{{(item.enabled ? 'DISABLE_SERVER' : 'ENABLE_SERVER') | translate}}</span>
+          </mat-slide-toggle>
+        </div>
+      </control-panel-ui-item-card>
+    </div>
+  </div>
+</ng-template>
+<ng-template #empty>
+  <control-panel-ui-empty></control-panel-ui-empty>
+</ng-template>
+<control-panel-trigger [callBack]="service.refresh.bind(service)"></control-panel-trigger>
+
+<!-- TODO need API-->
+<mock></mock>

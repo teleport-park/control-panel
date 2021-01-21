@@ -1,0 +1,48 @@
+<div class="light-theme" *ngIf="_user">
+    <control-panel-ui-card class="primary">
+        <div panelUICardHeaderTitle>{{_user.display_name || _user.name}}</div>
+        <div panelUICardContent>
+            <p class="mt-4">
+                <span class="bold">{{translations.instant('USER_NAME')}}:</span>
+                {{_user.name}}
+            </p>
+            <p>
+                <span class="bold">{{translations.instant('USER_GENDER_LABEL')}}:</span>
+                {{translations.instant(_user.gender.toUpperCase())}}
+            </p>
+            <p>
+                <span class="bold">{{translations.instant('USER_AGE')}}:</span>
+                {{_user.age}}
+            </p>
+            <p>
+                <span class="bold">{{translations.instant('PHONE')}}:</span>
+                {{_user.phone}}
+            </p>
+            <p>
+                <span class="bold">{{translations.instant('USER_DATE_OF_BIRTH_DAY')}}:</span>
+                {{getUserDOB(_user.birthday)}}
+            </p>
+            <p>
+                <span class="bold">{{translations.instant('EMAIL')}}:</span>
+                {{_user.email}}
+            </p>
+            <p>
+                <span class="bold">{{translations.instant('BALANCE')}}:</span>
+                {{getBalance(_user.balance) + (_user.balance?.length ? _user.balance[0]?.currency : '')}}
+            </p>
+            <div class="d-flex mt-4">
+                <button mat-flat-button color="warn" (click)="back()" class="mr-3"><mat-icon>arrow_back</mat-icon>{{translations.instant('CLOSE')}}</button>
+                <button mat-flat-button color="primary" (click)="openModalDialog(_user)"><mat-icon>edit</mat-icon>{{translations.instant('TABLE_EDIT')}}</button>
+            </div>
+
+        </div>
+    </control-panel-ui-card>
+</div>
+
+<ng-template #form let-data>
+    <control-panel-ui-form [item]="data"
+                           [mode]="'edit'"
+                           (save)="submit($event)"
+                           (cancel)="_dialog.close()"></control-panel-ui-form>
+</ng-template>
+

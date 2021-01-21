@@ -1,0 +1,45 @@
+<div class="light-theme">
+    <control-panel-ui-card class="primary">
+        <div panelUICardHeaderTitle>{{translations.instant('GAMES_LIST_TITLE')}}</div>
+        <div panelUICardContent>
+            <div class="d-flex align-items-start justify-content-between mb-2">
+                <control-panel-ui-quick-filter (filterChange)="applyFilter($event)"></control-panel-ui-quick-filter>
+                <control-panel-trigger [callBack]="service.refresh.bind(service)"
+                                       class="absolute"></control-panel-trigger>
+            </div>
+            <table mat-table [dataSource]="dataSource" matSort class="w-100 mb-5">
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef
+                        mat-sort-header> {{translations.instant('AMUSEMENTS_NAME_LABEL')}} </th>
+                    <td mat-cell *matCellDef="let game">
+                        <div class="name mt-3">{{game.name || 'N/A'}}</div>
+                        <div class="sub_text mb-3">
+                            <span>{{translations.instant('ID').toLowerCase()}}:</span><span class="info">{{game.id || 'N/A'}},</span>
+                            <span>{{translations.instant('FINGERPRINT').toLowerCase()}}:</span><span class="info">{{game.fingerprint || 'N/A'}}</span>
+                        </div>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="active">
+                    <th mat-header-cell *matHeaderCellDef> {{translations.instant('ENABLED')}} </th>
+                    <td mat-cell *matCellDef="let game">
+                        <mat-icon
+                                color="{{game.active ? 'success' : 'warn'}}">{{game.active ? 'check' : 'clear'}}</mat-icon>
+                    </td>
+
+                </ng-container>
+                <ng-container matColumnDef="enabled">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                    <td mat-cell *matCellDef="let game">
+                        <mat-slide-toggle color="success" [checked]="game.enabled"
+                                          (change)="toggleGameHandler($event, game)"></mat-slide-toggle>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="row.type"
+                    [class.inactive]="!row.enabled"></tr>
+            </table>
+            <control-panel-ui-empty class="black" *ngIf="!dataSource.data.length"></control-panel-ui-empty>
+        </div>
+    </control-panel-ui-card>
+</div>
+

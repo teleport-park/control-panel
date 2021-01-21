@@ -1,0 +1,115 @@
+@import "control-panel-theme";
+:host {
+  padding-top: 1rem;
+  display: block;
+  .table {
+    width: 100%;
+    overflow: hidden;
+    .cdk-column-cloudId, .cdk-column-unlim {
+      flex: 0 0 50px;
+    }
+
+    .cdk-column-coins, .cdk-column-price {
+      flex: 0 0 100px;
+    }
+
+    .cdk-column-title, .cdk-column-category {
+      flex: 0 0 150px;
+    }
+
+    .cdk-column-expiresAt {
+      flex: 0 0 120px;
+    }
+
+    .cdk-column-submenu {
+      flex: 0 0 50px;
+    }
+
+    .mat-row {
+      .more {
+        font-size: 16px;
+      }
+      .table_cell-inner {
+        word-break: break-word;
+        padding-right: .5rem;
+        display: inline-flex;
+        align-items: center;
+        .status-list {
+          padding: 0;
+          .mat-icon {
+            width: 20px;
+            height: 20px;
+            color: rgba($dark, .7);
+            margin-right: 8px;
+          }
+        }
+      }
+      .mat-column-submenu {
+        padding: 0;
+        &.mat-table-sticky {
+          border-left: 1px solid #e0e0e0;
+          background-color: $white;
+        }
+      }
+
+      .mat-column-submenu {
+        text-align: right;
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, .05);
+        cursor: pointer;
+      }
+      .amount {
+        min-width: 60px;
+      }
+    }
+
+    .status-icon {
+      color: $warn;
+
+      &.active {
+        color: $success;
+      }
+    }
+    .control-panel-ui-table {
+      &_paid {
+        color: $success;
+      }
+      &_unpaid {
+        color: $inactive;
+      }
+      &_canceled {
+        color: $warn;
+      }
+      &_progress {
+        color: $info;
+      }
+    }
+    .control-panel-ui-table-amount {
+      &_positive {
+        color: $success;
+      }
+      &_negative {
+        color: $warn;
+      }
+      &_null {
+        color: $inactive;
+      }
+    }
+    .sort-column {
+      span {
+        border-bottom: 1px dashed rgba(0, 0, 0, .4);
+        color: rgba(0, 0, 0, .8);
+      }
+    }
+  }
+  .mat-paginator {
+  }
+  .table-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .table-toolbar-wrapper {
+    min-height: 56px;
+  }
+}
